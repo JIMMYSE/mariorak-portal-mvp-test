@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="69" height="69" viewBox="0 0 69 69">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.827" y1="0.115" x2="0.206" y2="0.894" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#639cff"/>
+      <stop offset="1" stop-color="#266adf"/>
+    </linearGradient>
+    <filter id="타원_67" x="0" y="0" width="69" height="69" filterUnits="userSpaceOnUse">
+      <feOffset dy="-1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161" result="color"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur"/>
+      <feComposite operator="in" in="color"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <clipPath id="clip-path">
+      <rect id="사각형_505" data-name="사각형 505" width="33.842" height="43.461" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="btn_connect" transform="translate(-429 -419)">
+    <g data-type="innerShadowGroup">
+      <circle id="타원_67-2" data-name="타원 67" cx="34.5" cy="34.5" r="34.5" transform="translate(429 418.999)" fill="url(#linear-gradient)"/>
+      <g transform="matrix(1, 0, 0, 1, 429, 419)" filter="url(#타원_67)">
+        <circle id="타원_67-3" data-name="타원 67" cx="34.5" cy="34.5" r="34.5" transform="translate(0 0)" fill="#fff"/>
+      </g>
+    </g>
+    <g id="그룹_3852" data-name="그룹 3852" transform="translate(467.733 425) rotate(45)">
+      <path id="패스_3220" data-name="패스 3220" d="M0,80.919V84.3H16.921L15.1,70.024Z" transform="translate(0 -51.391)" fill="#b6ceee"/>
+      <path id="패스_3221" data-name="패스 3221" d="M63.589,84.3H80.509V80.919l-15.1-10.9Z" transform="translate(-46.668 -51.391)" fill="#b6ceee"/>
+      <g id="그룹_1252" data-name="그룹 1252">
+        <g id="그룹_1251" data-name="그룹 1251" clip-path="url(#clip-path)">
+          <path id="패스_3222" data-name="패스 3222" d="M42.529,35.6l.742-10.754s.222-5.266-.667-7.07a11.778,11.778,0,0,1-1.038-3.832A39.586,39.586,0,0,0,39.043,0a39.583,39.583,0,0,0-2.522,13.943,11.786,11.786,0,0,1-1.038,3.832c-.89,1.8-.668,7.07-.668,7.07L35.557,35.6l-5.414,4.6.519,2.373h4.672l.742-.519V38.567h1.335v3.115l.668,1.78h1.928l.668-1.78V38.567H42.01v3.486l.742.519h4.672l.519-2.373Z" transform="translate(-22.122)" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

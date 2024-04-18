@@ -1,0 +1,26 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  theme: {
+    fontFamily: {
+      rokaf: ['ROKAF', 'ROKAF Sans Medium', 'ROKAF Sans Bold', 'sans-serif'],
+      pretendard: [
+        'pretendard',
+        'Pretendard-Regular',
+        'Pretendard-Medium',
+        'Pretendard-Bold',
+        'sans-serif',
+      ],
+    },
+    colors: {
+      grey: '#f4f4f5',
+      'grey-1': '#ececec',
+      'grey-2': '#cecece',
+      'grey-3': '#909090',
+      'grey-4': '#606060',
+      'grey-5': '#111111',
+    },
+    extend: {},
+  },
+  plugins: [],
+};

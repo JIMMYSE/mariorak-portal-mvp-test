@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <g id="btn_home" transform="translate(-23.998 -761.998)">
+    <g id="사각형_8" data-name="사각형 8" transform="translate(23.998 761.998)" fill="#fff" stroke="#707070" stroke-width="1" opacity="0">
+      <rect width="40" height="40" stroke="none"/>
+      <rect x="0.5" y="0.5" width="39" height="39" fill="none"/>
+    </g>
+    <path id="home" d="M16,3.021a3.54,3.54,0,0,0-3.994,0L3.6,8.736A3.7,3.7,0,0,0,2,11.793V22.73A3.638,3.638,0,0,0,5.6,26.4h4.8a1.213,1.213,0,0,0,1.2-1.225V19.055a1.213,1.213,0,0,1,1.2-1.225h2.4a1.213,1.213,0,0,1,1.2,1.225v6.124A1.213,1.213,0,0,0,17.6,26.4h4.8A3.638,3.638,0,0,0,26,22.73V11.793a3.7,3.7,0,0,0-1.6-3.057Z" transform="translate(29.998 767.595)" fill="#196af5" fill-rule="evenodd"/>
+  </g>
+</svg>

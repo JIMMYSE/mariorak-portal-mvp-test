@@ -1,0 +1,18 @@
+{
+  "extends": "@quasar/app-vite/tsconfig-preset",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "esnext",
+
+    // "allowJs": true,
+    // "checkJs": false,
+
+    // "strict": true,
+    // "noImplicitAny": true,
+    "noFallthroughCasesInSwitch": true,
+
+    // for Yup
+    // https://github.com/jquense/yup
+    "strictFunctionTypes": false
+  }
+}

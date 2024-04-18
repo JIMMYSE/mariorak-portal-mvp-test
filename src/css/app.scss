@@ -1,0 +1,184 @@
+// app global css in SCSS form
+@font-face {
+  font-family: 'ROKAF';
+  src: local('ROKAF Sans Medium'),
+    url('/fonts/ROKAF Sans Medium.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ROKAF';
+  src: local('ROKAF Sans Bold'),
+    url('/fonts/ROKAF Sans Bold.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'pretendard';
+  src: local('Pretendard Medium'),
+    url('/fonts/Pretendard-Medium.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'pretendard';
+  src: local('Pretendard Regular'),
+    url('/fonts/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'pretendard';
+  src: local('Pretendard Bold'),
+    url('/fonts/Pretendard-Bold.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+body {
+  color: $grey-5;
+  --statusbar-h: 0px;
+  --main-header-h: 55px;
+  --header-h: 50px;
+  text-underline-offset: 4px;
+}
+.q-page-container {
+  padding: 0;
+  // statusbar height + QHeader height
+  padding-top: calc(var(--statusbar-h) + var(--header-h));
+  .q-page {
+    min-height: calc(100vh - var(--statusbar-h) - var(--header-h));
+  }
+}
+.main-layout .q-page-container {
+  // padding-top: calc(var(--statusbar-h) + var(--main-header-h)) !important;
+  padding-top: 0 !important;
+  .q-page {
+    // min-height: calc(
+    //   100vh - var(--statusbar-h) - var(--main-header-h)
+    // ) !important;
+    min-height: 100vh !important;
+  }
+}
+
+// -------- q-btn -----------//
+.q-btn {
+  &.disabled {
+    background: $grey-2 !important;
+    color: $grey !important;
+  }
+}
+
+.q-btn--standard {
+  background: $primary;
+  color: white;
+  // &::before {
+  // box-shadow: none;
+  // }
+
+  &:hover {
+    background: $primary;
+    color: white;
+  }
+  &.disabled {
+    background: $grey-2 !important;
+    color: $grey-3 !important;
+  }
+}
+
+// -------- q-input -----------//
+.q-input {
+  .q-field--outlined .q-field__control {
+    border-radius: 23px;
+    height: 44px;
+    background: white;
+    &:before {
+      border-color: $grey;
+      border-width: 1px;
+    }
+
+    color: $grey-5;
+  }
+
+  .q-field__control {
+    padding: 0 5px 0 12px;
+
+    input::placeholder {
+      /* WebKit, Blink, Edge */
+      color: $grey-2;
+      font-family: $typography-font-family;
+    }
+
+    input[type='password'] {
+      font-family: '-apple-system', 'Helvetica Neue', Helvetica, Arial,
+        sans-serif !important;
+    }
+  }
+
+  .q-field__append {
+    padding: 0;
+  }
+}
+// -------- q-card -----------//
+.q-card {
+  border-radius: 5px;
+}
+
+// -------- q-tab -----------//
+.q-tab {
+  .q-tab__icon {
+    width: 40px;
+    height: 40px;
+  }
+  .q-tab__label {
+    font-size: 10px;
+    line-height: 1.715em;
+    font-weight: 300;
+    color: $grey-5;
+  }
+  .q-tab__indicator {
+    background-color: white;
+  }
+
+  &.q-tab--active {
+    .q-tab__label {
+      font-weight: 500;
+      color: $primary;
+    }
+  }
+}
+// -------- q-dialog -----------//
+
+.full-dialog {
+  .q-dialog__inner {
+    &.q-dialog__inner--minimized {
+      padding: 0px;
+    }
+  }
+}
+
+// -------- term -----------//
+.term-content {
+  word-break: break-word;
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 400;
+    margin: 1rem 0;
+  }
+  h1 {
+    font-size: 22px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  p {
+    margin-bottom: 0.75rem;
+  }
+}

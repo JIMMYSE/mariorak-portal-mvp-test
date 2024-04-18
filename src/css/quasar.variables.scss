@@ -1,0 +1,127 @@
+// Quasar SCSS (& Sass) Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass/SCSS variables found in Quasar's source Sass/SCSS files.
+
+// Check documentation for full list of Quasar variables
+
+// Your own variables (that are declared here) and Quasar's own
+// ones will be available out of the box in your .vue/.scss/.sass files
+
+// It's highly recommended to change the default colors
+// to match your app's brandbleing.
+// Tip: Use the "Theme Builder" on Quasar's documentation website.
+
+// 변수 목록 전체를 보려면:
+// For a full list of variables, see:
+// https://quasar.dev/style/sass-scss-variables#variables-list
+$primary: #196af5;
+$secondary: #eae1fe;
+$accent: #ffc330;
+
+$dark: #1d1d1d;
+$dark-page: #121212;
+
+$positive: #21ba45;
+$negative: #c10015;
+$info: #31ccec;
+$warning: #f2c037;
+
+// Gray Scale
+$grey: #f4f4f5 !default;
+$grey-1: #ececec !default;
+$grey-2: #cecece !default;
+$grey-3: #909090 !default;
+$grey-4: #606060 !default;
+$grey-5: #111111 !default;
+
+$typography-font-family: 'ROKAF', 'pretendard', '-apple-system',
+  'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+
+$toolbar-min-height: 50px;
+$body-font-size: 16px !default;
+$body-line-height: 1.5 !default;
+
+$space-base: 14px !default;
+$generic-border-radius: 6px !default;
+
+$input-font-size: 14px !default;
+$input-text-color: $grey-5 !default;
+$input-autofill-color: $primary !default;
+
+$button-font-size: 18px !default;
+// $button-line-height: 1.715em !default;
+$button-font-weight: 500 !default;
+
+$button-font-size: 15px !default;
+$button-border-radius: 6px !default;
+
+$input-text-color: $grey-4 !default;
+
+$h1: (
+  size: 22px,
+  // line-height: 6rem,
+  weight: 400,
+) !default;
+$h2: (
+  size: 20px,
+  // line-height: 3.75rem,
+  weight: 400,
+) !default;
+$h3: (
+  size: 18px,
+  // line-height: 3.125rem,
+  // letter-spacing: normal,
+  weight: 400,
+) !default;
+// $b1: (
+//   size: 16px,
+//   // line-height: 2.5rem,
+//   // letter-spacing: 0.00735em,
+//   weight: 400,
+// ) !default;
+// $b2: (
+//   size: 14px,
+//   weight: 300,
+// ) !default;
+// $b3: (
+//   size: 12px,
+//   weight: 300,
+// ) !default;
+$subtitle1: (
+  size: 1rem,
+  line-height: 1.75rem,
+  letter-spacing: 0.00937em,
+  weight: 400,
+) !default;
+$subtitle2: (
+  size: 0.875rem,
+  line-height: 1.375rem,
+  letter-spacing: 0.00714em,
+  weight: 300,
+) !default;
+$body1: (
+  size: 1rem,
+  // 16px
+  weight: 300,
+) !default;
+$body2: (
+  size: 0.875rem,
+  // 14px
+  // 14px
+  line-height: 1.25rem,
+  letter-spacing: 0.01786em,
+  weight: 400,
+) !default;
+$overline: (
+  size: 0.75rem,
+  //12px
+  line-height: 2rem,
+  letter-spacing: 0.16667em,
+  weight: 500,
+) !default;
+$caption: (
+  size: 0.75rem,
+  //12px
+  weight: 300,
+) !default;

@@ -1,0 +1,13 @@
+@use 'quasar/src/css/variables' as q;
+@use 'sass:map';
+
+$space-xxl: (
+  x: 64px,
+  y: 64px,
+);
+
+$new-spaces: (
+  xxl: $space-xxl,
+);
+
+$spaces: map.merge($new-spaces);

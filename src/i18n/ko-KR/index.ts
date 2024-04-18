@@ -1,0 +1,213 @@
+/**
+ * Vue I18n
+ * @see https://vue-i18n.intlify.dev/
+ */
+export default {
+  isoName: 'ko-KR',
+  nativeName: '한국어',
+
+  message: {
+    completed: '처리가 완료되었습니다.',
+    failed: '처리가 실패하였습니다.',
+    error: '처리 중 오류가 발생하였습니다.',
+    registered: '등록되었습니다.',
+    updated: '수정되었습니다.',
+    saved: '저장되었습니다.',
+    deleted: '삭제되었습니다.',
+    deleteConfirm: '삭제하시겠습니까?',
+    invalid: '유효하지 않습니다.',
+    cancel: '취소하시겠습니까?',
+    leaveConfirm: '이 페이지에서 나가시겠습니까?',
+    leaveConfirmDetail:
+      '저장하지 않고 페이지를 벗어날 경우, 작성한 내용이 사라집니다.',
+    nicknameUpdated: '닉네임이 변경되었습니다.',
+  },
+  error: {
+    occured: '처리 중 오류가 발생하였습니다.',
+    badRequest: '잘못된 요청입니다.',
+    unauthorized: '세션이 만료되었습니다. 다시 로그인해주세요.',
+    forbidden: '접근 권한이 없습니다.',
+    notFound: '요청한 경로를 찾을 수 없습니다.',
+    internalServerError: '서버 내부 오류입니다.',
+    network: '네트워크 오류가 발생하였습니다.',
+    server: '서버 오류가 발생하였습니다.',
+    timeout: '요청 시간이 초과되었습니다.',
+    unknown: '알 수 없는 오류가 발생하였습니다.',
+    serviceUnavailable: '서비스를 사용할 수 없습니다.',
+    gatewayTimeout: '게이트웨이 시간 초과입니다.',
+    notImplemented: '구현되지 않은 기능입니다.',
+    badGateway: '게이트웨이 오류입니다.',
+    unavailable: '서비스를 사용할 수 없습니다.',
+    notAllowed: '허용되지 않은 요청입니다.',
+    notAcceptable: '허용되지 않는 요청입니다.',
+  },
+  auth: {
+    login: {
+      invalid: '아이디 또는 비밀번호를 다시 확인해 주세요.',
+    },
+    logout: {
+      confirm: '<p><span class="text-primary">로그아웃</span> 안내</p>',
+      confirmDetail:
+        '<p>아래 확인 버튼을 터치하면<br />현재 서로버스 계정에서 로그아웃됩니다.</p>',
+    },
+    email: {
+      required: '이메일 주소를 입력해 주세요.',
+      invalid: '이메일 주소 형식을 확인해 주세요.',
+    },
+    password: {
+      required: '비밀번호를 입력해 주세요.',
+      invalid: '비밀번호 형식을 확인해 주세요.',
+    },
+    passwordConfirm: {
+      required: '비밀번호를 입력해 주세요.',
+      invalid: '비밀번호가 일치하지 않습니다.',
+    },
+    guestLoginConfirm:
+      '<p>게스트로 로그인시<br/><span class="text-primary">활동 내역</span> 과 <span class="text-primary">데이터</span>가<br/>저장되지 않습니다.</p>',
+    guestLoginConfirmDetail:
+      '<p>안전한 데이터 보호를 위해<br/>회원가입을 통한 로그인을 권장합니다.<br/>그래도 게스트로 로그인 하시겠습니까?</p>',
+    guestLoginButtonLabel: '게스트로 로그인하기',
+  },
+  join: {
+    existUserDialog: '기존 가입된 계정 안내',
+    existUserDialogDetail: `<p>이미 가입된 사용자님의 계정이 있습니다.<br />
+  <span class="text-primary">{email}</span><br />
+  해당 계정으로 로그인해 주세요</p>
+`,
+    // required: '아이디를 입력하세요.',
+    // invalid: '아이디 형식을 확인하세요.',
+    // duplicate: '이미 사용중인 아이디 입니다.',
+    // success: '사용 가능한 아이디 입니다.',
+  },
+  findUser: {
+    title:
+      '계정 아이디를 찾기 위해<br> <span class="text-primary">휴대폰 인증</span>을 받아주세요',
+  },
+  coupon: {
+    use: {
+      confirm:
+        '확인 버튼을 선택 시 실물 교환권이 소모됩니다.<br />도서관 담당자가 아닐경우 취소버튼을 선택하세요.',
+    },
+  },
+  validation: {
+    required: '필수 입력 항목입니다.',
+    minLength: '최소 입력 길이를 확인하세요.',
+    maxLength: '최대 입력 길이를 확인하세요.',
+    maxLengthCustom: '최대 입력 길이는 {length}자 입니다.',
+    min: '최소값을 확인하세요.',
+    max: '최대값을 확인하세요.',
+    numeric: '숫자만 입력 가능합니다.',
+    email: '이메일 형식을 확인하세요.',
+  },
+  metaverse: {
+    enter: {
+      confirm: {
+        title: '<p><span class="text-primary">서로버스</span> 입장 안내</p>',
+        text: '<p>아래 입장하기 버튼을 터치하면<br />글로 만들어가는 세상, 서로버스로 입장합니다.</p>',
+      },
+    },
+    enterAsGuest: {
+      confirm: {
+        title:
+          '<p>게스트모드로 메타버스에 입장시<br/> <span class="text-primary">모든 활동 내역</span> 및 <span class="text-primary">데이터</span>가<br/> 저장되지 않습니다.</p>',
+        text: '<p class="text-[13px] tracking-normal">안전한 데이터 보호를 위해 회원가입을 권장합니다.<br/>그래도 게스트로 입장 하시겠습니까?</p>',
+      },
+    },
+  },
+  label: {
+    clear: '초기화',
+    ok: '확인',
+    cancel: '취소',
+    close: '닫기',
+    set: '설정',
+    select: '선택',
+    reset: '초기화',
+    remove: '삭제',
+    update: '업데이트',
+    create: '생성',
+    search: '검색',
+    filter: '필터',
+    refresh: '새로 고침',
+    join: '회원가입',
+    login: '로그인',
+    autoLogin: '자동로그인',
+    findUser: '계정찾기',
+    resetPassword: '비밀번호 재설정',
+    loginAsGuest: '게스트로 시작하기',
+    metaverseEnter: '입장하기',
+    expand: (label: any) => (label ? `"${label}" 확장` : '확장하다.'),
+    collapse: (label: any) => (label ? `"${label}" 접기` : '무너지다.'),
+  },
+  date: {
+    days: '일요일_월요일_화요일_수요일_목요일_금요일_토요일'.split('_'),
+    daysShort: '일_월_화_수_목_금_토'.split('_'),
+    months: '1월_2월_3월_4월_5월_6월_7월_8월_9월_10월_11월_12월'.split('_'),
+    monthsShort: '1월_2월_3월_4월_5월_6월_7월_8월_9월_10월_11월_12월'.split(
+      '_'
+    ),
+    firstDayOfWeek: 0, // 0-6, 0 - Sunday, 1 Monday, ...
+    format24h: false,
+    pluralDay: '일',
+  },
+  table: {
+    noData: '데이터가 없습니다.',
+    noResults: '결과가 없습니다.',
+    loading: '로드 중...',
+    selectedRecords: (rows: any) =>
+      rows > 0 ? rows + ' 개가 선택 되었습니다.' : '선택된 항목이 없습니다.',
+    recordsPerPage: '페이지 당 개수:',
+    allRows: '전체',
+    pagination: (start: any, end: any, total: any) =>
+      total + ' 중 ' + start + '-' + end,
+    columns: '열',
+  },
+  editor: {
+    url: 'URL',
+    bold: '굵게',
+    italic: '기울이기',
+    strikethrough: '취소선',
+    underline: '밑줄',
+    unorderedList: '비순차 목록',
+    orderedList: '순서 목록',
+    subscript: '아래 첨자',
+    superscript: '위 첨자',
+    hyperlink: '하이퍼링크',
+    toggleFullscreen: '전체 화면',
+    quote: '따옴표',
+    left: '왼쪽 정렬',
+    center: '가운데 정렬',
+    right: '오른쪽 정렬',
+    justify: '세로 정렬',
+    print: '출력',
+    outdent: '들여 쓰기',
+    indent: '내어 쓰기',
+    removeFormat: '포맷팅 제거',
+    formatting: '포맷팅',
+    fontSize: '글꼴 크기',
+    align: '가로 정렬',
+    hr: '가로줄 넣기',
+    undo: '실행취소',
+    redo: '다시하기',
+    heading1: '제목 1',
+    heading2: '제목 2',
+    heading3: '제목 3',
+    heading4: '제목 4',
+    heading5: '제목 5',
+    heading6: '제목 6',
+    paragraph: '단락',
+    code: '코드',
+    size1: '매우 작게',
+    size2: '작게',
+    size3: '보통',
+    size4: '약간 크게',
+    size5: '크게',
+    size6: '아주 크게',
+    size7: '최대',
+    defaultFont: '기본 글꼴',
+    viewSource: '소스보기',
+  },
+  tree: {
+    noNodes: '가능한 항목이 없습니다.',
+    noResults: '항목을 찾을 수 없습니다.',
+  },
+};

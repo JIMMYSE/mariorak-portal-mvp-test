@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="btn_notice" transform="translate(-429.85 -389.651)">
+    <path id="Icon_awesome-bell" data-name="Icon awesome-bell" d="M9.809,22.861A2.83,2.83,0,0,0,12.611,20h-5.6A2.83,2.83,0,0,0,9.809,22.861Zm9.432-6.685c-.846-.927-2.429-2.321-2.429-6.889a7.017,7.017,0,0,0-5.6-6.928V1.429a1.4,1.4,0,1,0-2.8,0v.931a7.017,7.017,0,0,0-5.6,6.928c0,4.568-1.583,5.962-2.429,6.889a1.431,1.431,0,0,0,1.029,2.4H18.213a1.431,1.431,0,0,0,1.029-2.4Z" transform="translate(436.042 394.06)" fill="#bebebe"/>
+    <g id="그룹_1159" data-name="그룹 1159" transform="translate(429.85 389.651)">
+      <rect id="사각형_193" data-name="사각형 193" width="32" height="32" transform="translate(0)" fill="none" opacity="0.17"/>
+    </g>
+  </g>
+</svg>
