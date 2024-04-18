@@ -85,31 +85,28 @@ function getMessage(message: Message) {
       <!-- CONTENT TEXT -->
       <QCardSection
         data-cy-id="text"
-        class="text-grey-4 px-[28px] pb-[40px] text-[13px] font-light tracking-tight"
-        style="word-break: break-all; color: #888888"
+        class="text-black p-10 text-[15px] tracking-tight break-all justify-center items-center column w-full"
         v-if="htmlText || text"
       >
         <div v-html="getMessage(htmlText)" v-if="htmlText"></div>
         <div v-else>{{ getMessage(text) }}</div>
       </QCardSection>
 
-      <QCardActions
-        class="px-[20px]"
-        align="right"
-        style="height: 55px; background-color: #f3f4f6"
-      >
-        <ABtn
+      <div class="p-0 flex m-0" style="height: 55px; background-color: #f3f4f6">
+        <q-btn
           v-for="(b, i) in buttonsComputed"
           :key="i"
           :label="getMessage(b.label)"
-          :color="b.value ? 'primary' : 'grey-3'"
-          :text-color="b.value === false ? 'grey-5' : undefined"
+          :color="b.value ? 'primary' : 'grey'"
+          :text-color="b.value ? 'white' : 'primary'"
+          square
           flat
-          class="text-4"
-          :class="b.value ? 'font-medium' : 'font-light'"
+          inelevated
+          class="text-[15px] flex-1"
+          :class="b.value ? 'font-medium bg-primary' : 'font-light'"
           @click="b.value === false ? onDialogCancel() : onDialogOK(b.value)"
         />
-      </QCardActions>
+      </div>
     </QCard>
   </QDialog>
 </template>

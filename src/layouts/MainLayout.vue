@@ -1,23 +1,8 @@
 <script setup lang="ts">
 import { useWindowScroll } from '@vueuse/core';
-import { useConfirmDialog } from 'src/composables/common/dialog';
-import { useBridge } from 'src/composables/common/useBridge';
 import { computed } from 'vue';
 import { ref, watch } from 'vue';
 
-const { enterRoom } = useBridge();
-
-function enterMetaverse(roomId: number = 1) {
-  // user
-  useConfirmDialog({
-    htmlTitle: 'metaverse.enter.confirm.title',
-    htmlText: 'metaverse.enter.confirm.text',
-    okLabel: 'label.metaverseEnter',
-    cancelLabel: 'label.close',
-  }).onOk(() => {
-    enterRoom(roomId);
-  });
-}
 const footerVisible = ref(false);
 const { y } = useWindowScroll();
 

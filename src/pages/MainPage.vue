@@ -13,12 +13,12 @@ const slides = ref(
 );
 const { enterRoom } = useBridge();
 function enterMetaverse(roomId: number = 1) {
+  const mapName = '{맵이름}';
   // user
   useConfirmDialog({
-    htmlTitle: 'metaverse.enter.confirm.title',
-    htmlText: 'metaverse.enter.confirm.text',
-    okLabel: 'label.metaverseEnter',
-    cancelLabel: 'label.close',
+    text: { key: 'metaverse.enter.confirm.text', data: { mapName } },
+    okLabel: 'label.yes',
+    cancelLabel: 'label.no',
   }).onOk(() => {
     enterRoom(roomId);
   });
@@ -41,7 +41,7 @@ function enterMetaverse(roomId: number = 1) {
         :name="item"
         class="p-0 h-[460px]"
       >
-        <main-card />
+        <main-card @enter="enterMetaverse(item)" />
       </q-carousel-slide>
     </a-carousel>
 

@@ -83,12 +83,6 @@ export default {
     title:
       '계정 아이디를 찾기 위해<br> <span class="text-primary">휴대폰 인증</span>을 받아주세요',
   },
-  coupon: {
-    use: {
-      confirm:
-        '확인 버튼을 선택 시 실물 교환권이 소모됩니다.<br />도서관 담당자가 아닐경우 취소버튼을 선택하세요.',
-    },
-  },
   validation: {
     required: '필수 입력 항목입니다.',
     minLength: '최소 입력 길이를 확인하세요.',
@@ -102,15 +96,7 @@ export default {
   metaverse: {
     enter: {
       confirm: {
-        title: '<p><span class="text-primary">서로버스</span> 입장 안내</p>',
-        text: '<p>아래 입장하기 버튼을 터치하면<br />글로 만들어가는 세상, 서로버스로 입장합니다.</p>',
-      },
-    },
-    enterAsGuest: {
-      confirm: {
-        title:
-          '<p>게스트모드로 메타버스에 입장시<br/> <span class="text-primary">모든 활동 내역</span> 및 <span class="text-primary">데이터</span>가<br/> 저장되지 않습니다.</p>',
-        text: '<p class="text-[13px] tracking-normal">안전한 데이터 보호를 위해 회원가입을 권장합니다.<br/>그래도 게스트로 입장 하시겠습니까?</p>',
+        text: '{mapName} 으로 입장 하시겠습니까?',
       },
     },
   },
@@ -118,6 +104,8 @@ export default {
     clear: '초기화',
     ok: '확인',
     cancel: '취소',
+    yes: '예',
+    no: '아니오',
     close: '닫기',
     set: '설정',
     select: '선택',
@@ -133,7 +121,6 @@ export default {
     autoLogin: '자동로그인',
     findUser: '계정찾기',
     resetPassword: '비밀번호 재설정',
-    loginAsGuest: '게스트로 시작하기',
     metaverseEnter: '입장하기',
     expand: (label: any) => (label ? `"${label}" 확장` : '확장하다.'),
     collapse: (label: any) => (label ? `"${label}" 접기` : '무너지다.'),

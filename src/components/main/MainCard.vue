@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineEmits(['enter']);
+</script>
 <template>
   <div class="h-[438px] relative mb-7">
     <q-img
@@ -16,7 +18,7 @@
         </p>
       </div>
       <div class="w-20 text-center">
-        <q-btn round flat>
+        <q-btn round flat @click="$emit('enter')">
           <a-svg name="arrow-right-circle" class="w-[50px]"></a-svg>
         </q-btn>
       </div>
