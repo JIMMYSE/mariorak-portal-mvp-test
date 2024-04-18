@@ -46,7 +46,7 @@ const routes: RouteRecordRaw[] = [
     ],
   },
   {
-    path: 'event',
+    path: '/event',
     meta: {
       requiresAuth: true,
     },
@@ -61,7 +61,7 @@ const routes: RouteRecordRaw[] = [
     ],
   },
   {
-    path: 'setting',
+    path: '/setting',
     meta: {
       requiresAuth: true,
     },
