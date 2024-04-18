@@ -32,7 +32,7 @@ function enterMetaverse(roomId: number = 1) {
       class="bg-transparent"
       control-color-active="#196af5"
       v-model="slide"
-      height="488px"
+      height="438px"
       keep-alive
     >
       <q-carousel-slide
@@ -44,10 +44,279 @@ function enterMetaverse(roomId: number = 1) {
         <main-card />
       </q-carousel-slide>
     </a-carousel>
+
     <!-- 공군입대에 대해 궁금하다면 -->
-    <section class="px-7 mt-10">
-      <h2 class="text-h3">공군 입대 안내사항</h2>
+    <section class="px-6 mt-10">
+      <h2 class="text-h3 px-1">공군 입대 안내사항</h2>
+      <div class="grid grid-col-3 gap-1.5 mt-4">
+        <div
+          class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px] min-w-[105px]"
+        >
+          <div
+            class="bg-[url('./src/assets/icons/airplane.svg')] bg-right-bottom bg-no-repeat size-full"
+          >
+            <p class="text-xs font-pretendard text-primary leading-[14px]">
+              입대
+            </p>
+            <p
+              class="mt-[3px] text-[13px] font-rokaf font-medium text-[#000] leading-[17px]"
+            >
+              모병안내
+            </p>
+          </div>
+        </div>
+        <div
+          class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px] min-w-[105px]"
+        >
+          <div
+            class="bg-[url('./src/assets/icons/briefcase.svg')] bg-right-bottom bg-no-repeat size-full"
+          >
+            <p class="text-xs font-pretendard text-primary">입대</p>
+            <p class="text-[13px] font-rokaf text-[#000] font-medium">
+              입영 준비사항
+            </p>
+          </div>
+        </div>
+        <div
+          class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px] min-w-[105px]"
+        >
+          <div
+            class="bg-[url('./src/assets/icons/mic.svg')] bg-right-bottom bg-no-repeat size-full"
+          >
+            <p class="text-xs font-pretendard text-primary">입대</p>
+            <p class="text-[13px] font-rokaf text-[#000] font-medium">
+              입영행사 안내
+            </p>
+          </div>
+        </div>
+        <div class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px]">
+          <div
+            class="bg-[url('./src/assets/icons/soldier-1.svg')] bg-right-bottom bg-no-repeat size-full"
+          >
+            <p class="text-xs font-pretendard text-primary">입대</p>
+            <p class="text-[13px] font-rokaf text-[#000] font-medium">
+              임관식 안내
+            </p>
+          </div>
+        </div>
+        <div class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px]">
+          <div
+            class="bg-[url('./src/assets/icons/certificate.svg')] bg-right-bottom bg-no-repeat size-full"
+          >
+            <p class="text-xs font-pretendard text-primary">입대</p>
+            <p class="text-[13px] font-rokaf text-[#000] font-medium">
+              수료식 안내
+            </p>
+          </div>
+        </div>
+        <div class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px]">
+          <div
+            class="bg-[url('./src/assets/icons/bulb.png')] bg-right-bottom bg-cover bg-no-repeat size-full"
+          >
+            <p class="text-xs font-pretendard text-primary">입대</p>
+            <p class="text-[13px] font-rokaf text-[#000] font-medium">
+              자주 묻는 질문
+            </p>
+          </div>
+        </div>
+        <div
+          class="col-span-3 bg-white h-[100px] pt-[11px] pl-[10px] rounded-[5px]"
+        >
+          <div
+            class="bg-[url('./src/assets/icons/lacation.svg')] bg-right-bottom bg-cover bg-no-repeat size-full"
+          >
+            <p class="text-xs font-pretendard text-primary">입대</p>
+            <p class="text-[13px] font-rokaf text-[#000] font-medium">
+              찾아오는 법
+            </p>
+            <p class="text-grey-4 text-xs font-pretendard">
+              공군 기지의 위치를 안내해드릴게요.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
+
+    <!-- 훈련병 관련사항 -->
+    <section class="px-6 mt-10">
+      <h2 class="text-h3 px-1">공군 입대 안내사항</h2>
+      <div class="grid grid-cols-3 gap-1.5 mt-4">
+        <div
+          class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px] min-w-[105px]"
+        >
+          <div
+            class="bg-[url('./src/assets/icons/camera.svg')] bg-right-bottom bg-no-repeat size-full"
+          >
+            <p class="text-xs font-pretendard text-primary leading-[14px]">
+              훈련병
+            </p>
+            <p
+              class="mt-[3px] text-[13px] font-rokaf font-medium text-[#000] leading-[17px]"
+            >
+              사진보기
+            </p>
+          </div>
+        </div>
+        <div
+          class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px] min-w-[105px]"
+        >
+          <div
+            class="bg-[url('./src/assets/icons/post.svg')] bg-right-bottom bg-no-repeat size-full"
+          >
+            <p class="text-xs font-pretendard text-primary">훈련병</p>
+            <p class="text-[13px] font-rokaf text-[#000] font-medium">
+              편지쓰기
+            </p>
+          </div>
+        </div>
+        <div
+          class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px] min-w-[105px]"
+        >
+          <div
+            class="bg-[url('./src/assets/icons/star.svg')] bg-right-bottom bg-no-repeat size-full"
+          >
+            <p class="text-xs font-pretendard text-primary">훈련병</p>
+            <p class="text-[13px] font-rokaf text-[#000] font-medium">
+              소대 즐겨 찾기
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 공군 생활 체험 -->
+    <section class="px-6 mt-[55px]">
+      <h2 class="text-h3 pl-1">공군 생활 체험</h2>
+      <div class="mt-3 flex">
+        <div>
+          <img
+            src="/src/assets/images/experience.png"
+            alt="공군 생활 체험"
+            class="w-[130px]"
+          />
+        </div>
+        <div class="flex-1 ml-[14px]">
+          <div class="flex">
+            <p
+              class="text-xs font-pretendard text-white bg-primary w-[35px] h-5 leading-5 text-center rounded-[5px]"
+            >
+              생활
+            </p>
+            <p class="font-rokaf text-[13px] leading-5 ml-[5px]">점호 체험</p>
+          </div>
+          <p
+            class="font-pretendard text-xs text-grey-4 leading-[19px] mt-[7px]"
+          >
+            실제를 그대로 재현한 생활관을 가상 공간 안에서 체험해보세요.
+          </p>
+          <p
+            class="font-pretendard text-xs text-grey-3 leading-[16px] mt-[12px] after:absolute after:content-[''] after:bg-[url('./src/assets/icons/arrow.svg')] after:bg-center after:bg-cover after:w-4 after:h-4"
+          >
+            더보기
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-[35px] flex">
+        <div>
+          <img
+            src="/src/assets/images/dormitory.png"
+            alt="생활관 체험"
+            class="w-[130px]"
+          />
+        </div>
+        <div class="flex-1 ml-[14px]">
+          <div class="flex">
+            <p
+              class="text-xs font-pretendard text-white bg-primary w-[35px] h-5 leading-5 text-center rounded-[5px]"
+            >
+              생활
+            </p>
+            <p class="font-rokaf text-[13px] leading-5 ml-[5px]">생활관 체험</p>
+          </div>
+          <p
+            class="font-pretendard text-xs text-grey-4 leading-[19px] mt-[7px]"
+          >
+            실제를 그대로 재현한 생활관을 가상 공간 안에서 체험해보세요.
+          </p>
+          <p
+            class="font-pretendard text-xs text-grey-3 leading-[16px] mt-[12px] after:absolute after:content-[''] after:bg-[url('./src/assets/icons/arrow.svg')] after:bg-center after:bg-cover after:w-4 after:h-4"
+          >
+            더보기
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-[35px] flex">
+        <div>
+          <img
+            src="/src/assets/images/restaurant.png"
+            alt="식당 체험"
+            class="w-[130px]"
+          />
+        </div>
+        <div class="flex-1 ml-[14px]">
+          <div class="flex">
+            <p
+              class="text-xs font-pretendard text-white bg-primary w-[35px] h-5 leading-5 text-center rounded-[5px]"
+            >
+              생활
+            </p>
+            <p class="font-rokaf text-[13px] leading-5 ml-[5px]">식당 체험</p>
+          </div>
+          <p
+            class="font-pretendard text-xs text-grey-4 leading-[19px] mt-[7px]"
+          >
+            가상의 공군 전용 식당에서 실제의 분위기를 느껴보세요.
+          </p>
+          <p
+            class="font-pretendard text-xs text-grey-3 leading-[16px] mt-[12px] after:absolute after:content-[''] after:bg-[url('./src/assets/icons/arrow.svg')] after:bg-center after:bg-cover after:w-4 after:h-4"
+          >
+            더보기
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- footer -->
+    <footer
+      class="w-full h-[375px] bg-[#222] bottom-0 mt-[125px] min-w-[375px]"
+    >
+      <div class="pt-[30px] px-6">
+        <p
+          class="text-grey-1 font-pretendard text-xs underline underline-offset-2"
+        >
+          이용 약관
+        </p>
+        <p
+          class="mt-2 text-grey-1 font-pretendard text-xs underline underline-offset-2"
+        >
+          개인정보 처리방침
+        </p>
+        <p class="text-grey-3 font-pretendard text-xs leading-[17px] mt-[18px]">
+          민원안내 : 042-552-7945 | 군부대 전화번호 안내 : 042-52-0114
+          copyright(c) Republic of Korea Airforce. All Right Reserved
+        </p>
+        <div class="group-icon flex mt-[33px] gap-5 justify-center">
+          <q-icon
+            name="img:/src/assets/icons/facebook.svg"
+            size="27px"
+          ></q-icon>
+          <q-icon name="img:/src/assets/icons/youtube.svg" size="27px"></q-icon>
+          <q-icon
+            name="img:/src/assets/icons/instagram.png"
+            size="27px"
+          ></q-icon>
+          <q-icon name="img:/src/assets/icons/tstory.svg" size="27px"></q-icon>
+        </div>
+        <div class="flex justify-center">
+          <q-icon
+            name="img:/src/assets/icons/icon_footer.svg"
+            size="102px"
+          ></q-icon>
+        </div>
+      </div>
+    </footer>
   </q-page>
 </template>
 

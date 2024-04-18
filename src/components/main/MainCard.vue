@@ -1,9 +1,9 @@
 <script setup lang="ts"></script>
 <template>
-  <div class="h-[488px] relative mb-7">
+  <div class="h-[438px] relative mb-7">
     <q-img
       src="~assets/images/main-slide-1.png"
-      height="421px"
+      height="371px"
       loading="eager"
     />
     <div
