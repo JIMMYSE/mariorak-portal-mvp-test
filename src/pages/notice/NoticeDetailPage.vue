@@ -36,10 +36,10 @@ const data = ref(noticeList.find((item) => item.id === detailId));
       <a
         href="https://naver.com"
         target="_blank"
-        class="flex items-center gap-2 font-pretendard text-body2"
+        class="flex items-center gap-2 font-pretendard text-body2 underline"
       >
         <a-svg name="file" class="w-[9px] h-3" />
-        <span>{{ data.file }}</span>
+        <span>{{ data.file }} [다운로드]</span>
       </a>
       <!-- line -->
       <div
