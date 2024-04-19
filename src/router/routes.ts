@@ -25,6 +25,33 @@ const routes: RouteRecordRaw[] = [
         ],
       },
       {
+        path: 'notice',
+        redirect: { name: 'notice-list' },
+        meta: {
+          requiresAuth: true,
+        },
+        component: SubLayout,
+        children: [
+          {
+            path: 'list',
+            name: 'notice-list',
+            meta: {
+              title: '공지사항',
+            },
+            component: () => import('pages/home/notice/NoticeListPage.vue'),
+          },
+          {
+            path: ':id',
+            props: true,
+            name: 'notice-detail',
+            meta: {
+              title: '공지사항',
+            },
+            component: () => import('pages/home/notice/NoticeDetailPage.vue'),
+          },
+        ],
+      },
+      {
         path: 'enlist',
         name: 'enlist',
         meta: {
@@ -282,33 +309,7 @@ const routes: RouteRecordRaw[] = [
       },
     ],
   },
-  {
-    path: '/notice',
-    redirect: '/notice/list',
-    meta: {
-      requiresAuth: true,
-    },
-    component: SubLayout,
-    children: [
-      {
-        path: 'list',
-        name: 'notice-list',
-        meta: {
-          title: '공지사항',
-        },
-        component: () => import('pages/notice/NoticeListPage.vue'),
-      },
-      {
-        path: ':id',
-        props: true,
-        name: 'notice-detail',
-        meta: {
-          title: '공지사항',
-        },
-        component: () => import('pages/notice/NoticeDetailPage.vue'),
-      },
-    ],
-  },
+
   {
     path: '/policy',
     component: SubLayout,

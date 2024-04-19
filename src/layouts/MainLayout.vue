@@ -37,7 +37,12 @@ const headerClass = computed(() =>
           <QBtn size="md" round flat>
             <QIcon name="img:/src/assets/images/avatar-1.png" size="40px"
           /></QBtn>
-          <QBtn class="size-10 bg-white" size="md" round flat to="/notice"
+          <QBtn
+            class="size-10 bg-white"
+            size="md"
+            round
+            flat
+            :to="{ name: 'notice-list' }"
             ><QIcon name="img:/src/assets/icons/bell.svg" size="32px" />
           </QBtn>
         </div>
