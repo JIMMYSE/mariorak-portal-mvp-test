@@ -62,7 +62,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '입영행사',
             },
-            component: () => import('pages/home/enlist/RecruitInfoPage.vue'),
+            component: () => import('pages/home/enlist/EnlistEvent.vue'),
           },
           {
             name: 'commission-event',
