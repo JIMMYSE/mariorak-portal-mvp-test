@@ -20,7 +20,9 @@ import { goBack } from 'src/composables/common/app';
 
     <QPageContainer>
       <router-view v-slot="{ Component, route }">
-        <component :is="Component" :key="route.path" />
+        <keep-alive :include="/ListPage$/" :max="1">
+          <component :is="Component" :key="route.path" />
+        </keep-alive>
       </router-view>
     </QPageContainer>
   </QLayout>

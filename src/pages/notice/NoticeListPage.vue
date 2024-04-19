@@ -50,13 +50,11 @@ const maxPages = computed(() =>
             <template v-if="item.file">
               |
               <span>첨부파일</span>
-              <q-icon
-                name="img:/src/assets/icons/file.svg"
-                class="w-[9px] h-3"
-              />
+              <a-svg name="file" class="w-[9px] h-3" />
             </template>
           </div>
         </q-item-section>
+        <!-- line -->
         <div
           class="absolute inset-x-4 bottom-0 h-[1px] border-b-[1px] border-b-[#E6E6E6]"
         />

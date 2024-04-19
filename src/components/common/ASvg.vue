@@ -1,7 +1,3 @@
-<template>
-  <i v-html="svg" />
-</template>
-
 <script lang="ts" setup>
 import { computed } from 'vue';
 
@@ -28,3 +24,6 @@ const svg = computed(() => {
   );
 });
 </script>
+<template>
+  <i v-html="svg" />
+</template>
