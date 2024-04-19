@@ -280,7 +280,7 @@ function enterMetaverse(roomId: number = 1) {
 
     <!-- footer -->
     <footer
-      class="w-full h-[375px] bg-[#222] bottom-0 mt-[125px] min-w-[375px]"
+      class="w-full h-[305px] bg-[#222] bottom-0 mt-[125px] min-w-[375px]"
     >
       <div class="pt-[30px] px-6">
         <p
