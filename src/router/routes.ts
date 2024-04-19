@@ -39,6 +39,57 @@ const routes: RouteRecordRaw[] = [
           {
             name: 'recruit-info',
             path: 'recruit-info',
+            meta: {
+              title: '모병안내',
+            },
+            component: RecruitInfoPage,
+          },
+          {
+            name: 'ready-enlist',
+            path: 'ready-enlist',
+            meta: {
+              title: '입영준비',
+            },
+            component: RecruitInfoPage,
+          },
+          {
+            name: 'enlist-event',
+            path: 'enlist-event',
+            meta: {
+              title: '입영행사',
+            },
+            component: RecruitInfoPage,
+          },
+          {
+            name: 'commission-event',
+            path: 'commission-event',
+            meta: {
+              title: '임관식안내',
+            },
+            component: RecruitInfoPage,
+          },
+          {
+            name: 'graduation-event',
+            path: 'graduation-event',
+            meta: {
+              title: '수료식 안내',
+            },
+            component: RecruitInfoPage,
+          },
+          {
+            name: 'way-to-come',
+            path: 'way-to-come',
+            meta: {
+              title: '찾아오는 방법',
+            },
+            component: RecruitInfoPage,
+          },
+          {
+            name: 'faq',
+            path: 'faq',
+            meta: {
+              title: '자주 묻는 질문',
+            },
             component: RecruitInfoPage,
           },
         ],
