@@ -1,18 +1,8 @@
 import { RouteRecordRaw } from 'vue-router';
 // layout
-import DefaultLayout from 'src/layouts/DefaultLayout.vue';
-import MainLayout from 'src/layouts/MainLayout.vue';
-import SubLayout from 'src/layouts/SubLayout.vue';
-//home
-import MainPage from 'src/pages/MainPage.vue';
-import RecruitInfoPage from 'src/pages/home/enlist/RecruitInfoPage.vue';
-//event
-import EventPage from 'src/pages/event/EventPage.vue';
-import PresentationPage from 'src/pages/event/PresentationPage.vue';
-//setting
-import SettingPage from 'src/pages/setting/SettingPage.vue';
-// auth
-import LoginPage from 'src/pages/auth/LoginPage.vue';
+import DefaultLayout from 'layouts/DefaultLayout.vue';
+import MainLayout from 'layouts/MainLayout.vue';
+import SubLayout from 'layouts/SubLayout.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -26,7 +16,13 @@ const routes: RouteRecordRaw[] = [
           requiresAuth: true,
         },
         component: MainLayout,
-        children: [{ path: '', name: 'main', component: MainPage }],
+        children: [
+          {
+            path: '',
+            name: 'main',
+            component: () => import('pages/MainPage.vue'),
+          },
+        ],
       },
       {
         path: 'enlist',
@@ -39,7 +35,58 @@ const routes: RouteRecordRaw[] = [
           {
             name: 'recruit-info',
             path: 'recruit-info',
-            component: RecruitInfoPage,
+            meta: {
+              title: '모병안내',
+            },
+            component: () => import('pages/home/enlist/RecruitInfoPage.vue'),
+          },
+          {
+            name: 'ready-enlist',
+            path: 'ready-enlist',
+            meta: {
+              title: '입영준비',
+            },
+            component: () => import('pages/home/enlist/RecruitInfoPage.vue'),
+          },
+          {
+            name: 'enlist-event',
+            path: 'enlist-event',
+            meta: {
+              title: '입영행사',
+            },
+            component: () => import('pages/home/enlist/RecruitInfoPage.vue'),
+          },
+          {
+            name: 'commission-event',
+            path: 'commission-event',
+            meta: {
+              title: '임관식안내',
+            },
+            component: () => import('pages/home/enlist/RecruitInfoPage.vue'),
+          },
+          {
+            name: 'graduation-event',
+            path: 'graduation-event',
+            meta: {
+              title: '수료식 안내',
+            },
+            component: () => import('pages/home/enlist/RecruitInfoPage.vue'),
+          },
+          {
+            name: 'way-to-come',
+            path: 'way-to-come',
+            meta: {
+              title: '찾아오는 방법',
+            },
+            component: () => import('pages/home/enlist/RecruitInfoPage.vue'),
+          },
+          {
+            name: 'faq',
+            path: 'faq',
+            meta: {
+              title: '자주 묻는 질문',
+            },
+            component: () => import('pages/home/enlist/RecruitInfoPage.vue'),
           },
         ],
       },
@@ -52,11 +99,15 @@ const routes: RouteRecordRaw[] = [
     },
     component: SubLayout,
     children: [
-      { name: 'event', path: '', component: EventPage },
+      {
+        name: 'event',
+        path: '',
+        component: () => import('pages/event/EventPage.vue'),
+      },
       {
         name: 'presentation',
         path: 'presentation',
-        component: PresentationPage,
+        component: () => import('pages/event/PresentationPage.vue'),
       },
     ],
   },
@@ -70,7 +121,7 @@ const routes: RouteRecordRaw[] = [
       {
         name: 'setting',
         path: '',
-        component: SettingPage,
+        component: () => import('pages/setting/SettingPage.vue'),
       },
     ],
   },
@@ -84,7 +135,7 @@ const routes: RouteRecordRaw[] = [
         meta: {
           title: '로그인',
         },
-        component: LoginPage,
+        component: () => import('pages/auth/LoginPage.vue'),
       },
     ],
   },
@@ -187,17 +238,17 @@ const routes: RouteRecordRaw[] = [
         meta: {
           title: '공지사항',
         },
-        component: () => import('pages/notice/NoticeList.vue'),
+        component: () => import('pages/notice/NoticeListPage.vue'),
       },
-      // {
-      //   path: ':id',
-      //   props: true,
-      //   name: 'notice-detail',
-      //   meta: {
-      //     title: '공지사항 상세',
-      //   },
-      //   component: () => import('pages/notice/NoticeDetail.vue'),
-      // },
+      {
+        path: ':id',
+        props: true,
+        name: 'notice-detail',
+        meta: {
+          title: '공지사항',
+        },
+        component: () => import('pages/notice/NoticeDetailPage.vue'),
+      },
     ],
   },
   {

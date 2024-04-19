@@ -9,10 +9,10 @@ import { goBack } from 'src/composables/common/app';
     >
       <QToolbar class="flex justify-between items-center h-[var(--header-h)]">
         <div @click="goBack()">
-          <QIcon name="img:/images/icons/btn_back.svg" size="35px" />
+          <QIcon name="img:/src/assets/icons/icon_back.svg" size="30px" />
         </div>
         <span
-          class="text-[18px] font-medium absolute-center w-[70%] text-center"
+          class="text-[17px] font-medium absolute-center w-[70%] text-center"
           >{{ $route.meta.title }}</span
         >
       </QToolbar>
@@ -20,7 +20,9 @@ import { goBack } from 'src/composables/common/app';
 
     <QPageContainer>
       <router-view v-slot="{ Component, route }">
-        <component :is="Component" :key="route.path" />
+        <keep-alive :include="/ListPage$/" :max="1">
+          <component :is="Component" :key="route.path" />
+        </keep-alive>
       </router-view>
     </QPageContainer>
   </QLayout>
