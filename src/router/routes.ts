@@ -41,12 +41,20 @@ const routes: RouteRecordRaw[] = [
             component: () => import('pages/home/enlist/RecruitInfoPage.vue'),
           },
           {
-            name: 'ready-enlist',
-            path: 'ready-enlist',
+            name: 'ready-enlist-01',
+            path: 'ready-enlist-01',
             meta: {
-              title: '입영준비',
+              title: '입영준비 사항',
             },
-            component: () => import('pages/home/enlist/RecruitInfoPage.vue'),
+            component: () => import('pages/home/enlist/ReadyEnlist01.vue'),
+          },
+          {
+            name: 'ready-enlist-02',
+            path: 'ready-enlist-02',
+            meta: {
+              title: '입영준비 사항',
+            },
+            component: () => import('pages/home/enlist/ReadyEnlist02.vue'),
           },
           {
             name: 'enlist-event',
