@@ -200,11 +200,12 @@ const routes: RouteRecordRaw[] = [
         },
         component: () => import('pages/auth/JoinPage.vue'),
       },
+
       {
         path: 'email',
         name: 'join-email',
         meta: {
-          title: '이메일로 회원가입',
+          title: '회원가입',
         },
         component: () => import('pages/auth/JoinEmail.vue'),
       },
@@ -240,6 +241,7 @@ const routes: RouteRecordRaw[] = [
         },
         component: () => import('pages/auth/JoinCompleted.vue'),
       },
+
       {
         path: 'cancel',
         name: 'cancel-membership',
