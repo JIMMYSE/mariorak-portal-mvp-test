@@ -169,6 +169,15 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/auth/ResetPassword.vue'),
       },
       {
+        path: 'reset-password-02',
+        name: 'reset-password-02',
+        meta: {
+          title: '비밀번호 재설정',
+        },
+        props: (route) => ({ id: route.query.id, token: route.query.token }),
+        component: () => import('pages/auth/ResetPassword02.vue'),
+      },
+      {
         path: 'find-password',
         name: 'find-password',
         meta: {
