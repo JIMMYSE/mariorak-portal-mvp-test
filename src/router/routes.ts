@@ -86,7 +86,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '찾아오는 방법',
             },
-            component: () => import('pages/home/enlist/RecruitInfoPage.vue'),
+            component: () => import('pages/home/enlist/WayToCome.vue'),
           },
           {
             name: 'faq',
@@ -94,7 +94,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '자주 묻는 질문',
             },
-            component: () => import('pages/home/enlist/RecruitInfoPage.vue'),
+            component: () => import('pages/home/enlist/FaQuestion.vue'),
           },
         ],
       },
