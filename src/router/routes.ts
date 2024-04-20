@@ -131,6 +131,11 @@ const routes: RouteRecordRaw[] = [
         path: '',
         component: () => import('pages/setting/SettingPage.vue'),
       },
+      {
+        path: 'airforce-splash',
+        name: 'airforce-splash',
+        component: () => import('pages/AirForceSplash.vue'),
+      },
     ],
   },
   {

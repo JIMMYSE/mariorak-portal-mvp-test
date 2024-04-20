@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="202" height="53" viewBox="0 0 202 53">
+  <g id="그룹_3678" data-name="그룹 3678" transform="translate(-28 -63.974)">
+    <text id="메타에어포스" transform="translate(81 83.974)" fill="#fff" font-size="24" font-family="KOHIBaeum" letter-spacing="0.015em"><tspan x="0" y="0">메타에어포스</tspan></text>
+    <text id="MetaAirForce" transform="translate(81 110.974)" fill="#fff" font-size="24" font-family="Pretendard-Medium, Pretendard" font-weight="500"><tspan x="0" y="0">MetaAirForce</tspan></text>
+    <g id="그룹_3675" data-name="그룹 3675" transform="translate(28 65.974)">
+      <path id="패스_8226" data-name="패스 8226" d="M48,46.5V58.33H12.129A11.981,11.981,0,0,1,0,46.5Z" transform="translate(0 -46.503)" fill="#fff"/>
+      <path id="패스_8227" data-name="패스 8227" d="M86.66,150.238a12.025,12.025,0,0,1-12.214-11.827h36.269v11.827Z" transform="translate(-62.715 -121.825)" fill="#fff"/>
+      <path id="패스_8228" data-name="패스 8228" d="M161.106,242.147a12.025,12.025,0,0,1-12.214-11.827h24.2v11.827Z" transform="translate(-125.096 -197.147)" fill="#fff"/>
+    </g>
+  </g>
+</svg>
