@@ -274,6 +274,14 @@ const routes: RouteRecordRaw[] = [
         },
         component: () => import('pages/policy/PolicyList.vue'),
       },
+      {
+        path: 'use-restriction',
+        name: 'use-restriction',
+        meta: {
+          title: '이용제한',
+        },
+        component: () => import('pages/policy/UseRestriction.vue'),
+      },
     ],
   },
   {
