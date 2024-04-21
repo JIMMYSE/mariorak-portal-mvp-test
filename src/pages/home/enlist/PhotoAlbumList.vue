@@ -1,30 +1,88 @@
-<script lang="ts" setup></script>
+<!-- 공지사항 목록 -->
+
+<script setup lang="ts">
+import { formatDate } from 'src/utils/date-util';
+import { ref } from 'vue';
+import { photoAlbumList } from 'src/assets/data/dummyData';
+import { computed } from 'vue';
+import { useWindowSize } from '@vueuse/core';
+
+// 공지사항
+const data = ref([...photoAlbumList]);
+const currentPage = ref(1);
+const { height } = useWindowSize();
+const rowsPerPage = computed(() => Math.floor((height.value - 50 - 54) / 65));
+const list = computed(() => {
+  const start = (currentPage.value - 1) * rowsPerPage.value;
+  const end = currentPage.value * rowsPerPage.value;
+  return data.value.slice(start, end);
+});
+const maxPages = computed(() =>
+  Math.ceil(data.value.length / rowsPerPage.value)
+);
+</script>
 
 <template>
-  <q-page class="px-6 pt-[25px] bg-grey">
-    <div class="relative p-5 w-full h-[100px] bg-white rounded-[5px]">
-      <h2
-        class="relative text-[17px] font-medium text-primary after:content-[''] after:absolute after:left-[14%] after:top-[20%] after:w-4 after:h-4 after:bg-[url('/src/assets/icons/icon_arrow_pic.svg/')]"
+  <q-page class="column pt-[17px]">
+    <!-- <span v-if="isPending">Loading...</span> -->
+    <!-- <span v-else-if="isError">Error: {{ error?.message }}</span> -->
+    <!-- <q-card class="text-grey-5 q-mb-lg" flat v-else-if="data"> -->
+    <q-list>
+      <q-item
+        v-for="(item, i) in list"
+        :key="`item-${i}`"
+        :label="item.ntc_nm"
+        clickable
+        v-ripple
+        class="w-full h-[65px] relative"
+        :to="{ name: 'notice-detail', params: { id: item.id } }"
       >
-        김공군
-      </h2>
-      <p class="font-pretendard text-sm text-grey-5 leading-[18px]">
-        [신병 n 대대]<br />
-        신병 231기 21중대 2소대 12번
-      </p>
-      <q-icon
-        name="img:/src/assets/icons/icon_heart.svg"
-        size="40px"
-        class="absolute top-1 right-1"
-      ></q-icon>
-    </div>
-
-    <div
-      class="mt-[10px] relative w-full h-[100px] rounded-[5px] border border-[#196af5] text-primary text-sm font-pretendard flex justify-center items-center before:absolute before:content-[''] before:bg-[url('/src/assets/icons/icon_plus.svg')] before:w-[10px] before:h-[10px] before:bg-cover before:bg-no-repeat before:left-[33%]"
-    >
-      즐겨찾기 추가
+        <q-item-section>
+          <h3 class="text-[13px] font-medium line-clamp-1">
+            {{ item.ntc_nm }}
+          </h3>
+          <div
+            class="text-caption text-grey-4 font-pretendard flex items-center gap-2"
+          >
+            <span> {{ formatDate(item.crt_dt) }}</span>
+            |
+            <span> {{ item.crt_lc }}</span>
+            <template v-if="item.file">
+              |
+              <span>첨부파일</span>
+              <a-svg name="file" class="w-[9px] h-3" />
+            </template>
+          </div>
+        </q-item-section>
+        <!-- line -->
+        <div
+          class="absolute inset-x-4 bottom-0 h-[1px] border-b-[1px] border-b-[#E6E6E6]"
+        ></div>
+      </q-item>
+    </q-list>
+    <div class="column items-center bottom-0 absolute w-full bg-white h-[54px]">
+      <q-pagination
+        v-model="currentPage"
+        :max="maxPages"
+        max-pages="7"
+        :boundary-numbers="false"
+        flat
+        class="pagination"
+        active-color="secondary"
+        active-design="flat"
+        color="info"
+      />
     </div>
   </q-page>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+:deep(.q-pagination) {
+  .q-btn {
+    min-width: 25px !important;
+  }
+  .q-btn__content {
+    font-size: 13px;
+  }
+}
+</style>

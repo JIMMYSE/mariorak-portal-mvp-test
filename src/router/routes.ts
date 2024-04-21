@@ -97,6 +97,14 @@ const routes: RouteRecordRaw[] = [
             component: () => import('pages/home/enlist/FaQuestion.vue'),
           },
           {
+            name: 'photo-album',
+            path: 'photo-album',
+            meta: {
+              title: '사진보기',
+            },
+            component: () => import('pages/home/enlist/PhotoAlbum.vue'),
+          },
+          {
             name: 'photo-album-list',
             path: 'photo-album-list',
             meta: {
