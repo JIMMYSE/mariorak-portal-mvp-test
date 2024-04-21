@@ -2,40 +2,40 @@
 
 <template>
   <q-page class="px-6 pt-[22px]">
-    <div
+    <ul
       class="faq-category grid grid-cols-2 place-items-center h-[120px] border border-grey-1 bg-grey gap-[1px]"
     >
-      <div
+      <li
         class="text-grey-4 text-base font-pretendard hover:text-primary size-full flex justify-center items-center bg-white"
       >
         편지
-      </div>
-      <div
+      </li>
+      <li
         class="text-grey-4 text-base font-pretendard hover:text-primary size-full flex justify-center items-center bg-white"
       >
         외출/휴가
-      </div>
-      <div
+      </li>
+      <li
         class="text-grey-4 text-base font-pretendard hover:text-primary size-full flex justify-center items-center bg-white"
       >
         특기/배속
-      </div>
-      <div
+      </li>
+      <li
         class="text-grey-4 text-base font-pretendard hover:text-primary size-full flex justify-center items-center bg-white"
       >
         면회
-      </div>
-      <div
+      </li>
+      <li
         class="text-grey-4 text-base font-pretendard hover:text-primary size-full flex justify-center items-center bg-white"
       >
         훈련병
-      </div>
-      <div
+      </li>
+      <li
         class="text-grey-4 text-base font-pretendard hover:text-primary size-full flex justify-center items-center bg-white"
       >
         기타
-      </div>
-    </div>
+      </li>
+    </ul>
 
     <div class="mt-6 w-screen left-0 absolute h-[10px] bg-grey"></div>
 
