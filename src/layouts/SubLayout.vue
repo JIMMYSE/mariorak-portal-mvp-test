@@ -1,11 +1,18 @@
 <script setup lang="ts">
 import { goBack } from 'src/composables/common/app';
+type Props = {
+  backgroundColor: string;
+};
+withDefaults(defineProps<Props>(), {
+  backgroundColor: 'transparent',
+});
 </script>
 
 <template>
   <QLayout view="hhh lpr fff">
     <QHeader
-      class="fixed flex flex-center bg-white text-grey-5 pt-[var(--statusbar-h)]"
+      class="fixed flex flex-center text-grey-5 pt-[var(--statusbar-h)]"
+      :class="`bg-${backgroundColor}`"
     >
       <QToolbar class="flex justify-between items-center h-[var(--header-h)]">
         <div @click="goBack()">

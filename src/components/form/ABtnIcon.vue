@@ -12,7 +12,7 @@ const forwarded = useForwardPropsEmits(props, emits);
 </script>
 
 <template>
-  <QBtn v-bind="forwarded" :icon="undefined" flat padding="8px">
+  <QBtn v-bind="forwarded" :icon="undefined" flat size="sm" class="p-0">
     <QIcon :name="icon" :size="size" />
   </QBtn>
 </template>

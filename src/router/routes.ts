@@ -52,6 +52,26 @@ const routes: RouteRecordRaw[] = [
         ],
       },
       {
+        path: 'profile',
+        meta: {
+          requiresAuth: true,
+        },
+        component: SubLayout,
+        props: {
+          backgroundColor: 'grey',
+        },
+        children: [
+          {
+            path: '',
+            name: 'profile',
+            meta: {
+              title: '아바타',
+            },
+            component: () => import('pages/home/profile/ProfilePage.vue'),
+          },
+        ],
+      },
+      {
         path: 'enlist',
         name: 'enlist',
         meta: {

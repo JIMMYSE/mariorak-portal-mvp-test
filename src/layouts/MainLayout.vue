@@ -34,8 +34,8 @@ const headerClass = computed(() =>
           src="~assets/images/main-logo.png"
         />
         <div class="flex items-center gap-[14px]">
-          <QBtn size="md" round flat>
-            <QIcon name="img:/src/assets/images/avatar-1.png" size="40px"
+          <QBtn size="md" round flat :to="{ name: 'profile' }">
+            <QIcon name="img:/src/assets/images/avatar-1-thumb.png" size="40px"
           /></QBtn>
           <QBtn
             class="size-10 bg-white"

@@ -93,20 +93,25 @@ body {
 
 // -------- q-input -----------//
 .q-input {
-  .q-field--outlined .q-field__control {
-    border-radius: 23px;
-    height: 44px;
-    background: white;
-    &:before {
-      border-color: $grey;
-      border-width: 1px;
-    }
+  &.q-field--outlined .q-field__control:before {
+    border: none !important;
+    // border-color: transparent !important;
+    // border-width: 1px;
+  }
 
+  &.q-field--outlined .q-field__control {
     color: $grey-5;
+  }
+
+  .q-field__marginal {
+    height: 44px;
   }
 
   .q-field__control {
     padding: 0 5px 0 12px;
+    border-radius: 32px;
+    height: 44px !important;
+    background: white;
 
     input::placeholder {
       /* WebKit, Blink, Edge */
@@ -122,6 +127,9 @@ body {
 
   .q-field__append {
     padding: 0;
+  }
+  .q-field__bottom {
+    margin-top: 2rem;
   }
 }
 // -------- q-card -----------//
@@ -184,4 +192,8 @@ body {
   p {
     margin-bottom: 0.75rem;
   }
+}
+
+.q-notification {
+  border-radius: 15px;
 }
