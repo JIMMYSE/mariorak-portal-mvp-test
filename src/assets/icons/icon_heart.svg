@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <g id="icon_heart" transform="translate(-301 -130)">
+    <g id="사각형_31198" data-name="사각형 31198" transform="translate(301 130)" fill="#fff" stroke="#707070" stroke-width="1" opacity="0">
+      <rect width="40" height="40" stroke="none"/>
+      <rect x="0.5" y="0.5" width="39" height="39" fill="none"/>
+    </g>
+    <path id="Icon_feather-heart" data-name="Icon feather-heart" d="M18.935,5.861a4.8,4.8,0,0,0-6.7,0l-.913.9-.913-.9a4.8,4.8,0,0,0-6.7,0,4.6,4.6,0,0,0,0,6.584l.913.9,6.7,6.584,6.7-6.584.913-.9a4.6,4.6,0,0,0,0-6.584Z" transform="translate(309.677 137.788)" fill="#196af5"/>
+  </g>
+</svg>
