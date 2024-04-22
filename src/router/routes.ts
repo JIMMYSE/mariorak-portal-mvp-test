@@ -181,7 +181,18 @@ const routes: RouteRecordRaw[] = [
       {
         name: 'presentation',
         path: 'presentation',
+        meta: {
+          title: '입영 상담실',
+        },
         component: () => import('pages/event/PresentationPage.vue'),
+      },
+      {
+        name: 'counseling-room',
+        path: 'counseling-room',
+        meta: {
+          title: '입영 상담실',
+        },
+        component: () => import('pages/event/CounselingRoom.vue'),
       },
     ],
   },
