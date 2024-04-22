@@ -1,137 +1,137 @@
-<script lang="ts">
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import { FreeMode, Pagination } from 'swiper/modules';
-
-export default {
-  components: {
-    Swiper,
-    SwiperSlide,
-  },
-  setup() {
-    const onSwiper = (swiper) => {
-      console.log(swiper);
-    };
-    const onSlideChange = () => {
-      console.log('slide change');
-    };
-    return {
-      onSwiper,
-      onSlideChange,
-      modules: [FreeMode, Pagination],
-    };
-  },
+<script lang="ts" setup>
+import { ref } from 'vue';
+type Menu = {
+  id: number;
+  title: string;
+  content: string;
+  mandatoryItems: string;
+  optionalItems: string;
+  prohibitedItems: string;
 };
+
+const menu = ref<Menu[]>([
+  {
+    id: 1,
+    title: '장교',
+    content: '장교 내용',
+    mandatoryItems: `
+        지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능
+        품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목
+        입니다.`,
+    optionalItems: `
+      지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능
+      품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목
+      입니다.`,
+    prohibitedItems: `
+      지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능
+      품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목
+      입니다.`,
+  },
+  {
+    id: 2,
+    title: '부사관',
+    content: '부사관 내용',
+    mandatoryItems: `
+        지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능
+        품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목
+        입니다.`,
+    optionalItems: `
+      지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능
+      품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목
+      입니다.`,
+    prohibitedItems: `
+      지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능
+      품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목
+      입니다.`,
+  },
+  {
+    id: 3,
+    title: '병사',
+    content: '병사 내용',
+    mandatoryItems: `
+        지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능
+        품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목
+        입니다.`,
+    optionalItems: `
+      지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능
+      품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목
+      입니다.`,
+    prohibitedItems: `
+      지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능
+      품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목
+      입니다.`,
+  },
+  {
+    id: 4,
+    title: '예비역 재임용/항공통제 준사관',
+    content: '병사 내용',
+    mandatoryItems: `
+        지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능
+        품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목
+        입니다.`,
+    optionalItems: `
+      지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능
+      품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목
+      입니다.`,
+    prohibitedItems: `
+      지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능
+      품목 입니다.지참가능 품목 입니다.지참가능 품목 입니다.지참가능 품목
+      입니다.`,
+  },
+]);
+
+const selectedItem = ref<Menu>(menu.value[0]);
 </script>
 
 <template>
-  <q-page>
-    <!-- content -->
-
-    <div class="pl-6 btn-group mt-7 overflow-hidden">
-      <swiper
-        :slides-per-view="4"
-        :space-between="5"
-        :free-mode="true"
-        :modules="modules"
-        :pagination="{
-          clickable: true,
-        }"
-        @swiper="onSwiper"
-        @slide-change="onSlideChange"
-      >
-        <swiper-slide>
-          <div
-            class="level-btn w-[78px] text-center text-[13px] font-medium leading-[40px] h-[40px] !border border-grey-1 rounded-[20px]"
-          >
-            장교
-          </div>
-        </swiper-slide>
-        <swiper-slide>
-          <div
-            class="level-btn w-[78px] text-center text-[13px] font-medium leading-[40px] h-[40px] !border border-grey-1 rounded-[20px]"
-          >
-            부사관
-          </div>
-        </swiper-slide>
-        <swiper-slide>
-          <div
-            class="level-btn w-[78px] text-center text-[13px] font-medium leading-[40px] h-[40px] !border border-grey-1 rounded-[20px]"
-          >
-            병사
-          </div>
-        </swiper-slide>
-        <swiper-slide>
-          <div
-            class="level-btn w-[220px] text-center text-[13px] font-medium leading-[40px] h-[40px] !border border-grey-1 rounded-[20px]"
-          >
-            예비역 재임용/항공통제 준사관
-          </div>
-        </swiper-slide>
-        <swiper-slide>
-          <div
-            class="level-btn w-[78px] text-center text-[13px] font-medium leading-[40px] h-[40px] !border border-grey-1 rounded-[20px]"
-          >
-            빈버튼
-          </div>
-        </swiper-slide>
-        <swiper-slide>
-          <div
-            class="level-btn w-[78px] text-center text-[13px] font-medium leading-[40px] h-[40px] !border border-grey-1 rounded-[20px]"
-          >
-            빈버튼
-          </div>
-        </swiper-slide>
-      </swiper>
-    </div>
-
-    <section>
-      <div class="text-title">
-        <h2 class="text-h3 px-6 mt-10 leading-6">✋ 장교소개</h2>
-        <p
-          class="text-[14px] text-grey-3 leading-5 px-6 mt-[3px] font-pretendard"
+  <q-page class="px-2">
+    <q-scroll-area class="max-w-screen h-20">
+      <div class="w-full px-2 mt-[15px] flex flex-nowrap gap-[6px]">
+        <q-btn
+          v-for="item in menu"
+          :key="item.id"
+          rounded
+          :visible="false"
+          :outline="selectedItem !== item"
+          :color="selectedItem === item ? 'primary' : 'grey-1'"
+          unelevated
+          no-wrap
+          size="md"
+          class="h-10 min-w-[78px]"
+          :text-color="selectedItem === item ? 'white' : 'black'"
+          @click="selectedItem = item"
         >
+          {{ item.title }}
+        </q-btn>
+      </div>
+    </q-scroll-area>
+
+    <div class="px-4">
+      <section class="mt-10">
+        <h3 class="text-[17px] leading-6 font-medium">✋ 장교소개</h3>
+        <p class="mt-[3px] text-sm font-pretendard text-grey-4">
           공군의 장교 과정에 대해서 알려드립니다.
         </p>
-      </div>
-
-      <div>
         <q-img
           src="~assets/images/recruitment_guide_1.png"
-          fit="cover"
-          class="mt-[25px]"
+          class="w-screen -translate-x-6 mt-[25px]"
         ></q-img>
+      </section>
+    </div>
 
-        <div class="text-sub">
-          <h2 class="text-h3 px-6 mt-4 leading-6">공군사관학교</h2>
-          <p
-            class="text-base text-grey-4 leading-5 px-6 mt-[5px] font-pretendard"
-          >
-            공군 장교의 정규 양성기관인 공군사관학교에서 4년간 군사교육 후
-            장기복무 장교로 임관하는 제도
-          </p>
-        </div>
-      </div>
-
-      <div class="mb-[125px]">
+    <div class="px-4">
+      <section class="mt-4">
+        <h3 class="text-[17px] leading-6 font-medium">공군사관학교</h3>
+        <p class="mt-[5px] text-base font-pretendard text-grey-4">
+          공군 장교의 정규 양성기관인 공군사관학교에서 4년간 군사교육 후
+          장기복무 장교로 임관하는 제도
+        </p>
         <q-img
           src="~assets/images/recruitment_guide_2.png"
-          fit="cover"
-          class="mt-[25px]"
+          class="w-screen -translate-x-6 mt-[25px]"
         ></q-img>
-
-        <div class="text-sub">
-          <h2 class="text-h3 px-6 mt-4 leading-6">공군사관학교</h2>
-          <p
-            class="text-base text-grey-4 leading-5 px-6 mt-[5px] font-pretendard"
-          >
-            공군 장교의 정규 양성기관인 공군사관학교에서 4년간 군사교육 후
-            장기복무 장교로 임관하는 제도
-          </p>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </q-page>
 </template>
 
