@@ -151,6 +151,14 @@ const routes: RouteRecordRaw[] = [
             },
             component: () => import('pages/home/enlist/PhotoAlbumList.vue'),
           },
+          {
+            name: 'photo-album-detail',
+            path: 'photo-album-detail',
+            meta: {
+              title: '사진보기',
+            },
+            component: () => import('pages/home/enlist/PhotoAlbumDetail.vue'),
+          },
         ],
       },
     ],
@@ -165,6 +173,9 @@ const routes: RouteRecordRaw[] = [
       {
         name: 'event',
         path: '',
+        meta: {
+          title: '이벤트',
+        },
         component: () => import('pages/event/EventPage.vue'),
       },
       {

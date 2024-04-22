@@ -35,7 +35,7 @@ const maxPages = computed(() =>
         clickable
         v-ripple
         class="w-full h-[65px] relative"
-        :to="{ name: 'notice-detail', params: { id: item.id } }"
+        :to="{ name: 'photo-album-detail', params: { id: item.id } }"
       >
         <q-item-section>
           <h3 class="text-[13px] font-medium line-clamp-1">
