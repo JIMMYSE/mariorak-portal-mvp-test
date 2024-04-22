@@ -5,17 +5,17 @@
       메타버스 공간에서 체험하는 병영생활
     </p>
     <!-- contents -->
-    <div v-for="(item, i) in data" :key="i">
+    <div v-for="item in data" :key="item.id">
       <q-card flat class="mt-4 px-[15px] pt-[17px] h-[100px] relative">
         <h3 class="font-medium text-[15px] text-primary">
-          {{ data[i].title }}
+          {{ item.title }}
         </h3>
         <p
           class="text-sm text-grey-4 text-pretendard"
-          v-html="data[i].content"
+          v-html="item.content"
         ></p>
         <q-icon
-          :name="`img:/src/assets/icons/${data[i].img}`"
+          :name="`img:/src/assets/icons/${item.img}`"
           size="85px"
           class="absolute right-0 bottom-0"
         ></q-icon>
