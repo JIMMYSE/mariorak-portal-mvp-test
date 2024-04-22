@@ -49,7 +49,8 @@ function enterMetaverse(roomId: number = 1) {
     <section class="px-6 mt-10">
       <h2 class="text-h3 px-1">공군 입대 안내사항</h2>
       <div class="grid grid-col-3 gap-1.5 mt-4">
-        <div
+        <router-link
+          :to="{ name: 'recruit-info' }"
           class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px] min-w-[105px]"
         >
           <div
@@ -64,8 +65,9 @@ function enterMetaverse(roomId: number = 1) {
               모병안내
             </p>
           </div>
-        </div>
-        <div
+        </router-link>
+        <router-link
+          :to="{ name: 'ready-enlist' }"
           class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px] min-w-[105px]"
         >
           <div
@@ -76,8 +78,9 @@ function enterMetaverse(roomId: number = 1) {
               입영 준비사항
             </p>
           </div>
-        </div>
-        <div
+        </router-link>
+        <router-link
+          :to="{ name: 'enlist-event' }"
           class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px] min-w-[105px]"
         >
           <div
@@ -88,7 +91,7 @@ function enterMetaverse(roomId: number = 1) {
               입영행사 안내
             </p>
           </div>
-        </div>
+        </router-link>
         <div class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px]">
           <div
             class="bg-[url('./src/assets/icons/soldier-1.svg')] bg-right-bottom bg-no-repeat size-full"
