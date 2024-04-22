@@ -87,6 +87,9 @@ body {
     color: $grey-3 !important;
   }
 }
+.q-btn--outline::before {
+  border-color: $grey-1;
+}
 
 // -------- q-input -----------//
 .q-input {
