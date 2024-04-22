@@ -372,3 +372,42 @@ export const eventList = [
     img: 'event_05.svg',
   },
 ];
+
+export const enterCounseling = [
+  {
+    id: 1,
+    title: '상담실 1',
+    content: '상담실 1에 입장하여<br/>입영 상담 체험을 진행합니다.',
+    active: true,
+  },
+  {
+    id: 2,
+    title: '상담실 2',
+    content: '상담실 2에 입장하여<br/>입영 상담 체험을 진행합니다.',
+    active: true,
+  },
+  {
+    id: 3,
+    title: '상담실 3',
+    content: '상담실 2에 입장하여<br/>입영 상담 체험을 진행합니다.',
+    active: true,
+  },
+  {
+    id: 4,
+    title: '상담실 4',
+    content: '상담실 2에 입장하여<br/>입영 상담 체험을 진행합니다.',
+    active: true,
+  },
+  {
+    id: 5,
+    title: '상담실 5',
+    content: '현재 상담실5는 운영하지 않아<br/>입장이 불가합니다.',
+    active: false,
+  },
+  {
+    id: 6,
+    title: '상담실 6',
+    content: '현재 상담실5는 운영하지 않아<br/>입장이 불가합니다.',
+    active: false,
+  },
+];
