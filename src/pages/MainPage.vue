@@ -148,7 +148,8 @@ function enterMetaverse(roomId: number = 1) {
     <section class="px-6 mt-10">
       <h2 class="text-h3 px-1">공군 입대 안내사항</h2>
       <div class="grid grid-cols-3 gap-1.5 mt-4">
-        <div
+        <router-link
+          :to="{ name: 'photo-album' }"
           class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px] min-w-[105px]"
         >
           <div
@@ -163,7 +164,7 @@ function enterMetaverse(roomId: number = 1) {
               사진보기
             </p>
           </div>
-        </div>
+        </router-link>
         <div
           class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px] min-w-[105px]"
         >
