@@ -112,7 +112,10 @@ function enterMetaverse(roomId: number = 1) {
             </p>
           </div>
         </div>
-        <div class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px]">
+        <router-link
+          :to="{ name: 'faq' }"
+          class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px]"
+        >
           <div
             class="bg-[url('./src/assets/icons/bulb.png')] bg-right-bottom bg-cover bg-no-repeat size-full"
           >
@@ -121,7 +124,7 @@ function enterMetaverse(roomId: number = 1) {
               자주 묻는 질문
             </p>
           </div>
-        </div>
+        </router-link>
         <router-link
           :to="{ name: 'way-to-come' }"
           class="col-span-3 bg-white h-[100px] pt-[11px] pl-[10px] rounded-[5px]"
