@@ -122,7 +122,8 @@ function enterMetaverse(roomId: number = 1) {
             </p>
           </div>
         </div>
-        <div
+        <router-link
+          :to="{ name: 'way-to-come' }"
           class="col-span-3 bg-white h-[100px] pt-[11px] pl-[10px] rounded-[5px]"
         >
           <div
@@ -136,7 +137,7 @@ function enterMetaverse(roomId: number = 1) {
               공군 기지의 위치를 안내해드릴게요.
             </p>
           </div>
-        </div>
+        </router-link>
       </div>
     </section>
 

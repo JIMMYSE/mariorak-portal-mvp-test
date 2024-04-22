@@ -1,28 +1,54 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { ref } from 'vue';
+type Item = {
+  id: number;
+  name: string;
+  content: string;
+};
+
+const list = ref<Item[]>([
+  {
+    id: 1,
+    name: '자동차',
+    content: '',
+  },
+  {
+    id: 2,
+    name: '버스',
+    content: '',
+  },
+  {
+    id: 3,
+    name: '기차',
+    content: '',
+  },
+  {
+    id: 4,
+    name: '항공기',
+    content: '',
+  },
+]);
+
+const selectedItem = ref<Item>(list.value[0]);
+</script>
 
 <template>
   <q-page class="px-6 flex flex-col">
     <div class="btn-group mt-[15px] flex gap-[5px]">
-      <div
-        class="level-btn w-[78px] text-center text-[13px] font-medium leading-[40px] h-[40px] !border border-grey-1 rounded-[20px]"
+      <q-btn
+        v-for="item in list"
+        :key="item.id"
+        rounded
+        :outline="selectedItem !== item"
+        :color="selectedItem === item ? 'primary' : 'grey-1'"
+        unelevated
+        size="md"
+        class="h-10 flex-1"
+        :text-color="selectedItem === item ? 'white' : 'black'"
+        @click="selectedItem = item"
       >
-        자동차
-      </div>
-      <div
-        class="level-btn w-[78px] text-center text-[13px] font-medium leading-[40px] h-[40px] !border border-grey-1 rounded-[20px]"
-      >
-        버스
-      </div>
-      <div
-        class="level-btn w-[78px] text-center text-[13px] font-medium leading-[40px] h-[40px] !border border-grey-1 rounded-[20px]"
-      >
-        기차
-      </div>
-      <div
-        class="level-btn w-[78px] text-center text-[13px] font-medium leading-[40px] h-[40px] !border border-grey-1 rounded-[20px]"
-      >
-        항공기
-      </div>
+        {{ item.name }}
+      </q-btn>
     </div>
 
     <div
