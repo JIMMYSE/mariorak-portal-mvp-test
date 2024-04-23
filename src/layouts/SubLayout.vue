@@ -1,18 +1,14 @@
 <script setup lang="ts">
 import { goBack } from 'src/composables/common/app';
-type Props = {
-  backgroundColor: string;
-};
-withDefaults(defineProps<Props>(), {
-  backgroundColor: 'transparent',
-});
+import { useHeaderBGColor } from 'src/composables/common/useHeaderBGColor';
+const { bgColor } = useHeaderBGColor();
 </script>
 
 <template>
   <QLayout view="hhh lpr fff">
     <QHeader
       class="fixed flex flex-center text-grey-5 pt-[var(--statusbar-h)]"
-      :class="`bg-${backgroundColor}`"
+      :class="`bg-${bgColor}`"
     >
       <QToolbar class="flex justify-between items-center h-[var(--header-h)]">
         <div @click="goBack()">

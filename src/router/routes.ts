@@ -57,9 +57,6 @@ const routes: RouteRecordRaw[] = [
           requiresAuth: true,
         },
         component: SubLayout,
-        props: {
-          backgroundColor: 'grey',
-        },
         children: [
           {
             path: '',
@@ -78,15 +75,13 @@ const routes: RouteRecordRaw[] = [
           requiresAuth: true,
         },
         component: SubLayout,
-        props: {
-          backgroundColor: 'white',
-        },
         children: [
           {
             name: 'recruit-info',
             path: 'recruit-info',
             meta: {
               title: '모병안내',
+              bgColor: 'white',
             },
             component: () => import('pages/home/enlist/RecruitInfoPage.vue'),
           },
@@ -95,6 +90,7 @@ const routes: RouteRecordRaw[] = [
             path: 'ready-enlist',
             meta: {
               title: '입영준비 사항',
+              bgColor: 'white',
             },
             component: () => import('pages/home/enlist/ReadyEnlist.vue'),
           },
@@ -127,6 +123,7 @@ const routes: RouteRecordRaw[] = [
             path: 'way-to-come',
             meta: {
               title: '찾아오는 방법',
+              bgColor: 'white',
             },
             component: () => import('pages/home/enlist/WayToCome.vue'),
           },
@@ -135,6 +132,7 @@ const routes: RouteRecordRaw[] = [
             path: 'faq',
             meta: {
               title: '자주 묻는 질문',
+              bgColor: 'white',
             },
             component: () => import('pages/home/enlist/FaQuestion.vue'),
           },
@@ -151,6 +149,7 @@ const routes: RouteRecordRaw[] = [
             path: 'photo-album-list',
             meta: {
               title: '사진보기',
+              bgColor: 'white',
             },
             component: () => import('pages/home/enlist/PhotoAlbumList.vue'),
           },
@@ -159,6 +158,7 @@ const routes: RouteRecordRaw[] = [
             path: 'photo-album-detail',
             meta: {
               title: '사진보기',
+              bgColor: 'white',
             },
             component: () => import('pages/home/enlist/PhotoAlbumDetail.vue'),
           },
