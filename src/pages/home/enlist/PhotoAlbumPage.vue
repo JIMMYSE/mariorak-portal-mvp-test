@@ -4,10 +4,9 @@
   <q-page class="px-6 pt-[25px] bg-grey">
     <router-link :to="{ name: 'photo-album-list' }">
       <q-card flat class="relative p-5 w-full h-[100px] bg-white rounded-[5px]">
-        <h2
-          class="relative text-[17px] font-medium text-primary after:content-[''] after:absolute after:left-[14%] after:top-[20%] after:w-4 after:h-4 after:bg-[url('/src/assets/icons/icon_arrow_pic.svg/')]"
-        >
+        <h2 class="flex items-center text-[17px] font-medium text-primary">
           김공군
+          <q-icon name="img:/src/assets/icons/icon_arrow_pic.svg" size="16px" />
         </h2>
         <p class="font-pretendard text-sm text-grey-5 leading-[18px]">
           [신병 n 대대]<br />
@@ -21,19 +20,28 @@
       </q-card>
     </router-link>
 
-    <div
-      class="mt-[10px] relative w-full h-[100px] rounded-[5px] border border-[#196af5] text-primary text-sm font-pretendard flex justify-center items-center before:absolute before:content-[''] before:bg-[url('/src/assets/icons/icon_plus.svg')] before:w-[10px] before:h-[10px] before:bg-cover before:bg-no-repeat before:left-[33%]"
+    <!-- ADD BUTTON -->
+    <q-btn
+      outline
+      color="primary"
+      size="md"
+      class="mt-[10px] font-pretendard w-full h-[100px]"
     >
+      <q-icon
+        name="img:/src/assets/icons/icon_plus.svg"
+        size="10px"
+        class="mr-1"
+      />
       즐겨찾기 추가
-    </div>
-
+    </q-btn>
+    <!-- MAX FAVORITE ITEMS -->
     <div
       class="mt-[10px] w-full h-[100px] text-center rounded-[5px] border border-grey-2 text-grey-3 text-xs font-pretendard flex justify-center items-center"
     >
       즐겨찾기는 최대 2명까지 가능합니다.
       <br />이미 등록된 즐겨찾기를 취소하신 후 추가해주세요.
     </div>
-
+    <!-- WITH NO FAVORITE ITEMS -->
     <p
       class="mt-5 text-center text-xs font-pretendard text-grey-3 flex justify-center items-center"
     >
