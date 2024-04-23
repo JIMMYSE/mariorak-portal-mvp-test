@@ -16,6 +16,8 @@ import AItem from '../components/common/AItem.vue';
 import InfoItem from '../components/common/InfoItem.vue';
 import ACarousel from '../components/common/ACarousel.vue';
 import ASvg from '../components/common/ASvg.vue';
+import ATitle from '../components/common/ATitle.vue';
+import ASubtitle from '../components/common/ASubtitle.vue';
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
@@ -49,5 +51,9 @@ declare module '@vue/runtime-core' {
     ['a-carousel']: typeof ACarousel;
     ['ASvg']: typeof ASvg;
     ['a-svg']: typeof ASvg;
+    ['ATitle']: typeof ATitle;
+    ['a-title']: typeof ATitle;
+    ['ASubtitle']: typeof ASubtitle;
+    ['a-subtitle']: typeof ASubtitle;
   }
 }

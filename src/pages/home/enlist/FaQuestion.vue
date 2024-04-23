@@ -24,7 +24,7 @@ const openedId = ref(0);
       <li
         v-for="item in categories"
         :key="item.id"
-        class="text-base font-pretendard hover:text-primary size-full flex justify-center items-center bg-white cursor-pointer"
+        class="text-subtitle1 font-pretendard hover:text-primary size-full flex justify-center items-center bg-white cursor-pointer"
         :class="item.id === selectedCategory ? 'text-primary' : 'text-grey-4'"
         @click="selectedCategory = item.id"
       >
