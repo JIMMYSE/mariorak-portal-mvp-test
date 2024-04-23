@@ -1,238 +1,85 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { ref } from 'vue';
+import { faqList } from 'src/assets/data/dummyData';
+const categories = ref([
+  { id: 1, name: '편지' },
+  { id: 2, name: '외출/휴가' },
+  { id: 3, name: '특기/배속' },
+  { id: 4, name: '면회' },
+  { id: 5, name: '훈련병' },
+  { id: 6, name: '기타' },
+]);
+const selectedCategory = ref(1);
+
+const data = ref([...faqList]);
+
+const openedId = ref(0);
+</script>
 
 <template>
-  <q-page class="px-6 pt-[22px]">
+  <q-page class="pt-[22px]">
     <ul
-      class="faq-category grid grid-cols-2 place-items-center h-[120px] border border-grey-1 bg-grey gap-[1px]"
+      class="mx-6 grid grid-cols-2 place-items-center h-[120px] border border-grey-1 bg-grey gap-[1px]"
     >
       <li
-        class="text-grey-4 text-base font-pretendard hover:text-primary size-full flex justify-center items-center bg-white"
+        v-for="item in categories"
+        :key="item.id"
+        class="text-base font-pretendard hover:text-primary size-full flex justify-center items-center bg-white"
+        :class="item.id === selectedCategory ? 'text-primary' : 'text-grey-4'"
+        @click="selectedCategory = item.id"
       >
-        편지
-      </li>
-      <li
-        class="text-grey-4 text-base font-pretendard hover:text-primary size-full flex justify-center items-center bg-white"
-      >
-        외출/휴가
-      </li>
-      <li
-        class="text-grey-4 text-base font-pretendard hover:text-primary size-full flex justify-center items-center bg-white"
-      >
-        특기/배속
-      </li>
-      <li
-        class="text-grey-4 text-base font-pretendard hover:text-primary size-full flex justify-center items-center bg-white"
-      >
-        면회
-      </li>
-      <li
-        class="text-grey-4 text-base font-pretendard hover:text-primary size-full flex justify-center items-center bg-white"
-      >
-        훈련병
-      </li>
-      <li
-        class="text-grey-4 text-base font-pretendard hover:text-primary size-full flex justify-center items-center bg-white"
-      >
-        기타
+        {{ item.name }}
       </li>
     </ul>
 
     <div class="mt-6 w-screen left-0 absolute h-[10px] bg-grey"></div>
 
     <section class="mt-6 mb-[9px]">
-      <h3 class="py-[25px] text-sm font-medium text-grey-4">
+      <h3 class="py-[25px] px-6 text-sm font-medium text-grey-4">
         자주 묻는 질문 top 10
       </h3>
       <ul>
         <li
-          class="faq-list py-[25px] border-b border-grey-1 relative text-[13px] after:absolute after:right-0 after:top-[7%] after:content-[''] after:size-[30px] after:bg-no-repeat after:bg-cover after:bg-[url('/src/assets/icons/down_arrow.svg/')]"
+          v-for="item in data"
+          :key="`faq-${item.id}`"
+          class="flex flex-col relative"
         >
-          1. 질문 1은 질문1 질문12 질문 질문문?
-          <div
-            class="faq-detail bg-grey p-6 w-screen -translate-x-6 translate-y-[25px]"
+          <!-- QUESTION  -->
+          <h3
+            class="mx-6 py-[25px] text-[13px] font-medium relative"
+            @click="openedId = openedId === item.id ? 0 : item.id"
           >
-            <p class="text-sm font-pretendard">
-              1. 질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1 질문12 질문
-              질문문?질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1 질문12
-              질문 질문문?질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1
-              질문12 질문 질문문?질문 1은 질문1 질문12 질문 질문문? 질문 1은
-              질문1 질문12 질문 질문문?질문 1은 질문1 질문12 질문 질문문?
-            </p>
+            {{ item.title }}
+            <!-- ARROW ICON -->
+            <q-icon
+              size="30px"
+              name="img:/src/assets/icons/down_arrow.svg"
+              class="absolute right-0 top-[21px]"
+              :class="openedId === item.id ? 'rotate-180' : ''"
+            />
+          </h3>
+          <!-- ANSWER -->
+          <div
+            class="-mt-[1px] bg-grey w-full shrink overflow-hidden"
+            :class="openedId === item.id ? 'flex-1' : 'flex-none basis-0'"
+          >
             <p
-              class="relative underline underline-offset-2 pl-[17px] mt-10 font-pretendard text-sm text-primary before:absolute before:top-[20%] before:left-0 before:content-[''] before:w-[9px] before:h-3 before:bg-[url('/src/assets/icons/icon_file.svg')]"
+              class="text-sm font-pretendard m-6"
+              v-html="$filterHtml(item.content)"
+            />
+            <!-- ATTACHMENT FILE -->
+            <p
+              v-if="item.file"
+              class="relative underline underline-offset-2 pl-[17px] mt-10 font-pretendard text-sm text-primary"
             >
-              <a href="">공군메타버스 훈련자료[다운로드]</a>
+              <q-icon name="img:/src/assets/icons/icon_file.svg" size="12px" />
+              <a :href="item.file.url" target="_blank">{{ item.file.name }}</a>
             </p>
           </div>
-        </li>
-
-        <li
-          class="faq-list py-[25px] border-b border-grey-1 relative text-[13px] after:absolute after:right-0 after:top-[7%] after:content-[''] after:size-[30px] after:bg-no-repeat after:bg-cover after:bg-[url('/src/assets/icons/down_arrow.svg/')]"
-        >
-          1. 질문 1은 질문1 질문12 질문 질문문?
+          <!-- LINE -->
           <div
-            class="faq-detail hidden bg-grey p-6 w-screen -translate-x-6 translate-y-[25px]"
-          >
-            <p class="text-sm font-pretendard">
-              1. 질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1 질문12 질문
-              질문문?질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1 질문12
-              질문 질문문?질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1
-              질문12 질문 질문문?질문 1은 질문1 질문12 질문 질문문? 질문 1은
-              질문1 질문12 질문 질문문?질문 1은 질문1 질문12 질문 질문문?
-            </p>
-            <p
-              class="relative underline underline-offset-2 pl-[17px] mt-10 font-pretendard text-sm text-primary before:absolute before:top-[20%] before:left-0 before:content-[''] before:w-[9px] before:h-3 before:bg-[url('/src/assets/icons/icon_file.svg')]"
-            >
-              <a href="">공군메타버스 훈련자료[다운로드]</a>
-            </p>
-          </div>
-        </li>
-        <li
-          class="faq-list py-[25px] border-b border-grey-1 relative text-[13px] after:absolute after:right-0 after:top-[7%] after:content-[''] after:size-[30px] after:bg-no-repeat after:bg-cover after:bg-[url('/src/assets/icons/down_arrow.svg/')]"
-        >
-          1. 질문 1은 질문1 질문12 질문 질문문?
-          <div
-            class="faq-detail hidden bg-grey p-6 w-screen -translate-x-6 translate-y-[25px]"
-          >
-            <p class="text-sm font-pretendard">
-              1. 질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1 질문12 질문
-              질문문?질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1 질문12
-              질문 질문문?질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1
-              질문12 질문 질문문?질문 1은 질문1 질문12 질문 질문문? 질문 1은
-              질문1 질문12 질문 질문문?질문 1은 질문1 질문12 질문 질문문?
-            </p>
-            <p
-              class="relative underline underline-offset-2 pl-[17px] mt-10 font-pretendard text-sm text-primary before:absolute before:top-[20%] before:left-0 before:content-[''] before:w-[9px] before:h-3 before:bg-[url('/src/assets/icons/icon_file.svg')]"
-            >
-              <a href="">공군메타버스 훈련자료[다운로드]</a>
-            </p>
-          </div>
-        </li>
-        <li
-          class="faq-list py-[25px] border-b border-grey-1 relative text-[13px] after:absolute after:right-0 after:top-[7%] after:content-[''] after:size-[30px] after:bg-no-repeat after:bg-cover after:bg-[url('/src/assets/icons/down_arrow.svg/')]"
-        >
-          1. 질문 1은 질문1 질문12 질문 질문문?
-          <div
-            class="faq-detail hidden bg-grey p-6 w-screen -translate-x-6 translate-y-[25px]"
-          >
-            <p class="text-sm font-pretendard">
-              1. 질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1 질문12 질문
-              질문문?질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1 질문12
-              질문 질문문?질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1
-              질문12 질문 질문문?질문 1은 질문1 질문12 질문 질문문? 질문 1은
-              질문1 질문12 질문 질문문?질문 1은 질문1 질문12 질문 질문문?
-            </p>
-            <p
-              class="relative underline underline-offset-2 pl-[17px] mt-10 font-pretendard text-sm text-primary before:absolute before:top-[20%] before:left-0 before:content-[''] before:w-[9px] before:h-3 before:bg-[url('/src/assets/icons/icon_file.svg')]"
-            >
-              <a href="">공군메타버스 훈련자료[다운로드]</a>
-            </p>
-          </div>
-        </li>
-        <li
-          class="faq-list py-[25px] border-b border-grey-1 relative text-[13px] after:absolute after:right-0 after:top-[7%] after:content-[''] after:size-[30px] after:bg-no-repeat after:bg-cover after:bg-[url('/src/assets/icons/down_arrow.svg/')]"
-        >
-          1. 질문 1은 질문1 질문12 질문 질문문?
-          <div
-            class="faq-detail hidden bg-grey p-6 w-screen -translate-x-6 translate-y-[25px]"
-          >
-            <p class="text-sm font-pretendard">
-              1. 질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1 질문12 질문
-              질문문?질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1 질문12
-              질문 질문문?질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1
-              질문12 질문 질문문?질문 1은 질문1 질문12 질문 질문문? 질문 1은
-              질문1 질문12 질문 질문문?질문 1은 질문1 질문12 질문 질문문?
-            </p>
-            <p
-              class="relative underline underline-offset-2 pl-[17px] mt-10 font-pretendard text-sm text-primary before:absolute before:top-[20%] before:left-0 before:content-[''] before:w-[9px] before:h-3 before:bg-[url('/src/assets/icons/icon_file.svg')]"
-            >
-              <a href="">공군메타버스 훈련자료[다운로드]</a>
-            </p>
-          </div>
-        </li>
-        <li
-          class="faq-list py-[25px] border-b border-grey-1 relative text-[13px] after:absolute after:right-0 after:top-[7%] after:content-[''] after:size-[30px] after:bg-no-repeat after:bg-cover after:bg-[url('/src/assets/icons/down_arrow.svg/')]"
-        >
-          1. 질문 1은 질문1 질문12 질문 질문문?
-          <div
-            class="faq-detail hidden bg-grey p-6 w-screen -translate-x-6 translate-y-[25px]"
-          >
-            <p class="text-sm font-pretendard">
-              1. 질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1 질문12 질문
-              질문문?질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1 질문12
-              질문 질문문?질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1
-              질문12 질문 질문문?질문 1은 질문1 질문12 질문 질문문? 질문 1은
-              질문1 질문12 질문 질문문?질문 1은 질문1 질문12 질문 질문문?
-            </p>
-            <p
-              class="relative underline underline-offset-2 pl-[17px] mt-10 font-pretendard text-sm text-primary before:absolute before:top-[20%] before:left-0 before:content-[''] before:w-[9px] before:h-3 before:bg-[url('/src/assets/icons/icon_file.svg')]"
-            >
-              <a href="">공군메타버스 훈련자료[다운로드]</a>
-            </p>
-          </div>
-        </li>
-        <li
-          class="faq-list py-[25px] border-b border-grey-1 relative text-[13px] after:absolute after:right-0 after:top-[7%] after:content-[''] after:size-[30px] after:bg-no-repeat after:bg-cover after:bg-[url('/src/assets/icons/down_arrow.svg/')]"
-        >
-          1. 질문 1은 질문1 질문12 질문 질문문?
-          <div
-            class="faq-detail hidden bg-grey p-6 w-screen -translate-x-6 translate-y-[25px]"
-          >
-            <p class="text-sm font-pretendard">
-              1. 질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1 질문12 질문
-              질문문?질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1 질문12
-              질문 질문문?질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1
-              질문12 질문 질문문?질문 1은 질문1 질문12 질문 질문문? 질문 1은
-              질문1 질문12 질문 질문문?질문 1은 질문1 질문12 질문 질문문?
-            </p>
-            <p
-              class="relative underline underline-offset-2 pl-[17px] mt-10 font-pretendard text-sm text-primary before:absolute before:top-[20%] before:left-0 before:content-[''] before:w-[9px] before:h-3 before:bg-[url('/src/assets/icons/icon_file.svg')]"
-            >
-              <a href="">공군메타버스 훈련자료[다운로드]</a>
-            </p>
-          </div>
-        </li>
-        <li
-          class="faq-list py-[25px] border-b border-grey-1 relative text-[13px] after:absolute after:right-0 after:top-[7%] after:content-[''] after:size-[30px] after:bg-no-repeat after:bg-cover after:bg-[url('/src/assets/icons/down_arrow.svg/')]"
-        >
-          1. 질문 1은 질문1 질문12 질문 질문문?
-          <div
-            class="faq-detail hidden bg-grey p-6 w-screen -translate-x-6 translate-y-[25px]"
-          >
-            <p class="text-sm font-pretendard">
-              1. 질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1 질문12 질문
-              질문문?질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1 질문12
-              질문 질문문?질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1
-              질문12 질문 질문문?질문 1은 질문1 질문12 질문 질문문? 질문 1은
-              질문1 질문12 질문 질문문?질문 1은 질문1 질문12 질문 질문문?
-            </p>
-            <p
-              class="relative underline underline-offset-2 pl-[17px] mt-10 font-pretendard text-sm text-primary before:absolute before:top-[20%] before:left-0 before:content-[''] before:w-[9px] before:h-3 before:bg-[url('/src/assets/icons/icon_file.svg')]"
-            >
-              <a href="">공군메타버스 훈련자료[다운로드]</a>
-            </p>
-          </div>
-        </li>
-        <li
-          class="faq-list py-[25px] border-b border-grey-1 relative text-[13px] after:absolute after:right-0 after:top-[7%] after:content-[''] after:size-[30px] after:bg-no-repeat after:bg-cover after:bg-[url('/src/assets/icons/down_arrow.svg/')]"
-        >
-          1. 질문 1은 질문1 질문12 질문 질문문?
-          <div
-            class="faq-detail hidden bg-grey p-6 w-screen -translate-x-6 translate-y-[25px]"
-          >
-            <p class="text-sm font-pretendard">
-              1. 질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1 질문12 질문
-              질문문?질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1 질문12
-              질문 질문문?질문 1은 질문1 질문12 질문 질문문?질문 1은 질문1
-              질문12 질문 질문문?질문 1은 질문1 질문12 질문 질문문? 질문 1은
-              질문1 질문12 질문 질문문?질문 1은 질문1 질문12 질문 질문문?
-            </p>
-            <p
-              class="relative underline underline-offset-2 pl-[17px] mt-10 font-pretendard text-sm text-primary before:absolute before:top-[20%] before:left-0 before:content-[''] before:w-[9px] before:h-3 before:bg-[url('/src/assets/icons/icon_file.svg')]"
-            >
-              <a href="">공군메타버스 훈련자료[다운로드]</a>
-            </p>
-          </div>
+            class="absolute inset-x-6 bottom-0 h-[1px] border-b-[1px] border-b-[#E6E6E6]"
+          ></div>
         </li>
       </ul>
     </section>

@@ -78,6 +78,9 @@ const routes: RouteRecordRaw[] = [
           requiresAuth: true,
         },
         component: SubLayout,
+        props: {
+          backgroundColor: 'white',
+        },
         children: [
           {
             name: 'recruit-info',
