@@ -92,7 +92,7 @@ const routes: RouteRecordRaw[] = [
               title: '입영준비 사항',
               bgColor: 'white',
             },
-            component: () => import('pages/home/enlist/ReadyEnlist.vue'),
+            component: () => import('pages/home/enlist/ReadyEnlistPage.vue'),
           },
           {
             name: 'enlist-event',
@@ -127,7 +127,7 @@ const routes: RouteRecordRaw[] = [
               title: '찾아오는 방법',
               bgColor: 'white',
             },
-            component: () => import('pages/home/enlist/WayToCome.vue'),
+            component: () => import('pages/home/enlist/WayToComePage.vue'),
           },
           {
             name: 'faq',
@@ -136,7 +136,7 @@ const routes: RouteRecordRaw[] = [
               title: '자주 묻는 질문',
               bgColor: 'white',
             },
-            component: () => import('pages/home/enlist/FaQuestion.vue'),
+            component: () => import('pages/home/enlist/FAQPage.vue'),
           },
           {
             name: 'photo-album',
@@ -144,7 +144,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '사진보기',
             },
-            component: () => import('pages/home/enlist/PhotoAlbum.vue'),
+            component: () => import('src/pages/home/enlist/PhotoAlbumPage.vue'),
           },
           {
             name: 'photo-album-list',
@@ -153,7 +153,8 @@ const routes: RouteRecordRaw[] = [
               title: '사진보기',
               bgColor: 'white',
             },
-            component: () => import('pages/home/enlist/PhotoAlbumList.vue'),
+            component: () =>
+              import('src/pages/home/enlist/PhotoAlbumListPage.vue'),
           },
           {
             name: 'photo-album-detail',
@@ -162,7 +163,8 @@ const routes: RouteRecordRaw[] = [
               title: '사진보기',
               bgColor: 'white',
             },
-            component: () => import('pages/home/enlist/PhotoAlbumDetail.vue'),
+            component: () =>
+              import('pages/home/enlist/PhotoAlbumDetailPage.vue'),
           },
         ],
       },
@@ -197,7 +199,7 @@ const routes: RouteRecordRaw[] = [
         meta: {
           title: '입영 상담실',
         },
-        component: () => import('pages/event/CounselingRoom.vue'),
+        component: () => import('src/pages/event/CounselingRoomPage.vue'),
       },
     ],
   },

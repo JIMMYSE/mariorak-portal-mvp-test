@@ -60,11 +60,11 @@ const openedId = ref(0);
           </h3>
           <!-- ANSWER -->
           <div
-            class="-mt-[1px] bg-grey w-full shrink overflow-hidden"
-            :class="openedId === item.id ? 'flex-1' : 'flex-none basis-0'"
+            class="-mt-[1px] bg-grey w-full shrink overflow-hidden p-6"
+            :class="openedId === item.id ? 'flex-1' : 'flex-none basis-0 py-0'"
           >
             <p
-              class="text-sm font-pretendard m-6"
+              class="text-sm font-pretendard"
               v-html="$filterHtml(item.content)"
             />
             <!-- ATTACHMENT FILE -->
