@@ -97,7 +97,7 @@ const selectedItem = ref<Menu>(menu.value[0]);
           unelevated
           no-wrap
           size="md"
-          class="h-10 min-w-[78px]"
+          class="q-btn--outline-grey h-10 min-w-[78px]"
           :text-color="selectedItem === item ? 'white' : 'black'"
           @click="selectedItem = item"
         >

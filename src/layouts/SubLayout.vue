@@ -11,9 +11,11 @@ const { bgColor } = useHeaderBGColor();
       :class="`bg-${bgColor}`"
     >
       <QToolbar class="flex justify-between items-center h-[var(--header-h)]">
-        <div @click="goBack()">
-          <QIcon name="img:/src/assets/icons/icon_back.svg" size="30px" />
-        </div>
+        <a-btn-icon
+          @click="goBack()"
+          icon="img:/src/assets/icons/icon_back.svg"
+          size="30px"
+        />
         <span
           class="text-[17px] font-medium absolute-center w-[70%] text-center"
           >{{ $route.meta.title }}</span

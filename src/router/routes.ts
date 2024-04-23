@@ -151,30 +151,39 @@ const routes: RouteRecordRaw[] = [
           {
             name: 'photo-album',
             path: 'photo-album',
-            meta: {
-              title: '사진보기',
-            },
-            component: () => import('src/pages/home/enlist/PhotoAlbumPage.vue'),
-          },
-          {
-            name: 'photo-album-list',
-            path: 'photo-album-list',
-            meta: {
-              title: '사진보기',
-              bgColor: 'white',
-            },
-            component: () =>
-              import('src/pages/home/enlist/PhotoAlbumListPage.vue'),
-          },
-          {
-            name: 'photo-album-detail',
-            path: 'photo-album-detail',
-            meta: {
-              title: '사진보기',
-              bgColor: 'white',
-            },
-            component: () =>
-              import('pages/home/enlist/PhotoAlbumDetailPage.vue'),
+            redirect: { name: 'photo-album-favorite' },
+            children: [
+              {
+                name: 'photo-album-favorite',
+                path: 'favorite',
+                meta: {
+                  title: '사진보기',
+                },
+                component: () =>
+                  import('src/pages/home/enlist/PhotoAlbumPage.vue'),
+              },
+              {
+                name: 'photo-album-list',
+                path: 'list',
+                meta: {
+                  title: '사진보기',
+                  bgColor: 'white',
+                },
+                component: () =>
+                  import('src/pages/home/enlist/PhotoAlbumListPage.vue'),
+              },
+              {
+                name: 'photo-album-detail',
+                path: ':id',
+                meta: {
+                  title: '사진보기',
+                  bgColor: 'white',
+                },
+                props: true,
+                component: () =>
+                  import('pages/home/enlist/PhotoAlbumDetailPage.vue'),
+              },
+            ],
           },
         ],
       },

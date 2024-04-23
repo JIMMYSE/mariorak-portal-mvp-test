@@ -81,7 +81,7 @@ const boxClass =
         :color="selectedItem === item ? 'primary' : 'grey-1'"
         unelevated
         size="md"
-        class="h-10 flex-1"
+        class="q-btn--outline-grey h-10 flex-1"
         :text-color="selectedItem === item ? 'white' : 'black'"
         @click="selectedItem = item"
       >
