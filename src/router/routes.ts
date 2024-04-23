@@ -138,6 +138,16 @@ const routes: RouteRecordRaw[] = [
             },
             component: () => import('pages/home/enlist/FAQPage.vue'),
           },
+        ],
+      },
+      {
+        path: 'trainee',
+        name: 'trainee',
+        meta: {
+          requiresAuth: true,
+        },
+        component: SubLayout,
+        children: [
           {
             name: 'photo-album',
             path: 'photo-album',

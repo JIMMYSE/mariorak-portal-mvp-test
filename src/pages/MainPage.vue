@@ -152,7 +152,7 @@ function enterMetaverse(roomId: number = 1) {
 
     <!-- 훈련병 관련사항 -->
     <section class="px-6 mt-10">
-      <h2 class="text-h3 px-1">공군 입대 안내사항</h2>
+      <h2 class="text-h3 px-1">훈련병 관련사항</h2>
       <div class="grid grid-cols-3 gap-1.5 mt-4">
         <router-link
           :to="{ name: 'photo-album' }"
