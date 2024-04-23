@@ -100,7 +100,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '입영행사',
             },
-            component: () => import('pages/home/enlist/EnlistEvent.vue'),
+            component: () => import('pages/home/enlist/EnlistEventPage.vue'),
           },
           {
             name: 'commission-event',
@@ -108,7 +108,8 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '임관식안내',
             },
-            component: () => import('pages/home/enlist/RecruitInfoPage.vue'),
+            component: () =>
+              import('pages/home/enlist/CommissionEventPage.vue'),
           },
           {
             name: 'graduation-event',
@@ -116,7 +117,8 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '수료식 안내',
             },
-            component: () => import('pages/home/enlist/RecruitInfoPage.vue'),
+            component: () =>
+              import('pages/home/enlist/GraduationEventPage.vue'),
           },
           {
             name: 'way-to-come',

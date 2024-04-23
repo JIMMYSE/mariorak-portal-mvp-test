@@ -18,6 +18,7 @@ import ACarousel from '../components/common/ACarousel.vue';
 import ASvg from '../components/common/ASvg.vue';
 import ATitle from '../components/common/ATitle.vue';
 import ASubtitle from '../components/common/ASubtitle.vue';
+import ABodyText from '../components/common/ABodyText.vue';
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
@@ -55,5 +56,7 @@ declare module '@vue/runtime-core' {
     ['a-title']: typeof ATitle;
     ['ASubtitle']: typeof ASubtitle;
     ['a-subtitle']: typeof ASubtitle;
+    ['ABodyText']: typeof ABodyText;
+    ['a-body-text']: typeof ABodyText;
   }
 }

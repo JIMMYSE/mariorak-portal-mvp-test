@@ -1,7 +1,7 @@
 <script lang="ts" setup></script>
 
 <template>
-  <q-page class="px-6 pt-[10px] bg-[#F4F4F5]">
+  <q-page class="px-6 pt-[10px] bg-grey">
     <div
       class="w-full h-[93px] bg-[#fff] rounded-[5px] flex flex-col justify-center items-center"
     >
@@ -15,36 +15,34 @@
 
     <section class="mt-[42px]">
       <a-title>주요내용</a-title>
-      <p class="text-grey-4 text-[14px] font-pretendard leading-6">
-        입영시 진행되는 주요 행사를 확인해보세요.
-      </p>
+      <a-body-text> 입영시 진행되는 주요 행사를 확인해보세요. </a-body-text>
     </section>
 
-    <section class="mb-[125px]">
-      <div class="mt-5">
+    <section class="py-5 grid grid-cols-1 gap-5">
+      <div>
         <a-subtitle>생활관 견학</a-subtitle>
-        <div class="flex flex-row gap-[7px] mt-[5px]">
+        <div class="flex gap-[7px] mt-[5px]">
           <q-img src="~assets/images/enlist_event_01.png" class="flex-1" />
           <q-img src="~assets/images/enlist_event_02.png" class="flex-1" />
         </div>
       </div>
-      <div class="mt-5">
+      <div>
         <a-subtitle>의장대 공연</a-subtitle>
-        <div class="flex flex-row gap-[7px] mt-[5px]">
+        <div class="flex gap-[7px] mt-[5px]">
           <q-img src="~assets/images/enlist_event_03.png" class="flex-1" />
           <q-img src="~assets/images/enlist_event_04.png" class="flex-1" />
         </div>
       </div>
-      <div class="mt-5">
+      <div>
         <a-subtitle>입영식</a-subtitle>
-        <div class="flex flex-row gap-[7px] mt-[5px]">
+        <div class="flex gap-[7px] mt-[5px]">
           <q-img src="~assets/images/enlist_event_05.png" class="flex-1" />
           <q-img src="~assets/images/enlist_event_06.png" class="flex-1" />
         </div>
       </div>
-      <div class="mt-5">
+      <div>
         <a-subtitle>입영 홍보 부스</a-subtitle>
-        <div class="flex flex-row gap-[7px] mt-[5px]">
+        <div class="flex gap-[7px] mt-[5px]">
           <q-img src="~assets/images/enlist_event_05.png" class="flex-1" />
           <q-img src="~assets/images/enlist_event_06.png" class="flex-1" />
         </div>

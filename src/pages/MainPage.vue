@@ -92,7 +92,10 @@ function enterMetaverse(roomId: number = 1) {
             </p>
           </div>
         </router-link>
-        <div class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px]">
+        <router-link
+          :to="{ name: 'commission-event' }"
+          class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px]"
+        >
           <div
             class="bg-[url('./src/assets/icons/soldier-1.svg')] bg-right-bottom bg-no-repeat size-full"
           >
@@ -101,8 +104,11 @@ function enterMetaverse(roomId: number = 1) {
               임관식 안내
             </p>
           </div>
-        </div>
-        <div class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px]">
+        </router-link>
+        <router-link
+          :to="{ name: 'graduation-event' }"
+          class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px]"
+        >
           <div
             class="bg-[url('./src/assets/icons/certificate.svg')] bg-right-bottom bg-no-repeat size-full"
           >
@@ -111,7 +117,7 @@ function enterMetaverse(roomId: number = 1) {
               수료식 안내
             </p>
           </div>
-        </div>
+        </router-link>
         <router-link
           :to="{ name: 'faq' }"
           class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px]"

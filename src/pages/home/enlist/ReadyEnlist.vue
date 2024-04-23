@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
+
 type Menu = {
   id: number;
   title: string;
@@ -64,6 +65,9 @@ const menu = ref<Menu[]>([
 ]);
 
 const selectedItem = ref<Menu | null>(null);
+const boxClass =
+  'rounded-[5px] border border-grey-1 mt-[10px] p-[15px]' +
+  ' text-base font-pretendard text-grey-3 leading-5 h-[142px]';
 </script>
 
 <template>
@@ -98,34 +102,22 @@ const selectedItem = ref<Menu | null>(null);
 
     <div v-if="selectedItem != null" class="px-4">
       <section class="mt-10">
-        <h3 class="text-[15px] leading-[22px] font-medium">
-          🚨 필수 지참 목록
-        </h3>
-        <div
-          class="rounded-[5px] border border-grey-1 mt-[10px] p-[15px] text-base text-grey-4 h-[142px]"
-        >
+        <a-subtitle> 🚨 필수 지참 목록 </a-subtitle>
+        <div :class="boxClass">
           {{ selectedItem.mandatoryItems }}
         </div>
       </section>
 
       <section class="mt-5">
-        <h3 class="text-[15px] leading-[22px] font-medium">
-          😃 지참 가능 품목
-        </h3>
-        <div
-          class="rounded-[5px] border border-grey-1 mt-[10px] p-[15px] text-base text-grey-4 h-[142px]"
-        >
+        <a-subtitle> 😃 지참 가능 품목 </a-subtitle>
+        <div :class="boxClass">
           {{ selectedItem.optionalItems }}
         </div>
       </section>
 
       <section class="mt-5">
-        <h3 class="text-[15px] leading-[22px] font-medium">
-          ⛔ 지참 불가 항목
-        </h3>
-        <div
-          class="rounded-[5px] border border-grey-1 mt-[10px] p-[15px] text-base text-grey-4 h-[142px]"
-        >
+        <a-subtitle> ⛔ 지참 불가 항목 </a-subtitle>
+        <div :class="boxClass">
           {{ selectedItem.prohibitedItems }}
         </div>
       </section>

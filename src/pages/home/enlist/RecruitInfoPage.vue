@@ -85,7 +85,7 @@ const selectedItem = ref<Menu>(menu.value[0]);
 
 <template>
   <q-page class="">
-    <q-scroll-area class="max-w-screen h-20">
+    <q-scroll-area class="max-w-screen h-[70px]" :visible="false">
       <div class="w-full px-2 mt-[15px] flex flex-nowrap gap-[6px]">
         <q-btn
           v-for="item in menu"
@@ -106,23 +106,21 @@ const selectedItem = ref<Menu>(menu.value[0]);
       </div>
     </q-scroll-area>
 
-    <section class="mt-10">
+    <section class="mt-[25px]">
       <div class="px-4">
-        <h3 class="text-[17px] leading-6 font-medium">✋ 장교소개</h3>
-        <p class="mt-[3px] text-sm font-pretendard text-grey-4">
-          공군의 장교 과정에 대해서 알려드립니다.
-        </p>
+        <a-subtitle>✋ 장교소개</a-subtitle>
+        <a-body-text> 공군의 장교 과정에 대해서 알려드립니다. </a-body-text>
       </div>
       <q-img src="~assets/images/recruitment_guide_1.png" class="mt-[25px]" />
     </section>
 
     <section class="mt-4">
-      <div class="px-4">
-        <h3 class="text-[17px] leading-6 font-medium">공군사관학교</h3>
-        <p class="mt-[5px] text-base font-pretendard text-grey-4">
+      <div class="px-4 mb-3">
+        <a-subtitle>공군사관학교</a-subtitle>
+        <a-body-text>
           공군 장교의 정규 양성기관인 공군사관학교에서 4년간 군사교육 후
           장기복무 장교로 임관하는 제도
-        </p>
+        </a-body-text>
       </div>
       <q-img src="~assets/images/recruitment_guide_2.png" class="mt-[25px]" />
     </section>
