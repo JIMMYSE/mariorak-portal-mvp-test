@@ -171,7 +171,8 @@ function enterMetaverse(roomId: number = 1) {
             </p>
           </div>
         </router-link>
-        <div
+        <router-link
+          :to="{ name: 'write-letter' }"
           class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px] min-w-[105px]"
         >
           <div
@@ -182,7 +183,7 @@ function enterMetaverse(roomId: number = 1) {
               편지쓰기
             </p>
           </div>
-        </div>
+        </router-link>
         <div
           class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px] min-w-[105px]"
         >
