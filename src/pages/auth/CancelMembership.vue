@@ -1,18 +1,12 @@
 <script lang="ts" setup>
 import { goTo } from 'src/composables/common/app';
 import { useAlertDialog } from 'src/composables/common/dialog';
-import { useUnregister } from 'src/composables/auth/auth';
-import { ref } from 'vue';
 
-const { unregister } = useUnregister();
-const checked = ref(false);
-
-async function onSubmit() {
-  await unregister(() =>
-    useAlertDialog({
-      text: '회원탈퇴 신청이 반영되어 사용자님의 계정이 삭제되었습니다.',
-    }).onOk(() => goTo('/login'))
-  );
+function onSubmit() {
+  // TODO: unregister, logout
+  useAlertDialog({
+    text: '탈퇴 처리가 완료되었습니다.',
+  }).onOk(() => goTo('/login'));
 }
 </script>
 
@@ -41,15 +35,20 @@ async function onSubmit() {
     </q-card>
     <p class="mt-5 px-6 text-sm text-secondary font-medium text-pretendard">
       위 내용을 모두 확인하였으며, 탈퇴처리 진행을 원하는 경우<br />
-      아래 <span class="text-[#f5192f]">회원탈퇴 버튼</span>을 선택해 주세요.
+      아래 <span class="text-negative">회원탈퇴 버튼</span>을 선택해 주세요.
     </p>
     <div class="flex-1"></div>
     <div class="flex justify-center mb-[80px]">
-      <button
-        class="w-[165px] h-[50px] border border-[#f5192f] text-[15px] font-medium text-[#f5192f] rounded-[5px]"
+      <q-btn
+        color="negative"
+        outline
+        unelevated
+        size="md"
+        class="w-[165px] h-[50px] !text-[15px]"
+        @click="onSubmit"
       >
         탈퇴하기
-      </button>
+      </q-btn>
     </div>
   </q-page>
 </template>
