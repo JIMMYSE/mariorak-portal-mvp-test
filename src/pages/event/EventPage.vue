@@ -5,7 +5,7 @@
       메타버스 공간에서 체험하는 병영생활
     </p>
     <!-- contents -->
-    <div v-for="item in data" :key="item.id">
+    <router-link v-for="item in data" :key="item.id" :to="{ name: item.togo }">
       <q-card flat class="mt-4 px-[15px] pt-[17px] h-[100px] relative">
         <h3 class="font-medium text-[15px] text-primary">
           {{ item.title }}
@@ -20,7 +20,7 @@
           class="absolute right-0 bottom-0"
         ></q-icon>
       </q-card>
-    </div>
+    </router-link>
   </q-page>
 </template>
 

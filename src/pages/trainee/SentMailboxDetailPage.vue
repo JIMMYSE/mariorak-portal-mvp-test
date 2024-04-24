@@ -38,7 +38,10 @@ const data = ref([...sendLetterList]);
     ></div>
     <div class="flex-1"></div>
     <!-- Button -->
-    <div class="flex justify-center mb-[80px]">
+    <router-link
+      :to="{ name: 'sent-mailbox' }"
+      class="flex justify-center mb-[80px]"
+    >
       <q-btn
         color="primary"
         outline
@@ -48,7 +51,7 @@ const data = ref([...sendLetterList]);
       >
         목록으로
       </q-btn>
-    </div>
+    </router-link>
   </q-page>
 </template>
 

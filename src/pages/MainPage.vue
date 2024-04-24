@@ -172,7 +172,7 @@ function enterMetaverse(roomId: number = 1) {
           </div>
         </router-link>
         <router-link
-          :to="{ name: 'write-letter' }"
+          :to="{ name: 'sent-mailbox' }"
           class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px] min-w-[105px]"
         >
           <div
@@ -200,9 +200,9 @@ function enterMetaverse(roomId: number = 1) {
     </section>
 
     <!-- 공군 생활 체험 -->
-    <section class="px-6 mt-[55px]">
+    <router-link :to="{ name: 'event' }" class="px-6 mt-[55px]">
       <h2 class="text-h3 pl-1">공군 생활 체험</h2>
-      <router-link :to="{ name: 'call-roll' }" class="mt-3 flex">
+      <div class="mt-3 flex">
         <div>
           <img
             src="/src/assets/images/experience.png"
@@ -230,7 +230,7 @@ function enterMetaverse(roomId: number = 1) {
             더보기
           </p>
         </div>
-      </router-link>
+      </div>
 
       <div class="mt-[35px] flex">
         <div>
@@ -291,7 +291,7 @@ function enterMetaverse(roomId: number = 1) {
           </p>
         </div>
       </div>
-    </section>
+    </router-link>
 
     <!-- footer -->
     <footer

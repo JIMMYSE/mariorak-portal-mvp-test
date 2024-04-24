@@ -188,18 +188,8 @@ const routes: RouteRecordRaw[] = [
           {
             name: 'letter',
             path: 'letter',
-            redirect: { name: 'write-letter' },
+            redirect: { name: 'sent-mailbox' },
             children: [
-              {
-                name: 'write-letter',
-                path: 'write-letter',
-                meta: {
-                  title: '편지쓰기',
-                  bgColor: 'white',
-                },
-                component: () =>
-                  import('src/pages/trainee/WriteLetterPage.vue'),
-              },
               {
                 name: 'sent-mailbox',
                 path: 'sent-mailbox',
@@ -210,6 +200,17 @@ const routes: RouteRecordRaw[] = [
                 component: () =>
                   import('src/pages/trainee/SentMailboxPage.vue'),
               },
+              {
+                name: 'write-letter',
+                path: 'write-letter',
+                meta: {
+                  title: '편지쓰기',
+                  bgColor: 'white',
+                },
+                component: () =>
+                  import('src/pages/trainee/WriteLetterPage.vue'),
+              },
+
               {
                 name: 'sent-mailbox-detail',
                 path: 'sent-mailbox-detail',

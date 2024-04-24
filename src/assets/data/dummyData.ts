@@ -463,30 +463,35 @@ export const eventList = [
     title: '입영 상담실',
     content: '공군에서 운영중인 상담실을<br/>체험해 보세요.',
     img: 'event_01.svg',
+    togo: 'presentation',
   },
   {
     id: 2,
     title: '모병 설명회',
     content: '공군에서 진행하는 모병설명회에<br/>참여해 보세요.',
     img: 'event_02.svg',
+    togo: '',
   },
   {
     id: 3,
     title: '입소식 체험',
     content: '공군 입소 상황을 메타버스 공간<br/>에서 체험해 보세요.',
     img: 'event_03.svg',
+    togo: '',
   },
   {
     id: 4,
     title: '점호 체험',
     content: '공군에서의 점호 상황을 체험해<br/>보세요.',
     img: 'event_04.svg',
+    togo: 'call-roll',
   },
   {
     id: 5,
     title: '배식 체험',
     content: '공군에서의 배식 상황을 체험해<br/>보세요.',
     img: 'event_05.svg',
+    togo: '',
   },
 ];
 
