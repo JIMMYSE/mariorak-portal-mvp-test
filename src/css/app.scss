@@ -44,7 +44,7 @@ body {
   --header-h: 50px;
   text-underline-offset: 4px;
 }
-.q-page-container {
+.q-header + .q-page-container {
   padding: 0;
   // statusbar height + QHeader height
   padding-top: calc(var(--statusbar-h) + var(--header-h));

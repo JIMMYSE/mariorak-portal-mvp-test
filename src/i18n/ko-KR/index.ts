@@ -56,7 +56,7 @@ export default {
     },
     password: {
       required: '비밀번호를 입력해 주세요.',
-      invalid: '비밀번호 형식을 확인해 주세요.',
+      invalid: '영문 대소문자, 숫자 포함 10~16자 입력해 주세요.',
     },
     passwordConfirm: {
       required: '비밀번호를 입력해 주세요.',
@@ -67,6 +67,7 @@ export default {
     guestLoginConfirmDetail:
       '<p>안전한 데이터 보호를 위해<br/>회원가입을 통한 로그인을 권장합니다.<br/>그래도 게스트로 로그인 하시겠습니까?</p>',
     guestLoginButtonLabel: '게스트로 로그인하기',
+    withdrawal: { title: '로그인 불가', text: '탈퇴 처리 중입니다.' },
   },
   join: {
     existUserDialog: '기존 가입된 계정 안내',
@@ -120,6 +121,7 @@ export default {
     login: '로그인',
     autoLogin: '자동로그인',
     findUser: '계정찾기',
+    findPassword: '비밀번호 찾기',
     resetPassword: '비밀번호 재설정',
     metaverseEnter: '입장하기',
     expand: (label: any) => (label ? `"${label}" 확장` : '확장하다.'),

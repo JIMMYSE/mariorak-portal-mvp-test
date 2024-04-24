@@ -1,5 +1,7 @@
+import { t } from 'src/utils/message-util';
 import { useForm, useField } from 'vee-validate';
 import { object, string, addMethod } from 'yup';
+import { quasarVeeConfig } from '../common/veeValidate';
 export function useAuthForm({
   needPasswordConfirm,
   onSuccess,
@@ -26,30 +28,39 @@ export function useAuthForm({
 
   const schema = object({
     email: string()
-      .required('사용하실 이메일을 입력하세요.')
-      .matches(emailRegex, '이메일 형식이 아닙니다.'),
+      .required(t('auth.email.required'))
+      .matches(emailRegex, t('auth.email.invalid')),
     password: string()
-      .required('사용하실 비밀번호를 입력하세요.')
-      .matches(passwordRegex, '영문 대소문자, 숫자 포함 10~16자리가 아닙니다'),
+      .required(t('auth.password.required'))
+      .matches(passwordRegex, t('auth.password.invalid')),
     passwordConfirm: needPasswordConfirm
       ? string()
-          .required('비밀번호를 다시한번 입력해 주세요.')
+          .required(t('auth.passwordConfirm.required'))
           .test({
             name: 'passwordConfirm',
             test: (v, c) => c.parent.password === v,
-            message: '비밀번호가 일치하지 않습니다.',
+            message: t('auth.passwordConfirm.invalid'),
           })
       : string().nullable(),
   });
 
   const formContext = useForm({
     validationSchema: schema,
-    initialValues: { email: '', password: '' },
+    initialValues: { email: '', password: '', passwordConfirm: '' },
   });
 
-  const email = useField('email');
-  const password = useField('password');
-  const passwordConfirm = useField('passwordConfirm');
+  const [email, emailProps] = formContext.defineField<'email', string>(
+    'email',
+    quasarVeeConfig
+  );
+  const [password, passwordProps] = formContext.defineField<'password', string>(
+    'password',
+    quasarVeeConfig
+  );
+  const [passwordConfirm, passwordConfirmProps] = formContext.defineField<
+    'passwordConfirm',
+    string
+  >('passwordConfirm', quasarVeeConfig);
 
   const {
     meta: formMeta,
@@ -61,8 +72,11 @@ export function useAuthForm({
   return {
     fields: {
       email,
+      emailProps,
       password,
+      passwordProps,
       passwordConfirm,
+      passwordConfirmProps,
     },
     formMeta,
     isSubmitting,

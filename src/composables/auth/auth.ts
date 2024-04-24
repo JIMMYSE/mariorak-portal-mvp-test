@@ -49,7 +49,7 @@ const isLocalDev = process.env.IS_LOCAL;
 export function useUserInfo() {
   const { user } = storeToRefs(useAuthStore());
   const isLoggedIn = computed(() => {
-    return user.value != null || isLocalDev;
+    return user.value != null;
   });
   return { user, isLoggedIn };
 }

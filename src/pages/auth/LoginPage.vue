@@ -1,100 +1,46 @@
 <script setup lang="ts">
-import { toTypedSchema } from '@vee-validate/yup';
-import ReportAlert from 'src/components/auth/ReportAlert.vue';
-import SocialLoginGroup from 'src/components/auth/SocialLoginGroup.vue';
 import ACheckbox from 'src/components/form/ACheckbox.vue';
-import { useAutoLogin, useLogin } from 'src/composables/auth/auth';
+import { useAutoLogin } from 'src/composables/auth/auth';
+import { useAuthForm } from 'src/composables/auth/useAuthForm';
 import { goToName } from 'src/composables/common/app';
-import {
-  useAlertDialog,
-  useConfirmDialog,
-  useDialog,
-} from 'src/composables/common/dialog';
-import { quasarVeeConfig } from 'src/composables/common/veeValidate';
-import { useForm } from 'vee-validate';
-import { MaybeRef } from 'vue';
-import { toValue } from 'vue';
-import { h } from 'vue';
-import { InferType, object, string } from 'yup';
+import { useAlertDialog } from 'src/composables/common/dialog';
+import { useAuthStore } from 'src/stores/auth-store';
+import { t } from 'src/utils/message-util';
 
-const LoginFormSchema = object({
-  email: string().email().required(),
-  password: string().required(),
-});
 const isAutoLogin = useAutoLogin();
-const {
-  handleSubmit,
-  meta: formMeta,
-  defineField,
-} = useForm<InferType<typeof LoginFormSchema>>({
-  validationSchema: toTypedSchema(LoginFormSchema),
-  initialValues: {
-    email: '',
-    password: '',
-  },
-});
+let isWithdrawing = true;
 
-/** @see { @link https://vee-validate.logaretm.com/v4/examples/ui-libraries } */
-const [email, emailProps] = defineField<'email', string>(
-  'email',
-  quasarVeeConfig
-);
-const [password, passwordProps] = defineField<'password', string>(
-  'password',
-  quasarVeeConfig
-);
-
-function openReportAlert(reportedCount: number, maxCount: number = 3) {
-  if (reportedCount < maxCount)
-    useDialog({
-      contentComponent: h(ReportAlert, { reportedCount, maxCount }),
-      buttons: [],
-    }).onDismiss(() => {
-      goToName('main');
-    });
-  else
-    useAlertDialog({
-      htmlTitle: '<span class="text-primary">계정 삭제</span>알림',
-      htmlText: `<p>사용자님께서 릴레이 창작전에서 등록하였던<br/>
-글의 신고횟수가 ${maxCount}회를 넘었습니다. <br/>
-따라서 해당 계정은 삭제 처리 되었습니다. <br/>
-감사합니다.</p>`,
-    });
-}
-
-const { login } = useLogin();
-const onSubmit = handleSubmit(async (values) => {
+async function onSuccess(values: { email: string; password: string }) {
   const { email, password } = values;
   console.log('onSubmit', email, password);
-  const { data, isSuccess, error } = await login(email, password);
-  if (!data.value) return;
 
-  console.log('LoginPage::', data, isSuccess, error);
-  handleLoginResult({ data, isSuccess });
-});
+  // TODO: replace below line with real API calling
+  store.setUser({ email });
 
-function handleLoginResult(payload: {
-  data: MaybeRef<{
-    current_reported_cnt: number;
-    max_reported_cnt: number;
-  }>;
-  isSuccess: MaybeRef<boolean>;
-  error: MaybeRef<any>;
-}) {
-  const { data, isSuccess, error } = payload;
-  const _data = toValue(data);
-  const _isSuccess = toValue(isSuccess);
-  const _error = toValue(error);
-  console.log('LoginPage:: handleLoginSuccess', _data, _isSuccess, _error);
-  if (_data.current_reported_cnt >= _data.max_reported_cnt) {
-    openReportAlert(_data.current_reported_cnt, _data.max_reported_cnt);
-  } else {
-    goToName('main');
-  }
+  handleLoginResult({ isWithdrawing, isSuccess: true });
+  isWithdrawing = false;
 }
 
-function onSocialLoginFail(error: any) {
-  console.warn('onSocialLoginFail', error);
+const { fields, formMeta, onSubmit } = useAuthForm({
+  needPasswordConfirm: false,
+  onSuccess,
+});
+const { email, emailProps, password, passwordProps } = fields;
+const store = useAuthStore();
+function handleLoginResult({
+  isWithdrawing,
+  isSuccess,
+}: {
+  isWithdrawing: boolean;
+  isSuccess: boolean;
+}) {
+  if (isWithdrawing) {
+    useAlertDialog({
+      text: t('auth.withdrawal.text'),
+    });
+  } else if (isSuccess) {
+    goToName('main');
+  }
 }
 
 // function confirmToChangePassword() {
@@ -120,23 +66,13 @@ function onSocialLoginFail(error: any) {
 </script>
 
 <template>
-  <QPage class="column justify-center">
-    <QCard class="full-width p-[8px] mt-[20px]" :flat="true">
+  <q-page class="column justify-center items-center px-6 bg-grey">
+    <q-img src="~assets/images/main-logo-blue.png" width="173px" height="45" />
+    <q-card class="w-full mt-12 bg-transparent" :flat="true">
       <!-- EMAIL LOGIN -->
-      <QCardSection class="mb-[24px]">
-        <div class="text-left q-mb-sm">
-          <QIcon class="q-pr-lg" size="30px">
-            <img src="~assets/images/main-logo.png" />
-          </QIcon>
-        </div>
-        <div class="text-left" style="font-size: 28px">
-          <span class="text-primary">이메일로</span> 로그인
-        </div>
-      </QCardSection>
-
-      <QCardSection>
-        <QForm @submit.prevent="onSubmit">
-          <AInput
+      <q-cardSection>
+        <q-form @submit.prevent="onSubmit">
+          <a-input
             type="text"
             input-class="text-primary font-light"
             ref="loginIdInput"
@@ -145,7 +81,7 @@ function onSocialLoginFail(error: any) {
             autofocus
             v-bind="emailProps"
           />
-          <AInput
+          <a-input
             type="password"
             class="mt-[15px]"
             input-class="text-primary text-weight-light"
@@ -154,56 +90,38 @@ function onSocialLoginFail(error: any) {
             :placeholder="$t('auth.password.required')"
             v-bind="passwordProps"
           />
-          <ABtn
+          <a-checkbox
+            :label="$t('label.autoLogin')"
+            class="text-caption"
+            v-model="isAutoLogin"
+          />
+          <a-btn
             type="submit"
             class="full-width mt-[25px] text-[18px] font-medium"
-            style="min-height: 55px"
+            style="min-height: 50px"
             :label="$t('label.login')"
             :disable="!formMeta.valid"
           />
           <!-- :disable="!email || !password" -->
-        </QForm>
-        <div class="row justify-between text-caption text-grey-5 pt-2">
-          <ACheckbox
-            :label="$t('label.autoLogin')"
-            class="font-light"
-            v-model="isAutoLogin"
+        </q-form>
+        <div class="w-full flex justify-center items-center mt-3">
+          <a-btn
+            class="text-grey-5 text-caption q-pa-sm font-light"
+            flat
+            :label="$t('label.join')"
+            @click="goToName('join')"
           />
-          <div class="">
-            <ABtn
-              class="text-grey-5 text-caption q-pa-sm font-light"
-              flat
-              :label="$t('label.findUser')"
-              @click="goToName('find-user')"
-            />
-            <span class="text-grey-2">|</span>
-            <ABtn
-              class="text-grey-5 text-caption q-pa-sm font-light"
-              flat
-              :label="$t('label.join')"
-              @click="goToName('join')"
-            />
-          </div>
+          <span class="text-grey-2">|</span>
+          <a-btn
+            class="text-grey-5 text-caption q-pa-sm font-light"
+            flat
+            :label="$t('label.findPassword')"
+            @click="goToName('find-password')"
+          />
         </div>
-      </QCardSection>
-
-      <!-- OTHER LOGIN -->
-      <QCardSection>
-        <div class="row justify-between items-center mb-[36px] mt-[42px]">
-          <div class="bar"></div>
-          <span class="px-[28px] text-caption font-medium text-grey-3">
-            간편로그인
-          </span>
-          <div class="bar"></div>
-        </div>
-        <social-login-group
-          type="login"
-          @login="handleLoginResult"
-          @error="onSocialLoginFail"
-        />
-      </QCardSection>
-    </QCard>
-  </QPage>
+      </q-cardSection>
+    </q-card>
+  </q-page>
 </template>
 
 <style scoped lang="scss">

@@ -16,7 +16,9 @@ const props = withDefaults(defineProps<Props>(), {
   outlined: true,
   clearable: false,
   clearIcon: 'close',
+  rounded: true,
   done: false,
+  noErrorIcon: true,
 });
 
 const forwarded = useForwardProps(props);
@@ -35,13 +37,13 @@ defineExpose({
 </script>
 
 <template>
-  <q-input v-bind="forwarded" :type="inputType" ref="inputEl">
+  <q-input v-bind="forwarded" :type="inputType" ref="inputEl" color="primary">
     <template #append>
       <div class="q-gutter-x-md">
         <!-- done icon -->
         <q-icon
-          name="img:/images/icons/icon_cheack_a.svg"
-          size="40px"
+          name="img:/src/assets/icons/check.svg"
+          size="30px"
           color="primary"
           v-if="done"
         />
@@ -49,11 +51,11 @@ defineExpose({
         <q-icon
           :name="
             isPasswordVisible
-              ? 'img:/images/icons/icon_eyes_a.svg'
-              : 'img:/images/icons/icon_eyes_d.svg'
+              ? 'img:/src/assets/icons/eye_a.svg'
+              : 'img:/src/assets/icons/eye_d.svg'
           "
           class="cursor-pointer"
-          size="40px"
+          size="30px"
           @click="isPasswordVisible = !isPasswordVisible"
           v-if="props.type === 'password'"
         />

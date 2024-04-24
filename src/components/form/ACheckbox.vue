@@ -15,8 +15,8 @@ const forwarded = useForwardProps(props);
 <template>
   <QCheckbox
     v-bind="forwarded"
-    checked-icon="img:/images/icons/btn_checkbox_a.svg"
-    unchecked-icon="img:/images/icons/btn_checkbox_d.svg"
+    checked-icon="img:/src/assets/icons/checkbox_a.svg"
+    unchecked-icon="img:/src/assets/icons/checkbox_d.svg"
     size="32px"
   >
     <slot />
