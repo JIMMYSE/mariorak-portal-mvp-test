@@ -39,7 +39,7 @@ defineExpose({
 <template>
   <q-input v-bind="forwarded" :type="inputType" ref="inputEl" color="primary">
     <template #append>
-      <div class="q-gutter-x-md">
+      <div class="mr-2">
         <!-- done icon -->
         <q-icon
           name="img:/src/assets/icons/check.svg"
