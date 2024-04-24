@@ -202,7 +202,7 @@ function enterMetaverse(roomId: number = 1) {
     <!-- 공군 생활 체험 -->
     <section class="px-6 mt-[55px]">
       <h2 class="text-h3 pl-1">공군 생활 체험</h2>
-      <div class="mt-3 flex">
+      <router-link :to="{ name: 'call-roll' }" class="mt-3 flex">
         <div>
           <img
             src="/src/assets/images/experience.png"
@@ -230,7 +230,7 @@ function enterMetaverse(roomId: number = 1) {
             더보기
           </p>
         </div>
-      </div>
+      </router-link>
 
       <div class="mt-[35px] flex">
         <div>

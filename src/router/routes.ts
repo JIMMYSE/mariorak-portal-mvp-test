@@ -257,6 +257,14 @@ const routes: RouteRecordRaw[] = [
         },
         component: () => import('src/pages/event/CounselingRoomPage.vue'),
       },
+      {
+        name: 'call-roll',
+        path: 'call-roll',
+        meta: {
+          title: '점호 체험',
+        },
+        component: () => import('src/pages/event/CallRollPage.vue'),
+      },
     ],
   },
   {
