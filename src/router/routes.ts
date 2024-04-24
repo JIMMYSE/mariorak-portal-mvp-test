@@ -235,9 +235,12 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/setting/SettingPage.vue'),
       },
       {
-        path: 'airforce-splash',
-        name: 'airforce-splash',
-        component: () => import('pages/AirForceSplash.vue'),
+        path: 'cancel',
+        name: 'cancel-membership',
+        meta: {
+          title: '회원탈퇴',
+        },
+        component: () => import('src/pages/setting/CancelMembershipPage.vue'),
       },
     ],
   },
@@ -357,15 +360,6 @@ const routes: RouteRecordRaw[] = [
           title: '회원가입완료',
         },
         component: () => import('pages/auth/JoinCompleted.vue'),
-      },
-
-      {
-        path: 'cancel',
-        name: 'cancel-membership',
-        meta: {
-          title: '회원탈퇴',
-        },
-        component: () => import('pages/auth/CancelMembership.vue'),
       },
     ],
   },
