@@ -43,7 +43,7 @@ const selectedItem = ref<Item>(list.value[0]);
         :color="selectedItem === item ? 'primary' : 'grey-1'"
         unelevated
         size="md"
-        class="h-10 flex-1"
+        class="h-10 flex-1 q-btn--outline-grey"
         :text-color="selectedItem === item ? 'white' : 'black'"
         @click="selectedItem = item"
       >
