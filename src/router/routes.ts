@@ -185,6 +185,43 @@ const routes: RouteRecordRaw[] = [
               },
             ],
           },
+          {
+            name: 'letter',
+            path: 'letter',
+            redirect: { name: 'write-letter' },
+            children: [
+              {
+                name: 'write-letter',
+                path: 'write-letter',
+                meta: {
+                  title: '편지쓰기',
+                  bgColor: 'white',
+                },
+                component: () =>
+                  import('src/pages/trainee/WriteLetterPage.vue'),
+              },
+              {
+                name: 'sent-mailbox',
+                path: 'sent-mailbox',
+                meta: {
+                  title: '보낸 편지함',
+                  bgColor: 'white',
+                },
+                component: () =>
+                  import('src/pages/trainee/SentMailboxPage.vue'),
+              },
+              {
+                name: 'sent-mailbox-detail',
+                path: 'sent-mailbox-detail',
+                meta: {
+                  title: '보낸 편지함',
+                  bgColor: 'white',
+                },
+                component: () =>
+                  import('src/pages/trainee/SentMailboxDetailPage.vue'),
+              },
+            ],
+          },
         ],
       },
     ],

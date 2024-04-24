@@ -12,7 +12,6 @@ const props = defineProps<{
 }>();
 
 const detailId = Number(props.id);
-
 const data = ref(photoAlbumList.find((item) => item.id === detailId));
 </script>
 
