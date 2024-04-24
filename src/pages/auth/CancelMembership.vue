@@ -17,60 +17,39 @@ async function onSubmit() {
 </script>
 
 <template>
-  <q-page class="px-6 pt-10">
-    <h3>
-      <span class="text-primary text-lg font-medium">회원탈퇴</span
-      ><span class="text-lg font-medium">를 진행하시겠습니까?</span>
-    </h3>
-    <p class="text-base font-light leading-[25px] mt-[10px]">
-      서로버스와 이별하기 전<br />
-      회원탈퇴 유의사항을 꼭 확인해주세요!
+  <q-page class="flex flex-col relative">
+    <h1 class="text-h1 px-6 pt-[30px]">회원탈퇴 안내</h1>
+    <p class="px-6 mt-[11px] text-pretendard text-sm text-secondary leading-5">
+      회원탈퇴 시 개인정보 및 모든 이용정보는 개인정보처리<br />
+      방침에 따라 별도보관 또는 즉시 삭제되며,<br />
+      복구할 수 없습니다.
     </p>
-    <q-card flat square class="bg-grey-1 h-[350px] mt-5 p-5">
-      <h3 class="text-base font-medium text-grey-4">회원탈퇴 유의사항</h3>
-      <p class="text-xs font-light text-grey-4 mt-5 leading-5">
-        -회원탈퇴 유의사항입니다.회원탈퇴 유의사항입니다.회원탈퇴
-        유의사항입니다.회원탈퇴 유의사항입니다.회원탈퇴 유의사항입니다.
+    <q-card flat square class="bg-grey p-6 mt-5 text-pretendard leading-5">
+      <h4 class="text-sm text-secondary font-medium">- 보관 정보 및 기간</h4>
+      <p class="text-sm text-grey-3">개인정보 처리방침에 따라 처리됩니다.</p>
+      <h4 class="mt-5 text-sm text-secondary font-medium">- 재가입 및 복구</h4>
+      <p class="text-sm text-grey-3">
+        회원 탈퇴 후에는 1개월 간 동일한 계정으로 재가입할 수 없으며, 복구는
+        어떠한 경우에도 불가능합니다.
       </p>
-      <p class="text-xs font-light text-grey-4 mt-5 leading-5">
-        -회원탈퇴 유의사항입니다.회원탈퇴 유의사항입니다.회원탈퇴
-        유의사항입니다.회원탈퇴 유의사항입니다.
-      </p>
-      <p class="text-xs font-light text-grey-4 mt-5 leading-5">
-        -회원탈퇴 유의사항입니다.회원탈퇴 유의사항입니다.회원탈퇴
-        유의사항입니다.회원탈퇴 유의사항입니다.회원탈퇴 유의사항입니다.
-      </p>
-      <p class="text-xs font-light text-grey-4 mt-5 leading-5">
-        -회원탈퇴 유의사항입니다.회원탈퇴 유의사항입니다.회원탈퇴
-        유의사항입니다.회원탈퇴 유의사항입니다.
+      <h4 class="mt-5 text-sm text-secondary font-medium">
+        - 콘텐츠 및 게시물
+      </h4>
+      <p class="text-sm text-grey-3">
+        회원탈퇴를 진행하더라도 회원이 등록, 게시, 공유한 콘텐츠는 유지됩니다.
       </p>
     </q-card>
-    <div class="mt-5 flex items-top">
-      <a-checkbox
-        v-model="checked"
-        class="text-[13px] leading-5 font-light"
-        label="
-        유의사항을 모두 확인하였으며, 회원탈퇴 시 진행되는 모든 정보 소멸에
-        대하여 동의합니다.
-        "
-      />
-      <!-- <q-icon -->
-      <!--   name="img:/images/icons/btn_checkbox_b.svg" -->
-      <!--   class="mr-[7px] top-[2px]" -->
-      <!-- ></q-icon> -->
-      <!-- <p class="col text-[13px] leading-5 font-light"> -->
-      <!--   유의사항을 모두 확인하였으며, 회원탈퇴 시 진행되는 모든 정보 소멸에 -->
-      <!--   대하여 동의합니다. -->
-      <!-- </p> -->
-    </div>
-
-    <div class="w-screen -ml-6 p-4 fixed bottom-0 bg-white">
-      <a-btn
-        class="w-full h-[55px]"
-        label="회원탈퇴 신청하기"
-        @click="onSubmit"
-        :disable="!checked"
-      />
+    <p class="mt-5 px-6 text-sm text-secondary font-medium text-pretendard">
+      위 내용을 모두 확인하였으며, 탈퇴처리 진행을 원하는 경우<br />
+      아래 <span class="text-[#f5192f]">회원탈퇴 버튼</span>을 선택해 주세요.
+    </p>
+    <div class="flex-1"></div>
+    <div class="flex justify-center mb-[80px]">
+      <button
+        class="w-[165px] h-[50px] border border-[#f5192f] text-[15px] font-medium text-[#f5192f] rounded-[5px]"
+      >
+        탈퇴하기
+      </button>
     </div>
   </q-page>
 </template>

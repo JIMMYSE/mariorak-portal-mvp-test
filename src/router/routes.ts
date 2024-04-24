@@ -363,7 +363,7 @@ const routes: RouteRecordRaw[] = [
         path: 'cancel',
         name: 'cancel-membership',
         meta: {
-          title: '회원탈퇴 신청',
+          title: '회원탈퇴',
         },
         component: () => import('pages/auth/CancelMembership.vue'),
       },
