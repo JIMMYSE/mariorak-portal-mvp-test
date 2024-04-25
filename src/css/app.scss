@@ -91,6 +91,10 @@ body {
 .q-btn--outline-grey::before {
   border-color: $grey-1 !important;
 }
+// -------- q-tab -----------//
+.q-tab--inactive {
+  opacity: 1;
+}
 
 // -------- q-input -----------//
 .q-input {

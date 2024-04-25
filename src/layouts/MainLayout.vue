@@ -89,7 +89,7 @@ const headerClass = computed(() =>
           />
           <q-route-tab class="center-btn" to="/event" exact>
             <q-icon
-              name="img:/src/assets/icons/airplane-circle.svg"
+              name="img:/src/assets/images/airplane-circle.png"
               size="69px"
             />
           </q-route-tab>

@@ -105,7 +105,9 @@ export const metaverseList = {
     },
     {
       id: 8,
+      tag: '',
       title: '상담실 1',
+      subtitle: '',
       content: '상담실 1에 입장하여<br/>입영 상담 체험을 진행합니다.',
       img_url: '/src/assets/images/recruitment_guide_1.png',
       active: true,
@@ -113,7 +115,9 @@ export const metaverseList = {
     },
     {
       id: 9,
+      tag: '',
       title: '상담실 2',
+      subtitle: '',
       content: '상담실 2에 입장하여<br/>입영 상담 체험을 진행합니다.',
       img_url: '/src/assets/images/recruitment_guide_1.png',
       active: true,
@@ -121,7 +125,9 @@ export const metaverseList = {
     },
     {
       id: 10,
+      tag: '',
       title: '상담실 3',
+      subtitle: '',
       content: '상담실 2에 입장하여<br/>입영 상담 체험을 진행합니다.',
       img_url: '/src/assets/images/recruitment_guide_1.png',
       active: true,
@@ -129,7 +135,9 @@ export const metaverseList = {
     },
     {
       id: 11,
+      tag: '',
       title: '상담실 4',
+      subtitle: '',
       content: '상담실 2에 입장하여<br/>입영 상담 체험을 진행합니다.',
       img_url: '/src/assets/images/recruitment_guide_1.png',
       active: true,
@@ -137,7 +145,9 @@ export const metaverseList = {
     },
     {
       id: 12,
+      tag: '',
       title: '상담실 5',
+      subtitle: '',
       content: '현재 상담실5는 운영하지 않아<br/>입장이 불가합니다.',
       img_url: '/src/assets/images/recruitment_guide_1.png',
       active: false,
@@ -145,110 +155,13 @@ export const metaverseList = {
     },
     {
       id: 13,
+      tag: '',
       title: '상담실 6',
+      subtitle: '',
       content: '현재 상담실5는 운영하지 않아<br/>입장이 불가합니다.',
       img_url: '/src/assets/images/recruitment_guide_1.png',
       active: false,
       page: 'counseling',
-    },
-  ],
-};
-
-export const bookList = {
-  count: 4,
-  rows: [
-    {
-      id: 1,
-      tag: '전주',
-      subtitle: '공감과 위로가 되어주는 책방',
-      title: '잘 익은 언어들',
-      content:
-        '동네사람들에게 공감과 위로가 되어주는 책방으로 인문사회 서적과 문학, 그림책, 동화, 그래픽 노블까지 다양한 분야의 책들을 큐레이션 합니다.',
-      img_url: '/images/잘익은언어들.png',
-      address: '전라북도 전주시 덕진구 거북바우로 68-1 (인후동2가)',
-      opening_time: '매일 13:00 - 18:00',
-      tel: '010-3000-6959',
-      url: 'https://www.instagram.com/well_books',
-    },
-    {
-      id: 2,
-      tag: '익산',
-      subtitle: '그림책을 전문으로 하는 파란색 책방',
-      title: '그림책방 씨앗',
-      content:
-        '익산에 위치한 그림책 전문 서점입니다. 그림책을 전문으로 하고 있지만 그림책, 어린이책(어린이 문학), 성인도서(소설, 에세이) 등 다양한 도서들을 다루고 있습니다.',
-      img_url: '/images/그림책방씨앗.png',
-      address: '전라북도 전주시 덕진구 권삼득로 390-1',
-      opening_time: '월,수,목,금,토 10:00 - 18:00',
-      tel: '010-3377-8485',
-      url: 'https://www.instagram.com/picturebookshop _seed/',
-    },
-    {
-      id: 3,
-      tag: '전주',
-      subtitle: '생각과 가치를 파는 책방',
-      title: '책방 토닥토닥',
-      content:
-        '세상 모든것을 담고 싶은 책방, 전주에서 사람과 생명 모두가 공존하기를 바라며 책방을 운영하고 있습니다. 돌립출판물, 인문, 사회, 철학, 문학, 그림책 등 다 있는 시장 책방입니다.',
-      img_url: '/images/책방토닥토닥.png',
-      address:
-        '전라북도 전주시 완산구 풍남문1길 19-3, 남부시장2층 청년몰(전동)',
-      opening_time:
-        '월,화,수,목 12:00 - 20:00 / 금,토 11:00 -20:00 / 일 12:00 - 19:00',
-      tel: '010-9028-3938',
-      url: 'https://www.instagram.com/todakbook',
-    },
-    {
-      id: 4,
-      tag: '익산',
-      subtitle: '로컬을 사랑하는 이에게 열려있는 책방',
-      title: '기찻길 옆 골목책방',
-      content:
-        '익산역에서 걸어서 5분 거리의 골목에 자리한 책방으로, 여행자와 로컬, 도시재생과 라이프스타일을 주제로 하고있습니다. 주인장이 읽고 맘에 드는 책만 큐레이션하여 배치하였습니다.',
-      img_url: '/images/기찻길옆골목책방.png',
-      address: '전라북도 익산시 중앙로1길 17',
-      opening_time: '월,수,목,금,토,일 10:00 - 16:00',
-      tel: '0507-1341-4759',
-      url: 'https://www.instagram.com/alley_bookstore _by_a_railroad/',
-    },
-    {
-      id: 5,
-      tag: '전주',
-      subtitle: '책과 커피, 문화가 어우러진 책방',
-      title: '호남문고 서신점',
-      content:
-        '다양한 문화공간으로 변화하는 전주 대표 지역서점 입니다. 책과 커피, 그리고 문화가 어우러진 공간으로, 여러 사람이 모여 함께 하는 문화 행사를 진행합니다.',
-      img_url: '/images/호남문고.png',
-      address: '전라북도 전주시 완산구 서신로 50(서신동)',
-      opening_time: '평일 09:30 - 21:00 / 토,일 11:00 - 21:00',
-      tel: '063-253-9400',
-      url: 'https://blog.naver.com/honambook',
-    },
-    {
-      id: 6,
-      tag: '익산',
-      subtitle: '익산시의 첫번째 독립서점 책방',
-      title: '북메리카노',
-      content:
-        '마음이라는 컨셉을 가지고 운영하고 있는 익산시 첫 번째 독립서점 입니다. 심리상담, 타로카드상담, 정서미술을 매개로 성인부터 아동까지 다양한 대상의 마음을 위한 책방입니다.',
-      img_url: '/images/북메리카노.png',
-      address: '전라북도 익산시 익산대로16길 36 2층',
-      opening_time: '목,금,토,일 13:00 - 20:00',
-      tel: '0507-1316-4564',
-      url: 'https://www.instagram.com/book_mericano',
-    },
-    {
-      id: 7,
-      tag: '전주',
-      subtitle: '책을 통한 아름다운 꿈을 키우는 책방',
-      title: '고래의 꿈',
-      content:
-        '책을 사랑하는 이들의 모임공간으로, 책을 통해 너와 나의 이야기를 담아내는 책놀이 공간 책방입니다. 독서모임, 원데이클래스 등 다양한 소모임 등이 이루어집니다.',
-      img_url: '/images/고래의꿈.png',
-      address: '전라북도 전주시 완산구 고사평7길 9-3, 102호 (서신동)',
-      opening_time: '평일 10:00 - 19:00 / 토 10:00 - 18:00',
-      tel: '010-4840-9391',
-      url: 'https://www.instagram.com/whalebook_79',
     },
   ],
 };

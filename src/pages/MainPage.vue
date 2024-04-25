@@ -3,6 +3,8 @@
 <script setup lang="ts">
 import { metaverseList } from 'src/assets/data/dummyData';
 import MainCard from 'src/components/main/MainCard.vue';
+import MenuCard from 'src/components/main/MenuCard.vue';
+import MenuItem from 'src/components/main/MenuItem.vue';
 import { useConfirmDialog } from 'src/composables/common/dialog';
 import { useBridge } from 'src/composables/common/useBridge';
 import { ref } from 'vue';
@@ -53,104 +55,50 @@ const roomList = ref(metaverseList.rows.filter(({ page }) => page === 'main'));
     <section class="px-6 mt-10">
       <h2 class="text-h3 px-1">공군 입대 안내사항</h2>
       <div class="grid grid-col-3 gap-1.5 mt-4">
-        <router-link
+        <menu-card
           :to="{ name: 'recruit-info' }"
-          class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px] min-w-[105px]"
-        >
-          <div
-            class="bg-[url('./src/assets/icons/airplane.svg')] bg-right-bottom bg-no-repeat size-full"
-          >
-            <p class="text-xs font-pretendard text-primary leading-[14px]">
-              입대
-            </p>
-            <p
-              class="mt-[3px] text-[13px] font-rokaf font-medium text-[#000] leading-[17px]"
-            >
-              모병안내
-            </p>
-          </div>
-        </router-link>
-        <router-link
+          title="모병안내"
+          subtitle="입대"
+          icon="airplane"
+        />
+        <menu-card
           :to="{ name: 'ready-enlist' }"
-          class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px] min-w-[105px]"
-        >
-          <div
-            class="bg-[url('./src/assets/icons/briefcase.svg')] bg-right-bottom bg-no-repeat size-full"
-          >
-            <p class="text-xs font-pretendard text-primary">입대</p>
-            <p class="text-[13px] font-rokaf text-[#000] font-medium">
-              입영 준비사항
-            </p>
-          </div>
-        </router-link>
-        <router-link
+          title="입영 준비사항"
+          subtitle="입대"
+          icon="briefcase"
+        />
+        <menu-card
           :to="{ name: 'enlist-event' }"
-          class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px] min-w-[105px]"
-        >
-          <div
-            class="bg-[url('./src/assets/icons/mic.svg')] bg-right-bottom bg-no-repeat size-full"
-          >
-            <p class="text-xs font-pretendard text-primary">입대</p>
-            <p class="text-[13px] font-rokaf text-[#000] font-medium">
-              입영행사 안내
-            </p>
-          </div>
-        </router-link>
-        <router-link
+          title="입영행사 안내"
+          subtitle="입대"
+          icon="mic"
+        />
+        <menu-card
           :to="{ name: 'commission-event' }"
-          class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px]"
-        >
-          <div
-            class="bg-[url('./src/assets/icons/soldier-1.svg')] bg-right-bottom bg-no-repeat size-full"
-          >
-            <p class="text-xs font-pretendard text-primary">입대</p>
-            <p class="text-[13px] font-rokaf text-[#000] font-medium">
-              임관식 안내
-            </p>
-          </div>
-        </router-link>
-        <router-link
+          title="임관식 안내"
+          subtitle="입대"
+          icon="soldier-1"
+        />
+        <menu-card
           :to="{ name: 'graduation-event' }"
-          class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px]"
-        >
-          <div
-            class="bg-[url('./src/assets/icons/certificate.svg')] bg-right-bottom bg-no-repeat size-full"
-          >
-            <p class="text-xs font-pretendard text-primary">입대</p>
-            <p class="text-[13px] font-rokaf text-[#000] font-medium">
-              수료식 안내
-            </p>
-          </div>
-        </router-link>
-        <router-link
+          title="수료식 안내"
+          subtitle="입대"
+          icon="certificate"
+        />
+        <menu-card
           :to="{ name: 'faq' }"
-          class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px]"
-        >
-          <div
-            class="bg-[url('./src/assets/icons/bulb.png')] bg-right-bottom bg-cover bg-no-repeat size-full"
-          >
-            <p class="text-xs font-pretendard text-primary">입대</p>
-            <p class="text-[13px] font-rokaf text-[#000] font-medium">
-              자주 묻는 질문
-            </p>
-          </div>
-        </router-link>
-        <router-link
+          title="자주 묻는 질문"
+          subtitle="입대"
+          icon="bulb"
+        />
+
+        <menu-card
           :to="{ name: 'way-to-come' }"
-          class="col-span-3 bg-white h-[100px] pt-[11px] pl-[10px] rounded-[5px]"
-        >
-          <div
-            class="bg-[url('./src/assets/icons/lacation.svg')] bg-right-bottom bg-cover bg-no-repeat size-full"
-          >
-            <p class="text-xs font-pretendard text-primary">입대</p>
-            <p class="text-[13px] font-rokaf text-[#000] font-medium">
-              찾아오는 법
-            </p>
-            <p class="text-grey-4 text-xs font-pretendard">
-              공군 기지의 위치를 안내해드릴게요.
-            </p>
-          </div>
-        </router-link>
+          class="col-span-3 !h-[100px]"
+          title="찾아오는 법"
+          subtitle="입대"
+          icon="search"
+        />
       </div>
     </section>
 
@@ -158,86 +106,41 @@ const roomList = ref(metaverseList.rows.filter(({ page }) => page === 'main'));
     <section class="px-6 mt-10">
       <h2 class="text-h3 px-1">훈련병 관련사항</h2>
       <div class="grid grid-cols-3 gap-1.5 mt-4">
-        <router-link
+        <menu-card
           :to="{ name: 'photo-album' }"
-          class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px] min-w-[105px]"
-        >
-          <div
-            class="bg-[url('./src/assets/icons/camera.svg')] bg-right-bottom bg-no-repeat size-full"
-          >
-            <p class="text-xs font-pretendard text-primary leading-[14px]">
-              훈련병
-            </p>
-            <p
-              class="mt-[3px] text-[13px] font-rokaf font-medium text-[#000] leading-[17px]"
-            >
-              사진보기
-            </p>
-          </div>
-        </router-link>
-        <router-link
+          title="사진보기"
+          subtitle="훈련병"
+          icon="camera"
+        />
+        <menu-card
           :to="{ name: 'sent-mailbox' }"
-          class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px] min-w-[105px]"
-        >
-          <div
-            class="bg-[url('./src/assets/icons/post.svg')] bg-right-bottom bg-no-repeat size-full"
-          >
-            <p class="text-xs font-pretendard text-primary">훈련병</p>
-            <p class="text-[13px] font-rokaf text-[#000] font-medium">
-              편지쓰기
-            </p>
-          </div>
-        </router-link>
-        <div
-          class="bg-white h-[120px] pt-[11px] pl-[10px] rounded-[5px] min-w-[105px]"
-        >
-          <div
-            class="bg-[url('./src/assets/icons/star.svg')] bg-right-bottom bg-no-repeat size-full"
-          >
-            <p class="text-xs font-pretendard text-primary">훈련병</p>
-            <p class="text-[13px] font-rokaf text-[#000] font-medium">
-              소대 즐겨 찾기
-            </p>
-          </div>
-        </div>
+          title="편지쓰기"
+          subtitle="훈련병"
+          icon="post"
+        />
+        <menu-card
+          :to="{ name: 'sent-mailbox' }"
+          title="소대 즐겨 찾기"
+          subtitle="훈련병"
+          icon="star"
+        />
       </div>
     </section>
 
     <!-- 공군 생활 체험 -->
     <section class="px-6 mt-[55px]">
       <h2 class="text-h3 pl-1">공군 생활 체험</h2>
-      <router-link
-        v-for="item in roomList"
-        :key="item.id"
-        :to="{
-          name: 'metaverse-detail',
-          params: { id: item.id },
-        }"
-        class="mt-3 flex"
-      >
-        <div>
-          <img :src="item.img_url" :alt="item.title" class="w-[130px]" />
-        </div>
-        <div class="flex-1 ml-[14px]">
-          <div class="flex">
-            <a-tag>{{ item.tag }}</a-tag>
-            <p class="font-rokaf text-[13px] leading-5 ml-[5px]">
-              {{ item.title }}
-            </p>
-          </div>
-          <p
-            class="font-pretendard text-xs text-grey-4 leading-[19px] mt-[7px]"
-          >
-            {{ item.subtitle }}
-          </p>
-          <p
-            class="font-pretendard text-xs text-grey-3 leading-[16px] mt-[12px] flex items-center"
-          >
-            더보기
-            <q-icon name="img:/src/assets/icons/arrow.svg" size="16px" />
-          </p>
-        </div>
-      </router-link>
+      <q-list class="flex flex-col gap-[35px] mt-3">
+        <menu-item
+          v-for="item in roomList"
+          :key="item.id"
+          :title="item.title"
+          :subtitle="item.subtitle"
+          :tag="item.tag"
+          :image="item.img_url"
+          :to="{ name: 'metaverse-detail', params: { id: item.id } }"
+        />
+      </q-list>
     </section>
 
     <!-- footer -->
