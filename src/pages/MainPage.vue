@@ -35,6 +35,52 @@ const socialList = [
   { name: 'instagram', url: 'https://www.instagram.com/rokaf_official/' },
   { name: 'tstory', url: 'https://afplay.tistory.com/' },
 ];
+const menuListForEnlist = [
+  { title: '모병안내', subtitle: '입대', icon: 'airplane', to: 'recruit-info' },
+  {
+    title: '입영 준비사항',
+    subtitle: '입대',
+    icon: 'airplane',
+    to: 'ready-enlist',
+  },
+  { title: '입영 행사안내', subtitle: '입대', icon: 'mic', to: 'enlist-event' },
+  {
+    title: '임관식 안내',
+    subtitle: '입대',
+    icon: 'soldier-1',
+    to: 'commission-event',
+  },
+  {
+    title: '수료식 안내',
+    subtitle: '입대',
+    icon: 'certificate',
+    to: 'graduation-event',
+  },
+  { title: '자주 묻는 질문', subtitle: '입대', icon: 'bulb', to: 'faq' },
+  {
+    title: '찾아오는 법',
+    subtitle: '입대',
+    icon: 'search',
+    to: 'way-to-come',
+    class: 'col-span-3 !h-[100px]',
+  },
+];
+
+const menuListForTrainee = [
+  {
+    title: '사진보기',
+    subtitle: '훈련병',
+    icon: 'soldier-1',
+    to: 'photo-album',
+  },
+  { title: '편지쓰기', subtitle: '훈련병', icon: 'post', to: 'sent-mailbox' },
+  {
+    title: '소대 즐겨 찾기',
+    subtitle: '훈련병',
+    icon: 'star',
+    to: 'sent-mailbox',
+  },
+];
 </script>
 
 <template>
@@ -62,48 +108,13 @@ const socialList = [
       <h2 class="text-h3 px-1">공군 입대 안내사항</h2>
       <div class="grid grid-col-3 gap-1.5 mt-4">
         <menu-card
-          :to="{ name: 'recruit-info' }"
-          title="모병안내"
-          subtitle="입대"
-          icon="airplane"
-        />
-        <menu-card
-          :to="{ name: 'ready-enlist' }"
-          title="입영 준비사항"
-          subtitle="입대"
-          icon="briefcase"
-        />
-        <menu-card
-          :to="{ name: 'enlist-event' }"
-          title="입영행사 안내"
-          subtitle="입대"
-          icon="mic"
-        />
-        <menu-card
-          :to="{ name: 'commission-event' }"
-          title="임관식 안내"
-          subtitle="입대"
-          icon="soldier-1"
-        />
-        <menu-card
-          :to="{ name: 'graduation-event' }"
-          title="수료식 안내"
-          subtitle="입대"
-          icon="certificate"
-        />
-        <menu-card
-          :to="{ name: 'faq' }"
-          title="자주 묻는 질문"
-          subtitle="입대"
-          icon="bulb"
-        />
-
-        <menu-card
-          :to="{ name: 'way-to-come' }"
-          class="col-span-3 !h-[100px]"
-          title="찾아오는 법"
-          subtitle="입대"
-          icon="search"
+          v-for="item in menuListForEnlist"
+          :key="item.title"
+          :to="{ name: item.to }"
+          :class="item.class ?? ''"
+          :title="item.title"
+          :subtitle="item.subtitle"
+          :icon="item.icon"
         />
       </div>
     </section>
@@ -113,22 +124,12 @@ const socialList = [
       <h2 class="text-h3 px-1">훈련병 관련사항</h2>
       <div class="grid grid-cols-3 gap-1.5 mt-4">
         <menu-card
-          :to="{ name: 'photo-album' }"
-          title="사진보기"
-          subtitle="훈련병"
-          icon="camera"
-        />
-        <menu-card
-          :to="{ name: 'sent-mailbox' }"
-          title="편지쓰기"
-          subtitle="훈련병"
-          icon="post"
-        />
-        <menu-card
-          :to="{ name: 'sent-mailbox' }"
-          title="소대 즐겨 찾기"
-          subtitle="훈련병"
-          icon="star"
+          v-for="item in menuListForTrainee"
+          :key="item.title"
+          :to="{ name: item.to }"
+          :title="item.title"
+          :subtitle="item.subtitle"
+          :icon="item.icon"
         />
       </div>
     </section>
