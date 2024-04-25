@@ -6,12 +6,22 @@ import { ref } from 'vue';
 import { photoAlbumList } from 'src/assets/data/dummyData';
 import { computed } from 'vue';
 import { useWindowSize } from '@vueuse/core';
+import { Id } from 'src/services/common/api-model';
+
+type Props = {
+  // 훈련병 아이디
+  id: Id;
+};
+
+const props = defineProps<Props>();
 
 // 공지사항
 const data = ref([...photoAlbumList]);
 const currentPage = ref(1);
 const { height } = useWindowSize();
-const rowsPerPage = computed(() => Math.floor((height.value - 50 - 54) / 65));
+const rowsPerPage = computed(() =>
+  Math.floor((height.value - 50 - 54 - 48) / 65)
+);
 const list = computed(() => {
   const start = (currentPage.value - 1) * rowsPerPage.value;
   const end = currentPage.value * rowsPerPage.value;
@@ -23,10 +33,15 @@ const maxPages = computed(() =>
 </script>
 
 <template>
-  <q-page class="column pt-[17px]">
+  <q-page class="column">
     <!-- <span v-if="isPending">Loading...</span> -->
     <!-- <span v-else-if="isError">Error: {{ error?.message }}</span> -->
     <!-- <q-card class="text-grey-5 q-mb-lg" flat v-else-if="data"> -->
+    <q-item class="border-b-4 border-grey-2 mx-4">
+      <q-item-section class="text-body2 text-right text-grey-4"
+        >신병 1대대 > 신병 849기</q-item-section
+      >
+    </q-item>
     <q-list>
       <q-item
         v-for="(item, i) in list"

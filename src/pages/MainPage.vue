@@ -71,14 +71,19 @@ const menuListForTrainee = [
     title: '사진보기',
     subtitle: '훈련병',
     icon: 'soldier-1',
-    to: 'photo-album',
+    to: 'photo-album-favorite',
   },
-  { title: '편지쓰기', subtitle: '훈련병', icon: 'post', to: 'sent-mailbox' },
+  {
+    title: '편지쓰기',
+    subtitle: '훈련병',
+    icon: 'post',
+    to: 'letter-favorite',
+  },
   {
     title: '소대 즐겨 찾기',
     subtitle: '훈련병',
     icon: 'star',
-    to: 'sent-mailbox',
+    to: 'platoon-favorite',
   },
 ];
 </script>

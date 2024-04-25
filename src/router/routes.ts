@@ -161,11 +161,13 @@ const routes: RouteRecordRaw[] = [
                 meta: {
                   title: '사진보기',
                 },
-                component: () => import('pages/home/enlist/PhotoAlbumPage.vue'),
+                component: () =>
+                  import('src/pages/home/enlist/FavoritePage.vue'),
               },
               {
                 name: 'photo-album-list',
-                path: 'list',
+                path: 'list/:id',
+                props: true,
                 meta: {
                   title: '사진보기',
                   bgColor: 'white',
@@ -189,11 +191,21 @@ const routes: RouteRecordRaw[] = [
           {
             name: 'letter',
             path: 'letter',
-            redirect: { name: 'sent-mailbox' },
+            redirect: { name: 'letter' },
             children: [
               {
+                name: 'letter-favorite',
+                path: 'favorite',
+                meta: {
+                  title: '편지쓰기',
+                },
+                component: () =>
+                  import('src/pages/home/enlist/FavoritePage.vue'),
+              },
+              {
                 name: 'sent-mailbox',
-                path: 'list',
+                path: 'list/:id',
+                props: true,
                 meta: {
                   title: '보낸 편지함',
                   bgColor: 'white',
@@ -219,6 +231,22 @@ const routes: RouteRecordRaw[] = [
                   bgColor: 'white',
                 },
                 component: () => import('pages/trainee/WriteLetterPage.vue'),
+              },
+            ],
+          },
+          {
+            name: 'platoon',
+            path: 'platoon',
+            redirect: { name: 'platoon-favorite' },
+            children: [
+              {
+                name: 'platoon-favorite',
+                path: 'favorite',
+                meta: {
+                  title: '즐겨찾기',
+                },
+                component: () =>
+                  import('src/pages/home/enlist/FavoritePage.vue'),
               },
             ],
           },
