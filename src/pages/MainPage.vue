@@ -29,6 +29,12 @@ function enterMetaverse(roomId: number = 1) {
 }
 
 const roomList = ref(metaverseList.rows.filter(({ page }) => page === 'main'));
+const socialList = [
+  { name: 'facebook', url: 'https://www.facebook.com/rokairforce' },
+  { name: 'youtube', url: 'https://www.youtube.com/user/rokafplay' },
+  { name: 'instagram', url: 'https://www.instagram.com/rokaf_official/' },
+  { name: 'tstory', url: 'https://afplay.tistory.com/' },
+];
 </script>
 
 <template>
@@ -163,16 +169,14 @@ const roomList = ref(metaverseList.rows.filter(({ page }) => page === 'main'));
           copyright(c) Republic of Korea Airforce. All Right Reserved
         </p>
         <div class="group-icon flex mt-[33px] gap-5 justify-center">
-          <q-icon
-            name="img:/src/assets/icons/facebook.svg"
+          <a-btn-icon
+            v-for="item in socialList"
+            :key="item.name"
+            :icon="`img:/src/assets/images/main/${item.name}.png`"
             size="27px"
-          ></q-icon>
-          <q-icon name="img:/src/assets/icons/youtube.svg" size="27px"></q-icon>
-          <q-icon
-            name="img:/src/assets/icons/instagram.png"
-            size="27px"
-          ></q-icon>
-          <q-icon name="img:/src/assets/icons/tstory.svg" size="27px"></q-icon>
+            :href="item.url"
+            target="_blank"
+          />
         </div>
         <div class="flex justify-center">
           <q-icon
