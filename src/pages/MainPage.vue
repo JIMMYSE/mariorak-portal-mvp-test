@@ -1,6 +1,7 @@
 <!-- 메인페이지 -->
 
 <script setup lang="ts">
+import { metaverseList } from 'src/assets/data/dummyData';
 import MainCard from 'src/components/main/MainCard.vue';
 import { useConfirmDialog } from 'src/composables/common/dialog';
 import { useBridge } from 'src/composables/common/useBridge';
@@ -11,6 +12,7 @@ const slides = ref(
     .fill(0)
     .map((_, i) => i + 1)
 );
+
 const { enterRoom } = useBridge();
 function enterMetaverse(roomId: number = 1) {
   const mapName = '{맵이름}';
@@ -23,6 +25,8 @@ function enterMetaverse(roomId: number = 1) {
     enterRoom(roomId);
   });
 }
+
+const roomList = ref(metaverseList.rows.filter(({ page }) => page === 'main'));
 </script>
 
 <template>
@@ -200,98 +204,41 @@ function enterMetaverse(roomId: number = 1) {
     </section>
 
     <!-- 공군 생활 체험 -->
-    <router-link :to="{ name: 'event' }" class="px-6 mt-[55px]">
+    <section class="px-6 mt-[55px]">
       <h2 class="text-h3 pl-1">공군 생활 체험</h2>
-      <div class="mt-3 flex">
+      <router-link
+        v-for="item in roomList"
+        :key="item.id"
+        :to="{
+          name: 'metaverse-detail',
+          params: { id: item.id },
+        }"
+        class="mt-3 flex"
+      >
         <div>
-          <img
-            src="/src/assets/images/experience.png"
-            alt="공군 생활 체험"
-            class="w-[130px]"
-          />
+          <img :src="item.img_url" :alt="item.title" class="w-[130px]" />
         </div>
         <div class="flex-1 ml-[14px]">
           <div class="flex">
-            <p
-              class="text-xs font-pretendard text-white bg-primary w-[35px] h-5 leading-5 text-center rounded-[5px]"
-            >
-              생활
+            <a-tag>{{ item.tag }}</a-tag>
+            <p class="font-rokaf text-[13px] leading-5 ml-[5px]">
+              {{ item.title }}
             </p>
-            <p class="font-rokaf text-[13px] leading-5 ml-[5px]">점호 체험</p>
           </div>
           <p
             class="font-pretendard text-xs text-grey-4 leading-[19px] mt-[7px]"
           >
-            실제를 그대로 재현한 생활관을 가상 공간 안에서 체험해보세요.
+            {{ item.subtitle }}
           </p>
           <p
-            class="font-pretendard text-xs text-grey-3 leading-[16px] mt-[12px] after:absolute after:content-[''] after:bg-[url('./src/assets/icons/arrow.svg')] after:bg-center after:bg-cover after:w-4 after:h-4"
+            class="font-pretendard text-xs text-grey-3 leading-[16px] mt-[12px] flex items-center"
           >
             더보기
+            <q-icon name="img:/src/assets/icons/arrow.svg" size="16px" />
           </p>
         </div>
-      </div>
-
-      <div class="mt-[35px] flex">
-        <div>
-          <img
-            src="/src/assets/images/dormitory.png"
-            alt="생활관 체험"
-            class="w-[130px]"
-          />
-        </div>
-        <div class="flex-1 ml-[14px]">
-          <div class="flex">
-            <p
-              class="text-xs font-pretendard text-white bg-primary w-[35px] h-5 leading-5 text-center rounded-[5px]"
-            >
-              생활
-            </p>
-            <p class="font-rokaf text-[13px] leading-5 ml-[5px]">생활관 체험</p>
-          </div>
-          <p
-            class="font-pretendard text-xs text-grey-4 leading-[19px] mt-[7px]"
-          >
-            실제를 그대로 재현한 생활관을 가상 공간 안에서 체험해보세요.
-          </p>
-          <p
-            class="font-pretendard text-xs text-grey-3 leading-[16px] mt-[12px] after:absolute after:content-[''] after:bg-[url('./src/assets/icons/arrow.svg')] after:bg-center after:bg-cover after:w-4 after:h-4"
-          >
-            더보기
-          </p>
-        </div>
-      </div>
-
-      <div class="mt-[35px] flex">
-        <div>
-          <img
-            src="/src/assets/images/restaurant.png"
-            alt="식당 체험"
-            class="w-[130px]"
-          />
-        </div>
-        <div class="flex-1 ml-[14px]">
-          <div class="flex">
-            <p
-              class="text-xs font-pretendard text-white bg-primary w-[35px] h-5 leading-5 text-center rounded-[5px]"
-            >
-              생활
-            </p>
-            <p class="font-rokaf text-[13px] leading-5 ml-[5px]">식당 체험</p>
-          </div>
-          <p
-            class="font-pretendard text-xs text-grey-4 leading-[19px] mt-[7px]"
-          >
-            가상의 공군 전용 식당에서 실제의 분위기를 느껴보세요.
-          </p>
-          <p
-            class="font-pretendard text-xs text-grey-3 leading-[16px] mt-[12px] after:absolute after:content-[''] after:bg-[url('./src/assets/icons/arrow.svg')] after:bg-center after:bg-cover after:w-4 after:h-4"
-          >
-            더보기
-          </p>
-        </div>
-      </div>
-    </router-link>
+      </router-link>
+    </section>
 
     <!-- footer -->
     <footer

@@ -53,8 +53,8 @@ const maxPages = computed(() =>
 
     <q-list>
       <q-item
-        v-for="(item, i) in list"
-        :key="`item-${i}`"
+        v-for="item in list"
+        :key="`item-${item.id}`"
         :label="item.letter_nm"
         clickable
         v-ripple

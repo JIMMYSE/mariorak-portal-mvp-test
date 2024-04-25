@@ -19,6 +19,7 @@ import ASvg from '../components/common/ASvg.vue';
 import ATitle from '../components/common/ATitle.vue';
 import ASubtitle from '../components/common/ASubtitle.vue';
 import ABodyText from '../components/common/ABodyText.vue';
+import ATag from '../components/common/ATag.vue';
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
@@ -58,5 +59,7 @@ declare module '@vue/runtime-core' {
     ['a-subtitle']: typeof ASubtitle;
     ['ABodyText']: typeof ABodyText;
     ['a-body-text']: typeof ABodyText;
+    ['ATag']: typeof ATag;
+    ['a-tag']: typeof ATag;
   }
 }

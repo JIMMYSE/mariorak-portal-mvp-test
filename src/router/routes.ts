@@ -1,4 +1,4 @@
-import { RouteRecordRaw } from 'vue-router';
+import { RouteRecord, RouteRecordRaw } from 'vue-router';
 // layout
 import DefaultLayout from 'layouts/DefaultLayout.vue';
 import MainLayout from 'layouts/MainLayout.vue';
@@ -37,6 +37,7 @@ const routes: RouteRecordRaw[] = [
             name: 'notice-list',
             meta: {
               title: '공지사항',
+              bgColor: 'white',
             },
             component: () => import('pages/home/notice/NoticeListPage.vue'),
           },
@@ -46,6 +47,7 @@ const routes: RouteRecordRaw[] = [
             name: 'notice-detail',
             meta: {
               title: '공지사항',
+              bgColor: 'white',
             },
             component: () => import('pages/home/notice/NoticeDetailPage.vue'),
           },
@@ -159,8 +161,7 @@ const routes: RouteRecordRaw[] = [
                 meta: {
                   title: '사진보기',
                 },
-                component: () =>
-                  import('src/pages/home/enlist/PhotoAlbumPage.vue'),
+                component: () => import('pages/home/enlist/PhotoAlbumPage.vue'),
               },
               {
                 name: 'photo-album-list',
@@ -170,7 +171,7 @@ const routes: RouteRecordRaw[] = [
                   bgColor: 'white',
                 },
                 component: () =>
-                  import('src/pages/home/enlist/PhotoAlbumListPage.vue'),
+                  import('pages/home/enlist/PhotoAlbumListPage.vue'),
               },
               {
                 name: 'photo-album-detail',
@@ -192,34 +193,32 @@ const routes: RouteRecordRaw[] = [
             children: [
               {
                 name: 'sent-mailbox',
-                path: 'sent-mailbox',
+                path: 'list',
+                meta: {
+                  title: '보낸 편지함',
+                  bgColor: 'white',
+                },
+                component: () => import('pages/trainee/SentMailboxPage.vue'),
+              },
+              {
+                name: 'sent-mailbox-detail',
+                path: ':id',
+                props: true,
                 meta: {
                   title: '보낸 편지함',
                   bgColor: 'white',
                 },
                 component: () =>
-                  import('src/pages/trainee/SentMailboxPage.vue'),
+                  import('pages/trainee/SentMailboxDetailPage.vue'),
               },
               {
                 name: 'write-letter',
-                path: 'write-letter',
+                path: 'write',
                 meta: {
                   title: '편지쓰기',
                   bgColor: 'white',
                 },
-                component: () =>
-                  import('src/pages/trainee/WriteLetterPage.vue'),
-              },
-
-              {
-                name: 'sent-mailbox-detail',
-                path: 'sent-mailbox-detail',
-                meta: {
-                  title: '보낸 편지함',
-                  bgColor: 'white',
-                },
-                component: () =>
-                  import('src/pages/trainee/SentMailboxDetailPage.vue'),
+                component: () => import('pages/trainee/WriteLetterPage.vue'),
               },
             ],
           },
@@ -256,7 +255,7 @@ const routes: RouteRecordRaw[] = [
         meta: {
           title: '입영 상담실',
         },
-        component: () => import('src/pages/event/CounselingRoomPage.vue'),
+        component: () => import('pages/event/CounselingRoomPage.vue'),
       },
       {
         name: 'call-roll',
@@ -264,7 +263,16 @@ const routes: RouteRecordRaw[] = [
         meta: {
           title: '점호 체험',
         },
-        component: () => import('src/pages/event/CallRollPage.vue'),
+        component: () => import('pages/event/CallRollPage.vue'),
+      },
+      {
+        name: 'metaverse-detail',
+        path: 'metaverse/:id',
+        props: true,
+        meta: {
+          bgColor: 'white',
+        },
+        component: () => import('pages/event/MetaverseDetailPage.vue'),
       },
     ],
   },
@@ -286,7 +294,7 @@ const routes: RouteRecordRaw[] = [
         meta: {
           title: '회원탈퇴',
         },
-        component: () => import('src/pages/setting/CancelMembershipPage.vue'),
+        component: () => import('pages/setting/CancelMembershipPage.vue'),
       },
     ],
   },
