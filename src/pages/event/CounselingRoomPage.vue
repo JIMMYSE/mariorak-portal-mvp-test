@@ -7,8 +7,6 @@ import { ref } from 'vue';
 const data = ref(
   metaverseList.rows.filter(({ page }) => page === 'counseling')
 );
-const arrow =
-  "after:absolute after:content-[''] after:size-[30px] after:bg-[url('/src/assets/icons/icon_arrow_event.svg')] after:bg-cover after:bg-no-repeat after:right-2 after:top-[35%]";
 
 const { enterRoom } = useBridge();
 function enterMetaverse(item: any) {
