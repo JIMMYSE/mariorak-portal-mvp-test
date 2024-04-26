@@ -314,6 +314,10 @@ const routes: RouteRecordRaw[] = [
       {
         name: 'setting',
         path: '',
+        meta: {
+          title: '설정',
+          bgColor: 'white',
+        },
         component: () => import('pages/setting/SettingPage.vue'),
       },
       {
