@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import { goToName } from 'src/composables/common/app';
+import { useQuasar } from 'quasar';
 import { useConfirmDialog } from 'src/composables/common/dialog';
 import { reactive } from 'vue';
+import FavoriteAddPage from 'pages/home/trainee/FavoriteAddPage.vue';
 
 const data = reactive([
   {
@@ -30,6 +31,7 @@ const data = reactive([
     title: '신병 4대대',
   },
 ]);
+const $q = useQuasar();
 function addFavorite() {
   console.log('addFavorite');
   useConfirmDialog({
@@ -37,7 +39,10 @@ function addFavorite() {
     text: '등록하시겠습니까?',
   }).onOk(() => {
     console.log('confirm');
-    goToName('platoon-favorite-add');
+    $q.dialog({
+      component: FavoriteAddPage,
+      componentProps: { battalion: '신병 1대대', division: '53기' },
+    });
   });
 }
 </script>

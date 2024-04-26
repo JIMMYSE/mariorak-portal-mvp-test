@@ -168,6 +168,16 @@ body {
     min-height: 67px;
   }
 }
+
+input:focus {
+  outline: none;
+}
+input::placeholder {
+  /* WebKit, Blink, Edge */
+  color: $grey-2;
+  font-size: 14px;
+}
+
 // -------- q-card -----------//
 .q-card {
   border-radius: 5px;

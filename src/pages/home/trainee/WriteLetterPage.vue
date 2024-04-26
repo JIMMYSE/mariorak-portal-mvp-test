@@ -60,7 +60,6 @@ const form = ref({
       /></label>
     </form>
     <div class="flex-1" />
-    <!-- 연결할 페이지 안내 없음 -->
     <div
       :to="{ name: '' }"
       class="h-16 leading-16 q-btn--standard w-full font-medium text-base"

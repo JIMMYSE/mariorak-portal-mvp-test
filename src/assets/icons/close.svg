@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+  <g id="btn_delete" transform="translate(-460 -321)">
+    <g id="그룹_1161" data-name="그룹 1161" transform="translate(404 312)">
+      <rect id="사각형_193" data-name="사각형 193" width="30" height="30" transform="translate(56 9)" fill="none" opacity="0.17"/>
+    </g>
+    <path id="Icon_ionic-ios-close" data-name="Icon ionic-ios-close" d="M19.944,18.289l5-5a1.172,1.172,0,1,0-1.657-1.657l-5,5-5-5a1.172,1.172,0,1,0-1.657,1.657l5,5-5,5a1.172,1.172,0,1,0,1.657,1.657l5-5,5,5a1.172,1.172,0,0,0,1.657-1.657Z" transform="translate(456.715 317.711)" fill="#111"/>
+  </g>
+</svg>

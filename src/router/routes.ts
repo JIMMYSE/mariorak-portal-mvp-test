@@ -249,16 +249,6 @@ const routes: RouteRecordRaw[] = [
                 component: () =>
                   import('pages/home/trainee/FavoriteListPage.vue'),
               },
-              {
-                name: 'platoon-favorite-add',
-                path: 'add',
-                meta: {
-                  title: '즐겨찾기 등록',
-                  bgColor: 'white',
-                },
-                component: () =>
-                  import('pages/home/trainee/FavoriteAddPage.vue'),
-              },
             ],
           },
         ],
