@@ -95,7 +95,7 @@ function addFavorite() {
               <q-item-section> 제 52기 </q-item-section>
               <q-item-section side>
                 <a-btn-icon
-                  icon="img:/src/assets/icons/icon_heart.svg"
+                  icon="img:/src/assets/icons/icon_heart2.svg"
                   size="30px"
                 />
               </q-item-section>
@@ -104,7 +104,7 @@ function addFavorite() {
               <q-item-section> 제 53기 </q-item-section>
               <q-item-section side>
                 <a-btn-icon
-                  icon="img:/src/assets/icons/icon_heart_d.svg"
+                  icon="img:/src/assets/icons/icon_heart2_d.svg"
                   size="30px"
                 />
               </q-item-section>
