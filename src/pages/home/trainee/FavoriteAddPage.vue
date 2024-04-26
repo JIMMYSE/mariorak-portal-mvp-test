@@ -1,24 +1,6 @@
 <script setup lang="ts">
-import { title } from 'process';
 import { useDialogPluginComponent } from 'quasar';
-import { Message } from 'src/services/common/common-model';
 import { ref } from 'vue';
-import { computed } from 'vue';
-import { useI18n } from 'vue-i18n';
-
-// export interface ADialogProps {
-//   type?: 'alert' | 'confirm';
-//   dialogTitle?: Message;
-//   title?: Message;
-//   htmlTitle?: Message;
-//   text?: Message;
-//   htmlText?: Message;
-//   contentComponent?: any;
-//   okLabel?: Message;
-//   cancelLabel?: Message;
-//   persistent?: boolean;
-//   buttons?: { label: string; value: unknown; color?: string }[];
-// }
 
 type Props = {
   battalion: string;
@@ -26,13 +8,16 @@ type Props = {
 };
 const props = defineProps<Props>();
 
-defineEmits([...useDialogPluginComponent.emits]);
+const emit = defineEmits([...useDialogPluginComponent.emits]);
 
-const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
-  useDialogPluginComponent();
+const { dialogRef, onDialogHide, onDialogOK } = useDialogPluginComponent();
 
 const organization = ref(`[${props.battalion}] 병 ${props.division}`);
-const info = ref({ name: '' });
+const info = ref({ name: '', organization, birth: '2024-04-30' });
+
+function onSubmit() {
+  onDialogOK(info.value);
+}
 </script>
 
 <template>
@@ -162,7 +147,12 @@ const info = ref({ name: '' });
           :to="{ name: '' }"
           class="h-16 leading-16 q-btn--standard w-full font-medium text-base"
         >
-          <q-btn class="size-full" color="primary" square unelevated
+          <q-btn
+            class="size-full"
+            color="primary"
+            square
+            unelevated
+            @click="onSubmit"
             >등록완료</q-btn
           >
         </div>
