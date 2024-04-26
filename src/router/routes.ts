@@ -161,8 +161,7 @@ const routes: RouteRecordRaw[] = [
                 meta: {
                   title: '사진보기',
                 },
-                component: () =>
-                  import('src/pages/home/enlist/FavoritePage.vue'),
+                component: () => import('pages/home/trainee/FavoritePage.vue'),
               },
               {
                 name: 'photo-album-list',
@@ -173,7 +172,7 @@ const routes: RouteRecordRaw[] = [
                   bgColor: 'white',
                 },
                 component: () =>
-                  import('pages/home/enlist/PhotoAlbumListPage.vue'),
+                  import('pages/home/trainee/PhotoAlbumListPage.vue'),
               },
               {
                 name: 'photo-album-detail',
@@ -184,7 +183,7 @@ const routes: RouteRecordRaw[] = [
                 },
                 props: true,
                 component: () =>
-                  import('pages/home/enlist/PhotoAlbumDetailPage.vue'),
+                  import('pages/home/trainee/PhotoAlbumDetailPage.vue'),
               },
             ],
           },
@@ -199,8 +198,7 @@ const routes: RouteRecordRaw[] = [
                 meta: {
                   title: '편지쓰기',
                 },
-                component: () =>
-                  import('src/pages/home/enlist/FavoritePage.vue'),
+                component: () => import('pages/home/trainee/FavoritePage.vue'),
               },
               {
                 name: 'sent-mailbox',
@@ -210,7 +208,8 @@ const routes: RouteRecordRaw[] = [
                   title: '보낸 편지함',
                   bgColor: 'white',
                 },
-                component: () => import('pages/trainee/SentMailboxPage.vue'),
+                component: () =>
+                  import('pages/home/trainee/SentMailboxPage.vue'),
               },
               {
                 name: 'sent-mailbox-detail',
@@ -221,7 +220,7 @@ const routes: RouteRecordRaw[] = [
                   bgColor: 'white',
                 },
                 component: () =>
-                  import('pages/trainee/SentMailboxDetailPage.vue'),
+                  import('pages/home/trainee/SentMailboxDetailPage.vue'),
               },
               {
                 name: 'write-letter',
@@ -230,7 +229,8 @@ const routes: RouteRecordRaw[] = [
                   title: '편지쓰기',
                   bgColor: 'white',
                 },
-                component: () => import('pages/trainee/WriteLetterPage.vue'),
+                component: () =>
+                  import('pages/home/trainee/WriteLetterPage.vue'),
               },
             ],
           },
@@ -243,10 +243,21 @@ const routes: RouteRecordRaw[] = [
                 name: 'platoon-favorite',
                 path: 'favorite',
                 meta: {
-                  title: '즐겨찾기',
+                  title: '즐겨찾기 등록',
+                  bgColor: 'white',
                 },
                 component: () =>
-                  import('src/pages/home/enlist/FavoritePage.vue'),
+                  import('pages/home/trainee/FavoriteListPage.vue'),
+              },
+              {
+                name: 'platoon-favorite-add',
+                path: 'add',
+                meta: {
+                  title: '즐겨찾기 등록',
+                  bgColor: 'white',
+                },
+                component: () =>
+                  import('pages/home/trainee/FavoriteAddPage.vue'),
               },
             ],
           },
