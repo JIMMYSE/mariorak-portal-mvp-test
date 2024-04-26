@@ -63,7 +63,7 @@ function onSubmit() {
                   name="company"
                   type="text"
                   placeholder="입력"
-                  class="w-12"
+                  class="w-12 text-black text-right mr-4"
                 />
                 중대</label
               >
@@ -72,7 +72,7 @@ function onSubmit() {
                   name="platoon"
                   type="text"
                   placeholder="입력"
-                  class="w-12"
+                  class="w-12 text-black text-right mr-4"
                 />
                 소대</label
               >
@@ -81,7 +81,7 @@ function onSubmit() {
                   name="number"
                   type="text"
                   placeholder="입력"
-                  class="w-12"
+                  class="w-12 text-black text-right mr-4"
                 />
                 번</label
               >
@@ -92,14 +92,14 @@ function onSubmit() {
               생년월일
             </h4>
             <div
-              class="mt-[6px] w-full px-6 bg-white rounded-[23px] flex flex-nowrap justify-between items-center h-11 text-grey-3"
+              class="w-full px-6 bg-white rounded-[23px] flex flex-nowrap justify-between items-center h-11 text-grey-3"
             >
               <label for="year"
                 ><input
                   name="year"
                   type="text"
                   placeholder="입력"
-                  class="w-12"
+                  class="w-12 text-black text-right mr-4"
                 />
                 년</label
               >
@@ -108,7 +108,7 @@ function onSubmit() {
                   name="month"
                   type="text"
                   placeholder="입력"
-                  class="w-12"
+                  class="w-12 text-black text-right mr-4"
                 />
                 월</label
               >
@@ -117,7 +117,7 @@ function onSubmit() {
                   name="day"
                   type="text"
                   placeholder="입력"
-                  class="w-12"
+                  class="w-12 text-black text-right mr-4"
                 />
                 일</label
               >
@@ -133,9 +133,10 @@ function onSubmit() {
             <!--   class="mt-[6px] w-full px-6 bg-white rounded-[23px] flex flex-nowrap justify-between items-center h-11 text-grey-3" -->
             <!-- > -->
           </label>
-          <p class="text-grey-3 text-[12px]">
-            입력한 정보가 정확하지 않을 경우 사진보기 메뉴를 정상적으로 이용할
-            수 없거나, 작성한 편지가 훈련병에게 전달되지 않을 수 있습니다.
+          <p class="text-grey-3 text-[12px] text-center">
+            입력한 정보가 정확하지 않을 경우 사진보기 메뉴를 정상적으로
+            <br />이용할 수 없거나, 작성한 편지가 훈련병에게 전달되지 <br />않을
+            수 있습니다.
           </p>
         </form>
       </q-card-section>
