@@ -37,7 +37,7 @@ function onSubmit() {
       위 내용을 모두 확인하였으며, 탈퇴처리 진행을 원하는 경우<br />
       아래 <span class="text-negative">회원탈퇴 버튼</span>을 선택해 주세요.
     </p>
-    <div class="flex-1"></div>
+    <div class="flex-1 mb-16"></div>
     <div class="flex justify-center mb-[80px]">
       <q-btn
         color="negative"

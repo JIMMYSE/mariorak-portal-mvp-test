@@ -11,7 +11,7 @@ const form = ref({
 
 <template>
   <q-page class="pt-5 bg-white flex flex-col">
-    <form action="" class="flex flex-col gap-4 px-6">
+    <form action="" class="flex flex-col gap-4 px-6 mb-32">
       <label for="senderName">
         <h4 class="ml-[5px] text-grey-3 text-[13px] font-medium">
           보내는 사람 이름
@@ -59,10 +59,8 @@ const form = ref({
           placeholder="내용을 입력해 주세요. 편지 작성은 1200자 까지 가능합니다. (초과 입력 시 1200자 까지만 저장됩니다.)"
       /></label>
     </form>
-    <div class="flex-1" />
     <div
-      :to="{ name: '' }"
-      class="h-16 leading-16 q-btn--standard w-full font-medium text-base"
+      class="fixed inset-x-0 bottom-0 h-16 leading-16 w-full font-medium text-base z-10"
     >
       <q-btn class="size-full" color="primary" square unelevated
         >작성완료</q-btn

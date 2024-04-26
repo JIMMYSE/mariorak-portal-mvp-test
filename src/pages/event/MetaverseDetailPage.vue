@@ -44,11 +44,10 @@ function enterMetaverse() {
       class="px-6 mt-3 text-grey-4 font-pretendard text-base"
       v-html="data.content"
     />
-    <div class="flex-1"></div>
+    <div class="flex-1 mb-32"></div>
     <!-- 연결할 페이지 안내 없음 -->
     <div
-      :to="{ name: '' }"
-      class="h-16 leading-16 q-btn--standard w-full font-medium text-base"
+      class="fixed inset-x-0 bottom-0 h-16 leading-16 w-full font-medium text-base z-10"
     >
       <q-btn
         class="size-full"

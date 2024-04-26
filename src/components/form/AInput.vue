@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<Props>(), {
   inputClass: 'text-grey-5 text-weight-light',
   bgColor: 'white',
   outlined: true,
-  clearable: false,
+  clearable: true,
   clearIcon: 'close',
   rounded: true,
   done: false,
@@ -98,13 +98,13 @@ defineExpose({
 
     .q-field__counter {
       position: absolute;
-      bottom: 1.4rem;
+      bottom: 1rem;
       right: 1.2rem;
       color: $grey-2;
     }
   }
 }
-.q-field--with-bottom {
+.q-field--with-bottom.inline-counter {
   padding: 0;
 }
 .q-textarea.inline-counter {

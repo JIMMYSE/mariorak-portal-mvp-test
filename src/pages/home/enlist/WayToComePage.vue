@@ -52,7 +52,7 @@ const selectedItem = ref<Item>(list.value[0]);
     </div>
 
     <div
-      class="flex-1 flex justify-center items-center rounded-[5px] border border-grey-1 mt-10 text-center text-grey-3"
+      class="flex-1 flex justify-center items-center rounded-[5px] border border-grey-1 mt-10 text-center text-grey-3 mb-8"
     >
       <p>관련 이미지 영역</p>
     </div>

@@ -71,7 +71,7 @@ const boxClass =
 </script>
 
 <template>
-  <q-page class="px-2">
+  <q-page class="px-2 flex flex-col">
     <div class="btn-group px-2 mt-[15px] flex gap-[6px]">
       <q-btn
         v-for="item in menu"
@@ -93,6 +93,7 @@ const boxClass =
         :color="!selectedItem ? 'primary' : 'grey-1'"
         unelevated
         size="md"
+        no-wrap
         class="h-10 flex-1"
         :text-color="!selectedItem ? 'white' : 'black'"
         @click="selectedItem = null"
@@ -125,7 +126,7 @@ const boxClass =
 
     <div
       v-else
-      class="px-4 min-h-[300px] rounded-[5px] border border-grey-1 mt-10 text-center text-grey-2 py-10"
+      class="flex-1 flex justify-center items-center rounded-[5px] border border-grey-1 mt-10 text-center text-grey-3 mb-8"
     >
       유의사항 이미지 영역
     </div>

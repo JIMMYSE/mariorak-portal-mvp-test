@@ -22,12 +22,10 @@ function onSubmit() {
 
 <template>
   <q-dialog ref="dialogRef" @hide="onDialogHide" full-width maximized>
-    <q-card
-      class="full-width !max-h-[calc(100vh+64px+67px)] flex flex-col bg-grey px-2"
-    >
+    <q-card class="full-width !max-h-[calc(100vh+64px+67px)] bg-grey">
       <!-- HEADER -->
       <q-card-section
-        class="fixed top-0 inset-x-0 flex justify-between items-center z-10 h-[50px]"
+        class="fixed top-0 inset-x-0 flex justify-between items-center z-10 h-[50px] bg-grey"
       >
         <div class="w-px"></div>
         <!-- TITLE TEXT -->
@@ -38,15 +36,15 @@ function onSubmit() {
           v-close-popup
         />
       </q-card-section>
-      <q-card-section class="flex-1 mt-[50px]">
-        <h2 class="text-[17px] font-medium leading-[26px] mt-10">
+      <q-card-section class="mt-[50px] mb-32">
+        <h2 class="text-[17px] font-medium leading-[26px] mt-10 px-2">
           등록할 훈련병의 <br />
           <span class="text-primary">상세정보</span>를 입력해 주세요
         </h2>
 
         <form
           action=""
-          class="flex flex-col gap-4 text-body2 font-pretendard mt-4"
+          class="flex flex-col gap-4 text-body2 font-pretendard mt-4 px-2"
         >
           <label for="organization">
             <h4 class="ml-[5px] text-grey-3 text-[13px] font-medium">소속</h4>
@@ -140,24 +138,18 @@ function onSubmit() {
           </p>
         </form>
       </q-card-section>
-      <q-card-section class="flex flex-col p-0">
-        <div class="h-[67px]"></div>
-
-        <div class="flex-1" />
-        <div
-          :to="{ name: '' }"
-          class="h-16 leading-16 q-btn--standard w-full font-medium text-base"
+      <div
+        class="fixed inset-x-0 bottom-0 h-16 leading-16 w-full font-medium text-base z-10"
+      >
+        <q-btn
+          class="size-full"
+          color="primary"
+          square
+          unelevated
+          @click="onSubmit"
+          >등록완료</q-btn
         >
-          <q-btn
-            class="size-full"
-            color="primary"
-            square
-            unelevated
-            @click="onSubmit"
-            >등록완료</q-btn
-          >
-        </div>
-      </q-card-section>
+      </div>
     </q-card>
   </q-dialog>
 </template>
