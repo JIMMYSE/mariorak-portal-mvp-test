@@ -7,10 +7,13 @@ import { computed, ref } from 'vue';
 
 interface Props extends QInputProps {
   done?: boolean;
+  borderRadius?: string | undefined;
+  inlineCounter: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   type: 'text',
+  color: 'primary',
   inputClass: 'text-grey-5 text-weight-light',
   bgColor: 'white',
   outlined: true,
@@ -19,6 +22,8 @@ const props = withDefaults(defineProps<Props>(), {
   rounded: true,
   done: false,
   noErrorIcon: true,
+  borderRadius: undefined,
+  inlineCounter: false,
 });
 
 const forwarded = useForwardProps(props);
@@ -37,8 +42,14 @@ defineExpose({
 </script>
 
 <template>
-  <q-input v-bind="forwarded" :type="inputType" ref="inputEl" color="primary">
-    <template #append>
+  <q-input
+    v-bind="forwarded"
+    :counter="inlineCounter"
+    :type="inputType"
+    ref="inputEl"
+    :class="{ 'border-radius': borderRadius, 'inline-counter': inlineCounter }"
+  >
+    <template #append v-if="done || props.type === 'password'">
       <div class="mr-2">
         <!-- done icon -->
         <q-icon
@@ -64,4 +75,58 @@ defineExpose({
   </q-input>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+:deep(.q-field__native) {
+  font-family: pretendard;
+  font-weight: 400;
+  line-height: 18px;
+}
+.border-radius {
+  :deep(.q-field__control) {
+    border-radius: v-bind(borderRadius) !important;
+  }
+}
+.q-input.inline-counter {
+  :deep(.q-field__native) {
+    padding-right: 3.5rem;
+  }
+  :deep(.q-field__bottom) {
+    margin-top: 0;
+    min-height: 0;
+    height: 0.1px !important;
+    padding: 0;
+
+    .q-field__counter {
+      position: absolute;
+      bottom: 1.4rem;
+      right: 1.2rem;
+      color: $grey-2;
+    }
+  }
+}
+.q-field--with-bottom {
+  padding: 0;
+}
+.q-textarea.inline-counter {
+  position: relative;
+  :deep(.q-field__native) {
+    margin-bottom: 2.5rem;
+    padding: 14px 20px;
+  }
+  :deep(.q-field__bottom) {
+    position: absolute;
+    bottom: 0;
+    padding: 0;
+    // margin-top: 0;
+    // min-height: 0;
+    // height: 0.1px !important;
+
+    .q-field__counter {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 20px;
+      color: $grey-2;
+    }
+  }
+}
+</style>

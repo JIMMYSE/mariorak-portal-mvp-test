@@ -103,7 +103,6 @@ body {
     // border-color: transparent !important;
     // border-width: 1px;
   }
-
   &.q-field--outlined .q-field__control {
     color: $grey-5;
   }
@@ -113,15 +112,15 @@ body {
   }
 
   .q-field__control {
-    padding: 0 5px 0 12px;
-    border-radius: 32px;
+    padding: 0 20px;
+    border-radius: 23px !important;
     height: 44px !important;
     background: white;
 
     input::placeholder {
       /* WebKit, Blink, Edge */
       color: $grey-2;
-      font-family: $typography-font-family;
+      font-size: 14px;
     }
 
     input[type='password'] {
@@ -135,6 +134,31 @@ body {
   }
   .q-field__bottom {
     margin-top: 2rem;
+  }
+}
+.q-textarea {
+  &.q-field--outlined .q-field__control:before {
+    border: none !important;
+    // border-color: transparent !important;
+    // border-width: 1px;
+  }
+  &.q-field--outlined .q-field__control {
+    color: $grey-5;
+  }
+
+  .q-field__marginal {
+    height: 44px;
+  }
+  .q-field__control {
+    padding: 0;
+    border-radius: 15px !important;
+    background: white;
+
+    textarea::placeholder {
+      /* WebKit, Blink, Edge */
+      color: $grey-2;
+      font-size: 14px;
+    }
   }
 }
 // -------- q-card -----------//
