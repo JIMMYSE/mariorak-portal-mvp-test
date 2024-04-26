@@ -94,7 +94,7 @@ const boxClass =
         unelevated
         size="md"
         no-wrap
-        class="h-10 flex-1"
+        class="q-btn--outline-grey h-10 flex-1"
         :text-color="!selectedItem ? 'white' : 'black'"
         @click="selectedItem = null"
         >유의사항</q-btn
