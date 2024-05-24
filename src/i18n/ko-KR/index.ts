@@ -121,6 +121,8 @@ export default {
     login: '로그인',
     autoLogin: '자동로그인',
     findUser: '계정찾기',
+    id: '아이디(이메일)',
+    password: '비밀번호',
     findPassword: '비밀번호 찾기',
     resetPassword: '비밀번호 재설정',
     metaverseEnter: '입장하기',
