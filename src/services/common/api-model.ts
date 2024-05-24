@@ -1,37 +1,56 @@
+import { UseQueryOptions } from '@tanstack/vue-query';
+import { FileBase, FileInfo } from 'seoroverse-dto';
+import { InferType, array, lazy, number, object, string } from 'yup';
+
 export type Id = string | number | undefined;
 
-export interface ApiResponse<T> {
+export type QueryOption = Partial<Omit<UseQueryOptions, 'select'>>;
+
+export interface ApiResponse {
   code: string;
-  data?: T;
+  data?: any;
   message?: string;
 }
 
-export interface ApiListResponse<T> {
+export interface ApiListResponse {
   code: string;
   data?: {
     total: number;
     count: number;
-    rows: T[];
+    rows: any[];
   };
   message?: string;
 }
 
-export interface SearchOption {
-  filters?: any;
-  search?: Record<string, unknown> | null | undefined;
-  sort?: any[] | undefined;
+export const SearchRequestSchema = object({
+  search: object({
+    fields: array(string().required()),
+    keyword: string(),
+  }).optional(),
+  filters: object().optional(),
+  from: number().integer().min(0).optional().default(0),
+  size: number().integer().positive().optional().default(10),
+  sort: array(
+    lazy((item) => {
+      return object().shape({
+        [Object.keys(item)[0]]: string().oneOf(['asc', 'desc']).default('desc'),
+      });
+    })
+  )
+    .optional()
+    .default([{ crt_dt: 'desc' }]),
+});
+
+export interface SearchRequest extends InferType<typeof SearchRequestSchema> {}
+
+export class SearchRequestClass implements SearchRequest {
+  filters?: Record<string, any> | undefined;
+  search?: { fields?: string[]; keyword?: string } | undefined;
+  sort?: { [key: string | number]: 'asc' | 'desc' }[];
   from: number;
   size: number;
-}
 
-export class SearchOptionClass implements SearchOption {
-  filters?: Record<string, unknown> | null | undefined;
-  search?: { fields?: string[]; keyword?: string } | null | undefined;
-  sort?: SearchSortOption[];
-  from: number;
-  size: number;
-
-  constructor(options: Partial<SearchOption> = {}) {
+  constructor(options: Partial<SearchRequest> = {}) {
     const { filters, search, from, size, sort } = options;
     this.filters = filters ?? {};
     this.search = search ?? {};
@@ -41,6 +60,16 @@ export class SearchOptionClass implements SearchOption {
   }
 }
 
-export interface SearchSortOption {
-  [key: string]: 'asc' | 'desc';
-}
+// 목록 검색 필터 연산자
+export type FilterOperator =
+  | 'eq'
+  | 'ne'
+  | 'lt'
+  | 'lte'
+  | 'gt'
+  | 'gte'
+  | 'in'
+  | 'like';
+
+export interface FileBase extends InferType<typeof FileBase> {}
+export interface FileInfo extends InferType<typeof FileInfo> {}

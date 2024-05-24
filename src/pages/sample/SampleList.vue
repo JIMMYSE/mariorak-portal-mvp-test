@@ -1,12 +1,12 @@
 <!-- 공지사항 목록 -->
 
 <script setup lang="ts">
-import { useSearchOption } from 'src/composables/common/api';
+import { useSearchRequest } from 'src/composables/common/api';
 import { goTo } from 'src/composables/common/app';
 import { useNoticeInfiniteList } from 'src/composables/notice/notice';
 import { computed, ref } from 'vue';
 
-const searchOption = useSearchOption();
+const searchRequest = useSearchRequest();
 const {
   data,
   error,
@@ -17,7 +17,7 @@ const {
   isPending,
   isError,
   refetch,
-} = useNoticeInfiniteList(searchOption);
+} = useNoticeInfiniteList(searchRequest);
 
 const refresh = async (done: any) => {
   await refetch();

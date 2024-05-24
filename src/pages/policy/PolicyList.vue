@@ -1,7 +1,7 @@
 <!-- 마이페이지 > 이용약관 -->
 
 <script setup lang="ts">
-import { useSearchOption } from 'src/composables/common/api';
+import { useSearchRequest } from 'src/composables/common/api';
 import {
   usePolicyDetail,
   usePolicyDetailDialog,
@@ -12,8 +12,8 @@ import { ref } from 'vue';
 import { wait } from 'src/utils/promise-util';
 import { useLocalStorage } from '@vueuse/core';
 
-const searchOption = useSearchOption({ from: 0, size: 999 });
-const { data: policyList, error } = usePolicyList(searchOption);
+const searchRequest = useSearchRequest({ from: 0, size: 999 });
+const { data: policyList, error } = usePolicyList(searchRequest);
 
 const detailId = ref<Id | undefined>(undefined);
 const { data: detail, isFetching } = usePolicyDetail(detailId);

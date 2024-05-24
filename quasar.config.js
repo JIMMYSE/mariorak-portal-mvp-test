@@ -41,7 +41,7 @@ module.exports = configure(function (ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
-    boot: ['i18n', 'axios', 'global-components', 'vue-query', 'html-filter'],
+    boot: ['boot-common', 'i18n', 'axios', 'html-filter'],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: ['app.scss', 'tailwind.css'],
@@ -95,6 +95,65 @@ module.exports = configure(function (ctx) {
 
       vitePlugins: [
         [
+          'unplugin-auto-import/vite',
+          {
+            // targets to transform
+            include: [
+              /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+              /\.vue$/,
+              /\.vue\?vue/, // .vue
+              /\.md$/, // .md
+            ],
+            imports: [
+              // presets
+              'vue',
+              'vue-router',
+              'pinia',
+              'quasar',
+              'vee-validate',
+              '@vueuse/core',
+              // custom
+              {
+                yup: [
+                  'string',
+                  'object',
+                  'number',
+                  'boolean',
+                  'array',
+                  'mixed',
+                  'date',
+                  // 'ref',
+                  // 'lazy',
+                  // 'ValidationError',
+                ],
+                '@vee-validate/yup': ['toTypedSchema'],
+              },
+              // type import
+              {
+                from: 'vee-validate',
+                imports: ['FieldContext'],
+                type: true,
+              },
+            ],
+            dirs: [
+              'src/components/**',
+              'src/composables/**',
+              'src/layouts/**',
+              'src/pages/**',
+              'src/services/**',
+              'src/stores/**',
+            ],
+            dts: true,
+          },
+        ],
+        [
+          'unplugin-vue-components/vite',
+          {
+            // relative paths to the directory to search for components.
+            dirs: ['src/components/**'],
+          },
+        ],
+        [
           '@intlify/vite-plugin-vue-i18n',
           {
             // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
@@ -102,7 +161,7 @@ module.exports = configure(function (ctx) {
 
             // if you want to use named tokens in your Vue I18n messages, such as 'Hello {name}',
             // you need to set `runtimeOnly: false`
-            // runtimeOnly: false,
+            runtimeOnly: false,
 
             // you need to set i18n resource including paths !
             include: path.resolve(__dirname, './src/i18n/**'),

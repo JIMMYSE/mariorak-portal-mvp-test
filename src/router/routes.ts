@@ -39,7 +39,7 @@ const routes: RouteRecordRaw[] = [
               title: '공지사항',
               bgColor: 'white',
             },
-            component: () => import('pages/home/notice/NoticeListPage.vue'),
+            component: () => import('pages/home/notice/NoticeList.vue'),
           },
           {
             path: ':id',
@@ -49,7 +49,7 @@ const routes: RouteRecordRaw[] = [
               title: '공지사항',
               bgColor: 'white',
             },
-            component: () => import('pages/home/notice/NoticeDetailPage.vue'),
+            component: () => import('pages/home/notice/NoticeDetail.vue'),
           },
         ],
       },

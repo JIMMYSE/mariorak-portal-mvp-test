@@ -5,7 +5,6 @@ import { useAuthForm } from 'src/composables/auth/useAuthForm';
 import { goToName } from 'src/composables/common/app';
 import { useAlertDialog } from 'src/composables/common/dialog';
 import { useAuthStore } from 'src/stores/auth-store';
-import { t } from 'src/utils/message-util';
 
 const isAutoLogin = useAutoLogin();
 let isWithdrawing = true;
@@ -36,7 +35,7 @@ function handleLoginResult({
 }) {
   if (isWithdrawing) {
     useAlertDialog({
-      text: t('auth.withdrawal.text'),
+      text: 'auth.withdrawal.text',
     });
   } else if (isSuccess) {
     goToName('main');
@@ -77,7 +76,7 @@ function handleLoginResult({
             input-class="text-primary font-light"
             ref="loginIdInput"
             v-model="email"
-            :placeholder="$t('auth.email.required')"
+            :placeholder="$t('label.id')"
             autofocus
             v-bind="emailProps"
           />
@@ -87,7 +86,7 @@ function handleLoginResult({
             input-class="text-primary text-weight-light"
             v-model="password"
             ref="passwordInput"
-            :placeholder="$t('auth.password.required')"
+            :placeholder="$t('label.password')"
             v-bind="passwordProps"
           />
           <a-checkbox
