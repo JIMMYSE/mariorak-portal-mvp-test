@@ -108,15 +108,31 @@ module.exports = configure(function (ctx) {
               // presets
               'vue',
               'vue-router',
+              'pinia',
               'quasar',
               'vee-validate',
+              '@vueuse/core',
               // custom
               {
-                '@vueuse/core': [
-                  // alias
-                  ['useFetch', 'useMyFetch'], // import { useFetch as useMyFetch } from '@vueuse/core',
+                yup: [
+                  'string',
+                  'object',
+                  'number',
+                  'boolean',
+                  'array',
+                  'mixed',
+                  'date',
+                  // 'ref',
+                  // 'lazy',
+                  // 'ValidationError',
                 ],
                 '@vee-validate/yup': ['toTypedSchema'],
+              },
+              // type import
+              {
+                from: 'vee-validate',
+                imports: ['FieldContext'],
+                type: true,
               },
             ],
             dirs: [

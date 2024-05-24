@@ -2,10 +2,7 @@
 
 <script setup lang="ts">
 import { formatDate } from 'src/utils/date-util';
-import { ref } from 'vue';
 import { noticeList } from 'src/assets/data/dummyData';
-import { computed } from 'vue';
-import { useWindowSize } from '@vueuse/core';
 
 // 공지사항
 const data = ref([...noticeList]);

@@ -1,7 +1,7 @@
 <!-- 서비스 약관 동의 -->
 
 <script setup lang="ts">
-import { useSearchOption } from 'src/composables/common/api';
+import { useSearchRequest } from 'src/composables/common/api';
 import { goBack, goToName } from 'src/composables/common/app';
 import {
   PolicyListType,
@@ -20,8 +20,8 @@ if (!store.hasMobileVerified()) {
   goBack();
 }
 
-const searchOption = useSearchOption({ from: 0, size: 999 });
-const { data } = usePolicyList(searchOption);
+const searchRequest = useSearchRequest({ from: 0, size: 999 });
+const { data } = usePolicyList(searchRequest);
 type ModelType = {
   plcy_id: number;
   type?: string;
