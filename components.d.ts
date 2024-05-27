@@ -21,6 +21,7 @@ declare module 'vue' {
     AInput: typeof import('./src/components/form/AInput.vue')['default']
     AInputVee: typeof import('./src/components/form/AInputVee.vue')['default']
     AItem: typeof import('./src/components/common/AItem.vue')['default']
+    APagination: typeof import('./src/components/common/APagination.vue')['default']
     ASelect: typeof import('./src/components/form/ASelect.vue')['default']
     ASubtitle: typeof import('./src/components/common/ASubtitle.vue')['default']
     ASvg: typeof import('./src/components/common/ASvg.vue')['default']
@@ -41,6 +42,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     SDialog: typeof import('./src/components/common/SDialog.vue')['default']
     SocialLoginGroup: typeof import('./src/components/auth/SocialLoginGroup.vue')['default']
+    STable: typeof import('./src/components/common/STable.vue')['default']
     TextCounter: typeof import('./src/components/form/TextCounter.vue')['default']
   }
 }

@@ -2,7 +2,7 @@
 
 <script setup lang="ts">
 import { goBack, goTo } from 'src/composables/common/app';
-import { useConfirmDialog } from 'src/composables/common/dialog';
+import { useMyConfirmDialog } from 'src/composables/common/dialog';
 import {
   useNoticeDelete,
   useNoticeDetail,
@@ -28,7 +28,7 @@ const {
 
 // 삭제
 function deleteNotice() {
-  useConfirmDialog({
+  useMyConfirmDialog({
     title: 'message.deleteConfirm',
   }).onOk(() => {
     mutate(props.id);

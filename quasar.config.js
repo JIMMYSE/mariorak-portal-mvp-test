@@ -130,6 +130,11 @@ module.exports = configure(function (ctx) {
               },
               // type import
               {
+                from: 'yup',
+                imports: ['InferType'],
+                type: true,
+              },
+              {
                 from: 'vee-validate',
                 imports: ['FieldContext'],
                 type: true,

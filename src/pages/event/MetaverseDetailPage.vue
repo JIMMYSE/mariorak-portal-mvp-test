@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { metaverseList } from 'src/assets/data/dummyData';
-import { useConfirmDialog } from 'src/composables/common/dialog';
+import { useMyConfirmDialog } from 'src/composables/common/dialog';
 import { useBridge } from 'src/composables/common/useBridge';
 import { Id } from 'src/services/common/api-model';
 import { ref } from 'vue';
@@ -24,7 +24,7 @@ const { enterRoom } = useBridge();
 function enterMetaverse() {
   const mapName = data.value.title;
   // user
-  useConfirmDialog({
+  useMyConfirmDialog({
     text: { key: 'metaverse.enter.confirm.text', data: { mapName } },
     okLabel: 'label.yes',
     cancelLabel: 'label.no',

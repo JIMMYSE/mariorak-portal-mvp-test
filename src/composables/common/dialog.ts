@@ -37,7 +37,7 @@ const throttleAlertDialog = useThrottleFn(() => {
 /**
  * Confirm Dialog
  */
-export function useConfirmDialog(option: ADialogProps) {
+export function useMyConfirmDialog(option: ADialogProps) {
   option.type = 'confirm';
   return useDialog(option);
 }

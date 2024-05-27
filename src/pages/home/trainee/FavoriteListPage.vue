@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useQuasar } from 'quasar';
-import { useConfirmDialog } from 'src/composables/common/dialog';
+import { useMyConfirmDialog } from 'src/composables/common/dialog';
 import { reactive } from 'vue';
 import FavoriteAddPage from 'pages/home/trainee/FavoriteAddPage.vue';
 
@@ -34,7 +34,7 @@ const data = reactive([
 const $q = useQuasar();
 function addFavorite() {
   console.log('addFavorite');
-  useConfirmDialog({
+  useMyConfirmDialog({
     title: '즐겨찾기 등록',
     text: '등록하시겠습니까?',
   }).onOk(() => {

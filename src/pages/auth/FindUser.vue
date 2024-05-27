@@ -7,7 +7,7 @@ import MobileAuth, {
 import { goToName } from 'src/composables/common/app';
 import {
   useAlertDialog,
-  useConfirmDialog,
+  useMyConfirmDialog,
 } from 'src/composables/common/dialog';
 import { ref } from 'vue';
 
@@ -31,7 +31,7 @@ function onSuccess(payload: {
   const id = payload.id.toString();
   const token = payload.mobile_verified_token;
 
-  useConfirmDialog({
+  useMyConfirmDialog({
     title: '계정 아이디 찾기 결과',
     htmlText: `
 <div class="column items-start">

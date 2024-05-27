@@ -1,37 +1,38 @@
-<!-- 공지사항 목록 -->
+<!-- 공지사항 > 목록 -->
 
 <script setup lang="ts">
+import { useNoticeList } from 'src/composables/notice/notice';
 import { formatDate } from 'src/utils/date-util';
-import { noticeList } from 'src/assets/data/dummyData';
 
-// 공지사항
-const data = ref([...noticeList]);
-const currentPage = ref(1);
-const { height } = useWindowSize();
-const rowsPerPage = computed(() => Math.floor((height.value - 50 - 54) / 65));
-const list = computed(() => {
-  const start = (currentPage.value - 1) * rowsPerPage.value;
-  const end = currentPage.value * rowsPerPage.value;
-  return data.value.slice(start, end);
+const { request } = useSearchFilter({
+  requestDefault: {
+    filters: {
+      ntc_type_cd: {
+        eq: 'N',
+      },
+      expsr_yn: {
+        eq: 1,
+      },
+    },
+    sort: [{ crt_dt: 'asc' }],
+  },
 });
-const maxPages = computed(() =>
-  Math.ceil(data.value.length / rowsPerPage.value)
-);
+
+const { data: listData } = useNoticeList({
+  searchRequest: request,
+});
 </script>
 
 <template>
   <q-page class="column">
-    <!-- <span v-if="isPending">Loading...</span> -->
-    <!-- <span v-else-if="isError">Error: {{ error?.message }}</span> -->
-    <!-- <q-card class="text-grey-5 q-mb-lg" flat v-else-if="data"> -->
     <q-list>
       <q-item
-        v-for="(item, i) in list"
+        v-for="(item, i) in listData?.rows"
         :key="`item-${i}`"
+        class="w-full h-[65px] relative"
         :label="item.ntc_nm"
         clickable
         v-ripple
-        class="w-full h-[65px] relative"
         :to="{ name: 'notice-detail', params: { id: item.id } }"
       >
         <q-item-section>
@@ -57,19 +58,12 @@ const maxPages = computed(() =>
         />
       </q-item>
     </q-list>
-    <div class="column items-center bottom-0 absolute w-full bg-white h-[54px]">
-      <q-pagination
-        v-model="currentPage"
-        :max="maxPages"
-        max-pages="7"
-        :boundary-numbers="false"
-        flat
-        class="pagination"
-        active-color="secondary"
-        active-design="flat"
-        color="info"
-      />
-    </div>
+
+    <a-pagination
+      :total-rows="listData?.total"
+      :from="request.from"
+      @on-change="({ from }) => (request.from = from)"
+    />
   </q-page>
 </template>
 

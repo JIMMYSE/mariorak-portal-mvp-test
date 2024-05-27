@@ -5,7 +5,7 @@ import { metaverseList } from 'src/assets/data/dummyData';
 import MainCard from 'src/components/main/MainCard.vue';
 import MenuCard from 'src/components/main/MenuCard.vue';
 import MenuItem from 'src/components/main/MenuItem.vue';
-import { useConfirmDialog } from 'src/composables/common/dialog';
+import { useMyConfirmDialog } from 'src/composables/common/dialog';
 import { useBridge } from 'src/composables/common/useBridge';
 import { ref } from 'vue';
 const slide = ref(1);
@@ -19,7 +19,7 @@ const { enterRoom } = useBridge();
 function enterMetaverse(roomId: number = 1) {
   const mapName = '{맵이름}';
   // user
-  useConfirmDialog({
+  useMyConfirmDialog({
     text: { key: 'metaverse.enter.confirm.text', data: { mapName } },
     okLabel: 'label.yes',
     cancelLabel: 'label.no',
