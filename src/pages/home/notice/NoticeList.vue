@@ -11,10 +11,10 @@ const { request } = useSearchFilter({
         eq: 'N',
       },
       expsr_yn: {
-        eq: 1,
+        eq: true,
       },
     },
-    sort: [{ crt_dt: 'asc' }],
+    sort: [{ crt_dt: 'desc' }],
   },
 });
 
@@ -60,6 +60,7 @@ const { data: listData } = useNoticeList({
     </q-list>
 
     <a-pagination
+      class="absolute bottom-0"
       :total-rows="listData?.total"
       :from="request.from"
       @on-change="({ from }) => (request.from = from)"

@@ -42,7 +42,7 @@ const max = computed(() => {
 </script>
 
 <template>
-  <div class="column items-center bottom-0 absolute w-full bg-white h-[54px]">
+  <div class="row justify-center w-full h-24">
     <q-pagination
       class="pagination"
       v-model="currentPage"
