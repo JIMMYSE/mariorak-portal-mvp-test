@@ -67,8 +67,7 @@ phases:
       - ssh-keyscan github.com >> ~/.ssh/known_hosts
       - git config --global user.email "eunju.jang.dev@gmail.com"
       - git config --global user.name "eunju-jang"
-      - git clone git@github.com:coarsoft-tmp/meta-airforce-dto.git
-      - mv ./meta-airforce-dto ./node_modules/meta-airforce-dto
+      - npm install seoroverse-dto
   build:
     commands:
       - echo now build
