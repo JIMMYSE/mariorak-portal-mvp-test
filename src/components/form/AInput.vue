@@ -3,7 +3,6 @@
 <script setup lang="ts">
 import { QInputProps } from 'quasar';
 import { useForwardProps } from 'radix-vue';
-import { computed, ref } from 'vue';
 
 interface Props extends QInputProps {
   done?: boolean;

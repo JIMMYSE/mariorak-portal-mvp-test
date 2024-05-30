@@ -3,7 +3,7 @@ import {
   NoticeDetailRes,
   NoticeList,
   NoticeSearchRes,
-} from 'seoroverse-dto';
+} from 'meta-airforce-dto';
 import {
   useQueryFetchItem,
   useQueryFetchList,

@@ -7,7 +7,7 @@ WORKDIR /app
 # 앱 소스 추가
 COPY . .
 RUN rm -rf node_modules
-COPY ./node_modules/seoroverse-dto /app/node_modules/seoroverse-dto
+COPY ./node_modules/meta-airforce-dto /app/node_modules/meta-airforce-dto
 
 # 앱 모듈 설치
 RUN npm install
@@ -16,7 +16,7 @@ RUN npm run build:dev
 # production stage
 FROM nginx:stable-alpine as production-stage
 COPY --from=build-stage /app/dist/spa /usr/share/nginx/html
-COPY --from=build-stage /app/nginx.conf /etc/nginx/conf.d 
-RUN rm /etc/nginx/conf.d/default.conf 
+COPY --from=build-stage /app/nginx.conf /etc/nginx/conf.d
+RUN rm /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD [ "nginx", "-g", "daemon off;" ]
