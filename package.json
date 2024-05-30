@@ -15,7 +15,7 @@
     "lint": "eslint --ext .js,.ts,.vue ./",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
-    "dto": "yarn cache clean && yarn add 'github:coarsoft-tmp/seoroverse-dto#release'"
+    "dto": "yarn cache clean && yarn add 'github:coarsoft-tmp/meta-airforce-dto#release'"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.11",
@@ -37,7 +37,7 @@
     "quasar": "^2.16.1",
     "radix-vue": "^1.4.9",
     "sanitize-html": "^2.13.0",
-    "seoroverse-dto": "github:coarsoft-tmp/seoroverse-dto#release",
+    "meta-airforce-dto": "github:coarsoft-tmp/meta-airforce-dto#release",
     "swiper": "^11.1.1",
     "tailwind-merge": "^2.2.2",
     "universal-cookie": "^7.1.4",

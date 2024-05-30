@@ -1,5 +1,5 @@
 import { UseQueryOptions } from '@tanstack/vue-query';
-import { FileBase, FileInfo } from 'seoroverse-dto';
+import { FileBase, FileInfo } from 'meta-airforce-dto';
 import { InferType, array, lazy, number, object, string } from 'yup';
 
 export type Id = string | number | undefined;
