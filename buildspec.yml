@@ -1,0 +1,78 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo now pre_build
+      - aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 339713151173.dkr.ecr.ap-northeast-2.amazonaws.com
+      - sudo apt install openssh-client
+      - sudo apt install openssl
+      - ls -al ~/.ssh
+      - mkdir -p ~/.ssh
+      - echo "-----BEGIN OPENSSH PRIVATE KEY-----
+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
+-----END OPENSSH PRIVATE KEY-----
+" > ~/.ssh/id_rsa
+      - chmod 600 ~/.ssh/id_rsa
+      - eval "$(ssh-agent -s)"
+      - ssh-add ~/.ssh/id_rsa
+      - ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - git config --global user.email "eunju.jang.dev@gmail.com"
+      - git config --global user.name "eunju-jang"
+      - git clone git@github.com:coarsoft-tmp/meta-airforce-dto.git
+      - mv ./meta-airforce-dto ./node_modules/meta-airforce-dto
+  build:
+    commands:
+      - echo now build
+      - npm install
+      - npm run build:dev
+  post_build:
+    commands:
+      - echo now post_build
+      - aws s3 sync ./dist/spa s3://airforce-dev-portal --acl bucket-owner-full-control
