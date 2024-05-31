@@ -67,10 +67,11 @@ phases:
       - ssh-keyscan github.com >> ~/.ssh/known_hosts
       - git config --global user.email "eunju.jang.dev@gmail.com"
       - git config --global user.name "eunju-jang"
-      - npm install seoroverse-dto
+      - npm install meta-airforce-dto
   build:
     commands:
       - echo now build
+      - npm cache clean --force
       - npm install
       - npm run build:dev
   post_build:
