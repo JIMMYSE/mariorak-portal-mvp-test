@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useTimeout, useTimestamp } from '@vueuse/core';
-import { MobileAuthType, useSendMobileCode } from 'src/composables/auth/auth';
+// import { MobileAuthType, useSendMobileCode } from 'src/composables/auth/auth';
 import { useMobileFields } from 'src/composables/auth/useMobileFields';
 import { useAlertDialog } from 'src/composables/common/dialog';
 import useTryCatchWithLoading from 'src/composables/common/useTryCatchWithLoading';
@@ -8,7 +8,7 @@ import { ComputedRef } from 'vue';
 import { computed, ref } from 'vue';
 
 type Props = {
-  type: MobileAuthType;
+  // type: MobileAuthType;
 };
 const props = withDefaults(defineProps<Props>(), { type: 'R' });
 
@@ -84,11 +84,11 @@ const mobileCodeDesc = computed(() => {
  * 인증번호 전송하기
  */
 
-const {
-  sendMobileCode,
-  verifyMobileCodeForJoin,
-  verifyMobileCodeForFindingAccount,
-} = useSendMobileCode();
+// const {
+//   sendMobileCode,
+//   verifyMobileCodeForJoin,
+//   verifyMobileCodeForFindingAccount,
+// } = useSendMobileCode();
 
 const didSendCode = ref(false);
 const { tryCatchWithLoading } = useTryCatchWithLoading();
@@ -97,7 +97,7 @@ async function onSendMobileCode() {
     async () => {
       didSendCode.value = false;
       // [Send Mobile Code]
-      await sendMobileCode(mobile.value.value.replace(/\D/g, ''), props.type);
+      // await sendMobileCode(mobile.value.value.replace(/\D/g, ''), props.type);
       startThresholding();
       code.resetField({ touched: false, value: '' });
 
@@ -166,83 +166,73 @@ const onSubmit = handleSubmit(async (validForm) => {
 });
 
 async function handleSubmitForJoin() {
-  tryCatchWithLoading(
-    async () => {
-      const { data } = await verifyMobileCodeForJoin(
-        mobile.value.value,
-        code.value.value
-      );
-
-      if (!data.value) {
-        console.error('data is not included');
-        return;
-      }
-
-      const result = data.value.data;
-
-      mobileValidated.value = !!result.is_success;
-      if (mobileValidated.value) {
-        pauseTimestamp();
-        emit('success', {
-          mobile: mobile.value.value,
-          token: result.result.mobile_verified_token,
-        });
-      } else {
-        emit('fail', {
-          code: data.value.code,
-          reason: result.reason,
-        });
-      }
-    },
-    (error) => {
-      emit('fail', {
-        code: error.response?.data?.code,
-        reason: error.response?.data?.message ?? error.message,
-      });
-    }
-  );
+  tryCatchWithLoading(async () => {
+    //   const { data } = await verifyMobileCodeForJoin(
+    //     mobile.value.value,
+    //     code.value.value
+    //   );
+    //   if (!data.value) {
+    //     console.error('data is not included');
+    //     return;
+    //   }
+    //   const result = data.value.data;
+    //   mobileValidated.value = !!result.is_success;
+    //   if (mobileValidated.value) {
+    //     pauseTimestamp();
+    //     emit('success', {
+    //       mobile: mobile.value.value,
+    //       token: result.result.mobile_verified_token,
+    //     });
+    //   } else {
+    //     emit('fail', {
+    //       code: data.value.code,
+    //       reason: result.reason,
+    //     });
+    //   }
+    // },
+    // (error) => {
+    //   emit('fail', {
+    //     code: error.response?.data?.code,
+    //     reason: error.response?.data?.message ?? error.message,
+    //   });
+  });
 }
 
 async function handleSubmitForFindingAccount() {
   tryCatchWithLoading(
     async () => {
-      const { error, data, response } = await verifyMobileCodeForFindingAccount(
-        mobile.value.value,
-        code.value.value
-      );
-
-      if (error.value) {
-        console.error(error.value, response.value);
-        return;
-      }
-
-      if (!data.value) {
-        console.error('data is not included');
-        return;
-      }
-
-      const result = data.value.data;
-
-      // 아이디 찾기 인증의 경우 예외처리
-      // 인증번호 맞지만 계정이 없는 경우
-      if (result.is_success && !result.result) {
-        emit('noaccount');
-        useAlertDialog({
-          htmlText: `<p>입력하신 휴대폰 번호로 가입된 이력이 없습니다.<br/>
-번호를 확인해 주세요.</p>`,
-        });
-        return;
-      }
-
-      mobileValidated.value = !!result.is_success;
-      if (mobileValidated.value) {
-        pauseTimestamp();
-        emit('success', {
-          ...result.result,
-        });
-      } else {
-        emit('fail', { reason: result.reason });
-      }
+      //       const { error, data, response } = await verifyMobileCodeForFindingAccount(
+      //         mobile.value.value,
+      //         code.value.value
+      //       );
+      //       if (error.value) {
+      //         console.error(error.value, response.value);
+      //         return;
+      //       }
+      //       if (!data.value) {
+      //         console.error('data is not included');
+      //         return;
+      //       }
+      //       const result = data.value.data;
+      //       // 아이디 찾기 인증의 경우 예외처리
+      //       // 인증번호 맞지만 계정이 없는 경우
+      //       if (result.is_success && !result.result) {
+      //         emit('noaccount');
+      //         useAlertDialog({
+      //           htmlText: `<p>입력하신 휴대폰 번호로 가입된 이력이 없습니다.<br/>
+      // 번호를 확인해 주세요.</p>`,
+      //         });
+      //         return;
+      //       }
+      //       mobileValidated.value = !!result.is_success;
+      //       if (mobileValidated.value) {
+      //         pauseTimestamp();
+      //         emit('success', {
+      //           ...result.result,
+      //         });
+      //       } else {
+      //         emit('fail', { reason: result.reason });
+      //       }
     },
     (error) => {
       emit('fail', { reason: error.response?.data?.message ?? error.message });
@@ -280,6 +270,7 @@ export type MobileAuthInstance = {
   <form @submit.prevent="onSubmit">
     <SField label="휴대폰 번호" class="mt-[30px]">
       <AInput
+        v-model="mobile.value.value"
         name="mobile"
         mask="###-####-####"
         placeholder="휴대폰 번호를 입력해 주세요('-'제외)"
@@ -290,15 +281,14 @@ export type MobileAuthInstance = {
         inputmode="numeric"
         autofocus
         @blur="mobile.handleBlur"
-        v-model="mobile.value.value"
       />
     </SField>
-    <SField label="인증 번호" v-show="didSendCode">
+    <SField v-show="didSendCode" label="인증 번호">
       <AInput
+        v-model="code.value.value"
         name="validationCode"
         placeholder="인증번호를 입력해 주세요"
         mask="######"
-        v-model="code.value.value"
         :error="
           remainingTime === 0 ||
           (code.meta.touched && code.errors.value.length > 0)
@@ -313,12 +303,12 @@ export type MobileAuthInstance = {
           flat
           color="primary"
           class="col-auto ml-2 w-auto mt-7"
-          @click="onSendMobileCode"
           :disable="!mobile.meta.valid || !isThresholding"
+          @click="onSendMobileCode"
           >인증번호 재전송</ABtn
         >
       </template>
-      <template #bottom v-if="didSendCode">
+      <template v-if="didSendCode" #bottom>
         <div class="row justify-between">
           <div class="col">
             <span v-if="remainingTime > 0" class="text-caption text-primary"
@@ -331,8 +321,8 @@ export type MobileAuthInstance = {
             class="bg-white text-primary text-caption underline"
             label="인증번호 재전송"
             flat
-            @click="onSendMobileCode"
             :disabled="!mobile.meta.valid || !isThresholding"
+            @click="onSendMobileCode"
           />
         </div>
       </template>

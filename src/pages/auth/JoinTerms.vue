@@ -3,11 +3,11 @@
 <script setup lang="ts">
 import { useSearchRequest } from 'src/composables/common/api';
 import { goBack, goToName } from 'src/composables/common/app';
-import {
-  PolicyListType,
-  usePolicyDetail,
-  usePolicyList,
-} from 'src/composables/policy/policy';
+// import {
+//   PolicyListType,
+//   usePolicyDetail,
+//   usePolicyList,
+// } from 'src/composables/policy/policy';
 import { Id } from 'src/services/common/api-model';
 import { useJoinStore } from 'src/stores/join-store';
 import { reactive } from 'vue';
@@ -21,7 +21,8 @@ if (!store.hasMobileVerified()) {
 }
 
 const searchRequest = useSearchRequest({ from: 0, size: 999 });
-const { data } = usePolicyList(searchRequest);
+// const { data } = usePolicyList(searchRequest);
+const { data } = { data: { rows: [] } };
 type ModelType = {
   plcy_id: number;
   type?: string;
@@ -32,18 +33,18 @@ type ModelType = {
 const state = reactive<{ agreements: ModelType[] }>({ agreements: [] });
 const checkAllModel = ref(false);
 
-watchEffect(() => {
-  if (!data.value) return;
-  if (state.agreements.length === 0) {
-    state.agreements = [
-      ...data.value.rows.map((item: PolicyListType) => ({
-        plcy_id: item.id,
-        mandatory: item.esntl_yn === 1,
-        agre_yn: false,
-      })),
-    ];
-  }
-});
+// watchEffect(() => {
+//   if (!data.value) return;
+//   if (state.agreements.length === 0) {
+//     state.agreements = [
+//       ...data.value.rows.map((item: PolicyListType) => ({
+//         plcy_id: item.id,
+//         mandatory: item.esntl_yn === 1,
+//         agre_yn: false,
+//       })),
+//     ];
+//   }
+// });
 
 function onChecked() {
   const allItemChecked = state.agreements.every((d) => d.agre_yn);
@@ -59,7 +60,7 @@ function onCheckAll(value: boolean) {
 }
 
 const detailId = ref<Id | undefined>(undefined);
-const { data: detail, isFetching } = usePolicyDetail(detailId);
+// const { data: detail, isFetching } = usePolicyDetail(detailId);
 
 function onSubmit() {
   if (!allMandatoryItemsChecked.value) {
@@ -78,8 +79,8 @@ function onSubmit() {
           서비스 약관 동의</span
         >가 필요해요
       </h3>
-      <q-list class="pt-[30px] flex flex-col gap-[10px]" v-if="data">
-        <q-item
+      <q-list v-if="data" class="pt-[30px] flex flex-col gap-[10px]">
+        <!-- <q-item
           v-for="(item, i) in data.rows"
           :key="item.id"
           class="border border-[#f1f1f1] min-h-[60px] p-[8px_9px_8px_6px]"
@@ -95,7 +96,7 @@ function onSubmit() {
               {{ item.trms_ttl }}</q-checkbox
             >
           </q-item-section>
-        </q-item>
+        </q-item> -->
         <q-item
           class="border border-[#f1f1f1] min-h-[60px] p-[8px_9px_8px_6px] bg-[#f8f8f8]"
         >

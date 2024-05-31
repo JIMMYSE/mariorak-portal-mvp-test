@@ -61,8 +61,8 @@ const onSubmit = handleSubmit(() => {
       <s-field label="닉네임" class="grow">
         <a-input
           ref="nicknameInput"
-          name="nckn_nm"
           v-model="nickname"
+          name="nckn_nm"
           v-bind="nicknameProps"
           autofocus
         />
@@ -74,7 +74,7 @@ const onSubmit = handleSubmit(() => {
       </s-field>
       <div class="relative mb-3">
         <q-img
-          src="~assets/images/shadow.png"
+          src="~assets/images/shadow.svg"
           height="37px"
           fit="contain"
           class="absolute inset-x-auto -bottom-3"

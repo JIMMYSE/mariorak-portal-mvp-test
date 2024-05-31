@@ -11,7 +11,7 @@ import useTryCatchWithLoading from 'src/composables/common/useTryCatchWithLoadin
 import { quasarVeeConfig } from 'src/composables/common/veeValidate';
 import {
   ChangePasswordForm,
-  ChangePasswordFormSchema,
+  // ChangePasswordFormSchema,
 } from 'src/services/auth/auth-model';
 import { useForm } from 'vee-validate';
 
@@ -27,7 +27,7 @@ if (!props.id || !props.token) {
  * Vee Validation
  */
 const { handleSubmit, defineField } = useForm<ChangePasswordForm>({
-  validationSchema: toTypedSchema(ChangePasswordFormSchema),
+  // validationSchema: toTypedSchema(ChangePasswordFormSchema),
 });
 
 // /** @see { @link https://vee-validate.logaretm.com/v4/examples/ui-libraries } */
@@ -74,11 +74,11 @@ const onSubmit = handleSubmit(async (values) => {
     <q-form @submit.prevent="onSubmit">
       <s-field label="비밀 번호" class="mt-[30px]">
         <a-input
+          v-model="password"
           name="password"
           type="password"
           placeholder="비밀번호를 입력해주세요"
           autofocus
-          v-model="password"
           v-bind="passwordProps"
         />
       </s-field>
@@ -87,10 +87,10 @@ const onSubmit = handleSubmit(async (values) => {
       </p>
       <s-field label="비밀번호 확인">
         <a-input
+          v-model="passwordConfirm"
           name="passwordConfirm"
           type="password"
           placeholder="비밀 번호 확인"
-          v-model="passwordConfirm"
           v-bind="passwordConfirmProps"
         />
       </s-field>

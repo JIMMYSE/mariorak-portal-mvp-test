@@ -270,14 +270,14 @@ const routes: RouteRecordRaw[] = [
         },
         component: () => import('pages/event/EventPage.vue'),
       },
-      {
-        name: 'presentation',
-        path: 'presentation',
-        meta: {
-          title: '입영 상담실',
-        },
-        component: () => import('pages/event/PresentationPage.vue'),
-      },
+      // {
+      //   name: 'presentation',
+      //   path: 'presentation',
+      //   meta: {
+      //     title: '입영 상담실',
+      //   },
+      //   component: () => import('pages/event/PresentationPage.vue'),
+      // },
       {
         name: 'counseling-room',
         path: 'counseling-room',
@@ -286,14 +286,14 @@ const routes: RouteRecordRaw[] = [
         },
         component: () => import('pages/event/CounselingRoomPage.vue'),
       },
-      {
-        name: 'call-roll',
-        path: 'call-roll',
-        meta: {
-          title: '점호 체험',
-        },
-        component: () => import('pages/event/CallRollPage.vue'),
-      },
+      // {
+      //   name: 'call-roll',
+      //   path: 'call-roll',
+      //   meta: {
+      //     title: '점호 체험',
+      //   },
+      //   component: () => import('pages/event/CallRollPage.vue'),
+      // },
       {
         name: 'metaverse-detail',
         path: 'metaverse/:id',

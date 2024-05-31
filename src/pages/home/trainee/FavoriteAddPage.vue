@@ -21,7 +21,7 @@ function onSubmit() {
 </script>
 
 <template>
-  <q-dialog ref="dialogRef" @hide="onDialogHide" full-width maximized>
+  <q-dialog ref="dialogRef" full-width maximized @hide="onDialogHide">
     <q-card class="full-width !max-h-[calc(100vh+64px+67px)] bg-grey">
       <!-- HEADER -->
       <q-card-section
@@ -31,9 +31,9 @@ function onSubmit() {
         <!-- TITLE TEXT -->
         <div class="text-[17px] font-medium">즐겨찾기 등록</div>
         <a-btn-icon
+          v-close-popup
           icon="img:/src/assets/icons/close.svg"
           size="30px"
-          v-close-popup
         />
       </q-card-section>
       <q-card-section class="mt-[50px] mb-32">
@@ -124,8 +124,8 @@ function onSubmit() {
           <label for="name">
             <h4 class="ml-[5px] text-grey-3 text-[13px] font-medium">이름</h4>
             <a-input
-              placeholder="이름을 입력해 주세요."
               v-model="info.name"
+              placeholder="이름을 입력해 주세요."
             ></a-input>
             <!-- <div -->
             <!--   class="mt-[6px] w-full px-6 bg-white rounded-[23px] flex flex-nowrap justify-between items-center h-11 text-grey-3" -->
