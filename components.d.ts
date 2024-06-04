@@ -42,9 +42,7 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SDialog: typeof import('./src/components/common/SDialog.vue')['default']
-    SInputNumber: typeof import('./src/components/form/SInputNumber.vue')['default']
     SocialLoginGroup: typeof import('./src/components/auth/SocialLoginGroup.vue')['default']
-    STable: typeof import('./src/components/common/STable.vue')['default']
     TextCounter: typeof import('./src/components/form/TextCounter.vue')['default']
   }
 }
