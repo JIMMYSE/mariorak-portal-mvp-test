@@ -1,25 +1,58 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+async function onSuccess(values: { email: string; password: string }) {
+  console.log('onSubmit', values);
+}
+
+const { fields, formMeta, onSubmit } = useAuthForm({
+  needPasswordConfirm: false,
+  onSuccess,
+});
+const {
+  email,
+  emailProps,
+  password,
+  passwordProps,
+  passwordConfirm,
+  passwordConfirmProps,
+} = fields;
+</script>
 
 <template>
   <q-page class="px-6 bg-grey">
-    <div class="w-full flex justify-center">
-      <q-icon
-        name="img:/src/assets/icons/mailbox.svg"
-        size="116px"
-        class="mt-[133px]"
-      ></q-icon>
+    <div class="pt-[40px] text-h2 font-rokaf font-bold">
+      <p>이메일 인증을 위한</p>
+      <p><span class="text-primary">가입정보</span>를 입력해 주세요.</p>
     </div>
-
-    <div class="mt-[47px] flex flex-col items-center">
-      <h2 class="text-grey-5 text-[22px] font-medium leading-[32px]">
-        <span class="text-primary">이메일 인증</span>이<br />
-        완료되었습니다.
-      </h2>
-      <p class="mt-2 text-sm text-grey-3">
-        다음버튼을 눌러 비밀번호 재설정을 완료해 주세요.
-      </p>
-    </div>
-
+    <q-form @submit.prevent="onSubmit">
+      <a-field label="아이디 (이메일)" class="mt-[30px]">
+        <a-input
+          type="text"
+          v-model="email"
+          :placeholder="$t('label.id')"
+          autofocus
+          :inline-counter="false"
+          v-bind="emailProps"
+        />
+      </a-field>
+      <a-field label="비밀번호">
+        <a-input
+          type="password"
+          v-model="password"
+          :placeholder="$t('label.password')"
+          :inline-counter="false"
+          v-bind="passwordProps"
+        />
+      </a-field>
+      <a-field label="비밀번호 확인">
+        <a-input
+          type="password"
+          v-model="passwordConfirm"
+          :placeholder="$t('label.passwordConfirm')"
+          :inline-counter="false"
+          v-bind="passwordConfirmProps"
+        />
+      </a-field>
+    </q-form>
     <div class="absolute bottom-0 bg-primary w-full h-[64px] left-0">
       <button
         class="text-center text-white font-base font-medium size-full flex justify-center items-center"

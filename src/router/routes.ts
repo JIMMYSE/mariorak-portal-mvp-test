@@ -399,17 +399,17 @@ const routes: RouteRecordRaw[] = [
     path: '/join',
     component: SubLayout,
     children: [
-      {
-        path: '',
-        name: 'join',
-        meta: {
-          title: '회원가입',
-        },
-        component: () => import('pages/auth/JoinPage.vue'),
-      },
+      // {
+      //   path: '',
+      //   name: 'join',
+      //   meta: {
+      //     title: '회원가입',
+      //   },
+      //   component: () => import('pages/auth/JoinPage.vue'),
+      // },
 
       {
-        path: 'email',
+        path: '',
         name: 'join-email',
         meta: {
           title: '회원가입',
