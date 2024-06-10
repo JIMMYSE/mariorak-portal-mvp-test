@@ -337,28 +337,28 @@ const routes: RouteRecordRaw[] = [
         },
         component: () => import('pages/setting/ChangePassword.vue'),
       },
-      {
-        path: ':id/terms',
-        name: 'terms-detail',
-        beforeEnter: (to, from, next) => {
-          const id = to.params.id as string;
-          if (id === '1') {
-            to.meta.title = '서비스 이용약관';
-          } else {
-            to.meta.title = '개인정보처리방침';
-          }
-          next();
-        },
-        component: () => import('pages/setting/TermsDetail.vue'),
-      },
-      {
-        path: 'cancel',
-        name: 'cancel-membership',
-        meta: {
-          title: '회원탈퇴',
-        },
-        component: () => import('pages/setting/CancelMembershipPage.vue'),
-      },
+      // {
+      //   path: ':id/terms',
+      //   name: 'terms-detail',
+      //   beforeEnter: (to, from, next) => {
+      //     const id = to.params.id as string;
+      //     if (id === '1') {
+      //       to.meta.title = '서비스 이용약관';
+      //     } else {
+      //       to.meta.title = '개인정보처리방침';
+      //     }
+      //     next();
+      //   },
+      //   component: () => import('pages/setting/TermsDetail.vue'),
+      // },
+      // {
+      //   path: 'cancel',
+      //   name: 'cancel-membership',
+      //   meta: {
+      //     title: '회원탈퇴',
+      //   },
+      //   component: () => import('pages/setting/CancelMembershipPage.vue'),
+      // },
     ],
   },
   {
