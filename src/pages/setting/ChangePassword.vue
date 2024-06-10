@@ -56,7 +56,7 @@ const onSubmit = handleSubmit(async (values) => {
 
 <template>
   <q-page class="column px-6 pb-[87px]">
-    <div class="pt-[40px] text-h3">
+    <!-- <div class="pt-[40px] text-h3">
       <p>사용자님 아이디의</p>
       <p><span class="text-primary">비밀번호를 변경</span>합니다</p>
     </div>
@@ -66,7 +66,7 @@ const onSubmit = handleSubmit(async (values) => {
         이상, 16자리 이하로만 설정 가능합니다.<br />
         - 허용 가능한 특수문자 : !, @, #, $, %, ^
       </p>
-    </div>
+    </div> -->
     <q-form @submit.prevent="onSubmit" class="mt-5">
       <s-field label="비밀 번호" class="mt-[30px]">
         <a-input
@@ -78,9 +78,9 @@ const onSubmit = handleSubmit(async (values) => {
           v-bind="passwordProps"
         />
       </s-field>
-      <p class="text-xs mt-2 font-light text-[#888888]">
+      <!-- <p class="text-xs mt-2 font-light text-[#888888]">
         🔒 영문, 숫자, 특수문자 포함 10~16자리 이내
-      </p>
+      </p> -->
       <s-field label="비밀번호 확인">
         <a-input
           v-model="passwordConfirm"
@@ -91,7 +91,7 @@ const onSubmit = handleSubmit(async (values) => {
         />
       </s-field>
       <div class="w-screen -ml-6 p-4 fixed bottom-0 bg-white">
-        <a-btn type="submit" class="w-full h-[55px]" label="확인" />
+        <a-btn type="submit" class="w-full h-[55px]" label="완료" />
       </div>
     </q-form>
   </q-page>

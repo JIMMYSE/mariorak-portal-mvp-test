@@ -68,10 +68,11 @@ const onSubmit = () => {
           type="password"
           placeholder="비밀번호 입력"
           class="mt-[30px]"
+          v-model="password"
         />
       </s-field>
       <div class="w-screen -ml-6 p-4 fixed bottom-0 bg-white">
-        <a-btn type="submit" class="w-full h-[55px]" label="다음" />
+        <a-btn type="submit" class="w-full h-[55px]" label="완료" />
       </div>
     </q-form>
   </q-page>
