@@ -1,4 +1,13 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useLogout, useUserInfo } from 'src/composables/auth/auth';
+
+async function doLogout() {
+  useLogout({
+    onSuccess: () => goToName('login'),
+  });
+}
+</script>
+
 <template>
   <q-page>
     <router-link
@@ -83,5 +92,9 @@
         size="30px"
       ></q-icon>
     </router-link>
+
+    <div class="flex flex-center mt-8">
+      <a-btn label="로그아웃(테스트용)" type="button" @click="doLogout" />
+    </div>
   </q-page>
 </template>

@@ -7,18 +7,18 @@ import { useAlertDialog } from 'src/composables/common/dialog';
 import { useAuthStore } from 'src/stores/auth-store';
 
 const isAutoLogin = useAutoLogin();
-let isWithdrawing = true;
+let isWithdrawing = false;
 
-async function onSuccess(values: { email: string; password: string }) {
+const { login } = useLogin();
+const onSuccess = async (values: { email: string; password: string }) => {
   const { email, password } = values;
-  console.log('onSubmit', email, password);
 
-  // TODO: replace below line with real API calling
-  store.setUser({ email });
+  const { data, isSuccess, error } = await login(email, password);
+  if (!data.value) return;
 
-  handleLoginResult({ isWithdrawing, isSuccess: true });
+  handleLoginResult({ isWithdrawing, isSuccess: isSuccess.value });
   isWithdrawing = false;
-}
+};
 
 const { fields, formMeta, onSubmit } = useAuthForm({
   needPasswordConfirm: false,

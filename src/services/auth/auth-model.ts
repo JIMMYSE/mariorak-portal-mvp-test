@@ -1,15 +1,13 @@
-import { ManagerDetail } from 'seoroverse-dto';
+import { UserDetail } from 'meta-airforce-dto';
 import { t } from 'src/utils/message-util';
-import { InferType, object, string, ref } from 'yup';
+import { ref } from 'yup';
 
 /**
  * 사용자 정보
  */
-export type ManagerDetailType = InferType<typeof ManagerDetail>;
+export type UserDetailType = InferType<typeof UserDetail>;
 
-export interface User extends ManagerDetailType {
-  rgn_cdnm?: string;
-  lvl_cdnm?: string;
+export interface User extends UserDetailType {
   require_password_update: boolean;
   // menus: Menu[];
   // require_recertification: boolean;

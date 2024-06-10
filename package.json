@@ -1,8 +1,8 @@
 {
   "name": "meta-airforce-portal",
   "version": "0.0.1",
-  "description": "Meta Airforce Portal Front",
-  "productName": "Meta Airforce Portal Front",
+  "description": "Meta Airforce Portal",
+  "productName": "Meta Airforce Portal",
   "author": "COARSOFT",
   "private": true,
   "scripts": {
@@ -19,10 +19,10 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.16.11",
-    "@tanstack/vue-query": "^5.35.2",
+    "@tanstack/vue-query": "^5.40.1",
     "@tanstack/vue-query-devtools": "^5.35.2",
-    "@vee-validate/rules": "^4.12.6",
-    "@vee-validate/yup": "^4.12.6",
+    "@vee-validate/rules": "^4.13.1",
+    "@vee-validate/yup": "^4.13.1",
     "@vueuse/core": "^10.9.0",
     "@vueuse/integrations": "^10.9.0",
     "axios": "^1.6.8",
@@ -32,12 +32,12 @@
     "dayjs": "^1.11.11",
     "dotenv": "^16.4.4",
     "josa": "^3.0.1",
+    "meta-airforce-dto": "github:coarsoft-tmp/meta-airforce-dto#release",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
     "quasar": "^2.16.1",
     "radix-vue": "^1.4.9",
     "sanitize-html": "^2.13.0",
-    "meta-airforce-dto": "github:coarsoft-tmp/meta-airforce-dto#release",
     "swiper": "^11.1.1",
     "tailwind-merge": "^2.2.2",
     "universal-cookie": "^7.1.4",
@@ -69,7 +69,7 @@
     "unplugin-vue-components": "^0.27.0"
   },
   "engines": {
-    "node": "^20 || ^18 || ^16",
+    "node": "^20",
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1"
   }
