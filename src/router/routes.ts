@@ -322,6 +322,36 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/setting/SettingPage.vue'),
       },
       {
+        path: 'confirm-password',
+        name: 'confirm-password',
+        meta: {
+          title: '비밀번호 확인',
+        },
+        component: () => import('pages/setting/ConfirmPassword.vue'),
+      },
+      {
+        path: 'change-password',
+        name: 'setting-change-password',
+        meta: {
+          title: '비밀번호 변경',
+        },
+        component: () => import('pages/setting/ChangePassword.vue'),
+      },
+      {
+        path: ':id/terms',
+        name: 'terms-detail',
+        beforeEnter: (to, from, next) => {
+          const id = to.params.id as string;
+          if (id === '1') {
+            to.meta.title = '서비스 이용약관';
+          } else {
+            to.meta.title = '개인정보처리방침';
+          }
+          next();
+        },
+        component: () => import('pages/setting/TermsDetail.vue'),
+      },
+      {
         path: 'cancel',
         name: 'cancel-membership',
         meta: {
