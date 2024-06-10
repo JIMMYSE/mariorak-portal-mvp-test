@@ -49,7 +49,7 @@ module.exports = configure(function (ctx) {
     // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [
       // 'ionicons-v4',
-      // 'mdi-v7',
+      'mdi-v7',
       // 'fontawesome-v6',
       // 'eva-icons',
       // 'themify',
@@ -123,12 +123,17 @@ module.exports = configure(function (ctx) {
                   'mixed',
                   'date',
                   // 'ref',
-                  // 'lazy',
-                  // 'ValidationError',
+                  'lazy',
+                  'ValidationError',
                 ],
                 '@vee-validate/yup': ['toTypedSchema'],
               },
               // type import
+              {
+                from: 'quasar',
+                imports: ['QTableProps'],
+                type: true,
+              },
               {
                 from: 'yup',
                 imports: ['InferType'],
@@ -137,6 +142,18 @@ module.exports = configure(function (ctx) {
               {
                 from: 'vee-validate',
                 imports: ['FieldContext'],
+                type: true,
+              },
+              {
+                from: 'src/services/common/api-model',
+                imports: [
+                  'Id',
+                  'QueryOption',
+                  'ApiResponse',
+                  'ApiListResponse',
+                  'SearchRequest',
+                  'FileInfo',
+                ],
                 type: true,
               },
             ],
@@ -149,6 +166,7 @@ module.exports = configure(function (ctx) {
               'src/stores/**',
             ],
             dts: true,
+            vueTemplate: true,
           },
         ],
         [
@@ -214,6 +232,8 @@ module.exports = configure(function (ctx) {
         'Dialog',
         'Loading',
         'LoadingBar',
+        'LocalStorage',
+        'SessionStorage',
         'Meta',
         'Notify',
       ],
