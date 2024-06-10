@@ -896,7 +896,7 @@
   dependencies:
     "@tanstack/query-devtools" "5.37.1"
 
-"@tanstack/vue-query@^5.35.2":
+"@tanstack/vue-query@^5.40.1":
   version "5.41.0"
   resolved "https://registry.yarnpkg.com/@tanstack/vue-query/-/vue-query-5.41.0.tgz#ae864e0aa54b096a7caab677d4732a3bd06f1808"
   integrity sha512-kpKyicifRROxdzkyk/CA1q6G9VSw+ZNVCIK3cmG+hcKnCrhc6OyMinEQ8drfMuyxahScBOR+DVkqu/0H+Y/f1Q==
@@ -1281,14 +1281,14 @@
   resolved "https://registry.yarnpkg.com/@ungap/structured-clone/-/structured-clone-1.2.0.tgz#756641adb587851b5ccb3e095daf27ae581c8406"
   integrity sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==
 
-"@vee-validate/rules@^4.12.6":
+"@vee-validate/rules@^4.13.1":
   version "4.13.1"
   resolved "https://registry.yarnpkg.com/@vee-validate/rules/-/rules-4.13.1.tgz#26be0c47f838b8dc60114fb2ccb2910ee29ac7b4"
   integrity sha512-qqL+Ltqs9/SafTZg6haiSt+nkC1gs7GdrnuiQKoI0au6qrRBMqqXfWcY1GK3bNH8uSAX2GfTaZieqpsbOJ7yZQ==
   dependencies:
     vee-validate "4.13.1"
 
-"@vee-validate/yup@^4.12.6":
+"@vee-validate/yup@^4.13.1":
   version "4.13.1"
   resolved "https://registry.yarnpkg.com/@vee-validate/yup/-/yup-4.13.1.tgz#1a6b90f9de98254a874e3a683876ec38e2f17191"
   integrity sha512-XS057kHcf4uFew708haHVxCjqJ9OYXV57KmOj/R9fnuh76i54F79DCRzm4FDAevOJzkuo7rNBYOSTplY4iXPrQ==
@@ -4156,7 +4156,7 @@ merge2@^1.3.0, merge2@^1.4.1:
 
 "meta-airforce-dto@github:coarsoft-tmp/meta-airforce-dto#release":
   version "0.0.1"
-  resolved "git+ssh://git@github.com/coarsoft-tmp/meta-airforce-dto.git#01da0b765f247c7d5a36ce1eac0fa13c8e931ba4"
+  resolved "git+ssh://git@github.com/coarsoft-tmp/meta-airforce-dto.git#dd39abadbdaa840361934cdc3e03ad0546abc826"
   dependencies:
     jest "^29.7.0"
     josa "^3.0.1"

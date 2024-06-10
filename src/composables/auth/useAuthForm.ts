@@ -1,7 +1,7 @@
 import { t } from 'src/utils/message-util';
-import { useForm, useField } from 'vee-validate';
-import { object, string, addMethod } from 'yup';
+import { addMethod } from 'yup';
 import { quasarVeeConfig } from '../common/veeValidate';
+
 export function useAuthForm({
   needPasswordConfirm,
   onSuccess,

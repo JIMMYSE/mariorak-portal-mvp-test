@@ -1,23 +1,22 @@
 import { UseQueryOptions } from '@tanstack/vue-query';
 import { FileBase, FileInfo } from 'meta-airforce-dto';
-import { InferType, array, lazy, number, object, string } from 'yup';
 
 export type Id = string | number | undefined;
 
 export type QueryOption = Partial<Omit<UseQueryOptions, 'select'>>;
 
-export interface ApiResponse {
+export interface ApiResponse<T = any> {
   code: string;
-  data?: any;
+  data?: T;
   message?: string;
 }
 
-export interface ApiListResponse {
+export interface ApiListResponse<T = any> {
   code: string;
   data?: {
     total: number;
     count: number;
-    rows: any[];
+    rows: T[];
   };
   message?: string;
 }
@@ -38,7 +37,7 @@ export const SearchRequestSchema = object({
     })
   )
     .optional()
-    .default([{ crt_dt: 'desc' }]),
+    .default([{ created_at: 'desc' }]),
 });
 
 export interface SearchRequest extends InferType<typeof SearchRequestSchema> {}
@@ -54,7 +53,7 @@ export class SearchRequestClass implements SearchRequest {
     const { filters, search, from, size, sort } = options;
     this.filters = filters ?? {};
     this.search = search ?? {};
-    this.sort = sort ?? [{ crt_dt: 'desc' }];
+    this.sort = sort ?? [{ created_at: 'desc' }];
     this.from = from ?? 0;
     this.size = size ?? 10;
   }
