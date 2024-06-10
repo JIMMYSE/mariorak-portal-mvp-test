@@ -351,14 +351,14 @@ const routes: RouteRecordRaw[] = [
       //   },
       //   component: () => import('pages/setting/TermsDetail.vue'),
       // },
-      // {
-      //   path: 'cancel',
-      //   name: 'cancel-membership',
-      //   meta: {
-      //     title: '회원탈퇴',
-      //   },
-      //   component: () => import('pages/setting/CancelMembershipPage.vue'),
-      // },
+      {
+        path: 'cancel',
+        name: 'cancel-membership',
+        meta: {
+          title: '회원탈퇴',
+        },
+        component: () => import('pages/setting/CancelMembershipPage.vue'),
+      },
     ],
   },
   {
