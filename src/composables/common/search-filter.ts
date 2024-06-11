@@ -14,9 +14,8 @@ export function useSearchFilter({
 }: {
   requestDefault?: Partial<SearchRequest>;
 } = {}) {
-  const initRequest = useSearchRequest(requestDefault);
+  const request = useSearchRequest(requestDefault);
   return {
-    request: initRequest,
-    initRequest,
+    request,
   };
 }

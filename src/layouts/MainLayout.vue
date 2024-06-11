@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import { useWindowScroll } from '@vueuse/core';
-import { computed } from 'vue';
-import { ref, watch } from 'vue';
-
 const footerVisible = ref(false);
 const { y } = useWindowScroll();
 
@@ -15,12 +11,12 @@ const headerClass = computed(() =>
 </script>
 
 <template>
-  <QLayout view="hHh lpr fFf" class="main-layout bg-[#222]">
-    <QHeader
+  <q-layout view="hHh lpr fFf" class="main-layout bg-[#222]">
+    <q-header
       class="flex flex-center px-3 pt-[var(--statusbar-h)]"
       :class="headerClass"
     >
-      <QToolbar
+      <q-toolbar
         class="flex justify-between items-center h-[var(--main-header-h)]"
       >
         <q-img
@@ -34,26 +30,28 @@ const headerClass = computed(() =>
           src="~assets/images/main-logo.png"
         />
         <div class="flex items-center gap-[14px]">
-          <QBtn size="md" round flat :to="{ name: 'profile' }">
-            <QIcon name="img:/src/assets/images/avatar-1-thumb.png" size="40px"
-          /></QBtn>
-          <QBtn
+          <q-btn size="md" round flat :to="{ name: 'profile' }">
+            <q-icon
+              name="img:/src/assets/images/avatar-1-thumb.png"
+              size="40px"
+          /></q-btn>
+          <q-btn
             class="size-10 bg-white"
             size="md"
             round
             flat
             :to="{ name: 'notice-list' }"
-            ><QIcon name="img:/src/assets/icons/bell.svg" size="32px" />
-          </QBtn>
+            ><q-icon name="img:/src/assets/icons/bell.svg" size="32px" />
+          </q-btn>
         </div>
-      </QToolbar>
-    </QHeader>
+      </q-toolbar>
+    </q-header>
 
-    <QPageContainer>
+    <q-page-container>
       <router-view v-slot="{ Component, route }">
         <component :is="Component" :key="route.path" />
       </router-view>
-    </QPageContainer>
+    </q-page-container>
     <transition
       enter-active-class="animated fadeInUp "
       leave-active-class="animated fadeOutDown "
@@ -104,8 +102,9 @@ const headerClass = computed(() =>
         </q-tabs>
       </q-footer>
     </transition>
-  </QLayout>
+  </q-layout>
 </template>
+
 <style lang="scss" scoped>
 :deep(.q-tabs__content) {
   overflow: visible !important;

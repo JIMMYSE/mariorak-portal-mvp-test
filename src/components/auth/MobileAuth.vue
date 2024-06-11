@@ -315,7 +315,7 @@ export type MobileAuthInstance = {
               >남은시간: {{ remainingTimeStr }}초</span
             >
           </div>
-          <QBtn
+          <q-btn
             dense
             no-caps
             class="bg-white text-primary text-caption underline"

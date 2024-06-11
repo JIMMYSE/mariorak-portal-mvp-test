@@ -410,17 +410,17 @@ export function useQueryFetchList<
 >({
   url,
   searchRequest,
-  queryKeyName,
+  listQueryKeyName,
   queryOption,
 }: {
   url: string;
   searchRequest: MaybeRef<D>;
-  queryKeyName?: string;
+  listQueryKeyName?: string;
   queryOption?: QueryOption;
 }) {
   return useQuery({
     // eslint-disable-next-line @tanstack/query/exhaustive-deps
-    queryKey: [queryKeyName || url + '/list', searchRequest as any],
+    queryKey: [listQueryKeyName || url + '/list', searchRequest as any],
     queryFn: () => {
       return useFetchList<T, D>({
         url,
