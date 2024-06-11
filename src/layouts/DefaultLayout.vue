@@ -1,10 +1,10 @@
 <template>
   <QLayout view="hhh lpr fff">
-    <QPageContainer>
+    <q-page-container>
       <router-view v-slot="{ Component, route }">
         <component :is="Component" :key="route.path" />
       </router-view>
-    </QPageContainer>
+    </q-page-container>
   </QLayout>
 </template>
 

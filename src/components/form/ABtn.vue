@@ -12,7 +12,7 @@ const forwarded = useForwardPropsEmits(props, emits);
 </script>
 
 <template>
-  <QBtn v-bind="forwarded"><slot /></QBtn>
+  <q-btn v-bind="forwarded"><slot /></q-btn>
 </template>
 
 <style lang="scss"></style>

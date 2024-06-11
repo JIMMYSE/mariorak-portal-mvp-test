@@ -35,13 +35,13 @@ router.afterEach((to) => {
       </QToolbar>
     </QHeader>
 
-    <QPageContainer>
+    <q-page-container>
       <router-view v-slot="{ Component, route: _route }">
         <keep-alive :include="/ListPage$/" :max="1">
           <component :is="Component" :key="_route.path" @title="onSetTitle" />
         </keep-alive>
       </router-view>
-    </QPageContainer>
+    </q-page-container>
   </QLayout>
 </template>
 

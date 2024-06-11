@@ -23,7 +23,7 @@ const { data: listData } = useNoticeList({
   <q-page class="column">
     <q-list>
       <q-item
-        v-for="(item, i) in listData?.rows"
+        v-for="item in listData?.rows"
         :key="item.id"
         class="w-full h-[65px] relative"
         clickable

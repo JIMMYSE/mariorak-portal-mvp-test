@@ -9,9 +9,9 @@ const forwarded = useForwardPropsEmits(props, emits);
 </script>
 
 <template>
-  <QBtn v-bind="forwarded" :icon="undefined" flat padding="8px">
-    <QIcon name="img:/images/icons/btn_enter.svg" size="18px" />
-  </QBtn>
+  <q-btn v-bind="forwarded" :icon="undefined" flat padding="8px">
+    <q-icon name="img:/images/icons/btn_enter.svg" size="18px" />
+  </q-btn>
 </template>
 
 <style lang="scss" scoped></style>
