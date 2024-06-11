@@ -5,9 +5,7 @@ import { metaverseList } from 'src/assets/data/dummyData';
 import MainCard from 'src/components/main/MainCard.vue';
 import MenuCard from 'src/components/main/MenuCard.vue';
 import MenuItem from 'src/components/main/MenuItem.vue';
-import { useMyConfirmDialog } from 'src/composables/common/dialog';
-import { useBridge } from 'src/composables/common/useBridge';
-import { ref } from 'vue';
+import {} from 'src/composables/common/dialog';
 const slide = ref(1);
 const slides = ref(
   Array(3)

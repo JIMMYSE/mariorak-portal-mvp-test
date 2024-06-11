@@ -76,7 +76,7 @@ defineExpose({
 
 <style scoped lang="scss">
 :deep(.q-field__native) {
-  font-family: pretendard;
+  font-family: 'Pretendard Variable';
   font-weight: 400;
   line-height: 18px;
 }
