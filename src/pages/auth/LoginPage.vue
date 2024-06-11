@@ -108,7 +108,7 @@ function handleLoginResult({
             class="text-grey-5 text-caption q-pa-sm font-light"
             flat
             :label="$t('label.join')"
-            @click="goToName('join')"
+            @click="goToName('join-email')"
           />
           <span class="text-grey-2">|</span>
           <a-btn

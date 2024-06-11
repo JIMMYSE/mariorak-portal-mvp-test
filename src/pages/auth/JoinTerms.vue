@@ -16,9 +16,9 @@ import { computed } from 'vue';
 import { ref } from 'vue';
 
 const store = useJoinStore();
-if (!store.hasMobileVerified()) {
-  goBack();
-}
+// if (!store.hasMobileVerified()) {
+//   goBack();
+// }
 
 const searchRequest = useSearchRequest({ from: 0, size: 999 });
 // const { data } = usePolicyList(searchRequest);
@@ -30,7 +30,28 @@ type ModelType = {
   mandatory?: boolean;
 };
 
-const state = reactive<{ agreements: ModelType[] }>({ agreements: [] });
+const state = reactive<{ agreements: ModelType[] }>({
+  agreements: [
+    {
+      plcy_id: 1,
+      type: '만 14세 이상',
+      agre_yn: false,
+      mandatory: true,
+    },
+    {
+      plcy_id: 2,
+      type: '서비스 이용약관',
+      agre_yn: false,
+      mandatory: true,
+    },
+    {
+      plcy_id: 3,
+      type: '개인정보 수집 및 이용동의',
+      agre_yn: false,
+      mandatory: true,
+    },
+  ],
+});
 const checkAllModel = ref(false);
 
 // watchEffect(() => {
@@ -72,56 +93,48 @@ function onSubmit() {
 </script>
 
 <template>
-  <q-page class="flex flex-col">
-    <section class="pt-10 px-6">
-      <h3 class="text-h3 leading-[25px]">
-        서로버스 메타버스를 이용하기 위해<br /><span class="text-primary">
-          서비스 약관 동의</span
-        >가 필요해요
-      </h3>
-      <q-list v-if="data" class="pt-[30px] flex flex-col gap-[10px]">
-        <!-- <q-item
-          v-for="(item, i) in data.rows"
-          :key="item.id"
-          class="border border-[#f1f1f1] min-h-[60px] p-[8px_9px_8px_6px]"
-        >
-          <q-item-section class="p-0 text-body2 font-light">
-            <q-checkbox
-              v-model="state.agreements[i].agre_yn"
-              checked-icon="img:/images/icons/btn_checkbox_a.svg"
-              unchecked-icon="img:/images/icons/btn_checkbox_d.svg"
-              size="32px"
-              @update:model-value="onChecked"
-              >[{{ item.esntl_yn ? '필수' : '선택' }}]
-              {{ item.trms_ttl }}</q-checkbox
-            >
-          </q-item-section>
-        </q-item> -->
+  <q-page class="flex flex-col bg-grey">
+    <section class="pt-10 px-6 font-rokaf font-bold text-lg">
+      <p>가입을 위한</p>
+      <p><span class="text-primary">약관동의</span>를 진행해 주세요.</p>
+
+      <q-list v-if="data" class="pt-[30px] flex flex-col">
         <q-item
-          class="border border-[#f1f1f1] min-h-[60px] p-[8px_9px_8px_6px] bg-[#f8f8f8]"
+          class="border border-[#f1f1f1] min-h-[60px] p-[8px_9px_8px_6px] bg-grey-1 rounded-md"
         >
-          <q-item-section class="p-0 text-body2 font-light">
-            <q-checkbox
+          <q-item-section
+            class="p-0 text-body2 font-rokaf font-medium text-base"
+          >
+            <a-checkbox
               v-model="checkAllModel"
-              checked-icon="img:/images/icons/btn_checkbox_a.svg"
-              unchecked-icon="img:/images/icons/btn_checkbox_d.svg"
               size="32px"
               @update:model-value="onCheckAll"
             >
-              위의 내용을 모두 읽었으며 이에 동의합니다.<br />(선택항목
-              포함)</q-checkbox
+              전체동의</a-checkbox
+            >
+          </q-item-section>
+        </q-item>
+        <q-item
+          class="border border-[#f1f1f1] p-[8px_9px_8px_6px] rounded-md"
+          v-for="item in state.agreements"
+          :key="item.plcy_id"
+        >
+          <q-item-section
+            class="p-0 text-body2 font-rokaf font-medium text-base"
+          >
+            <a-checkbox
+              v-model="item.agre_yn"
+              size="32px"
+              @update:model-value="onChecked"
+            >
+              {{ item.mandatory ? '[필수] ' : '' }} {{ item.type }}</a-checkbox
             >
           </q-item-section>
         </q-item>
       </q-list>
     </section>
-    <section class="fixed inset-x-0 bottom-0 p-6 bg-white row">
-      <a-btn
-        class="flex-1 h-[55px]"
-        label="동의하고 계속하기"
-        :disable="!allMandatoryItemsChecked"
-        @click="onSubmit"
-      />
+    <section class="fixed inset-x-0 bottom-0 p-4 bg-primary row">
+      <a-btn class="flex-1" label="동의하고 계속하기" @click="onSubmit" />
     </section>
   </q-page>
 </template>

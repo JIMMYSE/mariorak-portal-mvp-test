@@ -1,10 +1,11 @@
 <script lang="ts" setup>
+import { goToName } from 'src/composables/common/app';
 async function onSuccess(values: { email: string; password: string }) {
   console.log('onSubmit', values);
 }
 
 const { fields, formMeta, onSubmit } = useAuthForm({
-  needPasswordConfirm: false,
+  needPasswordConfirm: true,
   onSuccess,
 });
 const {
@@ -19,7 +20,7 @@ const {
 
 <template>
   <q-page class="px-6 bg-grey">
-    <div class="pt-[40px] text-h2 font-rokaf font-bold">
+    <div class="pt-[40px] text-h2 font-rokaf font-bold text-lg">
       <p>이메일 인증을 위한</p>
       <p><span class="text-primary">가입정보</span>를 입력해 주세요.</p>
     </div>
@@ -56,6 +57,7 @@ const {
     <div class="absolute bottom-0 bg-primary w-full h-[64px] left-0">
       <button
         class="text-center text-white font-base font-medium size-full flex justify-center items-center"
+        @click="goToName('join-policy')"
       >
         다음
       </button>
