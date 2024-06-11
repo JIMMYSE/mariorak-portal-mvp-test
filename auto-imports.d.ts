@@ -12,9 +12,7 @@ declare global {
   const FILE_DOWNLOAD_URL: typeof import('./src/composables/common/api')['FILE_DOWNLOAD_URL']
   const FieldContextKey: typeof import('vee-validate')['FieldContextKey']
   const FormContextKey: typeof import('vee-validate')['FormContextKey']
-  const InferType: typeof import('yup')['InferType']
   const JoinCompleted: typeof import('./src/pages/auth/JoinCompleted.vue')['default']
-  const MyNoticeEdit: typeof import('./src/composables/notice/notice')['MyNoticeEdit']
   const NOTICE_QUERY_KEY: typeof import('./src/composables/notice/notice')['NOTICE_QUERY_KEY']
   const Nickname: typeof import('./src/services/auth/model')['Nickname']
   const REG_TYPE: typeof import('./src/services/auth/model')['REG_TYPE']
@@ -22,7 +20,6 @@ declare global {
   const SearchRequestClass: typeof import('./src/services/common/api-model')['SearchRequestClass']
   const SearchRequestSchema: typeof import('./src/services/common/api-model')['SearchRequestSchema']
   const SocialRegistrationReq: typeof import('./src/services/auth/model')['SocialRegistrationReq']
-  const TERMS_QUERY_KEY: typeof import('./src/composables/setting/setting')['TERMS_QUERY_KEY']
   const ValidationError: typeof import('yup')['ValidationError']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const accessModalVisible: typeof import('./src/composables/common/useBridge')['accessModalVisible']
@@ -315,11 +312,8 @@ declare global {
   const useMyConfirmDialog: typeof import('./src/composables/common/dialog')['useMyConfirmDialog']
   const useNavigatorLanguage: typeof import('@vueuse/core')['useNavigatorLanguage']
   const useNetwork: typeof import('@vueuse/core')['useNetwork']
-  const useNoticeDelete: typeof import('./src/composables/notice/notice')['useNoticeDelete']
-  const useNoticeDeleteList: typeof import('./src/composables/notice/notice')['useNoticeDeleteList']
   const useNoticeDetail: typeof import('./src/composables/notice/notice')['useNoticeDetail']
   const useNoticeList: typeof import('./src/composables/notice/notice')['useNoticeList']
-  const useNoticeSave: typeof import('./src/composables/notice/notice')['useNoticeSave']
   const useNotify: typeof import('./src/composables/common/dialog')['useNotify']
   const useNotifyError: typeof import('./src/composables/common/dialog')['useNotifyError']
   const useNotifyThrottle: typeof import('./src/composables/common/dialog')['useNotifyThrottle']
@@ -383,7 +377,6 @@ declare global {
   const useSwipe: typeof import('@vueuse/core')['useSwipe']
   const useSystemCheck: typeof import('./src/composables/common/app')['useSystemCheck']
   const useTemplateRefsList: typeof import('@vueuse/core')['useTemplateRefsList']
-  const useTermsDetail: typeof import('./src/composables/setting/setting')['useTermsDetail']
   const useTextDirection: typeof import('@vueuse/core')['useTextDirection']
   const useTextSelection: typeof import('@vueuse/core')['useTextSelection']
   const useTextareaAutosize: typeof import('@vueuse/core')['useTextareaAutosize']
@@ -411,6 +404,7 @@ declare global {
   const useVModels: typeof import('@vueuse/core')['useVModels']
   const useValidateField: typeof import('vee-validate')['useValidateField']
   const useValidateForm: typeof import('vee-validate')['useValidateForm']
+  const useVersion: typeof import('./src/composables/common/version')['useVersion']
   const useVibrate: typeof import('@vueuse/core')['useVibrate']
   const useVirtualList: typeof import('@vueuse/core')['useVirtualList']
   const useWakeLock: typeof import('@vueuse/core')['useWakeLock']
@@ -862,6 +856,7 @@ declare module 'vue' {
     readonly useVModels: UnwrapRef<typeof import('@vueuse/core')['useVModels']>
     readonly useValidateField: UnwrapRef<typeof import('vee-validate')['useValidateField']>
     readonly useValidateForm: UnwrapRef<typeof import('vee-validate')['useValidateForm']>
+    readonly useVersion: UnwrapRef<typeof import('./src/composables/common/version')['useVersion']>
     readonly useVibrate: UnwrapRef<typeof import('@vueuse/core')['useVibrate']>
     readonly useVirtualList: UnwrapRef<typeof import('@vueuse/core')['useVirtualList']>
     readonly useWakeLock: UnwrapRef<typeof import('@vueuse/core')['useWakeLock']>
@@ -1294,6 +1289,7 @@ declare module '@vue/runtime-core' {
     readonly useVModels: UnwrapRef<typeof import('@vueuse/core')['useVModels']>
     readonly useValidateField: UnwrapRef<typeof import('vee-validate')['useValidateField']>
     readonly useValidateForm: UnwrapRef<typeof import('vee-validate')['useValidateForm']>
+    readonly useVersion: UnwrapRef<typeof import('./src/composables/common/version')['useVersion']>
     readonly useVibrate: UnwrapRef<typeof import('@vueuse/core')['useVibrate']>
     readonly useVirtualList: UnwrapRef<typeof import('@vueuse/core')['useVirtualList']>
     readonly useWakeLock: UnwrapRef<typeof import('@vueuse/core')['useWakeLock']>
