@@ -30,7 +30,7 @@ async function doLogout() {
     </div>
 
     <router-link
-      :to="{ path: '/setting/1/terms' }"
+      :to="{ name: `service-terms` }"
       class="w-full h-[67px] pl-6 pr-3 flex justify-between items-center border-b border-grey-1"
     >
       <h3 class="text-sm font-pretendard font-medium text-secondary">
@@ -42,7 +42,7 @@ async function doLogout() {
       ></q-icon>
     </router-link>
     <router-link
-      :to="{ path: '/setting/2/terms' }"
+      :to="{ name: `privacy-terms` }"
       class="w-full h-[67px] pl-6 pr-3 flex justify-between items-center"
     >
       <h3 class="text-sm font-pretendard font-medium text-secondary">

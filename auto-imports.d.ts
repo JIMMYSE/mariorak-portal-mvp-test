@@ -384,6 +384,7 @@ declare global {
   const useSystemCheck: typeof import('./src/composables/common/app')['useSystemCheck']
   const useTemplateRefsList: typeof import('@vueuse/core')['useTemplateRefsList']
   const useTermsDetail: typeof import('./src/composables/setting/setting')['useTermsDetail']
+  const useTermsList: typeof import('./src/composables/setting/setting')['useTermsList']
   const useTextDirection: typeof import('@vueuse/core')['useTextDirection']
   const useTextSelection: typeof import('@vueuse/core')['useTextSelection']
   const useTextareaAutosize: typeof import('@vueuse/core')['useTextareaAutosize']
@@ -478,6 +479,7 @@ declare module 'vue' {
     readonly SearchRequestClass: UnwrapRef<typeof import('./src/services/common/api-model')['SearchRequestClass']>
     readonly SearchRequestSchema: UnwrapRef<typeof import('./src/services/common/api-model')['SearchRequestSchema']>
     readonly SocialRegistrationReq: UnwrapRef<typeof import('./src/services/auth/model')['SocialRegistrationReq']>
+    readonly TERMS_QUERY_KEY: UnwrapRef<typeof import('./src/composables/setting/setting')['TERMS_QUERY_KEY']>
     readonly ValidationError: UnwrapRef<typeof import('yup')['ValidationError']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly accessModalVisible: UnwrapRef<typeof import('./src/composables/common/useBridge')['accessModalVisible']>
@@ -835,6 +837,8 @@ declare module 'vue' {
     readonly useSwipe: UnwrapRef<typeof import('@vueuse/core')['useSwipe']>
     readonly useSystemCheck: UnwrapRef<typeof import('./src/composables/common/app')['useSystemCheck']>
     readonly useTemplateRefsList: UnwrapRef<typeof import('@vueuse/core')['useTemplateRefsList']>
+    readonly useTermsDetail: UnwrapRef<typeof import('./src/composables/setting/setting')['useTermsDetail']>
+    readonly useTermsList: UnwrapRef<typeof import('./src/composables/setting/setting')['useTermsList']>
     readonly useTextDirection: UnwrapRef<typeof import('@vueuse/core')['useTextDirection']>
     readonly useTextSelection: UnwrapRef<typeof import('@vueuse/core')['useTextSelection']>
     readonly useTextareaAutosize: UnwrapRef<typeof import('@vueuse/core')['useTextareaAutosize']>
@@ -910,6 +914,7 @@ declare module '@vue/runtime-core' {
     readonly SearchRequestClass: UnwrapRef<typeof import('./src/services/common/api-model')['SearchRequestClass']>
     readonly SearchRequestSchema: UnwrapRef<typeof import('./src/services/common/api-model')['SearchRequestSchema']>
     readonly SocialRegistrationReq: UnwrapRef<typeof import('./src/services/auth/model')['SocialRegistrationReq']>
+    readonly TERMS_QUERY_KEY: UnwrapRef<typeof import('./src/composables/setting/setting')['TERMS_QUERY_KEY']>
     readonly ValidationError: UnwrapRef<typeof import('yup')['ValidationError']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly accessModalVisible: UnwrapRef<typeof import('./src/composables/common/useBridge')['accessModalVisible']>
@@ -1267,6 +1272,8 @@ declare module '@vue/runtime-core' {
     readonly useSwipe: UnwrapRef<typeof import('@vueuse/core')['useSwipe']>
     readonly useSystemCheck: UnwrapRef<typeof import('./src/composables/common/app')['useSystemCheck']>
     readonly useTemplateRefsList: UnwrapRef<typeof import('@vueuse/core')['useTemplateRefsList']>
+    readonly useTermsDetail: UnwrapRef<typeof import('./src/composables/setting/setting')['useTermsDetail']>
+    readonly useTermsList: UnwrapRef<typeof import('./src/composables/setting/setting')['useTermsList']>
     readonly useTextDirection: UnwrapRef<typeof import('@vueuse/core')['useTextDirection']>
     readonly useTextSelection: UnwrapRef<typeof import('@vueuse/core')['useTextSelection']>
     readonly useTextareaAutosize: UnwrapRef<typeof import('@vueuse/core')['useTextareaAutosize']>
