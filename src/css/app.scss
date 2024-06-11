@@ -1,8 +1,11 @@
 // app global css in SCSS form
+
+@import 'pretendard/dist/web/variable/pretendardvariable.css';
+
 @font-face {
   font-family: 'ROKAF';
   src: local('ROKAF Sans Medium'),
-    url('/fonts/ROKAF Sans Medium.otf') format('opentype');
+    url('/fonts/ROKAF-Sans-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
 }
@@ -10,29 +13,7 @@
 @font-face {
   font-family: 'ROKAF';
   src: local('ROKAF Sans Bold'),
-    url('/fonts/ROKAF Sans Bold.otf') format('opentype');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'pretendard';
-  src: local('Pretendard Regular'),
-    url('/fonts/Pretendard-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'pretendard';
-  src: local('Pretendard Medium'),
-    url('/fonts/Pretendard-Medium.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'pretendard';
-  src: local('Pretendard Bold'),
-    url('/fonts/Pretendard-Bold.woff') format('woff');
+    url('/fonts/ROKAF-Sans-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
 }
