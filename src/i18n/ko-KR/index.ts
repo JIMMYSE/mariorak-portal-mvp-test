@@ -126,6 +126,7 @@ export default {
     findPassword: '비밀번호 찾기',
     resetPassword: '비밀번호 재설정',
     metaverseEnter: '입장하기',
+    toList: '목록으로',
     expand: (label: any) => (label ? `"${label}" 확장` : '확장하다.'),
     collapse: (label: any) => (label ? `"${label}" 접기` : '무너지다.'),
   },

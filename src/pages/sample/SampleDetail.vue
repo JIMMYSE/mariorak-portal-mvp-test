@@ -49,7 +49,7 @@ function deleteNotice() {
       </q-card-section>
       <template v-else-if="data">
         <q-card-section class="">
-          <h3>{{ data?.ntc_nm }}</h3>
+          <h3>{{ data?.title }}</h3>
           <div>
             {{ data.pstg_bgng_dt }}
           </div>

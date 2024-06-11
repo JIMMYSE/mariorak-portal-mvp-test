@@ -18,13 +18,13 @@ const data = ref(photoAlbumList.find((item) => item.id === detailId));
 <template>
   <q-card flat square class="px-2 min-h-full">
     <q-card-section class="py-5 pb-[10px]">
-      <h3 class="text-body font-medium">{{ data?.ntc_nm }}</h3>
+      <h3 class="text-body font-medium">{{ data?.title }}</h3>
       <div
         class="mt-[10px] h-4 text-body2 leading-4 text-info font-pretendard flex items-center gap-2"
       >
         <span>교육훈련처</span>
         |
-        <span> {{ formatDate(data.crt_dt) }}</span>
+        <span> {{ formatDate(data.created_at) }}</span>
       </div>
       <!-- line -->
       <div

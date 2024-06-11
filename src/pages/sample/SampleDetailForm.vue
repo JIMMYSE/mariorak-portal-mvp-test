@@ -26,7 +26,7 @@ const isNew = !props.id;
 //   /** 공지유형코드 */
 //   ntc_type_cd: 'N',
 //   /** 공지제목 */
-//   ntc_nm: '',
+//   title: '',
 //   /** 공지내용 */
 //   ntc_cn: '',
 //   /** 노출여부 */
@@ -75,11 +75,11 @@ if (!isNew) {
     if (data.value) {
       // 상세 조회 데이터를 Form에 바인딩
       setValues({
-        ntc_nm: data.value.ntc_nm,
+        title: data.value.title,
         ntc_cn: data.value.ntc_cn,
       });
       // 위와 같음
-      // setFieldValue('ntc_nm', data.value.ntc_nm);
+      // setFieldValue('title', data.value.title);
       // setFieldValue('ntc_cn', data.value.ntc_cn);
     }
   });
@@ -137,7 +137,7 @@ const saveNotice = handleSubmit(async () => {
         <q-card-section>
           <div>{{ JSON.stringify(detail, null, 2) }}</div>
           <a-input-vee
-            name="ntc_nm"
+            name="title"
             maxlength="300"
             placeholder="제목을 입력해 주세요."
             clearable
