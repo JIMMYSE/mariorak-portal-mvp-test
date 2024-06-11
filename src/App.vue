@@ -26,7 +26,6 @@ const { BEversion } = useVersion();
   <div v-if="!IsPrd">
     FE version: {{ version }} / BE version: {{ BEversion }}
   </div>
-  f
   <router-view />
   <VueQueryDevtools v-if="showVueQueryDevTool" />
 </template>
