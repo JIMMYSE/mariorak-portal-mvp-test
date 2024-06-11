@@ -10,8 +10,9 @@ async function doLogout() {
 
 <template>
   <q-page>
+    <!-- 계정 설정 > 비밀번호 변경 예시 페이지 -->
     <router-link
-      :to="{ name: '' }"
+      :to="{ name: 'confirm-password' }"
       class="w-full h-[67px] pl-6 pr-3 flex justify-between items-center"
     >
       <a-subtitle>계정 설정</a-subtitle>
@@ -29,7 +30,7 @@ async function doLogout() {
     </div>
 
     <router-link
-      :to="{ name: '' }"
+      :to="{ path: '/setting/1/terms' }"
       class="w-full h-[67px] pl-6 pr-3 flex justify-between items-center border-b border-grey-1"
     >
       <h3 class="text-sm font-pretendard font-medium text-secondary">
@@ -41,7 +42,7 @@ async function doLogout() {
       ></q-icon>
     </router-link>
     <router-link
-      :to="{ name: '' }"
+      :to="{ path: '/setting/2/terms' }"
       class="w-full h-[67px] pl-6 pr-3 flex justify-between items-center"
     >
       <h3 class="text-sm font-pretendard font-medium text-secondary">
