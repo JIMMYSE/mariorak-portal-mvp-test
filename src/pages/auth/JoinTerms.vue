@@ -84,10 +84,10 @@ const detailId = ref<Id | undefined>(undefined);
 // const { data: detail, isFetching } = usePolicyDetail(detailId);
 
 function onSubmit() {
-  if (!allMandatoryItemsChecked.value) {
-    return;
-  }
-  store.setPolicyAgreements(state.agreements);
+  // if (!allMandatoryItemsChecked.value) {
+  //   return;
+  // }
+  // store.setPolicyAgreements(state.agreements);
   goToName('join-nickname');
 }
 </script>
@@ -110,8 +110,8 @@ function onSubmit() {
               size="32px"
               @update:model-value="onCheckAll"
             >
-              전체동의</a-checkbox
-            >
+              전체동의
+            </a-checkbox>
           </q-item-section>
         </q-item>
         <q-item
@@ -122,19 +122,21 @@ function onSubmit() {
           <q-item-section
             class="p-0 text-body2 font-rokaf font-medium text-base"
           >
-            <a-checkbox
-              v-model="item.agre_yn"
-              size="32px"
-              @update:model-value="onChecked"
-            >
-              {{ item.mandatory ? '[필수] ' : '' }} {{ item.type }}</a-checkbox
-            >
+            <a-checkbox v-model="item.agre_yn" size="32px">
+              {{ item.mandatory ? '[필수] ' : '' }}
+              {{ item.type }}
+            </a-checkbox>
           </q-item-section>
         </q-item>
       </q-list>
     </section>
-    <section class="fixed inset-x-0 bottom-0 p-4 bg-primary row">
-      <a-btn class="flex-1" label="동의하고 계속하기" @click="onSubmit" />
+    <section class="fixed inset-x-0 bottom-0 p-4 bg-primary row h-[64px]">
+      <button
+        class="text-center text-white font-base font-medium size-full flex justify-center items-center"
+        @click="onSubmit"
+      >
+        동의하고 계속하기
+      </button>
     </section>
   </q-page>
 </template>
