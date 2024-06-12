@@ -2,8 +2,6 @@
 
 <script setup lang="ts">
 import { Id } from 'src/services/common/api-model';
-import { formatDate } from 'src/utils/date-util';
-import { filterHtml } from 'src/utils/html-filter';
 import { useTermsDetail, useTermsList } from 'src/composables/setting/setting';
 import { useRoute } from 'vue-router';
 
@@ -24,8 +22,14 @@ const { data } = useTermsDetail(props.id);
     <!-- <p class="px-6 mt-[11px] text-pretendard text-sm text-secondary leading-5">
       {{ data?.contents }}
     </p> -->
-    <div flat>
-      <div class="tiptap-editor" v-html="$filterHtml(data?.contents)"></div>
+    <div
+      class="px-6 mt-[11px] text-pretendard text-sm text-secondary leading-5"
+      flat
+    >
+      <div
+        class="tiptap-editor"
+        v-html="$filterHtmlWithNewLine(data?.contents)"
+      ></div>
     </div>
   </q-page>
 </template>
