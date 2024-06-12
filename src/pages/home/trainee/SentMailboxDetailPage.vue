@@ -22,7 +22,7 @@ const data = ref(sendLetterList.find((item) => item.id === detailId));
     <div
       class="mt-[10px] text-sm text-grey-3 font-pretendard flex items-center"
     >
-      <span> {{ formatDate(data?.crt_dt) }}</span>
+      <span> {{ formatDate(data?.created_at) }}</span>
       ㅣ
       <span :class="data?.delivered ? 'visible' : 'hidden'">전달완료</span>
     </div>

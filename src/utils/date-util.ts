@@ -1,12 +1,10 @@
-import { useDateFormat } from '@vueuse/core';
-
-export function formatDate(d: Date | string | undefined) {
+export function formatDate(d: Date | string | undefined | null) {
   if (!d) return '';
   const s = useDateFormat(d, 'YYYY.MM.DD');
   return s.value;
 }
 
-export function formatDateTime(d: Date | string | undefined) {
+export function formatDateTime(d: Date | string | undefined | null) {
   if (!d) return '';
   const s = useDateFormat(d, 'YYYY.MM.DD HH:mm:ss');
   return s.value;

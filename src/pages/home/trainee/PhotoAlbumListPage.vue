@@ -46,7 +46,7 @@ const maxPages = computed(() =>
       <q-item
         v-for="(item, i) in list"
         :key="`item-${i}`"
-        :label="item.ntc_nm"
+        :label="item.title"
         clickable
         v-ripple
         class="w-full h-[65px] relative"
@@ -54,12 +54,12 @@ const maxPages = computed(() =>
       >
         <q-item-section>
           <h3 class="text-[13px] font-medium line-clamp-1">
-            {{ item.ntc_nm }}
+            {{ item.title }}
           </h3>
           <div
             class="text-caption text-grey-4 font-pretendard flex items-center gap-2"
           >
-            <span> {{ formatDate(item.crt_dt) }}</span>
+            <span> {{ formatDate(item.created_at) }}</span>
             |
             <span> {{ item.crt_lc }}</span>
             <template v-if="item.file">

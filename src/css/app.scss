@@ -1,8 +1,11 @@
 // app global css in SCSS form
+
+@import 'pretendard/dist/web/variable/pretendardvariable.css';
+
 @font-face {
   font-family: 'ROKAF';
   src: local('ROKAF Sans Medium'),
-    url('/fonts/ROKAF Sans Medium.otf') format('opentype');
+    url('/fonts/ROKAF-Sans-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
 }
@@ -10,29 +13,7 @@
 @font-face {
   font-family: 'ROKAF';
   src: local('ROKAF Sans Bold'),
-    url('/fonts/ROKAF Sans Bold.otf') format('opentype');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'pretendard';
-  src: local('Pretendard Regular'),
-    url('/fonts/Pretendard-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'pretendard';
-  src: local('Pretendard Medium'),
-    url('/fonts/Pretendard-Medium.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'pretendard';
-  src: local('Pretendard Bold'),
-    url('/fonts/Pretendard-Bold.woff') format('woff');
+    url('/fonts/ROKAF-Sans-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
 }
@@ -242,4 +223,81 @@ input::placeholder {
 
 .q-notification {
   border-radius: 15px;
+}
+
+/* Basic editor styles */
+.editor__content .tiptap,
+.tiptap-editor {
+  outline: none;
+
+  > * + * {
+    margin-top: 0.75em;
+  }
+
+  ul,
+  ol {
+    padding: 0 1rem;
+  }
+
+  h1 {
+    font-size: 1.8em;
+    font-weight: 700;
+  }
+  h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.1;
+  }
+
+  code {
+    background-color: rgba(#616161, 0.1);
+    color: #616161;
+  }
+
+  pre {
+    background: #0d0d0d;
+    border-radius: $generic-border-radius;
+    color: #fff;
+    font-family: 'JetBrainsMono', monospace;
+    padding: 0.75rem 1rem;
+
+    code {
+      background: none;
+      color: inherit;
+      font-size: 0.8rem;
+      padding: 0;
+    }
+  }
+
+  mark {
+    background-color: #faf594;
+  }
+
+  img {
+    height: auto;
+    max-width: 100%;
+  }
+
+  hr {
+    margin: 1rem 0;
+  }
+
+  blockquote {
+    border-left: 2px solid rgba($grey-5, 0.1);
+    padding-left: 1rem;
+  }
+
+  hr {
+    border: none;
+    border-top: 2px solid rgba($grey-5, 0.1);
+    margin: 2rem 0;
+  }
 }

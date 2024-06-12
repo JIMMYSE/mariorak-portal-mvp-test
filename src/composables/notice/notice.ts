@@ -4,21 +4,15 @@ import {
   NoticeList,
   NoticeSearchRes,
 } from 'meta-airforce-dto';
-import {
-  useQueryFetchItem,
-  useQueryFetchList,
-} from 'src/composables/common/api';
-import { Id, QueryOption, SearchRequest } from 'src/services/common/api-model';
 import { MaybeRef, MaybeRefOrGetter } from 'vue';
 
-const API_URL = '/notice';
+const NOTICE_API_URL = '/notice';
 export const NOTICE_QUERY_KEY = {
-  LIST: 'noticeList',
-  DETAIL: 'noticeDetail',
+  LIST: 'NOTICE_LIST',
+  DETAIL: 'NOTICE_DETAIL',
 };
 
 // DTO 선언
-export type NoticeListType = InferType<typeof NoticeList>;
 export type NoticeSearchResType = InferType<typeof NoticeSearchRes>;
 export type NoticeDetailType = InferType<typeof NoticeDetail>;
 export type NoticeDetailResType = InferType<typeof NoticeDetailRes>;
@@ -29,17 +23,17 @@ export type NoticeDetailResType = InferType<typeof NoticeDetailRes>;
 export const useNoticeList = ({
   searchRequest,
   queryOption,
-  queryKeyName = NOTICE_QUERY_KEY.LIST,
+  listQueryKeyName = NOTICE_QUERY_KEY.LIST,
 }: {
   searchRequest: MaybeRef<SearchRequest>;
   queryOption?: QueryOption;
-  queryKeyName?: string;
+  listQueryKeyName?: string;
 }) => {
   return useQueryFetchList<NoticeSearchResType, SearchRequest>({
-    url: API_URL,
+    url: NOTICE_API_URL,
     searchRequest,
     queryOption,
-    queryKeyName,
+    listQueryKeyName,
   });
 };
 
@@ -51,7 +45,7 @@ export const useNoticeDetail = (
   queryKeyName = NOTICE_QUERY_KEY.DETAIL
 ) => {
   return useQueryFetchItem<NoticeDetailResType>({
-    url: API_URL,
+    url: NOTICE_API_URL,
     id,
     queryKeyName,
   });

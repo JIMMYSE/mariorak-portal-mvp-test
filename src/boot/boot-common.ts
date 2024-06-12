@@ -9,12 +9,12 @@ export default boot(({ app }) => {
       defaultOptions: {
         queries: {
           refetchOnWindowFocus: false,
-          staleTime: 0,
-          gcTime: 0,
+          // staleTime: 0,
+          // gcTime: 0,
           placeholderData: (previousData: any, previousQuery: any) =>
             previousData,
 
-          // staleTime: 5 * 1000,
+          staleTime: 5 * 1000,
           // refetchInterval: 1000 * 60 * 10,
           // refetchOnMount: false,
           // refetchOnReconnect : false,
