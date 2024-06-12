@@ -8,7 +8,6 @@ import { useVersion } from './composables/common/version';
 useAppRouter();
 
 const showVueQueryDevTool = ref(process.env.IS_LOCAL !== undefined);
-showVueQueryDevTool.value = false;
 
 // call this for ready bridge api with native os
 useBridge();

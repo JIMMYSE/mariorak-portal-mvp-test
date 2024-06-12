@@ -13,7 +13,8 @@ import { MaybeRef, MaybeRefOrGetter } from 'vue';
 
 const API_URL = '/terms';
 export const TERMS_QUERY_KEY = {
-  DETAIL: 'termsDetail',
+  LIST: 'TERMS_LIST',
+  DETAIL: 'TERMS_DETAIL',
 };
 
 // DTO 선언
@@ -24,7 +25,7 @@ export type TermsDetailResType = InferType<typeof TermsDetailRes>;
 export const useTermsList = ({
   searchRequest,
   queryOption,
-  queryKeyName = NOTICE_QUERY_KEY.LIST,
+  queryKeyName = TERMS_QUERY_KEY.LIST,
 }: {
   searchRequest: MaybeRef<SearchRequest>;
   queryOption?: QueryOption;
@@ -34,7 +35,7 @@ export const useTermsList = ({
     url: API_URL,
     searchRequest,
     queryOption,
-    queryKeyName,
+    listQueryKeyName: queryKeyName,
   });
 };
 
