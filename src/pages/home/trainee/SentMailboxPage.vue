@@ -69,7 +69,7 @@ const maxPages = computed(() =>
           <div
             class="text-caption text-grey-4 font-pretendard flex items-center gap-2"
           >
-            <span> {{ formatDate(item.crt_dt) }}</span>
+            <span> {{ formatDate(item.created_at) }}</span>
 
             <span
               class="text-primary font-pretendard text-caption"

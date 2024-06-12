@@ -1,6 +1,6 @@
 import { h } from 'vue';
 import { useConfirmFullDialog } from '../common/dialog';
-import { QIcon } from 'quasar';
+import { q-icon } from 'quasar';
 import { goToName } from '../common/app';
 import { SocialLoginType } from 'src/services/auth/model';
 
@@ -14,13 +14,13 @@ export async function useExistingUserDialog(
           'div',
           { class: 'rounded-full bg-primary flex flex-center size-[47px]' },
           [
-            h(QIcon, {
+            h(q-icon, {
               name: 'img:/images/icons/icon_email.svg',
               size: '22px',
             }),
           ]
         )
-      : h(QIcon, {
+      : h(q-icon, {
           name: `img:/images/icons/btn_${provider}.svg`,
           size: '47px',
         });

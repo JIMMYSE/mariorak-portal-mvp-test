@@ -13,6 +13,8 @@
 
     // for Yup
     // https://github.com/jquense/yup
-    "strictFunctionTypes": false
+    "strictFunctionTypes": false,
+
+    "noErrorTruncation": true
   }
 }

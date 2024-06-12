@@ -74,7 +74,7 @@ const tab = ref('notice');
                   @click="goToDetail(item.id)"
                 >
                   <QItemSection>
-                    {{ item.ntc_nm }}
+                    {{ item.title }}
                   </QItemSection>
                   <QItemSection class="col-1" style="width: fit-content">
                     <ABtn

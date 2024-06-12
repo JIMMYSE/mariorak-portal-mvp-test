@@ -43,7 +43,7 @@ function onSocialJoinError(error: any) {
 <template>
   <QPage class="column flex-center px-4">
     <section class="column flex-center px-[42px] mt-[60px]">
-      <QIcon size="41px" name="img:icons/favicon-60x66.png" />
+      <q-icon size="41px" name="img:icons/favicon-60x66.png" />
       <div class="text-h1 mt-[23px]">글로 만들어가는 세상</div>
       <div class="text-h3 font-light mt-[5px]">
         서로버스에 오신 것을 환영합니다!
@@ -55,7 +55,7 @@ function onSocialJoinError(error: any) {
     </section>
     <div class="flex-1 min-h-20"></div>
     <section class="w-full">
-      <QBtn
+      <q-btn
         class="full-width text-body2 h-[50px]"
         rounded
         color="primary"
@@ -63,11 +63,11 @@ function onSocialJoinError(error: any) {
         unelevated
       >
         <div class="w-full text-start px-[4px]">
-          <QIcon name="img:/images/icons/icon_email.svg" size="24px"></QIcon>
+          <q-icon name="img:/images/icons/icon_email.svg" size="24px"></q-icon>
 
           <span class="absolute-center"> 이메일로 회원가입</span>
         </div>
-      </QBtn>
+      </q-btn>
     </section>
 
     <!-- OTHER LOGIN -->
