@@ -14,9 +14,11 @@ import useTryCatchWithLoading from 'src/composables/common/useTryCatchWithLoadin
 import { object, string } from 'yup';
 
 const store = useJoinStore();
-if (!store.hasTermsAggree()) {
-  goBack();
-}
+
+// api 연동시 주석 해제
+// if (!store.hasTermsAggree()) {
+//   goBack();
+// }
 
 const NicknameSchema = object({ nckn_nm: string() });
 
@@ -34,30 +36,26 @@ const { tryCatchWithLoading } = useTryCatchWithLoading();
 const nicknameInput = ref<typeof AInput | undefined>();
 
 const onSubmit = handleSubmit(() => {
-  tryCatchWithLoading(
-    async () => {
-      store.setNickname(nickname.value);
-      await store.joinWithAccount();
-
-      Dialog.create({
-        component: JoinCompleted,
-        fullWidth: true,
-      }).onDismiss(() => goToName('main'));
-    },
-    (error: any) =>
-      useAlertDialog({ text: error.message })?.onDismiss(() => {
-        nicknameInput.value?.focus();
-      })
-  );
+  // tryCatchWithLoading(
+  //   async () => {
+  //     store.setNickname(nickname.value);
+  //     await store.joinWithAccount();
+  //     Dialog.create({
+  //       component: JoinCompleted,
+  //       fullWidth: true,
+  //     }).onDismiss(() => goToName('main'));
+  //   },
+  //   (error: any) =>
+  //     useAlertDialog({ text: error.message })?.onDismiss(() => {
+  //       nicknameInput.value?.focus();
+  //     })
+  // );
 });
 </script>
 
 <template>
   <QPage class="column px-6 pb-[87px] min-h-[calc(100vh-87px)]">
     <q-form class="column col" @submit.prevent="onSubmit">
-      <h3 class="text-h3 mt-10">
-        사용하실 <span class="text-primary">닉네임</span>을 설정해주세요.
-      </h3>
       <s-field label="닉네임" class="grow">
         <a-input
           ref="nicknameInput"
@@ -85,13 +83,13 @@ const onSubmit = handleSubmit(() => {
           fit="contain"
         />
       </div>
-      <div class="w-screen -ml-6 p-4 fixed bottom-0 bg-white">
-        <a-btn
-          type="submit"
-          class="w-full h-[55px]"
-          :label="$t('label.ok')"
-          :disable="!meta.valid"
-        />
+      <div class="fixed inset-x-0 bottom-0 p-4 bg-primary row h-[64px]">
+        <button
+          class="text-center text-white font-base font-medium size-full flex justify-center items-center"
+          @click="onSubmit"
+        >
+          완료하기
+        </button>
       </div>
     </q-form>
   </QPage>

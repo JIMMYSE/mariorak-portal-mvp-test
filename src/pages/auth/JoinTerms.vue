@@ -87,7 +87,7 @@ function onSubmit() {
   // if (!allMandatoryItemsChecked.value) {
   //   return;
   // }
-  // store.setPolicyAgreements(state.agreements);
+  store.setPolicyAgreements(state.agreements);
   goToName('join-nickname');
 }
 </script>
