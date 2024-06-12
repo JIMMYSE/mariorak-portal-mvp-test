@@ -338,7 +338,8 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/setting/ChangePassword.vue'),
       },
       {
-        path: 'service-terms',
+        path: 'service-terms/:id',
+        props: true,
         name: 'service-terms',
         meta: {
           title: '서비스 이용약관',
@@ -347,7 +348,8 @@ const routes: RouteRecordRaw[] = [
         component: () => import('src/pages/setting/TermsDetail.vue'),
       },
       {
-        path: 'privacy-terms',
+        path: 'privacy-terms/:id',
+        props: true,
         name: 'privacy-terms',
         meta: {
           title: '개인정보처리방침',
