@@ -337,20 +337,26 @@ const routes: RouteRecordRaw[] = [
         },
         component: () => import('pages/setting/ChangePassword.vue'),
       },
-      // {
-      //   path: ':id/terms',
-      //   name: 'terms-detail',
-      //   beforeEnter: (to, from, next) => {
-      //     const id = to.params.id as string;
-      //     if (id === '1') {
-      //       to.meta.title = '서비스 이용약관';
-      //     } else {
-      //       to.meta.title = '개인정보처리방침';
-      //     }
-      //     next();
-      //   },
-      //   component: () => import('pages/setting/TermsDetail.vue'),
-      // },
+      {
+        path: 'service-terms/:id',
+        props: true,
+        name: 'service-terms',
+        meta: {
+          title: '서비스 이용약관',
+          bgColor: 'white',
+        },
+        component: () => import('src/pages/setting/TermsDetail.vue'),
+      },
+      {
+        path: 'privacy-terms/:id',
+        props: true,
+        name: 'privacy-terms',
+        meta: {
+          title: '개인정보처리방침',
+          bgColor: 'white',
+        },
+        component: () => import('src/pages/setting/TermsDetail.vue'),
+      },
       {
         path: 'cancel',
         name: 'cancel-membership',
