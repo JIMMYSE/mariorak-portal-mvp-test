@@ -437,29 +437,13 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '',
-        name: 'join',
-        meta: {
-          title: '회원가입',
-        },
-        component: () => import('pages/auth/JoinPage.vue'),
-      },
-
-      {
-        path: 'email',
         name: 'join-email',
         meta: {
           title: '회원가입',
         },
         component: () => import('pages/auth/JoinEmail.vue'),
       },
-      {
-        path: 'mobile',
-        name: 'join-mobile',
-        meta: {
-          title: '휴대폰 인증',
-        },
-        component: () => import('pages/auth/JoinMobile.vue'),
-      },
+
       {
         path: 'policy',
         name: 'join-policy',
