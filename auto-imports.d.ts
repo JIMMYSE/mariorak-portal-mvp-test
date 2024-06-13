@@ -467,7 +467,6 @@ declare module 'vue' {
     readonly FILE_DOWNLOAD_URL: UnwrapRef<typeof import('./src/composables/common/api')['FILE_DOWNLOAD_URL']>
     readonly FieldContextKey: UnwrapRef<typeof import('vee-validate')['FieldContextKey']>
     readonly FormContextKey: UnwrapRef<typeof import('vee-validate')['FormContextKey']>
-    readonly JoinCompleted: UnwrapRef<typeof import('./src/pages/auth/JoinCompleted.vue')['default']>
     readonly NOTICE_QUERY_KEY: UnwrapRef<typeof import('./src/composables/notice/notice')['NOTICE_QUERY_KEY']>
     readonly Nickname: UnwrapRef<typeof import('./src/services/auth/model')['Nickname']>
     readonly REG_TYPE: UnwrapRef<typeof import('./src/services/auth/model')['REG_TYPE']>
@@ -903,7 +902,6 @@ declare module '@vue/runtime-core' {
     readonly FILE_DOWNLOAD_URL: UnwrapRef<typeof import('./src/composables/common/api')['FILE_DOWNLOAD_URL']>
     readonly FieldContextKey: UnwrapRef<typeof import('vee-validate')['FieldContextKey']>
     readonly FormContextKey: UnwrapRef<typeof import('vee-validate')['FormContextKey']>
-    readonly JoinCompleted: UnwrapRef<typeof import('./src/pages/auth/JoinCompleted.vue')['default']>
     readonly NOTICE_QUERY_KEY: UnwrapRef<typeof import('./src/composables/notice/notice')['NOTICE_QUERY_KEY']>
     readonly Nickname: UnwrapRef<typeof import('./src/services/auth/model')['Nickname']>
     readonly REG_TYPE: UnwrapRef<typeof import('./src/services/auth/model')['REG_TYPE']>
