@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { watch } from 'vue';
@@ -12,6 +12,7 @@ type Props = {
 };
 const props = defineProps<Props>();
 const emit = defineEmits(['update:avatarId', 'save']);
+type SwiperClass = ReturnType<typeof useSwiper>;
 
 // ================================
 // state
@@ -51,8 +52,8 @@ const selectedAvatarId = ref(2);
 
 // ================================
 // swiper
-const swiperRef = ref<Swiper | null>(null);
-const setSwiperRef = (swiper: Swiper) => {
+const swiperRef = ref<SwiperClass['value'] | null>(null);
+const setSwiperRef = (swiper: SwiperClass['value']) => {
   swiperRef.value = swiper;
 };
 
@@ -61,7 +62,7 @@ function swiperSlideTo(index: number) {
   swiperRef.value?.slideTo(index - 1, 300);
 }
 
-function onSlideChange(swiper: Swiper) {
+function onSlideChange(swiper: SwiperClass['value']) {
   const avatarId = swiper.activeIndex + 1;
   selectedAvatarId.value = avatarId;
   console.log('onSlideChange', swiper.activeIndex, selectedAvatarId.value);
