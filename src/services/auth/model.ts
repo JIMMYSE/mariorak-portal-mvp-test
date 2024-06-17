@@ -1,7 +1,5 @@
-import { InferType, array, boolean, number, object, string } from 'yup';
-
 export type SocialLoginType = 'local' | 'google' | 'kakao' | 'naver' | 'apple';
-export type LoginResType = { eml_addr: string; id: number; token: string };
+export type LoginResType = { user: User; token: string };
 
 export const DeviceAgent = object({
   fcm_token: string().nullable(),

@@ -1,5 +1,4 @@
 import { useCookies } from '@vueuse/integrations/useCookies';
-import { useBridge } from '../common/useBridge';
 import { wait } from 'src/utils/promise-util';
 import {
   AccountBase,
@@ -11,7 +10,6 @@ import {
   SocialLoginType,
   SocialRegistrationReq,
 } from 'src/services/auth/model';
-import { ApiResponse } from 'src/services/common/api-model';
 
 const ACCESS_TOKEN_KEY = process.env.ACCESS_TOKEN_KEY as string;
 const TOKEN_EXPIRE_DAYS = Number(process.env.TOKEN_EXPIRE_DAYS as string);
@@ -98,7 +96,8 @@ export function useLogin() {
   function saveLoginUser(payload: LoginResType) {
     setAccessToken(payload.token);
     isAccessTokenListenerActive.value = true;
-    return initUserDetailInfo();
+    // console.log('#### 로그인 성공 ####', payload);
+    return initUserDetailInfo(payload.user.id);
   }
 
   async function socialLogin(accessToken: string, provider: SocialLoginType) {
@@ -147,10 +146,15 @@ export function useLogin() {
 }
 
 // 유저 상세정보 조회 & 저장
-export async function initUserDetailInfo() {
+export async function initUserDetailInfo(id: Id) {
   try {
-    const user = {};
-    setUserInfo(user);
+    const { data: userDetail } = await getUserDetail(id);
+    if (userDetail.value?.data) {
+      const user: User = {
+        ...userDetail.value.data,
+      };
+      setUserInfo(user);
+    }
   } catch (error) {
     console.error('#### 사용자 정보 조회 실패 ####');
   }
@@ -229,9 +233,8 @@ function useAccessTokenCookie() {
   return useCookies([ACCESS_TOKEN_KEY]);
 }
 
-function setUserInfo(userData: any) {
+function setUserInfo(userData: User) {
   const authStore = useAuthStore();
-  userData.nckn_nm = decodeURIComponent(userData.nckn_nm ?? '');
   authStore.setUser(userData);
 }
 

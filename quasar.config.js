@@ -145,6 +145,11 @@ module.exports = configure(function (ctx) {
                 type: true,
               },
               {
+                from: 'src/services/common/auth-model',
+                imports: ['User'],
+                type: true,
+              },
+              {
                 from: 'src/services/common/api-model',
                 imports: [
                   'Id',

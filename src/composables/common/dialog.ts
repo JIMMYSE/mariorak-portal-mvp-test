@@ -118,7 +118,7 @@ export function useAlertErrorDialogWatcher(
  * @link https://quasar.dev/quasar-plugins/notify/
  */
 export function useNotify(message: Message) {
-  Notify.create({
+  return Notify.create({
     color: 'negative',
     message: t(message),
   });
@@ -148,3 +148,17 @@ export function useNotifyError(errors: any) {
     useNotify(value);
   });
 }
+
+/**
+ * 완료 Notify
+ */
+export const useNotifyDone = (message: Message) => {
+  return Notify.create({
+    color: 'black',
+    message: t(message),
+    textColor: 'white',
+    icon: 'done',
+    iconColor: 'white',
+    // timeout: 1000,
+  });
+};

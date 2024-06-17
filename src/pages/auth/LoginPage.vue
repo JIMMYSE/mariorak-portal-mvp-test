@@ -69,7 +69,7 @@ function handleLoginResult({
     <q-img src="~assets/images/main-logo-blue.png" width="173px" height="45" />
     <q-card class="w-full mt-12 bg-transparent" :flat="true">
       <!-- EMAIL LOGIN -->
-      <q-cardSection>
+      <q-card-section>
         <q-form @submit.prevent="onSubmit">
           <a-input
             type="text"
@@ -118,7 +118,7 @@ function handleLoginResult({
             @click="goToName('find-password')"
           />
         </div>
-      </q-cardSection>
+      </q-card-section>
     </q-card>
   </q-page>
 </template>
