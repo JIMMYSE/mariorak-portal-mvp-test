@@ -4,13 +4,17 @@
 import { QInputProps } from 'quasar';
 import { useForwardProps } from 'radix-vue';
 
-interface Props extends QInputProps {
+type Model = string | number | null | undefined;
+
+interface Props extends Omit<QInputProps, 'modelValue'> {
+  name?: string;
   done?: boolean;
   borderRadius?: string | undefined;
-  inlineCounter: boolean;
+  inlineCounter?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  name: '',
   type: 'text',
   color: 'primary',
   inputClass: 'text-grey-5 text-weight-light',
@@ -26,6 +30,26 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const forwarded = useForwardProps(props);
+const model = defineModel<Model>({
+  required: false,
+  default: '',
+});
+
+let field: FieldContext<Model> | null = null;
+if (props.name) {
+  field = useField<Model>(() => props.name);
+  const { value: fieldValue } = field;
+  watch(
+    fieldValue,
+    (value) => {
+      if (value !== model.value) model.value = value;
+    },
+    { immediate: true }
+  );
+  watch(model, (value) => {
+    if (value !== fieldValue.value) fieldValue.value = value;
+  });
+}
 
 const inputEl = ref<HTMLInputElement | null>(null);
 
@@ -33,6 +57,7 @@ const isPasswordVisible = ref(false);
 const inputType = computed(() =>
   isPasswordVisible.value ? 'text' : props.type
 );
+
 defineExpose({
   focus() {
     inputEl.value?.focus();
@@ -43,13 +68,18 @@ defineExpose({
 <template>
   <q-input
     v-bind="forwarded"
-    :counter="inlineCounter"
-    :type="inputType"
     ref="inputEl"
+    v-model="model"
+    :type="inputType"
     :class="{ 'border-radius': borderRadius, 'inline-counter': inlineCounter }"
+    :counter="inlineCounter"
   >
-    <template #append v-if="done || props.type === 'password'">
-      <div class="mr-2">
+    <template #before v-if="$slots.before">
+      <slot name="before" />
+    </template>
+    <template #append>
+      <slot name="append" />
+      <div v-if="done || props.type === 'password'" class="mr-2">
         <!-- done icon -->
         <q-icon
           name="img:/src/assets/icons/check.svg"
@@ -70,6 +100,9 @@ defineExpose({
           v-if="props.type === 'password'"
         />
       </div>
+    </template>
+    <template #after v-if="$slots.after">
+      <slot name="after" />
     </template>
   </q-input>
 </template>
