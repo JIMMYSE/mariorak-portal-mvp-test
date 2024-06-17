@@ -9,8 +9,6 @@ export default boot(({ app }) => {
       defaultOptions: {
         queries: {
           refetchOnWindowFocus: false,
-          // staleTime: 0,
-          // gcTime: 0,
           placeholderData: (previousData: any, previousQuery: any) =>
             previousData,
 
