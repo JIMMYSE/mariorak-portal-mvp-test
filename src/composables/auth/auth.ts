@@ -93,12 +93,12 @@ export function useLogin() {
     };
   }
 
-  function saveLoginUser(payload: LoginResType) {
+  const saveLoginUser = async (payload: LoginResType) => {
     setAccessToken(payload.token);
     isAccessTokenListenerActive.value = true;
     // console.log('#### 로그인 성공 ####', payload);
-    initUserDetailInfo(payload.user.id);
-  }
+    await initUserDetailInfo(payload.user.id);
+  };
 
   async function socialLogin(accessToken: string, provider: SocialLoginType) {
     getAgentInfo();
@@ -148,15 +148,13 @@ export function useLogin() {
 // 유저 상세정보 조회 & 저장
 export async function initUserDetailInfo(id: Id) {
   try {
-    // const { data: userDetail } = await getUserDetail(id);
-    // if (userDetail.value?.data) {
-    //   const user: User = {
-    //     ...userDetail.value.data,
-    //   };
-    //   setUserInfo(user);
-    // }
-
-    setUserInfo({});
+    const { data: userDetail } = await getUserDetail(id);
+    if (userDetail.value?.data) {
+      const user: User = {
+        ...userDetail.value.data,
+      };
+      setUserInfo(user);
+    }
   } catch (error) {
     console.error('#### 사용자 정보 조회 실패 ####');
   }
