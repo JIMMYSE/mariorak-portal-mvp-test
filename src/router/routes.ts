@@ -70,66 +70,73 @@ const routes: RouteRecordRaw[] = [
           },
         ],
       },
+      // 입영안내
       {
-        path: 'enlist',
-        name: 'enlist',
+        path: 'enrollment',
         meta: {
           requiresAuth: true,
         },
         component: SubLayout,
         children: [
           {
-            name: 'recruit-info',
-            path: 'recruit-info',
+            path: 'IP',
+            name: 'enrollment-ip',
             meta: {
-              title: '모병안내',
+              title: '모병 안내',
+              enrollmentGuideCd: 'IP',
               bgColor: 'white',
             },
-            component: () => import('pages/home/enlist/RecruitInfoPage.vue'),
+            component: () => import('pages/enrollment/EnrollmentGuide.vue'),
           },
           {
-            name: 'ready-enlist',
-            path: 'ready-enlist',
+            path: 'EP',
+            name: 'enrollment-ep',
             meta: {
-              title: '입영준비 사항',
+              title: '입영 준비사항',
+              enrollmentGuideCd: 'EP',
               bgColor: 'white',
             },
-            component: () => import('pages/home/enlist/ReadyEnlistPage.vue'),
+            component: () => import('pages/enrollment/EnrollmentGuide.vue'),
           },
           {
-            name: 'enlist-event',
-            path: 'enlist-event',
+            path: 'EE',
+            name: 'enrollment-ee',
             meta: {
-              title: '입영행사',
+              title: '입영행사 안내',
+              enrollmentGuideCd: 'EE',
+              bgColor: 'white',
             },
-            component: () => import('pages/home/enlist/EnlistEventPage.vue'),
+            component: () => import('pages/enrollment/EnrollmentGuide.vue'),
           },
           {
-            name: 'commission-event',
-            path: 'commission-event',
+            path: 'CM',
+            name: 'enrollment-cm',
             meta: {
-              title: '임관식안내',
+              title: '임관식 안내',
+              enrollmentGuideCd: 'CM',
+              bgColor: 'white',
             },
-            component: () =>
-              import('pages/home/enlist/CommissionEventPage.vue'),
+            component: () => import('pages/enrollment/EnrollmentGuide.vue'),
           },
           {
-            name: 'graduation-event',
-            path: 'graduation-event',
+            path: 'CP',
+            name: 'enrollment-cp',
             meta: {
               title: '수료식 안내',
-            },
-            component: () =>
-              import('pages/home/enlist/GraduationEventPage.vue'),
-          },
-          {
-            name: 'way-to-come',
-            path: 'way-to-come',
-            meta: {
-              title: '찾아오는 방법',
+              enrollmentGuideCd: 'CP',
               bgColor: 'white',
             },
-            component: () => import('pages/home/enlist/WayToComePage.vue'),
+            component: () => import('pages/enrollment/EnrollmentGuide.vue'),
+          },
+          {
+            path: 'TS',
+            name: 'enrollment-ts',
+            meta: {
+              title: '찾아오는 법',
+              enrollmentGuideCd: 'TS',
+              bgColor: 'white',
+            },
+            component: () => import('pages/enrollment/EnrollmentGuide.vue'),
           },
           {
             name: 'faq',

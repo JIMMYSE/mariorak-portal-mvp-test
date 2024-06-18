@@ -34,32 +34,42 @@ const socialList = [
   { name: 'tstory', url: 'https://afplay.tistory.com/' },
 ];
 const menuListForEnlist = [
-  { title: '모병안내', subtitle: '입대', icon: 'airplane', to: 'recruit-info' },
+  {
+    title: '모병 안내',
+    subtitle: '입대',
+    icon: 'airplane',
+    to: 'enrollment-ip',
+  },
   {
     title: '입영 준비사항',
     subtitle: '입대',
     icon: 'airplane',
-    to: 'ready-enlist',
+    to: 'enrollment-ep',
   },
-  { title: '입영 행사안내', subtitle: '입대', icon: 'mic', to: 'enlist-event' },
+  {
+    title: '입영 행사안내',
+    subtitle: '입대',
+    icon: 'mic',
+    to: 'enrollment-ee',
+  },
   {
     title: '임관식 안내',
     subtitle: '입대',
     icon: 'soldier-1',
-    to: 'commission-event',
+    to: 'enrollment-cm',
   },
   {
     title: '수료식 안내',
     subtitle: '입대',
     icon: 'certificate',
-    to: 'graduation-event',
+    to: 'enrollment-cp',
   },
   { title: '자주 묻는 질문', subtitle: '입대', icon: 'bulb', to: 'faq' },
   {
     title: '찾아오는 법',
     subtitle: '입대',
     icon: 'search',
-    to: 'way-to-come',
+    to: 'enrollment-ts',
     class: 'col-span-3 !h-[100px]',
   },
 ];
