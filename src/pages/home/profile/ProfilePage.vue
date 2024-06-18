@@ -1,13 +1,11 @@
-<script setup lang="ts">
-import AvatarAndNickname from 'src/components/AvatarAndNickname.vue';
-import { ref } from 'vue';
+<!-- 프로필 -->
 
-const avatarId = ref(2);
-</script>
+<script setup lang="ts"></script>
+
 <template>
   <q-page class="bg-grey pt-6">
     <!-- content -->
-    <avatar-and-nickname v-model="avatarId" />
+    <avatar-and-nickname />
   </q-page>
 </template>
 

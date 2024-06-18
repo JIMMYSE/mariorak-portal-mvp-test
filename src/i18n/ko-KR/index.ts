@@ -1,3 +1,5 @@
+import { josa } from 'josa';
+
 /**
  * Vue I18n
  * @see https://vue-i18n.intlify.dev/
@@ -20,7 +22,8 @@ export default {
     leaveConfirm: '이 페이지에서 나가시겠습니까?',
     leaveConfirmDetail:
       '저장하지 않고 페이지를 벗어날 경우, 작성한 내용이 사라집니다.',
-    nicknameUpdated: '닉네임이 변경되었습니다.',
+    nicknameUpdated: '닉네임 설정 완료!',
+    avatarUpdated: '아바타 설정 완료!',
   },
   error: {
     occured: '처리 중 오류가 발생하였습니다.',
@@ -86,6 +89,7 @@ export default {
   },
   validation: {
     required: '필수 입력 항목입니다.',
+    notChanged: '변경된 내용이 없습니다.',
     minLength: '최소 입력 길이를 확인하세요.',
     maxLength: '최대 입력 길이를 확인하세요.',
     maxLengthCustom: '최대 입력 길이는 {length}자 입니다.',
@@ -93,6 +97,10 @@ export default {
     max: '최대값을 확인하세요.',
     numeric: '숫자만 입력 가능합니다.',
     email: '이메일 형식을 확인하세요.',
+    forbiddenWord: '타인에게 불쾌감을 줄 수 있는 단어는 사용 불가합니다.',
+    nickname: '2~10자 한글, 영문, 숫자 입력 가능',
+    nicknameAlreadyInUse: '중복된 닉네임입니다.',
+    nicknameNotChanged: '닉네임을 변경해 주세요.',
   },
   metaverse: {
     enter: {
