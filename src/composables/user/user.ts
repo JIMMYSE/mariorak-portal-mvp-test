@@ -24,9 +24,7 @@ export const AVATAR_QUERY_KEY = {
   DETAIL: 'AVATAR_DETAIL',
 };
 
-// DTO 선언
-// export type NoticeSearchResType = InferType<typeof NoticeSearchRes>;
-// export type NoticeDetailType = InferType<typeof NoticeDetail>;
+/** DTO */
 export type UserDetailResType = InferType<typeof UserDetailRes>;
 export type AccountResType = InferType<typeof AccountRes>;
 export type UserNicknameResType = InferType<typeof UserNicknameRes>;
