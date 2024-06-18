@@ -1,87 +1,82 @@
+<!-- 프로필 > 아바타/닉네임 설정 -->
+
 <script setup lang="ts">
-import { ref } from 'vue';
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { watch } from 'vue';
-import { onMounted } from 'vue';
-import { useQuasar } from 'quasar';
+import type { Swiper as SwiperClass } from 'swiper/types/index.d.ts';
+import { Swiper, SwiperSlide } from 'swiper/vue';
 
-type Props = {
-  modelValue: number;
-};
-const props = defineProps<Props>();
-const emit = defineEmits(['update:avatarId', 'save']);
-type SwiperClass = ReturnType<typeof useSwiper>;
+const { user } = useUserInfo();
 
-// ================================
-// state
-const nickname = ref('공군예비훈련병');
-const avatarList = ref([
-  {
-    id: 1,
-    name: '남군전투복',
-    src: new URL('/src/assets/images/avatar-1.png', import.meta.url).href,
-    thumbnailSrc: new URL('/src/assets/images/avatar-1s.png', import.meta.url)
-      .href,
-  },
-  {
-    id: 2,
-    name: '여군전투복',
-    src: new URL('/src/assets/images/avatar-2.png', import.meta.url).href,
-    thumbnailSrc: new URL('/src/assets/images/avatar-2s.png', import.meta.url)
-      .href,
-  },
-  {
-    id: 3,
-    name: '남군활동복',
-    src: new URL('/src/assets/images/avatar-3.png', import.meta.url).href,
-    thumbnailSrc: new URL('/src/assets/images/avatar-3s.png', import.meta.url)
-      .href,
-  },
-  {
-    id: 4,
-    name: '여군활동복',
-    src: new URL('/src/assets/images/avatar-4.png', import.meta.url).href,
-    thumbnailSrc: new URL('/src/assets/images/avatar-4s.png', import.meta.url)
-      .href,
-  },
-]);
+const { data: avatarData } = useAvatarList();
 
-const selectedAvatarId = ref(2);
+const {
+  meta,
+  values: form,
+  errors,
+  defineField,
+  setFieldValue,
+  handleSubmit,
+  resetForm,
+} = useForm({
+  validationSchema: toTypedSchema(MyProfileUpdateSchema),
+  initialValues: {
+    nickname: user.value?.nickname || '',
+    avatarId: user.value?.avatar_id || 1,
+  },
+});
+
+const [nickname, nicknameAttrs] = defineField('nickname');
+
+const save = handleSubmit(async () => {
+  if (nickname !== user.value?.nickname) {
+    // 업데이트
+    await updateUserNickname(form.nickname!);
+  }
+
+  await updateUserAvatar(form.avatarId!);
+
+  // 유저정보 재조회
+  await initUserDetailInfo(user.value?.id);
+
+  useNotifyDone('message.avatarUpdated');
+
+  resetForm({
+    values: {
+      nickname: form.nickname,
+      avatarId: form.avatarId,
+    },
+  });
+});
 
 // ================================
 // swiper
-const swiperRef = ref<SwiperClass['value'] | null>(null);
-const setSwiperRef = (swiper: SwiperClass['value']) => {
+const swiperRef = ref<SwiperClass | null>(null);
+const setSwiperRef = (swiper: SwiperClass) => {
   swiperRef.value = swiper;
 };
 
-function swiperSlideTo(index: number) {
-  console.log('swiperSlideTo', index, swiperRef.value);
-  swiperRef.value?.slideTo(index - 1, 300);
-}
+const swiperSlideTo = (index: number) => {
+  console.log(index);
+  swiperRef.value?.slideTo(index, 300);
+};
 
-function onSlideChange(swiper: SwiperClass['value']) {
-  const avatarId = swiper.activeIndex + 1;
-  selectedAvatarId.value = avatarId;
-  console.log('onSlideChange', swiper.activeIndex, selectedAvatarId.value);
-}
+const onSlideChange = (swiper: SwiperClass) => {
+  setFieldValue('avatarId', swiper.activeIndex + 1);
+};
 
-function onClickAvatarList(id: number) {
-  swiperSlideTo(id);
-  selectedAvatarId.value = id;
-}
+const onClickAvatarList = (avatarId: number, index: number) => {
+  swiperSlideTo(index);
+  setFieldValue('avatarId', avatarId);
+};
 
 const thumbnailList = ref<HTMLElement[] | null>(null);
 
-watch(selectedAvatarId, (id) => emit('update:avatarId', id));
 const marginY = 12;
 const thumbnailWrapper = ref();
-const thumbnailOffset = ref();
 
-function scrollThumbnailOn(id: number) {
-  const item = thumbnailList.value?.[id - 1];
+const scrollThumbnailOn = () => {
+  const item = thumbnailList.value?.[myAvatarIndex.value ?? 0];
   const parent = item?.parentElement;
   if (!item || !parent) return;
 
@@ -91,73 +86,71 @@ function scrollThumbnailOn(id: number) {
     top,
     behavior: 'smooth',
   });
-}
+};
 
-watch(() => props.modelValue, scrollThumbnailOn);
-
-onMounted(() => {
-  swiperSlideTo(selectedAvatarId.value - 1);
-  thumbnailOffset.value = thumbnailWrapper.value.getBoundingClientRect().y;
-  scrollThumbnailOn(selectedAvatarId.value);
+const myAvatarIndex = computed(() => {
+  return avatarData.value?.rows.findIndex(
+    (avatar) => avatar.id === form.avatarId
+  );
 });
 
-// ================================
-// save action
-const ableToSave = ref(true);
-const $q = useQuasar();
-function save() {
-  //TODO: save avatar and nickname via API
-  $q.notify({
-    message: '아바타 설정이 완료되었어요.',
-    color: 'black',
-    textColor: 'white',
-    icon: 'done',
-    iconColor: 'white',
-    timeout: 1000,
-  });
-}
+onMounted(() => {
+  scrollThumbnailOn();
+});
 </script>
+
 <template>
-  <div>
-    <q-input
-      name="nickname"
-      v-model="nickname"
-      rounded
-      outlined
-      bottom-slots
-      no-error-icon
-      class="nickname-input px-6 mt-6"
-      color="primary"
-      input-class="font-medium"
-      min="2"
-      maxlength="10"
-      error-message="2~10자 한글, 영문, 숫자 입력 가능"
-    >
-      <!-- NICHNAME FIELD -->
-      <template #before>
-        <span class="py-3 font-pretendard text-body2 text-black">
-          🐸 나의 이름은</span
-        >
-      </template>
-      <template #append>
-        <a-btn-icon icon="img:/src/assets/icons/edit.svg" size="35px" />
-      </template>
-    </q-input>
+  <div class="flex flex-col size-full" style="min-height: inherit">
+    <section class="flex-none w-full px-8 pt-2">
+      <q-input
+        class="nickname-input"
+        input-class="font-medium"
+        name="nickname"
+        v-model="nickname"
+        v-bind="nicknameAttrs"
+        rounded
+        outlined
+        bottom-slots
+        no-error-icon
+        color="primary"
+        maxlength="10"
+        input-style="font-size: 16px"
+        :error="!!errors?.nickname"
+        :error-message="errors?.nickname"
+      >
+        <!-- NICHNAME FIELD -->
+        <template #before>
+          <span class="py-3 font-pretendard text-body2 text-black">
+            🐸 나의 이름은</span
+          >
+        </template>
+        <template #append>
+          <a-btn-icon icon="img:/src/assets/icons/edit.svg" size="35px" />
+        </template>
+      </q-input>
+    </section>
 
     <!-- AVATAR SWIPER -->
-    <section class="mt-[18px] px-6">
+    <section
+      v-if="myAvatarIndex != null"
+      class="flex-none w-full mt-[18px] px-6"
+    >
       <swiper
-        :initial-slide="modelValue"
+        :initial-slide="myAvatarIndex"
         direction="horizontal"
         @swiper="setSwiperRef"
         @slide-change="onSlideChange"
       >
-        <swiper-slide v-for="avatar in avatarList" :key="avatar.id">
+        <swiper-slide v-for="avatar in avatarData?.rows" :key="avatar.id">
           <section class="h-full relative pb-2 flex justify-center">
             <div class="absolute bottom-0 flex justify-center w-full">
               <img src="/src/assets/images/shadow.svg" alt="shadow" />
             </div>
-            <q-img :src="avatar.src" height="359px" fit="contain" />
+            <q-img
+              :src="avatar.profile_image.convert_addr ?? undefined"
+              height="359px"
+              fit="contain"
+            />
           </section>
         </swiper-slide>
       </swiper>
@@ -165,27 +158,28 @@ function save() {
 
     <!-- THUMBNAIL LIST -->
     <section
+      v-if="myAvatarIndex != null"
       ref="thumbnailWrapper"
-      class="w-full grid grid-flow-col justify-center gap-[17px] mt-[18px] py-5 px-6 bg-white mb-16"
+      class="flex-1 w-full flex justify-center items-start gap-[17px] mt-[18px] px-6 py-5 bg-white"
     >
       <div
-        v-for="avatar in avatarList"
+        v-for="(avatar, i) in avatarData?.rows"
         :key="avatar.id"
         ref="thumbnailList"
         class="flex flex-col justify-center items-center"
         :avatarId="avatar.id"
-        @click="onClickAvatarList(avatar.id)"
+        @click="onClickAvatarList(avatar.id, i)"
       >
         <div
           class="w-[69px] h-[113px] flex justify-center items-center rounded-[5px]"
           :class="
-            selectedAvatarId === avatar.id
+            form.avatarId === avatar.id
               ? 'border-[--q-primary] border-[2px] bg-white'
               : 'bg-grey-1'
           "
         >
           <q-img
-            :src="avatar.thumbnailSrc"
+            :src="avatar.profile_image.convert_addr ?? undefined"
             fit="contain"
             width="30px"
             height="90px"
@@ -193,16 +187,17 @@ function save() {
         </div>
         <span
           class="font-pretendard text-body2"
-          :class="selectedAvatarId === avatar.id ? 'text-black' : 'text-grey-3'"
+          :class="form.avatarId === avatar.id ? 'text-black' : 'text-grey-3'"
           >{{ avatar.name }}</span
         >
       </div>
     </section>
+
     <section class="w-full fixed bottom-0 z-10 bg-white">
       <q-btn
         class="w-full h-16 text-subtitle1"
         color="primary"
-        :disable="!ableToSave"
+        :disable="!meta.valid || !meta.dirty"
         square
         unelevated
         @click="save"
@@ -213,6 +208,12 @@ function save() {
 </template>
 
 <style scoped lang="scss">
+.nickname-input {
+  :deep(.q-field__control) {
+    padding-right: 6px;
+  }
+}
+
 .is-active {
   border: solid 2px $primary;
   background: white !important;
