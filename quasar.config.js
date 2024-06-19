@@ -34,6 +34,9 @@ module.exports = configure(function (ctx) {
       warnings: true,
       errors: true,
     },
+    htmlVariables: {
+      version: require('./package.json').version,
+    },
 
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
     // preFetch: true,
@@ -159,6 +162,11 @@ module.exports = configure(function (ctx) {
                   'SearchRequest',
                   'FileInfo',
                 ],
+                type: true,
+              },
+              {
+                from: 'src/services/common/common-model',
+                imports: ['Option'],
                 type: true,
               },
             ],

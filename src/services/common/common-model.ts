@@ -1,5 +1,15 @@
 import { t } from 'src/utils/message-util';
 
+export interface Option {
+  label: string;
+  value: any;
+  disable?: boolean;
+  /**
+   * Any other props from QToggle, QCheckbox, or QRadio
+   */
+  [props: string]: any | undefined;
+}
+
 export type Message =
   | string
   | {
