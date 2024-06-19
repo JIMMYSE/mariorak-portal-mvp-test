@@ -1,9 +1,6 @@
-<!-- 비밀번호 재설정 -->
-
-<!-- 마이페이지 > 비밀번호 변경 -->
+<!-- 설정 > 계정 설정 > 비밀번호 변경 -->
 
 <script setup lang="ts">
-import { goToName } from 'src/composables/common/app';
 async function onSuccess(values: { email: string; password: string }) {
   console.log('onSubmit', values);
 }
@@ -18,15 +15,26 @@ const { fields } = useAuthForm({
 });
 const { password, passwordProps, passwordConfirm, passwordConfirmProps } =
   fields;
+
+// 현재 비밀번호 확인 여부
+const isConfirmed = ref(false);
 </script>
 
 <template>
-  <q-page class="px-6 bg-grey inset-x-0">
-    <div class="pt-[40px] text-h2 font-rokaf font-bold">
-      <p>비밀번호 변경을 위한</p>
-      <p><span class="text-primary">새 비밀번호</span>를 입력해 주세요.</p>
+  <q-page class="px-8 bg-grey">
+    <div class="pt-[40px]">
+      <p class="text-[17px] leading-relaxed">
+        <template v-if="!isConfirmed">
+          <span class="text-primary">현재 비밀번호</span>를 입력해 주세요.
+        </template>
+        <template v-else>
+          비밀번호 변경을 위한
+          <br />
+          <span class="text-primary">새 비밀번호</span>를 입력해 주세요.
+        </template>
+      </p>
     </div>
-    <q-form @submit.prevent="onSubmit" class="mt-5">
+    <q-form @submit.prevent="onSubmit">
       <a-field label="비밀번호" class="mt-[30px]">
         <a-input
           v-model="password"

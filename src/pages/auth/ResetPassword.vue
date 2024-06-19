@@ -11,7 +11,7 @@ import useTryCatchWithLoading from 'src/composables/common/useTryCatchWithLoadin
 import { quasarVeeConfig } from 'src/composables/common/veeValidate';
 import {
   ChangePasswordForm,
-  // ChangePasswordFormSchema,
+  // NewPasswordFormSchema,
 } from 'src/services/auth/auth-model';
 import { useForm } from 'vee-validate';
 
@@ -27,7 +27,7 @@ if (!props.id || !props.token) {
  * Vee Validation
  */
 const { handleSubmit, defineField } = useForm<ChangePasswordForm>({
-  // validationSchema: toTypedSchema(ChangePasswordFormSchema),
+  // validationSchema: toTypedSchema(NewPasswordFormSchema),
 });
 
 // /** @see { @link https://vee-validate.logaretm.com/v4/examples/ui-libraries } */

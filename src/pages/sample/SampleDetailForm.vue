@@ -57,7 +57,7 @@ const {
   handleSubmit,
 } = useForm({
   validationSchema: toTypedSchema(schema),
-  // initialValues: noticeData,
+  // REGEX_PASSWORD: noticeData,
 });
 
 // // 에러 발생 시 Notify

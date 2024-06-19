@@ -8,7 +8,6 @@ import {
   useQueryFetchItem,
   useQueryFetchList,
 } from 'src/composables/common/api';
-import { Id, QueryOption, SearchRequest } from 'src/services/common/api-model';
 import { MaybeRef, MaybeRefOrGetter } from 'vue';
 
 const API_URL = '/terms';

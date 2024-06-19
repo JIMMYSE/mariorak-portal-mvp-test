@@ -14,6 +14,7 @@ import {
 const ACCESS_TOKEN_KEY = process.env.ACCESS_TOKEN_KEY as string;
 const TOKEN_EXPIRE_DAYS = Number(process.env.TOKEN_EXPIRE_DAYS as string);
 
+const AUTH_API_URL = '/auth';
 const LOGIN_URL = '/auth/login';
 const LOGOUT_URL = '/auth/logout';
 const SOCIAL_LOGIN_URL = '/auth/social-login';
@@ -420,4 +421,31 @@ const dummyAgentInfo = {
   },
   os: 'A',
   sdk_version: '12',
+};
+
+/**
+ * 비밀번호 확인 API
+ */
+export const confirmMyPassword = async (password: string) => {
+  const res = await useAxiosPost<ApiResponse>({
+    url: `${AUTH_API_URL}/password/confirm`,
+    data: {
+      password,
+    },
+  });
+  return res.data.value?.code === '0000' && res.data.value?.data.is_success;
+};
+
+/**
+ * 비밀번호 변경 API
+ */
+export const updateMyPassword = async (newPassword: string) => {
+  const res = await useAxiosPut<ApiResponse>({
+    url: `${AUTH_API_URL}/password`,
+    data: {
+      new_password: newPassword,
+    },
+  });
+
+  return res.data.value?.code === '0000' && res.data.value?.data.is_success;
 };

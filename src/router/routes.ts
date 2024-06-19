@@ -320,8 +320,8 @@ const routes: RouteRecordRaw[] = [
     component: SubLayout,
     children: [
       {
-        name: 'setting',
         path: '',
+        name: 'setting',
         meta: {
           title: '설정',
           bgColor: 'white',
@@ -329,20 +329,20 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/setting/SettingPage.vue'),
       },
       {
-        path: 'confirm-password',
-        name: 'confirm-password',
+        path: 'account',
+        name: 'setting-account',
         meta: {
-          title: '비밀번호 확인',
+          title: '계정 설정',
         },
-        component: () => import('pages/setting/ConfirmPassword.vue'),
+        component: () => import('pages/setting/SettingAccount.vue'),
       },
       {
-        path: 'change-password',
-        name: 'setting-change-password',
+        path: 'password',
+        name: 'setting-password',
         meta: {
           title: '비밀번호 변경',
         },
-        component: () => import('pages/setting/ChangePassword.vue'),
+        component: () => import('pages/setting/SettingPassword.vue'),
       },
       {
         path: 'service-terms/:id',

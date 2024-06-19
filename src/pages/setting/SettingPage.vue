@@ -1,26 +1,10 @@
-<script lang="ts" setup>
-import { useLogout, useUserInfo } from 'src/composables/auth/auth';
-import { useTermsList } from 'src/composables/setting/setting';
+<!-- 설정 -->
 
-async function doLogout() {
-  useLogout({
-    onSuccess: () => goToName('login'),
-  });
-}
+<script lang="ts" setup>
+import { useTermsList } from 'src/composables/setting/setting';
 
 const { request } = useSearchFilter({
   requestDefault: {
-    filters: {
-      terms_type_cd: {
-        in: ['1', '2', '3'],
-      },
-      is_required: {
-        in: [true, false],
-      },
-    },
-    search: {},
-    from: 0,
-    size: 10,
     sort: [
       {
         terms_type_cd: 'desc',
@@ -50,14 +34,11 @@ const privacyTermsId = computed(() => {
   <q-page>
     <!-- 계정 설정 > 비밀번호 변경 예시 페이지 -->
     <router-link
-      :to="{ name: 'confirm-password' }"
+      :to="{ name: 'setting-account' }"
       class="w-full h-[67px] pl-6 pr-3 flex justify-between items-center"
     >
       <a-subtitle>계정 설정</a-subtitle>
-      <q-icon
-        name="img:/src/assets/icons/icon_arrow_set.svg"
-        size="30px"
-      ></q-icon>
+      <q-icon name="img:/src/assets/icons/icon_arrow_set.svg" size="30px" />
     </router-link>
 
     <!-- 서비스 약관 -->
@@ -74,10 +55,7 @@ const privacyTermsId = computed(() => {
       <h3 class="text-sm font-pretendard font-medium text-secondary">
         서비스 이용약관
       </h3>
-      <q-icon
-        name="img:/src/assets/icons/icon_arrow_set.svg"
-        size="30px"
-      ></q-icon>
+      <q-icon name="img:/src/assets/icons/icon_arrow_set.svg" size="30px" />
     </router-link>
     <router-link
       :to="{ path: `/setting/privacy-terms/${privacyTermsId}` }"
@@ -86,10 +64,7 @@ const privacyTermsId = computed(() => {
       <h3 class="text-sm font-pretendard font-medium text-secondary">
         개인정보 처리방침
       </h3>
-      <q-icon
-        name="img:/src/assets/icons/icon_arrow_set.svg"
-        size="30px"
-      ></q-icon>
+      <q-icon name="img:/src/assets/icons/icon_arrow_set.svg" size="30px" />
     </router-link>
 
     <!-- 고객 지원 -->
@@ -114,10 +89,7 @@ const privacyTermsId = computed(() => {
       <h3 class="text-sm font-pretendard font-medium text-secondary">
         공지사항
       </h3>
-      <q-icon
-        name="img:/src/assets/icons/icon_arrow_set.svg"
-        size="30px"
-      ></q-icon>
+      <q-icon name="img:/src/assets/icons/icon_arrow_set.svg" size="30px" />
     </router-link>
     <router-link
       :to="{ name: 'cancel-membership' }"
@@ -126,14 +98,7 @@ const privacyTermsId = computed(() => {
       <h3 class="text-sm font-pretendard font-medium text-secondary">
         회원탈퇴
       </h3>
-      <q-icon
-        name="img:/src/assets/icons/icon_arrow_set.svg"
-        size="30px"
-      ></q-icon>
+      <q-icon name="img:/src/assets/icons/icon_arrow_set.svg" size="30px" />
     </router-link>
-
-    <div class="flex flex-center mt-8">
-      <a-btn label="로그아웃(테스트용)" type="button" @click="doLogout" />
-    </div>
   </q-page>
 </template>

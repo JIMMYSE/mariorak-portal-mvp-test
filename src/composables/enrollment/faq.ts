@@ -16,7 +16,7 @@ export type FaqSearchResType = InferType<typeof FaqSearchRes>;
 export type FaqDetailResType = InferType<typeof FaqDetailRes>;
 
 /**
- * 목록 조회
+ * FAQ 목록 조회
  */
 export const useFaqList = ({
   searchRequest,
@@ -36,7 +36,7 @@ export const useFaqList = ({
 };
 
 /**
- * 상세 조회
+ * FAQ 상세 조회
  */
 export const useFaqDetail = (
   id: MaybeRefOrGetter<Id>,
