@@ -10,7 +10,6 @@ const { request } = useSearchFilter({
         eq: '1',
       },
     },
-    sort: [{ created_at: 'desc' }],
   },
 });
 
