@@ -8,8 +8,8 @@ import {
 } from 'meta-airforce-dto';
 import { MaybeRefOrGetter } from 'vue';
 
-export const ENROLLMENT_API_URL = '/enrollment';
-export const ENROLLMENT_QUERY_KEY = {
+const API_URL = '/enrollment';
+const QUERY_KEY = {
   LIST: 'ENROLLMENT_LIST',
   DETAIL: 'ENROLLMENT_DETAIL',
 };
@@ -33,7 +33,7 @@ export const useEnrollmentList = ({
   queryOption?: QueryOption;
 }) => {
   return useQueryFetch<EnrollmentGuideDetailListResType>({
-    url: ENROLLMENT_API_URL + '/list/' + enrollmentGuideCd,
+    url: API_URL + '/list/' + enrollmentGuideCd,
     queryOption,
   });
 };
@@ -43,10 +43,10 @@ export const useEnrollmentList = ({
  */
 export const useEnrollmentDetail = (
   id: MaybeRefOrGetter<Id>,
-  queryKeyName = ENROLLMENT_QUERY_KEY.DETAIL
+  queryKeyName = QUERY_KEY.DETAIL
 ) => {
   return useQueryFetchItem<EnrollmentGuideDetailResType>({
-    url: ENROLLMENT_API_URL,
+    url: API_URL,
     id,
     queryKeyName,
   });
