@@ -1,10 +1,10 @@
-<!-- 모병 안내 -->
+<!-- 입영 안내 상세 -->
 
 <script lang="ts" setup>
 const route = useRoute();
 
 const { data: listData } = useEnrollmentList({
-  enrollmentGuideCd: route.meta.enrollmentGuideCd,
+  enrollmentGuideCd: route.meta.enrollmentGuideCd as string,
 });
 
 const selectedId = ref<Id>(undefined);

@@ -64,7 +64,12 @@ const menuListForEnlist = [
     icon: 'certificate',
     to: 'enrollment-cp',
   },
-  { title: '자주 묻는 질문', subtitle: '입대', icon: 'bulb', to: 'faq' },
+  {
+    title: '자주 묻는 질문',
+    subtitle: '입대',
+    icon: 'bulb',
+    to: 'enrollment-faq',
+  },
   {
     title: '찾아오는 법',
     subtitle: '입대',

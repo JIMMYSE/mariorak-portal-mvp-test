@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { useAppRouter } from 'src/composables/common/app';
 import { VueQueryDevtools } from '@tanstack/vue-query-devtools';
-import { ref } from 'vue';
-import { useBridge } from './composables/common/useBridge';
 import { version } from '../package.json';
-import { useVersion } from './composables/common/version';
+
 useAppRouter();
+const isCommonCodeInitiated = initCommonCodeList();
 
 const showVueQueryDevTool = ref(process.env.IS_LOCAL !== undefined);
 
@@ -19,12 +17,16 @@ onMounted(() => {
   }, 100);
 });
 const { BEversion } = useVersion();
+
+const isInitiated = computed(() => {
+  return isCommonCodeInitiated.value;
+});
 </script>
 
 <template>
   <div v-if="!IsPrd">
     FE version: {{ version }} / BE version: {{ BEversion }}
   </div>
-  <router-view />
+  <router-view v-if="isInitiated" />
   <VueQueryDevtools v-if="showVueQueryDevTool" />
 </template>

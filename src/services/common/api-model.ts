@@ -26,7 +26,13 @@ export const SearchRequestSchema = object({
     fields: array(string().required()),
     keyword: string(),
   }).optional(),
-  filters: object().optional(),
+  filters: lazy((item) => {
+    return object().shape({
+      [Object.keys(item)[0]]: object().shape({
+        [Object.keys(item)[0]]: mixed().nullable(),
+      }),
+    });
+  }).optional(),
   from: number().integer().min(0).optional().default(0),
   size: number().integer().positive().optional().default(10),
   sort: array(
@@ -40,7 +46,8 @@ export const SearchRequestSchema = object({
     .default([{ created_at: 'desc' }]),
 });
 
-export interface SearchRequest extends InferType<typeof SearchRequestSchema> {}
+// export interface SearchRequest extends InferType<typeof SearchRequestSchema> {}
+export type SearchRequest = InferType<typeof SearchRequestSchema>;
 
 export class SearchRequestClass implements SearchRequest {
   filters?: Record<string, any> | undefined;

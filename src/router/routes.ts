@@ -139,13 +139,13 @@ const routes: RouteRecordRaw[] = [
             component: () => import('pages/enrollment/EnrollmentGuide.vue'),
           },
           {
-            name: 'faq',
             path: 'faq',
+            name: 'enrollment-faq',
             meta: {
               title: '자주 묻는 질문',
               bgColor: 'white',
             },
-            component: () => import('pages/home/enlist/FAQPage.vue'),
+            component: () => import('pages/enrollment/EnrollmentFaq.vue'),
           },
         ],
       },

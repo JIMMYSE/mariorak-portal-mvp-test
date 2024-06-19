@@ -1,19 +1,39 @@
+<!-- 입대 안내 > 자주 묻는 질문 -->
+
 <script lang="ts" setup>
-import { ref } from 'vue';
-import { faqList } from 'src/assets/data/dummyData';
-const categories = ref([
-  { id: 1, name: '편지' },
-  { id: 2, name: '외출/휴가' },
-  { id: 3, name: '특기/배속' },
-  { id: 4, name: '면회' },
-  { id: 5, name: '훈련병' },
-  { id: 6, name: '기타' },
-]);
-const selectedCategory = ref(1);
+// 카테고리
+const {
+  code,
+  cdList: categoryCdList,
+  options: categoryOptions,
+} = useCommonCode('FAQ_CATEGORY');
 
-const data = ref([...faqList]);
+const { request } = useSearchFilter({
+  requestDefault: {
+    filters: {
+      categories_cd: {
+        eq: categoryOptions.value[0].value,
+      },
+    },
+    size: 100,
+  },
+});
 
-const openedId = ref(0);
+// 목록 조회
+const { data: listData } = useFaqList({
+  searchRequest: request,
+});
+
+// 상세 조회
+const detailId = ref<Id>(undefined);
+const { data: detailData } = useFaqDetail(detailId);
+
+const selectedCategory = computed({
+  get: () => request.value.filters!.categories_cd!.eq,
+  set: (value: string) => {
+    request.value.filters!.categories_cd!.eq = value;
+  },
+});
 </script>
 
 <template>
@@ -22,13 +42,18 @@ const openedId = ref(0);
       class="mx-6 grid grid-cols-2 place-items-center h-[120px] border border-grey-1 bg-grey gap-[1px]"
     >
       <li
-        v-for="item in categories"
-        :key="item.id"
+        v-for="item in categoryOptions"
+        :key="item.value"
         class="text-subtitle1 font-pretendard hover:text-primary size-full flex justify-center items-center bg-white cursor-pointer"
-        :class="item.id === selectedCategory ? 'text-primary' : 'text-grey-4'"
-        @click="selectedCategory = item.id"
+        :class="
+          item.value === selectedCategory ? 'text-primary' : 'text-grey-4'
+        "
+        @click="
+          detailId = undefined;
+          selectedCategory = item.value;
+        "
       >
-        {{ item.name }}
+        {{ item.label }}
       </li>
     </ul>
 
@@ -40,14 +65,14 @@ const openedId = ref(0);
       </h3>
       <ul>
         <li
-          v-for="item in data"
-          :key="`faq-${item.id}`"
+          v-for="item in listData?.rows"
+          :key="item.id"
           class="flex flex-col relative cursor-pointer"
         >
           <!-- QUESTION  -->
           <h3
             class="mx-6 py-[25px] text-[13px] font-medium relative"
-            @click="openedId = openedId === item.id ? 0 : item.id"
+            @click="detailId = detailId === item.id ? undefined : item.id"
           >
             {{ item.title }}
             <!-- ARROW ICON -->
@@ -55,31 +80,35 @@ const openedId = ref(0);
               size="30px"
               name="img:/src/assets/icons/down_arrow.svg"
               class="absolute right-0 top-[21px]"
-              :class="openedId === item.id ? 'rotate-180' : ''"
+              :class="detailId === item.id ? 'rotate-180' : ''"
             />
           </h3>
           <!-- ANSWER -->
           <div
+            v-if="detailData"
             class="-mt-[1px] bg-grey w-full shrink overflow-hidden p-6"
-            :class="openedId === item.id ? 'flex-1' : 'flex-none basis-0 py-0'"
+            :class="detailId === item.id ? 'flex-1' : 'flex-none basis-0 py-0'"
           >
-            <p
-              class="text-sm font-pretendard"
-              v-html="$filterHtml(item.content)"
-            />
+            <p class="text-sm font-pretendard">
+              {{ detailData.description }}
+            </p>
             <!-- ATTACHMENT FILE -->
             <p
-              v-if="item.file"
+              v-if="detailData.file"
               class="relative underline underline-offset-2 pl-[17px] mt-10 font-pretendard text-sm text-primary"
             >
               <q-icon name="img:/src/assets/icons/icon_file.svg" size="12px" />
-              <a :href="item.file.url" target="_blank">{{ item.file.name }}</a>
+              <a
+                :href="detailData.file.convert_addr ?? undefined"
+                target="_blank"
+                >{{ detailData.file.file_name }}</a
+              >
             </p>
           </div>
           <!-- LINE -->
           <div
             class="absolute inset-x-6 bottom-0 h-[1px] border-b-[1px] border-b-[#E6E6E6]"
-          ></div>
+          />
         </li>
       </ul>
     </section>
