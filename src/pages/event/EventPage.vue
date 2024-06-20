@@ -48,7 +48,7 @@ const data = ref([
           {{ counseling.title }}
         </h3>
         <p
-          class="text-sm text-grey-4 text-pretendard"
+          class="text-sm text-grey-4 font-pretendard"
           v-html="counseling.content"
         ></p>
         <q-icon
@@ -69,7 +69,7 @@ const data = ref([
           {{ item.title }}
         </h3>
         <p
-          class="text-sm text-grey-4 text-pretendard"
+          class="text-sm text-grey-4 font-pretendard"
           v-html="item.content"
         ></p>
         <q-icon

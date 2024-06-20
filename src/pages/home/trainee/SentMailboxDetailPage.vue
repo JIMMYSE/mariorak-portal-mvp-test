@@ -30,7 +30,7 @@ const data = ref(sendLetterList.find((item) => item.id === detailId));
     <div class="mt-2 inset-x-6 h-[1px] border-b-[1px] border-b-[#E6E6E6]"></div>
     <!-- Content -->
     <div
-      class="mt-5 text-pretendard text-sm text-grey-5"
+      class="mt-5 font-pretendard text-sm text-grey-5"
       v-html="filterHtml(data?.letter_cn)"
     ></div>
     <div class="flex-1"></div>

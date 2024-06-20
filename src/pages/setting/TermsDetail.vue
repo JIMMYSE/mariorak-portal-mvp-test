@@ -19,11 +19,11 @@ const { data } = useTermsDetail(props.id);
 
 <template>
   <q-page class="">
-    <!-- <p class="px-6 mt-[11px] text-pretendard text-sm text-secondary leading-5">
+    <!-- <p class="px-6 mt-[11px] font-pretendard text-sm text-secondary leading-5">
       {{ data?.contents }}
     </p> -->
     <div
-      class="px-6 mt-[11px] text-pretendard text-sm text-secondary leading-5"
+      class="px-6 mt-[11px] font-pretendard text-sm text-secondary leading-5"
       flat
     >
       <div

@@ -71,6 +71,9 @@ export default {
       '<p>안전한 데이터 보호를 위해<br/>회원가입을 통한 로그인을 권장합니다.<br/>그래도 게스트로 로그인 하시겠습니까?</p>',
     guestLoginButtonLabel: '게스트로 로그인하기',
     withdrawal: { title: '로그인 불가', text: '탈퇴 처리 중입니다.' },
+    unregister: {
+      completed: '탈퇴 처리가 완료되었습니다.',
+    },
   },
   join: {
     existUserDialog: '기존 가입된 계정 안내',

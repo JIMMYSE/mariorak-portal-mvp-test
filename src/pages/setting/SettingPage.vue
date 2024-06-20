@@ -1,4 +1,4 @@
-<!-- 설정 -->
+<!-- 설정 화면 -->
 
 <script lang="ts" setup>
 import { useTermsList } from 'src/composables/setting/setting';
@@ -93,6 +93,7 @@ const privacyTermsId = computed(() => {
       </h3>
       <q-icon name="img:/src/assets/icons/icon_arrow_set.svg" size="30px" />
     </router-link>
+
     <router-link
       :to="{ name: 'cancel-membership' }"
       class="w-full h-[67px] pl-6 pr-3 flex justify-between items-center"

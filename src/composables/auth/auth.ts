@@ -305,21 +305,6 @@ export function usePassword() {
     });
   return { changePassword, changePasswordWithMobile };
 }
-/**
- * 회원탈퇴
- **/
-export function useUnregister() {
-  const unregister = async (onSuccess: () => void) => {
-    await useAxiosPost({
-      url: UNREIGSTER_URL,
-    }).then(() => {
-      isAccessTokenListenerActive.value = false;
-      removeUserInfo(onSuccess);
-    });
-  };
-
-  return { unregister };
-}
 
 /**
  * 기존이메일조회
@@ -452,4 +437,20 @@ export const updateMyPassword = async (newPassword: string) => {
   });
 
   return res.data.value?.code === '0000' && res.data.value?.data.is_success;
+};
+
+/**
+ * 회원 탈퇴
+ */
+export const useAuthUnregister = () => {
+  const unregister = async (onSuccess: () => void) => {
+    await useAxiosPost({
+      url: UNREIGSTER_URL,
+    }).then(() => {
+      isAccessTokenListenerActive.value = false;
+      removeUserInfo(onSuccess);
+    });
+  };
+
+  return { unregister };
 };
