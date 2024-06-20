@@ -1,10 +1,9 @@
 <!-- 공통 > 새 비밀번호 설정 -->
 
 <script setup lang="ts">
-import { updateMyPassword } from 'src/composables/auth/auth';
-import { NewPasswordFormSchema } from 'src/services/auth/auth-model';
-
 const emits = defineEmits(['onComplete']);
+
+const { encodeByAES256 } = useCryptoJS();
 
 const {
   meta,
@@ -20,7 +19,9 @@ const {
 const isCompleted = defineModel<boolean>('isCompleted');
 
 const onSubmit = handleSubmit(async () => {
-  isCompleted.value = await updateMyPassword(form.new_password!);
+  isCompleted.value = await updateMyPassword(
+    encodeByAES256(form.new_password!)
+  );
   if (isCompleted.value) {
     useNotifyDone('message.passwordUpdated');
     emits('onComplete', true);

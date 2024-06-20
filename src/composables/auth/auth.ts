@@ -165,8 +165,12 @@ export async function initUserDetailInfo(id: Id) {
  * 로그아웃
  */
 export function useLogout({ onSuccess }: { onSuccess?: () => void }) {
-  isAccessTokenListenerActive.value = false;
-  doLogout(onSuccess);
+  useMyConfirmDialog({
+    text: 'auth.logout.confirm',
+  }).onOk(() => {
+    isAccessTokenListenerActive.value = false;
+    doLogout(onSuccess);
+  });
 }
 
 /**

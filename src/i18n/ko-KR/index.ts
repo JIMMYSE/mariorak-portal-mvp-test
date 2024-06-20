@@ -50,9 +50,7 @@ export default {
       invalid: '아이디 또는 비밀번호를 다시 확인해 주세요.',
     },
     logout: {
-      confirm: '<p><span class="text-primary">로그아웃</span> 안내</p>',
-      confirmDetail:
-        '<p>아래 확인 버튼을 터치하면<br />현재 서로버스 계정에서 로그아웃됩니다.</p>',
+      confirm: '로그아웃하시겠습니까?',
     },
     email: {
       required: '정확한 이메일 주소를 입력해주세요.',

@@ -1,28 +1,13 @@
 <!-- 설정 > 계정 설정 > 비밀번호 변경 -->
 
 <script setup lang="ts">
-// async function onSuccess(values: { email: string; password: string }) {
-//   console.log('onSubmit', values);
-// }
-
-// const onSubmit = () => {
-//   goToName('setting');
-// };
-
-// const { fields } = useAuthForm({
-//   needPasswordConfirm: false,
-//   onSuccess,
-// });
-// const { password, passwordProps, passwordConfirm, passwordConfirmProps } =
-//   fields;
-
 // 현재 비밀번호 확인 여부
-const isConfirmed = ref(true);
+const isConfirmed = ref(false);
 
 const onComplete = () => {
   setTimeout(() => {
     goToName('setting');
-  }, 2000);
+  }, 1000);
 };
 </script>
 

@@ -6,6 +6,8 @@ const emits = defineEmits(['onConfirmed']);
 // 현재 비밀번호 확인 여부
 const isConfirmed = defineModel<boolean>('isConfirmed');
 
+const { encodeByAES256 } = useCryptoJS();
+
 const {
   meta,
   errors,
@@ -21,8 +23,9 @@ const {
 });
 
 const onSubmit = handleSubmit(async () => {
-  isConfirmed.value = await confirmMyPassword(form.password!);
-  if (isConfirmed.value) {
+  const b = await confirmMyPassword(encodeByAES256(form.password!));
+  isConfirmed.value = b;
+  if (b) {
     emits('onConfirmed', true);
   } else {
     useAlertDialog({

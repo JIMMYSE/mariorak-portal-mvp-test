@@ -3,6 +3,8 @@
 <script lang="ts" setup>
 import { useTermsList } from 'src/composables/setting/setting';
 
+const { BEversion } = useVersion();
+
 const { request } = useSearchFilter({
   requestDefault: {
     sort: [
@@ -80,7 +82,7 @@ const privacyTermsId = computed(() => {
       <h3 class="text-sm font-pretendard font-medium text-secondary">
         버전정보
       </h3>
-      <p class="pr-3 font-pretendard text-sm text-primary">n.n.n</p>
+      <p class="pr-3 font-pretendard text-sm text-primary">{{ BEversion }}</p>
     </div>
     <router-link
       :to="{ name: 'notice-list' }"

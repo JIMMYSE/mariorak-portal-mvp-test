@@ -45,7 +45,7 @@ export function useAuthForm({
 
   const formContext = useForm({
     validationSchema: schema,
-    REGEX_PASSWORD: { email: '', password: '', passwordConfirm: '' },
+    initialValues: { email: '', password: '', passwordConfirm: '' },
   });
 
   const [email, emailProps] = formContext.defineField<'email', string>(
