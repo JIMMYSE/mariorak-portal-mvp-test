@@ -4,6 +4,7 @@ import { version } from '../package.json';
 
 useAppRouter();
 const isCommonCodeInitiated = initCommonCodeList();
+const { isLoggedIn } = useUserInfo();
 
 const showVueQueryDevTool = ref(process.env.IS_LOCAL !== undefined);
 
@@ -21,12 +22,14 @@ const { BEversion } = useVersion();
 const isInitiated = computed(() => {
   return isCommonCodeInitiated.value;
 });
+
+console.log(isInitiated.value);
 </script>
 
 <template>
   <div v-if="!IsPrd">
     FE version: {{ version }} / BE version: {{ BEversion }}
   </div>
-  <router-view v-if="isInitiated" />
+  <router-view v-if="!isLoggedIn || isInitiated" />
   <VueQueryDevtools v-if="showVueQueryDevTool" />
 </template>
