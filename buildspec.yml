@@ -32,3 +32,4 @@ phases:
     commands:
       - echo now post_build
       - aws s3 sync ./dist/spa s3://airforce-dev-portal --acl bucket-owner-full-control
+      - aws cloudfront create-invalidation --distribution-id E2MT4PYQRGRO50 --paths "/*"
