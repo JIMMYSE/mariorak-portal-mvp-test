@@ -73,8 +73,14 @@ defineExpose({
     :type="inputType"
     :class="{ 'border-radius': borderRadius, 'inline-counter': inlineCounter }"
     :counter="inlineCounter"
-    :error="props.name ? !!field?.errorMessage.value : !!errorMessage"
-    :error-message="props.name ? field?.errorMessage.value : errorMessage"
+    :error="
+      props.error ?? (props.name ? !!field?.errorMessage.value : !!errorMessage)
+    "
+    :error-message="
+      props.errorMessage ??
+      (props.name ? field?.errorMessage.value : errorMessage)
+    "
+    :bottom-slots="false"
   >
     <template #before v-if="$slots.before">
       <slot name="before" />

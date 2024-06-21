@@ -7,9 +7,11 @@ export interface ADialogProps {
   htmlTitle?: Message;
   text?: Message;
   htmlText?: Message;
-  contentComponent?: any;
   okLabel?: Message;
   cancelLabel?: Message;
   persistent?: boolean;
   buttons?: { label: string; value: unknown; color?: string }[];
+  contentComponent?: any;
+  contentComponentProps?: any;
+  closeButton?: boolean;
 }
