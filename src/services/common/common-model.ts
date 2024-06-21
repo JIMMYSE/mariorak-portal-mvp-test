@@ -46,3 +46,6 @@ export const NicknameSchema = string()
     }
   )
   .required();
+
+// 정규식: 훈련병 이름
+export const REGEXP_TRAINEE_NAME = /^[가-힣]{2,19}$/;

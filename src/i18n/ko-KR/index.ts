@@ -25,6 +25,10 @@ export default {
     nicknameUpdated: '닉네임 설정 완료!',
     avatarUpdated: '아바타 설정 완료!',
     passwordUpdated: '비밀번호 변경 완료!',
+    bookmark: {
+      addConfirm: '즐겨찾기를 등록하시겠습니까?',
+      deleteConfirm: '즐겨찾기를 취소하시겠습니까?',
+    },
   },
   error: {
     occured: '처리 중 오류가 발생하였습니다.',

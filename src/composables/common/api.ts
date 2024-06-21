@@ -537,22 +537,21 @@ export function useQueryPatchItem<T extends ApiResponse, D = any>({
  */
 export function useQueryDeleteItem({
   url,
-  id,
   queryKeyName,
   listQueryKeyName,
 }: {
   url: string;
-  id: MaybeRefOrGetter<Id>;
   queryKeyName?: string;
   listQueryKeyName?: string;
 }) {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: () => useDeleteItem({ url, id: toValue(id) }),
+    mutationFn: (id: MaybeRefOrGetter<Id>) =>
+      useDeleteItem({ url, id: toValue(id) }),
     onSuccess: () => {
       // Invalidate and refetch
       if (queryKeyName)
-        queryClient.invalidateQueries({ queryKey: [queryKeyName, id] });
+        queryClient.invalidateQueries({ queryKey: [queryKeyName] });
       if (listQueryKeyName)
         queryClient.invalidateQueries({ queryKey: [listQueryKeyName] });
     },

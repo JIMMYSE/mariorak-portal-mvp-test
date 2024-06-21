@@ -11,6 +11,7 @@ interface Props extends Omit<QInputProps, 'modelValue'> {
   done?: boolean;
   borderRadius?: string | undefined;
   inlineCounter?: boolean;
+  noError?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -27,6 +28,7 @@ const props = withDefaults(defineProps<Props>(), {
   noErrorIcon: true,
   borderRadius: undefined,
   inlineCounter: false,
+  noError: false,
 });
 
 const forwarded = useForwardProps(props);
@@ -73,8 +75,14 @@ defineExpose({
     :type="inputType"
     :class="{ 'border-radius': borderRadius, 'inline-counter': inlineCounter }"
     :counter="inlineCounter"
-    :error="props.name ? !!field?.errorMessage.value : !!errorMessage"
-    :error-message="props.name ? field?.errorMessage.value : errorMessage"
+    :error="
+      !props.noError &&
+      (props.name ? !!field?.errorMessage.value : !!errorMessage)
+    "
+    :error-message="
+      props.errorMessage ??
+      (props.name ? field?.errorMessage.value : errorMessage)
+    "
   >
     <template #before v-if="$slots.before">
       <slot name="before" />

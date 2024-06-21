@@ -18,8 +18,8 @@ export const USER_QUERY_KEY = {
   DETAIL: 'USER_DETAIL',
 };
 
-export const AVATAR_API_URL = '/avatar';
-export const AVATAR_QUERY_KEY = {
+const AVATAR_API_URL = '/avatar';
+const AVATAR_QUERY_KEY = {
   LIST: 'AVATAR_LIST',
   DETAIL: 'AVATAR_DETAIL',
 };

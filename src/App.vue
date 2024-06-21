@@ -22,8 +22,6 @@ const { BEversion } = useVersion();
 const isInitiated = computed(() => {
   return isCommonCodeInitiated.value;
 });
-
-console.log(isInitiated.value);
 </script>
 
 <template>

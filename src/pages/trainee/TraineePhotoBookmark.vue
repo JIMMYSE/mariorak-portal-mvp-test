@@ -1,7 +1,12 @@
+<!-- 훈련병 > 즐겨찾기 목록 -->
+
 <script lang="ts" setup>
-import { computed } from 'vue';
-import { ref } from 'vue';
-import { useRoute } from 'vue-router';
+// type Props = {
+//   type: 'BOOKMARK';
+// };
+// const props = defineProps<Props>();
+
+const { data } = useBookmarkList();
 
 const favoriteList = ref([
   {
@@ -15,7 +20,7 @@ const favoriteList = ref([
 ]);
 const route = useRoute();
 const descriptions = {
-  'photo-album': `
+  photo: `
     훈련병 등록 후 사진을 볼 수 있습니다. <br />
     즐겨찾기 추가를 통해 훈련병을 등록해 주세요.
 `,
@@ -67,6 +72,7 @@ const description = computed(() => {
       color="primary"
       size="md"
       class="mt-[10px] font-pretendard w-full h-[100px]"
+      :to="{ name: 'trainee-bookmark-new' }"
     >
       <q-icon
         name="img:/src/assets/icons/icon_plus.svg"

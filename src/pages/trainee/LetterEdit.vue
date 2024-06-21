@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
-
 const form = ref({
   senderName: '',
   relation: '',
