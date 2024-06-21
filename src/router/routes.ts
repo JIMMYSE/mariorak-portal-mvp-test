@@ -1,4 +1,4 @@
-import { RouteRecord, RouteRecordRaw } from 'vue-router';
+import { RouteRecordRaw } from 'vue-router';
 // layout
 import DefaultLayout from 'layouts/DefaultLayout.vue';
 import MainLayout from 'layouts/MainLayout.vue';
@@ -149,6 +149,7 @@ const routes: RouteRecordRaw[] = [
           },
         ],
       },
+      // 훈련병
       {
         path: 'trainee',
         name: 'trainee',
@@ -158,103 +159,106 @@ const routes: RouteRecordRaw[] = [
         component: SubLayout,
         children: [
           {
-            name: 'photo-album',
-            path: 'photo-album',
-            redirect: { name: 'photo-album-favorite' },
+            path: 'photo',
+            name: 'photo',
+            redirect: { name: 'trainee-photo-bookmark' },
             children: [
               {
-                name: 'photo-album-favorite',
-                path: 'favorite',
+                path: 'bookmark',
+                name: 'trainee-photo-bookmark',
                 meta: {
                   title: '사진보기',
                 },
-                component: () => import('pages/home/trainee/FavoritePage.vue'),
+                component: () => import('pages/trainee/PhotoBookmarkList.vue'),
               },
               {
-                name: 'photo-album-list',
                 path: 'list/:id',
+                name: 'trainee-photo-list',
                 props: true,
                 meta: {
                   title: '사진보기',
                   bgColor: 'white',
                 },
-                component: () =>
-                  import('pages/home/trainee/PhotoAlbumListPage.vue'),
+                component: () => import('pages/trainee/PhotoList.vue'),
               },
               {
-                name: 'photo-album-detail',
                 path: ':id',
+                name: 'trainee-photo-detail',
                 meta: {
                   title: '사진보기',
                   bgColor: 'white',
                 },
                 props: true,
-                component: () =>
-                  import('pages/home/trainee/PhotoAlbumDetailPage.vue'),
+                component: () => import('pages/trainee/PhotoDetail.vue'),
               },
             ],
           },
+          // {
+          //   name: 'letter',
+          //   path: 'letter',
+          //   redirect: { name: 'letter' },
+          //   children: [
+          //     {
+          //       path: 'bookmark',
+          //       name: 'trainee-letter-bookmark',
+          //       meta: {
+          //         title: '편지쓰기',
+          //       },
+          //       component: () => import('pages/trainee/LetterBookmarkList.vue'),
+          //     },
+          //     {
+          //       path: 'list/:id',
+          //       name: 'trainee-letter-list',
+          //       props: true,
+          //       meta: {
+          //         title: '보낸 편지함',
+          //         bgColor: 'white',
+          //       },
+          //       component: () => import('pages/trainee/LetterList.vue'),
+          //     },
+          //     {
+          //       path: ':id',
+          //       name: 'trainee-letter-detail',
+          //       props: true,
+          //       meta: {
+          //         title: '보낸 편지함',
+          //         bgColor: 'white',
+          //       },
+          //       component: () => import('pages/trainee/LetterDetail.vue'),
+          //     },
+          //     {
+          //       path: 'new',
+          //       name: 'trainee-letter-new',
+          //       meta: {
+          //         title: '편지쓰기',
+          //         bgColor: 'white',
+          //       },
+          //       component: () => import('pages/trainee/LetterEdit.vue'),
+          //     },
+          //   ],
+          // },
           {
-            name: 'letter',
-            path: 'letter',
-            redirect: { name: 'letter' },
+            name: 'bookmark',
+            path: 'bookmark',
+            redirect: { name: 'trainee-bookmark-list' },
             children: [
               {
-                name: 'letter-favorite',
-                path: 'favorite',
+                path: 'list',
+                name: 'trainee-bookmark-list',
                 meta: {
-                  title: '편지쓰기',
-                },
-                component: () => import('pages/home/trainee/FavoritePage.vue'),
-              },
-              {
-                name: 'sent-mailbox',
-                path: 'list/:id',
-                props: true,
-                meta: {
-                  title: '보낸 편지함',
+                  title: '즐겨찾기',
                   bgColor: 'white',
                 },
-                component: () =>
-                  import('pages/home/trainee/SentMailboxPage.vue'),
+                component: () => import('pages/trainee/BookmarkList.vue'),
               },
               {
-                name: 'sent-mailbox-detail',
-                path: ':id',
-                props: true,
-                meta: {
-                  title: '보낸 편지함',
-                  bgColor: 'white',
-                },
-                component: () =>
-                  import('pages/home/trainee/SentMailboxDetailPage.vue'),
-              },
-              {
-                name: 'write-letter',
-                path: 'write',
-                meta: {
-                  title: '편지쓰기',
-                  bgColor: 'white',
-                },
-                component: () =>
-                  import('pages/home/trainee/WriteLetterPage.vue'),
-              },
-            ],
-          },
-          {
-            name: 'platoon',
-            path: 'platoon',
-            redirect: { name: 'platoon-favorite' },
-            children: [
-              {
-                name: 'platoon-favorite',
-                path: 'favorite',
+                path: 'new',
+                name: 'trainee-bookmark-new',
                 meta: {
                   title: '즐겨찾기 등록',
                   bgColor: 'white',
                 },
-                component: () =>
-                  import('pages/home/trainee/FavoriteListPage.vue'),
+                component: () => import('pages/trainee/BookmarkEdit.vue'),
               },
             ],
           },

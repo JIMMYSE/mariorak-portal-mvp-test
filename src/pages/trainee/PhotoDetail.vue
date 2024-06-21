@@ -1,18 +1,15 @@
 <!-- 사진보기 상세 -->
 
 <script setup lang="ts">
-import { photoAlbumList } from 'src/assets/data/dummyData';
-import { Id } from 'src/services/common/api-model';
 import { formatDate } from 'src/utils/date-util';
 import { filterHtml } from 'src/utils/html-filter';
-import { ref } from 'vue';
 
 const props = defineProps<{
   id: Id;
 }>();
 
-const detailId = Number(props.id);
-const data = ref(photoAlbumList.find((item) => item.id === detailId));
+// 상세 조회
+const { data } = usePhotoDetail(props.id);
 </script>
 
 <template>
@@ -24,40 +21,41 @@ const data = ref(photoAlbumList.find((item) => item.id === detailId));
       >
         <span>교육훈련처</span>
         |
-        <span> {{ formatDate(data.created_at) }}</span>
+        <span> {{ formatDate(data?.created_at) }}</span>
       </div>
       <!-- line -->
       <div
         class="absolute inset-x-4 bottom-0 h-[1px] border-b-[1px] border-b-[#E6E6E6]"
       ></div>
     </q-card-section>
-    <q-card-section v-if="data.file" class="text-primary">
-      <a
-        href="https://naver.com"
-        target="_blank"
-        class="flex items-center gap-2 font-pretendard text-body2 underline"
-      >
-        <a-svg name="file" class="w-[9px] h-3" />
-        <span>{{ data.file }} [다운로드]</span>
-      </a>
+    <q-card-section
+      v-if="data?.files && data?.files.length"
+      class="flex flex-col gap-2 font-pretendard text-primary"
+    >
+      <div v-for="file in data.files" :key="file.id">
+        <a
+          class="text-body2 underline"
+          :href="file.origin_addr"
+          :download="file.file_name"
+        >
+          <a-svg name="file" class="w-[9px] h-3 inline-block mr-1" />
+          <span>{{ file.file_name }} [다운로드]</span>
+        </a>
+      </div>
       <!-- line -->
       <div
         class="absolute inset-x-4 bottom-0 h-[1px] border-b-[1px] border-b-[#E6E6E6]"
       ></div>
     </q-card-section>
     <q-card-section class="mt-[14px] flex-1 grow">
-      <div
-        class="text-black font-pretendard text-body2"
-        v-html="filterHtml(data?.ntc_cn)"
-      ></div>
+      <div class="text-black font-pretendard text-body2 whitespace-pre-wrap">
+        {{ data?.description }}
+      </div>
     </q-card-section>
   </q-card>
+
   <div class="mb-20 flex justify-center absolute bottom-0 w-full">
-    <q-btn
-      outline
-      color="primary"
-      class="w-[165px] h-[50px]"
-      @click="$router.go(-1)"
+    <q-btn outline color="primary" class="w-[165px] h-[50px]" @click="goBack()"
       >목록으로</q-btn
     >
   </div>

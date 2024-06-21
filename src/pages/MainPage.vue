@@ -84,19 +84,22 @@ const menuListForTrainee = [
     title: '사진보기',
     subtitle: '훈련병',
     icon: 'soldier-1',
-    to: 'photo-album-favorite',
+    to: 'trainee-photo-bookmark',
   },
   {
     title: '편지쓰기',
     subtitle: '훈련병',
     icon: 'post',
-    to: 'letter-favorite',
+    // to: 'letter-favorite',
+    onClick: () => {
+      useAlertDialog({ text: '현재 이 기능은 지원되지 않습니다.' });
+    },
   },
   {
     title: '소대 즐겨 찾기',
     subtitle: '훈련병',
     icon: 'star',
-    to: 'platoon-favorite',
+    to: 'trainee-bookmark-list',
   },
 ];
 </script>
@@ -148,6 +151,7 @@ const menuListForTrainee = [
           :title="item.title"
           :subtitle="item.subtitle"
           :icon="item.icon"
+          :on-click="item.onClick"
         />
       </div>
     </section>

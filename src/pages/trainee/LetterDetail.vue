@@ -2,10 +2,8 @@
 
 <script lang="ts" setup>
 import { sendLetterList } from 'src/assets/data/dummyData';
-import { Id } from 'src/services/common/api-model';
 import { formatDate } from 'src/utils/date-util';
 import { filterHtml } from 'src/utils/html-filter';
-import { ref } from 'vue';
 
 const props = defineProps<{
   id: Id;

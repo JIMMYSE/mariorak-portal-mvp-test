@@ -2,7 +2,6 @@
 
 <script setup lang="ts">
 import { formatDate } from 'src/utils/date-util';
-import { filterHtml } from 'src/utils/html-filter';
 
 const props = defineProps<{
   id: Id;
