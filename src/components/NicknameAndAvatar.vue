@@ -10,6 +10,8 @@ const { user } = useUserInfo();
 
 const { data: avatarData } = useAvatarList();
 
+const emit = defineEmits(['onSubmit']);
+
 const {
   meta,
   values: form,
@@ -19,7 +21,7 @@ const {
   handleSubmit,
   resetForm,
 } = useForm({
-  validationSchema: toTypedSchema(MyProfileUpdateSchema),
+  validationSchema: toTypedSchema(NicknameAndAvatarFormSchema),
   initialValues: {
     nickname: user.value?.nickname || '',
     avatarId: user.value?.avatar_id || 1,
@@ -29,24 +31,7 @@ const {
 const [nickname, nicknameAttrs] = defineField('nickname');
 
 const save = handleSubmit(async () => {
-  if (nickname !== user.value?.nickname) {
-    // 업데이트
-    await updateUserNickname(form.nickname!);
-  }
-
-  await updateUserAvatar(form.avatarId!);
-
-  // 유저정보 재조회
-  await initUserDetailInfo(user.value?.id);
-
-  useNotifyDone('message.avatarUpdated');
-
-  resetForm({
-    values: {
-      nickname: form.nickname,
-      avatarId: form.avatarId,
-    },
-  });
+  emit('onSubmit', { nickname: form.nickname, avatarId: form.avatarId });
 });
 
 // ================================
@@ -57,7 +42,6 @@ const setSwiperRef = (swiper: SwiperClass) => {
 };
 
 const swiperSlideTo = (index: number) => {
-  console.log(index);
   swiperRef.value?.slideTo(index, 300);
 };
 
@@ -81,7 +65,7 @@ const scrollThumbnailOn = () => {
   if (!item || !parent) return;
 
   const top = item.offsetTop - parent.offsetTop - marginY;
-  if (top !== 0) console.log('scrollTop', top);
+  // if (top !== 0) console.log('scrollTop', top);
   parent.scrollTo({
     top,
     behavior: 'smooth',

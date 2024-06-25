@@ -1,63 +1,81 @@
-<script lang="ts" setup>
-import { goToName } from 'src/composables/common/app';
-async function onSuccess(values: { email: string; password: string }) {
-  console.log('onSubmit', values);
-}
+<!-- 회원가입 -->
 
-const { fields, formMeta, onSubmit } = useAuthForm({
-  needPasswordConfirm: true,
-  onSuccess,
-});
+<script lang="ts" setup>
+import { JoinForm } from 'src/services/auth/auth-model';
+
+const joinStore = useJoinStore();
+const { joinData } = storeToRefs(joinStore);
+const { encodeByAES256 } = useCryptoJS();
+
 const {
-  email,
-  emailProps,
-  password,
-  passwordProps,
-  passwordConfirm,
-  passwordConfirmProps,
-} = fields;
+  meta,
+  errors,
+  errorBag,
+  values: form,
+  handleSubmit,
+} = useForm<JoinForm>({
+  validationSchema: toTypedSchema(JoinFormSchema),
+});
+
+const onSubmit = handleSubmit(async () => {
+  joinStore.$init();
+  if (!joinData.value) return;
+  joinData.value.email = form.email;
+  joinData.value.password = encodeByAES256(form.passwordInput);
+  goToName('join-terms');
+});
 </script>
 
 <template>
   <q-page class="px-6 bg-grey">
-    <div class="pt-[40px] text-h2 font-rokaf font-bold text-lg">
+    <div class="pt-10 text-h2 font-medium text-[17px]">
       <p>이메일 인증을 위한</p>
       <p><span class="text-primary">가입정보</span>를 입력해 주세요.</p>
     </div>
-    <q-form @submit.prevent="onSubmit">
-      <a-field label="아이디 (이메일)" class="mt-[30px]">
+
+    <form>
+      <a-field label="아이디 (이메일)" class="mt-8">
         <a-input
-          type="text"
-          v-model="email"
-          :placeholder="$t('label.id')"
+          name="email"
+          placeholder="이메일 주소 입력"
+          :done="!errorBag.email && !!form.email!.length"
+          :maxlength="320"
           autofocus
-          :inline-counter="false"
-          v-bind="emailProps"
         />
       </a-field>
       <a-field label="비밀번호">
         <a-input
           type="password"
-          v-model="password"
-          :placeholder="$t('label.password')"
-          :inline-counter="false"
-          v-bind="passwordProps"
+          name="passwordInput"
+          :maxlength="16"
+          :placeholder="$t('auth.password.placeholder')"
+          :done="!errorBag.passwordInput && form.passwordInput!.length >= 10"
+          :clearable="false"
         />
       </a-field>
       <a-field label="비밀번호 확인">
         <a-input
           type="password"
-          v-model="passwordConfirm"
-          :placeholder="$t('label.passwordConfirm')"
-          :inline-counter="false"
-          v-bind="passwordConfirmProps"
+          name="passwordConfirmInput"
+          :maxlength="16"
+          placeholder="비밀번호 확인"
+          :done="!errorBag.passwordConfirmInput && form.passwordConfirmInput!.length >= 10"
+          :clearable="false"
         />
       </a-field>
-    </q-form>
-    <div class="absolute bottom-0 bg-primary w-full h-[64px] left-0">
+    </form>
+    <div
+      class="absolute bottom-0 bg-primary w-full h-[64px] left-0"
+      :class="{
+        'bg-primary': meta.valid,
+        'bg-grey-2': !meta.valid,
+      }"
+    >
       <button
+        type="submit"
         class="text-center text-white font-base font-medium size-full flex justify-center items-center"
-        @click="goToName('join-policy')"
+        :disabled="!meta.valid"
+        @click="onSubmit"
       >
         다음
       </button>

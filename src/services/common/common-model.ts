@@ -26,22 +26,16 @@ export const NicknameSchema = string()
   .matches(REGEXP_NICKNAME, {
     message: t('validation.nickname'),
   })
-  // .test(
-  //   'nickname-not-changed',
-  //   t('validation.nicknameNotChanged'),
-  //   function (nickname: string) {
-  //     const { user } = useUserInfo();
-  //     return nickname !== user.value?.nickname;
-  //   }
-  // )
-  // 닉네임 중복체크
+  // 닉네임 체크
   .test(
     'existing-nickname',
     t('validation.nicknameAlreadyInUse'),
     async function (nickname: string) {
       if (!nickname) return true;
-      else if (REGEXP_NICKNAME.test(nickname) === false) return false;
 
+      const { user, isLoggedIn } = useUserInfo();
+      if (isLoggedIn.value && nickname === user.value?.nickname) return true;
+      if (!REGEXP_NICKNAME.test(nickname)) return false;
       return await getIsUserNicknameAvailable(nickname);
     }
   )
@@ -49,3 +43,9 @@ export const NicknameSchema = string()
 
 // 정규식: 훈련병 이름
 export const REGEXP_TRAINEE_NAME = /^[가-힣]{2,19}$/;
+
+// 프로필 수정 스키마
+export const NicknameAndAvatarFormSchema = object({
+  nickname: NicknameSchema,
+  avatarId: number().required(),
+});

@@ -1,143 +1,136 @@
-<!-- 서비스 약관 동의 -->
+<!-- 회원가입 > 약관 동의 -->
 
 <script setup lang="ts">
-import { useSearchRequest } from 'src/composables/common/api';
-import { goBack, goToName } from 'src/composables/common/app';
-// import {
-//   PolicyListType,
-//   usePolicyDetail,
-//   usePolicyList,
-// } from 'src/composables/policy/policy';
-import { Id } from 'src/services/common/api-model';
-import { useJoinStore } from 'src/stores/join-store';
-import { reactive } from 'vue';
-import { watchEffect } from 'vue';
-import { computed } from 'vue';
-import { ref } from 'vue';
+const joinStore = useJoinStore();
+const { joinData } = storeToRefs(joinStore);
+if (!joinData.value) goToName('join-email');
 
-const store = useJoinStore();
-// if (!store.hasMobileVerified()) {
-//   goBack();
-// }
+const { data: termsData } = useTermsRegistratnionTermsList();
 
-const searchRequest = useSearchRequest({ from: 0, size: 999 });
-// const { data } = usePolicyList(searchRequest);
-const { data } = { data: { rows: [] } };
-type ModelType = {
-  plcy_id: number;
-  type?: string;
-  agre_yn: boolean;
-  mandatory?: boolean;
-};
-
-const state = reactive<{ agreements: ModelType[] }>({
-  agreements: [
-    {
-      plcy_id: 1,
-      type: '만 14세 이상',
-      agre_yn: false,
-      mandatory: true,
-    },
-    {
-      plcy_id: 2,
-      type: '서비스 이용약관',
-      agre_yn: false,
-      mandatory: true,
-    },
-    {
-      plcy_id: 3,
-      type: '개인정보 수집 및 이용동의',
-      agre_yn: false,
-      mandatory: true,
-    },
-  ],
-});
-const checkAllModel = ref(false);
-
-// watchEffect(() => {
-//   if (!data.value) return;
-//   if (state.agreements.length === 0) {
-//     state.agreements = [
-//       ...data.value.rows.map((item: PolicyListType) => ({
-//         plcy_id: item.id,
-//         mandatory: item.esntl_yn === 1,
-//         agre_yn: false,
-//       })),
-//     ];
-//   }
-// });
-
-function onChecked() {
-  const allItemChecked = state.agreements.every((d) => d.agre_yn);
-  checkAllModel.value = allItemChecked;
-}
-
-const allMandatoryItemsChecked = computed(
-  () => !state.agreements?.some((d) => d.mandatory && !d.agre_yn)
+const checkedIdList = ref<Id[]>([]);
+const termsAgreementsList = computed(
+  () =>
+    termsData.value?.rows.map((o) => ({
+      terms_id: o.id,
+      is_agreed: checkedIdList.value.includes(o.id),
+    })) ?? []
 );
 
-function onCheckAll(value: boolean) {
-  state.agreements = state.agreements.map((d) => ({ ...d, agre_yn: value }));
-}
+const is14YearsOldChecked = ref(false);
+const isAllChecked = computed({
+  get() {
+    return !!(
+      termsData.value?.rows.every((o) => checkedIdList.value.includes(o.id)) &&
+      is14YearsOldChecked.value
+    );
+  },
+  set(value: boolean) {
+    is14YearsOldChecked.value = value;
+    checkedIdList.value = value
+      ? termsData.value?.rows.map((o) => o.id) ?? []
+      : [];
+  },
+});
 
-const detailId = ref<Id | undefined>(undefined);
-// const { data: detail, isFetching } = usePolicyDetail(detailId);
+const isSubmitAllowed = computed(
+  () =>
+    is14YearsOldChecked.value &&
+    termsData.value?.rows
+      .filter((o) => o.is_required)
+      .every((o) => checkedIdList.value.includes(o.id))
+);
 
-function onSubmit() {
-  // if (!allMandatoryItemsChecked.value) {
-  //   return;
-  // }
-  store.setPolicyAgreements(state.agreements);
+const onSubmit = () => {
+  if (!joinData.value) return;
+  joinData.value.terms_agreements = termsAgreementsList.value;
   goToName('join-nickname');
-}
+};
+
+/** 상세 보기 */
+const detailEnabled = ref(false);
+const termsTypeCd = ref<Id>(undefined);
+const { data: detail } = useTermsTypeCdDetail(termsTypeCd);
+const openDetailDialog = async (cd: string) => {
+  termsTypeCd.value = cd;
+  detailEnabled.value = true;
+};
 </script>
 
 <template>
   <q-page class="flex flex-col bg-grey">
-    <section class="pt-10 px-6 font-rokaf font-bold text-lg">
+    <section class="pt-10 px-6 font-medium text-[17px]">
       <p>가입을 위한</p>
       <p><span class="text-primary">약관동의</span>를 진행해 주세요.</p>
 
-      <q-list v-if="data" class="pt-[30px] flex flex-col">
+      <q-list class="pt-[30px] flex flex-col">
         <q-item
           class="border border-[#f1f1f1] min-h-[60px] p-[8px_9px_8px_6px] bg-grey-1 rounded-md"
         >
           <q-item-section
             class="p-0 text-body2 font-rokaf font-medium text-base"
           >
-            <a-checkbox
-              v-model="checkAllModel"
-              size="32px"
-              @update:model-value="onCheckAll"
-            >
+            <a-checkbox v-model="isAllChecked" size="32px">
               전체동의
+            </a-checkbox>
+          </q-item-section>
+        </q-item>
+        <q-item class="border border-[#f1f1f1] p-[8px_9px_8px_6px] rounded-md">
+          <q-item-section
+            class="p-0 text-body2 font-rokaf font-medium text-base"
+          >
+            <a-checkbox v-model="is14YearsOldChecked">
+              [필수] 만 14세 이상
             </a-checkbox>
           </q-item-section>
         </q-item>
         <q-item
           class="border border-[#f1f1f1] p-[8px_9px_8px_6px] rounded-md"
-          v-for="item in state.agreements"
-          :key="item.plcy_id"
+          v-for="item in termsData?.rows"
+          :key="item.id"
         >
           <q-item-section
             class="p-0 text-body2 font-rokaf font-medium text-base"
           >
-            <a-checkbox v-model="item.agre_yn" size="32px">
-              {{ item.mandatory ? '[필수] ' : '' }}
-              {{ item.type }}
+            <a-checkbox v-model="checkedIdList" size="32px" :val="item.id">
+              {{ item.is_required ? '[필수] ' : '' }}
+              {{ item.title }}
             </a-checkbox>
+          </q-item-section>
+          <q-item-section side>
+            <a
+              href="#"
+              class="text-body2 font-light underline"
+              @click.prevent="openDetailDialog(item.terms_type_cd)"
+            >
+              보기
+            </a>
           </q-item-section>
         </q-item>
       </q-list>
     </section>
-    <section class="fixed inset-x-0 bottom-0 p-4 bg-primary row h-[64px]">
+    <section
+      class="fixed inset-x-0 bottom-0 p-4 bg-primary row h-[64px]"
+      :class="{
+        'bg-primary': isSubmitAllowed,
+        'bg-grey-2': !isSubmitAllowed,
+      }"
+    >
       <button
+        type="button"
         class="text-center text-white font-base font-medium size-full flex justify-center items-center"
+        :disabled="!isSubmitAllowed"
         @click="onSubmit"
       >
-        동의하고 계속하기
+        계속하기
       </button>
     </section>
+
+    <!-- 팝업 -->
+    <a-dialog-content
+      v-model="detailEnabled"
+      :title="detail?.title"
+      :text="detail?.contents"
+    />
   </q-page>
 </template>
 

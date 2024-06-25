@@ -1,8 +1,6 @@
 <!-- 설정 화면 -->
 
 <script lang="ts" setup>
-import { useTermsList } from 'src/composables/setting/setting';
-
 const { BEversion } = useVersion();
 
 const { request } = useSearchFilter({

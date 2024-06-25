@@ -1,7 +1,5 @@
-import { defineStore } from 'pinia';
 import { CodeList } from 'meta-airforce-dto';
 import { MaybeRefOrGetter, ref, toValue } from 'vue';
-import { InferType } from 'yup';
 
 export type CodeListType = InferType<typeof CodeList>;
 

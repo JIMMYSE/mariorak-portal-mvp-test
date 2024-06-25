@@ -1,10 +1,6 @@
 <!-- 공지사항 > 상세 -->
 
 <script setup lang="ts">
-import { Id } from 'src/services/common/api-model';
-import { useTermsDetail, useTermsList } from 'src/composables/setting/setting';
-import { useRoute } from 'vue-router';
-
 const route = useRoute();
 const pageType = computed(() =>
   route.name === 'service-terms' ? 'service' : 'privacy'

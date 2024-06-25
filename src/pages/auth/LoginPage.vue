@@ -1,11 +1,6 @@
-<script setup lang="ts">
-import ACheckbox from 'src/components/form/ACheckbox.vue';
-import { useAutoLogin } from 'src/composables/auth/auth';
-import { useAuthForm } from 'src/composables/auth/useAuthForm';
-import { goToName } from 'src/composables/common/app';
-import { useAlertDialog } from 'src/composables/common/dialog';
-import { useAuthStore } from 'src/stores/auth-store';
+<!-- 로그인 화면 -->
 
+<script setup lang="ts">
 const isAutoLogin = useAutoLogin();
 let isWithdrawing = false;
 
@@ -110,13 +105,13 @@ function handleLoginResult({
             :label="$t('label.join')"
             @click="goToName('join-email')"
           />
-          <span class="text-grey-2">|</span>
+          <!-- <span class="text-grey-2">|</span>
           <a-btn
             class="text-grey-5 text-caption q-pa-sm font-light"
             flat
             :label="$t('label.findPassword')"
             @click="goToName('find-password')"
-          />
+          /> -->
         </div>
       </q-card-section>
     </q-card>
