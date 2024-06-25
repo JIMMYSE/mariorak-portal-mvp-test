@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { useDialogPluginComponent } from 'quasar';
 import { Message } from 'src/services/common/common-model';
-import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { ADialogFullProps } from './ADialogFull';
 
@@ -16,6 +14,7 @@ const props = withDefaults(defineProps<ADialogFullProps>(), {
   okLabel: 'label.ok',
   cancelLabel: 'label.cancel',
   persistent: true,
+  hideButtons: false,
   buttons: undefined,
 });
 
@@ -51,13 +50,13 @@ function getMessage(message: Message) {
 </script>
 
 <template>
-  <QDialog
+  <q-dialog
     ref="dialogRef"
     :persistent="persistent"
     :maximized="true"
     @hide="onDialogHide"
   >
-    <QCard
+    <q-card
       :class="`full-width !max-h-[calc(100vh+87px+67px)] flex-nowrap pb-[${
         buttonsComputed.length ? '87px' : '0px'
       }]`"
@@ -72,9 +71,9 @@ function getMessage(message: Message) {
           {{ $filterHtml(getMessage(dialogTitle)) }}
         </div>
         <q-icon
-          name="img:/images/icons/btn_close.svg"
+          name="img:/src/assets/icons/btn_delete.svg"
           class="cursor-pointer"
-          size="35px"
+          size="30px"
           v-close-popup
         />
       </q-card-section>
@@ -82,31 +81,19 @@ function getMessage(message: Message) {
 
       <!-- CONTENT COMPONENT -->
       <component v-if="contentComponent" :is="contentComponent"></component>
+
       <!-- CONTENT TITLE -->
-      <q-card-section
-        class="col text-light-14 text-grey-5 column items-center"
-        style="word-break: break-all"
-        v-if="htmlTitle || title"
-      >
-        <div
-          class="text-[18px] font-medium"
-          v-html="$filterHtml(getMessage(htmlTitle))"
-          v-if="htmlTitle"
-        />
-        <div class="text-[18px] font-medium q-pt-md" v-else>
-          {{ $filterHtml(getMessage(title)) }}
-        </div>
+      <q-card-section v-if="text" class="font-pretendard">
         <!-- CONTENT TEXT -->
-        <section
-          data-cy-id="text"
-          class="text-h3 column items-center"
-          v-if="htmlText || text"
-        >
-          <div v-html="$filterHtml(getMessage(htmlText))" v-if="htmlText" />
-          <div v-else>{{ $filterHtml(getMessage(text)) }}</div>
-        </section>
+        <div class="whitespace-pre-wrap">
+          {{ text }}
+        </div>
       </q-card-section>
+
+      {{ props }}
+
       <q-card-section
+        v-if="!props.hideButtons"
         class="fixed inset-x-0 bottom-0 p-4 flex gap-[10.5px] items-stretch z-10 bg-white"
       >
         <a-btn
@@ -120,9 +107,10 @@ function getMessage(message: Message) {
           class="col !min-h-[55px]"
         />
       </q-card-section>
-    </QCard>
-  </QDialog>
+    </q-card>
+  </q-dialog>
 </template>
+
 <style scoped lang="scss">
 :deep(.q-btn--outline:before) {
   border-color: #afafaf;

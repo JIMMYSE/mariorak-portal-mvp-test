@@ -3,24 +3,50 @@
 
 <script setup lang="ts">
 import { QCheckboxProps } from 'quasar';
-import { useForwardProps } from 'radix-vue';
+import { FieldContext } from 'vee-validate';
 
-type Props = QCheckboxProps;
+type Model = QCheckboxProps['modelValue'];
 
-const props = withDefaults(defineProps<Props>(), {});
+interface Props extends Omit<QCheckboxProps, 'modelValue'> {
+  name?: string;
+}
 
-const forwarded = useForwardProps(props);
+const props = withDefaults(defineProps<Props>(), {
+  name: '',
+});
+
+const model = defineModel<Model>({
+  required: false,
+  default: null,
+});
+
+let field: FieldContext<Model> | null = null;
+if (props.name) {
+  field = useField<Model>(() => props.name);
+  const { value: fieldValue } = field;
+  watch(
+    fieldValue,
+    (value) => {
+      if (value !== model.value) model.value = value;
+    },
+    { immediate: true }
+  );
+  watch(model, (value) => {
+    if (value !== fieldValue.value) fieldValue.value = value;
+  });
+}
 </script>
 
 <template>
-  <QCheckbox
-    v-bind="forwarded"
+  <q-checkbox
+    v-bind="props"
+    v-model="model"
     checked-icon="img:/src/assets/icons/checkbox_a.svg"
     unchecked-icon="img:/src/assets/icons/checkbox_d.svg"
     size="32px"
   >
     <slot />
-  </QCheckbox>
+  </q-checkbox>
 </template>
 
-<style scoped lang="scss"></style>
+<style lang="scss" scoped></style>

@@ -7,7 +7,7 @@ import {
 import { MaybeRef, MaybeRefOrGetter } from 'vue';
 
 const NOTICE_API_URL = '/notice';
-export const NOTICE_QUERY_KEY = {
+export const QUERY_KEY = {
   LIST: 'NOTICE_LIST',
   DETAIL: 'NOTICE_DETAIL',
 };
@@ -23,7 +23,7 @@ export type NoticeDetailResType = InferType<typeof NoticeDetailRes>;
 export const useNoticeList = ({
   searchRequest,
   queryOption,
-  listQueryKeyName = NOTICE_QUERY_KEY.LIST,
+  listQueryKeyName = QUERY_KEY.LIST,
 }: {
   searchRequest: MaybeRef<SearchRequest>;
   queryOption?: QueryOption;
@@ -42,7 +42,7 @@ export const useNoticeList = ({
  */
 export const useNoticeDetail = (
   id: MaybeRefOrGetter<Id>,
-  queryKeyName = NOTICE_QUERY_KEY.DETAIL
+  queryKeyName = QUERY_KEY.DETAIL
 ) => {
   return useQueryFetchItem<NoticeDetailResType>({
     url: NOTICE_API_URL,

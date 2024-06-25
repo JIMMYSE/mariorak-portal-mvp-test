@@ -40,7 +40,7 @@ const isConfirmed = ref(false);
           v-model="password"
           name="password"
           type="password"
-          placeholder="영문 대소문자, 숫자포함 최소 10자리"
+          placeholder="영문 대소문자, 숫자 포함 최소 10자리"
           autofocus
           v-bind="passwordProps"
         />

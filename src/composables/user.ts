@@ -2,6 +2,7 @@
  * User & Profile
  */
 
+import { AxiosError, HttpStatusCode } from 'axios';
 import {
   AccountRes,
   AvatarListRes,
@@ -49,6 +50,21 @@ export function getUserEmailInfo(email: MaybeRefOrGetter<string>) {
 }
 
 /**
+ * 이메일 사용 가능 유무 체크
+ */
+export const checkEmailUnique = async (email: MaybeRefOrGetter<string>) => {
+  try {
+    await getUserEmailInfo(email);
+    return false;
+  } catch (e: any) {
+    return (
+      e.response.status === HttpStatusCode.NotFound &&
+      e.response.data.code === '9999'
+    );
+  }
+};
+
+/**
  * 닉네임 정보 조회
  */
 export function getUserNicknameInfo(nickname: MaybeRefOrGetter<string>) {
@@ -67,7 +83,10 @@ export const getIsUserNicknameAvailable = async (
     await getUserNicknameInfo(email);
     return false;
   } catch (e) {
-    return true;
+    return (
+      e.response.status === HttpStatusCode.NotFound &&
+      e.response.data.code === '9999'
+    );
   }
 };
 
@@ -107,29 +126,3 @@ export const updateUserAvatar = (id: MaybeRefOrGetter<number>) => {
     data: { avatar_id: toValue(id) },
   });
 };
-
-// 프로필 수정 스키마
-export const MyProfileUpdateSchema = object({
-  nickname: string()
-    .label('닉네임')
-    .matches(REGEXP_NICKNAME, {
-      message: t('validation.nickname'),
-    })
-    // 닉네임 체크
-    .test(
-      'existing-nickname',
-      t('validation.nicknameAlreadyInUse'),
-      async function (nickname: string) {
-        if (!nickname) return true;
-
-        const { user } = useUserInfo();
-        if (nickname === user.value?.nickname) return true;
-
-        if (REGEXP_NICKNAME.test(nickname) === false) return false;
-
-        return await getIsUserNicknameAvailable(nickname);
-      }
-    )
-    .required(),
-  avatarId: number().required(),
-});

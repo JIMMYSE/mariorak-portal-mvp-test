@@ -13,9 +13,6 @@ export function useAuthForm({
     passwordConfirm: string;
   }) => void;
 }) {
-  const REGEX_PASSWORD = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d()>]{10,16}$/;
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
   // [passwordConfirm validator]
   addMethod(string, 'passwordConfirm', function (message) {
     return this.test('passwordConfirm', message, function (value, context) {
@@ -28,7 +25,7 @@ export function useAuthForm({
   const schema = object({
     email: string()
       .required(t('auth.email.required'))
-      .matches(emailRegex, t('auth.email.invalid')),
+      .matches(REGEX_EMAIL, t('auth.email.invalid')),
     password: string()
       .required(t('auth.password.required'))
       .matches(REGEX_PASSWORD, t('auth.password.invalid')),

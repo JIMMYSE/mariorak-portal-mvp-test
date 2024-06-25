@@ -40,11 +40,11 @@ export function handleAxiosError(error: any, router: Router): void {
       // 401
       useUnauthorizedLogout();
     } else if (status === HttpStatusCode.NotFound) {
-      console.log(error.response.data);
+      // console.log(error.response.data);
       // 모바일 인증하는 경우 콤포넌트 내부에서 다이얼로그 처리하기 때문에 다이얼로그 띄우지 않음
       const ignoreList = ['/user/email/', '/user/nickname/'];
       // 가입시 사용자 이메일 존재여부 확인용이므로 에러처리하지 않음
-      if (ignoreList.some((url) => error.config.url.contains(url))) return;
+      if (ignoreList.some((url) => error.config.url.startsWith(url))) return;
 
       useAlertDialogThrottle({
         text: error.response.data.message ?? 'error.notFound',

@@ -1,15 +1,13 @@
 import { useCookies } from '@vueuse/integrations/useCookies';
-import { wait } from 'src/utils/promise-util';
+import { PortalLoginResponse } from 'meta-airforce-dto';
 import {
-  AccountBase,
   DeviceAgent,
   EmailRegistrationReq,
   LoginReqType,
   LoginResType,
-  REG_TYPE,
-  SocialLoginType,
-  SocialRegistrationReq,
 } from 'src/services/auth/model';
+import { EmailRegistration } from 'src/stores/join-store';
+import { wait } from 'src/utils/promise-util';
 
 const ACCESS_TOKEN_KEY = process.env.ACCESS_TOKEN_KEY as string;
 const TOKEN_EXPIRE_DAYS = Number(process.env.TOKEN_EXPIRE_DAYS as string);
@@ -17,32 +15,29 @@ const TOKEN_EXPIRE_DAYS = Number(process.env.TOKEN_EXPIRE_DAYS as string);
 const AUTH_API_URL = '/auth';
 const LOGIN_URL = '/auth/login';
 const LOGOUT_URL = '/auth/logout';
-const SOCIAL_LOGIN_URL = '/auth/social-login';
 
 const PASSWORD_CHANGE_URL = '/auth/password';
-const UNREIGSTER_URL = '/auth/unregister';
+const UNREGISTER_URL = '/auth/unregister';
 const REGISTER_URL = '/auth/register';
 const REGISTER_URL_LOCAL = REGISTER_URL + '/local';
-const CHECK_EMAIL_ADDRESS_URL = '/user/email';
-const REGISTER_URL_SOCIAL = '/auth/register/social';
-const CHECK_EXISTING_SOCIAL_ACCOUNT_URL = '/user/social-email';
 
 /**
  * 사용자 정보
  */
 const isLocalDev = process.env.IS_LOCAL;
-export function useUserInfo() {
+
+export const useUserInfo = () => {
   const { user } = storeToRefs(useAuthStore());
   const isLoggedIn = computed(() => {
     return user.value != null;
   });
   return { user, isLoggedIn };
-}
+};
 
 /**
  * 로그인
  */
-export function useLogin() {
+export const useLogin = () => {
   const { getAgentInfo, agentInfo } = useBridge();
 
   async function login(email: string, password: string) {
@@ -94,60 +89,21 @@ export function useLogin() {
     };
   }
 
-  const saveLoginUser = async (payload: LoginResType) => {
-    setAccessToken(payload.token);
-    isAccessTokenListenerActive.value = true;
-    // console.log('#### 로그인 성공 ####', payload);
-    await initUserDetailInfo(payload.user.id);
-  };
+  return { login, saveLoginUser };
+};
 
-  async function socialLogin(accessToken: string, provider: SocialLoginType) {
-    getAgentInfo();
-    await wait(300);
-    const agent: LoginReqType['agent'] = agentInfo.value ?? dummyAgentInfo;
-    const k = provider.toUpperCase() as keyof typeof REG_TYPE;
-    const reg_type_cd: string = REG_TYPE[k];
-
-    const { data, isFinished, error } = await useAxiosPost<
-      ApiResponse<LoginResType>
-    >({
-      url: SOCIAL_LOGIN_URL,
-      data: { reg_type_cd, social_token: accessToken, agent },
-    });
-
-    const isSuccess = computed<boolean>(() => {
-      return !!(
-        isFinished.value &&
-        // 0000: 로그인 성공
-        data.value?.code === '0000' &&
-        data.value?.data?.token?.length
-      );
-    });
-
-    const loginData = ref<LoginResType | undefined>();
-
-    if (!error.value) {
-      const { data: result } = data.value ?? {};
-
-      if (result && isSuccess.value) {
-        loginData.value = result;
-        await saveLoginUser(result);
-      }
-    }
-
-    return {
-      data: loginData,
-      isSuccess,
-      passwordNeedToBeChanged: false,
-      error,
-    };
-  }
-
-  return { login, socialLogin, saveLoginUser };
-}
+/**
+ * 로그인 정보 셋팅
+ */
+const saveLoginUser = async (payload: LoginResType) => {
+  setAccessToken(payload.token);
+  isAccessTokenListenerActive.value = true;
+  // console.log('#### 로그인 성공 ####', payload);
+  await initUserDetailInfo(payload.user.id);
+};
 
 // 유저 상세정보 조회 & 저장
-export async function initUserDetailInfo(id: Id) {
+export const initUserDetailInfo = async (id: Id) => {
   try {
     const { data: userDetail } = await getUserDetail(id);
     if (userDetail.value?.data) {
@@ -159,7 +115,7 @@ export async function initUserDetailInfo(id: Id) {
   } catch (error) {
     console.error('#### 사용자 정보 조회 실패 ####');
   }
-}
+};
 
 /**
  * 로그아웃
@@ -329,73 +285,8 @@ export function useJoinService() {
     });
   };
 
-  const findExistingEmailAddress = async (email: string) => {
-    try {
-      const { data, error } = await useAxiosGet<
-        ApiResponse<InferType<typeof AccountBase>>
-      >({
-        url: CHECK_EMAIL_ADDRESS_URL + '/' + email,
-      });
-      if (error.value) {
-        return { error: error.value, data: undefined };
-      }
-      if (data.value) {
-        return { data: data.value?.data, error: undefined };
-      }
-    } catch (error) {
-      if ((error as any).response?.status === 404) {
-        return { error: undefined, data: undefined };
-      }
-    }
-    return { error: undefined, data: undefined };
-  };
-
-  const joinWithSocial = async (
-    form: InferType<typeof SocialRegistrationReq>
-  ) => {
-    getAgentInfo();
-    await wait(300);
-    const agent: InferType<typeof DeviceAgent> =
-      agentInfo.value ?? dummyAgentInfo;
-
-    return useAxiosPost<
-      ApiResponse<LoginResType>,
-      InferType<typeof SocialRegistrationReq>
-    >({
-      url: REGISTER_URL_SOCIAL,
-      data: { ...form, agent },
-    });
-  };
-
-  const checkExistingSocialAccount = async (
-    accessToken: string,
-    provider: SocialLoginType
-  ) => {
-    try {
-      const { data } = await useAxiosPost<
-        ApiResponse<InferType<typeof AccountBase>>
-      >({
-        url: CHECK_EXISTING_SOCIAL_ACCOUNT_URL,
-        data: {
-          social_token: accessToken,
-          reg_type_cd:
-            REG_TYPE[provider.toUpperCase() as keyof typeof REG_TYPE],
-        },
-      });
-
-      return {
-        exists: data.value?.code === '0000',
-        email: data.value?.data?.eml_addr ?? '',
-      };
-    } catch (error) {
-      return { exists: false, email: '' };
-    }
-  };
   return {
     joinWithEmail,
-    joinWithSocial,
-    findExistingEmailAddress,
-    checkExistingSocialAccount,
   };
 }
 
@@ -445,7 +336,7 @@ export const updateMyPassword = async (newPassword: string) => {
 export const useAuthUnregister = () => {
   const unregister = async (onSuccess: () => void) => {
     await useAxiosPost({
-      url: UNREIGSTER_URL,
+      url: UNREGISTER_URL,
     }).then(() => {
       isAccessTokenListenerActive.value = false;
       removeUserInfo(onSuccess);
@@ -453,4 +344,29 @@ export const useAuthUnregister = () => {
   };
 
   return { unregister };
+};
+
+/**
+ * 회원 가입
+ */
+export const registerUser = async (data: EmailRegistration) => {
+  type PortalLoginResponseType = InferType<typeof PortalLoginResponse>;
+  const { data: responseData, error } = await useAxiosPost<
+    PortalLoginResponseType,
+    EmailRegistration
+  >({
+    url: REGISTER_URL,
+    data,
+  });
+
+  if (
+    responseData.value?.code === '0000' &&
+    responseData.value?.data?.token?.length &&
+    !error.value
+  ) {
+    await saveLoginUser({
+      token: responseData.value.data.token,
+      user: responseData.value.data.user,
+    });
+  }
 };

@@ -13,7 +13,7 @@
       <input
         type="password"
         class="pl-5 h-11 bg-white w-full rounded-[22px] px-5 placeholder:text-grey-2 placeholder:font-pretendard placeholder:text-sm"
-        placeholder="영문 대소문자, 숫자포함 최소 10자리"
+        placeholder="영문 대소문자, 숫자 포함 최소 10자리"
       />
     </div>
 

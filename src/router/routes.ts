@@ -388,6 +388,7 @@ const routes: RouteRecordRaw[] = [
         name: 'login',
         meta: {
           title: '로그인',
+          requiresNonAuth: true,
         },
         component: () => import('pages/auth/LoginPage.vue'),
       },
@@ -445,22 +446,25 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/join',
+    name: 'join',
+    meta: {
+      requiresNonAuth: true,
+    },
     component: SubLayout,
     children: [
       {
-        path: '',
+        path: 'email',
         name: 'join-email',
         meta: {
           title: '회원가입',
         },
         component: () => import('pages/auth/JoinEmail.vue'),
       },
-
       {
-        path: 'policy',
-        name: 'join-policy',
+        path: 'terms',
+        name: 'join-terms',
         meta: {
-          title: '서비스 약관 동의',
+          title: '약관 동의',
         },
         component: () => import('pages/auth/JoinTerms.vue'),
       },
@@ -468,23 +472,24 @@ const routes: RouteRecordRaw[] = [
         path: 'nickname',
         name: 'join-nickname',
         meta: {
-          title: '닉네임 설정',
+          title: '아바타 설정',
         },
-        component: () => import('pages/auth/JoinNickname.vue'),
+        component: () => import('pages/auth/JoinNicknameAndAvatar.vue'),
       },
       {
         path: 'completed',
         name: 'join-completed',
         meta: {
-          title: '회원가입완료',
+          title: '회원가입 완료',
+          requiresNonAuth: false,
+          requiresAuth: true,
         },
         component: () => import('pages/auth/JoinCompleted.vue'),
       },
     ],
   },
-
   {
-    path: '/policy',
+    path: '/terms',
     component: SubLayout,
     meta: {
       requiresAuth: true,
@@ -492,11 +497,11 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: 'list',
-        name: 'policy-list',
+        name: 'terms-list',
         meta: {
           title: '이용약관',
         },
-        component: () => import('pages/policy/PolicyList.vue'),
+        component: () => import('pages/terms/PolicyList.vue'),
       },
       {
         path: 'use-restriction',
@@ -504,7 +509,7 @@ const routes: RouteRecordRaw[] = [
         meta: {
           title: '이용제한',
         },
-        component: () => import('pages/policy/UseRestriction.vue'),
+        component: () => import('pages/terms/UseRestriction.vue'),
       },
     ],
   },

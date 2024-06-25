@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35">
+  <g id="btn_change_check_a" transform="translate(-313 -118)">
+    <circle id="타원_44" data-name="타원 44" cx="17.5" cy="17.5" r="17.5" transform="translate(313 118)" fill="#196af5"/>
+    <path id="Icon_ionic-ios-checkmark" data-name="Icon ionic-ios-checkmark" d="M22.006,13.249l-.951-.978a.2.2,0,0,0-.151-.065h0a.2.2,0,0,0-.151.065L14.162,18.91l-2.4-2.4a.209.209,0,0,0-.3,0l-.962.962a.215.215,0,0,0,0,.308l3.025,3.025a.957.957,0,0,0,.632.308,1,1,0,0,0,.627-.3h.005l7.223-7.261A.231.231,0,0,0,22.006,13.249Z" transform="translate(314.565 118.794)" fill="#f4f4f5"/>
+  </g>
+</svg>

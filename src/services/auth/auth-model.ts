@@ -1,6 +1,7 @@
-import { UserDetail } from 'meta-airforce-dto';
+import { SIGNUP_TYPE, UserDetail } from 'meta-airforce-dto';
 import { t } from 'src/utils/message-util';
 import { ref } from 'yup';
+import { MaybeRef } from 'vue';
 
 /**
  * 사용자 정보
@@ -25,13 +26,14 @@ export interface Menu {
 /**
  * 이메일 정규식
  */
-export const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+export const REGEX_EMAIL = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 /**
  * 비밀번호 정규식
  * @description 영문, 숫자 조합. 10자리 이상, 16자리 이하.
  */
-export const REGEX_PASSWORD = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{10,16}$/;
+export const REGEX_PASSWORD =
+  /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()-=_+/?]{10,16}$/;
 
 /**
  * 휴대폰 번호 정규식
@@ -48,10 +50,40 @@ export const PasswordSchema = string()
 export const loginFormSchema = object({
   id: string().required(t('auth.id.required')),
   password: string().required(t('auth.password.required')),
-  // id: string().matches(emailRegex).required(),
+  // id: string().matches(REGEX_EMAIL).required(),
   // password: string().matches(REGEX_PASSWORD).required(),
 });
 export type LoginForm = InferType<typeof loginFormSchema>;
+
+// 회원가입 > 아이디, 비밀번호, 비밀번호 확인 폼 스키마
+let tempJoinFormSchemaEmail = '';
+export const JoinFormSchema = object().shape({
+  email: string()
+    .label('아이디(이메일)')
+    .max(320)
+    .matches(REGEX_EMAIL, t('auth.email.invalid'))
+    .test(
+      'existing-email',
+      t('auth.email.alreadyInUse'),
+      async function (email: string, context) {
+        if (tempJoinFormSchemaEmail === email) return true;
+        else tempJoinFormSchemaEmail = email;
+        if (!email) return true;
+        if (!REGEX_EMAIL.test(email)) return false;
+        return await checkEmailUnique(email);
+      }
+    )
+    .default('')
+    .required(),
+  passwordInput: PasswordSchema.label('비밀번호'),
+  passwordConfirmInput: string()
+    .label('비밀번호 확인')
+    .required(t('auth.passwordConfirm.required'))
+    .oneOf([ref('passwordInput')], t('auth.passwordConfirm.invalid'))
+    .default(''),
+});
+
+export type JoinForm = InferType<typeof JoinFormSchema>;
 
 // 비밀번호 변경 폼 스키마
 export const NewPasswordFormSchema = object({

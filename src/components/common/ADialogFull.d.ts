@@ -11,10 +11,12 @@ export interface ADialogFullProps {
   okLabel?: Message;
   cancelLabel?: Message;
   persistent?: boolean;
-  buttons?: {
-    label: string;
-    value: unknown;
-    color?: string;
-    textColor?: string;
-  }[];
+  hideButtons?: boolean;
+  buttons?:
+    | {
+        label: string;
+        value: unknown;
+        color?: string;
+        textColor?: string;
+      }[];
 }

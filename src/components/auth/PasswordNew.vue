@@ -44,7 +44,7 @@ const onSubmit = handleSubmit(async () => {
           type="password"
           name="new_password"
           :maxlength="16"
-          placeholder="영문 대소문자, 숫자포함 최소 10자리"
+          placeholder="영문 대소문자, 숫자 포함 최소 10자리"
           :done="!errorBag.new_password && form.new_password!.length >= 10"
           :clearable="false"
           autofocus
