@@ -62,7 +62,7 @@ export default route(function (/* { store, ssrContext } */) {
   Router.beforeEach((to) => {
     const { isLoggedIn } = useUserInfo();
     if (isLoggedIn.value) {
-      if (to.name === 'login') {
+      if (to.meta.requiresNonAuth) {
         return { name: 'main' };
       }
     } else {

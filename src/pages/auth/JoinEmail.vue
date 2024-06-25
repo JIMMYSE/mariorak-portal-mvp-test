@@ -3,6 +3,11 @@
 <script lang="ts" setup>
 import { JoinForm } from 'src/services/auth/auth-model';
 
+const { isLoggedIn } = useUserInfo();
+watch(isLoggedIn, (b) => {
+  if (b) goToName('main');
+});
+
 const joinStore = useJoinStore();
 const { joinData } = storeToRefs(joinStore);
 const { encodeByAES256 } = useCryptoJS();

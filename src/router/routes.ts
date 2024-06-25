@@ -388,6 +388,7 @@ const routes: RouteRecordRaw[] = [
         name: 'login',
         meta: {
           title: '로그인',
+          requiresNonAuth: true,
         },
         component: () => import('pages/auth/LoginPage.vue'),
       },
@@ -445,6 +446,10 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/join',
+    name: 'join',
+    meta: {
+      requiresNonAuth: true,
+    },
     component: SubLayout,
     children: [
       {
@@ -476,12 +481,13 @@ const routes: RouteRecordRaw[] = [
         name: 'join-completed',
         meta: {
           title: '회원가입 완료',
+          requiresNonAuth: false,
+          requiresAuth: true,
         },
         component: () => import('pages/auth/JoinCompleted.vue'),
       },
     ],
   },
-
   {
     path: '/terms',
     component: SubLayout,

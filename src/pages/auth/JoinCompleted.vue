@@ -13,10 +13,8 @@ const avatarSrc = computed(() => {
 <template>
   <div class="flex flex-col justify-center items-center h-screen pb-48 bg-grey">
     <div>
-      <section
-        class="pt-10 px-6 font-rokaf font-medium text-xl flex justify-center"
-      >
-        <p>
+      <section class="pt-10 px-6 font-rokaf text-[22px]">
+        <p class="text-center leading-relaxed">
           <span class="text-primary">{{ user?.nickname }}</span> 님 <br />
           가입을 축하드려요!
         </p>

@@ -81,6 +81,15 @@ const myAvatarIndex = computed(() => {
 onMounted(() => {
   scrollThumbnailOn();
 });
+
+const inputDoneIcon = computed(() => {
+  return (
+    'img:/src/assets/icons/' +
+    (!errors.value?.nickname && nickname.value && nickname.value.length > 2
+      ? 'btn_change_check_a.svg'
+      : 'btn_change_check_d.svg')
+  );
+});
 </script>
 
 <template>
@@ -109,7 +118,7 @@ onMounted(() => {
           >
         </template>
         <template #append>
-          <a-btn-icon icon="img:/src/assets/icons/edit.svg" size="35px" />
+          <a-btn-icon :icon="inputDoneIcon" size="35px" />
         </template>
       </q-input>
     </section>
