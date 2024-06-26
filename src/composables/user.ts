@@ -82,7 +82,7 @@ export const getIsUserNicknameAvailable = async (
   try {
     await getUserNicknameInfo(email);
     return false;
-  } catch (e) {
+  } catch (e: any) {
     return (
       e.response.status === HttpStatusCode.NotFound &&
       e.response.data.code === '9999'

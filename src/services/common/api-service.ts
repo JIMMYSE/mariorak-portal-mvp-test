@@ -1,12 +1,5 @@
 import { HttpStatusCode } from 'axios';
-import { useUnauthorizedLogout } from 'src/composables/auth/auth';
-import {
-  useAlertDialogThrottle,
-  useNotifyThrottle,
-} from 'src/composables/common/dialog';
 import { t } from 'src/utils/message-util';
-import { ref } from 'vue';
-import { Router } from 'vue-router';
 
 // for Bridge
 export const networkError = ref(false);
@@ -21,15 +14,14 @@ export function handleAxiosError(error: any, router: Router): void {
     // console.log(error.response.status);
     // console.log(error.response.headers);
 
+    // 서비스 이용제한
+    if (error.response?.data?.code === '1011') {
+      useServiceRestrictionLogout();
+      return;
+    }
+
     const status = error.response.status;
     if (status === HttpStatusCode.BadRequest) {
-      const ignoreList = [
-        '/auth/send-mobile-code',
-        '/auth/confirm-mobile-code',
-      ];
-      // 모바일 인증하는 경우 콤포넌트 내부에서 다이얼로그 처리하기 때문에 다이얼로그 띄우지 않음
-      if (ignoreList.includes(error.config.url)) return;
-
       // 400
       useAlertDialogThrottle({
         text: error.response.data.message ?? 'error.occured',

@@ -1,6 +1,3 @@
-export type SocialLoginType = 'local' | 'google' | 'kakao' | 'naver' | 'apple';
-export type LoginResType = { user: User; token: string };
-
 export const DeviceAgent = object({
   fcm_token: string().nullable(),
   platform: object({

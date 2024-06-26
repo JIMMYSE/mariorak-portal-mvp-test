@@ -8,7 +8,7 @@ const { login } = useLogin();
 const onSuccess = async (values: { email: string; password: string }) => {
   const { email, password } = values;
 
-  const { data, isSuccess, error } = await login(email, password);
+  const { data, isSuccess } = await login(email, password);
   if (!data.value) return;
 
   handleLoginResult({ isWithdrawing, isSuccess: isSuccess.value });
@@ -67,22 +67,25 @@ function handleLoginResult({
       <q-card-section>
         <q-form @submit.prevent="onSubmit">
           <a-input
+            ref="loginIdInput"
             type="text"
             input-class="text-primary font-light"
-            ref="loginIdInput"
+            v-bind="emailProps"
             v-model="email"
             :placeholder="$t('label.id')"
+            :clearable="false"
             autofocus
-            v-bind="emailProps"
           />
           <a-input
+            ref="passwordInput"
             type="password"
             class="mt-[15px]"
             input-class="text-primary text-weight-light"
-            v-model="password"
-            ref="passwordInput"
-            :placeholder="$t('label.password')"
             v-bind="passwordProps"
+            v-model="password"
+            :placeholder="$t('label.password')"
+            :clearable="false"
+            autocomplete
           />
           <a-checkbox
             :label="$t('label.autoLogin')"

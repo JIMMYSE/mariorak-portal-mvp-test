@@ -1,4 +1,9 @@
-<script lang="ts" setup></script>
+<!-- 서비스 이용제한 안내 -->
+
+<script lang="ts" setup>
+// 상세 조회
+// const { data } = useAuthRestrictUserInfo(props.id);
+</script>
 
 <template>
   <q-page class="px-6 relative pt-[35px]">
@@ -27,7 +32,7 @@
         2024-02-22 13:30 이후
       </p>
     </div>
-    <p class="mt-[15px] text-sm leading-5 text-grey-4">
+    <p class="mt-[15px] font-pretendard text-sm leading-5 text-grey-4">
       이용제한에 대한 문의 및 운영정책에 대한 자세한 내용은<br />
       이용약관을 참조해 주세요.
     </p>
@@ -35,6 +40,7 @@
     <div class="absolute bottom-0 bg-primary w-full h-[64px] left-0">
       <button
         class="text-center text-white font-base font-medium size-full flex justify-center items-center"
+        @click="goToName('login')"
       >
         확인
       </button>
