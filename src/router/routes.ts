@@ -395,56 +395,6 @@ const routes: RouteRecordRaw[] = [
     ],
   },
   {
-    path: '/auth',
-    component: SubLayout,
-    children: [
-      {
-        path: 'find-user',
-        name: 'find-user',
-        meta: {
-          title: '계정찾기',
-        },
-        component: () => import('pages/auth/FindUser.vue'),
-      },
-      {
-        path: 'reset-password',
-        name: 'reset-password',
-        meta: {
-          title: '비밀번호 재설정',
-        },
-        props: (route) => ({ id: route.query.id, token: route.query.token }),
-        component: () => import('pages/auth/ResetPassword.vue'),
-      },
-      {
-        path: 'reset-password-02',
-        name: 'reset-password-02',
-        meta: {
-          title: '비밀번호 재설정',
-        },
-        props: (route) => ({ id: route.query.id, token: route.query.token }),
-        component: () => import('pages/auth/ResetPassword02.vue'),
-      },
-      {
-        path: 'change-password',
-        name: 'change-password',
-        meta: {
-          title: '비밀번호 변경',
-        },
-        props: (route) => ({ id: route.query.id, token: route.query.token }),
-        component: () => import('pages/auth/ChangePassword.vue'),
-      },
-      {
-        path: 'find-password',
-        name: 'find-password',
-        meta: {
-          title: '비밀번호 찾기',
-        },
-        props: (route) => ({ id: route.query.id, token: route.query.token }),
-        component: () => import('pages/auth/FindPassword.vue'),
-      },
-    ],
-  },
-  {
     path: '/join',
     name: 'join',
     meta: {

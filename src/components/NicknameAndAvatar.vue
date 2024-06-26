@@ -6,7 +6,15 @@ import 'swiper/css/navigation';
 import type { Swiper as SwiperClass } from 'swiper/types/index.d.ts';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 
-const { user } = useUserInfo();
+type Props = {
+  initialNickname: string;
+  initialAvatarId: number;
+};
+
+const props = withDefaults(defineProps<Props>(), {
+  initialNickname: '',
+  initialAvatarId: 1,
+});
 
 const { data: avatarData } = useAvatarList();
 
@@ -16,22 +24,32 @@ const {
   meta,
   values: form,
   errors,
-  defineField,
   setFieldValue,
   handleSubmit,
   resetForm,
 } = useForm({
   validationSchema: toTypedSchema(NicknameAndAvatarFormSchema),
   initialValues: {
-    nickname: user.value?.nickname || '',
-    avatarId: user.value?.avatar_id || 1,
+    nickname: props.initialNickname,
+    avatarId: props.initialAvatarId,
   },
 });
 
-const [nickname, nicknameAttrs] = defineField('nickname');
+const {
+  value: nickname,
+  meta: nicknameMeta,
+  errorMessage: nicknameErrorMessage,
+} = useField<string>('nickname');
 
 const save = handleSubmit(async () => {
-  emit('onSubmit', { nickname: form.nickname, avatarId: form.avatarId });
+  emit('onSubmit', { nickname: form.nickname, avatarId: form.avatarId }, () => {
+    resetForm({
+      values: {
+        nickname: form.nickname,
+        avatarId: form.avatarId,
+      },
+    });
+  });
 });
 
 // ================================
@@ -100,7 +118,6 @@ const inputDoneIcon = computed(() => {
         input-class="font-medium"
         name="nickname"
         v-model="nickname"
-        v-bind="nicknameAttrs"
         rounded
         outlined
         bottom-slots
@@ -108,8 +125,8 @@ const inputDoneIcon = computed(() => {
         color="primary"
         maxlength="10"
         input-style="font-size: 16px"
-        :error="!!errors?.nickname"
-        :error-message="errors?.nickname"
+        :error="!!nicknameErrorMessage"
+        :error-message="nicknameErrorMessage"
       >
         <!-- NICHNAME FIELD -->
         <template #before>

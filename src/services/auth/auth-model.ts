@@ -48,7 +48,7 @@ export const PasswordSchema = string()
 
 // 로그인폼 스키마
 export const loginFormSchema = object({
-  id: string().required(t('auth.id.required')),
+  id: string().required(t('auth.email.required')),
   password: string().required(t('auth.password.required')),
   // id: string().matches(REGEX_EMAIL).required(),
   // password: string().matches(REGEX_PASSWORD).required(),

@@ -52,6 +52,7 @@ const onSubmit = handleSubmit(async () => {
           :done="!errorBag.password && form.password!.length >= 10"
           :clearable="false"
           autofocus
+          autocomplete
         />
       </a-field>
       <div class="absolute bottom-0 bg-primary w-full h-[64px] left-0">

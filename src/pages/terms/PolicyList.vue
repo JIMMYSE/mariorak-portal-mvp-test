@@ -1,16 +1,12 @@
 <!-- 마이페이지 > 이용약관 -->
 
 <script setup lang="ts">
-import { useSearchRequest } from 'src/composables/common/api';
 // import {
 //   usePolicyDetail,
 //   usePolicyDetailDialog,
 //   usePolicyList,
 // } from 'src/composables/policy/policy';
-import { Id } from 'src/services/common/api-model';
-import { ref } from 'vue';
 import { wait } from 'src/utils/promise-util';
-import { useLocalStorage } from '@vueuse/core';
 
 const searchRequest = useSearchRequest({ from: 0, size: 999 });
 // const { data: policyList, error } = usePolicyList(searchRequest);

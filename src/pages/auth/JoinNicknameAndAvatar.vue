@@ -20,7 +20,7 @@ const onSubmit = async ({
 
   joinStore.$reset();
 
-  goToName('join-completed');
+  goTo({ name: 'join-completed', replace: true });
 };
 </script>
 
