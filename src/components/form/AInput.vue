@@ -90,13 +90,6 @@ defineExpose({
     <template #append>
       <slot name="append" />
       <div v-if="done || props.type === 'password'" class="mr-2">
-        <!-- done icon -->
-        <q-icon
-          name="img:/icons/check.svg"
-          size="30px"
-          color="primary"
-          v-if="done"
-        />
         <!-- eye icon -->
         <q-icon
           :name="
@@ -106,6 +99,13 @@ defineExpose({
           size="30px"
           @click="isPasswordVisible = !isPasswordVisible"
           v-if="props.type === 'password'"
+        />
+        <!-- done icon -->
+        <q-icon
+          name="img:/icons/check.svg"
+          size="30px"
+          color="primary"
+          v-if="done"
         />
       </div>
     </template>

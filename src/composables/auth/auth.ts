@@ -1,13 +1,9 @@
 import { useCookies } from '@vueuse/integrations/useCookies';
-import { PortalLoginResponse } from 'meta-airforce-dto';
-import {
-  DeviceAgent,
-  EmailRegistrationReq,
-  LoginReqType,
-  LoginResType,
-} from 'src/services/auth/model';
+import { PortalLoginResponse, PortalRestrictUserRes } from 'meta-airforce-dto';
+import { LoginReqType } from 'src/services/auth/model';
 import { EmailRegistration } from 'src/stores/join-store';
 import { wait } from 'src/utils/promise-util';
+import { MaybeRefOrGetter } from 'vue';
 
 const ACCESS_TOKEN_KEY = process.env.ACCESS_TOKEN_KEY as string;
 const TOKEN_EXPIRE_DAYS = Number(process.env.TOKEN_EXPIRE_DAYS as string);
@@ -16,10 +12,10 @@ const AUTH_API_URL = '/auth';
 const LOGIN_URL = '/auth/login';
 const LOGOUT_URL = '/auth/logout';
 
-const PASSWORD_CHANGE_URL = '/auth/password';
 const UNREGISTER_URL = '/auth/unregister';
 const REGISTER_URL = '/auth/register';
-const REGISTER_URL_LOCAL = REGISTER_URL + '/local';
+
+type PortalLoginResponseType = InferType<typeof PortalLoginResponse>;
 
 /**
  * 사용자 정보
@@ -48,9 +44,7 @@ export const useLogin = () => {
 
     const { encodeByAES256 } = useCryptoJS();
 
-    const { data, isFinished, error } = await useAxiosPost<
-      ApiResponse<LoginResType>
-    >({
+    const { data } = await useAxiosPost<PortalLoginResponseType>({
       url: LOGIN_URL,
       data: {
         email,
@@ -61,31 +55,22 @@ export const useLogin = () => {
 
     const isSuccess = computed<boolean>(() => {
       return !!(
-        isFinished.value &&
-        // 0000: 로그인 성공
-        // 4005: 비밀번호 변경 필요
-        (data.value?.code === '0000' || data.value?.code === '4005') &&
-        data.value?.data?.token?.length
+        data.value?.code === '0000' &&
+        data.value?.data?.token?.length &&
+        data.value?.data?.user
       );
     });
-    const loginData = ref<LoginResType | undefined>();
 
-    const passwordNeedToBeChanged = computed(() => data.value?.code === '4005');
-
-    if (!error.value) {
-      const { data: result } = data.value ?? {};
-
-      if (result && isSuccess.value) {
-        loginData.value = result;
-        await saveLoginUser(result);
-      }
+    const { data: result } = data.value!;
+    const loginData = ref<PortalLoginResponseType['data'] | undefined>();
+    if (result && isSuccess.value) {
+      loginData.value = data.value!.data;
+      await saveLoginUser(data.value!.data);
     }
 
     return {
       data: loginData,
       isSuccess,
-      passwordNeedToBeChanged,
-      error,
     };
   }
 
@@ -95,10 +80,9 @@ export const useLogin = () => {
 /**
  * 로그인 정보 셋팅
  */
-const saveLoginUser = async (payload: LoginResType) => {
+const saveLoginUser = async (payload: PortalLoginResponseType['data']) => {
   setAccessToken(payload.token);
   isAccessTokenListenerActive.value = true;
-  // console.log('#### 로그인 성공 ####', payload);
   await initUserDetailInfo(payload.user.id);
 };
 
@@ -124,16 +108,28 @@ export function useLogout({ onSuccess }: { onSuccess?: () => void }) {
   useMyConfirmDialog({
     text: 'auth.logout.confirm',
   }).onOk(() => {
-    isAccessTokenListenerActive.value = false;
     doLogout(onSuccess);
   });
 }
 
 /**
+ * 서비스 이용제한 시 로그아웃 및 이용제한 안내페이지로 이동(400, code: 1011, 서비스 이용제한).
+ */
+export const useServiceRestrictionLogout = useThrottleFn(() => {
+  const { isLoggedIn } = useUserInfo();
+  if (isLoggedIn.value) {
+    doLogout(() => {
+      goToName('restriction-guide');
+    });
+  } else {
+    goToName('restriction-guide');
+  }
+}, 4000);
+
+/**
  * 강제 로그아웃(401, 토큰 만료 등). 중복방지 처리.
  */
 export const useUnauthorizedLogout = useThrottleFn(() => {
-  isAccessTokenListenerActive.value = false;
   doLogout(() => {
     useAlertDialog({
       text: 'error.unauthorized',
@@ -143,14 +139,15 @@ export const useUnauthorizedLogout = useThrottleFn(() => {
   });
 }, 4000);
 
-function doLogout(onSuccess?: () => void) {
+export const doLogout = (onSuccess?: () => void) => {
+  isAccessTokenListenerActive.value = false;
   if (hasAccessToken()) {
     useAxiosPost<any>({
       url: LOGOUT_URL,
     });
   }
   removeUserInfo(onSuccess);
-}
+};
 
 function removeUserInfo(onSuccess?: () => void) {
   useTimeoutFn(() => {
@@ -229,65 +226,6 @@ function addAccessTokenListener() {
  */
 export function initAuth() {
   addAccessTokenListener();
-}
-
-/**
- * 비밀번호 변경
- */
-export function usePassword() {
-  const { encodeByAES256 } = useCryptoJS();
-
-  const changePassword = async (password: string) =>
-    useAxiosPut({
-      url: PASSWORD_CHANGE_URL,
-      data: {
-        new_password: encodeByAES256(password),
-      },
-    });
-
-  // TODO: update API spec
-  const changePasswordWithMobile = (
-    id: number,
-    password: string,
-    token: string
-  ) =>
-    useAxiosPut({
-      url: PASSWORD_CHANGE_URL,
-      data: {
-        id,
-        new_password: encodeByAES256(password),
-        token,
-      },
-    });
-  return { changePassword, changePasswordWithMobile };
-}
-
-/**
- * 기존이메일조회
- */
-export function useJoinService() {
-  const { getAgentInfo, agentInfo } = useBridge();
-
-  const joinWithEmail = async (
-    form: InferType<typeof EmailRegistrationReq>
-  ) => {
-    getAgentInfo();
-    await wait(300);
-    const agent: InferType<typeof DeviceAgent> =
-      agentInfo.value ?? dummyAgentInfo;
-
-    return useAxiosPost<
-      ApiResponse<LoginResType>,
-      InferType<typeof EmailRegistrationReq>
-    >({
-      url: REGISTER_URL_LOCAL,
-      data: { ...form, agent, reg_type_cd: REG_TYPE.LOCAL },
-    });
-  };
-
-  return {
-    joinWithEmail,
-  };
 }
 
 const dummyAgentInfo = {
@@ -369,4 +307,13 @@ export const registerUser = async (data: EmailRegistration) => {
       user: responseData.value.data.user,
     });
   }
+};
+
+/**
+ * 이용제한 정보 조회
+ */
+export const useAuthRestrictUserInfo = (userId: MaybeRefOrGetter<Id>) => {
+  return useAxiosGet<InferType<typeof PortalRestrictUserRes>>({
+    url: USER_API_URL + '/restrict-user/' + userId,
+  });
 };

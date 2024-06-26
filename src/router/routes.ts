@@ -392,6 +392,14 @@ const routes: RouteRecordRaw[] = [
         },
         component: () => import('pages/auth/LoginPage.vue'),
       },
+      {
+        path: 'restriction',
+        name: 'restriction-guide',
+        meta: {
+          title: '이용제한',
+        },
+        component: () => import('pages/auth/ServiceRestrictionGuide.vue'),
+      },
     ],
   },
   {
@@ -452,14 +460,6 @@ const routes: RouteRecordRaw[] = [
           title: '이용약관',
         },
         component: () => import('pages/terms/PolicyList.vue'),
-      },
-      {
-        path: 'use-restriction',
-        name: 'use-restriction',
-        meta: {
-          title: '이용제한',
-        },
-        component: () => import('pages/terms/UseRestriction.vue'),
       },
     ],
   },
