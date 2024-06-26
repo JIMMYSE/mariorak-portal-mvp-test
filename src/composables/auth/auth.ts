@@ -331,7 +331,7 @@ export const updateMyPassword = async (newPassword: string) => {
 };
 
 /**
- * 회원 탈퇴
+ * 회원탈퇴
  */
 export const useAuthUnregister = () => {
   const unregister = async (onSuccess: () => void) => {

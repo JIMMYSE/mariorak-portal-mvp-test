@@ -1,3 +1,5 @@
+<!-- 회원탈퇴 -->
+
 <script lang="ts" setup>
 const { unregister } = useAuthUnregister();
 
@@ -25,8 +27,8 @@ const onSubmit = async () => {
         - 재가입 및 복구
       </h4>
       <p class="text-sm text-grey-3">
-        회원 탈퇴 후에는 1개월 간 동일한 계정으로 재가입할 수 없으며, 복구는
-        어떠한 경우에도 불가능합니다.
+        회원탈퇴 후에는 7일 간 동일한 계정으로 재가입할 수 없으며, 복구는 어떠한
+        경우에도 불가능합니다.
       </p>
       <h4 class="mt-5 text-sm text-secondary font-semibold">
         - 콘텐츠 및 게시물
@@ -49,7 +51,7 @@ const onSubmit = async () => {
         class="w-[165px] h-[50px] !text-[15px]"
         @click="onSubmit"
       >
-        탈퇴하기
+        회원탈퇴
       </q-btn>
     </div>
   </q-page>
