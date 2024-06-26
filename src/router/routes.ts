@@ -39,7 +39,7 @@ const routes: RouteRecordRaw[] = [
               title: '공지사항',
               bgColor: 'white',
             },
-            component: () => import('pages/home/notice/NoticeList.vue'),
+            component: () => import('pages/notice/NoticeList.vue'),
           },
           {
             path: ':id',
@@ -49,7 +49,7 @@ const routes: RouteRecordRaw[] = [
               title: '공지사항',
               bgColor: 'white',
             },
-            component: () => import('pages/home/notice/NoticeDetail.vue'),
+            component: () => import('pages/notice/NoticeDetail.vue'),
           },
         ],
       },
@@ -66,7 +66,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '아바타',
             },
-            component: () => import('pages/home/profile/ProfilePage.vue'),
+            component: () => import('pages/ProfilePage.vue'),
           },
         ],
       },
@@ -346,7 +346,7 @@ const routes: RouteRecordRaw[] = [
         meta: {
           title: '비밀번호 변경',
         },
-        component: () => import('pages/setting/SettingPassword.vue'),
+        component: () => import('pages/auth/ChangePassword.vue'),
       },
       {
         path: 'service-terms/:id',
@@ -375,7 +375,7 @@ const routes: RouteRecordRaw[] = [
           title: '회원 탈퇴',
           bgColor: 'white',
         },
-        component: () => import('pages/setting/SettingUnregister.vue'),
+        component: () => import('pages/auth/UnregisterPage.vue'),
       },
     ],
   },
