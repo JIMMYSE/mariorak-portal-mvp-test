@@ -42,7 +42,7 @@ const { data: listData } = useNoticeList({
             <template v-if="item.file_id">
               |
               <span>첨부파일</span>
-              <a-svg name="file" class="w-[9px] h-3" />
+              <q-icon name="img:/icons/file.svg" class="w-[9px] h-[12px]" />
             </template>
           </div>
         </q-item-section>

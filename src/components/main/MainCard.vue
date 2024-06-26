@@ -1,6 +1,9 @@
+<!-- 메인페이지 > 3D맵 -->
+
 <script setup lang="ts">
 defineEmits(['enter']);
 </script>
+
 <template>
   <div class="h-[438px] relative mb-7">
     <q-img src="/images/main-slide-1.png" height="371px" loading="eager" />
@@ -15,7 +18,7 @@ defineEmits(['enter']);
       </div>
       <div class="w-20 text-center">
         <q-btn round flat @click="$emit('enter')">
-          <a-svg name="arrow-right-circle" class="w-[50px]"></a-svg>
+          <q-icon name="img:/icons/arrow-right-circle.svg" size="50px" />
         </q-btn>
       </div>
     </div>

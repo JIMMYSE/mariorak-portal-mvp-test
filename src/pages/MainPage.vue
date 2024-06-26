@@ -2,10 +2,15 @@
 
 <script setup lang="ts">
 import { metaverseList } from 'src/assets/data/dummyData';
-import MainCard from 'src/components/main/MainCard.vue';
-import MenuCard from 'src/components/main/MenuCard.vue';
-import MenuItem from 'src/components/main/MenuItem.vue';
-import {} from 'src/composables/common/dialog';
+
+// 바로가기 구역 공통코드
+const { cdList: areaCdList, options: areaOptions } =
+  useCommonCode('SHORTCUT_AREA');
+
+console.log('areaCdList', areaCdList.value);
+
+const { data: shortcutData } = useShortcutList();
+
 const slide = ref(1);
 const slides = ref(
   Array(3)
@@ -14,7 +19,7 @@ const slides = ref(
 );
 
 const { enterRoom } = useBridge();
-function enterMetaverse(roomId: number = 1) {
+const enterMetaverse = (roomId: number = 1) => {
   const mapName = '{맵이름}';
   // user
   useMyConfirmDialog({
@@ -24,7 +29,7 @@ function enterMetaverse(roomId: number = 1) {
   }).onOk(() => {
     enterRoom(roomId);
   });
-}
+};
 
 const roomList = ref(metaverseList.rows.filter(({ page }) => page === 'main'));
 const socialList = [
@@ -115,12 +120,14 @@ const menuListForTrainee = [
       keep-alive
     >
       <q-carousel-slide
-        v-for="item in slides"
-        :key="item"
-        :name="item"
+        v-for="item in shortcutData?.rows.filter(
+          (r) => r.shortcut_area_cd === 'A'
+        )"
+        :key="item.id"
+        :name="item.title"
         class="p-0 h-[460px]"
       >
-        <main-card @enter="enterMetaverse(item)" />
+        <main-card @enter="enterMetaverse(item.id)" />
       </q-carousel-slide>
     </a-carousel>
 

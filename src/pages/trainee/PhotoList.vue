@@ -49,13 +49,6 @@ const { data: listData } = usePhotoList({
             class="text-caption text-grey-4 font-pretendard flex items-center gap-2"
           >
             <span> {{ formatDate(item.created_at) }}</span>
-            <!-- |
-            <span> {{ item.crt_lc }}</span> -->
-            <!-- <template v-if="item.file">
-              |
-              <span>첨부파일</span>
-              <a-svg name="file" class="w-[9px] h-3" />
-            </template> -->
           </div>
         </q-item-section>
         <!-- line -->

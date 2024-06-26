@@ -12,7 +12,7 @@ export const metaverseList = {
       설명입니다설명입니다설명입니다설명입니다설명입니다설명입니다<br /><br />입장하기를
       눌러 직접 체험해 보세요!!
     `,
-      img_url: '/src/assets/images/experience.png',
+      img_url: '/images/experience.png',
       page: 'main',
     },
     {
@@ -26,7 +26,7 @@ export const metaverseList = {
       설명입니다설명입니다설명입니다설명입니다설명입니다설명입니다<br /><br />입장하기를
       눌러 직접 체험해 보세요!!
     `,
-      img_url: '/src/assets/images/dormitory.png',
+      img_url: '/images/dormitory.png',
       page: 'main',
     },
     {
@@ -40,7 +40,7 @@ export const metaverseList = {
       설명입니다설명입니다설명입니다설명입니다설명입니다설명입니다<br /><br />입장하기를
       눌러 직접 체험해 보세요!!
     `,
-      img_url: '/src/assets/images/restaurant.png',
+      img_url: '/images/restaurant.png',
       page: 'main',
     },
     {
@@ -54,7 +54,7 @@ export const metaverseList = {
       설명입니다설명입니다설명입니다설명입니다설명입니다설명입니다<br /><br />입장하기를
       눌러 직접 체험해 보세요!!
     `,
-      img_url: '/src/assets/images/recruitment_guide_2.png',
+      img_url: '/images/recruitment_guide_2.png',
       icon: 'event_02.svg',
       page: 'event',
     },
@@ -69,7 +69,7 @@ export const metaverseList = {
       설명입니다설명입니다설명입니다설명입니다설명입니다설명입니다<br /><br />입장하기를
       눌러 직접 체험해 보세요!!
     `,
-      img_url: '/src/assets/images/experience.png',
+      img_url: '/images/experience.png',
       icon: 'event_03.svg',
       page: 'event',
     },
@@ -84,7 +84,7 @@ export const metaverseList = {
       설명입니다설명입니다설명입니다설명입니다설명입니다설명입니다<br /><br />입장하기를
       눌러 직접 체험해 보세요!!
     `,
-      img_url: '/src/assets/images/dormitory.png',
+      img_url: '/images/dormitory.png',
       icon: 'event_04.svg',
       page: 'event',
     },
@@ -99,7 +99,7 @@ export const metaverseList = {
       설명입니다설명입니다설명입니다설명입니다설명입니다설명입니다<br /><br />입장하기를
       눌러 직접 체험해 보세요!!
     `,
-      img_url: '/src/assets/images/restaurant.png',
+      img_url: '/images/restaurant.png',
       icon: 'event_05.svg',
       page: 'event',
     },
@@ -109,7 +109,7 @@ export const metaverseList = {
       title: '상담실 1',
       subtitle: '',
       content: '상담실 1에 입장하여<br/>입영 상담 체험을 진행합니다.',
-      img_url: '/src/assets/images/recruitment_guide_1.png',
+      img_url: '/images/recruitment_guide_1.png',
       active: true,
       page: 'counseling',
     },
@@ -119,7 +119,7 @@ export const metaverseList = {
       title: '상담실 2',
       subtitle: '',
       content: '상담실 2에 입장하여<br/>입영 상담 체험을 진행합니다.',
-      img_url: '/src/assets/images/recruitment_guide_1.png',
+      img_url: '/images/recruitment_guide_1.png',
       active: true,
       page: 'counseling',
     },
@@ -129,7 +129,7 @@ export const metaverseList = {
       title: '상담실 3',
       subtitle: '',
       content: '상담실 2에 입장하여<br/>입영 상담 체험을 진행합니다.',
-      img_url: '/src/assets/images/recruitment_guide_1.png',
+      img_url: '/images/recruitment_guide_1.png',
       active: true,
       page: 'counseling',
     },
@@ -139,7 +139,7 @@ export const metaverseList = {
       title: '상담실 4',
       subtitle: '',
       content: '상담실 2에 입장하여<br/>입영 상담 체험을 진행합니다.',
-      img_url: '/src/assets/images/recruitment_guide_1.png',
+      img_url: '/images/recruitment_guide_1.png',
       active: true,
       page: 'counseling',
     },
@@ -149,7 +149,7 @@ export const metaverseList = {
       title: '상담실 5',
       subtitle: '',
       content: '현재 상담실5는 운영하지 않아<br/>입장이 불가합니다.',
-      img_url: '/src/assets/images/recruitment_guide_1.png',
+      img_url: '/images/recruitment_guide_1.png',
       active: false,
       page: 'counseling',
     },
@@ -159,7 +159,7 @@ export const metaverseList = {
       title: '상담실 6',
       subtitle: '',
       content: '현재 상담실5는 운영하지 않아<br/>입장이 불가합니다.',
-      img_url: '/src/assets/images/recruitment_guide_1.png',
+      img_url: '/images/recruitment_guide_1.png',
       active: false,
       page: 'counseling',
     },
