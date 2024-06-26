@@ -22,29 +22,29 @@
       <div>
         <a-subtitle>수료증서 및 상장수여</a-subtitle>
         <div class="flex gap-[7px] mt-[5px]">
-          <q-img src="~assets/images/enlist_event_01.png" class="flex-1" />
-          <q-img src="~assets/images/enlist_event_02.png" class="flex-1" />
+          <q-img src="/images/enlist_event_01.png" class="flex-1" />
+          <q-img src="/images/enlist_event_02.png" class="flex-1" />
         </div>
       </div>
       <div>
         <a-subtitle>수료신고</a-subtitle>
         <div class="flex gap-[7px] mt-[5px]">
-          <q-img src="~assets/images/enlist_event_03.png" class="flex-1" />
-          <q-img src="~assets/images/enlist_event_04.png" class="flex-1" />
+          <q-img src="/images/enlist_event_03.png" class="flex-1" />
+          <q-img src="/images/enlist_event_04.png" class="flex-1" />
         </div>
       </div>
       <div class="">
         <a-subtitle>우리의 다짐 제창</a-subtitle>
         <div class="flex gap-[7px] mt-[5px]">
-          <q-img src="~assets/images/enlist_event_05.png" class="flex-1" />
-          <q-img src="~assets/images/enlist_event_06.png" class="flex-1" />
+          <q-img src="/images/enlist_event_05.png" class="flex-1" />
+          <q-img src="/images/enlist_event_06.png" class="flex-1" />
         </div>
       </div>
       <div>
         <a-subtitle>태극기 부착</a-subtitle>
         <div class="flex gap-[7px] mt-[5px]">
-          <q-img src="~assets/images/enlist_event_05.png" class="flex-1" />
-          <q-img src="~assets/images/enlist_event_06.png" class="flex-1" />
+          <q-img src="/images/enlist_event_05.png" class="flex-1" />
+          <q-img src="/images/enlist_event_06.png" class="flex-1" />
         </div>
       </div>
     </section>

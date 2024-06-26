@@ -19,7 +19,7 @@ const props = defineProps<Props>();
     :to="to"
   >
     <div
-      :style="`background-image: url('/src/assets/images/main/${icon}.png');`"
+      :style="`background-image: url('/images/main/${icon}.png');`"
       class="bg-right-bottom bg-no-repeat size-full bg-contain"
     >
       <p class="text-xs font-pretendard text-primary leading-[14px]">
@@ -38,7 +38,7 @@ const props = defineProps<Props>();
     @click="onClick"
   >
     <div
-      :style="`background-image: url('/src/assets/images/main/${icon}.png');`"
+      :style="`background-image: url('/images/main/${icon}.png');`"
       class="bg-right-bottom bg-no-repeat size-full bg-contain"
     >
       <p class="text-xs font-pretendard text-primary leading-[14px]">

@@ -71,7 +71,7 @@ function getMessage(message: Message) {
           {{ $filterHtml(getMessage(dialogTitle)) }}
         </div>
         <q-icon
-          name="img:/src/assets/icons/btn_delete.svg"
+          name="img:/icons/btn_delete.svg"
           class="cursor-pointer"
           size="30px"
           v-close-popup

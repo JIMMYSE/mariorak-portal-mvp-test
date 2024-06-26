@@ -41,8 +41,8 @@ if (props.name) {
   <q-checkbox
     v-bind="props"
     v-model="model"
-    checked-icon="img:/src/assets/icons/checkbox_a.svg"
-    unchecked-icon="img:/src/assets/icons/checkbox_d.svg"
+    checked-icon="img:/icons/checkbox_a.svg"
+    unchecked-icon="img:/icons/checkbox_d.svg"
     size="32px"
   >
     <slot />

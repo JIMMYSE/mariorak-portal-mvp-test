@@ -54,10 +54,7 @@ function enterMetaverse(item: any) {
           ></p>
         </q-card-section>
         <q-card-section class="p-0 pr-2">
-          <q-icon
-            name="img:/src/assets/icons/icon_arrow_event.svg"
-            size="30px"
-          />
+          <q-icon name="img:/icons/icon_arrow_event.svg" size="30px" />
         </q-card-section>
       </q-card>
     </div>

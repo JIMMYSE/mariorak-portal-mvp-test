@@ -38,10 +38,7 @@ const maxPages = computed(() =>
       </div>
       <router-link :to="{ name: 'write-letter' }" class="bg-primary w-[80px]">
         <q-btn flat square color="white" class="py-[20px] size-full">
-          <q-icon
-            name="img:/src/assets/icons/icon_letter.svg"
-            size="22px"
-          ></q-icon>
+          <q-icon name="img:/icons/icon_letter.svg" size="22px"></q-icon>
           <p class="text-xs font-pretendard font-medium">편지쓰기</p>
         </q-btn>
       </router-link>

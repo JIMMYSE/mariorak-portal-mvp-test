@@ -21,7 +21,7 @@ router.afterEach((to) => {
       <q-toolbar class="flex justify-between items-center h-[var(--header-h)]">
         <a-btn-icon
           @click="goBack()"
-          icon="img:/src/assets/icons/icon_back.svg"
+          icon="img:/icons/icon_back.svg"
           size="30px"
         />
         <span

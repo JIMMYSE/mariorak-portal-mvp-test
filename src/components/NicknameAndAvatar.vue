@@ -102,7 +102,7 @@ onMounted(() => {
 
 const inputDoneIcon = computed(() => {
   return (
-    'img:/src/assets/icons/' +
+    'img:/icons/' +
     (!errors.value?.nickname && nickname.value && nickname.value.length > 2
       ? 'btn_change_check_a.svg'
       : 'btn_change_check_d.svg')
@@ -154,7 +154,7 @@ const inputDoneIcon = computed(() => {
         <swiper-slide v-for="avatar in avatarData?.rows" :key="avatar.id">
           <section class="h-full relative pb-2 flex justify-center">
             <div class="absolute bottom-0 flex justify-center w-full">
-              <img src="/src/assets/images/shadow.svg" alt="shadow" />
+              <img src="/images/shadow.svg" alt="shadow" />
             </div>
             <q-img
               :src="avatar.profile_image.convert_addr ?? undefined"

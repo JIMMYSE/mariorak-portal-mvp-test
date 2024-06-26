@@ -20,7 +20,7 @@ const emits = defineEmits(['onDelete']);
       {{ data.name }}
       <q-icon
         v-if="props.hasLink"
-        name="img:/src/assets/icons/icon_arrow_pic.svg"
+        name="img:/icons/icon_arrow_pic.svg"
         size="16px"
       />
     </h2>
@@ -33,7 +33,7 @@ const emits = defineEmits(['onDelete']);
       <q-icon
         v-if="hasIcon"
         class="absolute top-1 right-1"
-        name="img:/src/assets/icons/icon_heart.svg"
+        name="img:/icons/icon_heart.svg"
         size="40px"
         @click="$emit('onDelete', data)"
       />

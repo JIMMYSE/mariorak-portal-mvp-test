@@ -24,7 +24,7 @@ const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
         </div>
         <q-icon
           class="absolute top-0 right-2 cursor-pointer"
-          name="img:/src/assets/icons/btn_delete.svg"
+          name="img:/icons/btn_delete.svg"
           size="30px"
           v-close-popup
         />

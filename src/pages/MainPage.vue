@@ -195,17 +195,14 @@ const menuListForTrainee = [
           <a-btn-icon
             v-for="item in socialList"
             :key="item.name"
-            :icon="`img:/src/assets/images/main/${item.name}.png`"
+            :icon="`img:/images/main/${item.name}.png`"
             size="27px"
             :href="item.url"
             target="_blank"
           />
         </div>
         <div class="flex justify-center">
-          <q-icon
-            name="img:/src/assets/icons/icon_footer.svg"
-            size="102px"
-          ></q-icon>
+          <q-icon name="img:/icons/icon_footer.svg" size="102px"></q-icon>
         </div>
       </div>
     </footer>

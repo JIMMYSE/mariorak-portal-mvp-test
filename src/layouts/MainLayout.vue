@@ -22,18 +22,12 @@ const headerClass = computed(() =>
         <q-img
           v-if="footerVisible"
           class="w-[125px] h-[30px]"
-          src="~assets/images/main-logo-blue.png"
+          src="/images/main-logo-blue.png"
         />
-        <q-img
-          v-else
-          class="w-[125px] h-[30px]"
-          src="~assets/images/main-logo.png"
-        />
+        <q-img v-else class="w-[125px] h-[30px]" src="/images/main-logo.png" />
         <div class="flex items-center gap-[14px]">
           <q-btn size="md" round flat :to="{ name: 'profile' }">
-            <q-icon
-              name="img:/src/assets/images/avatar-1-thumb.png"
-              size="40px"
+            <q-icon name="img:/images/avatar-1-thumb.png" size="40px"
           /></q-btn>
           <q-btn
             class="size-10 bg-white"
@@ -41,7 +35,7 @@ const headerClass = computed(() =>
             round
             flat
             :to="{ name: 'notice-list' }"
-            ><q-icon name="img:/src/assets/icons/bell.svg" size="32px" />
+            ><q-icon name="img:/icons/bell.svg" size="32px" />
           </q-btn>
         </div>
       </q-toolbar>
@@ -64,7 +58,7 @@ const headerClass = computed(() =>
             border-left-width: var(--border);
             border-right-width: var(--border);
             border-top-width: 1rem;
-            border-image-source: url(/src/assets/images/main-footer-bg.png);
+            border-image-source: url(/images/main-footer-bg.png);
             border-image-slice: 25 110 fill;
             border-image-repeat: stretch;
             border-style: ridge;
@@ -76,23 +70,20 @@ const headerClass = computed(() =>
         <!-- ></a-svg> -->
         <q-tabs class="col px-8 absolute inset-0 bottom-5">
           <!-- <div -->
-          <!--   class="absolute top-0 bottom-0 w-full bg-[url(/src/assets/images/main-tabs-bg.svg)] bg-bottom shadow-[0px_-3px_10px_#00000014] bg-clip-padding bg-no-repeat opacity-100" -->
+          <!--   class="absolute top-0 bottom-0 w-full bg-[url(/images/main-tabs-bg.svg)] bg-bottom shadow-[0px_-3px_10px_#00000014] bg-clip-padding bg-no-repeat opacity-100" -->
           <!-- ></div> -->
           <q-route-tab
-            icon="img:/src/assets/icons/home.svg"
+            icon="img:/icons/home.svg"
             label="홈"
             color="black"
             to="/"
             exact
           />
           <q-route-tab class="center-btn" to="/event" exact>
-            <q-icon
-              name="img:/src/assets/images/airplane-circle.png"
-              size="69px"
-            />
+            <q-icon name="img:/images/airplane-circle.png" size="69px" />
           </q-route-tab>
           <q-route-tab
-            icon="img:/src/assets/icons/setting.svg"
+            icon="img:/icons/setting.svg"
             label="설정"
             color="black"
             active-class="text-primary"

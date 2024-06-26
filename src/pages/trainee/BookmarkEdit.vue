@@ -67,7 +67,7 @@ function addBookmark(battalionName: string, item: any) {
             <q-item-section>{{ item.class_name }}</q-item-section>
             <q-item-section side>
               <a-btn-icon
-                :icon="`img:/src/assets/icons/icon_heart2${
+                :icon="`img:/icons/icon_heart2${
                   bookmarkedClassIdList?.includes(item.id) ? '' : '_d'
                 }.svg`"
                 size="30px"

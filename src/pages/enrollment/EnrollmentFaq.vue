@@ -78,7 +78,7 @@ const selectedCategory = computed({
             <!-- ARROW ICON -->
             <q-icon
               size="30px"
-              name="img:/src/assets/icons/down_arrow.svg"
+              name="img:/icons/down_arrow.svg"
               class="absolute right-0 top-[21px]"
               :class="detailId === item.id ? 'rotate-180' : ''"
             />
@@ -97,7 +97,7 @@ const selectedCategory = computed({
               v-if="detailData.file"
               class="relative underline underline-offset-2 pl-[17px] mt-10 font-pretendard text-sm text-primary"
             >
-              <q-icon name="img:/src/assets/icons/icon_file.svg" size="12px" />
+              <q-icon name="img:/icons/icon_file.svg" size="12px" />
               <a
                 :href="detailData.file.convert_addr ?? undefined"
                 target="_blank"

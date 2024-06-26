@@ -22,29 +22,29 @@
       <div>
         <a-subtitle>생활관 견학</a-subtitle>
         <div class="flex gap-[7px] mt-[5px]">
-          <q-img src="~assets/images/enlist_event_01.png" class="flex-1" />
-          <q-img src="~assets/images/enlist_event_02.png" class="flex-1" />
+          <q-img src="/images/enlist_event_01.png" class="flex-1" />
+          <q-img src="/images/enlist_event_02.png" class="flex-1" />
         </div>
       </div>
       <div>
         <a-subtitle>의장대 공연</a-subtitle>
         <div class="flex gap-[7px] mt-[5px]">
-          <q-img src="~assets/images/enlist_event_03.png" class="flex-1" />
-          <q-img src="~assets/images/enlist_event_04.png" class="flex-1" />
+          <q-img src="/images/enlist_event_03.png" class="flex-1" />
+          <q-img src="/images/enlist_event_04.png" class="flex-1" />
         </div>
       </div>
       <div>
         <a-subtitle>입영식</a-subtitle>
         <div class="flex gap-[7px] mt-[5px]">
-          <q-img src="~assets/images/enlist_event_05.png" class="flex-1" />
-          <q-img src="~assets/images/enlist_event_06.png" class="flex-1" />
+          <q-img src="/images/enlist_event_05.png" class="flex-1" />
+          <q-img src="/images/enlist_event_06.png" class="flex-1" />
         </div>
       </div>
       <div>
         <a-subtitle>입영 홍보 부스</a-subtitle>
         <div class="flex gap-[7px] mt-[5px]">
-          <q-img src="~assets/images/enlist_event_05.png" class="flex-1" />
-          <q-img src="~assets/images/enlist_event_06.png" class="flex-1" />
+          <q-img src="/images/enlist_event_05.png" class="flex-1" />
+          <q-img src="/images/enlist_event_06.png" class="flex-1" />
         </div>
       </div>
     </section>

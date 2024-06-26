@@ -86,11 +86,7 @@ const onSubmit = handleSubmit(async () => {
         <div class="w-px"></div>
         <!-- TITLE TEXT -->
         <div class="text-[17px] font-medium">즐겨찾기 등록</div>
-        <a-btn-icon
-          v-close-popup
-          icon="img:/src/assets/icons/close.svg"
-          size="30px"
-        />
+        <a-btn-icon v-close-popup icon="img:/icons/close.svg" size="30px" />
       </q-card-section>
       <q-card-section class="mt-[50px] mb-32">
         <h2 class="text-[17px] font-medium leading-[26px] mt-10 px-2">

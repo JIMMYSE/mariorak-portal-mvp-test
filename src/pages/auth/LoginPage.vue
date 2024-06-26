@@ -61,7 +61,7 @@ function handleLoginResult({
 
 <template>
   <q-page class="column justify-center items-center px-6 bg-grey">
-    <q-img src="~assets/images/main-logo-blue.png" width="173px" height="45" />
+    <q-img src="/images/main-logo-blue.png" width="173px" height="45" />
     <q-card class="w-full mt-12 bg-transparent" :flat="true">
       <!-- EMAIL LOGIN -->
       <q-card-section>

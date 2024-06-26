@@ -52,7 +52,7 @@ const data = ref([
           v-html="counseling.content"
         ></p>
         <q-icon
-          :name="`img:/src/assets/icons/${counseling.icon}`"
+          :name="`img:/icons/${counseling.icon}`"
           size="85px"
           class="absolute right-0 bottom-0"
         ></q-icon>
@@ -73,7 +73,7 @@ const data = ref([
           v-html="item.content"
         ></p>
         <q-icon
-          :name="`img:/src/assets/icons/${item.icon}`"
+          :name="`img:/icons/${item.icon}`"
           size="85px"
           class="absolute right-0 bottom-0"
         ></q-icon>

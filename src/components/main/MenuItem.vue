@@ -35,7 +35,7 @@ defineProps<Props>();
         class="font-pretendard text-xs text-grey-3 leading-[16px] mt-[12px] flex items-center"
       >
         더보기
-        <q-icon name="img:/src/assets/icons/arrow.svg" size="16px" />
+        <q-icon name="img:/icons/arrow.svg" size="16px" />
       </router-link>
     </q-item-section>
   </q-item>

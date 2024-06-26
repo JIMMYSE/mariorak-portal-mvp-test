@@ -44,11 +44,7 @@ const descriptions = {
         size="md"
         :to="{ name: 'trainee-bookmark-new' }"
       >
-        <q-icon
-          class="mr-1"
-          name="img:/src/assets/icons/icon_plus.svg"
-          size="10px"
-        />
+        <q-icon class="mr-1" name="img:/icons/icon_plus.svg" size="10px" />
         즐겨찾기 추가
       </q-btn>
       <!-- MAX FAVORITE ITEMS -->

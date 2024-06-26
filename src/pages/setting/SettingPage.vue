@@ -38,7 +38,7 @@ const privacyTermsId = computed(() => {
       class="w-full h-[67px] pl-6 pr-3 flex justify-between items-center"
     >
       <a-subtitle>계정 설정</a-subtitle>
-      <q-icon name="img:/src/assets/icons/icon_arrow_set.svg" size="30px" />
+      <q-icon name="img:/icons/icon_arrow_set.svg" size="30px" />
     </router-link>
 
     <!-- 서비스 약관 -->
@@ -55,7 +55,7 @@ const privacyTermsId = computed(() => {
       <h3 class="text-sm font-pretendard font-medium text-secondary">
         서비스 이용약관
       </h3>
-      <q-icon name="img:/src/assets/icons/icon_arrow_set.svg" size="30px" />
+      <q-icon name="img:/icons/icon_arrow_set.svg" size="30px" />
     </router-link>
     <router-link
       :to="{ path: `/setting/privacy-terms/${privacyTermsId}` }"
@@ -64,7 +64,7 @@ const privacyTermsId = computed(() => {
       <h3 class="text-sm font-pretendard font-medium text-secondary">
         개인정보 처리방침
       </h3>
-      <q-icon name="img:/src/assets/icons/icon_arrow_set.svg" size="30px" />
+      <q-icon name="img:/icons/icon_arrow_set.svg" size="30px" />
     </router-link>
 
     <!-- 고객 지원 -->
@@ -89,7 +89,7 @@ const privacyTermsId = computed(() => {
       <h3 class="text-sm font-pretendard font-medium text-secondary">
         공지사항
       </h3>
-      <q-icon name="img:/src/assets/icons/icon_arrow_set.svg" size="30px" />
+      <q-icon name="img:/icons/icon_arrow_set.svg" size="30px" />
     </router-link>
 
     <router-link
@@ -99,7 +99,7 @@ const privacyTermsId = computed(() => {
       <h3 class="text-sm font-pretendard font-medium text-secondary">
         회원탈퇴
       </h3>
-      <q-icon name="img:/src/assets/icons/icon_arrow_set.svg" size="30px" />
+      <q-icon name="img:/icons/icon_arrow_set.svg" size="30px" />
     </router-link>
   </q-page>
 </template>

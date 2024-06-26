@@ -92,7 +92,7 @@ defineExpose({
       <div v-if="done || props.type === 'password'" class="mr-2">
         <!-- done icon -->
         <q-icon
-          name="img:/src/assets/icons/check.svg"
+          name="img:/icons/check.svg"
           size="30px"
           color="primary"
           v-if="done"
@@ -100,9 +100,7 @@ defineExpose({
         <!-- eye icon -->
         <q-icon
           :name="
-            isPasswordVisible
-              ? 'img:/src/assets/icons/eye_a.svg'
-              : 'img:/src/assets/icons/eye_d.svg'
+            isPasswordVisible ? 'img:/icons/eye_a.svg' : 'img:/icons/eye_d.svg'
           "
           class="cursor-pointer"
           size="30px"

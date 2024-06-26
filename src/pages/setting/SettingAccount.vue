@@ -27,7 +27,7 @@ async function doLogout() {
           fit="contain"
         />
         <div class="absolute bottom-2">
-          <img src="/src/assets/images/shadow.svg" alt="shadow" />
+          <img src="/images/shadow.svg" alt="shadow" />
         </div>
       </q-card-section>
       <q-card-section class="flex flex-col items-center gap-4 pt-20">

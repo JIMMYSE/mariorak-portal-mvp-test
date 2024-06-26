@@ -22,7 +22,7 @@ const avatarSrc = computed(() => {
       <section class="mt-[18px] px-6">
         <section class="h-full relative pb-2 flex justify-center">
           <div class="absolute bottom-0 flex justify-center w-full">
-            <img src="/src/assets/images/shadow.svg" alt="shadow" />
+            <img src="/images/shadow.svg" alt="shadow" />
           </div>
           <q-img :src="avatarSrc" height="359px" fit="contain" />
         </section>
