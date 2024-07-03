@@ -1,9 +1,6 @@
-import {
-  LocationQueryRaw,
-  RouteLocationRaw,
-  Router,
-  useRouter,
-} from 'vue-router';
+import { josa } from 'josa';
+import { t } from 'src/utils/message-util';
+import { LocationQueryRaw, RouteLocationRaw, Router } from 'vue-router';
 
 export function useSystemCheck() {
   const isSystemCheck = ref(false);
@@ -34,3 +31,25 @@ export function goToName(name: string, query?: LocationQueryRaw | undefined) {
 export function goBack() {
   appRouter?.back();
 }
+
+export const enterMetaverse = ({
+  id,
+  name,
+  space_status_cd,
+  onOk,
+}: {
+  id: number;
+  name: string;
+  space_status_cd?: string | null | undefined;
+  onOk: (id?: number) => void;
+}) => {
+  if (space_status_cd && space_status_cd !== '50') return;
+
+  useMyConfirmDialog({
+    text: josa(name + t('metaverse.enter.confirm.text')),
+    okLabel: 'label.yes',
+    cancelLabel: 'label.no',
+  }).onOk(() => {
+    onOk(id);
+  });
+};

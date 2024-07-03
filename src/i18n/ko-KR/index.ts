@@ -114,7 +114,7 @@ export default {
   metaverse: {
     enter: {
       confirm: {
-        text: '{mapName} 으로 입장 하시겠습니까?',
+        text: '#{으로} 입장 하시겠습니까?',
       },
     },
   },

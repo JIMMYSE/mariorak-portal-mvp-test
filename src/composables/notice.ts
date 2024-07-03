@@ -1,7 +1,6 @@
 import {
   NoticeDetail,
   NoticeDetailRes,
-  NoticeList,
   NoticeSearchRes,
 } from 'meta-airforce-dto';
 import { MaybeRef, MaybeRefOrGetter } from 'vue';
@@ -14,7 +13,6 @@ export const QUERY_KEY = {
 
 // DTO 선언
 export type NoticeSearchResType = InferType<typeof NoticeSearchRes>;
-export type NoticeDetailType = InferType<typeof NoticeDetail>;
 export type NoticeDetailResType = InferType<typeof NoticeDetailRes>;
 
 /**

@@ -1,27 +1,12 @@
-<script lang="ts" setup>
-import { metaverseList } from 'src/assets/data/dummyData';
-import { useMyConfirmDialog } from 'src/composables/common/dialog';
-import { useBridge } from 'src/composables/common/useBridge';
-import { ref } from 'vue';
+<!-- 메인 > 이벤트 > 입영 상담소 -->
 
-const data = ref(
-  metaverseList.rows.filter(({ page }) => page === 'counseling')
-);
+<script lang="ts" setup>
+const route = useRoute();
+const { data: spaceData } = useSpaceListBySpaceTypeId({
+  spaceTypeId: Number(route.query.spaceTypeId as string),
+});
 
 const { enterRoom } = useBridge();
-function enterMetaverse(item: any) {
-  if (!item.active) return;
-
-  const mapName = item.title;
-  // user
-  useMyConfirmDialog({
-    text: { key: 'metaverse.enter.confirm.text', data: { mapName } },
-    okLabel: 'label.yes',
-    cancelLabel: 'label.no',
-  }).onOk(() => {
-    enterRoom(item.id);
-  });
-}
 </script>
 
 <template>
@@ -34,24 +19,38 @@ function enterMetaverse(item: any) {
 
     <div class="mt-6">
       <q-card
-        v-for="item in data"
+        v-for="item in spaceData?.rows"
         :key="item.id"
-        flat
         class="mt-[10px] relative w-full h-[100px] flex items-center"
-        :class="item.active ? 'bg-white' : 'bg-grey-1'"
-        @click="enterMetaverse(item)"
+        :class="item.space_status_cd === '50' ? 'bg-white' : 'bg-grey-1'"
+        flat
+        @click="
+          enterMetaverse({
+            id: item.id,
+            name: item.name,
+            space_status_cd: item.space_status_cd,
+            onOk: () => {
+              enterRoom(item.id);
+            },
+          })
+        "
       >
         <q-card-section class="p-0 flex-1 pl-[15px]">
           <h2
             class="font-medium text-primary"
-            :class="item.active ? 'font-medium text-primary' : 'text-grey-4'"
+            :class="
+              item.space_status_cd === '50'
+                ? 'font-medium text-primary'
+                : 'text-grey-4'
+            "
           >
-            {{ item.title }}
+            {{ item.name }}
           </h2>
           <p
-            v-html="item.content"
-            class="text-sm font-pretendard text-grey-3 leading-[18px]"
-          ></p>
+            class="text-sm font-pretendard text-grey-3 leading-[18px] whitespace-pre-wrap line-clamp-2"
+          >
+            {{ item.contents }}
+          </p>
         </q-card-section>
         <q-card-section class="p-0 pr-2">
           <q-icon name="img:/icons/icon_arrow_event.svg" size="30px" />
@@ -60,5 +59,7 @@ function enterMetaverse(item: any) {
     </div>
   </q-page>
 </template>
+
+<script lang="ts"></script>
 
 <style lang="scss" scoped></style>

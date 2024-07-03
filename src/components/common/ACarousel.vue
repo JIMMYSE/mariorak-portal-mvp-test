@@ -7,6 +7,7 @@ const props = defineProps<Props>();
 const emits = defineEmits(['update:modelValue']);
 const forwarded = useForwardPropsEmits(props, emits);
 </script>
+
 <template>
   <q-carousel
     v-bind="forwarded"

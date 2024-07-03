@@ -38,7 +38,10 @@ const { data } = usePhotoDetail(props.id);
           :href="file.origin_addr"
           :download="file.file_name"
         >
-          <a-svg name="file" class="w-[9px] h-3 inline-block mr-1" />
+          <q-icon
+            name="img:/icons/file.svg"
+            class="w-[9px] h-[12px] inline-block mr-1"
+          />
           <span>{{ file.file_name }} [다운로드]</span>
         </a>
       </div>

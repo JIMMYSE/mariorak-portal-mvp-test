@@ -34,7 +34,7 @@ const { data } = useNoticeDetail(props.id);
           class="flex items-center gap-2 font-pretendard text-body2 underline"
           :download="data?.file?.file_name"
         >
-          <a-svg name="file" class="w-[9px] h-3" />
+          <q-icon name="img:/icons/file.svg" class="w-[9px] h-[12px]" />
           <span>{{ data?.file?.file_name }} [다운로드]</span>
         </a>
         <!-- line -->
