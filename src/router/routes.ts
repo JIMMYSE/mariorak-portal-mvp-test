@@ -274,45 +274,39 @@ const routes: RouteRecordRaw[] = [
     component: SubLayout,
     children: [
       {
-        name: 'event',
         path: '',
+        name: 'event',
         meta: {
           title: '이벤트',
         },
         component: () => import('pages/event/EventPage.vue'),
       },
-      // {
-      //   name: 'presentation',
-      //   path: 'presentation',
-      //   meta: {
-      //     title: '입영 상담실',
-      //   },
-      //   component: () => import('pages/event/PresentationPage.vue'),
-      // },
       {
-        name: 'counseling-room',
         path: 'counseling-room',
+        name: 'event-counseling-room',
         meta: {
           title: '입영 상담실',
         },
         component: () => import('pages/event/CounselingRoomPage.vue'),
       },
-      // {
-      //   name: 'call-roll',
-      //   path: 'call-roll',
-      //   meta: {
-      //     title: '점호 체험',
-      //   },
-      //   component: () => import('pages/event/CallRollPage.vue'),
-      // },
+    ],
+  },
+  {
+    path: '/shortcut',
+    name: 'shortcut',
+    meta: {
+      requiresAuth: true,
+    },
+    component: SubLayout,
+    children: [
       {
-        name: 'metaverse-detail',
-        path: 'metaverse/:id',
+        path: ':id',
+        name: 'shortcut-detail', // 체험, 이벤트 상세 조회
         props: true,
         meta: {
-          bgColor: 'white',
+          title: '', // 타이틀은 동적으로 변경
         },
-        component: () => import('pages/event/MetaverseDetailPage.vue'),
+        component: () => import('pages/shortcut/ShortcutDetail.vue'),
       },
     ],
   },
