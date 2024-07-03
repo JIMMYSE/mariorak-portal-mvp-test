@@ -38,7 +38,7 @@ export const initNotificationCheck = () => {
     },
     select: (data): ApiResponse['data'] => data.data.data,
     enabled: computed(() => isLoggedIn.value && !!lastCheckDate.value),
-    refetchInterval: 1000 * 5,
+    refetchInterval: 1000 * 60 * 10,
   });
   watchEffect(() => {
     if (data.value) {
