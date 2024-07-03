@@ -1,3 +1,5 @@
+<!-- 레이아웃 > 메인화면 레이아웃 -->
+
 <script setup lang="ts">
 const footerVisible = ref(false);
 const { y } = useWindowScroll();
@@ -8,6 +10,9 @@ watch(y, (v) => {
 const headerClass = computed(() =>
   footerVisible.value ? 'bg-white' : 'bg-transparent'
 );
+
+// 알림 아이콘 뱃지
+const { isNew } = storeToRefs(useNotificationStore());
 </script>
 
 <template>
@@ -27,15 +32,18 @@ const headerClass = computed(() =>
         <q-img v-else class="w-[125px] h-[30px]" src="/images/main-logo.png" />
         <div class="flex items-center gap-[14px]">
           <q-btn size="md" round flat :to="{ name: 'profile' }">
-            <q-icon name="img:/images/avatar-1-thumb.png" size="40px"
-          /></q-btn>
+            <q-icon name="img:/images/avatar-1-thumb.png" size="40px" />
+          </q-btn>
           <q-btn
             class="size-10 bg-white"
             size="md"
             round
             flat
             :to="{ name: 'notice-list' }"
-            ><q-icon name="img:/icons/bell.svg" size="32px" />
+          >
+            <q-icon name="img:/icons/bell.svg" size="32px">
+              <q-badge v-if="isNew" floating color="red" rounded />
+            </q-icon>
           </q-btn>
         </div>
       </q-toolbar>
@@ -119,5 +127,10 @@ const headerClass = computed(() =>
       // border-radius: 50%;
     }
   }
+}
+
+.q-badge {
+  padding: 4px 5px;
+  border: 1px solid white;
 }
 </style>

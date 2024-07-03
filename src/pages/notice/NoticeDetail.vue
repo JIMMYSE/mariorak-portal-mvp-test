@@ -42,9 +42,12 @@ const { data } = useNoticeDetail(props.id);
           class="absolute inset-x-4 bottom-0 h-[1px] border-b-[1px] border-b-[#E6E6E6]"
         />
       </q-card-section>
-      <q-card-section class="mt-[14px] flex-1 grow">
-        <!-- class="text-black font-pretendard text-body2" -->
-        <div class="tiptap-editor" v-html="$filterHtml(data?.description)" />
+      <q-card-section
+        class="mt-[14px] flex-1 grow text-black font-pretendard text-body2 whitespace-pre-wrap"
+      >
+        <div>
+          {{ data?.description }}
+        </div>
       </q-card-section>
     </q-card>
     <div class="flex-1"></div>

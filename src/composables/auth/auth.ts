@@ -287,9 +287,10 @@ export const useAuthUnregister = () => {
 /**
  * 회원 가입
  */
+
 export const registerUser = async (data: EmailRegistration) => {
   type PortalLoginResponseType = InferType<typeof PortalLoginResponse>;
-  const { data: responseData, error } = await useAxiosPost<
+  const { data: responseData } = await useAxiosPost<
     PortalLoginResponseType,
     EmailRegistration
   >({
@@ -299,8 +300,7 @@ export const registerUser = async (data: EmailRegistration) => {
 
   if (
     responseData.value?.code === '0000' &&
-    responseData.value?.data?.token?.length &&
-    !error.value
+    responseData.value?.data?.token?.length
   ) {
     await saveLoginUser({
       token: responseData.value.data.token,
