@@ -20,7 +20,7 @@ onActivated(() => {
   <div class="h-[438px] relative mb-7">
     <video
       ref="myVideo"
-      class="h-[371px] object-cover"
+      class="w-full h-[371px] object-cover"
       :src="imageSrc ?? undefined"
       playsinline
       autoplay

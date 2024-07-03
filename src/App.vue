@@ -35,7 +35,10 @@ const isInitiated = computed(() => {
 </script>
 
 <template>
-  <div v-if="!IsPrd">
+  <div
+    v-if="!IsPrd"
+    class="top-version fixed top-0 z-50 font-pretendard text-xs opacity-50"
+  >
     FE version: {{ version }} / BE version: {{ BEversion }}
   </div>
   <router-view v-if="!isLoggedIn || isInitiated" />
