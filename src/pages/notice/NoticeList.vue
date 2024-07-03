@@ -16,6 +16,10 @@ const { request } = useSearchFilter({
 const { data: listData } = useNoticeList({
   searchRequest: request,
 });
+
+const { getLastCheckDate, setLastCheckDate } = useNotificationStore();
+const newDate = getLastCheckDate();
+setLastCheckDate(new Date());
 </script>
 
 <template>
@@ -45,6 +49,15 @@ const { data: listData } = useNoticeList({
               <q-icon name="img:/icons/file.svg" class="w-[9px] h-[12px]" />
             </template>
           </div>
+        </q-item-section>
+        <q-item-section
+          v-if="
+            newDate && item.created_at && new Date(item.created_at) > newDate
+          "
+          side
+          class="!justify-start"
+        >
+          <div class="pt-1 font-pretendard text-[13px] text-primary">NEW!</div>
         </q-item-section>
         <!-- line -->
         <div
