@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/vue-query';
 import dayjs from 'dayjs';
-import { MaybeRefOrGetter } from 'vue';
 
 /**
  * 알림 관리
