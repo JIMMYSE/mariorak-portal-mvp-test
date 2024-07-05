@@ -4388,7 +4388,7 @@ merge2@^1.3.0, merge2@^1.4.1:
 
 "meta-airforce-dto@github:coarsoft-tmp/meta-airforce-dto#release":
   version "0.0.1"
-  resolved "git+ssh://git@github.com/coarsoft-tmp/meta-airforce-dto.git#23aee7edf4f69f44ff0b6e5e9c034ec0f3a0a6ee"
+  resolved "git+ssh://git@github.com/coarsoft-tmp/meta-airforce-dto.git#6f3d8a8e11f00fd13153f0c1d51246ca813cbeac"
   dependencies:
     jest "^29.7.0"
     josa "^3.0.1"
