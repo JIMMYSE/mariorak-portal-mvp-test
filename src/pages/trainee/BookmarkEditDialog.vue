@@ -94,10 +94,6 @@ const onSubmit = handleSubmit(async () => {
           <span class="text-primary">상세정보</span>를 입력해 주세요
         </h2>
 
-        {{ form }}
-        <br />
-        {{ errorBag }}
-
         <form class="flex flex-col gap-4 text-body2 font-pretendard mt-4 px-2">
           <label for="organization">
             <h4 class="ml-[5px] text-grey-3 text-[13px] font-medium">소속</h4>

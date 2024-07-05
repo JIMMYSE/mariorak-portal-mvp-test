@@ -83,7 +83,6 @@ const scrollThumbnailOn = () => {
   if (!item || !parent) return;
 
   const top = item.offsetTop - parent.offsetTop - marginY;
-  // if (top !== 0) console.log('scrollTop', top);
   parent.scrollTo({
     top,
     behavior: 'smooth',
