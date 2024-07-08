@@ -3,6 +3,8 @@ import { Message } from 'src/services/common/common-model';
 
 export function t(message: Message) {
   const { t } = i18n.global;
+
+  console.log(typeof message, message);
   if (typeof message === 'string') {
     return t(message);
   }

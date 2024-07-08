@@ -15,7 +15,7 @@
     "lint": "eslint --ext .js,.ts,.vue ./",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
-    "dto": "yarn cache clean && yarn add 'github:coarsoft-tmp/meta-airforce-dto#release'"
+    "dto": "yarn cache clean && yarn add 'github:coarsoft-tmp/meta-airforce-dto'"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.11",
@@ -43,7 +43,7 @@
     "dayjs": "^1.11.11",
     "dotenv": "^16.4.4",
     "josa": "^3.0.1",
-    "meta-airforce-dto": "github:coarsoft-tmp/meta-airforce-dto#release",
+    "meta-airforce-dto": "github:coarsoft-tmp/meta-airforce-dto",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
     "pretendard": "^1.3.9",
