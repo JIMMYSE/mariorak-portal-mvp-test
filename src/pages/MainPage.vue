@@ -12,6 +12,29 @@ const shortcutBList = computed(
 const slide = ref(0);
 
 const { enterRoom } = useBridge();
+
+const enter = (title: string, space_id: number) => {
+  let spwan_id = 1;
+  switch (title) {
+    case '비행장 구역':
+      spwan_id = 2;
+      break;
+    case '훈련 구역':
+      spwan_id = 3;
+      break;
+    case '작전 구역':
+      spwan_id = 4;
+      break;
+    case '행정 구역':
+      spwan_id = 5;
+      break;
+    case '생활관 구역':
+      spwan_id = 6;
+      break;
+  }
+
+  enterRoom(space_id, spwan_id);
+};
 </script>
 
 <template>
@@ -39,7 +62,7 @@ const { enterRoom } = useBridge();
               id: item.space_id,
               name: item.title,
               onOk: () => {
-                enterRoom(item.space_id);
+                enter(item.title, item.space_id);
               },
             })
           "

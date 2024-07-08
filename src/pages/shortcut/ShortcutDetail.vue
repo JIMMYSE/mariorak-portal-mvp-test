@@ -31,7 +31,8 @@ function enter() {
       id: data.value!.space_id,
       name: data.value!.title,
       onOk: () => {
-        enterRoom(data.value!.space_id);
+        if (mapName !== '입소식 체험') enterRoom(data.value!.space_id);
+        else enterRoom(data.value!.space_id, 7);
       },
     });
   }

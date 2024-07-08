@@ -207,7 +207,7 @@ export const useBridge = () => {
     toggleBackGestureActivation(isActivated: boolean) {
       log('toggleBackGestureActivation', isActivated);
     },
-    async enterRoom(room_id: number, short_url?: string) {
+    async enterRoom(room_id: number, spwan_id: number = 1, short_url?: string) {
       if (networkError.value) return;
 
       if (short_url) {
@@ -361,7 +361,11 @@ export const useBridge = () => {
        * 메타버스 룸 입장할 때 호출하는 메소드
        * @param {String} room_id - 룸 입장을 위해 유니티에 전달할 박스 id
        */
-      async enterRoom(room_id: number, short_url?: string) {
+      async enterRoom(
+        room_id: number,
+        spwan_id: number = 1,
+        short_url?: string
+      ) {
         if (networkError.value) return;
         log('enterRoom', room_id);
         // if (short_url) {
@@ -376,8 +380,9 @@ export const useBridge = () => {
         }
 
         const token = getAccessToken() ?? 'guest';
-        const payload = token + '|~|' + room_id;
+        const payload = token + '|~|' + room_id + '|~|' + spwan_id;
 
+        console.log(payload);
         try {
           JSOUT.enterRoom(payload);
           isBackground.value = true;
@@ -598,7 +603,11 @@ export const useBridge = () => {
        * 메타버스 룸 입장할 때 호출하는 메소드
        * @param {String} room_id - 룸 입장을 위해 유니티에 전달할 박스 id
        */
-      async enterRoom(room_id: number, short_url?: string) {
+      async enterRoom(
+        room_id: number,
+        spwan_id: number = 1,
+        short_url?: string
+      ) {
         if (networkError.value) return;
         // if (short_url) {
         //   window.open(short_url, 'self');
@@ -613,7 +622,7 @@ export const useBridge = () => {
         const token = getAccessToken() ?? 'guest';
         const payload = {
           action: 'enterRoom',
-          paramMsg: token + '|~|' + room_id,
+          paramMsg: token + '|~|' + room_id + '|~|' + spwan_id,
         };
         log('enterRoom', payload);
 
