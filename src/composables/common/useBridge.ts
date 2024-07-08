@@ -382,7 +382,6 @@ export const useBridge = () => {
         const token = getAccessToken() ?? 'guest';
         const payload = token + '|~|' + room_id + '|~|' + spwan_id;
 
-        console.log(payload);
         try {
           JSOUT.enterRoom(payload);
           isBackground.value = true;
