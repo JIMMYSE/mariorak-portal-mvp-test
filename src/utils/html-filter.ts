@@ -18,22 +18,25 @@ const defaultOptions = {
     td: ['colspan', 'rowspan'],
   },
 
+  /**
+   * allowedStyles: tiptap 에디터 사용으로 비활성화
+   */
   // 허용 스타일: https://github.com/apostrophecms/sanitize-html#allowed-css-styles
-  allowedStyles: {
-    // 공통 추가 스타일
-    '*': {
-      color: [
-        /^#(0x)?[0-9a-f]+$/i,
-        /^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/,
-      ],
-      'background-color': [
-        /^#(0x)?[0-9a-f]+$/i,
-        /^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/,
-      ],
-      'text-align': [/^left$/, /^right$/, /^center$/, /^justify$/],
-      'font-size': [/^\d+(?:px|em|rem|%)$/],
-    },
-  },
+  // allowedStyles: {
+  //   // 공통 추가 스타일
+  //   '*': {
+  //     color: [
+  //       /^#(0x)?[0-9a-f]+$/i,
+  //       /^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/,
+  //     ],
+  //     'background-color': [
+  //       /^#(0x)?[0-9a-f]+$/i,
+  //       /^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/,
+  //     ],
+  //     'text-align': [/^left$/, /^right$/, /^center$/, /^justify$/],
+  //     'font-size': [/^\d+(?:px|em|rem|%)$/],
+  //   },
+  // },
 };
 
 /**
