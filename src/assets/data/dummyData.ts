@@ -600,7 +600,7 @@ export const notificationList = [
     type: 'friend',
     subtitle: '새로운 친구신청',
     title:
-      '닉네임님께서 사용자님께 친구 신청을 하셨습니다. 지금 서로버스에 입장하여 확인해보세요',
+      '닉네임님께서 사용자님께 친구 신청을 하셨습니다. 지금 공군 메타버스에 입장하여 확인해보세요',
     created_at: '2023.01.08',
     checked: false,
   },
@@ -609,7 +609,7 @@ export const notificationList = [
     type: 'friend',
     subtitle: '새로운 친구신청',
     title:
-      '닉네임님께서 사용자님께 친구 신청을 하셨습니다. 지금 서로버스에 입장하여 확인해보세요',
+      '닉네임님께서 사용자님께 친구 신청을 하셨습니다. 지금 공군 메타버스에 입장하여 확인해보세요',
     created_at: '2023.01.08',
     checked: true,
   },

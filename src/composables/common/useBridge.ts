@@ -180,12 +180,6 @@ export const useBridge = () => {
     webBridgeReady() {
       log('webBridgeReady');
     },
-    closeAccessibilityModal() {
-      log('closeAccessibilityModal');
-    },
-    sharePhotoToInstagramStory(sharingImgUrl: string) {
-      log('sharePhotoToInstagramStory', sharingImgUrl);
-    },
     getAgentInfo() {
       log('getAgentInfo');
     },
@@ -194,12 +188,6 @@ export const useBridge = () => {
     },
     notifyLogoutFin() {
       log('notifyLogoutFin');
-    },
-    loginSocial(loginType: string, backUrl: string = '') {
-      log('loginSocial', loginType, backUrl);
-    },
-    disconnectSocial() {
-      log('disconnectSocial');
     },
     makeWebToast(message: string) {
       log('makeWebToast', message);
@@ -214,23 +202,9 @@ export const useBridge = () => {
         window.open(short_url, 'self');
         return;
       }
-      // const available = await checkRoomAvailableToEnter(room_id);
-      //
-      // if (!available) {
-      //   alert('유효한 룸이 아닙니다.');
-      //   return;
-      // }
-
-      // if (confirm('트로핏 앱에서만 입장이 가능합니다. 앱을 설치하시겠어요?')) {
-      //   log('latestVersion', latestVersion.data);
-      //   window.open(latestVersion.data.link_page, 'self');
-      // }
     },
     shareURL(url: string) {
       log('shareURL', url);
-    },
-    checkNotificationSetting() {
-      log('checkNotificationSetting');
     },
     closeApp() {
       log('closeApp');
@@ -250,31 +224,6 @@ export const useBridge = () => {
 
         try {
           JSOUT.webBridgeReady();
-        } catch (e) {
-          error(e);
-        }
-      },
-      /**
-       *  트로핏 앱 접근권한 안내 팝업 닫기
-       */
-      closeAccessibilityModal() {
-        log('closeAccessibilityModal');
-
-        try {
-          JSOUT.closeAccessibilityModal();
-        } catch (e) {
-          error(e);
-        }
-      },
-      /**
-       *  인스타그램 사진 공유시 사용되는 메소드
-       * @param {String} sharingImgUrl - 소셜로그인 완료 후 실행할 url
-       */
-      sharePhotoToInstagramStory(sharingImgUrl: string) {
-        log('sharePhotoToInstgramStory)shartingImgUrl : ', sharingImgUrl);
-
-        try {
-          JSOUT.sharePhotoToInstagramStory(sharingImgUrl);
         } catch (e) {
           error(e);
         }
@@ -309,32 +258,6 @@ export const useBridge = () => {
         } catch (e) {
           error(e);
         }
-      },
-      /**
-       *  웹뷰에서 소셜로그인 시점에 호출하는 메소드
-       * @param  loginType - 소셜로그인 플랫폼(kakao, google, naver, apple)
-       * @param  callbackUrl - 소셜로그인 완료 후 실행할 url
-       * @param  backUrl - 소셜로그인 취소시 실행할 url
-       */
-      loginSocial(loginType: string, backUrl: string = '') {
-        const callbackUrl = window.location.origin + '/oauth/' + loginType;
-        log(
-          'oauthLogin with ',
-          loginType,
-          'callbackUrl',
-          callbackUrl,
-          'backUrl',
-          backUrl
-        );
-
-        try {
-          JSOUT.loginSocial(loginType, callbackUrl, backUrl);
-        } catch (e) {
-          error(e);
-        }
-      },
-      disconnectSocial() {
-        log('disconnectSocial');
       },
       /**
        * 웹뷰에서 토스트메시지 띄울 때 호출하는 메소드
@@ -401,18 +324,7 @@ export const useBridge = () => {
           error(e);
         }
       },
-      /**
-       * 푸쉬알림 켜기 요청
-       */
-      checkNotificationSetting() {
-        log('checkNotificationSetting');
 
-        try {
-          JSOUT.checkNotificationSetting();
-        } catch (e) {
-          error(e);
-        }
-      },
       /**
        * 앱을 종료하는 함수
        */
@@ -459,40 +371,6 @@ export const useBridge = () => {
         }
       },
       /**
-       *  트로핏 앱 접근권한 안내 팝업
-       */
-      closeAccessibilityModal() {
-        log('closeAccessibilityModal');
-
-        const payload = {
-          action: 'closeAccessibilityModal',
-        };
-
-        try {
-          webkit.messageHandlers.iOSBridge.postMessage(payload);
-        } catch (e) {
-          error(e);
-        }
-      },
-      /**
-       *  인스타그램 사진 공유시 사용되는 메소드
-       * @param {String} sharingImgUrl - 소셜로그인 완료 후 실행할 url
-       */
-      sharePhotoToInstagramStory(sharingImgUrl) {
-        log('sharePhotoToInstgramStory)shartingImgUrl : ', sharingImgUrl);
-
-        const payload = {
-          action: 'sharePhotoToInstagramStory',
-          sharingImgUrl,
-        };
-
-        try {
-          webkit.messageHandlers.iOSBridge.postMessage(payload);
-        } catch (e) {
-          error(e);
-        }
-      },
-      /**
        *  웹뷰에서 로그인 완료된 후 호출하는 메소드
        */
       notifyLoginFin() {
@@ -516,51 +394,6 @@ export const useBridge = () => {
           action: 'notifyLogoutFin',
         };
 
-        try {
-          webkit.messageHandlers.iOSBridge.postMessage(payload);
-        } catch (e) {
-          error(e);
-        }
-      },
-      /**
-       *  웹뷰에서 소셜로그인 시점에 호출하는 메소드
-       * @param {String} login_type - 소셜로그인 플랫폼(kakao, google, naver, apple)
-       * @param {String} callback_url - 소셜로그인 완료 후 실행할 url
-       * @param {String} back_url - 소셜로그인 취소시 실행할 url
-       */
-      loginSocial(loginType: string, backUrl: string = '') {
-        const callbackUrl = window.location.origin + '/oauth/' + loginType;
-        log(
-          'oauthLogin with ',
-          loginType,
-          'callbackUrl',
-          callbackUrl,
-          'backUrl',
-          backUrl
-        );
-
-        const payload = {
-          action: 'loginSocial',
-          loginType,
-          callbackUrl,
-          backUrl,
-        };
-
-        log('loginSocial', payload);
-        try {
-          webkit.messageHandlers.iOSBridge.postMessage(payload);
-        } catch (e) {
-          error(e);
-        }
-      },
-      disconnectSocial(provider) {
-        if (provider !== 'apple') return;
-
-        const payload = {
-          action: 'revokeAppleUserTokens',
-        };
-
-        log('disconnectSocial', payload);
         try {
           webkit.messageHandlers.iOSBridge.postMessage(payload);
         } catch (e) {
@@ -641,22 +474,6 @@ export const useBridge = () => {
           url,
         };
         log('shareURL', payload);
-
-        try {
-          webkit.messageHandlers.iOSBridge.postMessage(payload);
-        } catch (e) {
-          error(e);
-        }
-      },
-      /**
-       * 푸쉬알림 켜기 요청
-       */
-      checkNotificationSetting() {
-        log('checkNotificationSetting');
-
-        const payload = {
-          action: 'checkNotificationSetting',
-        };
 
         try {
           webkit.messageHandlers.iOSBridge.postMessage(payload);
