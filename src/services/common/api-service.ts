@@ -15,8 +15,8 @@ export function handleAxiosError(error: any, router: Router): void {
     // console.log(error.response.headers);
 
     // 서비스 이용제한
-    if (error.response?.data?.code === '1011') {
-      useServiceRestrictionLogout();
+    if (['1003', '1005', '1011'].includes(error.response?.data?.code)) {
+      useServiceRestrictionLogout(error.response?.data?.code);
       return;
     }
 

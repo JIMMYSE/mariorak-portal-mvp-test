@@ -113,18 +113,24 @@ export function useLogout({ onSuccess }: { onSuccess?: () => void }) {
 }
 
 /**
- * 서비스 이용제한 시 로그아웃 및 이용제한 안내페이지로 이동(400, code: 1011, 서비스 이용제한).
+ * 서비스 이용제한 시 로그아웃 및 이용제한 안내페이지로 이동(status code: 400)
+ * 1005: 장기 미접속
+ * 1003: 비밀번호 5회 오류
+ * 1011: 서비스 이용제한 -> 실행 후 이용 제한 계정 정보 API 호출 필요
  */
-export const useServiceRestrictionLogout = useThrottleFn(() => {
-  const { isLoggedIn } = useUserInfo();
-  if (isLoggedIn.value) {
-    doLogout(() => {
-      goToName('restriction-guide');
-    });
-  } else {
-    goToName('restriction-guide');
-  }
-}, 4000);
+export const useServiceRestrictionLogout = useThrottleFn(
+  (code: string | number) => {
+    const { isLoggedIn } = useUserInfo();
+    if (isLoggedIn.value) {
+      doLogout(() => {
+        goTo(`restriction/${code}`);
+      });
+    } else {
+      goTo(`restriction/${code}`);
+    }
+  },
+  4000
+);
 
 /**
  * 강제 로그아웃(401, 토큰 만료 등). 중복방지 처리.
