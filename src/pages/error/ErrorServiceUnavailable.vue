@@ -29,8 +29,8 @@ const { closeApp } = useBridge();
         서비스 이용에 불편을 드려 죄송합니다.
       </p>
       <p class="mt-6 text-base leading-[25px] font-light">
-        보다 나은 서비스를 위한 서버 점검으로 인하여<br />서로버스 서비스 이용이
-        일시 중단되었습니다.
+        보다 나은 서비스를 위한 서버 점검으로 인하여<br />공군 메타버스 서비스
+        이용이 일시 중단되었습니다.
       </p>
       <p class="mt-6 text-base leading-[25px] font-light">
         더욱 안정적인 서비스로 보답 드리겠습니다.<br />감사합니다.
