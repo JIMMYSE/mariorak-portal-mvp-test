@@ -14,16 +14,17 @@ const QUERY_KEY = {
  * 알림 확인
  * @description 최종 알림 확인일시를 store에 저장해두고, API를 통해 새로운 공지가 있는지 확인
  */
-export const initNotificationCheck = () => {
+export const useNotificationCheck = () => {
   const store = useNotificationStore();
-  const { lastCheckDate, isNew } = storeToRefs(store);
+  const { isNew } = storeToRefs(store);
 
-  const { user, isLoggedIn } = useUserInfo();
+  const { isLoggedIn } = useUserInfo();
 
   const { data } = useQuery({
     // eslint-disable-next-line @tanstack/query/exhaustive-deps
     queryKey: [QUERY_KEY.CHECK],
     queryFn: () => {
+      // 최종 알림 확인일시없을 시 초기화
       if (!store.getLastCheckDate()) {
         store.setLastCheckDate(dayjs().subtract(1, 'month').toDate());
       }
@@ -36,12 +37,16 @@ export const initNotificationCheck = () => {
       });
     },
     select: (data): ApiResponse['data'] => data.data.data,
-    enabled: computed(() => isLoggedIn.value && !!lastCheckDate.value),
-    refetchInterval: 1000 * 60 * 10,
+    enabled: isLoggedIn,
+    refetchInterval: 1000 * 60 * 30,
   });
   watchEffect(() => {
     if (data.value) {
       store.setIsNew(data.value.is_new);
     }
   });
+
+  return {
+    isNew,
+  };
 };

@@ -12,7 +12,7 @@ const headerClass = computed(() =>
 );
 
 // 알림 아이콘 뱃지
-const { isNew } = storeToRefs(useNotificationStore());
+const { isNew } = useNotificationCheck();
 </script>
 
 <template>
