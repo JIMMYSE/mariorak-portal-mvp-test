@@ -89,7 +89,7 @@ const enter = (title: string, space_id: number) => {
     <!-- 훈련병 관련사항 -->
     <section class="px-6 mt-10">
       <h2 class="text-h3 px-1">훈련병 관련사항</h2>
-      <div class="grid grid-cols-3 gap-1.5 mt-4">
+      <div class="grid grid-cols-2 gap-1.5 mt-4">
         <menu-card
           v-for="item in menuListForTrainee"
           :key="item.title"
@@ -97,7 +97,6 @@ const enter = (title: string, space_id: number) => {
           :title="item.title"
           :subtitle="item.subtitle"
           :icon="item.icon"
-          :on-click="item.onClick"
         />
       </div>
     </section>
@@ -212,15 +211,15 @@ const menuListForTrainee = [
     icon: 'soldier-1',
     to: 'trainee-photo-bookmark',
   },
-  {
-    title: '편지쓰기',
-    subtitle: '훈련병',
-    icon: 'post',
-    // to: 'letter-favorite',
-    onClick: () => {
-      useAlertDialog({ text: '현재 이 기능은 지원되지 않습니다.' });
-    },
-  },
+  // {
+  //   title: '편지쓰기',
+  //   subtitle: '훈련병',
+  //   icon: 'post',
+  //   // to: 'letter-favorite',
+  //   onClick: () => {
+  //     useAlertDialog({ text: '현재 이 기능은 지원되지 않습니다.' });
+  //   },
+  // },
   {
     title: '소대 즐겨 찾기',
     subtitle: '훈련병',
