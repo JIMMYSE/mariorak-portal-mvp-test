@@ -123,10 +123,10 @@ export const useServiceRestrictionLogout = useThrottleFn(
     const { isLoggedIn } = useUserInfo();
     if (isLoggedIn.value) {
       doLogout(() => {
-        goTo(`restriction/${code}`);
+        goTo(`/login/restriction/${code}`);
       });
     } else {
-      goTo(`restriction/${code}`);
+      goTo(`/login/restriction/${code}`);
     }
   },
   4000

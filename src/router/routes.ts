@@ -388,9 +388,11 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: 'restriction/:code',
+        props: true,
         name: 'restriction-guide',
         meta: {
           title: '이용제한',
+          requiresNonAuth: true,
         },
         component: () => import('pages/auth/ServiceRestrictionGuide.vue'),
       },
