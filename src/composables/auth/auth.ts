@@ -4,6 +4,7 @@ import { LoginReqType } from 'src/services/auth/model';
 import { EmailRegistration } from 'src/stores/join-store';
 import { wait } from 'src/utils/promise-util';
 import { MaybeRefOrGetter } from 'vue';
+import RequiredNoticeDialog from 'src/pages/auth/RequiredNoticeDialog.vue';
 
 const ACCESS_TOKEN_KEY = process.env.ACCESS_TOKEN_KEY as string;
 const TOKEN_EXPIRE_DAYS = Number(process.env.TOKEN_EXPIRE_DAYS as string);
@@ -74,7 +75,20 @@ export const useLogin = () => {
     };
   }
 
-  return { login, saveLoginUser };
+  return { login, saveLoginUser, useRequiredNoticeDialog };
+};
+
+/**
+ * 필수공지 다이얼로그
+ */
+
+const useRequiredNoticeDialog = () => {
+  return useDialog({
+    contentComponent: RequiredNoticeDialog,
+    title: '상태 변경 이력',
+    // buttons: [],
+    closeButton: true,
+  });
 };
 
 /**
