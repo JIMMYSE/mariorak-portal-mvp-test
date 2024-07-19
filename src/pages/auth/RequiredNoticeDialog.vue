@@ -1,46 +1,63 @@
-<!-- 필수 공지사항 다이얼로그 -->
 <script setup lang="ts">
+import { ref, computed } from 'vue';
 import { Id } from 'src/services/common/api-model';
 import { useRoute } from 'vue-router';
 
-//FIXME: implement get user id from route
 const route = useRoute();
 
 const emit = defineEmits(['ok']);
 
 // 목록 조회
 const { data: listData } = useNoticePopupList();
-// listData 중 updated_at 가 가장 최신인 데이터
-const latestNotice = computed(
-  () =>
-    listData.value?.rows.sort((a: any, b: any) => {
-      return (
-        new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
-      );
-    })[0]
-);
 
-console.log(latestNotice.value);
+// 현재 보고 있는 공지사항의 인덱스
+const currentIndex = ref(0);
 
-const confirmNotice = (id: Id) => {
-  usePost({
-    url: `/notice/${id}/confirm`,
-  });
-  emit('ok');
+// 현재 공지사항
+const currentNotice = computed(() => {
+  return listData.value?.rows &&
+    listData.value.rows.length >= currentIndex.value
+    ? listData?.value?.rows[currentIndex.value]
+    : null;
+});
+
+console.log(listData.value);
+
+// 마지막 공지사항인지 확인
+const isLastNotice = computed(() => {
+  return (
+    !listData.value || currentIndex.value === listData.value.rows.length - 1
+  );
+});
+
+const confirmNotice = async (id?: Id) => {
+  if (id) {
+    await usePost({
+      url: `/notice/${id}/confirm`,
+    });
+  }
+
+  if (isLastNotice.value) {
+    // 마지막 공지사항이면 다이얼로그를 닫음
+    emit('ok');
+  } else {
+    // 다음 공지사항으로 이동
+    currentIndex.value++;
+  }
 };
 </script>
 
 <template>
-  <q-card>
+  <q-card v-if="currentNotice">
     <article class="min-w-80 max-w-screen-sm px-8">
       <div class="text-caption text-center mt-4">
-        {{ latestNotice?.description }}
+        {{ currentNotice.description }}
       </div>
       <a-btn
         class="full-width mt-12 mb-12"
         color="primary"
-        label="확인"
-        @click="confirmNotice(latestNotice?.id)"
+        :label="isLastNotice ? '확인' : '다음'"
+        @click="confirmNotice(currentNotice.id)"
       />
     </article>
   </q-card>
