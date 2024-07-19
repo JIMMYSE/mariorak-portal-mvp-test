@@ -134,14 +134,14 @@ export function useLogout({ onSuccess }: { onSuccess?: () => void }) {
  * 1011: 서비스 이용제한 -> 실행 후 이용 제한 계정 정보 API 호출 필요
  */
 export const useServiceRestrictionLogout = useThrottleFn(
-  (code: string | number) => {
+  (code: string | number, userId: number) => {
     const { isLoggedIn } = useUserInfo();
     if (isLoggedIn.value) {
       doLogout(() => {
-        goTo(`/login/restriction/${code}`);
+        goTo(`/login/restriction/${code}/${userId}`);
       });
     } else {
-      goTo(`/login/restriction/${code}`);
+      goTo(`/login/restriction/${code}/${userId}`);
     }
   },
   4000
@@ -333,8 +333,8 @@ export const registerUser = async (data: EmailRegistration) => {
 /**
  * 이용제한 정보 조회
  */
-export const useAuthRestrictUserInfo = (userId: MaybeRefOrGetter<Id>) => {
+export const useAuthRestrictUserInfo = (userId: any) => {
   return useAxiosGet<InferType<typeof PortalRestrictUserRes>>({
-    url: USER_API_URL + '/restrict-user/' + userId,
+    url: AUTH_API_URL + '/restrict-user/' + userId?.value,
   });
 };

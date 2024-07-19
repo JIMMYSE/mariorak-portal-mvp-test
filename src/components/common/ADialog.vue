@@ -84,7 +84,7 @@ function getMessage(message: Message) {
       </q-card-section>
 
       <div
-        v-if="buttonsComputed"
+        v-if="buttonsComputed.length > 0"
         class="p-0 flex m-0"
         style="height: 55px; background-color: #f3f4f6"
       >

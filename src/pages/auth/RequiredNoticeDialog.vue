@@ -37,7 +37,7 @@ const confirmNotice = (id: Id) => {
         {{ latestNotice?.description }}
       </div>
       <a-btn
-        class="full-width mt-12"
+        class="full-width mt-12 mb-12"
         color="primary"
         label="확인"
         @click="confirmNotice(latestNotice?.id)"

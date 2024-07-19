@@ -3,13 +3,12 @@
 <script lang="ts" setup>
 import { formatDateTime } from 'src/utils/date-util';
 
-const { user } = useUserInfo();
-
 // 상세 조회
 const route = useRoute();
 const code = ref<string>(route.params.code as string);
+const userId = ref<string>(route.params.userId as string);
 
-const { data } = useAuthRestrictUserInfo(user.value.id);
+const { data } = useAuthRestrictUserInfo(userId);
 </script>
 
 <template>
