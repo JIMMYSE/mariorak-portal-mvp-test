@@ -1,5 +1,6 @@
 import { HttpStatusCode } from 'axios';
 import { t } from 'src/utils/message-util';
+import { removeUserInfo } from 'src/composables/auth/auth';
 
 // for Bridge
 export const networkError = ref(false);
@@ -17,6 +18,17 @@ export function handleAxiosError(error: any, router: Router): void {
     // 서비스 이용제한
     if (['1003', '1005', '1011'].includes(error.response?.data?.code)) {
       useServiceRestrictionLogout(error.response?.data?.code);
+      return;
+    }
+
+    if (error.response?.data?.code === '1002') {
+      useAlertDialog({
+        text: error.response.data.message ?? 'error.occured',
+      }).onDismiss(() => {
+        removeUserInfo();
+        goTo('/login');
+      });
+
       return;
     }
 

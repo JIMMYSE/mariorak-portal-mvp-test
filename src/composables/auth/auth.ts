@@ -170,7 +170,7 @@ export const doLogout = (onSuccess?: () => void) => {
   removeUserInfo(onSuccess);
 };
 
-function removeUserInfo(onSuccess?: () => void) {
+export function removeUserInfo(onSuccess?: () => void) {
   useTimeoutFn(() => {
     removeAccessToken();
     clearAuthInfo();
