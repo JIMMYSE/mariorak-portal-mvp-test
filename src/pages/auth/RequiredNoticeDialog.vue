@@ -3,8 +3,6 @@ import { ref, computed } from 'vue';
 import { Id } from 'src/services/common/api-model';
 import { useRoute } from 'vue-router';
 
-const route = useRoute();
-
 const emit = defineEmits(['ok']);
 
 // 목록 조회
@@ -14,14 +12,12 @@ const { data: listData } = useNoticePopupList();
 const currentIndex = ref(0);
 
 // 현재 공지사항
-const currentNotice = computed(() => {
+const currentNotice: any = computed(() => {
   return listData.value?.rows &&
     listData.value.rows.length >= currentIndex.value
     ? listData?.value?.rows[currentIndex.value]
-    : null;
+    : [];
 });
-
-console.log(listData.value);
 
 // 마지막 공지사항인지 확인
 const isLastNotice = computed(() => {
@@ -51,13 +47,13 @@ const confirmNotice = async (id?: Id) => {
   <q-card v-if="currentNotice">
     <article class="min-w-80 max-w-screen-sm px-8">
       <div class="text-caption text-center mt-4">
-        {{ currentNotice.description }}
+        {{ currentNotice?.description }}
       </div>
       <a-btn
         class="full-width mt-12 mb-12"
         color="primary"
         :label="isLastNotice ? '확인' : '다음'"
-        @click="confirmNotice(currentNotice.id)"
+        @click="confirmNotice(currentNotice?.id)"
       />
     </article>
   </q-card>

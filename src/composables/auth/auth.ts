@@ -67,7 +67,12 @@ export const useLogin = () => {
     if (result && isSuccess.value) {
       loginData.value = data.value!.data;
       await saveLoginUser(data.value!.data);
-      await useRequiredNoticeDialog();
+
+      const { data: listData } = useNoticePopupList();
+
+      if (listData.value?.rows?.length) {
+        await useRequiredNoticeDialog();
+      }
     }
 
     return {
