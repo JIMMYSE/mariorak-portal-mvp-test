@@ -44,3 +44,17 @@ export const useNoticeDetail = (
     queryKeyName,
   });
 };
+
+/**
+ * 공지사항 팝업 목록 조회
+ */
+export const useNoticePopupList = ({
+  queryOption,
+}: {
+  queryOption?: QueryOption;
+} = {}) => {
+  return useQueryFetch<NoticeSearchResType>({
+    url: API_URL + '/popup/list',
+    queryOption,
+  });
+};

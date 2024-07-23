@@ -387,10 +387,12 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/auth/LoginPage.vue'),
       },
       {
-        path: 'restriction',
+        path: 'restriction/:code/:userId',
+        props: true,
         name: 'restriction-guide',
         meta: {
           title: '이용제한',
+          requiresNonAuth: true,
         },
         component: () => import('pages/auth/ServiceRestrictionGuide.vue'),
       },

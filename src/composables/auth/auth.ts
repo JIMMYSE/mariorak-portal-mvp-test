@@ -4,6 +4,7 @@ import { LoginReqType } from 'src/services/auth/model';
 import { EmailRegistration } from 'src/stores/join-store';
 import { wait } from 'src/utils/promise-util';
 import { MaybeRefOrGetter } from 'vue';
+import RequiredNoticeDialog from 'src/pages/auth/RequiredNoticeDialog.vue';
 
 const ACCESS_TOKEN_KEY = process.env.ACCESS_TOKEN_KEY as string;
 const TOKEN_EXPIRE_DAYS = Number(process.env.TOKEN_EXPIRE_DAYS as string);
@@ -66,6 +67,12 @@ export const useLogin = () => {
     if (result && isSuccess.value) {
       loginData.value = data.value!.data;
       await saveLoginUser(data.value!.data);
+
+      const { data: listData } = useNoticePopupList();
+
+      if (listData.value?.rows?.length) {
+        await useRequiredNoticeDialog();
+      }
     }
 
     return {
@@ -74,7 +81,20 @@ export const useLogin = () => {
     };
   }
 
-  return { login, saveLoginUser };
+  return { login, saveLoginUser, useRequiredNoticeDialog };
+};
+
+/**
+ * 필수공지 다이얼로그
+ */
+
+const useRequiredNoticeDialog = () => {
+  return useAlertDialog({
+    contentComponent: RequiredNoticeDialog,
+    title: '필수 공지사항',
+    buttons: [],
+    closeButton: true,
+  });
 };
 
 /**
@@ -113,18 +133,24 @@ export function useLogout({ onSuccess }: { onSuccess?: () => void }) {
 }
 
 /**
- * 서비스 이용제한 시 로그아웃 및 이용제한 안내페이지로 이동(400, code: 1011, 서비스 이용제한).
+ * 서비스 이용제한 시 로그아웃 및 이용제한 안내페이지로 이동(status code: 400)
+ * 1005: 장기 미접속
+ * 1003: 비밀번호 5회 오류
+ * 1011: 서비스 이용제한 -> 실행 후 이용 제한 계정 정보 API 호출 필요
  */
-export const useServiceRestrictionLogout = useThrottleFn(() => {
-  const { isLoggedIn } = useUserInfo();
-  if (isLoggedIn.value) {
-    doLogout(() => {
-      goToName('restriction-guide');
-    });
-  } else {
-    goToName('restriction-guide');
-  }
-}, 4000);
+export const useServiceRestrictionLogout = useThrottleFn(
+  (code: string | number, userId: number) => {
+    const { isLoggedIn } = useUserInfo();
+    if (isLoggedIn.value) {
+      doLogout(() => {
+        goTo(`/login/restriction/${code}/${userId}`);
+      });
+    } else {
+      goTo(`/login/restriction/${code}/${userId}`);
+    }
+  },
+  4000
+);
 
 /**
  * 강제 로그아웃(401, 토큰 만료 등). 중복방지 처리.
@@ -149,7 +175,7 @@ export const doLogout = (onSuccess?: () => void) => {
   removeUserInfo(onSuccess);
 };
 
-function removeUserInfo(onSuccess?: () => void) {
+export function removeUserInfo(onSuccess?: () => void) {
   useTimeoutFn(() => {
     removeAccessToken();
     clearAuthInfo();
@@ -312,8 +338,8 @@ export const registerUser = async (data: EmailRegistration) => {
 /**
  * 이용제한 정보 조회
  */
-export const useAuthRestrictUserInfo = (userId: MaybeRefOrGetter<Id>) => {
+export const useAuthRestrictUserInfo = (userId: any) => {
   return useAxiosGet<InferType<typeof PortalRestrictUserRes>>({
-    url: USER_API_URL + '/restrict-user/' + userId,
+    url: AUTH_API_URL + '/restrict-user/' + userId?.value,
   });
 };
