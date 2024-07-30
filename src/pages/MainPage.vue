@@ -1,6 +1,13 @@
 <!-- 메인페이지 -->
 
 <script setup lang="ts">
+onMounted(() => {
+  const { data: listData } = useNoticePopupList();
+
+  if (listData.value?.rows?.length) {
+    useRequiredNoticeDialog();
+  }
+});
 const { data: shortcutData } = useShortcutList();
 const shortcutAList = computed(
   () => shortcutData.value?.rows.filter((r) => r.shortcut_area_cd === 'A') ?? []

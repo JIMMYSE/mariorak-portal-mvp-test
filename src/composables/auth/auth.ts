@@ -67,12 +67,6 @@ export const useLogin = () => {
     if (result && isSuccess.value) {
       loginData.value = data.value!.data;
       await saveLoginUser(data.value!.data);
-
-      const { data: listData } = useNoticePopupList();
-
-      if (listData.value?.rows?.length) {
-        await useRequiredNoticeDialog();
-      }
     }
 
     return {
@@ -88,7 +82,7 @@ export const useLogin = () => {
  * 필수공지 다이얼로그
  */
 
-const useRequiredNoticeDialog = () => {
+export const useRequiredNoticeDialog = () => {
   return useAlertDialog({
     contentComponent: RequiredNoticeDialog,
     title: '필수 공지사항',

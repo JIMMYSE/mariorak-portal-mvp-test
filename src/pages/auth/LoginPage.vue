@@ -5,10 +5,12 @@ const isAutoLogin = useAutoLogin();
 let isWithdrawing = false;
 
 const { login } = useLogin();
+
 const onSuccess = async (values: { email: string; password: string }) => {
   const { email, password } = values;
 
   const { data, isSuccess } = await login(email, password);
+
   if (!data.value) return;
 
   handleLoginResult({ isWithdrawing, isSuccess: isSuccess.value });
