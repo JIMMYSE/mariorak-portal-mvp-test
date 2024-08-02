@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   secrets-manager:
-    GITHUB_SSH_KEY: "airforce-dev-github_ssh_key:ENCODED_SSH_PRIVATE_KEY"
+    GITHUB_SSH_KEY: "ccf-dev-github_ssh_key:ENCODED_SSH_PRIVATE_KEY"
 
 phases:
   pre_build:
@@ -31,5 +31,5 @@ phases:
   post_build:
     commands:
       - echo now post_build
-      - aws s3 sync ./dist/spa s3://airforce-dev-portal --acl bucket-owner-full-control
-      - aws cloudfront create-invalidation --distribution-id E2MT4PYQRGRO50 --paths "/*"
+      - aws s3 sync ./dist/spa s3://ccf-dev-portal --acl bucket-owner-full-control
+      - aws cloudfront create-invalidation --distribution-id E31OVQPALU18GN --paths "/*"
