@@ -3,7 +3,12 @@
  */
 
 import { SearchRequest } from 'src/services/common/api-model';
-import { useSearchRequest } from './api';
+
+export function useSearchRequest(
+  options: Partial<SearchRequest> = {}
+): Ref<SearchRequest> {
+  return ref(new SearchRequestClass(options));
+}
 
 /**
  * 목록 검색 필터
