@@ -1,8 +1,8 @@
 {
-  "name": "meta-airforce-portal",
+  "name": "ccf-portal",
   "version": "0.0.1",
-  "description": "Meta Airforce Portal",
-  "productName": "Meta Airforce Portal",
+  "description": "ccf Portal",
+  "productName": "ccf Portal",
   "author": "COARSOFT",
   "private": true,
   "scripts": {
