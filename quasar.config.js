@@ -178,6 +178,7 @@ module.exports = configure(function (ctx) {
               'src/services/**',
               'src/stores/**',
               'src/router/**',
+              'src/utils/**',
             ],
             dts: true,
             vueTemplate: true,
