@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 import * as Qs from 'qs';
 import { LoadingBar } from 'quasar';
 import { boot } from 'quasar/wrappers';
-import { getAccessToken } from 'src/composables/auth/auth';
+import { getAccessToken } from 'src/composables/domain/auth';
 import { handleAxiosError } from 'src/services/util/error-handler';
 
 declare module '@vue/runtime-core' {

@@ -6,7 +6,7 @@ const emits = defineEmits(['onConfirmed']);
 // 현재 비밀번호 확인 여부
 const isConfirmed = defineModel<boolean>('isConfirmed');
 
-const { encodeByAES256 } = useCryptoJS();
+const { encodeByAES256 } = cryptoJS();
 
 const {
   meta,

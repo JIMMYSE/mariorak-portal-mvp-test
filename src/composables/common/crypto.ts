@@ -2,7 +2,7 @@ import { AES, enc, pad, mode } from 'crypto-js';
 
 const SECRET_KEY = process.env.SECRET_KEY as string;
 
-export function useCryptoJS() {
+export function cryptoJS() {
   return {
     // encryptString(value: string) {
     //   return AES.encrypt(value, SECRET_KEY).toString();

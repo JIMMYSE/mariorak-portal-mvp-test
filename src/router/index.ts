@@ -6,7 +6,7 @@ import {
   createWebHistory,
 } from 'vue-router';
 import routes from './routes';
-import { useUserInfo } from 'src/composables/auth/auth';
+import { useUserInfo } from 'src/composables/domain/auth';
 
 /*
  * If not building with SSR mode, you can

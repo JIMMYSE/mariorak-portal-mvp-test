@@ -10,7 +10,7 @@ watch(isLoggedIn, (b) => {
 
 const joinStore = useJoinStore();
 const { joinData } = storeToRefs(joinStore);
-const { encodeByAES256 } = useCryptoJS();
+const { encodeByAES256 } = cryptoJS();
 
 const {
   meta,

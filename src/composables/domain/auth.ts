@@ -1,10 +1,10 @@
 import { useCookies } from '@vueuse/integrations/useCookies';
 import { PortalLoginResponse, PortalRestrictUserRes } from 'meta-airforce-dto';
-import { LoginReqType } from 'src/services/auth/model';
 import { EmailRegistration } from 'src/stores/join-store';
 import { wait } from 'src/utils/promise-util';
 import { MaybeRefOrGetter } from 'vue';
 import RequiredNoticeDialog from 'src/pages/auth/RequiredNoticeDialog.vue';
+import { LoginReqType } from 'src/services/auth/auth-model';
 
 const ACCESS_TOKEN_KEY = process.env.ACCESS_TOKEN_KEY as string;
 const TOKEN_EXPIRE_DAYS = Number(process.env.TOKEN_EXPIRE_DAYS as string);
@@ -43,7 +43,7 @@ export const useLogin = () => {
 
     const agent: LoginReqType['agent'] = agentInfo.value ?? dummyAgentInfo;
 
-    const { encodeByAES256 } = useCryptoJS();
+    const { encodeByAES256 } = cryptoJS();
 
     const { data } = await useAxiosPost<PortalLoginResponseType>({
       url: LOGIN_URL,

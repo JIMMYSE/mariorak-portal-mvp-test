@@ -3,7 +3,7 @@
 <script setup lang="ts">
 const emits = defineEmits(['onComplete']);
 
-const { encodeByAES256 } = useCryptoJS();
+const { encodeByAES256 } = cryptoJS();
 
 const {
   meta,
