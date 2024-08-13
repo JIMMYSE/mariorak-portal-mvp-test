@@ -3,7 +3,7 @@
  */
 
 import { SearchRequest } from 'src/services/common/api-model';
-import { useSearchRequest } from './api';
+import { useSearchRequest } from '../../services/api';
 
 /**
  * 목록 검색 필터
