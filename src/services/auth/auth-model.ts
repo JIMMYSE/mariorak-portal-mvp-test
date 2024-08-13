@@ -23,23 +23,6 @@ export interface Menu {
   tracking_type?: string;
 }
 
-/**
- * 이메일 정규식
- */
-export const REGEX_EMAIL = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-/**
- * 비밀번호 정규식
- * @description 영문, 숫자 조합. 10자리 이상, 16자리 이하.
- */
-export const REGEX_PASSWORD =
-  /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()-=_+/?]{10,16}$/;
-
-/**
- * 휴대폰 번호 정규식
- */
-export const mobileRegex = /^01[016789]-?[0-9]{3,4}-?[0-9]{4}$/;
-
 // 비밀번호 스키마
 export const PasswordSchema = string()
   .required(t('auth.password.required'))
@@ -94,3 +77,21 @@ export const NewPasswordFormSchema = object({
     .default(''),
 });
 export type ChangePasswordForm = InferType<typeof NewPasswordFormSchema>;
+export type LoginReqType = {
+  email: string;
+  password: string;
+  agent: InferType<typeof DeviceAgent>;
+};
+
+/** 사용자 공통 항목 */
+export const AccountBase = object({
+  id: number().label('유저 아이디').required(),
+  mbl_telno: string().label('모바일전화번호').max(11).required(),
+  reg_type_cd: string().label('계정 등록유형코드').max(1).required(),
+  eml_addr: string().label('이메일').max(320).required(),
+  mobile_verified_token: string()
+    .label('비밀번호 재설정 인증 토큰')
+    .default(null)
+    .required()
+    .nullable(),
+});

@@ -17,8 +17,17 @@ export type Message =
       data: Record<string, unknown>;
     };
 
-// 닉네임 정규식
-export const REGEXP_NICKNAME = /^[a-zA-Z가-힣0-9]{2,10}$/;
+export const DeviceAgent = object({
+  fcm_token: string().nullable(),
+  platform: object({
+    os: string(),
+    device_id: string(),
+    app_version: string(),
+    device_model: string(),
+  }),
+  os: string(),
+  sdk_version: string(),
+});
 
 // 닉네임 스키마
 export const NicknameSchema = string()
@@ -40,9 +49,6 @@ export const NicknameSchema = string()
     }
   )
   .required();
-
-// 정규식: 훈련병 이름
-export const REGEXP_TRAINEE_NAME = /^[가-힣]{2,19}$/;
 
 // 프로필 수정 스키마
 export const NicknameAndAvatarFormSchema = object({
