@@ -130,7 +130,7 @@ const onSubmit = handleSubmit(async () => {
                 <template #after>
                   <span class="text-sm text-grey-4">중대</span>
                 </template>
-              </a-input>
+              </c-input>
               <c-input
                 class="w-1/3 p-0 m-0"
                 input-class="text-right"
@@ -148,7 +148,7 @@ const onSubmit = handleSubmit(async () => {
                 <template #after>
                   <span class="text-sm text-grey-4">소대</span>
                 </template>
-              </a-input>
+              </c-input>
               <c-input
                 class="w-1/3 p-0 m-0"
                 input-class="text-right"
@@ -166,7 +166,7 @@ const onSubmit = handleSubmit(async () => {
                 <template #after>
                   <span class="text-sm text-grey-4">번</span>
                 </template>
-              </a-input>
+              </c-input>
             </div>
           </label>
           <label for="birth">
@@ -194,7 +194,7 @@ const onSubmit = handleSubmit(async () => {
                 <template #after>
                   <span class="text-sm text-grey-4">년</span>
                 </template>
-              </a-input>
+              </c-input>
               <c-input
                 class="w-1/3 p-0 m-0"
                 input-class="text-right"
@@ -212,7 +212,7 @@ const onSubmit = handleSubmit(async () => {
                 <template #after>
                   <span class="text-sm text-grey-4">월</span>
                 </template>
-              </a-input>
+              </c-input>
               <c-input
                 class="w-1/3 p-0 m-0"
                 input-class="text-right"
@@ -230,7 +230,7 @@ const onSubmit = handleSubmit(async () => {
                 <template #after>
                   <span class="text-sm text-grey-4">일</span>
                 </template>
-              </a-input>
+              </c-input>
             </div>
           </label>
           <label for="name">

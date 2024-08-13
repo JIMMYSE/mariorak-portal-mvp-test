@@ -1,8 +1,8 @@
 import { useThrottleFn } from '@vueuse/core';
-import CDialog from 'components/common/CDialog.vue';
+import CDialog from 'components/common/dialog/CDialog.vue';
 import { Dialog, Notify } from 'quasar';
-import CDialogContent from 'src/components/common/CDialogContent.vue';
-import CDialogFull from 'src/components/common/CDialogFull.vue';
+import CDialogContent from 'src/components/common/dialog/CDialogContent.vue';
+import CDialogFull from 'src/components/common/dialog/CDialogFull.vue';
 import { MaybeRefOrGetter, watch } from 'vue';
 import { t } from 'src/utils/message-util';
 import { Message } from 'src/services/common/common-model';
