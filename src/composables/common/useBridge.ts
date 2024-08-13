@@ -3,7 +3,7 @@ import { ComputedRef, computed, ref } from 'vue';
 import { networkError } from 'src/services/error-handler';
 import { getAccessToken } from 'src/composables/auth/auth';
 import { useQueryClient } from '@tanstack/vue-query';
-import { LoginReqType } from 'src/services/auth/model';
+import { LoginReqType } from 'src/services/auth/auth-model';
 
 declare const window: {
   refetchData: () => void;
