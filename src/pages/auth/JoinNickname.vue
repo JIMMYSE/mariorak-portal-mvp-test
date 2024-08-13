@@ -33,7 +33,7 @@ const onSubmit = handleSubmit(async () => {
 
 <template>
   <q-page class="px-6 bg-white">
-    <div class="pt-10 text-h2 font-medium text-[17px]">
+    <div class="pt-10 text-h2 font-bold text-[24px]">
       <p>사용하실</p>
       <p>닉네임을 알려주세요</p>
     </div>
