@@ -49,7 +49,7 @@ const confirmNotice = async (id?: Id) => {
       <div class="text-caption text-center mt-4">
         {{ currentNotice?.description }}
       </div>
-      <a-btn
+      <c-btn
         class="full-width mt-12 mb-12"
         color="primary"
         :label="isLastNotice ? '확인' : '다음'"

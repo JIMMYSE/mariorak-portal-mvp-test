@@ -49,7 +49,7 @@ const { closeApp } = useBridge();
     </q-card>
 
     <div class="w-screen -ml-6 p-4 fixed bottom-0 bg-white">
-      <a-btn
+      <c-btn
         class="w-full h-[55px]"
         label="어플리케이션 종료"
         @click="closeApp"

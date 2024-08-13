@@ -24,7 +24,7 @@ defineProps<Props>();
     </q-item-section>
     <q-item-section class="flex-1 pl-[14px] !justify-start" @click="goTo(to)">
       <div class="flex gap-[5px]">
-        <a-tag>{{ tag }}</a-tag>
+        <c-tag>{{ tag }}</c-tag>
         <p class="font-rokaf text-[13px] leading-5">
           {{ title }}
         </p>

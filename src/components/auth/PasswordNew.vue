@@ -39,8 +39,8 @@ const onSubmit = handleSubmit(async () => {
       </p>
     </div>
     <form>
-      <a-field label="비밀번호" class="mt-[30px]">
-        <a-input
+      <c-field label="비밀번호" class="mt-[30px]">
+        <c-input
           type="password"
           name="new_password"
           :maxlength="16"
@@ -49,9 +49,9 @@ const onSubmit = handleSubmit(async () => {
           :clearable="false"
           autofocus
         />
-      </a-field>
-      <a-field label="비밀번호 확인">
-        <a-input
+      </c-field>
+      <c-field label="비밀번호 확인">
+        <c-input
           type="password"
           name="passwordConfirm"
           :maxlength="16"
@@ -59,16 +59,16 @@ const onSubmit = handleSubmit(async () => {
           :done="!errorBag.passwordConfirm && form.passwordConfirm!.length >= 10"
           :clearable="false"
         />
-      </a-field>
+      </c-field>
 
       <div class="absolute bottom-0 bg-primary w-full h-[64px] left-0">
-        <a-btn
+        <c-btn
           type="submit"
           class="text-center text-white font-base font-medium size-full flex justify-center items-center"
           :label="$t('label.complete')"
           @click="onSubmit"
         >
-        </a-btn>
+        </c-btn>
       </div>
     </form>
   </section>

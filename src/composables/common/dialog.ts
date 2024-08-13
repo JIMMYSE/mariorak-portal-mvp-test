@@ -1,14 +1,14 @@
 import { useThrottleFn } from '@vueuse/core';
-import ADialog from 'components/common/ADialog.vue';
+import CDialog from 'components/common/CDialog.vue';
 import { Dialog, Notify } from 'quasar';
-import ADialogContent from 'src/components/common/ADialogContent.vue';
-import ADialogFull from 'src/components/common/ADialogFull.vue';
+import CDialogContent from 'src/components/common/CDialogContent.vue';
+import CDialogFull from 'src/components/common/CDialogFull.vue';
 import { MaybeRefOrGetter, watch } from 'vue';
 import { t } from 'src/utils/message-util';
 import { Message } from 'src/services/common/common-model';
-import { ADialogProps } from 'src/components/common/ADialog';
-import { ADialogFullProps } from 'src/components/common/ADialogFull';
-import { ADialogContentProps } from 'src/components/common/ADialogContent';
+import { CDialogProps } from 'src/components/common/dialog/CDialog';
+import { CDialogFullProps } from 'src/components/common/dialog/CDialogFull';
+import { CDialogContentProps } from 'src/components/common/dialog/CDialogContent';
 
 // Dialog, Notify throttle delay
 const throttleDelay = 2000;
@@ -16,7 +16,7 @@ const throttleDelay = 2000;
 /**
  * Alert Dialog
  */
-export function useAlertDialog(option: ADialogProps) {
+export function useAlertDialog(option: CDialogProps) {
   option.type = 'alert';
   return useDialog(option);
 }
@@ -24,8 +24,8 @@ export function useAlertDialog(option: ADialogProps) {
 /**
  * Alert Dialog with throttle
  */
-let alertDialogOption: ADialogProps;
-export async function useAlertDialogThrottle(option: ADialogProps) {
+let alertDialogOption: CDialogProps;
+export async function useAlertDialogThrottle(option: CDialogProps) {
   alertDialogOption = option;
   const res = await throttleAlertDialog();
   return res;
@@ -37,14 +37,14 @@ const throttleAlertDialog = useThrottleFn(() => {
 /**
  * Confirm Dialog
  */
-export function useMyConfirmDialog(option: ADialogProps) {
+export function useMyConfirmDialog(option: CDialogProps) {
   option.type = 'confirm';
   return useDialog(option);
 }
 
-export function useDialog(option: ADialogProps) {
+export function useDialog(option: CDialogProps) {
   return Dialog.create({
-    component: ADialog,
+    component: CDialog,
     componentProps: option,
   });
 }
@@ -52,7 +52,7 @@ export function useDialog(option: ADialogProps) {
 /**
  * Alert 전체화면 Dialog
  */
-export function useAlertFullDialog(option: ADialogFullProps) {
+export function useAlertFullDialog(option: CDialogFullProps) {
   option.type = 'alert';
   return useFullDialog(option);
 }
@@ -60,14 +60,14 @@ export function useAlertFullDialog(option: ADialogFullProps) {
 /**
  * Confirm 전체화면 Dialog
  */
-export function useConfirmFullDialog(option: ADialogFullProps) {
+export function useConfirmFullDialog(option: CDialogFullProps) {
   option.type = 'confirm';
   return useFullDialog(option);
 }
 
-export function useFullDialog(option: ADialogFullProps) {
+export function useFullDialog(option: CDialogFullProps) {
   return Dialog.create({
-    component: ADialogFull,
+    component: CDialogFull,
     componentProps: option,
   });
 }
@@ -82,9 +82,9 @@ export function useFullDialog(option: ADialogFullProps) {
       :html="filterHtmlWithNewLine(detail?.trms_cn)"
     />
  */
-export function useContentDialog(option: ADialogContentProps) {
+export function useContentDialog(option: CDialogContentProps) {
   return Dialog.create({
-    component: ADialogContent,
+    component: CDialogContent,
     componentProps: option,
   });
 }

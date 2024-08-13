@@ -14,7 +14,7 @@ const form = ref({
         <h4 class="ml-[5px] text-grey-3 text-[13px] font-medium">
           보내는 사람 이름
         </h4>
-        <a-input
+        <c-input
           name="senderName"
           v-model="form.senderName"
           bg-color="grey"
@@ -25,7 +25,7 @@ const form = ref({
       </label>
       <label for="relation"
         ><h4 class="ml-[5px] text-grey-3 text-[13px] font-medium">관계</h4>
-        <a-input
+        <c-input
           name="relation"
           v-model="form.relation"
           bg-color="grey"
@@ -34,7 +34,7 @@ const form = ref({
       /></label>
       <label for="title"
         ><h4 class="ml-[5px] text-grey-3 text-[13px] font-medium">제목</h4>
-        <a-input
+        <c-input
           name="title"
           v-model="form.title"
           bg-color="grey"
@@ -45,7 +45,7 @@ const form = ref({
       /></label>
       <label for="content"
         ><h4 class="ml-[5px] text-grey-3 text-[13px] font-medium">내용</h4>
-        <a-input
+        <c-input
           name="content"
           v-model="form.content"
           bg-color="grey"

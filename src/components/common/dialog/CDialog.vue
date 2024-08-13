@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Message } from 'src/services/common/common-model';
 import { useI18n } from 'vue-i18n';
-import { ADialogFullProps } from './ADialogFull';
+import { ADialogFullProps } from './CDialogFull';
 
 const props = withDefaults(defineProps<ADialogFullProps>(), {
   type: 'alert',

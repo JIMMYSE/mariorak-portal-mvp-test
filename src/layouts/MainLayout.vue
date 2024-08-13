@@ -72,10 +72,10 @@ const { isNew } = useNotificationCheck();
             border-style: ridge;
           "
         ></div>
-        <!-- <a-svg -->
+        <!-- <c-svg -->
         <!--   class="w-[405px] h-[83px] absolute top-0 -translate-x-4 mx-auto" -->
         <!--   name="main-tabs-bg" -->
-        <!-- ></a-svg> -->
+        <!-- ></c-svg> -->
         <q-tabs class="col px-8 absolute inset-0 bottom-5">
           <!-- <div -->
           <!--   class="absolute top-0 bottom-0 w-full bg-[url(/images/main-tabs-bg.svg)] bg-bottom shadow-[0px_-3px_10px_#00000014] bg-clip-padding bg-no-repeat opacity-100" -->

@@ -69,18 +69,18 @@ const openDetailDialog = async (cd: string) => {
           <q-item-section
             class="p-0 text-body2 font-rokaf font-medium text-base"
           >
-            <a-checkbox v-model="isAllChecked" size="32px">
+            <c-checkbox v-model="isAllChecked" size="32px">
               전체동의
-            </a-checkbox>
+            </c-checkbox>
           </q-item-section>
         </q-item>
         <q-item class="border border-[#f1f1f1] p-[8px_9px_8px_6px] rounded-md">
           <q-item-section
             class="p-0 text-body2 font-rokaf font-medium text-base"
           >
-            <a-checkbox v-model="is14YearsOldChecked">
+            <c-checkbox v-model="is14YearsOldChecked">
               [필수] 만 14세 이상
-            </a-checkbox>
+            </c-checkbox>
           </q-item-section>
         </q-item>
         <q-item
@@ -91,10 +91,10 @@ const openDetailDialog = async (cd: string) => {
           <q-item-section
             class="p-0 text-body2 font-rokaf font-medium text-base"
           >
-            <a-checkbox v-model="checkedIdList" size="32px" :val="item.id">
+            <c-checkbox v-model="checkedIdList" size="32px" :val="item.id">
               {{ item.is_required ? '[필수] ' : '' }}
               {{ item.title }}
-            </a-checkbox>
+            </c-checkbox>
           </q-item-section>
           <q-item-section side>
             <a
@@ -126,7 +126,7 @@ const openDetailDialog = async (cd: string) => {
     </section>
 
     <!-- 팝업 -->
-    <a-dialog-content
+    <c-dialog-content
       v-model="detailEnabled"
       :title="detail?.title"
       :text="detail?.contents"

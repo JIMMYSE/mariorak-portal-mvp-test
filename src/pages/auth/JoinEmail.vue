@@ -39,17 +39,17 @@ const onSubmit = handleSubmit(async () => {
     </div>
 
     <form>
-      <a-field label="아이디 (이메일)" class="mt-8">
-        <a-input
+      <c-field label="아이디 (이메일)" class="mt-8">
+        <c-input
           name="email"
           placeholder="이메일 주소 입력"
           :done="!errorBag.email && !!form.email!.length"
           :maxlength="320"
           autofocus
         />
-      </a-field>
-      <a-field label="비밀번호">
-        <a-input
+      </c-field>
+      <c-field label="비밀번호">
+        <c-input
           type="password"
           name="passwordInput"
           :maxlength="16"
@@ -57,9 +57,9 @@ const onSubmit = handleSubmit(async () => {
           :done="!errorBag.passwordInput && form.passwordInput!.length >= 10"
           :clearable="false"
         />
-      </a-field>
-      <a-field label="비밀번호 확인">
-        <a-input
+      </c-field>
+      <c-field label="비밀번호 확인">
+        <c-input
           type="password"
           name="passwordConfirmInput"
           :maxlength="16"
@@ -67,7 +67,7 @@ const onSubmit = handleSubmit(async () => {
           :done="!errorBag.passwordConfirmInput && form.passwordConfirmInput!.length >= 10"
           :clearable="false"
         />
-      </a-field>
+      </c-field>
     </form>
     <div
       class="absolute bottom-0 bg-primary w-full h-[64px] left-0"

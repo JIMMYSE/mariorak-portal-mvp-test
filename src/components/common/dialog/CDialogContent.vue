@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ADialogContentProps } from './ADialogContent';
+import { ADialogContentProps } from './CDialogContent';
 
 const props = withDefaults(defineProps<ADialogContentProps>(), {
   title: '',

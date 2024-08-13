@@ -1,4 +1,4 @@
-export interface ADialogContentProps {
+export interface CDialogContentProps {
   title?: string | undefined;
   text?: string | undefined;
   html?: string | undefined;
