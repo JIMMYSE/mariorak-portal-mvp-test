@@ -67,7 +67,7 @@ const openDetailDialog = async (cd: string) => {
           class="border border-[#f1f1f1] min-h-[60px] p-[8px_9px_8px_6px] bg-grey-1 rounded-md"
         >
           <q-item-section
-            class="p-0 text-body2 font-rokaf font-medium text-base"
+            class="p-0 text-body2 font-pretendard font-medium text-base"
           >
             <a-checkbox v-model="isAllChecked" size="32px">
               전체동의
@@ -76,7 +76,7 @@ const openDetailDialog = async (cd: string) => {
         </q-item>
         <q-item class="border border-[#f1f1f1] p-[8px_9px_8px_6px] rounded-md">
           <q-item-section
-            class="p-0 text-body2 font-rokaf font-medium text-base"
+            class="p-0 text-body2 font-pretendard font-medium text-base"
           >
             <a-checkbox v-model="is14YearsOldChecked">
               [필수] 만 14세 이상
@@ -89,7 +89,7 @@ const openDetailDialog = async (cd: string) => {
           :key="item.id"
         >
           <q-item-section
-            class="p-0 text-body2 font-rokaf font-medium text-base"
+            class="p-0 text-body2 font-pretendard font-medium text-base"
           >
             <a-checkbox v-model="checkedIdList" size="32px" :val="item.id">
               {{ item.is_required ? '[필수] ' : '' }}

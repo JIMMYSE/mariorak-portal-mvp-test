@@ -108,15 +108,8 @@ function handleLoginResult({
             class="text-grey-5 text-caption q-pa-sm font-light"
             flat
             :label="$t('label.join')"
-            @click="goToName('join-email')"
+            @click="goToName('join-terms')"
           />
-          <!-- <span class="text-grey-2">|</span>
-          <a-btn
-            class="text-grey-5 text-caption q-pa-sm font-light"
-            flat
-            :label="$t('label.findPassword')"
-            @click="goToName('find-password')"
-          /> -->
         </div>
       </q-card-section>
     </q-card>

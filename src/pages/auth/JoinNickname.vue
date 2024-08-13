@@ -32,10 +32,10 @@ const onSubmit = handleSubmit(async () => {
 </script>
 
 <template>
-  <q-page class="px-6 bg-grey">
+  <q-page class="px-6 bg-white">
     <div class="pt-10 text-h2 font-medium text-[17px]">
-      <p>이메일 인증을 위한</p>
-      <p><span class="text-primary">가입정보</span>를 입력해 주세요.</p>
+      <p>사용하실</p>
+      <p>닉네임을 알려주세요</p>
     </div>
 
     <form>

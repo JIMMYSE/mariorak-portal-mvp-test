@@ -3,7 +3,7 @@ import { useRoute } from 'vue-router';
 
 export function useHeaderBGColor() {
   const route = useRoute();
-  const bgColor = computed(() => route.meta.bgColor ?? 'grey');
+  const bgColor = computed(() => route.meta.bgColor ?? 'white');
   return {
     bgColor,
   };

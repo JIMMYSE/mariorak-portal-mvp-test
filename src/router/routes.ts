@@ -410,9 +410,9 @@ const routes: RouteRecordRaw[] = [
         path: 'email',
         name: 'join-email',
         meta: {
-          title: '회원가입',
+          title: '닉네임 설정',
         },
-        component: () => import('pages/auth/JoinEmail.vue'),
+        component: () => import('src/pages/auth/JoinNickname.vue'),
       },
       {
         path: 'terms',
