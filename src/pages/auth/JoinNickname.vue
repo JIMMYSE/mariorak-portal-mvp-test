@@ -1,8 +1,7 @@
 <!-- 회원가입 -->
 
 <script lang="ts" setup>
-import { NicknameForm, NicknameSchema } from 'src/services/auth/auth-model';
-import { goTo } from 'src/composables/common/app';
+import { NicknameForm, NicknameSchema } from 'src/types/auth/auth-model';
 
 const { isLoggedIn } = useUserInfo();
 watch(isLoggedIn, (b) => {
@@ -38,14 +37,14 @@ const onSubmit = handleSubmit(() => {
     </div>
 
     <form>
-      <a-field label="닉네임" class="mt-8">
-        <a-input
+      <c-field label="닉네임" class="mt-8">
+        <c-input
           name="nickname"
           placeholder="닉네임을 입력해 주세요"
           :maxlength="10"
           autofocus
         />
-      </a-field>
+      </c-field>
     </form>
     <div
       class="absolute bottom-0 bg-primary w-full h-[64px] left-0"
