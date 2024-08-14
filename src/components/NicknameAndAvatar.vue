@@ -110,7 +110,7 @@ const inputDoneIcon = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-col size-full" style="min-height: inherit">
+  <div class="flex flex-col size-full bg-white" style="min-height: inherit">
     <section class="flex-none w-full px-8 pt-2">
       <q-input
         class="nickname-input"

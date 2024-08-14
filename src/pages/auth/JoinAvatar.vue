@@ -3,7 +3,6 @@
 <script setup lang="ts">
 const joinStore = useJoinStore();
 const { joinData } = storeToRefs(joinStore);
-if (!joinData.value) goToName('join-email');
 
 const onSubmit = async ({
   nickname,
@@ -25,7 +24,7 @@ const onSubmit = async ({
 </script>
 
 <template>
-  <q-page class="bg-grey pt-6">
+  <q-page class="bg-white pt-6">
     <nickname-and-avatar @on-submit="onSubmit" />
   </q-page>
 </template>
