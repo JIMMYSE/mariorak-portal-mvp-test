@@ -4,7 +4,6 @@ module.exports = {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     fontFamily: {
-      rokaf: ['ROKAF', 'ROKAF Sans Medium', 'ROKAF Sans Bold', 'sans-serif'],
       pretendard: ['Pretendard Variable'],
     },
     colors: {

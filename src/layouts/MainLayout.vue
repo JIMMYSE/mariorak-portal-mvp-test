@@ -16,7 +16,7 @@ const { isNew } = useNotificationCheck();
 </script>
 
 <template>
-  <q-layout view="hHh lpr fFf" class="main-layout bg-[#222]">
+  <q-layout view="hHh lpr fFf" class="main-layout bg-white">
     <q-header
       class="flex flex-center px-3 pt-[var(--statusbar-h)]"
       :class="headerClass"

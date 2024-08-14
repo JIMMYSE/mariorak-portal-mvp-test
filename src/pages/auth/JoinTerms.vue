@@ -3,7 +3,6 @@
 <script setup lang="ts">
 const joinStore = useJoinStore();
 const { joinData } = storeToRefs(joinStore);
-if (!joinData.value) goToName('join-email');
 
 const { data: termsData } = useTermsRegistratnionTermsList();
 
@@ -41,8 +40,8 @@ const isSubmitAllowed = computed(
 );
 
 const onSubmit = () => {
-  if (!joinData.value) return;
-  joinData.value.terms_agreements = termsAgreementsList.value;
+  // if (!joinData.value) return;
+  // joinData.value.terms_agreements = termsAgreementsList.value;
   goToName('join-nickname');
 };
 
@@ -57,39 +56,49 @@ const openDetailDialog = async (cd: string) => {
 </script>
 
 <template>
-  <q-page class="flex flex-col bg-grey">
-    <section class="pt-10 px-6 font-medium text-[17px]">
-      <p>가입을 위한</p>
-      <p><span class="text-primary">약관동의</span>를 진행해 주세요.</p>
+  <q-page class="flex flex-col bg-white">
+    <section class="pt-24 px-6 font-semibold text-[24px]">
+      <p>저희 CCF를</p>
+      <p>이용하기 위한 약관이에요</p>
+      <p
+        class="text-[#767676] text-sm font-normal font-['Pretendard'] leading-tight mt-[6px]"
+      >
+        아래 약관을 자세히 확인해 주세요
+      </p>
 
       <q-list class="pt-[30px] flex flex-col">
         <q-item
-          class="border border-[#f1f1f1] min-h-[60px] p-[8px_9px_8px_6px] bg-grey-1 rounded-md"
+          class="border border-[#f8f8f8] min-h-[54px] p-[2px_9px_2px_6px] bg-[#f7f7f7] rounded-[10px] text-[16px]"
         >
           <q-item-section
-            class="p-0 text-body2 font-rokaf font-medium text-base"
+            class="p-0 text-body2 font-pretendard text-base font-semibold"
           >
             <c-checkbox v-model="isAllChecked" size="32px">
-              전체동의
+              약관 전체 동의 (선택 항목 포함)
             </c-checkbox>
           </q-item-section>
         </q-item>
-        <q-item class="border border-[#f1f1f1] p-[8px_9px_8px_6px] rounded-md">
+        <q-item class="p-[0px_9px_0px_6px] rounded-md min-h-[40px] mt-[24px]">
           <q-item-section
-            class="p-0 text-body2 font-rokaf font-medium text-base"
+            class="p-0 text-body2 font-pretendard font-normal text-[14px]"
           >
             <c-checkbox v-model="is14YearsOldChecked">
-              [필수] 만 14세 이상
+              [필수] 회원 이용약관
             </c-checkbox>
+          </q-item-section>
+          <q-item-section side>
+            <a href="#" class="text-body2 font-light underline">
+              <q-icon name="img:/icons/arrow.svg" size="20px" />
+            </a>
           </q-item-section>
         </q-item>
         <q-item
-          class="border border-[#f1f1f1] p-[8px_9px_8px_6px] rounded-md"
+          class="p-[0px_9px_0px_6px] rounded-md min-h-[40px]"
           v-for="item in termsData?.rows"
           :key="item.id"
         >
           <q-item-section
-            class="p-0 text-body2 font-rokaf font-medium text-base"
+            class="p-0 text-body2 font-pretendard font-normal text-[14px]"
           >
             <c-checkbox v-model="checkedIdList" size="32px" :val="item.id">
               {{ item.is_required ? '[필수] ' : '' }}
@@ -102,7 +111,7 @@ const openDetailDialog = async (cd: string) => {
               class="text-body2 font-light underline"
               @click.prevent="openDetailDialog(item.terms_type_cd)"
             >
-              보기
+              <q-icon name="img:/icons/arrow.svg" size="20px" />
             </a>
           </q-item-section>
         </q-item>

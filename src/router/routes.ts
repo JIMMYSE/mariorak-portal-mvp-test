@@ -407,12 +407,12 @@ const routes: RouteRecordRaw[] = [
     component: SubLayout,
     children: [
       {
-        path: 'email',
-        name: 'join-email',
+        path: 'nickname',
+        name: 'join-nickname',
         meta: {
-          title: '회원가입',
+          title: '닉네임 설정',
         },
-        component: () => import('pages/auth/JoinEmail.vue'),
+        component: () => import('src/pages/auth/JoinNickname.vue'),
       },
       {
         path: 'terms',
@@ -423,8 +423,8 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/auth/JoinTerms.vue'),
       },
       {
-        path: 'nickname',
-        name: 'join-nickname',
+        path: 'avatar',
+        name: 'join-avatar',
         meta: {
           title: '아바타 설정',
         },

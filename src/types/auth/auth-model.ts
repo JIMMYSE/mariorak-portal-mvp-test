@@ -41,6 +41,17 @@ export const NewPasswordFormSchema = object({
     .default(''),
 });
 
+// ccf 회원가입 > 닉네임
+export const NicknameSchema = object().shape({
+  nickname: string()
+    .label('닉네임')
+    .required(t('auth.nickname.required'))
+    .matches(/^[a-zA-Z0-9가-힣]*$/, t('auth.nickname.invalid'))
+    .default(''),
+});
+
+export type NicknameForm = InferType<typeof NicknameSchema>;
+
 /** 사용자 공통 항목 */
 export const AccountBase = object({
   id: number().label('유저 아이디').required(),
