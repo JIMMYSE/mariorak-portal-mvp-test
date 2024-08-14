@@ -1,7 +1,7 @@
 <!-- 회원가입 -->
 
 <script lang="ts" setup>
-import { JoinForm } from 'src/services/auth/auth-model';
+import { JoinForm } from 'src/types/auth/auth-model';
 
 const { isLoggedIn } = useUserInfo();
 watch(isLoggedIn, (b) => {

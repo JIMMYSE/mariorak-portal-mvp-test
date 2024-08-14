@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Message } from 'src/services/common/common-model';
+import { Message } from 'src/types/common/common-model';
 import { useI18n } from 'vue-i18n';
 import { CDialogProps } from './CDialog';
 

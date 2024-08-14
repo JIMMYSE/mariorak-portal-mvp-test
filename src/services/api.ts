@@ -23,7 +23,7 @@ import {
   QueryOption,
   SearchRequest,
   SearchRequestClass,
-} from 'src/services/common/api-model';
+} from 'src/types/common/api-model';
 import { MaybeRef, MaybeRefOrGetter } from 'vue';
 
 export function useSearchRequest(

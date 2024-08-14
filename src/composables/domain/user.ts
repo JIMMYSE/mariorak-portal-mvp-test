@@ -9,7 +9,7 @@ import {
   UserDetailRes,
   UserNicknameRes,
 } from 'meta-airforce-dto';
-import { Id } from 'src/services/common/api-model';
+import { Id } from 'src/types/common/api-model';
 import { t } from 'src/utils/message-util';
 import { MaybeRefOrGetter } from 'vue';
 

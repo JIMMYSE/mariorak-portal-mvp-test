@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { Id } from 'src/services/common/api-model';
+import { Id } from 'src/types/common/api-model';
 import { useRoute } from 'vue-router';
 
 const emit = defineEmits(['ok']);

@@ -1,4 +1,4 @@
-import { Message } from 'src/services/common/common-model';
+import { Message } from 'src/types/common/common-model';
 
 export interface CDialogProps {
   type?: 'alert' | 'confirm';

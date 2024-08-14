@@ -3,7 +3,7 @@ import {
   BookmarkSearchRes,
   ColorbearerSearchRes,
 } from 'meta-airforce-dto';
-import { REGEXP_TRAINEE_NAME } from 'src/services/common/common-model';
+import { REGEXP_TRAINEE_NAME } from 'src/types/common/common-model';
 import { MaybeRef } from 'vue';
 
 /**

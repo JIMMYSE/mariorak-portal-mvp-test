@@ -2,7 +2,7 @@
 import { metaverseList } from 'src/assets/data/dummyData';
 import { useMyConfirmDialog } from 'src/composables/common/dialog';
 import { useBridge } from 'src/composables/common/useBridge';
-import { Id } from 'src/services/common/api-model';
+import { Id } from 'src/types/common/api-model';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 const props = defineProps<{

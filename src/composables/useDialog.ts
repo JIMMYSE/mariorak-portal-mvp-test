@@ -5,7 +5,7 @@ import CDialogContent from 'src/components/common/dialog/CDialogContent.vue';
 import CDialogFull from 'src/components/common/dialog/CDialogFull.vue';
 import { MaybeRefOrGetter, watch } from 'vue';
 import { t } from 'src/utils/message-util';
-import { Message } from 'src/services/common/common-model';
+import { Message } from 'src/types/common/common-model';
 import { CDialogProps } from 'src/components/common/dialog/CDialog';
 import { CDialogFullProps } from 'src/components/common/dialog/CDialogFull';
 import { CDialogContentProps } from 'src/components/common/dialog/CDialogContent';
