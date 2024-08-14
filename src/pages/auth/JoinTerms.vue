@@ -73,18 +73,18 @@ const openDetailDialog = async (cd: string) => {
           <q-item-section
             class="p-0 text-body2 font-pretendard text-base font-semibold"
           >
-            <a-checkbox v-model="isAllChecked" size="32px">
+            <c-checkbox v-model="isAllChecked" size="32px">
               약관 전체 동의 (선택 항목 포함)
-            </a-checkbox>
+            </c-checkbox>
           </q-item-section>
         </q-item>
         <q-item class="p-[0px_9px_0px_6px] rounded-md min-h-[40px] mt-[24px]">
           <q-item-section
             class="p-0 text-body2 font-pretendard font-normal text-[14px]"
           >
-            <a-checkbox v-model="is14YearsOldChecked">
+            <c-checkbox v-model="is14YearsOldChecked">
               [필수] 회원 이용약관
-            </a-checkbox>
+            </c-checkbox>
           </q-item-section>
           <q-item-section side>
             <a href="#" class="text-body2 font-light underline">
