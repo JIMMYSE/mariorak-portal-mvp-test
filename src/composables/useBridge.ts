@@ -82,7 +82,13 @@ export const useBridge = () => {
 
   function onDeviceEvent(payload: string) {
     try {
-      const ev = JSON.parse(payload) as DeviceEvent;
+      //  안드로이드에서 오브젝트를 보내는 에러가 확인되어 분기처리함
+      //  [object Object]" is not valid JSON
+      const ev =
+        os.value == 'android'
+          ? (JSON.parse(JSON.stringify(payload)) as DeviceEvent)
+          : (JSON.parse(payload) as DeviceEvent);
+
       log('onDeviceEvent:: ', ev);
       if (ev.type in eventListeners) {
         eventListeners[ev.type].forEach((cb) => cb(ev));
@@ -132,10 +138,10 @@ export const useBridge = () => {
     log('refetchData');
     isBackground.value = false;
 
-    queryKeys.forEach((queryKey) => {
-      log('invalidateQueries', queryKey);
-      queryClient.invalidateQueries({ queryKey });
-    });
+    // queryKeys.forEach((queryKey) => {
+    //   log('invalidateQueries', queryKey);
+    //   queryClient.invalidateQueries({ queryKey });
+    // });
   }
 
   if (!window.refetchData) {
@@ -180,6 +186,12 @@ export const useBridge = () => {
     webBridgeReady() {
       log('webBridgeReady');
     },
+    closeAccessibilityModal() {
+      log('closeAccessibilityModal');
+    },
+    sharePhotoToInstagramStory(sharingImgUrl: string) {
+      log('sharePhotoToInstagramStory', sharingImgUrl);
+    },
     getAgentInfo() {
       log('getAgentInfo');
     },
@@ -189,13 +201,19 @@ export const useBridge = () => {
     notifyLogoutFin() {
       log('notifyLogoutFin');
     },
+    loginSocial(loginType: string) {
+      log('loginSocial', loginType);
+    },
+    disconnectSocial() {
+      log('disconnectSocial');
+    },
     makeWebToast(message: string) {
       log('makeWebToast', message);
     },
     toggleBackGestureActivation(isActivated: boolean) {
       log('toggleBackGestureActivation', isActivated);
     },
-    async enterRoom(room_id: number, spwan_id: number = 1, short_url?: string) {
+    async enterRoom(room_id: number, short_url?: string) {
       if (networkError.value) return;
 
       if (short_url) {
@@ -205,6 +223,9 @@ export const useBridge = () => {
     },
     shareURL(url: string) {
       log('shareURL', url);
+    },
+    checkNotificationSetting() {
+      log('checkNotificationSetting');
     },
     closeApp() {
       log('closeApp');
@@ -224,6 +245,28 @@ export const useBridge = () => {
 
         try {
           JSOUT.webBridgeReady();
+        } catch (e) {
+          error(e);
+        }
+      },
+      closeAccessibilityModal() {
+        log('closeAccessibilityModal');
+
+        try {
+          JSOUT.closeAccessibilityModal();
+        } catch (e) {
+          error(e);
+        }
+      },
+      /**
+       *  인스타그램 사진 공유시 사용되는 메소드
+       * @param {String} sharingImgUrl - 소셜로그인 완료 후 실행할 url
+       */
+      sharePhotoToInstagramStory(sharingImgUrl: string) {
+        log('sharePhotoToInstgramStory)shartingImgUrl : ', sharingImgUrl);
+
+        try {
+          JSOUT.sharePhotoToInstagramStory(sharingImgUrl);
         } catch (e) {
           error(e);
         }
@@ -260,6 +303,23 @@ export const useBridge = () => {
         }
       },
       /**
+       *  웹뷰에서 소셜로그인 시점에 호출하는 메소드
+       * @param  loginType - 소셜로그인 플랫폼(kakao, google, naver, apple)
+       */
+
+      loginSocial(loginType: string) {
+        log('oauthLogin with ', loginType);
+
+        try {
+          JSOUT.loginSocial(loginType);
+        } catch (e) {
+          error(e);
+        }
+      },
+      disconnectSocial() {
+        log('disconnectSocial');
+      },
+      /**
        * 웹뷰에서 토스트메시지 띄울 때 호출하는 메소드
        * @param  message - 토스트메시지에 띄울 메시지 내용
        */
@@ -284,11 +344,7 @@ export const useBridge = () => {
        * 메타버스 룸 입장할 때 호출하는 메소드
        * @param {String} room_id - 룸 입장을 위해 유니티에 전달할 박스 id
        */
-      async enterRoom(
-        room_id: number,
-        spwan_id: number = 1,
-        short_url?: string
-      ) {
+      async enterRoom(room_id: number, short_url?: string) {
         if (networkError.value) return;
         log('enterRoom', room_id);
         // if (short_url) {
@@ -303,7 +359,7 @@ export const useBridge = () => {
         }
 
         const token = getAccessToken() ?? 'guest';
-        const payload = token + '|~|' + room_id + '|~|' + spwan_id;
+        const payload = token + '|~|' + room_id;
 
         try {
           JSOUT.enterRoom(payload);
@@ -324,7 +380,18 @@ export const useBridge = () => {
           error(e);
         }
       },
+      /**
+       * 푸쉬알림 켜기 요청
+       */
+      checkNotificationSetting() {
+        log('checkNotificationSetting');
 
+        try {
+          JSOUT.checkNotificationSetting();
+        } catch (e) {
+          error(e);
+        }
+      },
       /**
        * 앱을 종료하는 함수
        */
@@ -370,6 +437,37 @@ export const useBridge = () => {
           error(e);
         }
       },
+      closeAccessibilityModal() {
+        log('closeAccessibilityModal');
+
+        const payload = {
+          action: 'closeAccessibilityModal',
+        };
+
+        try {
+          webkit.messageHandlers.iOSBridge.postMessage(payload);
+        } catch (e) {
+          error(e);
+        }
+      },
+      /**
+       *  인스타그램 사진 공유시 사용되는 메소드
+       * @param {String} sharingImgUrl - 소셜로그인 완료 후 실행할 url
+       */
+      sharePhotoToInstagramStory(sharingImgUrl) {
+        log('sharePhotoToInstgramStory)shartingImgUrl : ', sharingImgUrl);
+
+        const payload = {
+          action: 'sharePhotoToInstagramStory',
+          sharingImgUrl,
+        };
+
+        try {
+          webkit.messageHandlers.iOSBridge.postMessage(payload);
+        } catch (e) {
+          error(e);
+        }
+      },
       /**
        *  웹뷰에서 로그인 완료된 후 호출하는 메소드
        */
@@ -394,6 +492,37 @@ export const useBridge = () => {
           action: 'notifyLogoutFin',
         };
 
+        try {
+          webkit.messageHandlers.iOSBridge.postMessage(payload);
+        } catch (e) {
+          error(e);
+        }
+      },
+      /**
+       *  웹뷰에서 소셜로그인 시점에 호출하는 메소드
+       * @param {String} login_type - 소셜로그인 플랫폼(kakao, google, naver, apple)
+       */
+      loginSocial(loginType: string) {
+        log('oauthLogin with ', loginType);
+
+        const payload = {
+          action: 'loginSocial',
+          loginType,
+        };
+
+        log('loginSocial', payload);
+        try {
+          webkit.messageHandlers.iOSBridge.postMessage(payload);
+        } catch (e) {
+          error(e);
+        }
+      },
+      disconnectSocial() {
+        const payload = {
+          action: 'revokeAppleUserTokens',
+        };
+
+        log('disconnectSocial', payload);
         try {
           webkit.messageHandlers.iOSBridge.postMessage(payload);
         } catch (e) {
@@ -435,11 +564,7 @@ export const useBridge = () => {
        * 메타버스 룸 입장할 때 호출하는 메소드
        * @param {String} room_id - 룸 입장을 위해 유니티에 전달할 박스 id
        */
-      async enterRoom(
-        room_id: number,
-        spwan_id: number = 1,
-        short_url?: string
-      ) {
+      async enterRoom(room_id: number, short_url?: string) {
         if (networkError.value) return;
         // if (short_url) {
         //   window.open(short_url, 'self');
@@ -454,7 +579,7 @@ export const useBridge = () => {
         const token = getAccessToken() ?? 'guest';
         const payload = {
           action: 'enterRoom',
-          paramMsg: token + '|~|' + room_id + '|~|' + spwan_id,
+          paramMsg: token + '|~|' + room_id,
         };
         log('enterRoom', payload);
 
@@ -474,6 +599,22 @@ export const useBridge = () => {
           url,
         };
         log('shareURL', payload);
+
+        try {
+          webkit.messageHandlers.iOSBridge.postMessage(payload);
+        } catch (e) {
+          error(e);
+        }
+      },
+      /**
+       * 푸쉬알림 켜기 요청
+       */
+      checkNotificationSetting() {
+        log('checkNotificationSetting');
+
+        const payload = {
+          action: 'checkNotificationSetting',
+        };
 
         try {
           webkit.messageHandlers.iOSBridge.postMessage(payload);
