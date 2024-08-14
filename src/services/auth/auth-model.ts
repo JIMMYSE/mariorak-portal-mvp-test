@@ -85,6 +85,17 @@ export const JoinFormSchema = object().shape({
 
 export type JoinForm = InferType<typeof JoinFormSchema>;
 
+// ccf 회원가입 > 닉네임
+export const NicknameSchema = object().shape({
+  nickname: string()
+    .label('닉네임')
+    .required(t('auth.nickname.required'))
+    .matches(/^[a-zA-Z0-9가-힣]*$/, t('auth.nickname.invalid'))
+    .default(''),
+});
+
+export type NicknameForm = InferType<typeof NicknameSchema>;
+
 // 비밀번호 변경 폼 스키마
 export const NewPasswordFormSchema = object({
   new_password: PasswordSchema,

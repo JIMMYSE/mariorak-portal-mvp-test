@@ -1,7 +1,7 @@
 <!-- 회원가입 -->
 
 <script lang="ts" setup>
-import { JoinForm } from 'src/services/auth/auth-model';
+import { NicknameForm, NicknameSchema } from 'src/services/auth/auth-model';
 
 const { isLoggedIn } = useUserInfo();
 watch(isLoggedIn, (b) => {
@@ -18,54 +18,31 @@ const {
   errorBag,
   values: form,
   handleSubmit,
-} = useForm<JoinForm>({
-  validationSchema: toTypedSchema(JoinFormSchema),
+} = useForm<NicknameForm>({
+  validationSchema: toTypedSchema(NicknameSchema),
 });
 
 const onSubmit = handleSubmit(async () => {
-  joinStore.$init();
-  if (!joinData.value) return;
-  joinData.value.email = form.email;
-  joinData.value.password = encodeByAES256(form.passwordInput);
+  // joinStore.$init();
+  // if (!joinData.value) return;
   goToName('join-terms');
 });
 </script>
 
 <template>
   <q-page class="px-6 bg-white">
-    <div class="pt-10 text-h2 font-bold text-[24px]">
+    <div class="pt-10 text-h2 font-semibold text-[24px]">
       <p>사용하실</p>
       <p>닉네임을 알려주세요</p>
     </div>
 
     <form>
-      <a-field label="아이디 (이메일)" class="mt-8">
+      <a-field label="닉네임" class="mt-8">
         <a-input
-          name="email"
-          placeholder="이메일 주소 입력"
-          :done="!errorBag.email && !!form.email!.length"
-          :maxlength="320"
+          name="nickname"
+          placeholder="닉네임을 입력해 주세요"
+          :maxlength="10"
           autofocus
-        />
-      </a-field>
-      <a-field label="비밀번호">
-        <a-input
-          type="password"
-          name="passwordInput"
-          :maxlength="16"
-          :placeholder="$t('auth.password.placeholder')"
-          :done="!errorBag.passwordInput && form.passwordInput!.length >= 10"
-          :clearable="false"
-        />
-      </a-field>
-      <a-field label="비밀번호 확인">
-        <a-input
-          type="password"
-          name="passwordConfirmInput"
-          :maxlength="16"
-          placeholder="비밀번호 확인"
-          :done="!errorBag.passwordConfirmInput && form.passwordConfirmInput!.length >= 10"
-          :clearable="false"
         />
       </a-field>
     </form>
