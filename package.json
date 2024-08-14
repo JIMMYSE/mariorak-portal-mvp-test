@@ -6,7 +6,7 @@
   "author": "COARSOFT",
   "private": true,
   "scripts": {
-    "dev": "cross-env ENV=localhost quasar dev",
+    "dev": "cross-env ENV=localhost quasar dev --host",
     "dev2": "yarn dto && cross-env ENV=development quasar dev",
     "build:dev": "ENV=development npx quasar build",
     "build:stg": "ENV=staging npx quasar build",

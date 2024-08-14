@@ -5,6 +5,7 @@ import { wait } from 'src/utils/promise-util';
 import { MaybeRefOrGetter } from 'vue';
 import RequiredNoticeDialog from 'src/pages/auth/RequiredNoticeDialog.vue';
 import { LoginReqType } from 'src/types/auth/auth-model';
+import { SocialType } from 'src/types/util/code';
 
 const ACCESS_TOKEN_KEY = process.env.ACCESS_TOKEN_KEY as string;
 const TOKEN_EXPIRE_DAYS = Number(process.env.TOKEN_EXPIRE_DAYS as string);
@@ -36,46 +37,51 @@ export const useUserInfo = () => {
  */
 export const useLogin = () => {
   const { getAgentInfo, agentInfo } = useBridge();
-
-  async function login(email: string, password: string) {
+  async function socialLogin(accessToken: string, provider: SocialType) {
     getAgentInfo();
     await wait(300);
 
-    const agent: LoginReqType['agent'] = agentInfo.value ?? dummyAgentInfo;
+    const k = provider.toUpperCase() as keyof typeof REG_TYPE;
+    const reg_type_cd: string = REG_TYPE[k];
 
-    const { encodeByAES256 } = cryptoJS();
+    // const { data, isFinished, error } = await useAxiosPost<
+    //   InferType<typeof PortalLoginResponse>
+    // >({
+    //   url: SOCIAL_LOGIN_URL,
+    //   data: { reg_type_cd, social_token: accessToken, agent },
+    // });
 
-    const { data } = await useAxiosPost<PortalLoginResponseType>({
-      url: LOGIN_URL,
-      data: {
-        email,
-        password: encodeByAES256(password),
-        agent,
-      },
-    });
+    // const isSuccess = computed<boolean>(() => {
+    //   return !!(
+    //     isFinished.value &&
+    //     // 0000: 로그인 성공
+    //     data.value?.code === '0000' &&
+    //     data.value?.data.token?.length
+    //   );
+    // });
 
-    const isSuccess = computed<boolean>(() => {
-      return !!(
-        data.value?.code === '0000' &&
-        data.value?.data?.token?.length &&
-        data.value?.data?.user
-      );
-    });
+    // const loginData = ref<
+    //   InferType<typeof PortalLoginResponse>['data'] | undefined
+    // >();
 
-    const { data: result } = data.value!;
-    const loginData = ref<PortalLoginResponseType['data'] | undefined>();
-    if (result && isSuccess.value) {
-      loginData.value = data.value!.data;
-      await saveLoginUser(data.value!.data);
-    }
+    // if (!error.value) {
+    //   const { data: result } = data.value ?? {};
+
+    //   if (result && isSuccess.value) {
+    //     loginData.value = result;
+    //     await saveLoginUser(result);
+    //   }
+    // }
 
     return {
-      data: loginData,
-      isSuccess,
+      // data: loginData,
+      // isSuccess,
+      // passwordNeedToBeChanged: false,
+      // error,
     };
   }
 
-  return { login, saveLoginUser, useRequiredNoticeDialog };
+  return { saveLoginUser, useRequiredNoticeDialog, socialLogin };
 };
 
 /**
@@ -322,10 +328,10 @@ export const registerUser = async (data: EmailRegistration) => {
     responseData.value?.code === '0000' &&
     responseData.value?.data?.token?.length
   ) {
-    await saveLoginUser({
-      token: responseData.value.data.token,
-      user: responseData.value.data.user,
-    });
+    // await saveLoginUser({
+    //   token: responseData.value.data.token,
+    //   user: responseData.value.data.user,
+    // });
   }
 };
 
