@@ -134,7 +134,7 @@ const inputDoneIcon = computed(() => {
           >
         </template>
         <template #append>
-          <a-btn-icon :icon="inputDoneIcon" size="35px" />
+          <c-btn-icon :icon="inputDoneIcon" size="35px" />
         </template>
       </q-input>
     </section>

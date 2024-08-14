@@ -37,7 +37,7 @@ const privacyTermsId = computed(() => {
       :to="{ name: 'setting-account' }"
       class="w-full h-[67px] pl-6 pr-3 flex justify-between items-center"
     >
-      <a-subtitle>계정 설정</a-subtitle>
+      <c-subtitle>계정 설정</c-subtitle>
       <q-icon name="img:/icons/icon_arrow_set.svg" size="30px" />
     </router-link>
 

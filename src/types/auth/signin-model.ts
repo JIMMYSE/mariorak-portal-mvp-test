@@ -1,53 +1,10 @@
-export const DeviceAgent = object({
-  fcm_token: string().nullable(),
-  platform: object({
-    os: string(),
-    device_id: string(),
-    app_version: string(),
-    device_model: string(),
-  }),
-  os: string(),
-  sdk_version: string(),
-});
+import { t } from 'src/utils/message-util';
+import { ref } from 'yup';
 
-export type LoginReqType = {
-  email: string;
-  password: string;
-  agent: InferType<typeof DeviceAgent>;
-};
-
-/** 등록유형코드 */
-export const REG_TYPE = {
-  /** 로컬 */
-  LOCAL: 'L',
-  /** 카카오 */
-  KAKAO: 'K',
-  /** 네이버 */
-  NAVER: 'N',
-  /** 구글 */
-  GOOGLE: 'G',
-  /** 애플 */
-  APPLE: 'A',
-};
-
-/** 사용자 공통 항목 */
-export const AccountBase = object({
-  id: number().label('유저 아이디').required(),
-  mbl_telno: string().label('모바일전화번호').max(11).required(),
-  reg_type_cd: string().label('계정 등록유형코드').max(1).required(),
-  eml_addr: string().label('이메일').max(320).required(),
-  mobile_verified_token: string()
-    .label('비밀번호 재설정 인증 토큰')
-    .default(null)
-    .required()
-    .nullable(),
-});
-
-export const Nickname = string().max(8).label('닉네임').required();
-
+//schema
 export const RegistrationBase = object({
   mbl_telno: string().label('모바일전화번호').max(11).required(),
-  nckn_nm: Nickname,
+  nckn_nm: string().max(8).label('닉네임').required(),
   reg_type_cd: string()
     .label('가입유형')
     .oneOf(Object.values(REG_TYPE))
@@ -75,4 +32,31 @@ export const SocialRegistrationReq = RegistrationBase.shape({
     .oneOf([REG_TYPE.APPLE, REG_TYPE.KAKAO, REG_TYPE.GOOGLE, REG_TYPE.NAVER])
     .required(),
   social_token: string().label('소셜 액세스 토큰').required(),
+});
+
+let tempJoinFormSchemaEmail = '';
+export const JoinFormSchema = object().shape({
+  email: string()
+    .label('아이디(이메일)')
+    .max(320)
+    .matches(REGEX_EMAIL, t('auth.email.invalid'))
+    .test(
+      'existing-email',
+      t('auth.email.alreadyInUse'),
+      async function (email: string, context) {
+        if (tempJoinFormSchemaEmail === email) return true;
+        else tempJoinFormSchemaEmail = email;
+        if (!email) return true;
+        if (!REGEX_EMAIL.test(email)) return false;
+        return await checkEmailUnique(email);
+      }
+    )
+    .default('')
+    .required(),
+  passwordInput: PasswordSchema.label('비밀번호'),
+  passwordConfirmInput: string()
+    .label('비밀번호 확인')
+    .required(t('auth.passwordConfirm.required'))
+    .oneOf([ref('passwordInput')], t('auth.passwordConfirm.invalid'))
+    .default(''),
 });

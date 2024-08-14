@@ -29,7 +29,7 @@
       </p>
     </q-card>
     <div class="w-screen -ml-6 p-4 fixed bottom-0 bg-white">
-      <a-btn
+      <c-btn
         type="submit"
         class="w-full h-[55px]"
         label="메인화면 바로가기"

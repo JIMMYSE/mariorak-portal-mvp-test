@@ -1,6 +1,6 @@
-import { Message } from 'src/services/common/common-model';
+import { Message } from 'src/types/common/common-model';
 
-export interface ADialogProps {
+export interface CDialogProps {
   type?: 'alert' | 'confirm';
   dialogTitle?: Message;
   title?: Message;

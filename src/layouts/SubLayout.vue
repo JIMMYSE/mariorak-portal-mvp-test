@@ -19,7 +19,7 @@ router.afterEach((to) => {
       :class="`bg-${bgColor}`"
     >
       <q-toolbar class="flex justify-between items-center h-[var(--header-h)]">
-        <a-btn-icon
+        <c-btn-icon
           @click="goBack()"
           icon="img:/icons/icon_back.svg"
           size="30px"

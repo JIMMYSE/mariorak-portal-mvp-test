@@ -100,10 +100,10 @@ const openDetailDialog = async (cd: string) => {
           <q-item-section
             class="p-0 text-body2 font-pretendard font-normal text-[14px]"
           >
-            <a-checkbox v-model="checkedIdList" size="32px" :val="item.id">
+            <c-checkbox v-model="checkedIdList" size="32px" :val="item.id">
               {{ item.is_required ? '[필수] ' : '' }}
               {{ item.title }}
-            </a-checkbox>
+            </c-checkbox>
           </q-item-section>
           <q-item-section side>
             <a
@@ -135,7 +135,7 @@ const openDetailDialog = async (cd: string) => {
     </section>
 
     <!-- 팝업 -->
-    <a-dialog-content
+    <c-dialog-content
       v-model="detailEnabled"
       :title="detail?.title"
       :text="detail?.contents"

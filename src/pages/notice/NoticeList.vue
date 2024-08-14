@@ -66,7 +66,7 @@ setLastCheckDate(new Date());
       </q-item>
     </q-list>
 
-    <a-pagination
+    <c-pagination
       class="absolute bottom-0"
       :total-rows="listData?.total"
       :from="request.from"

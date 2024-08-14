@@ -68,7 +68,7 @@ function handleLoginResult({
       <!-- EMAIL LOGIN -->
       <q-card-section>
         <q-form @submit.prevent="onSubmit">
-          <a-input
+          <c-input
             ref="loginIdInput"
             type="text"
             input-class="text-primary font-light"
@@ -78,7 +78,7 @@ function handleLoginResult({
             :clearable="false"
             autofocus
           />
-          <a-input
+          <c-input
             ref="passwordInput"
             type="password"
             class="mt-[15px]"
@@ -89,12 +89,12 @@ function handleLoginResult({
             :clearable="false"
             autocomplete
           />
-          <a-checkbox
+          <c-checkbox
             :label="$t('label.autoLogin')"
             class="text-caption"
             v-model="isAutoLogin"
           />
-          <a-btn
+          <c-btn
             type="submit"
             class="full-width mt-[25px] text-[18px] font-medium"
             style="min-height: 50px"
@@ -104,7 +104,7 @@ function handleLoginResult({
           <!-- :disable="!email || !password" -->
         </q-form>
         <div class="w-full flex justify-center items-center mt-3">
-          <a-btn
+          <c-btn
             class="text-grey-5 text-caption q-pa-sm font-light"
             flat
             :label="$t('label.join')"

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { Id } from 'src/services/common/api-model';
+import { Id } from 'src/types/common/api-model';
 import { useRoute } from 'vue-router';
 
 const emit = defineEmits(['ok']);
@@ -49,7 +49,7 @@ const confirmNotice = async (id?: Id) => {
       <div class="text-caption text-center mt-4">
         {{ currentNotice?.description }}
       </div>
-      <a-btn
+      <c-btn
         class="full-width mt-12 mb-12"
         color="primary"
         :label="isLastNotice ? '확인' : '다음'"

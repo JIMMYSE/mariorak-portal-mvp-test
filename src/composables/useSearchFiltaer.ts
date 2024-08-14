@@ -2,8 +2,8 @@
  * 공통 > 목록 조회
  */
 
-import { SearchRequest } from 'src/services/common/api-model';
-import { useSearchRequest } from './api';
+import { SearchRequest } from 'src/types/common/api-model';
+import { useSearchRequest } from '../services/api';
 
 /**
  * 목록 검색 필터

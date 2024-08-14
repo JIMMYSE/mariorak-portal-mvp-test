@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { Message } from 'src/services/common/common-model';
+import { Message } from 'src/types/common/common-model';
 import { useI18n } from 'vue-i18n';
-import { ADialogFullProps } from './ADialogFull';
+import { CDialogFullProps } from './CDialogFull';
 
-const props = withDefaults(defineProps<ADialogFullProps>(), {
+const props = withDefaults(defineProps<CDialogFullProps>(), {
   type: 'alert',
   dialogTitle: '',
   title: '',
@@ -96,7 +96,7 @@ function getMessage(message: Message) {
         v-if="!props.hideButtons"
         class="fixed inset-x-0 bottom-0 p-4 flex gap-[10.5px] items-stretch z-10 bg-white"
       >
-        <a-btn
+        <c-btn
           v-for="(b, i) in buttonsComputed"
           :key="i"
           :label="$filterHtml(getMessage(b.label))"

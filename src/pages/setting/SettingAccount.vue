@@ -31,7 +31,7 @@ async function doLogout() {
         </div>
       </q-card-section>
       <q-card-section class="flex flex-col items-center gap-4 pt-20">
-        <a-btn
+        <c-btn
           class="text-base"
           :label="$t('label.changePassword')"
           style="width: 165px; height: 50px"

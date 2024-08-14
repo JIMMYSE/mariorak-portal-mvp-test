@@ -21,14 +21,14 @@ const checked = ref(false);
         신고 잔여 횟수 ({{ reportedCount }}/{{ maxCount }})
       </div>
       <div class="text-left mt-2 text-caption text-grey-4">
-        <a-checkbox
+        <c-checkbox
           v-model="checked"
           label="내용을 확인하였으며, 주의하도록 하겠습니다."
         />
       </div>
     </section>
     <div class="absolute bottom-0 right-0 p-1 text-end">
-      <a-btn label="확인" :disable="!checked" v-close-popup flat />
+      <c-btn label="확인" :disable="!checked" v-close-popup flat />
     </div>
   </div>
 </template>

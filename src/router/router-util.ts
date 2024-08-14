@@ -2,11 +2,6 @@ import { josa } from 'josa';
 import { t } from 'src/utils/message-util';
 import { LocationQueryRaw, RouteLocationRaw, Router } from 'vue-router';
 
-export function useSystemCheck() {
-  const isSystemCheck = ref(false);
-  return { isSystemCheck };
-}
-
 /**
  * 앱 Router 유틸. Singleton.
  */

@@ -52,7 +52,7 @@ const { data } = useNoticeDetail(props.id);
     </q-card>
     <div class="flex-1"></div>
     <div class="flex justify-center mt-10 mb-20">
-      <a-btn
+      <c-btn
         class="w-[165px] h-[50px] text-[15px]"
         :label="$t('label.toList')"
         color="primary"

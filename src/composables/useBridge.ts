@@ -1,9 +1,9 @@
 import { useQuasar } from 'quasar';
 import { ComputedRef, computed, ref } from 'vue';
-import { networkError } from 'src/services/common/api-service';
-import { getAccessToken } from 'src/composables/auth/auth';
+import { networkError } from 'src/services/error-handler';
+import { getAccessToken } from 'src/composables/domain/auth';
 import { useQueryClient } from '@tanstack/vue-query';
-import { LoginReqType } from 'src/services/auth/model';
+import { LoginReqType } from 'src/types/auth/auth-model';
 
 declare const window: {
   refetchData: () => void;
