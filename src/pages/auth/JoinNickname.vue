@@ -2,15 +2,16 @@
 
 <script lang="ts" setup>
 import { NicknameForm, NicknameSchema } from 'src/services/auth/auth-model';
+import { goTo } from 'src/composables/common/app';
 
 const { isLoggedIn } = useUserInfo();
 watch(isLoggedIn, (b) => {
   if (b) goToName('main');
 });
 
-const joinStore = useJoinStore();
-const { joinData } = storeToRefs(joinStore);
-const { encodeByAES256 } = useCryptoJS();
+// const joinStore = useJoinStore();
+// const { joinData } = storeToRefs(joinStore);
+// const { encodeByAES256 } = useCryptoJS();
 
 const {
   meta,
@@ -22,10 +23,10 @@ const {
   validationSchema: toTypedSchema(NicknameSchema),
 });
 
-const onSubmit = handleSubmit(async () => {
+const onSubmit = handleSubmit(() => {
   // joinStore.$init();
   // if (!joinData.value) return;
-  goToName('join-terms');
+  goToName('join-avatar');
 });
 </script>
 
