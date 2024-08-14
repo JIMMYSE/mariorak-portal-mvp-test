@@ -1,6 +1,8 @@
 <!-- 로그인 화면 -->
 
 <script setup lang="ts">
+import { SocialType } from 'src/types/util/code';
+
 function handleLoginResult({
   isWithdrawing,
   isSuccess,
@@ -17,31 +19,107 @@ function handleLoginResult({
   }
 }
 
-// }
+const { loginSocial, addEventListener } = useBridge();
+
+const handleSocialLogin = (socialType: SocialType) => {
+  console.log('socialLogin', socialType);
+  // 1. Call Bridge API first
+  loginSocial(socialType);
+  // 2. On succeed, call API Server from the event listener
+};
+
+// add event listener for login_social event
+const removeEventListener = addEventListener('login_social', (data) => {
+  const { access_token, provider } = data.detail ?? {};
+  console.log(
+    '**login_social result**\n',
+    '- access_token',
+    access_token,
+    '- provider:',
+    provider
+  );
+
+  if (access_token) {
+    console.log('* succeed to loginSocial with BridgeAPI', {
+      access_token,
+      provider,
+    });
+
+    let type = 'login';
+    if (type === 'login') {
+      console.log('** succeed to login with API', access_token, provider);
+      // socialLogin(access_token, provider)
+      //   .then((data) => {
+      //     console.log('** succeed to login with API');
+      //     emit('login', data);
+      //   })
+      //   .catch((err) => {
+      //     console.log('** failed to socialLogin with API', err);
+      //     emit('error', err);
+      //   });
+    } else if (type === 'join') {
+      // emit('join', { accessToken: access_token, provider });
+    }
+  } else {
+    console.log('* failed to loginSocial with BridgeAPI');
+  }
+});
+// remove event listener when component is unmounted
+onBeforeUnmount(() => removeEventListener());
 </script>
 
 <template>
-  <q-page class="column justify-top items-center px-2 py-40 bg-grey-1">
-    <q-img src="/images/main-logo-blue.png" width="173px" height="45" />
+  <q-page class="column justify-top items-center px-2 py-40 bg-grey-3">
+    <q-img src="/images/.png" width="173px" height="45" />
     <q-card class="w-full mt-12 bg-transparent" :flat="true">
       <!-- EMAIL LOGIN -->
       <q-card-section class="title-section">
-        <div class="text-white text-[32px]">
+        <div class="text-white text-[32px] font-semibold">
           혁신적인<br />인디게임 플랫폼 CCF
         </div>
-        <div class="text-[#b4b4b4] mt-2 font-light">
+        <div class="text-[#b4b4b4] mt-1 font-light">
           인디게임, CCF와 함께 즐겨보세요
         </div>
       </q-card-section>
-      <q-card-section>
+      <q-card-section class="q-gutter-md">
         <q-card
-          class="w-[312px] h-[50px] pl-6 pr-[107px] pt-3.5 pb-[15px] bg-white rounded-[30px] border border-[#dbdbdb] justify-start items-end gap-[66px] inline-flex"
+          class="rounded-full flex py-4 px-5 items-center"
+          flat
+          @click="handleSocialLogin('google')"
         >
-          <div class="w-[17px] h-[17px] relative"></div>
-          <div
-            class="text-center text-[#191919] text-sm font-medium font-['Pretendard'] leading-[21px]"
-          >
+          <q-icon :name="`img:icons/icon_google.svg`" size="16px" />
+          <div class="text-center flex-1 text-sm font-medium">
             구글로 로그인하기
+          </div>
+        </q-card>
+        <q-card
+          class="rounded-full flex py-4 px-5 items-center bg-[#03c75a]"
+          flat
+          @click="handleSocialLogin('naver')"
+        >
+          <q-icon :name="`img:icons/icon_naver.svg`" size="16px" />
+          <div class="text-center flex-1 text-sm font-medium text-white">
+            네이버로 로그인하기
+          </div>
+        </q-card>
+        <q-card
+          class="rounded-full flex py-4 px-5 items-center bg-[#fae300]"
+          flat
+          @click="handleSocialLogin('kakao')"
+        >
+          <q-icon :name="`img:icons/icon_kakao.svg`" size="16px" />
+          <div class="text-center flex-1 text-sm font-medium text-[#3c1e1e]">
+            카카오로 로그인하기
+          </div>
+        </q-card>
+        <q-card
+          class="rounded-full flex py-4 px-5 items-center bg-grey-5"
+          flat
+          @click="handleSocialLogin('apple')"
+        >
+          <q-icon :name="`img:icons/icon_apple.svg`" size="16px" />
+          <div class="text-center flex-1 text-sm font-medium text-white">
+            Apple로 로그인하기
           </div>
         </q-card>
       </q-card-section>
