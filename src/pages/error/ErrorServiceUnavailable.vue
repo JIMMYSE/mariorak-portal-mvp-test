@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useBridge } from 'src/composables/common/useBridge';
+import { useBridge } from 'src/composables/useBridge';
 import { ref } from 'vue';
 
 // TODO : Get data from API
