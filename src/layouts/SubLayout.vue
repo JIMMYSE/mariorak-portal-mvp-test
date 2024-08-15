@@ -24,10 +24,6 @@ router.afterEach((to) => {
           icon="img:/icons/icon_back.svg"
           size="30px"
         />
-        <span
-          class="text-[17px] font-medium absolute-center w-[70%] text-center"
-          >{{ title }}</span
-        >
       </q-toolbar>
     </q-header>
 
