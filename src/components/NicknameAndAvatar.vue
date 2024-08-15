@@ -5,6 +5,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import type { Swiper as SwiperClass } from 'swiper/types/index.d.ts';
 import { Swiper, SwiperSlide } from 'swiper/vue';
+import { goToName } from 'src/router/router-util';
 
 type Props = {
   initialNickname: string;
@@ -29,10 +30,10 @@ const {
   resetForm,
 } = useForm({
   validationSchema: toTypedSchema(NicknameAndAvatarFormSchema),
-  initialValues: {
-    nickname: props.initialNickname,
-    avatarId: props.initialAvatarId,
-  },
+  // initialValues: {
+  //   nickname: props.initialNickname,
+  //   avatarId: props.initialAvatarId,
+  // },
 });
 
 const {
@@ -41,16 +42,18 @@ const {
   errorMessage: nicknameErrorMessage,
 } = useField<string>('nickname');
 
-const save = handleSubmit(async () => {
-  emit('onSubmit', { nickname: form.nickname, avatarId: form.avatarId }, () => {
-    resetForm({
-      values: {
-        nickname: form.nickname,
-        avatarId: form.avatarId,
-      },
-    });
-  });
-});
+const save = () => {
+  // emit('onSubmit', { nickname: form.nickname, avatarId: form.avatarId }, () => {
+  //   resetForm({
+  //     values: {
+  //       nickname: form.nickname,
+  //       avatarId: form.avatarId,
+  //     },
+  //   });
+  // });
+
+  goToName('join-completed');
+};
 
 // ================================
 // swiper
@@ -111,38 +114,19 @@ const inputDoneIcon = computed(() => {
 
 <template>
   <div class="flex flex-col size-full bg-white" style="min-height: inherit">
-    <section class="flex-none w-full px-8 pt-2">
-      <q-input
-        class="nickname-input"
-        input-class="font-medium"
-        name="nickname"
-        v-model="nickname"
-        rounded
-        outlined
-        bottom-slots
-        no-error-icon
-        color="primary"
-        maxlength="10"
-        input-style="font-size: 16px"
-        :error="!!nicknameErrorMessage"
-        :error-message="nicknameErrorMessage"
-      >
-        <!-- NICHNAME FIELD -->
-        <template #before>
-          <span class="py-3 font-pretendard text-body2 text-black">
-            🐸 나의 이름은</span
-          >
-        </template>
-        <template #append>
-          <c-btn-icon :icon="inputDoneIcon" size="35px" />
-        </template>
-      </q-input>
+    <section class="flex-none w-full px-8 mt-[46px]">
+      <p class="font-pretendard font-semibold text-2xl text-black">
+        멋진 닉네임이에요
+      </p>
+      <p class="font-pretendard font-semibold text-2xl text-black">
+        아바타를 선택해 주세요!
+      </p>
     </section>
 
     <!-- AVATAR SWIPER -->
     <section
       v-if="myAvatarIndex != null"
-      class="flex-none w-full mt-[18px] px-6"
+      class="flex-none w-full mt-[52px] px-6"
     >
       <swiper
         :initial-slide="myAvatarIndex"
@@ -194,11 +178,6 @@ const inputDoneIcon = computed(() => {
             height="90px"
           />
         </div>
-        <span
-          class="font-pretendard text-body2"
-          :class="form.avatarId === avatar.id ? 'text-black' : 'text-grey-3'"
-          >{{ avatar.name }}</span
-        >
       </div>
     </section>
 
@@ -206,11 +185,10 @@ const inputDoneIcon = computed(() => {
       <q-btn
         class="w-full h-16 text-subtitle1"
         color="primary"
-        :disable="!meta.valid || !meta.dirty"
         square
         unelevated
         @click="save"
-        >완료하기</q-btn
+        >가입 완료하기</q-btn
       >
     </section>
   </div>

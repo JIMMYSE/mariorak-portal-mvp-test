@@ -11,21 +11,35 @@ const avatarSrc = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-col justify-center items-center h-screen pb-48 bg-grey">
+  <div
+    class="flex flex-col justify-center items-center h-screen pb-48 bg-white"
+  >
     <div>
-      <section class="pt-10 px-6 font-pretendard text-[22px]">
-        <p class="text-center leading-relaxed">
-          <span class="text-primary">{{ user?.nickname }}</span> 님 <br />
-          가입을 축하드려요!
-        </p>
+      <section class="flex justify-center items-center flex-col">
+        <q-img src="/images/join_completed.svg" width="120px" height="120px" />
+        <q-img
+          src="/images/icon_shadow.svg"
+          width="110px"
+          height="25px"
+          class="mt-[5px]"
+        />
       </section>
-      <section class="mt-[18px] px-6">
-        <section class="h-full relative pb-2 flex justify-center">
-          <div class="absolute bottom-0 flex justify-center w-full">
-            <img src="/images/shadow.svg" alt="shadow" />
-          </div>
-          <q-img :src="avatarSrc" height="359px" fit="contain" />
-        </section>
+      <section class="mt-[34px]">
+        <p
+          class="px-6 font-pretendard text-[28px] font-semibold text-center leading-[1.325]"
+        >
+          {유저닉네임} 님,
+        </p>
+        <p
+          class="px-6 font-pretendard text-[28px] font-semibold text-center leading-relaxed"
+        >
+          가입이 완료되었어요!
+        </p>
+        <p
+          class="mt-2 text-center text-[#767676] text-base font-normal font-['Pretendard'] leading-snug"
+        >
+          항상 최선의 서비스로 보답할게요
+        </p>
       </section>
     </div>
 

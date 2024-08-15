@@ -50,6 +50,8 @@ export const NicknameSchema = object().shape({
     .default(''),
 });
 
+//
+
 export type NicknameForm = InferType<typeof NicknameSchema>;
 
 /** 사용자 공통 항목 */

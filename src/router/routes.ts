@@ -435,8 +435,8 @@ const routes: RouteRecordRaw[] = [
         name: 'join-completed',
         meta: {
           title: '회원가입 완료',
-          requiresNonAuth: false,
-          requiresAuth: true,
+          // requiresNonAuth: false,
+          // requiresAuth: true,
         },
         component: () => import('pages/auth/JoinCompleted.vue'),
       },
