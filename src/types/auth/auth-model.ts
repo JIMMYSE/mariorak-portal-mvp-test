@@ -50,6 +50,8 @@ export const NicknameSchema = object().shape({
     .default(''),
 });
 
+//
+
 export type NicknameForm = InferType<typeof NicknameSchema>;
 
 /** 사용자 공통 항목 */
@@ -63,4 +65,22 @@ export const AccountBase = object({
     .default(null)
     .required()
     .nullable(),
+});
+
+// 소셜 로그인 요청 스키마
+export type OauthReqType = InferType<typeof oauthReqSchema>;
+export const OauthReqSchema = object({
+  access_token: string().required(),
+  social_type: string().required(),
+  agent: object({
+    fcm_token: string().required(),
+    platform: object({
+      os: string().oneOf(['A', 'O']).required(),
+      device_id: string().required(),
+      app_version: string().required(),
+      device_model: string().required(),
+    }).required(),
+    os: string().oneOf(['A', 'O']).required(),
+    sdk_version: string().required(),
+  }).required(),
 });

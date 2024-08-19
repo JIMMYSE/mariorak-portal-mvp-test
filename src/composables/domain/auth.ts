@@ -6,11 +6,12 @@ import { MaybeRefOrGetter } from 'vue';
 import RequiredNoticeDialog from 'src/pages/auth/RequiredNoticeDialog.vue';
 import { LoginReqType } from 'src/types/auth/auth-model';
 import { SocialType } from 'src/types/util/code';
+import LoginFailedDialog from 'src/components/auth/LoginFailedDialog.vue';
 
 const ACCESS_TOKEN_KEY = process.env.ACCESS_TOKEN_KEY as string;
 const TOKEN_EXPIRE_DAYS = Number(process.env.TOKEN_EXPIRE_DAYS as string);
 
-const AUTH_API_URL = '/auth';
+const AUTH_API_URL = '/v1/auth';
 const LOGIN_URL = '/auth/login';
 const LOGOUT_URL = '/auth/logout';
 
@@ -22,8 +23,6 @@ type PortalLoginResponseType = InferType<typeof PortalLoginResponse>;
 /**
  * 사용자 정보
  */
-const isLocalDev = process.env.IS_LOCAL;
-
 export const useUserInfo = () => {
   const { user } = storeToRefs(useAuthStore());
   const isLoggedIn = computed(() => {
@@ -44,12 +43,10 @@ export const useLogin = () => {
     const k = provider.toUpperCase() as keyof typeof REG_TYPE;
     const reg_type_cd: string = REG_TYPE[k];
 
-    // const { data, isFinished, error } = await useAxiosPost<
-    //   InferType<typeof PortalLoginResponse>
-    // >({
-    //   url: SOCIAL_LOGIN_URL,
-    //   data: { reg_type_cd, social_token: accessToken, agent },
+    // const { data, suspense: suspenseLogin } = useQueryFetchItem({
+    //   url: 'oauth',
     // });
+    await suspenseLogin();
 
     // const isSuccess = computed<boolean>(() => {
     //   return !!(
@@ -341,5 +338,21 @@ export const registerUser = async (data: EmailRegistration) => {
 export const useAuthRestrictUserInfo = (userId: any) => {
   return useAxiosGet<InferType<typeof PortalRestrictUserRes>>({
     url: AUTH_API_URL + '/restrict-user/' + userId?.value,
+  });
+};
+
+/**
+ * dummy) 로그인 실패 다이얼로그
+ */
+
+export const useLoginFailedDialog = () => {
+  return useAlertFullDialog({
+    contentComponent: LoginFailedDialog,
+    buttons: [
+      {
+        label: '메인화면 바로가기',
+        value: 'main',
+      },
+    ],
   });
 };

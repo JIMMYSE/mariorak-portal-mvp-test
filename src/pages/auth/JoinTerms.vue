@@ -73,7 +73,11 @@ const openDetailDialog = async (cd: string) => {
           <q-item-section
             class="p-0 text-body2 font-pretendard text-base font-semibold"
           >
-            <c-checkbox v-model="isAllChecked" size="32px">
+            <c-checkbox
+              v-model="isAllChecked"
+              size="32px"
+              :class="{ 'text-[#056bf1]': isAllChecked }"
+            >
               약관 전체 동의 (선택 항목 포함)
             </c-checkbox>
           </q-item-section>
