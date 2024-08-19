@@ -2,6 +2,7 @@
 
 <script setup lang="ts">
 import { SocialType } from 'src/types/util/code';
+import { GoogleLogin } from 'vue3-google-login';
 
 function handleLoginResult({
   isWithdrawing,
@@ -66,11 +67,16 @@ const removeEventListener = addEventListener('login_social', (data) => {
 });
 // remove event listener when component is unmounted
 onBeforeUnmount(() => removeEventListener());
+
+//임시 웹용 구글 로그인
+const googleCallback = (response: any) => {
+  console.log('googleCallback', response);
+};
 </script>
 
 <template>
   <q-page class="column justify-top items-center px-2 py-40 bg-grey-3">
-    <q-img src="/images/.png" width="173px" height="45" />
+    <!-- <q-img src="/images/.png" width="173px" height="45" /> -->
     <q-card class="w-full mt-12 bg-transparent" :flat="true">
       <!-- EMAIL LOGIN -->
       <q-card-section class="title-section">
@@ -82,6 +88,7 @@ onBeforeUnmount(() => removeEventListener());
         </div>
       </q-card-section>
       <q-card-section class="q-gutter-md">
+        <GoogleLogin :callback="googleCallback" />
         <q-card
           class="rounded-full flex py-4 px-5 items-center"
           flat
