@@ -1,7 +1,7 @@
 import { useQuasar } from 'quasar';
 import { ComputedRef, computed, ref } from 'vue';
 import { networkError } from 'src/services/error-handler';
-import { getAccessToken } from 'src/composables/domain/auth';
+import { getAccessToken } from 'src/domain/auth';
 import { useQueryClient } from '@tanstack/vue-query';
 import { LoginReqType } from 'src/types/auth/auth-model';
 

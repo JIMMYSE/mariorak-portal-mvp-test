@@ -2,7 +2,7 @@
 
 <script setup lang="ts">
 import moment from 'moment-timezone';
-import { MyBookmarkCreateType } from 'src/composables/domain/bookmark';
+import { MyBookmarkCreateType } from 'src/domain/bookmark';
 
 type Props = {
   id: number;

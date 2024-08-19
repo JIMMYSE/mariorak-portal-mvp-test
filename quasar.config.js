@@ -173,6 +173,7 @@ module.exports = configure(function (ctx) {
             dirs: [
               'src/components/**',
               'src/composables/**',
+              'src/domain/**',
               'src/layouts/**',
               'src/pages/**',
               'src/services/**',
