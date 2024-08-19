@@ -45,9 +45,10 @@ export function handleAxiosError(error: any, router: Router): void {
       // const errorMessage = error.response.data.message ?? t('error.occured');
       // router.push({ name: 'error', query: { error: errorMessage } });
     } else if (status === HttpStatusCode.Unauthorized) {
-      // 401 TODO 로그인완료 이후 원복필요
-      // useUnauthorizedLogout();
+      return; // TODO  API 안정화 이후 삭제
+      useUnauthorizedLogout();
     } else if (status === HttpStatusCode.NotFound) {
+      return; // TODO API 안정화 이후 삭제
       // console.log(error.response.data);
       // 모바일 인증하는 경우 콤포넌트 내부에서 다이얼로그 처리하기 때문에 다이얼로그 띄우지 않음
       const ignoreList = ['/user/email/', '/user/nickname/'];
