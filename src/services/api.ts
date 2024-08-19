@@ -22,7 +22,6 @@ import {
   Id,
   QueryOption,
   SearchRequest,
-  SearchRequestClass,
 } from 'src/types/common/api-model';
 import { MaybeRef, MaybeRefOrGetter } from 'vue';
 
@@ -90,6 +89,21 @@ export function useFetchItem<T extends ApiResponse>({
     url + '/' + id + (subUrl ? '/' + subUrl : ''),
     config
   );
+}
+
+/**
+ * 단건 조회 API 호출 Post
+ */
+export function useFetchItemPost<T extends ApiListResponse, D>({
+  url,
+  data,
+  config,
+}: {
+  url: string;
+  data?: D;
+  config?: AxiosRequestConfig<D>;
+}) {
+  return api.post<T, AxiosResponse<T>, D>(url, data, config);
 }
 
 /**
@@ -389,6 +403,31 @@ export function useQueryFetch<T extends ApiResponse>({
     queryKey: [queryKeyName || url],
     queryFn: () => {
       return useGet<T>({ url });
+    },
+    select: (data): T['data'] => data.data.data,
+    ...queryOption,
+  });
+}
+
+/**
+ * Vue Query를 이용한 단건 조회(Post)
+ */
+export function useQueryFetchItemPost<T extends ApiResponse, D = any>({
+  url,
+  data,
+  queryKeyName,
+  queryOption,
+}: {
+  url: string;
+  data?: D;
+  queryKeyName?: string;
+  queryOption?: QueryOption;
+}) {
+  return useQuery({
+    // eslint-disable-next-line @tanstack/query/exhaustive-deps
+    queryKey: [queryKeyName || url],
+    queryFn: () => {
+      return useFetchItemPost<T, D>({ url, data: data });
     },
     select: (data): T['data'] => data.data.data,
     ...queryOption,

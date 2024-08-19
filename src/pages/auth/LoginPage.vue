@@ -7,11 +7,15 @@ import { GoogleLogin } from 'vue3-google-login';
 function handleLoginResult({
   isWithdrawing,
   isSuccess,
+  hasToJoined,
 }: {
   isWithdrawing: boolean;
   isSuccess: boolean;
+  hasToJoined: boolean;
 }) {
-  if (isWithdrawing) {
+  if (hasToJoined) {
+    goToName('join');
+  } else if (isWithdrawing) {
     useAlertDialog({
       text: 'auth.withdrawal.text',
     });
@@ -30,6 +34,7 @@ const handleSocialLogin = (socialType: SocialType) => {
 };
 
 // add event listener for login_social event
+const { socialLogin } = useLogin();
 const removeEventListener = addEventListener('login_social', (data) => {
   const { access_token, provider } = data.detail ?? {};
   console.log(
@@ -40,36 +45,24 @@ const removeEventListener = addEventListener('login_social', (data) => {
     provider
   );
 
-  if (access_token) {
-    console.log('* succeed to loginSocial with BridgeAPI', {
-      access_token,
-      provider,
-    });
-
-    let type = 'login';
-    if (type === 'login') {
-      // socialLogin(access_token, provider)
-      //   .then((data) => {
-      //     console.log('** succeed to login with API');
-      //     emit('login', data);
-      //   })
-      //   .catch((err) => {
-      //     console.log('** failed to socialLogin with API', err);
-      //     emit('error', err);
-      //   });
-    } else if (type === 'join') {
-      // emit('join', { accessToken: access_token, provider });
-    }
-  } else {
-    console.log('* failed to loginSocial with BridgeAPI');
-  }
+  socialLoginAPI(access_token, provider);
 });
 // remove event listener when component is unmounted
 onBeforeUnmount(() => removeEventListener());
 
 //임시 웹용 구글 로그인
 const googleCallback = (response: any) => {
-  console.log('googleCallback', response.credential);
+  socialLoginAPI(response.credential, 'google');
+};
+
+const socialLoginAPI = async (accessToken: string, provider: SocialType) => {
+  const { isLogined, hasToJoined } = await socialLogin(accessToken, provider);
+
+  handleLoginResult({
+    isWithdrawing: !isLogined,
+    isSuccess: isLogined.value,
+    hasToJoined: hasToJoined.value,
+  });
 };
 </script>
 

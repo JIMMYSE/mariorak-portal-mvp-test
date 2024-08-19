@@ -4,7 +4,7 @@ import { EmailRegistration } from 'src/stores/join-store';
 import { wait } from 'src/utils/promise-util';
 import { MaybeRefOrGetter } from 'vue';
 import RequiredNoticeDialog from 'src/pages/auth/RequiredNoticeDialog.vue';
-import { LoginReqType } from 'src/types/auth/auth-model';
+import { LoginReqType, OauthReqType } from 'src/types/auth/auth-model';
 import { SocialType } from 'src/types/util/code';
 import LoginFailedDialog from 'src/components/auth/LoginFailedDialog.vue';
 
@@ -39,42 +39,51 @@ export const useLogin = () => {
   async function socialLogin(accessToken: string, provider: SocialType) {
     getAgentInfo();
     await wait(300);
+    const agent = agentInfo?.value ?? dummyAgentInfo;
 
-    const k = provider.toUpperCase() as keyof typeof REG_TYPE;
-    const reg_type_cd: string = REG_TYPE[k];
+    const res = await useFetchItemPost<ApiResponse, OauthReqType>({
+      url: AUTH_API_URL + '/oauth',
+      data: {
+        access_token: accessToken,
+        social_type: provider,
+        agent: agent,
+      },
+    });
 
-    // const { data, suspense: suspenseLogin } = useQueryFetchItem({
-    //   url: 'oauth',
-    // });
-    await suspenseLogin();
+    const data = res.data;
 
-    // const isSuccess = computed<boolean>(() => {
-    //   return !!(
-    //     isFinished.value &&
-    //     // 0000: 로그인 성공
-    //     data.value?.code === '0000' &&
-    //     data.value?.data.token?.length
-    //   );
-    // });
+    const isLogined = computed<boolean>(() => {
+      return !!(
+        // 0000: 로그인 성공
+        (data.code === '0000' && data.data.token?.length)
+      );
+    });
 
-    // const loginData = ref<
-    //   InferType<typeof PortalLoginResponse>['data'] | undefined
-    // >();
+    const hasToJoined = computed<boolean>(() => {
+      return !!(
+        // 0000: 로그인 성공
+        (data.code === '0000' && !data.data.social_profile.is_joined)
+      );
+    });
 
-    // if (!error.value) {
-    //   const { data: result } = data.value ?? {};
+    const loginData = ref<
+      InferType<typeof PortalLoginResponse>['data'] | undefined
+    >();
 
-    //   if (result && isSuccess.value) {
-    //     loginData.value = result;
-    //     await saveLoginUser(result);
-    //   }
-    // }
+    if (data.code === '0000') {
+      const { data: result } = data ?? {};
+
+      if (result && isLogined.value) {
+        loginData.value = result;
+        await saveLoginUser(result);
+      }
+    }
 
     return {
-      // data: loginData,
-      // isSuccess,
-      // passwordNeedToBeChanged: false,
-      // error,
+      data: loginData,
+      isLogined,
+      hasToJoined,
+      passwordNeedToBeChanged: false,
     };
   }
 
