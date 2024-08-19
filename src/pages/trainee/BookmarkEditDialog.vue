@@ -2,7 +2,7 @@
 
 <script setup lang="ts">
 import moment from 'moment-timezone';
-import { MyBookmarkCreateType } from 'src/composables/bookmark';
+import { MyBookmarkCreateType } from 'src/composables/domain/bookmark';
 
 type Props = {
   id: number;
@@ -86,7 +86,7 @@ const onSubmit = handleSubmit(async () => {
         <div class="w-px"></div>
         <!-- TITLE TEXT -->
         <div class="text-[17px] font-medium">즐겨찾기 등록</div>
-        <a-btn-icon v-close-popup icon="img:/icons/close.svg" size="30px" />
+        <c-btn-icon v-close-popup icon="img:/icons/close.svg" size="30px" />
       </q-card-section>
       <q-card-section class="mt-[50px] mb-32">
         <h2 class="text-[17px] font-medium leading-[26px] mt-10 px-2">
@@ -105,7 +105,7 @@ const onSubmit = handleSubmit(async () => {
             <div
               class="input-error-custom relative flex flex-nowrap justify-between items-center w-full h-11 mt-[6px] pl-4 pr-10 bg-white rounded-[23px] text-grey-3"
             >
-              <a-input
+              <c-input
                 class="w-1/3 p-0 m-0"
                 input-class="text-right"
                 name="companyNo"
@@ -130,8 +130,8 @@ const onSubmit = handleSubmit(async () => {
                 <template #after>
                   <span class="text-sm text-grey-4">중대</span>
                 </template>
-              </a-input>
-              <a-input
+              </c-input>
+              <c-input
                 class="w-1/3 p-0 m-0"
                 input-class="text-right"
                 name="platoonNo"
@@ -148,8 +148,8 @@ const onSubmit = handleSubmit(async () => {
                 <template #after>
                   <span class="text-sm text-grey-4">소대</span>
                 </template>
-              </a-input>
-              <a-input
+              </c-input>
+              <c-input
                 class="w-1/3 p-0 m-0"
                 input-class="text-right"
                 name="trainee_no"
@@ -166,7 +166,7 @@ const onSubmit = handleSubmit(async () => {
                 <template #after>
                   <span class="text-sm text-grey-4">번</span>
                 </template>
-              </a-input>
+              </c-input>
             </div>
           </label>
           <label for="birth">
@@ -176,7 +176,7 @@ const onSubmit = handleSubmit(async () => {
             <div
               class="input-error-custom relative flex flex-nowrap justify-between items-center w-full h-11 pl-4 pr-10 mb-2 bg-white rounded-[23px] text-grey-3"
             >
-              <a-input
+              <c-input
                 class="w-1/3 p-0 m-0"
                 input-class="text-right"
                 name="year"
@@ -194,8 +194,8 @@ const onSubmit = handleSubmit(async () => {
                 <template #after>
                   <span class="text-sm text-grey-4">년</span>
                 </template>
-              </a-input>
-              <a-input
+              </c-input>
+              <c-input
                 class="w-1/3 p-0 m-0"
                 input-class="text-right"
                 name="month"
@@ -212,8 +212,8 @@ const onSubmit = handleSubmit(async () => {
                 <template #after>
                   <span class="text-sm text-grey-4">월</span>
                 </template>
-              </a-input>
-              <a-input
+              </c-input>
+              <c-input
                 class="w-1/3 p-0 m-0"
                 input-class="text-right"
                 name="date"
@@ -230,12 +230,12 @@ const onSubmit = handleSubmit(async () => {
                 <template #after>
                   <span class="text-sm text-grey-4">일</span>
                 </template>
-              </a-input>
+              </c-input>
             </div>
           </label>
           <label for="name">
             <h4 class="ml-[5px] text-grey-3 text-[13px] font-medium">이름</h4>
-            <a-input
+            <c-input
               name="name"
               :maxlength="19"
               placeholder="이름을 입력해 주세요."

@@ -1,5 +1,5 @@
 import { i18n } from 'src/boot/i18n';
-import { Message } from 'src/services/common/common-model';
+import { Message } from 'src/types/common/common-model';
 
 export function t(message: Message) {
   const { t } = i18n.global;

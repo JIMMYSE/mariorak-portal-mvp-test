@@ -103,21 +103,21 @@ const boxClass =
 
     <div v-if="selectedItem != null" class="px-4">
       <section class="mt-10">
-        <a-subtitle> 🚨 필수 지참 목록 </a-subtitle>
+        <c-subtitle> 🚨 필수 지참 목록 </c-subtitle>
         <div :class="boxClass">
           {{ selectedItem.mandatoryItems }}
         </div>
       </section>
 
       <section class="mt-5">
-        <a-subtitle> 😃 지참 가능 품목 </a-subtitle>
+        <c-subtitle> 😃 지참 가능 품목 </c-subtitle>
         <div :class="boxClass">
           {{ selectedItem.optionalItems }}
         </div>
       </section>
 
       <section class="mt-5">
-        <a-subtitle> ⛔ 지참 불가 항목 </a-subtitle>
+        <c-subtitle> ⛔ 지참 불가 항목 </c-subtitle>
         <div :class="boxClass">
           {{ selectedItem.prohibitedItems }}
         </div>

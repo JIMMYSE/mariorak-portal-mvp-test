@@ -47,7 +47,7 @@ const enter = (title: string, space_id: number) => {
 <template>
   <q-page class="column bg-grey">
     <!-- 맵 바로가기 영역 -->
-    <a-carousel
+    <c-carousel
       class="bg-transparent"
       control-color-active="#196af5"
       v-model="slide"
@@ -75,7 +75,7 @@ const enter = (title: string, space_id: number) => {
           "
         />
       </q-carousel-slide>
-    </a-carousel>
+    </c-carousel>
 
     <!-- 공군입대에 대해 궁금하다면 -->
     <section class="px-6 mt-10">
@@ -148,7 +148,7 @@ const enter = (title: string, space_id: number) => {
           copyright(c) Republic of Korea Airforce. All Right Reserved
         </p>
         <div class="group-icon flex mt-[33px] gap-5 justify-center">
-          <a-btn-icon
+          <c-btn-icon
             v-for="item in socialList"
             :key="item.name"
             :icon="`img:/images/main/${item.name}.png`"

@@ -39,7 +39,7 @@ function onOpenDebuggingUrl() {
     <!-- <q-card v-if="policyList" class="q-mb-xl" flat>
       <q-card-section>
         <q-list>
-          <a-item
+          <c-item
             v-for="item in policyList.rows"
             :key="item.id"
             v-ripple
@@ -48,7 +48,7 @@ function onOpenDebuggingUrl() {
             @click="openDetail(item.id)"
           />
           <q-item v-if="hiddenButtonVisible">
-            <a-input v-model="url" class="w-full" dense />
+            <c-input v-model="url" class="w-full" dense />
             <q-btn
               icon="chevron_right"
               flat

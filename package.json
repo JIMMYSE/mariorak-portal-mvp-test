@@ -6,7 +6,7 @@
   "author": "COARSOFT",
   "private": true,
   "scripts": {
-    "dev": "cross-env ENV=localhost quasar dev",
+    "dev": "cross-env ENV=localhost quasar dev --host",
     "dev2": "yarn dto && cross-env ENV=development quasar dev",
     "build:dev": "ENV=development npx quasar build",
     "build:stg": "ENV=staging npx quasar build",
@@ -57,6 +57,7 @@
     "vue": "^3.4.27",
     "vue-i18n": "^9.13.1",
     "vue-router": "^4.3.3",
+    "vue3-google-login": "^2.0.33",
     "yup": "^1.4.0"
   },
   "devDependencies": {

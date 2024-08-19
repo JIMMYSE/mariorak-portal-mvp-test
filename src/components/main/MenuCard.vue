@@ -26,7 +26,7 @@ const props = defineProps<Props>();
         {{ subtitle }}
       </p>
       <p
-        class="mt-[3px] text-[13px] font-rokaf font-medium text-[#000] leading-[17px]"
+        class="mt-[3px] text-[13px] font-pretendard font-medium text-[#000] leading-[17px]"
       >
         {{ title }}
       </p>
@@ -45,7 +45,7 @@ const props = defineProps<Props>();
         {{ subtitle }}
       </p>
       <p
-        class="mt-[3px] text-[13px] font-rokaf font-medium text-[#000] leading-[17px]"
+        class="mt-[3px] text-[13px] font-pretendard font-medium text-[#000] leading-[17px]"
       >
         {{ title }}
       </p>

@@ -6,7 +6,7 @@ const emits = defineEmits(['onConfirmed']);
 // 현재 비밀번호 확인 여부
 const isConfirmed = defineModel<boolean>('isConfirmed');
 
-const { encodeByAES256 } = useCryptoJS();
+const { encodeByAES256 } = cryptoJS();
 
 const {
   meta,
@@ -43,8 +43,8 @@ const onSubmit = handleSubmit(async () => {
       </p>
     </div>
     <form>
-      <a-field label="비밀번호" class="mt-[30px]">
-        <a-input
+      <c-field label="비밀번호" class="mt-[30px]">
+        <c-input
           type="password"
           name="password"
           :maxlength="16"
@@ -54,15 +54,15 @@ const onSubmit = handleSubmit(async () => {
           autofocus
           autocomplete
         />
-      </a-field>
+      </c-field>
       <div class="absolute bottom-0 bg-primary w-full h-[64px] left-0">
-        <a-btn
+        <c-btn
           type="submit"
           class="text-center text-white font-base font-medium size-full flex justify-center items-center"
           :label="$t('label.complete')"
           @click="onSubmit"
         >
-        </a-btn>
+        </c-btn>
       </div>
     </form>
   </section>

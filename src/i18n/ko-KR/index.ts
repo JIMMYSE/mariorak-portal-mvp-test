@@ -56,6 +56,12 @@ export default {
     logout: {
       confirm: '로그아웃하시겠습니까?',
     },
+    nickname: {
+      required: '닉네임을 입력해주세요.',
+      invalid: '닉네임 형식을 확인하세요.',
+      alreadyInUse: '이미 사용중인 닉네임입니다.',
+      success: '사용 가능한 닉네임입니다.',
+    },
     email: {
       required: '정확한 이메일 주소를 입력해주세요.',
       invalid: '정확한 이메일 주소를 입력해주세요.',
@@ -106,7 +112,7 @@ export default {
     max: '최대값을 확인하세요.',
     numeric: '숫자만 입력 가능합니다.',
     email: '이메일 형식을 확인하세요.',
-    forbiddenWord: '타인에게 불쾌감을 줄 수 있는 단어는 사용 불가합니다.',
+    forbiddenWord: '타인에게 불쾌감을 줄 수 있는 단어입니다.',
     nickname: '2~10자 한글, 영문, 숫자 입력 가능',
     nicknameAlreadyInUse: '중복된 닉네임입니다.',
     nicknameNotChanged: '닉네임을 변경해 주세요.',

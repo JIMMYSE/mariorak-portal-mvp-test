@@ -65,7 +65,7 @@ const { data: listData } = usePhotoList({
       <div>데이터가 없습니다.</div>
     </div>
 
-    <a-pagination
+    <c-pagination
       class="absolute bottom-0"
       :total-rows="listData?.total"
       :from="request.from"
