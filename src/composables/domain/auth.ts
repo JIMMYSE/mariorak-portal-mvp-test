@@ -42,14 +42,6 @@ export const useLogin = () => {
     getAgentInfo();
     await wait(300);
     const agent = agentInfo?.value ?? dummyAgentInfo;
-    const {} = useQueryFetchItemPost({
-      url: AUTH_API_URL + '/oauth',
-      data: {
-        access_token: accessToken,
-        social_type: provider,
-        agent: agent,
-      },
-    });
 
     const res = await useFetchItemPost<ApiResponse, OauthReqType>({
       url: AUTH_API_URL + '/oauth',
