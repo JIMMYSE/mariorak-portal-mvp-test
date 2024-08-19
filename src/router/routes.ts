@@ -1,5 +1,4 @@
 import { RouteRecordRaw } from 'vue-router';
-// layout
 import DefaultLayout from 'layouts/DefaultLayout.vue';
 import MainLayout from 'layouts/MainLayout.vue';
 import SubLayout from 'layouts/SubLayout.vue';
@@ -13,7 +12,7 @@ const routes: RouteRecordRaw[] = [
         path: '/home',
         name: 'home',
         meta: {
-          requiresAuth: true,
+          requiresAuth: false,
         },
         component: MainLayout,
         children: [
@@ -28,7 +27,7 @@ const routes: RouteRecordRaw[] = [
         path: 'notice',
         redirect: { name: 'notice-list' },
         meta: {
-          requiresAuth: true,
+          requiresAuth: false,
         },
         component: SubLayout,
         children: [
@@ -56,7 +55,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'profile',
         meta: {
-          requiresAuth: true,
+          requiresAuth: false,
         },
         component: SubLayout,
         children: [
@@ -74,7 +73,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'enrollment',
         meta: {
-          requiresAuth: true,
+          requiresAuth: false,
         },
         component: SubLayout,
         children: [
@@ -154,7 +153,7 @@ const routes: RouteRecordRaw[] = [
         path: 'trainee',
         name: 'trainee',
         meta: {
-          requiresAuth: true,
+          requiresAuth: false,
         },
         component: SubLayout,
         children: [
@@ -269,7 +268,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/event',
     meta: {
-      requiresAuth: true,
+      requiresAuth: false,
     },
     component: SubLayout,
     children: [
@@ -295,7 +294,7 @@ const routes: RouteRecordRaw[] = [
     path: '/shortcut',
     name: 'shortcut',
     meta: {
-      requiresAuth: true,
+      requiresAuth: false,
     },
     component: SubLayout,
     children: [
@@ -313,7 +312,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/setting',
     meta: {
-      requiresAuth: true,
+      requiresAuth: false,
     },
     component: SubLayout,
     children: [
@@ -436,7 +435,7 @@ const routes: RouteRecordRaw[] = [
         meta: {
           title: '회원가입 완료',
           // requiresNonAuth: false,
-          // requiresAuth: true,
+          // requiresAuth:false
         },
         component: () => import('pages/auth/JoinCompleted.vue'),
       },
@@ -446,7 +445,7 @@ const routes: RouteRecordRaw[] = [
     path: '/terms',
     component: SubLayout,
     meta: {
-      requiresAuth: true,
+      requiresAuth: false,
     },
     children: [
       {
