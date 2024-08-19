@@ -2,14 +2,33 @@
 
 <script setup lang="ts">
 const joinStore = useJoinStore();
-const { joinData } = storeToRefs(joinStore);
 
-const { data: termsData } = useTermsRegistratnionTermsList();
+const { request } = useSearchFilter({
+  requestDefault: {
+    filters: {
+      is_mandatory: {
+        eq: false,
+      },
+      is_active: {
+        eq: true,
+      },
+    },
+    from: 0,
+    size: 10,
+    sort: [
+      {
+        sequence: 'asc',
+      },
+    ],
+  },
+});
+
+const { data: termsData } = useTermsList({ searchRequest: request });
 
 const checkedIdList = ref<Id[]>([]);
 const termsAgreementsList = computed(
   () =>
-    termsData.value?.rows.map((o) => ({
+    termsData.value?.rows.map((o: any) => ({
       terms_id: o.id,
       is_agreed: checkedIdList.value.includes(o.id),
     })) ?? []
@@ -19,14 +38,15 @@ const is14YearsOldChecked = ref(false);
 const isAllChecked = computed({
   get() {
     return !!(
-      termsData.value?.rows.every((o) => checkedIdList.value.includes(o.id)) &&
-      is14YearsOldChecked.value
+      termsData.value?.rows.every((o: any) =>
+        checkedIdList.value.includes(o.id)
+      ) && is14YearsOldChecked.value
     );
   },
   set(value: boolean) {
     is14YearsOldChecked.value = value;
     checkedIdList.value = value
-      ? termsData.value?.rows.map((o) => o.id) ?? []
+      ? termsData.value?.rows.map((o: any) => o.id) ?? []
       : [];
   },
 });
@@ -35,8 +55,8 @@ const isSubmitAllowed = computed(
   () =>
     is14YearsOldChecked.value &&
     termsData.value?.rows
-      .filter((o) => o.is_required)
-      .every((o) => checkedIdList.value.includes(o.id))
+      .filter((o: any) => o.is_required)
+      .every((o: any) => checkedIdList.value.includes(o.id))
 );
 
 const onSubmit = () => {

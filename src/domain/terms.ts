@@ -9,7 +9,7 @@ import { MaybeRef, MaybeRefOrGetter } from 'vue';
  * 약관
  */
 
-const API_URL = '/terms';
+const API_URL = '/v2/policies';
 const QUERY_KEY = {
   LIST: 'TERMS_LIST',
   DETAIL: 'TERMS_DETAIL',
