@@ -26,12 +26,6 @@ import {
 } from 'src/types/common/api-model';
 import { MaybeRef, MaybeRefOrGetter } from 'vue';
 
-export function useSearchRequest(
-  options: Partial<SearchRequest> = {}
-): Ref<SearchRequest> {
-  return ref(new SearchRequestClass(options));
-}
-
 /**
  * Axios Get 호출
  */
