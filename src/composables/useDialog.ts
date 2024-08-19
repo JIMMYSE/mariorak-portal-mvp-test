@@ -76,7 +76,7 @@ export function useFullDialog(option: CDialogFullProps) {
  * 콘텐츠 Dialog
  * @use 컴포넌트로 사용 권장
  * @example
-    <s-dialog-content
+    <c-dialog-content
       v-model="detailEnabled"
       :title="detail?.trms_ttl"
       :html="filterHtmlWithNewLine(detail?.trms_cn)"
