@@ -90,8 +90,6 @@ function getMessage(message: Message) {
         </div>
       </q-card-section>
 
-      {{ props }}
-
       <q-card-section
         v-if="!props.hideButtons"
         class="fixed inset-x-0 bottom-0 p-4 flex gap-[10.5px] items-stretch z-10 bg-white"

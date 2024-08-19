@@ -428,15 +428,15 @@ const routes: RouteRecordRaw[] = [
         meta: {
           title: '아바타 설정',
         },
-        component: () => import('pages/auth/JoinNicknameAndAvatar.vue'),
+        component: () => import('src/pages/auth/JoinAvatar.vue'),
       },
       {
         path: 'completed',
         name: 'join-completed',
         meta: {
           title: '회원가입 완료',
-          requiresNonAuth: false,
-          requiresAuth: true,
+          // requiresNonAuth: false,
+          // requiresAuth: true,
         },
         component: () => import('pages/auth/JoinCompleted.vue'),
       },

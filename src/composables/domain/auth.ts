@@ -6,6 +6,7 @@ import { MaybeRefOrGetter } from 'vue';
 import RequiredNoticeDialog from 'src/pages/auth/RequiredNoticeDialog.vue';
 import { LoginReqType } from 'src/types/auth/auth-model';
 import { SocialType } from 'src/types/util/code';
+import LoginFailedDialog from 'src/components/auth/LoginFailedDialog.vue';
 
 const ACCESS_TOKEN_KEY = process.env.ACCESS_TOKEN_KEY as string;
 const TOKEN_EXPIRE_DAYS = Number(process.env.TOKEN_EXPIRE_DAYS as string);
@@ -341,5 +342,21 @@ export const registerUser = async (data: EmailRegistration) => {
 export const useAuthRestrictUserInfo = (userId: any) => {
   return useAxiosGet<InferType<typeof PortalRestrictUserRes>>({
     url: AUTH_API_URL + '/restrict-user/' + userId?.value,
+  });
+};
+
+/**
+ * dummy) 로그인 실패 다이얼로그
+ */
+
+export const useLoginFailedDialog = () => {
+  return useAlertFullDialog({
+    contentComponent: LoginFailedDialog,
+    buttons: [
+      {
+        label: '메인화면 바로가기',
+        value: 'main',
+      },
+    ],
   });
 };
