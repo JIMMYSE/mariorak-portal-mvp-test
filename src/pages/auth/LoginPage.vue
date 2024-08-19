@@ -48,7 +48,6 @@ const removeEventListener = addEventListener('login_social', (data) => {
 
     let type = 'login';
     if (type === 'login') {
-      console.log('** succeed to login with API', access_token, provider);
       // socialLogin(access_token, provider)
       //   .then((data) => {
       //     console.log('** succeed to login with API');
@@ -70,7 +69,7 @@ onBeforeUnmount(() => removeEventListener());
 
 //임시 웹용 구글 로그인
 const googleCallback = (response: any) => {
-  console.log('googleCallback', response);
+  console.log('googleCallback', response.credential);
 };
 </script>
 

@@ -26,7 +26,8 @@ export default boot(({ app }) => {
   };
   app.use(VueQueryPlugin, vueQueryPluginOptions);
   app.use(vue3GoogleLogin, {
-    clientId: 'AIzaSyB3wNmREg90FsdsraraYPDfqR2p6uHVX2M',
+    clientId:
+      '920995392907-pv9hmu5ibttqfsoinaei8v6nv2aj6bpf.apps.googleusercontent.com',
   });
 
   // vee-validate
