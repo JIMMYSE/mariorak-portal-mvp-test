@@ -3,7 +3,6 @@
  */
 
 import { SearchRequest } from 'src/types/common/api-model';
-import { useSearchRequest } from '../services/api';
 
 /**
  * 목록 검색 필터
@@ -18,4 +17,10 @@ export function useSearchFilter({
   return {
     request,
   };
+}
+
+export function useSearchRequest(
+  options: Partial<SearchRequest> = {}
+): Ref<SearchRequest> {
+  return ref(new SearchRequestClass(options));
 }
