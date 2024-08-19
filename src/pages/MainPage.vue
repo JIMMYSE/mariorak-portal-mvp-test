@@ -18,79 +18,59 @@ const shortcutBList = computed(
 
 const slide = ref(0);
 
-const { enterRoom } = useBridge();
-
-const enter = (title: string, space_id: number) => {
-  let spwan_id = 1;
-  switch (title) {
-    case '비행장 구역':
-      spwan_id = 2;
-      break;
-    case '훈련 구역':
-      spwan_id = 3;
-      break;
-    case '작전 구역':
-      spwan_id = 4;
-      break;
-    case '행정 구역':
-      spwan_id = 5;
-      break;
-    case '생활관 구역':
-      spwan_id = 6;
-      break;
-  }
-
-  enterRoom(space_id, spwan_id);
-};
+// img dummy
+const imgList = [
+  {
+    src: 'images/dummy/main_dummy.svg',
+    id: 1,
+  },
+  {
+    src: 'images/dummy/main_dummy1.svg',
+    id: 2,
+  },
+  {
+    src: 'images/dummy/main_dummy2.svg',
+    id: 3,
+  },
+  {
+    src: 'images/dummy/main_dummy3.svg',
+    id: 4,
+  },
+  {
+    src: 'images/dummy/main_dummy4.svg',
+    id: 5,
+  },
+  {
+    src: 'images/dummy/main_dummy5.svg',
+    id: 6,
+  },
+];
 </script>
 
 <template>
-  <q-page class="column bg-grey">
+  <q-page class="column bg-white">
     <!-- 맵 바로가기 영역 -->
     <c-carousel
       class="bg-transparent"
-      control-color-active="#196af5"
+      control-color-active="transparent"
       v-model="slide"
-      height="438px"
+      height="360px"
       keep-alive
     >
       <q-carousel-slide
-        v-for="(item, i) in shortcutAList"
-        :key="item.id"
-        :name="i"
         class="p-0 h-[460px]"
+        v-for="(img, i) in imgList"
+        :key="img.id"
+        :name="i"
       >
-        <main-card
-          :title="item.title"
-          :description="item.description"
-          :image-src="item.image_file?.origin_addr"
-          @enter="
-            enterMetaverse({
-              id: item.space_id,
-              name: item.title,
-              onOk: () => {
-                enter(item.title, item.space_id);
-              },
-            })
-          "
-        />
+        <main-card :image-src="img.src" />
       </q-carousel-slide>
     </c-carousel>
 
     <!-- 공군입대에 대해 궁금하다면 -->
-    <section class="px-6 mt-10">
-      <h2 class="text-h3 px-1">공군 입대 안내사항</h2>
-      <div class="grid grid-col-3 gap-1.5 mt-4">
-        <menu-card
-          v-for="item in menuListForEnlist"
-          :key="item.title"
-          :to="{ name: item.to }"
-          :class="item.class ?? ''"
-          :title="item.title"
-          :subtitle="item.subtitle"
-          :icon="item.icon"
-        />
-      </div>
+    <section class="mt-10 px-8">
+      <div class="text-[22px] font-semibold">WHAT IS GAME PACK</div>
+      <div class="grid grid-col-3 gap-1.5 mt-4"></div>
     </section>
 
     <!-- 훈련병 관련사항 -->
@@ -130,7 +110,7 @@ const enter = (title: string, space_id: number) => {
 
     <!-- footer -->
     <footer
-      class="w-full h-[305px] bg-[#222] bottom-0 mt-[125px] min-w-[375px]"
+      class="w-full h-[305px] bg-[#222] bottom-0 mt-[125px] min-w-[360px]"
     >
       <div class="pt-[30px] px-6">
         <p
