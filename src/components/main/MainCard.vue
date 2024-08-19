@@ -15,10 +15,10 @@ onActivated(() => {
 </script>
 
 <template>
-  <div class="h-[438px] relative">
+  <div class="relative">
     <img
       ref="myVideo"
-      class="w-full h-[371px] object-cover"
+      class="w-full h-[360px] object-cover"
       :src="imageSrc ?? undefined"
     />
   </div>

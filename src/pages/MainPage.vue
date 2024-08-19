@@ -69,7 +69,10 @@ const imgList = [
 
     <!-- 공군입대에 대해 궁금하다면 -->
     <section class="mt-10 px-8">
-      <div class="text-[22px] font-semibold">WHAT IS GAME PACK</div>
+      <p class="text-[22px] font-semibold">WHAT IS GAME PACK</p>
+      <p class="text-[#767676] text-sm font-normal">
+        CCF가 함께하고 지원하는 모든 프로젝트
+      </p>
       <div class="grid grid-col-3 gap-1.5 mt-4"></div>
     </section>
 
