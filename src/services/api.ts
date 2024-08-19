@@ -412,7 +412,7 @@ export function useQueryFetch<T extends ApiResponse>({
 /**
  * Vue Query를 이용한 단건 조회(Post)
  */
-export function useQueryFetchItemPost<T extends ApiResponse, D = any>({
+export function useQueryFetchItemPost<T extends ApiResponse, D>({
   url,
   data,
   queryKeyName,

@@ -7,6 +7,8 @@ import RequiredNoticeDialog from 'src/pages/auth/RequiredNoticeDialog.vue';
 import { LoginReqType, OauthReqType } from 'src/types/auth/auth-model';
 import { SocialType } from 'src/types/util/code';
 import LoginFailedDialog from 'src/components/auth/LoginFailedDialog.vue';
+import { access } from 'fs';
+import { Q } from 'app/dist/spa/assets/QList.d16a180e';
 
 const ACCESS_TOKEN_KEY = process.env.ACCESS_TOKEN_KEY as string;
 const TOKEN_EXPIRE_DAYS = Number(process.env.TOKEN_EXPIRE_DAYS as string);
@@ -40,6 +42,14 @@ export const useLogin = () => {
     getAgentInfo();
     await wait(300);
     const agent = agentInfo?.value ?? dummyAgentInfo;
+    const {} = useQueryFetchItemPost({
+      url: AUTH_API_URL + '/oauth',
+      data: {
+        access_token: accessToken,
+        social_type: provider,
+        agent: agent,
+      },
+    });
 
     const res = await useFetchItemPost<ApiResponse, OauthReqType>({
       url: AUTH_API_URL + '/oauth',

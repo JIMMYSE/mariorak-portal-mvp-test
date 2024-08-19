@@ -14,7 +14,7 @@ function handleLoginResult({
   hasToJoined: boolean;
 }) {
   if (hasToJoined) {
-    goToName('join');
+    goToName('join-terms');
   } else if (isWithdrawing) {
     useAlertDialog({
       text: 'auth.withdrawal.text',
