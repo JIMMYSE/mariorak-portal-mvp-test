@@ -2,30 +2,24 @@
 
 <script lang="ts" setup>
 import { NicknameJoinForm } from 'src/types/auth/auth-model';
+const joinStore = useJoinStore();
+const { joinData } = storeToRefs(joinStore);
 
 const { isLoggedIn } = useUserInfo();
 watch(isLoggedIn, (b) => {
   if (b) goToName('main');
 });
 
-// const joinStore = useJoinStore();
-// const { joinData } = storeToRefs(joinStore);
-// const { encodeByAES256 } = useCryptoJS();
-
 const {
   meta,
-  errors,
-  errorBag,
   values: form,
   handleSubmit,
-  setErrors,
 } = useForm<NicknameJoinForm>({
   validationSchema: toTypedSchema(NicknameJoinSchema),
 });
 
 const onSubmit = handleSubmit(() => {
-  // joinStore.$init();
-  // if (!joinData.value) return;
+  if (!joinData.value) return;
   goToName('join-avatar');
 });
 </script>

@@ -2,15 +2,9 @@
  * User & Profile
  */
 
-import { AxiosError, HttpStatusCode } from 'axios';
-import {
-  AccountRes,
-  AvatarListRes,
-  UserDetailRes,
-  UserNicknameRes,
-} from 'meta-airforce-dto';
+import { HttpStatusCode } from 'axios';
+import { AccountRes, UserDetailRes, UserNicknameRes } from 'meta-airforce-dto';
 import { Id } from 'src/types/common/api-model';
-import { t } from 'src/utils/message-util';
 import { MaybeRefOrGetter } from 'vue';
 
 export const USER_API_URL = '/v2/users';
@@ -19,7 +13,7 @@ export const USER_QUERY_KEY = {
   DETAIL: 'USER_DETAIL',
 };
 
-const AVATAR_API_URL = '/avatar';
+const AVATAR_API_URL = '/v1/avatars';
 const AVATAR_QUERY_KEY = {
   LIST: 'AVATAR_LIST',
   DETAIL: 'AVATAR_DETAIL',
@@ -29,7 +23,6 @@ const AVATAR_QUERY_KEY = {
 export type UserDetailResType = InferType<typeof UserDetailRes>;
 export type AccountResType = InferType<typeof AccountRes>;
 export type UserNicknameResType = InferType<typeof UserNicknameRes>;
-export type AvatarListResType = InferType<typeof AvatarListRes>;
 
 /**
  * 회원 상세 조회
@@ -110,8 +103,8 @@ export const useAvatarList = ({
   queryOption?: QueryOption;
   queryKeyName?: string;
 } = {}) => {
-  return useQueryFetch<AvatarListResType>({
-    url: AVATAR_API_URL + '/list',
+  return useQueryFetch<any>({
+    url: AVATAR_API_URL,
     queryOption,
     queryKeyName,
   });

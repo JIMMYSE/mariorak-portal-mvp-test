@@ -27,7 +27,6 @@ export const NicknameSchema = string()
   .required();
 
 // 프로필 수정 스키마
-export const NicknameAndAvatarFormSchema = object({
-  nickname: NicknameSchema,
+export const AvatarFormSchema = object({
   avatarId: number().required(),
 });
