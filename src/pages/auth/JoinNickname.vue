@@ -18,6 +18,7 @@ const {
   errorBag,
   values: form,
   handleSubmit,
+  setErrors,
 } = useForm<NicknameForm>({
   validationSchema: toTypedSchema(NicknameSchema),
 });
@@ -43,6 +44,7 @@ const onSubmit = handleSubmit(() => {
           placeholder="닉네임을 입력해 주세요"
           :maxlength="10"
           autofocus
+          check-badwords
         />
       </c-field>
     </form>

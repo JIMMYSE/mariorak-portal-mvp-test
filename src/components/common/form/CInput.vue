@@ -1,7 +1,7 @@
 <!-- 공통 Input -->
 
 <script setup lang="ts">
-import { QInputProps } from 'quasar';
+import { event, QInputProps, QInput } from 'quasar';
 import { useForwardProps } from 'radix-vue';
 
 type Model = string | number | null | undefined;
@@ -12,6 +12,7 @@ interface Props extends Omit<QInputProps, 'modelValue'> {
   borderRadius?: string | undefined;
   inlineCounter?: boolean;
   noError?: boolean;
+  checkBadwords?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -53,7 +54,7 @@ if (props.name) {
   });
 }
 
-const inputEl = ref<HTMLInputElement | null>(null);
+const inputEl = ref<null | QInput>(null);
 
 const isPasswordVisible = ref(false);
 const inputType = computed(() =>
@@ -64,6 +65,15 @@ defineExpose({
   focus() {
     inputEl.value?.focus();
   },
+});
+const emits = defineEmits(['hasBadword']);
+
+//q-input 한글 바로 반영되게 처리
+onMounted(() => {
+  const el = inputEl.value?.getNativeElement();
+  el?.addEventListener('input', (e: any) => {
+    model.value = e.target?.value;
+  });
 });
 </script>
 

@@ -1,7 +1,7 @@
 import { UserDetail } from 'meta-airforce-dto';
 import { t } from 'src/utils/message-util';
 import { ref } from 'yup';
-
+const { hasBadword } = useBadwords();
 //type
 export type UserDetailType = InferType<typeof UserDetail>;
 export type ChangePasswordForm = InferType<typeof NewPasswordFormSchema>;
@@ -47,10 +47,12 @@ export const NicknameSchema = object().shape({
     .label('닉네임')
     .required(t('auth.nickname.required'))
     .matches(/^[a-zA-Z0-9가-힣]*$/, t('auth.nickname.invalid'))
-    .default(''),
+    .default('')
+    .test('nickname', t('auth.nickname.hasBadword'), (value) => {
+      //금칙어 관련 처리
+      return hasBadword(value);
+    }),
 });
-
-//
 
 export type NicknameForm = InferType<typeof NicknameSchema>;
 
