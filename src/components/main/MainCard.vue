@@ -6,21 +6,11 @@ const props = defineProps<{
 }>();
 
 defineEmits(['enter']);
-
-const myVideo = ref<HTMLVideoElement | null>(null);
-
-onActivated(() => {
-  myVideo.value?.load();
-});
 </script>
 
 <template>
   <div class="relative">
-    <img
-      ref="myVideo"
-      class="w-full h-[360px] object-cover"
-      :src="imageSrc ?? undefined"
-    />
+    <img class="w-full h-[360px] object-cover" :src="imageSrc ?? undefined" />
   </div>
 </template>
 

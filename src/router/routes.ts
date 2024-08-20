@@ -6,7 +6,7 @@ import SubLayout from 'layouts/SubLayout.vue';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/home',
+    redirect: '/game-pack/main',
     children: [
       {
         path: '/home',
@@ -20,6 +20,25 @@ const routes: RouteRecordRaw[] = [
             path: '',
             name: 'main',
             component: () => import('pages/MainPage.vue'),
+          },
+        ],
+      },
+      {
+        path: 'game-pack',
+        redirect: { name: 'game-pack-main' },
+        meta: {
+          requiresAuth: false,
+        },
+        component: MainLayout,
+        children: [
+          {
+            path: 'main',
+            name: 'game-pack-main',
+            meta: {
+              title: '게임팩',
+              bgColor: 'white',
+            },
+            component: () => import('pages/game-pack/MainPage.vue'),
           },
         ],
       },

@@ -1,13 +1,6 @@
 <!-- 메인페이지 -->
 
 <script setup lang="ts">
-onMounted(() => {
-  const { data: listData } = useNoticePopupList();
-
-  if (listData.value?.rows?.length) {
-    useRequiredNoticeDialog();
-  }
-});
 const { data: shortcutData } = useShortcutList();
 const shortcutAList = computed(
   () => shortcutData.value?.rows.filter((r) => r.shortcut_area_cd === 'A') ?? []
@@ -21,27 +14,27 @@ const slide = ref(0);
 // img dummy
 const imgList = [
   {
-    src: 'images/dummy/main_dummy.svg',
+    src: '/images/dummy/main_dummy.svg',
     id: 1,
   },
   {
-    src: 'images/dummy/main_dummy1.svg',
+    src: '/images/dummy/main_dummy1.svg',
     id: 2,
   },
   {
-    src: 'images/dummy/main_dummy2.svg',
+    src: '/images/dummy/main_dummy2.svg',
     id: 3,
   },
   {
-    src: 'images/dummy/main_dummy3.svg',
+    src: '/images/dummy/main_dummy3.svg',
     id: 4,
   },
   {
-    src: 'images/dummy/main_dummy4.svg',
+    src: '/images/dummy/main_dummy4.svg',
     id: 5,
   },
   {
-    src: 'images/dummy/main_dummy5.svg',
+    src: '/images/dummy/main_dummy5.svg',
     id: 6,
   },
 ];
@@ -96,7 +89,7 @@ const imgList = [
       </div>
     </section>
 
-    <!-- 공군 생활 체험 -->
+    <!-- CCF 추천 프로젝트 -->
     <section class="px-6 mt-[55px]">
       <h2 class="text-[22px] font-semibold">CCF 추천 프로젝트</h2>
       <q-list class="flex flex-col gap-[35px] mt-3">
@@ -118,8 +111,8 @@ const imgList = [
     <!-- 배너영역 -->
 
     <!-- FAQ -->
-    <section class="px-6 mt-[55px]">
-      <h2 class="text-[22px] font-semibold">FAQ</h2>
+    <section class="mt-[55px]">
+      <h2 class="text-[22px] font-semibold px-6">FAQ</h2>
       <faq-area />
     </section>
 
