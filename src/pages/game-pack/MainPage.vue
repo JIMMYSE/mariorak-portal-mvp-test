@@ -66,10 +66,12 @@ const imgList = [
       <p class="text-[#767676] text-sm font-normal">
         CCF가 함께하고 지원하는 모든 프로젝트
       </p>
-      <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4"></div>
+      <div class="border-t-0 grid grid-col-3 gap-1.5 mt-6">
+        <intro-item-list />
+      </div>
     </section>
 
-    <hr class="h-2.5 bg-[#f7f7f7]" />
+    <hr class="h-2.5 bg-[#f7f7f7] mt-10" />
 
     <!-- CCF 추천게임 -->
     <section class="px-6 mt-10">
