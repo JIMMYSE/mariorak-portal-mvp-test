@@ -3,6 +3,8 @@ import { VueQueryDevtools } from '@tanstack/vue-query-devtools';
 import { version } from '../package.json';
 
 useAppRouter();
+const { fetchBadwords } = useBadwords();
+
 const isCommonCodeInitiated = initCommonCodeList();
 
 const { isLoggedIn } = useUserInfo();
@@ -18,6 +20,7 @@ onMounted(() => {
   setTimeout(() => {
     scrollTo(0, 25);
   }, 100);
+  fetchBadwords();
 });
 
 const isInitiated = computed(() => {

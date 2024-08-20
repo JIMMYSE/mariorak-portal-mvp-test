@@ -41,20 +41,11 @@ export const NewPasswordFormSchema = object({
     .default(''),
 });
 
-// ccf 회원가입 > 닉네임
-export const NicknameSchema = object().shape({
-  nickname: string()
-    .label('닉네임')
-    .required(t('auth.nickname.required'))
-    .matches(/^[a-zA-Z0-9가-힣]*$/, t('auth.nickname.invalid'))
-    .default('')
-    .test('nickname', t('auth.nickname.hasBadword'), (value) => {
-      //금칙어 관련 처리
-      return hasBadword(value);
-    }),
-});
+export type NicknameJoinForm = InferType<typeof NicknameJoinSchema>;
 
-export type NicknameForm = InferType<typeof NicknameSchema>;
+export const NicknameJoinSchema = object().shape({
+  nickname: NicknameSchema,
+});
 
 /** 사용자 공통 항목 */
 export const AccountBase = object({

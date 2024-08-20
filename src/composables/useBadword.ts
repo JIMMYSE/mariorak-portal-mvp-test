@@ -12,8 +12,7 @@ export const showHasBadwordPopup = ref(false);
 export const targetBadword = ref('');
 
 export function useBadwords() {
-  fetchBadwords();
-  /**
+  /**ap
    * * @description - 욕설 필터링
    * @param {string} word - code
    */
@@ -51,5 +50,5 @@ export function useBadwords() {
     filterKo.addWords(...forbiddenWords.value);
   }
 
-  return { filterBadwords, hasBadword, findBadwordList };
+  return { filterBadwords, hasBadword, findBadwordList, fetchBadwords };
 }

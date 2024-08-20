@@ -13,7 +13,7 @@ import { Id } from 'src/types/common/api-model';
 import { t } from 'src/utils/message-util';
 import { MaybeRefOrGetter } from 'vue';
 
-export const USER_API_URL = '/user';
+export const USER_API_URL = '/v2/users';
 export const USER_QUERY_KEY = {
   LIST: 'USER_LIST',
   DETAIL: 'USER_DETAIL',
@@ -69,7 +69,7 @@ export const checkEmailUnique = async (email: MaybeRefOrGetter<string>) => {
  */
 export function getUserNicknameInfo(nickname: MaybeRefOrGetter<string>) {
   return useAxiosGet<UserNicknameResType>({
-    url: USER_API_URL + '/nickname/' + encodeURIComponent(toValue(nickname)),
+    url: USER_API_URL + '/nicknames/' + encodeURIComponent(toValue(nickname)),
   });
 }
 

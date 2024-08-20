@@ -1,5 +1,5 @@
 import { t } from 'src/utils/message-util';
-
+const { hasBadword } = useBadwords();
 // 닉네임 스키마
 export const NicknameSchema = string()
   .label('닉네임')
@@ -19,6 +19,11 @@ export const NicknameSchema = string()
       return await getIsUserNicknameAvailable(nickname);
     }
   )
+  .test('nickname', t('auth.nickname.hasBadword'), (value: string) => {
+    //금칙어 관련 처리
+    return !hasBadword(value);
+  })
+
   .required();
 
 // 프로필 수정 스키마

@@ -1,7 +1,7 @@
 <!-- 회원가입 -->
 
 <script lang="ts" setup>
-import { NicknameForm, NicknameSchema } from 'src/types/auth/auth-model';
+import { NicknameJoinForm } from 'src/types/auth/auth-model';
 
 const { isLoggedIn } = useUserInfo();
 watch(isLoggedIn, (b) => {
@@ -19,8 +19,8 @@ const {
   values: form,
   handleSubmit,
   setErrors,
-} = useForm<NicknameForm>({
-  validationSchema: toTypedSchema(NicknameSchema),
+} = useForm<NicknameJoinForm>({
+  validationSchema: toTypedSchema(NicknameJoinSchema),
 });
 
 const onSubmit = handleSubmit(() => {
