@@ -304,13 +304,15 @@ export const useBridge = () => {
       /**
        *  웹뷰에서 소셜로그인 시점에 호출하는 메소드
        * @param  loginType - 소셜로그인 플랫폼(kakao, google, naver, apple)
+       * @param callBakcUrl - 소셜로그인 완료 후 실행할 url
+       * @param backUrl - 소셜로그인 취소 후 실행할 url
        */
 
       loginSocial(loginType: string) {
         log('oauthLogin with ', loginType);
 
         try {
-          JSOUT.loginSocial(loginType);
+          JSOUT.loginSocial(loginType, '', '');
         } catch (e) {
           error(e);
         }
