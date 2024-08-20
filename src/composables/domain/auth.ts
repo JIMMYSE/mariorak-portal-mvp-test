@@ -1,14 +1,11 @@
 import { useCookies } from '@vueuse/integrations/useCookies';
 import { PortalLoginResponse, PortalRestrictUserRes } from 'meta-airforce-dto';
-import { EmailRegistration, SocialRegistration } from 'src/stores/join-store';
+import { SocialRegistration } from 'src/types/auth/signin-model';
 import { wait } from 'src/utils/promise-util';
-import { MaybeRefOrGetter } from 'vue';
 import RequiredNoticeDialog from 'src/pages/auth/RequiredNoticeDialog.vue';
-import { LoginReqType, OauthReqType } from 'src/types/auth/auth-model';
+import { OauthReqType } from 'src/types/auth/auth-model';
 import { SocialType } from 'src/types/util/code';
 import LoginFailedDialog from 'src/components/auth/LoginFailedDialog.vue';
-import { access } from 'fs';
-import { Q } from 'app/dist/spa/assets/QList.d16a180e';
 
 const ACCESS_TOKEN_KEY = process.env.ACCESS_TOKEN_KEY as string;
 const TOKEN_EXPIRE_DAYS = Number(process.env.TOKEN_EXPIRE_DAYS as string);
@@ -18,7 +15,7 @@ const LOGIN_URL = '/auth/login';
 const LOGOUT_URL = '/auth/logout';
 
 const UNREGISTER_URL = '/auth/unregister';
-const REGISTER_URL = '/auth/register';
+const REGISTER_URL = '/v1/auth/register/social';
 
 type PortalLoginResponseType = InferType<typeof PortalLoginResponse>;
 
@@ -64,7 +61,7 @@ export const useLogin = () => {
     const hasToJoined = computed<boolean>(() => {
       return !!(
         // 0000: 로그인 성공
-        (data.code === '0000' && !data.data.social_profile.is_joined)
+        (data.code === '0000' && !data.data.social_profile?.is_joined)
       );
     });
 
@@ -77,7 +74,7 @@ export const useLogin = () => {
 
       if (result && isLogined.value) {
         loginData.value = result;
-        await saveLoginUser(result);
+        // await saveLoginUser(result);
       }
     }
 
@@ -322,7 +319,10 @@ export const useAuthUnregister = () => {
  * 소셜 회원 가입
  */
 
-export const registerUser = async (data: SocialRegistration) => {
+// TODO type 오류 잡기 (any=>SocialRegistration)
+export const registerUser = async (data: any) => {
+  data.agent = agentInfo?.value ?? dummyAgentInfo;
+
   type PortalLoginResponseType = InferType<typeof PortalLoginResponse>;
   const { data: responseData } = await useAxiosPost<
     PortalLoginResponseType,
@@ -336,6 +336,7 @@ export const registerUser = async (data: SocialRegistration) => {
     responseData.value?.code === '0000' &&
     responseData.value?.data?.token?.length
   ) {
+    alert(`회원가입이 완료되었습니다. ${responseData.value.data.token}`);
     // await saveLoginUser({
     //   token: responseData.value.data.token,
     //   user: responseData.value.data.user,

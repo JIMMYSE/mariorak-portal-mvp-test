@@ -20,6 +20,7 @@ const {
 
 const onSubmit = handleSubmit(() => {
   if (!joinData.value) return;
+  joinData.value.nickname = form.nickname;
   goToName('join-avatar');
 });
 </script>

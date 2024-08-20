@@ -1,28 +1,14 @@
 <!-- 로그인 화면 -->
 
 <script setup lang="ts">
+import { join } from 'path';
 import { SocialType } from 'src/types/util/code';
 import { GoogleLogin } from 'vue3-google-login';
-
-function handleLoginResult({
-  isWithdrawing,
-  isSuccess,
-  hasToJoined,
-}: {
-  isWithdrawing: boolean;
-  isSuccess: boolean;
-  hasToJoined: boolean;
-}) {
-  if (hasToJoined) {
-    goToName('join-terms');
-  } else if (isWithdrawing) {
-    useAlertDialog({
-      text: 'auth.withdrawal.text',
-    });
-  } else if (isSuccess) {
-    goToName('main');
-  }
-}
+const joinStore = useJoinStore();
+const { joinData } = storeToRefs(joinStore);
+onMounted(() => {
+  joinStore.$init();
+});
 
 const { loginSocial, addEventListener } = useBridge();
 
@@ -57,12 +43,23 @@ const googleCallback = (response: any) => {
 
 const socialLoginAPI = async (accessToken: string, provider: SocialType) => {
   const { isLogined, hasToJoined } = await socialLogin(accessToken, provider);
+  console.log('>>>', isLogined.value, hasToJoined.value);
+  if (hasToJoined.value) {
+    // 회원가입이 필요한 경우
+    if (!joinData.value) return;
+    joinData.value.access_token = accessToken;
+    joinData.value.social_type = provider;
 
-  handleLoginResult({
-    isWithdrawing: !isLogined,
-    isSuccess: isLogined.value,
-    hasToJoined: hasToJoined.value,
-  });
+    goToName('join-terms');
+  } else if (!isLogined.value) {
+    // 회원탈퇴한 경우
+    useAlertDialog({
+      text: 'auth.withdrawal.text',
+    });
+  } else {
+    // 로그인 성공
+    goToName('main');
+  }
 };
 </script>
 

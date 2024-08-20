@@ -27,6 +27,7 @@ const {
   meta,
   values: form,
   setFieldValue,
+  resetForm,
 } = useForm({
   validationSchema: toTypedSchema(AvatarFormSchema),
   initialValues: {
@@ -35,16 +36,7 @@ const {
 });
 
 const save = () => {
-  // emit('onSubmit', { nickname: form.nickname, avatarId: form.avatarId }, () => {
-  //   resetForm({
-  //     values: {
-  //       nickname: form.nickname,
-  //       avatarId: form.avatarId,
-  //     },
-  //   });
-  // });
-
-  goToName('join-completed');
+  emit('onSubmit', form.avatarId);
 };
 
 // ================================

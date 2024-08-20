@@ -4,7 +4,7 @@
 const joinStore = useJoinStore();
 const { joinData } = storeToRefs(joinStore);
 
-const onSubmit = async ({ avatarId }: { avatarId: number }) => {
+const onSubmit = async (avatarId: number) => {
   if (!joinData.value) return;
   joinData.value.avatar_id = avatarId;
 
