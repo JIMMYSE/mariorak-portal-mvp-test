@@ -105,7 +105,7 @@ const openDetailDialog = async (title: string, content: string) => {
             class="p-0 text-body2 font-pretendard font-normal text-[14px]"
           >
             <c-checkbox v-model="checkedIdList" size="32px" :val="item.id">
-              {{ item.is_required ? '[필수] ' : '' }}
+              {{ item.is_mandatory ? '[필수] ' : '' }}
               {{ item.title }}
             </c-checkbox>
           </q-item-section>
