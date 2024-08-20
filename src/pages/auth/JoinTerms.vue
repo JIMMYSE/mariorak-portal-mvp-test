@@ -2,6 +2,7 @@
 
 <script setup lang="ts">
 const joinStore = useJoinStore();
+const { joinData } = storeToRefs(joinStore);
 
 const { request } = useSearchFilter({
   requestDefault: {
@@ -34,34 +35,28 @@ const termsAgreementsList = computed(
     })) ?? []
 );
 
-const is14YearsOldChecked = ref(false);
 const isAllChecked = computed({
   get() {
-    return !!(
-      termsData.value?.rows.every((o: any) =>
-        checkedIdList.value.includes(o.id)
-      ) && is14YearsOldChecked.value
+    return !!termsData.value?.rows.every((o: any) =>
+      checkedIdList.value.includes(o.id)
     );
   },
   set(value: boolean) {
-    is14YearsOldChecked.value = value;
     checkedIdList.value = value
       ? termsData.value?.rows.map((o: any) => o.id) ?? []
       : [];
   },
 });
 
-const isSubmitAllowed = computed(
-  () =>
-    is14YearsOldChecked.value &&
-    termsData.value?.rows
-      .filter((o: any) => o.is_required)
-      .every((o: any) => checkedIdList.value.includes(o.id))
+const isSubmitAllowed = computed(() =>
+  termsData.value?.rows
+    .filter((o: any) => o.is_required)
+    .every((o: any) => checkedIdList.value.includes(o.id))
 );
 
 const onSubmit = () => {
-  // if (!joinData.value) return;
-  // joinData.value.terms_agreements = termsAgreementsList.value;
+  if (!joinData.value) return;
+  joinData.value.terms_agreements = termsAgreementsList.value;
   goToName('join-nickname');
 };
 
