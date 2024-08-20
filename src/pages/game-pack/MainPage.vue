@@ -66,7 +66,7 @@ const imgList = [
       <p class="text-[#767676] text-sm font-normal">
         CCF가 함께하고 지원하는 모든 프로젝트
       </p>
-      <div class="border-t-0 grid grid-col-3 gap-1.5 mt-6">
+      <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4">
         <intro-item-list />
       </div>
     </section>
