@@ -211,4 +211,8 @@ input::placeholder {
   border-radius: 15px;
 }
 
+hr {
+  border-top: none;
+}
+
 @import './tiptap.scss';

@@ -68,17 +68,19 @@ const imgList = [
     </c-carousel>
 
     <!-- 공군입대에 대해 궁금하다면 -->
-    <section class="mt-10 px-8">
+    <section class="mt-10 px-6">
       <p class="text-[22px] font-semibold">WHAT IS GAME PACK</p>
       <p class="text-[#767676] text-sm font-normal">
         CCF가 함께하고 지원하는 모든 프로젝트
       </p>
-      <div class="grid grid-col-3 gap-1.5 mt-4"></div>
+      <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4"></div>
     </section>
+
+    <hr class="h-2.5 bg-[#f7f7f7]" />
 
     <!-- 훈련병 관련사항 -->
     <section class="px-6 mt-10">
-      <h2 class="text-h3 px-1">훈련병 관련사항</h2>
+      <h2 class="text-[22px] font-semibold">CCF 추천게임</h2>
       <div class="grid grid-cols-3 gap-1.5 mt-4">
         <menu-card
           v-for="item in menuListForTrainee"
@@ -87,8 +89,10 @@ const imgList = [
           :title="item.title"
           :subtitle="item.subtitle"
           :icon="item.icon"
-          :on-click="item.onClick"
         />
+      </div>
+      <div>
+        <button>전체 목록 보기</button>
       </div>
     </section>
 
