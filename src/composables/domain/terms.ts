@@ -48,7 +48,7 @@ export const useTermsList = ({
   queryOption?: QueryOption;
   queryKeyName?: string;
 }) => {
-  return useQueryFetchList<TermsSearchResType, SearchRequest>({
+  return useQueryFetchList<any, SearchRequest>({
     url: API_URL,
     searchRequest,
     queryOption,

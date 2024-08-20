@@ -67,10 +67,9 @@ const onSubmit = () => {
 
 /** 상세 보기 */
 const detailEnabled = ref(false);
-const termsTypeCd = ref<Id>(undefined);
-const { data: detail } = useTermsTypeCdDetail(termsTypeCd);
-const openDetailDialog = async (cd: string) => {
-  termsTypeCd.value = cd;
+const detail = ref<{ title: string; content: string } | null>(null);
+const openDetailDialog = async (title: string, content: string) => {
+  detail.value = { title, content };
   detailEnabled.value = true;
 };
 </script>
@@ -102,20 +101,6 @@ const openDetailDialog = async (cd: string) => {
             </c-checkbox>
           </q-item-section>
         </q-item>
-        <q-item class="p-[0px_9px_0px_6px] rounded-md min-h-[40px] mt-[24px]">
-          <q-item-section
-            class="p-0 text-body2 font-pretendard font-normal text-[14px]"
-          >
-            <c-checkbox v-model="is14YearsOldChecked">
-              [필수] 회원 이용약관
-            </c-checkbox>
-          </q-item-section>
-          <q-item-section side>
-            <a href="#" class="text-body2 font-light underline">
-              <q-icon name="img:/icons/arrow.svg" size="20px" />
-            </a>
-          </q-item-section>
-        </q-item>
         <q-item
           class="p-[0px_9px_0px_6px] rounded-md min-h-[40px]"
           v-for="item in termsData?.rows"
@@ -133,7 +118,7 @@ const openDetailDialog = async (cd: string) => {
             <a
               href="#"
               class="text-body2 font-light underline"
-              @click.prevent="openDetailDialog(item.terms_type_cd)"
+              @click.prevent="openDetailDialog(item.title, item.content)"
             >
               <q-icon name="img:/icons/arrow.svg" size="20px" />
             </a>
@@ -162,7 +147,7 @@ const openDetailDialog = async (cd: string) => {
     <c-dialog-content
       v-model="detailEnabled"
       :title="detail?.title"
-      :text="detail?.contents"
+      :html="detail?.content"
     />
   </q-page>
 </template>
