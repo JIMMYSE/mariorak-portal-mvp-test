@@ -118,20 +118,14 @@ onMounted(() => {
         @slide-change="onSlideChange"
       >
         <swiper-slide v-for="avatar in avatarData?.avatars" :key="avatar.id">
-          <section class="h-full relative pb-2 flex justify-center">
+          <section class="h-full pb-2 flex justify-center relative">
             <div class="absolute bottom-0 flex justify-center w-full">
               <img src="/images/shadow.svg" alt="shadow" />
             </div>
-
+            <p class="absolute">{{ avatar.id }}</p>
             <q-img
-              v-if="avatar.profile_file?.content_type.includes('image')"
               :src="avatar.profile_file?.url ?? undefined"
-              height="359px"
-              fit="contain"
-            />
-            <q-video
-              v-else
-              :src="avatar.profile_file?.url ?? undefined"
+              alt="wr"
               height="359px"
               fit="contain"
             />
@@ -141,36 +135,42 @@ onMounted(() => {
     </section>
 
     <!-- THUMBNAIL LIST -->
-    <section
+
+    <q-scroll-area
       v-if="myAvatarIndex != null"
+      class="h-[230px] w-full"
       ref="thumbnailWrapper"
-      class="flex-1 w-full flex justify-center items-start gap-[17px] mt-[18px] px-6 py-5 bg-white"
     >
       <div
-        v-for="(avatar, i) in avatarData?.avatars"
-        :key="avatar.id"
-        ref="thumbnailList"
-        class="flex flex-col justify-center items-center"
-        :avatarId="avatar.id"
-        @click="onClickAvatarList(avatar.id, i)"
+        class="row no-wrap flex-1 flex justify-center items-start gap-[10px] mt-[18px] p-3 py-5 bg-white"
       >
         <div
-          class="w-[69px] h-[113px] flex justify-center items-center rounded-[5px]"
-          :class="
-            form.avatarId === avatar.id
-              ? 'border-[--q-primary] border-[2px] bg-white'
-              : 'bg-grey-1'
-          "
+          v-for="(avatar, i) in avatarData?.avatars"
+          :key="avatar.id"
+          ref="thumbnailList"
+          class="flex flex-col justify-center items-center"
+          :avatarId="avatar.id"
+          @click="onClickAvatarList(avatar.id, i)"
         >
-          <q-img
-            :src="avatar.square_file.thumbnail_url ?? undefined"
-            fit="contain"
-            width="30px"
-            height="90px"
-          />
+          <div
+            class="w-[69px] h-[69px] flex justify-center items-center rounded-[5px] relative"
+            :class="
+              form.avatarId === avatar.id
+                ? 'border-[--q-primary] border-[2px] bg-white'
+                : 'bg-grey-1'
+            "
+          >
+            <p class="absolute">{{ avatar.id }}</p>
+            <q-img
+              :src="avatar.square_file.thumbnail_url ?? undefined"
+              fit="contain"
+              width="30px"
+              height="90px"
+            />
+          </div>
         </div>
       </div>
-    </section>
+    </q-scroll-area>
 
     <section class="w-full fixed bottom-0 z-10 bg-white">
       <q-btn

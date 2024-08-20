@@ -1,6 +1,6 @@
 import { useCookies } from '@vueuse/integrations/useCookies';
 import { PortalLoginResponse, PortalRestrictUserRes } from 'meta-airforce-dto';
-import { EmailRegistration } from 'src/stores/join-store';
+import { EmailRegistration, SocialRegistration } from 'src/stores/join-store';
 import { wait } from 'src/utils/promise-util';
 import { MaybeRefOrGetter } from 'vue';
 import RequiredNoticeDialog from 'src/pages/auth/RequiredNoticeDialog.vue';
@@ -319,14 +319,14 @@ export const useAuthUnregister = () => {
 };
 
 /**
- * 회원 가입
+ * 소셜 회원 가입
  */
 
-export const registerUser = async (data: EmailRegistration) => {
+export const registerUser = async (data: SocialRegistration) => {
   type PortalLoginResponseType = InferType<typeof PortalLoginResponse>;
   const { data: responseData } = await useAxiosPost<
     PortalLoginResponseType,
-    EmailRegistration
+    SocialRegistration
   >({
     url: REGISTER_URL,
     data,

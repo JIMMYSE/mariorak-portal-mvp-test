@@ -4,15 +4,8 @@
 const joinStore = useJoinStore();
 const { joinData } = storeToRefs(joinStore);
 
-const onSubmit = async ({
-  nickname,
-  avatarId,
-}: {
-  nickname: string;
-  avatarId: number;
-}) => {
+const onSubmit = async ({ avatarId }: { avatarId: number }) => {
   if (!joinData.value) return;
-  joinData.value.nickname = nickname;
   joinData.value.avatar_id = avatarId;
 
   await registerUser(joinData.value);
