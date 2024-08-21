@@ -1,16 +1,19 @@
 <!-- 로그인 화면 -->
 
 <script setup lang="ts">
+import de from 'app/dist/spa/assets/JoinTerms.f83cbc3c';
 import { join } from 'path';
 import { SocialType } from 'src/types/util/code';
 import { GoogleLogin } from 'vue3-google-login';
 const joinStore = useJoinStore();
 const { joinData } = storeToRefs(joinStore);
+
+const isLocal = ref(process.env.IS_LOCAL !== undefined);
 onMounted(() => {
   joinStore.$init();
 });
 
-const { loginSocial, addEventListener } = useBridge();
+const { loginSocial, addEventListener, deviceType } = useBridge();
 
 const handleSocialLogin = (socialType: SocialType) => {
   console.log('socialLogin', socialType);
@@ -76,7 +79,7 @@ const socialLoginAPI = async (accessToken: string, provider: SocialType) => {
         </div>
       </q-card-section>
       <q-card-section class="q-gutter-md">
-        <GoogleLogin :callback="googleCallback" />
+        <GoogleLogin :callback="googleCallback" v-if="isLocal" />
         <q-card
           class="rounded-full flex py-4 px-5 items-center"
           flat
@@ -108,6 +111,7 @@ const socialLoginAPI = async (accessToken: string, provider: SocialType) => {
           </div>
         </q-card>
         <q-card
+          v-if="deviceType === 'iOS'"
           class="rounded-full flex py-4 px-5 items-center bg-grey-5"
           flat
           @click="handleSocialLogin('apple')"
