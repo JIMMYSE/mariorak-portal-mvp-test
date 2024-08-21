@@ -7,9 +7,6 @@ const { joinData } = storeToRefs(joinStore);
 const { request } = useSearchFilter({
   requestDefault: {
     filters: {
-      is_mandatory: {
-        eq: false,
-      },
       is_active: {
         eq: true,
       },
