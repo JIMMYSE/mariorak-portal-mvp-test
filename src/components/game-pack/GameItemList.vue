@@ -10,7 +10,13 @@ const thumbStyle = {
 };
 </script>
 <template>
-  <q-scroll-area>
-    <div class="row no-wrap"></div>
+  <q-scroll-area
+    style="height: 300px"
+    :bar-style="barStyle"
+    :thumb-style="thumbStyle"
+  >
+    <div class="row no-wrap">
+      <q-img src="/images/dummy/game_dummy.svg" width="100%" height="138px" />
+    </div>
   </q-scroll-area>
 </template>

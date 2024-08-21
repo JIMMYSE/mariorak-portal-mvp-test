@@ -77,14 +77,7 @@ const imgList = [
     <section class="px-6 mt-10">
       <h2 class="text-[22px] font-semibold">CCF 추천게임</h2>
       <div class="grid grid-cols-2 gap-1.5 mt-4">
-        <menu-card
-          v-for="item in menuListForTrainee"
-          :key="item.title"
-          :to="{ name: item.to }"
-          :title="item.title"
-          :subtitle="item.subtitle"
-          :icon="item.icon"
-        />
+        <game-item-list />
       </div>
       <div>
         <button>전체 목록 보기</button>
