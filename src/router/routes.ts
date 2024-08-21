@@ -1,4 +1,5 @@
 import { RouteRecordRaw } from 'vue-router';
+// layout
 import DefaultLayout from 'layouts/DefaultLayout.vue';
 import MainLayout from 'layouts/MainLayout.vue';
 import SubLayout from 'layouts/SubLayout.vue';
@@ -401,7 +402,7 @@ const routes: RouteRecordRaw[] = [
     path: '/join',
     name: 'join',
     meta: {
-      requiresNonAuth: false,
+      requiresNonAuth: true,
     },
     component: SubLayout,
     children: [
@@ -435,7 +436,7 @@ const routes: RouteRecordRaw[] = [
         meta: {
           title: '회원가입 완료',
           // requiresNonAuth: false,
-          // requiresAuth:false
+          // requiresAuth: true,
         },
         component: () => import('pages/auth/JoinCompleted.vue'),
       },

@@ -40,7 +40,7 @@ const enter = (title: string, space_id: number) => {
       break;
   }
 
-  enterRoom(space_id, spwan_id);
+  // enterRoom(space_id, spwan_id);
 };
 </script>
 

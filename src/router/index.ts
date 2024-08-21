@@ -61,12 +61,7 @@ export default route(function (/* { store, ssrContext } */) {
   Router.beforeEach((to, from: any) => {
     const { isLoggedIn } = useUserInfo();
     const { joinData } = storeToRefs(useJoinStore());
-    console.log('>>router isLoggedIn', isLoggedIn.value);
-    if (isLoggedIn.value) {
-      if (to.meta.requiresNonAuth) {
-        return { name: 'main' };
-      }
-    } else {
+    if (!isLoggedIn.value) {
       // 비로그인 상태에서 로그인이 필요한 페이지로 이동하려고 하면 로그인 페이지로 이동
       if (to.matched.some((record) => record.meta.requiresAuth)) {
         return { name: 'login', query: { next: to.fullPath } };
