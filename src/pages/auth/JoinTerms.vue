@@ -53,9 +53,9 @@ const isSubmitAllowed = computed(() =>
 
 const onSubmit = () => {
   if (!joinData.value) return;
-  joinData.value.policies = termsAgreementsList.value.filter(
-    (o: any) => o.is_agreed
-  );
+  joinData.value.policies = termsAgreementsList.value
+    .filter((o: any) => o.is_agreed)
+    .map((o: any) => o.terms_id);
   goToName('join-nickname');
 };
 
