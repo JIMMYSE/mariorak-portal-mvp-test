@@ -1,17 +1,5 @@
 <script setup lang="ts">
 const { user } = useUserInfo();
-
-const { data: avatarData } = useAvatarList();
-const avatarSrc = computed(() => {
-  return (
-    avatarData.value?.rows.find((o) => o.id === user.value?.avatar_id)
-      ?.profile_image.convert_addr ?? undefined
-  );
-});
-
-const openLoginFailed = () => {
-  useLoginFailedDialog();
-};
 </script>
 
 <template>
@@ -46,8 +34,6 @@ const openLoginFailed = () => {
         </p>
       </section>
     </div>
-
-    <button @click="openLoginFailed">ex. 로그인 실패 예시 팝업</button>
 
     <section class="w-full fixed bottom-0 z-10 bg-white">
       <q-btn

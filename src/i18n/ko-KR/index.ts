@@ -49,6 +49,7 @@ export default {
     notAllowed: '허용되지 않은 요청입니다.',
     notAcceptable: '허용되지 않는 요청입니다.',
   },
+
   auth: {
     login: {
       invalid: '아이디 또는 비밀번호를 다시 확인해 주세요.',
@@ -60,6 +61,7 @@ export default {
       required: '닉네임을 입력해주세요.',
       invalid: '닉네임 형식을 확인하세요.',
       alreadyInUse: '이미 사용중인 닉네임입니다.',
+      hasBadword: '타인에게 불쾌감을 줄 수 있는 단어입니다',
       success: '사용 가능한 닉네임입니다.',
     },
     email: {
@@ -113,8 +115,8 @@ export default {
     numeric: '숫자만 입력 가능합니다.',
     email: '이메일 형식을 확인하세요.',
     forbiddenWord: '타인에게 불쾌감을 줄 수 있는 단어입니다.',
-    nickname: '2~10자 한글, 영문, 숫자 입력 가능',
-    nicknameAlreadyInUse: '중복된 닉네임입니다.',
+    nickname: '한글, 영문, 숫자 사용 8자 이내가 아닙니다',
+    nicknameAlreadyInUse: '해당 닉네임은 이미 사용 중 입니다.',
     nicknameNotChanged: '닉네임을 변경해 주세요.',
   },
   metaverse: {

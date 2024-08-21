@@ -58,8 +58,10 @@ export default route(function (/* { store, ssrContext } */) {
     history: createHistory(process.env.VUE_ROUTER_BASE),
   });
 
-  Router.beforeEach((to) => {
+  Router.beforeEach((to, from: any) => {
     const { isLoggedIn } = useUserInfo();
+    const { joinData } = storeToRefs(useJoinStore());
+    console.log('>>router isLoggedIn', isLoggedIn.value);
     if (isLoggedIn.value) {
       if (to.meta.requiresNonAuth) {
         return { name: 'main' };
@@ -69,6 +71,11 @@ export default route(function (/* { store, ssrContext } */) {
       if (to.matched.some((record) => record.meta.requiresAuth)) {
         return { name: 'login', query: { next: to.fullPath } };
       }
+    }
+
+    if (to.name?.toString().includes('join')) {
+      console.log('>>>to.nameHasJoin');
+      if (!joinData.value) return { name: from.name };
     }
   });
   // ...

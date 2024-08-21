@@ -2,31 +2,21 @@
  * 회원가입 관련 store
  */
 
-export interface EmailRegistration {
-  email: string | null;
-  password: string | null;
-  terms_agreements: {
-    terms_id: number;
-    is_agreed: boolean;
-  }[];
-  nickname: string | null;
-  avatar_id: number | null;
-  signup_type_cd: string | null;
-}
+import { SocialRegistration } from 'src/types/auth/signin-model';
 
 export const useJoinStore = defineStore(
   'join',
   () => {
-    const joinData = ref<EmailRegistration | undefined>(undefined);
+    const joinData = ref<SocialRegistration | undefined>(undefined);
 
     const $init = () => {
       joinData.value = {
-        email: null,
-        password: null,
-        terms_agreements: [],
-        nickname: null,
+        access_token: null,
+        social_type: null,
+        policies: [],
         avatar_id: null,
-        signup_type_cd: 'L',
+        nickname: null,
+        agent: null,
       };
     };
 

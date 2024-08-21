@@ -1,14 +1,11 @@
 import { useCookies } from '@vueuse/integrations/useCookies';
 import { PortalLoginResponse, PortalRestrictUserRes } from 'meta-airforce-dto';
-import { EmailRegistration } from 'src/stores/join-store';
+import { SocialRegistration } from 'src/types/auth/signin-model';
 import { wait } from 'src/utils/promise-util';
-import { MaybeRefOrGetter } from 'vue';
 import RequiredNoticeDialog from 'src/pages/auth/RequiredNoticeDialog.vue';
-import { LoginReqType, OauthReqType } from 'src/types/auth/auth-model';
+import { OauthReqType } from 'src/types/auth/auth-model';
 import { SocialType } from 'src/types/util/code';
 import LoginFailedDialog from 'src/components/auth/LoginFailedDialog.vue';
-import { access } from 'fs';
-import { Q } from 'app/dist/spa/assets/QList.d16a180e';
 
 const ACCESS_TOKEN_KEY = process.env.ACCESS_TOKEN_KEY as string;
 const TOKEN_EXPIRE_DAYS = Number(process.env.TOKEN_EXPIRE_DAYS as string);
@@ -18,7 +15,7 @@ const LOGIN_URL = '/auth/login';
 const LOGOUT_URL = '/auth/logout';
 
 const UNREGISTER_URL = '/auth/unregister';
-const REGISTER_URL = '/auth/register';
+const REGISTER_URL = '/v1/auth/register/social';
 
 type PortalLoginResponseType = InferType<typeof PortalLoginResponse>;
 
@@ -64,7 +61,11 @@ export const useLogin = () => {
     const hasToJoined = computed<boolean>(() => {
       return !!(
         // 0000: 로그인 성공
-        (data.code === '0000' && !data.data.social_profile.is_joined)
+        (
+          data.code === '0000' &&
+          !data.data.social_profile?.is_joined &&
+          !isLogined.value
+        )
       );
     });
 
@@ -125,7 +126,10 @@ export const initUserDetailInfo = async (id: Id) => {
       setUserInfo(user);
     }
   } catch (error) {
-    console.error('#### 사용자 정보 조회 실패 ####');
+    // console.error('#### 사용자 정보 조회 실패 ####');
+    // TODO 임시 정보
+    alert('>>>>>>>>>> 더미 사용자 정보 입력');
+    setUserInfo(dummyUser);
   }
 };
 
@@ -319,14 +323,17 @@ export const useAuthUnregister = () => {
 };
 
 /**
- * 회원 가입
+ * 소셜 회원 가입
  */
 
-export const registerUser = async (data: EmailRegistration) => {
+// TODO type 오류 잡기 (any=>SocialRegistration)
+export const registerUser = async (data: any) => {
+  data.agent = agentInfo?.value ?? dummyAgentInfo;
+
   type PortalLoginResponseType = InferType<typeof PortalLoginResponse>;
   const { data: responseData } = await useAxiosPost<
     PortalLoginResponseType,
-    EmailRegistration
+    SocialRegistration
   >({
     url: REGISTER_URL,
     data,
@@ -336,11 +343,8 @@ export const registerUser = async (data: EmailRegistration) => {
     responseData.value?.code === '0000' &&
     responseData.value?.data?.token?.length
   ) {
-    // await saveLoginUser({
-    //   token: responseData.value.data.token,
-    //   user: responseData.value.data.user,
-    // });
-  }
+    await saveLoginUser(responseData.value.data);
+  } else useLoginFailedDialog();
 };
 
 /**
@@ -366,4 +370,42 @@ export const useLoginFailedDialog = () => {
       },
     ],
   });
+};
+
+/**
+ * dummy) 유저 정보
+ *
+ */
+
+const dummyUser: User = {
+  mobile: '123-456-7890', // 실제 문자열 값
+  last_login_at: new Date('2023-08-20T12:00:00Z'), // 실제 날짜 값
+  id: 1,
+  email: 'user@example.com',
+  created_at: new Date('2023-01-01T10:00:00Z'),
+  updated_at: new Date('2023-08-20T12:00:00Z'),
+  nickname: 'Traveler1234',
+  signup_type_cd: 'email',
+  avatar: {
+    id: 101,
+    name: 'Default Avatar',
+    profile_image: {
+      convert_addr: 'https://example.com/profile/convert.jpg',
+      id: 201,
+      file_name: 'profile.jpg',
+      origin_addr: 'https://example.com/profile/original.jpg',
+    },
+    circle_image: {
+      convert_addr: 'https://example.com/circle/convert.jpg',
+      id: 202,
+      file_name: 'circle.jpg',
+      origin_addr: 'https://example.com/circle/original.jpg',
+    },
+    square_image: {
+      convert_addr: 'https://example.com/square/convert.jpg',
+      id: 203,
+      file_name: 'square.jpg',
+      origin_addr: 'https://example.com/square/original.jpg',
+    },
+  },
 };

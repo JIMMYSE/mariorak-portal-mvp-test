@@ -9,7 +9,7 @@ import { MaybeRef, MaybeRefOrGetter } from 'vue';
  * 약관
  */
 
-const API_URL = '/terms';
+const API_URL = '/v2/policies';
 const QUERY_KEY = {
   LIST: 'TERMS_LIST',
   DETAIL: 'TERMS_DETAIL',
@@ -48,7 +48,7 @@ export const useTermsList = ({
   queryOption?: QueryOption;
   queryKeyName?: string;
 }) => {
-  return useQueryFetchList<TermsSearchResType, SearchRequest>({
+  return useQueryFetchList<any, SearchRequest>({
     url: API_URL,
     searchRequest,
     queryOption,

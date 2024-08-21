@@ -1,30 +1,26 @@
 <!-- 회원가입 -->
 
 <script lang="ts" setup>
-import { NicknameForm, NicknameSchema } from 'src/types/auth/auth-model';
+import { NicknameJoinForm } from 'src/types/auth/auth-model';
+const joinStore = useJoinStore();
+const { joinData } = storeToRefs(joinStore);
 
 const { isLoggedIn } = useUserInfo();
 watch(isLoggedIn, (b) => {
   if (b) goToName('main');
 });
 
-// const joinStore = useJoinStore();
-// const { joinData } = storeToRefs(joinStore);
-// const { encodeByAES256 } = useCryptoJS();
-
 const {
   meta,
-  errors,
-  errorBag,
   values: form,
   handleSubmit,
-} = useForm<NicknameForm>({
-  validationSchema: toTypedSchema(NicknameSchema),
+} = useForm<NicknameJoinForm>({
+  validationSchema: toTypedSchema(NicknameJoinSchema),
 });
 
 const onSubmit = handleSubmit(() => {
-  // joinStore.$init();
-  // if (!joinData.value) return;
+  if (!joinData.value) return;
+  joinData.value.nickname = form.nickname;
   goToName('join-avatar');
 });
 </script>
@@ -43,6 +39,7 @@ const onSubmit = handleSubmit(() => {
           placeholder="닉네임을 입력해 주세요"
           :maxlength="10"
           autofocus
+          check-badwords
         />
       </c-field>
     </form>

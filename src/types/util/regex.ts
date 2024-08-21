@@ -13,9 +13,9 @@ export const REGEXP_TRAINEE_NAME = /^[가-힣]{2,19}$/;
 
 /**
  * 닉네임 정규식
- * @description 영문, 한글, 숫자 조합. 2자 이상, 10자 이하.
+ * @description 영문, 한글, 숫자 조합. 2자 이상, 8자 이하.
  */
-export const REGEXP_NICKNAME = /^[a-zA-Z가-힣0-9]{2,10}$/;
+export const REGEXP_NICKNAME = /^[a-zA-Z가-힣0-9]{1,8}$/;
 
 /**
  * 이메일 정규식

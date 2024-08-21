@@ -8,13 +8,15 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import { goToName } from 'src/router/router-util';
 
 type Props = {
-  initialNickname: string;
   initialAvatarId: number;
 };
 
-const props = withDefaults(defineProps<Props>(), {
-  initialNickname: '',
-  initialAvatarId: 1,
+const props = defineProps({
+  initialAvatarId: {
+    type: Number,
+    required: false,
+    default: 1,
+  },
 });
 
 const { data: avatarData } = useAvatarList();
@@ -24,35 +26,17 @@ const emit = defineEmits(['onSubmit']);
 const {
   meta,
   values: form,
-  errors,
   setFieldValue,
-  handleSubmit,
   resetForm,
 } = useForm({
-  validationSchema: toTypedSchema(NicknameAndAvatarFormSchema),
-  // initialValues: {
-  //   nickname: props.initialNickname,
-  //   avatarId: props.initialAvatarId,
-  // },
+  validationSchema: toTypedSchema(AvatarFormSchema),
+  initialValues: {
+    avatarId: props.initialAvatarId,
+  },
 });
 
-const {
-  value: nickname,
-  meta: nicknameMeta,
-  errorMessage: nicknameErrorMessage,
-} = useField<string>('nickname');
-
 const save = () => {
-  // emit('onSubmit', { nickname: form.nickname, avatarId: form.avatarId }, () => {
-  //   resetForm({
-  //     values: {
-  //       nickname: form.nickname,
-  //       avatarId: form.avatarId,
-  //     },
-  //   });
-  // });
-
-  goToName('join-completed');
+  emit('onSubmit', form.avatarId);
 };
 
 // ================================
@@ -93,22 +77,13 @@ const scrollThumbnailOn = () => {
 };
 
 const myAvatarIndex = computed(() => {
-  return avatarData.value?.rows.findIndex(
-    (avatar) => avatar.id === form.avatarId
+  return avatarData.value?.avatars.findIndex(
+    (avatar: any) => avatar.id === form.avatarId
   );
 });
 
 onMounted(() => {
   scrollThumbnailOn();
-});
-
-const inputDoneIcon = computed(() => {
-  return (
-    'img:/icons/' +
-    (!errors.value?.nickname && nickname.value && nickname.value.length > 2
-      ? 'btn_change_check_a.svg'
-      : 'btn_change_check_d.svg')
-  );
 });
 </script>
 
@@ -134,13 +109,15 @@ const inputDoneIcon = computed(() => {
         @swiper="setSwiperRef"
         @slide-change="onSlideChange"
       >
-        <swiper-slide v-for="avatar in avatarData?.rows" :key="avatar.id">
-          <section class="h-full relative pb-2 flex justify-center">
+        <swiper-slide v-for="avatar in avatarData?.avatars" :key="avatar.id">
+          <section class="h-full pb-2 flex justify-center relative">
             <div class="absolute bottom-0 flex justify-center w-full">
               <img src="/images/shadow.svg" alt="shadow" />
             </div>
+            <p class="absolute">{{ avatar.id }}</p>
             <q-img
-              :src="avatar.profile_image.convert_addr ?? undefined"
+              :src="avatar.profile_file?.url ?? undefined"
+              alt="wr"
               height="359px"
               fit="contain"
             />
@@ -150,36 +127,42 @@ const inputDoneIcon = computed(() => {
     </section>
 
     <!-- THUMBNAIL LIST -->
-    <section
+
+    <q-scroll-area
       v-if="myAvatarIndex != null"
+      class="h-[230px] w-full"
       ref="thumbnailWrapper"
-      class="flex-1 w-full flex justify-center items-start gap-[17px] mt-[18px] px-6 py-5 bg-white"
     >
       <div
-        v-for="(avatar, i) in avatarData?.rows"
-        :key="avatar.id"
-        ref="thumbnailList"
-        class="flex flex-col justify-center items-center"
-        :avatarId="avatar.id"
-        @click="onClickAvatarList(avatar.id, i)"
+        class="row no-wrap flex-1 flex justify-center items-start gap-[10px] mt-[18px] p-3 py-5 bg-white"
       >
         <div
-          class="w-[69px] h-[113px] flex justify-center items-center rounded-[5px]"
-          :class="
-            form.avatarId === avatar.id
-              ? 'border-[--q-primary] border-[2px] bg-white'
-              : 'bg-grey-1'
-          "
+          v-for="(avatar, i) in avatarData?.avatars"
+          :key="avatar.id"
+          ref="thumbnailList"
+          class="flex flex-col justify-center items-center"
+          :avatarId="avatar.id"
+          @click="onClickAvatarList(avatar.id, i)"
         >
-          <q-img
-            :src="avatar.profile_image.convert_addr ?? undefined"
-            fit="contain"
-            width="30px"
-            height="90px"
-          />
+          <div
+            class="w-[69px] h-[69px] flex justify-center items-center rounded-[5px] relative"
+            :class="
+              form.avatarId === avatar.id
+                ? 'border-[--q-primary] border-[2px] bg-white'
+                : 'bg-grey-1'
+            "
+          >
+            <p class="absolute">{{ avatar.id }}</p>
+            <q-img
+              :src="avatar.square_file.thumbnail_url ?? undefined"
+              fit="contain"
+              width="30px"
+              height="90px"
+            />
+          </div>
         </div>
       </div>
-    </section>
+    </q-scroll-area>
 
     <section class="w-full fixed bottom-0 z-10 bg-white">
       <q-btn
@@ -195,12 +178,6 @@ const inputDoneIcon = computed(() => {
 </template>
 
 <style scoped lang="scss">
-.nickname-input {
-  :deep(.q-field__control) {
-    padding-right: 6px;
-  }
-}
-
 .is-active {
   border: solid 2px $primary;
   background: white !important;

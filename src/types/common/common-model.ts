@@ -27,14 +27,15 @@ export interface Menu {
 }
 
 //d
+
 export const DeviceAgent = object({
-  fcm_token: string().nullable(),
+  fcm_token: string().nullable().optional(),
   platform: object({
-    os: string(),
-    device_id: string(),
-    app_version: string(),
-    device_model: string(),
-  }),
-  os: string(),
-  sdk_version: string(),
+    os: string().optional(),
+    device_id: string().optional(),
+    app_version: string().optional(),
+    device_model: string().optional(),
+  }).optional(),
+  os: string().optional(),
+  sdk_version: string().optional(),
 });

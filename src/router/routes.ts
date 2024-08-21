@@ -12,7 +12,7 @@ const routes: RouteRecordRaw[] = [
         path: '/home',
         name: 'home',
         meta: {
-          requiresAuth: false,
+          requiresAuth: true,
         },
         component: MainLayout,
         children: [
@@ -27,7 +27,7 @@ const routes: RouteRecordRaw[] = [
         path: 'notice',
         redirect: { name: 'notice-list' },
         meta: {
-          requiresAuth: false,
+          requiresAuth: true,
         },
         component: SubLayout,
         children: [
@@ -55,7 +55,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'profile',
         meta: {
-          requiresAuth: false,
+          requiresAuth: true,
         },
         component: SubLayout,
         children: [
@@ -73,7 +73,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'enrollment',
         meta: {
-          requiresAuth: false,
+          requiresAuth: true,
         },
         component: SubLayout,
         children: [
@@ -153,7 +153,7 @@ const routes: RouteRecordRaw[] = [
         path: 'trainee',
         name: 'trainee',
         meta: {
-          requiresAuth: false,
+          requiresAuth: true,
         },
         component: SubLayout,
         children: [
@@ -268,7 +268,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/event',
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
     component: SubLayout,
     children: [
@@ -294,7 +294,7 @@ const routes: RouteRecordRaw[] = [
     path: '/shortcut',
     name: 'shortcut',
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
     component: SubLayout,
     children: [
@@ -312,7 +312,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/setting',
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
     component: SubLayout,
     children: [
@@ -401,7 +401,7 @@ const routes: RouteRecordRaw[] = [
     path: '/join',
     name: 'join',
     meta: {
-      requiresNonAuth: true,
+      requiresNonAuth: false,
     },
     component: SubLayout,
     children: [
@@ -445,7 +445,7 @@ const routes: RouteRecordRaw[] = [
     path: '/terms',
     component: SubLayout,
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
     children: [
       {
