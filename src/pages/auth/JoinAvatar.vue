@@ -10,8 +10,6 @@ const onSubmit = async (avatarId: number) => {
 
   await registerUser(joinData.value);
 
-  joinStore.$reset();
-
   goTo({ name: 'join-completed', replace: true });
 };
 </script>
