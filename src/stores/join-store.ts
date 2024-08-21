@@ -10,7 +10,14 @@ export const useJoinStore = defineStore(
     const joinData = ref<SocialRegistration | undefined>(undefined);
 
     const $init = () => {
-      joinData.value = undefined;
+      joinData.value = {
+        access_token: null,
+        social_type: null,
+        policies: [],
+        avatar_id: null,
+        nickname: null,
+        agent: null,
+      };
     };
 
     const $reset = () => {

@@ -11,7 +11,7 @@ const { joinData } = storeToRefs(joinStore);
 
 const isLocal = ref(process.env.IS_LOCAL !== undefined);
 onMounted(() => {
-  joinStore.$init();
+  joinStore.$reset();
 });
 
 const { loginSocial, addEventListener, deviceType } = useBridge();
@@ -47,8 +47,14 @@ const googleCallback = (response: any) => {
 
 const socialLoginAPI = async (accessToken: string, provider: SocialType) => {
   const { isLogined, hasToJoined } = await socialLogin(accessToken, provider);
+  console.log(
+    '>>>LoginPage isLogined hasToJoined',
+    isLogined.value,
+    hasToJoined.value
+  );
   if (hasToJoined.value) {
     // 회원가입이 필요한 경우
+    joinStore.$init();
     if (!joinData.value) return;
     joinData.value.access_token = accessToken;
     joinData.value.social_type = provider;
