@@ -36,6 +36,6 @@ const isInitiated = computed(() => {
     FE version: {{ version }} / BE version: {{ BEversion }}
   </div>
 
-  <router-view v-if="isLoggedIn" />
+  <router-view />
   <VueQueryDevtools v-if="showVueQueryDevTool" />
 </template>

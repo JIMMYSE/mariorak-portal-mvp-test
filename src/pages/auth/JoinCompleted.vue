@@ -1,5 +1,8 @@
 <script setup lang="ts">
 const { user } = useUserInfo();
+const joinStore = useJoinStore();
+
+joinStore.$reset();
 </script>
 
 <template>

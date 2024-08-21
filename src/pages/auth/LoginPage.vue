@@ -4,6 +4,7 @@
 import de from 'app/dist/spa/assets/JoinTerms.f83cbc3c';
 import { join } from 'path';
 import { is } from 'quasar';
+import { DeviceEvent } from 'src/composables/useBridge';
 import { SocialType } from 'src/types/util/code';
 import { GoogleLogin } from 'vue3-google-login';
 const joinStore = useJoinStore();
@@ -16,6 +17,7 @@ onMounted(() => {
 
 const { loginSocial, addEventListener, deviceType } = useBridge();
 
+const route = useRoute();
 const handleSocialLogin = (socialType: SocialType) => {
   console.log('socialLogin', socialType);
   // 1. Call Bridge API first
@@ -25,11 +27,16 @@ const handleSocialLogin = (socialType: SocialType) => {
 
 // add event listener for login_social event
 const { socialLogin } = useLogin();
-const removeEventListener = addEventListener('login_social', (data) => {
-  const { access_token, provider } = data.detail ?? {};
-  if (access_token) socialLoginAPI(access_token, provider);
-  else useLoginFailedDialog();
-});
+const removeEventListener = addEventListener(
+  'login_social',
+  (data: DeviceEvent) => {
+    const { access_token, provider } = data.detail ?? {};
+
+    console.log('>>>>네이티브로부터 받은값:', access_token, provider);
+    if (access_token) socialLoginAPI(access_token, provider);
+    else useLoginFailedDialog();
+  }
+);
 // remove event listener when component is unmounted
 onBeforeUnmount(() => removeEventListener());
 

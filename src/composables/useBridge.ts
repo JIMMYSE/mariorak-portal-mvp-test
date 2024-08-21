@@ -80,6 +80,7 @@ export const useBridge = () => {
   }
 
   function onDeviceEvent(payload: string) {
+    console.log('onDeviceEvent:: ', payload);
     try {
       //  안드로이드에서 오브젝트를 보내는 에러가 확인되어 분기처리함
       //  [object Object]" is not valid JSON
@@ -95,7 +96,7 @@ export const useBridge = () => {
         // 안드로이드에서 history.back() 을 호출하지 않는다.
         if (ev.type === 'back_button_pressed') {
           return eventListeners[ev.type].length > 0;
-        }
+        } else if (ev.type == 'login_social') return ev.detail;
       }
     } catch (error) {
       log('ERR: onDeviceEvent', error);
@@ -200,7 +201,7 @@ export const useBridge = () => {
     notifyLogoutFin() {
       log('notifyLogoutFin');
     },
-    loginSocial(loginType: string) {
+    loginSocial(loginType: string, backUrl: string) {
       log('loginSocial', loginType);
     },
     disconnectSocial() {
@@ -308,11 +309,19 @@ export const useBridge = () => {
        * @param backUrl - 소셜로그인 취소 후 실행할 url
        */
 
-      loginSocial(loginType: string) {
-        log('oauthLogin with ', loginType);
+      loginSocial(loginType: string, backUrl: string) {
+        const callbackUrl = window.location.origin + '/oauth/' + loginType;
+        log(
+          'oauthLogin with ',
+          loginType,
+          'callbackUrl',
+          callbackUrl,
+          'backUrl',
+          backUrl
+        );
 
         try {
-          JSOUT.loginSocial(loginType, '', '');
+          JSOUT.loginSocial(loginType, callbackUrl, backUrl);
         } catch (e) {
           error(e);
         }
