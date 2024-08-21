@@ -23,6 +23,12 @@ export function handleAxiosError(error: any, router: Router): void {
       );
       return;
     }
+    if (['1012'].includes(error.response?.data?.code)) {
+      useAlertDialogThrottle({
+        text: error.response.data.message ?? 'error.occured',
+      });
+      return;
+    }
 
     if (error.response?.data?.code === '1002') {
       useAlertDialog({
