@@ -1,9 +1,5 @@
 <script setup lang="ts">
 const { user } = useUserInfo();
-
-const openLoginFailed = () => {
-  useLoginFailedDialog();
-};
 </script>
 
 <template>
@@ -38,8 +34,6 @@ const openLoginFailed = () => {
         </p>
       </section>
     </div>
-
-    <button @click="openLoginFailed">ex. 로그인 실패 예시 팝업</button>
 
     <section class="w-full fixed bottom-0 z-10 bg-white">
       <q-btn

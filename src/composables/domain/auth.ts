@@ -341,7 +341,7 @@ export const registerUser = async (data: any) => {
     responseData.value?.data?.token?.length
   ) {
     await saveLoginUser(responseData.value.data);
-  }
+  } else useLoginFailedDialog();
 };
 
 /**
