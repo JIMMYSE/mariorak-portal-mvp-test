@@ -61,7 +61,11 @@ export const useLogin = () => {
     const hasToJoined = computed<boolean>(() => {
       return !!(
         // 0000: 로그인 성공
-        (data.code === '0000' && !data.data.social_profile?.is_joined)
+        (
+          data.code === '0000' &&
+          !data.data.social_profile?.is_joined &&
+          !isLogined.value
+        )
       );
     });
 
@@ -74,7 +78,7 @@ export const useLogin = () => {
 
       if (result && isLogined.value) {
         loginData.value = result;
-        // await saveLoginUser(result);
+        await saveLoginUser(result);
       }
     }
 
@@ -336,11 +340,7 @@ export const registerUser = async (data: any) => {
     responseData.value?.code === '0000' &&
     responseData.value?.data?.token?.length
   ) {
-    alert(`회원가입이 완료되었습니다. ${responseData.value.data.token}`);
-    // await saveLoginUser({
-    //   token: responseData.value.data.token,
-    //   user: responseData.value.data.user,
-    // });
+    await saveLoginUser(responseData.value.data);
   }
 };
 

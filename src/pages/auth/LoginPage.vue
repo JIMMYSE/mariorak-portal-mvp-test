@@ -43,7 +43,6 @@ const googleCallback = (response: any) => {
 
 const socialLoginAPI = async (accessToken: string, provider: SocialType) => {
   const { isLogined, hasToJoined } = await socialLogin(accessToken, provider);
-  console.log('>>>', isLogined.value, hasToJoined.value);
   if (hasToJoined.value) {
     // 회원가입이 필요한 경우
     if (!joinData.value) return;
