@@ -126,7 +126,10 @@ export const initUserDetailInfo = async (id: Id) => {
       setUserInfo(user);
     }
   } catch (error) {
-    console.error('#### 사용자 정보 조회 실패 ####');
+    // console.error('#### 사용자 정보 조회 실패 ####');
+    // TODO 임시 정보
+    alert('>>>>>>>>>> 더미 사용자 정보 입력');
+    setUserInfo(dummyUser);
   }
 };
 
@@ -367,4 +370,42 @@ export const useLoginFailedDialog = () => {
       },
     ],
   });
+};
+
+/**
+ * dummy) 유저 정보
+ *
+ */
+
+const dummyUser: User = {
+  mobile: '123-456-7890', // 실제 문자열 값
+  last_login_at: new Date('2023-08-20T12:00:00Z'), // 실제 날짜 값
+  id: 1,
+  email: 'user@example.com',
+  created_at: new Date('2023-01-01T10:00:00Z'),
+  updated_at: new Date('2023-08-20T12:00:00Z'),
+  nickname: 'Traveler1234',
+  signup_type_cd: 'email',
+  avatar: {
+    id: 101,
+    name: 'Default Avatar',
+    profile_image: {
+      convert_addr: 'https://example.com/profile/convert.jpg',
+      id: 201,
+      file_name: 'profile.jpg',
+      origin_addr: 'https://example.com/profile/original.jpg',
+    },
+    circle_image: {
+      convert_addr: 'https://example.com/circle/convert.jpg',
+      id: 202,
+      file_name: 'circle.jpg',
+      origin_addr: 'https://example.com/circle/original.jpg',
+    },
+    square_image: {
+      convert_addr: 'https://example.com/square/convert.jpg',
+      id: 203,
+      file_name: 'square.jpg',
+      origin_addr: 'https://example.com/square/original.jpg',
+    },
+  },
 };

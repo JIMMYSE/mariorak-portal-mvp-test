@@ -61,6 +61,7 @@ export default route(function (/* { store, ssrContext } */) {
   Router.beforeEach((to, from: any) => {
     const { isLoggedIn } = useUserInfo();
     const { joinData } = storeToRefs(useJoinStore());
+    console.log('>>router isLoggedIn', isLoggedIn.value);
     if (isLoggedIn.value) {
       if (to.meta.requiresNonAuth) {
         return { name: 'main' };
@@ -73,6 +74,7 @@ export default route(function (/* { store, ssrContext } */) {
     }
 
     if (to.name?.toString().includes('join')) {
+      console.log('>>>to.nameHasJoin');
       if (!joinData.value) return { name: from.name };
     }
   });

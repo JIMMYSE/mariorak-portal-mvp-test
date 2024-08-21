@@ -3,6 +3,7 @@
 <script setup lang="ts">
 import de from 'app/dist/spa/assets/JoinTerms.f83cbc3c';
 import { join } from 'path';
+import { is } from 'quasar';
 import { SocialType } from 'src/types/util/code';
 import { GoogleLogin } from 'vue3-google-login';
 const joinStore = useJoinStore();
@@ -60,6 +61,7 @@ const socialLoginAPI = async (accessToken: string, provider: SocialType) => {
     });
   } else {
     // 로그인 성공
+    console.log('>>> 로그인 성공');
     goToName('main');
   }
 };
