@@ -60,3 +60,36 @@ export const JoinFormSchema = object().shape({
     .oneOf([ref('passwordInput')], t('auth.passwordConfirm.invalid'))
     .default(''),
 });
+
+export interface EmailRegistration {
+  email: string | null;
+  password: string | null;
+  terms_agreements: {
+    terms_id: number;
+    is_agreed: boolean;
+  }[];
+  nickname: string | null;
+  avatar_id: number | null;
+  signup_type_cd: string | null;
+}
+export type SocialRegistration = {
+  access_token: string | null;
+  social_type: string | null;
+  policies: number[];
+  avatar_id: number | null;
+  nickname: string | null;
+  agent:
+    | {
+        fcm_token: string | null | undefined;
+        platform: {
+          os: string | null | undefined;
+          device_id: string | null | undefined;
+          app_version: string | null | undefined;
+          device_model: string | null | undefined;
+        };
+        os: string | null | undefined;
+        sdk_version: string;
+      }
+    | null
+    | undefined;
+};

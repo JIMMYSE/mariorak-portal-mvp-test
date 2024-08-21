@@ -58,17 +58,19 @@ export default route(function (/* { store, ssrContext } */) {
     history: createHistory(process.env.VUE_ROUTER_BASE),
   });
 
-  Router.beforeEach((to) => {
+  Router.beforeEach((to, from: any) => {
     const { isLoggedIn } = useUserInfo();
-    if (isLoggedIn.value) {
-      if (to.meta.requiresNonAuth) {
-        return { name: 'main' };
-      }
-    } else {
+    const { joinData } = storeToRefs(useJoinStore());
+    if (!isLoggedIn.value) {
       // 비로그인 상태에서 로그인이 필요한 페이지로 이동하려고 하면 로그인 페이지로 이동
       if (to.matched.some((record) => record.meta.requiresAuth)) {
         return { name: 'login', query: { next: to.fullPath } };
       }
+    }
+
+    if (to.name?.toString().includes('join')) {
+      console.log('>>>to.nameHasJoin');
+      if (!joinData.value) return { name: from.name };
     }
   });
   // ...

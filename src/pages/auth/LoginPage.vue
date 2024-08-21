@@ -1,30 +1,20 @@
 <!-- 로그인 화면 -->
 
 <script setup lang="ts">
+import de from 'app/dist/spa/assets/JoinTerms.f83cbc3c';
+import { join } from 'path';
+import { is } from 'quasar';
 import { SocialType } from 'src/types/util/code';
 import { GoogleLogin } from 'vue3-google-login';
+const joinStore = useJoinStore();
+const { joinData } = storeToRefs(joinStore);
 
-function handleLoginResult({
-  isWithdrawing,
-  isSuccess,
-  hasToJoined,
-}: {
-  isWithdrawing: boolean;
-  isSuccess: boolean;
-  hasToJoined: boolean;
-}) {
-  if (hasToJoined) {
-    goToName('join-terms');
-  } else if (isWithdrawing) {
-    useAlertDialog({
-      text: 'auth.withdrawal.text',
-    });
-  } else if (isSuccess) {
-    goToName('main');
-  }
-}
+const isLocal = ref(process.env.IS_LOCAL !== undefined);
+onMounted(() => {
+  joinStore.$reset();
+});
 
-const { loginSocial, addEventListener } = useBridge();
+const { loginSocial, addEventListener, deviceType } = useBridge();
 
 const handleSocialLogin = (socialType: SocialType) => {
   console.log('socialLogin', socialType);
@@ -37,15 +27,8 @@ const handleSocialLogin = (socialType: SocialType) => {
 const { socialLogin } = useLogin();
 const removeEventListener = addEventListener('login_social', (data) => {
   const { access_token, provider } = data.detail ?? {};
-  console.log(
-    '**login_social result**\n',
-    '- access_token',
-    access_token,
-    '- provider:',
-    provider
-  );
-
-  socialLoginAPI(access_token, provider);
+  if (access_token) socialLoginAPI(access_token, provider);
+  else useLoginFailedDialog();
 });
 // remove event listener when component is unmounted
 onBeforeUnmount(() => removeEventListener());
@@ -57,12 +40,29 @@ const googleCallback = (response: any) => {
 
 const socialLoginAPI = async (accessToken: string, provider: SocialType) => {
   const { isLogined, hasToJoined } = await socialLogin(accessToken, provider);
+  console.log(
+    '>>>LoginPage isLogined hasToJoined',
+    isLogined.value,
+    hasToJoined.value
+  );
+  if (hasToJoined.value) {
+    // 회원가입이 필요한 경우
+    joinStore.$init();
+    if (!joinData.value) return;
+    joinData.value.access_token = accessToken;
+    joinData.value.social_type = provider;
 
-  handleLoginResult({
-    isWithdrawing: !isLogined,
-    isSuccess: isLogined.value,
-    hasToJoined: hasToJoined.value,
-  });
+    goToName('join-terms');
+  } else if (!isLogined.value) {
+    // 회원탈퇴한 경우
+    useAlertDialog({
+      text: 'auth.withdrawal.text',
+    });
+  } else {
+    // 로그인 성공
+    console.log('>>> 로그인 성공');
+    goToName('main');
+  }
 };
 </script>
 
@@ -80,7 +80,7 @@ const socialLoginAPI = async (accessToken: string, provider: SocialType) => {
         </div>
       </q-card-section>
       <q-card-section class="q-gutter-md">
-        <GoogleLogin :callback="googleCallback" />
+        <GoogleLogin :callback="googleCallback" v-if="isLocal" />
         <q-card
           class="rounded-full flex py-4 px-5 items-center"
           flat
@@ -112,6 +112,7 @@ const socialLoginAPI = async (accessToken: string, provider: SocialType) => {
           </div>
         </q-card>
         <q-card
+          v-if="deviceType === 'iOS'"
           class="rounded-full flex py-4 px-5 items-center bg-grey-5"
           flat
           @click="handleSocialLogin('apple')"

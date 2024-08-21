@@ -3,6 +3,8 @@ import { VueQueryDevtools } from '@tanstack/vue-query-devtools';
 import { version } from '../package.json';
 
 useAppRouter();
+const { fetchBadwords } = useBadwords();
+
 const isCommonCodeInitiated = initCommonCodeList();
 
 const { isLoggedIn } = useUserInfo();
@@ -18,6 +20,7 @@ onMounted(() => {
   setTimeout(() => {
     scrollTo(0, 25);
   }, 100);
+  fetchBadwords();
 });
 
 const isInitiated = computed(() => {
@@ -32,6 +35,7 @@ const isInitiated = computed(() => {
   >
     FE version: {{ version }} / BE version: {{ BEversion }}
   </div>
-  <router-view v-if="!isLoggedIn || isInitiated" />
+
+  <router-view v-if="isLoggedIn" />
   <VueQueryDevtools v-if="showVueQueryDevTool" />
 </template>

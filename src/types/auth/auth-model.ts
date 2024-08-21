@@ -1,7 +1,7 @@
 import { UserDetail } from 'meta-airforce-dto';
 import { t } from 'src/utils/message-util';
 import { ref } from 'yup';
-
+const { hasBadword } = useBadwords();
 //type
 export type UserDetailType = InferType<typeof UserDetail>;
 export type ChangePasswordForm = InferType<typeof NewPasswordFormSchema>;
@@ -41,18 +41,11 @@ export const NewPasswordFormSchema = object({
     .default(''),
 });
 
-// ccf 회원가입 > 닉네임
-export const NicknameSchema = object().shape({
-  nickname: string()
-    .label('닉네임')
-    .required(t('auth.nickname.required'))
-    .matches(/^[a-zA-Z0-9가-힣]*$/, t('auth.nickname.invalid'))
-    .default(''),
+export type NicknameJoinForm = InferType<typeof NicknameJoinSchema>;
+
+export const NicknameJoinSchema = object().shape({
+  nickname: NicknameSchema,
 });
-
-//
-
-export type NicknameForm = InferType<typeof NicknameSchema>;
 
 /** 사용자 공통 항목 */
 export const AccountBase = object({

@@ -4,53 +4,69 @@
 const joinStore = useJoinStore();
 const { joinData } = storeToRefs(joinStore);
 
-const { data: termsData } = useTermsRegistratnionTermsList();
+const { request } = useSearchFilter({
+  requestDefault: {
+    filters: {
+      is_mandatory: {
+        eq: false,
+      },
+      is_active: {
+        eq: true,
+      },
+    },
+    from: 0,
+    size: 10,
+    sort: [
+      {
+        sequence: 'asc',
+      },
+    ],
+  },
+});
+
+const { data: termsData } = useTermsList({ searchRequest: request });
 
 const checkedIdList = ref<Id[]>([]);
 const termsAgreementsList = computed(
   () =>
-    termsData.value?.rows.map((o) => ({
+    termsData.value?.rows.map((o: any) => ({
       terms_id: o.id,
       is_agreed: checkedIdList.value.includes(o.id),
     })) ?? []
 );
 
-const is14YearsOldChecked = ref(false);
 const isAllChecked = computed({
   get() {
-    return !!(
-      termsData.value?.rows.every((o) => checkedIdList.value.includes(o.id)) &&
-      is14YearsOldChecked.value
+    return !!termsData.value?.rows.every((o: any) =>
+      checkedIdList.value.includes(o.id)
     );
   },
   set(value: boolean) {
-    is14YearsOldChecked.value = value;
     checkedIdList.value = value
-      ? termsData.value?.rows.map((o) => o.id) ?? []
+      ? termsData.value?.rows.map((o: any) => o.id) ?? []
       : [];
   },
 });
 
-const isSubmitAllowed = computed(
-  () =>
-    is14YearsOldChecked.value &&
-    termsData.value?.rows
-      .filter((o) => o.is_required)
-      .every((o) => checkedIdList.value.includes(o.id))
+const isSubmitAllowed = computed(() =>
+  termsData.value?.rows
+    .filter((o: any) => o.is_required)
+    .every((o: any) => checkedIdList.value.includes(o.id))
 );
 
 const onSubmit = () => {
-  // if (!joinData.value) return;
-  // joinData.value.terms_agreements = termsAgreementsList.value;
+  if (!joinData.value) return;
+  joinData.value.policies = termsAgreementsList.value.filter(
+    (o: any) => o.is_agreed
+  );
   goToName('join-nickname');
 };
 
 /** 상세 보기 */
 const detailEnabled = ref(false);
-const termsTypeCd = ref<Id>(undefined);
-const { data: detail } = useTermsTypeCdDetail(termsTypeCd);
-const openDetailDialog = async (cd: string) => {
-  termsTypeCd.value = cd;
+const detail = ref<{ title: string; content: string } | null>(null);
+const openDetailDialog = async (title: string, content: string) => {
+  detail.value = { title, content };
   detailEnabled.value = true;
 };
 </script>
@@ -82,20 +98,6 @@ const openDetailDialog = async (cd: string) => {
             </c-checkbox>
           </q-item-section>
         </q-item>
-        <q-item class="p-[0px_9px_0px_6px] rounded-md min-h-[40px] mt-[24px]">
-          <q-item-section
-            class="p-0 text-body2 font-pretendard font-normal text-[14px]"
-          >
-            <c-checkbox v-model="is14YearsOldChecked">
-              [필수] 회원 이용약관
-            </c-checkbox>
-          </q-item-section>
-          <q-item-section side>
-            <a href="#" class="text-body2 font-light underline">
-              <q-icon name="img:/icons/arrow.svg" size="20px" />
-            </a>
-          </q-item-section>
-        </q-item>
         <q-item
           class="p-[0px_9px_0px_6px] rounded-md min-h-[40px]"
           v-for="item in termsData?.rows"
@@ -105,7 +107,7 @@ const openDetailDialog = async (cd: string) => {
             class="p-0 text-body2 font-pretendard font-normal text-[14px]"
           >
             <c-checkbox v-model="checkedIdList" size="32px" :val="item.id">
-              {{ item.is_required ? '[필수] ' : '' }}
+              {{ item.is_mandatory ? '[필수] ' : '' }}
               {{ item.title }}
             </c-checkbox>
           </q-item-section>
@@ -113,7 +115,7 @@ const openDetailDialog = async (cd: string) => {
             <a
               href="#"
               class="text-body2 font-light underline"
-              @click.prevent="openDetailDialog(item.terms_type_cd)"
+              @click.prevent="openDetailDialog(item.title, item.content)"
             >
               <q-icon name="img:/icons/arrow.svg" size="20px" />
             </a>
@@ -142,7 +144,7 @@ const openDetailDialog = async (cd: string) => {
     <c-dialog-content
       v-model="detailEnabled"
       :title="detail?.title"
-      :text="detail?.contents"
+      :html="detail?.content"
     />
   </q-page>
 </template>

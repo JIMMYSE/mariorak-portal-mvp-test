@@ -18,33 +18,30 @@ const shortcutBList = computed(
 
 const slide = ref(0);
 
-// img dummy
-const imgList = [
-  {
-    src: 'images/dummy/main_dummy.svg',
-    id: 1,
-  },
-  {
-    src: 'images/dummy/main_dummy1.svg',
-    id: 2,
-  },
-  {
-    src: 'images/dummy/main_dummy2.svg',
-    id: 3,
-  },
-  {
-    src: 'images/dummy/main_dummy3.svg',
-    id: 4,
-  },
-  {
-    src: 'images/dummy/main_dummy4.svg',
-    id: 5,
-  },
-  {
-    src: 'images/dummy/main_dummy5.svg',
-    id: 6,
-  },
-];
+const { enterRoom } = useBridge();
+
+const enter = (title: string, space_id: number) => {
+  let spwan_id = 1;
+  switch (title) {
+    case '비행장 구역':
+      spwan_id = 2;
+      break;
+    case '훈련 구역':
+      spwan_id = 3;
+      break;
+    case '작전 구역':
+      spwan_id = 4;
+      break;
+    case '행정 구역':
+      spwan_id = 5;
+      break;
+    case '생활관 구역':
+      spwan_id = 6;
+      break;
+  }
+
+  // enterRoom(space_id, spwan_id);
+};
 </script>
 
 <template>
