@@ -1,14 +1,6 @@
 <script setup lang="ts">
 const { user } = useUserInfo();
 
-const { data: avatarData } = useAvatarList();
-const avatarSrc = computed(() => {
-  return (
-    avatarData.value?.rows.find((o) => o.id === user.value?.avatar_id)
-      ?.profile_image.convert_addr ?? undefined
-  );
-});
-
 const openLoginFailed = () => {
   useLoginFailedDialog();
 };
