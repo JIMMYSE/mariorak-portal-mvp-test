@@ -27,15 +27,8 @@ const handleSocialLogin = (socialType: SocialType) => {
 const { socialLogin } = useLogin();
 const removeEventListener = addEventListener('login_social', (data) => {
   const { access_token, provider } = data.detail ?? {};
-  console.log(
-    '**login_social result**\n',
-    '- access_token',
-    access_token,
-    '- provider:',
-    provider
-  );
-
-  socialLoginAPI(access_token, provider);
+  if (access_token) socialLoginAPI(access_token, provider);
+  else useLoginFailedDialog();
 });
 // remove event listener when component is unmounted
 onBeforeUnmount(() => removeEventListener());

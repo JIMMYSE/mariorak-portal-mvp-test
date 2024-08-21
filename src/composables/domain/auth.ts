@@ -12,7 +12,7 @@ const TOKEN_EXPIRE_DAYS = Number(process.env.TOKEN_EXPIRE_DAYS as string);
 
 const AUTH_API_URL = '/v1/auth';
 const LOGIN_URL = '/auth/login';
-const LOGOUT_URL = '/auth/logout';
+const LOGOUT_URL = '/v1/auth/logout';
 
 const UNREGISTER_URL = '/auth/unregister';
 const REGISTER_URL = '/v1/auth/register/social';
