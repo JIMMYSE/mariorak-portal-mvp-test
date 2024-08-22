@@ -1,4 +1,9 @@
 <script lang="ts" setup>
+type Props = {
+  toList: string;
+};
+const props = defineProps<Props>();
+
 const barStyle = {
   // 스크롤바 안보이게
   opacity: 1,
@@ -14,6 +19,10 @@ const gameInfo = {
   title: '[새롭게 돌아온] KINGDOM the blood 킹덤 더 블러드',
   description:
     'game의 새로운 시작을 소개합니다 game의 새로운 신작을 소개합니다',
+};
+
+const goToListPage = () => {
+  props.toList ? goToName(props.toList) : goToName('game-pack');
 };
 </script>
 <template>
@@ -49,6 +58,7 @@ const gameInfo = {
     </q-scroll-area>
     <div class="text-center">
       <c-btn
+        @click="goToListPage()"
         class="enter_btn rounded-[30px] text-[#056bf1] font-semibold text-sm py-3 pl-10 pr-[30px]"
         outline
         >전체 목록 보기

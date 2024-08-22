@@ -77,7 +77,7 @@ const imgList = [
     <section class="px-6 mt-10">
       <h2 class="text-[22px] font-semibold">CCF 추천게임</h2>
       <div class="grid gap-1.5 mt-4">
-        <game-item-list />
+        <game-item-list to-list="game-list" />
       </div>
     </section>
 
@@ -85,7 +85,7 @@ const imgList = [
     <section class="px-6 mt-[55px]">
       <h2 class="text-[22px] font-semibold">CCF 추천 프로젝트</h2>
       <div class="grid gap-1.5 mt-4">
-        <game-item-list />
+        <game-item-list to-list="project-list" />
       </div>
     </section>
 
