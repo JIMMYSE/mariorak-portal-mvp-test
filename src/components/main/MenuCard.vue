@@ -22,7 +22,7 @@ const props = defineProps<Props>();
       :style="`background-image: url('/images/main/${icon}.png');`"
       class="bg-right-bottom bg-no-repeat size-full bg-contain"
     >
-      <p class="text-xs font-pretendard text-primary leading-[14px]">
+      <p class="text-xs font-pretendard textㅁ-primary leading-[14px]">
         {{ subtitle }}
       </p>
       <p

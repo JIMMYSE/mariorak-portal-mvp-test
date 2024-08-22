@@ -80,6 +80,7 @@ export const useBridge = () => {
   }
 
   function onDeviceEvent(payload: string) {
+    console.log('onDeviceEvent:: ', payload);
     try {
       //  안드로이드에서 오브젝트를 보내는 에러가 확인되어 분기처리함
       //  [object Object]" is not valid JSON
@@ -95,7 +96,7 @@ export const useBridge = () => {
         // 안드로이드에서 history.back() 을 호출하지 않는다.
         if (ev.type === 'back_button_pressed') {
           return eventListeners[ev.type].length > 0;
-        }
+        } else if (ev.type == 'login_social') return ev.detail;
       }
     } catch (error) {
       log('ERR: onDeviceEvent', error);
