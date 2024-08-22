@@ -76,31 +76,17 @@ const imgList = [
     <!-- CCF 추천게임 -->
     <section class="px-6 mt-10">
       <h2 class="text-[22px] font-semibold">CCF 추천게임</h2>
-      <div class="grid grid-cols-2 gap-1.5 mt-4">
+      <div class="grid gap-1.5 mt-4">
         <game-item-list />
-      </div>
-      <div>
-        <button>전체 목록 보기</button>
       </div>
     </section>
 
     <!-- CCF 추천 프로젝트 -->
     <section class="px-6 mt-[55px]">
       <h2 class="text-[22px] font-semibold">CCF 추천 프로젝트</h2>
-      <q-list class="flex flex-col gap-[35px] mt-3">
-        <menu-item
-          v-for="item in shortcutBList"
-          :key="item.id"
-          :title="item.title"
-          :description="item.description"
-          tag="생활"
-          :image="item.image_file?.origin_addr"
-          :to="{
-            name: 'shortcut-detail',
-            params: { id: item.id },
-          }"
-        />
-      </q-list>
+      <div class="grid gap-1.5 mt-4">
+        <game-item-list />
+      </div>
     </section>
 
     <!-- 배너영역 -->
@@ -112,7 +98,7 @@ const imgList = [
     </section>
 
     <!-- footer -->
-    <footer
+    <!-- <footer
       class="w-full h-[305px] bg-[#222] bottom-0 mt-[125px] min-w-[360px]"
     >
       <div class="pt-[30px] px-6">
@@ -144,7 +130,7 @@ const imgList = [
           <q-icon name="img:/icons/icon_footer.svg" size="102px"></q-icon>
         </div>
       </div>
-    </footer>
+    </footer> -->
   </q-page>
 </template>
 
