@@ -86,7 +86,7 @@ const socialLoginAPI = async (accessToken: string, provider: SocialType) => {
         </div>
       </q-card-section>
       <q-card-section class="q-gutter-md">
-        <GoogleLogin :callback="googleCallback" v-if="isPrd || isStg" />
+        <GoogleLogin :callback="googleCallback" v-if="!(isPrd || isStg)" />
         <q-card
           class="rounded-full flex py-4 px-5 items-center"
           flat
