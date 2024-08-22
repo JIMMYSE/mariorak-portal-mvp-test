@@ -47,7 +47,7 @@ const isAllChecked = computed({
 
 const isSubmitAllowed = computed(() =>
   termsData.value?.rows
-    .filter((o: any) => o.is_required)
+    .filter((o: any) => o.is_mandatory)
     .every((o: any) => checkedIdList.value.includes(o.id))
 );
 
