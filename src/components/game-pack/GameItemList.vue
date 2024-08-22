@@ -22,7 +22,7 @@ const gameInfo = {
 };
 
 const goToListPage = () => {
-  props.toList ? goToName(props.toList) : goToName('game-pack');
+  props.toList ? goToName(props.toList) : goToName('game-pack-main');
 };
 </script>
 <template>
