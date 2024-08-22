@@ -114,7 +114,8 @@ export const useRequiredNoticeDialog = () => {
 const saveLoginUser = async (payload: PortalLoginResponseType['data']) => {
   setAccessToken(payload.token);
   isAccessTokenListenerActive.value = true;
-  await initUserDetailInfo(payload.user.id);
+  // await initUserDetailInfo(payload.user.id);
+  setUserInfo(payload.user);
 };
 
 // 유저 상세정보 조회 & 저장
@@ -130,8 +131,8 @@ export const initUserDetailInfo = async (id: Id) => {
   } catch (error) {
     // console.error('#### 사용자 정보 조회 실패 ####');
     // TODO 임시 정보
-    alert('>>>>>>>>>> 더미 사용자 정보 입력');
-    setUserInfo(dummyUser);
+    // alert('>>>>>>>>>> 더미 사용자 정보 입력');
+    // setUserInfo(dummyUser);
   }
 };
 

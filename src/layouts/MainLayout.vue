@@ -24,28 +24,13 @@ const { isNew } = useNotificationCheck();
       <q-toolbar
         class="flex justify-between items-center h-[var(--main-header-h)]"
       >
-        <q-img
+        <div></div>
+        <!-- <q-img
           v-if="footerVisible"
           class="w-[125px] h-[30px]"
           src="/images/main-logo-blue.png"
         />
-        <q-img v-else class="w-[125px] h-[30px]" src="/images/main-logo.png" />
-        <div class="flex items-center gap-[14px]">
-          <q-btn size="md" round flat :to="{ name: 'profile' }">
-            <q-icon name="img:/images/avatar-1-thumb.png" size="40px" />
-          </q-btn>
-          <q-btn
-            class="size-10 bg-white"
-            size="md"
-            round
-            flat
-            :to="{ name: 'notice-list' }"
-          >
-            <q-icon name="img:/icons/bell.svg" size="32px">
-              <q-badge v-if="isNew" floating color="red" rounded />
-            </q-icon>
-          </q-btn>
-        </div>
+        <q-img v-else class="w-[125px] h-[30px]" src="/images/main-logo.png" /> -->
       </q-toolbar>
     </q-header>
 
@@ -88,7 +73,7 @@ const { isNew } = useNotificationCheck();
             exact
           />
           <q-route-tab class="center-btn" to="/event" exact>
-            <q-icon name="img:/images/airplane-circle.png" size="69px" />
+            <q-icon name="img:/images/shadow.svg" size="69px" />
           </q-route-tab>
           <q-route-tab
             icon="img:/icons/setting.svg"
