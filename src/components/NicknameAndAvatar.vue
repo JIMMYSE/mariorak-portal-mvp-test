@@ -114,9 +114,8 @@ onMounted(() => {
             <div class="absolute bottom-0 flex justify-center w-full">
               <img src="/images/shadow.svg" alt="shadow" />
             </div>
-            <p class="absolute">{{ avatar.id }}</p>
             <q-img
-              :src="avatar.profile_file?.url ?? undefined"
+              :src="avatar.square_file?.url ?? undefined"
               alt="wr"
               height="359px"
               fit="contain"
@@ -152,12 +151,11 @@ onMounted(() => {
                 : 'bg-grey-1'
             "
           >
-            <p class="absolute">{{ avatar.id }}</p>
             <q-img
-              :src="avatar.square_file.thumbnail_url ?? undefined"
+              :src="avatar.circle_file.url ?? undefined"
               fit="contain"
-              width="30px"
-              height="90px"
+              width="full"
+              height="full"
             />
           </div>
         </div>

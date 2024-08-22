@@ -24,7 +24,8 @@ const { isNew } = useNotificationCheck();
       <q-toolbar
         class="flex justify-between items-center h-[var(--main-header-h)]"
       >
-        <q-img
+        <div></div>
+        <!-- <q-img
           v-if="footerVisible"
           class="w-[125px] h-[30px]"
           src="/images/main-logo-blue.png"
@@ -94,7 +95,7 @@ const { isNew } = useNotificationCheck();
             exact
           />
           <q-route-tab class="center-btn" to="/event" exact>
-            <q-icon name="img:/images/airplane-circle.png" size="69px" />
+            <q-icon name="img:/images/shadow.svg" size="69px" />
           </q-route-tab>
           <q-route-tab
             icon="img:/icons/setting.svg"

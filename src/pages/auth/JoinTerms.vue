@@ -7,9 +7,6 @@ const { joinData } = storeToRefs(joinStore);
 const { request } = useSearchFilter({
   requestDefault: {
     filters: {
-      is_mandatory: {
-        eq: false,
-      },
       is_active: {
         eq: true,
       },
@@ -50,15 +47,15 @@ const isAllChecked = computed({
 
 const isSubmitAllowed = computed(() =>
   termsData.value?.rows
-    .filter((o: any) => o.is_required)
+    .filter((o: any) => o.is_mandatory)
     .every((o: any) => checkedIdList.value.includes(o.id))
 );
 
 const onSubmit = () => {
   if (!joinData.value) return;
-  joinData.value.policies = termsAgreementsList.value.filter(
-    (o: any) => o.is_agreed
-  );
+  joinData.value.policies = termsAgreementsList.value
+    .filter((o: any) => o.is_agreed)
+    .map((o: any) => o.terms_id);
   goToName('join-nickname');
 };
 

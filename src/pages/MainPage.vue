@@ -1,6 +1,7 @@
 <!-- 메인페이지 -->
 
 <script setup lang="ts">
+const { user } = storeToRefs(useAuthStore());
 onMounted(() => {
   const { data: listData } = useNoticePopupList();
 
@@ -64,62 +65,7 @@ const enter = (title: string, space_id: number) => {
       </q-carousel-slide>
     </c-carousel>
 
-    <!-- 공군입대에 대해 궁금하다면 -->
-    <section class="mt-10 px-6">
-      <p class="text-[22px] font-semibold">WHAT IS GAME PACK</p>
-      <p class="text-[#767676] text-sm font-normal">
-        CCF가 함께하고 지원하는 모든 프로젝트
-      </p>
-      <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4"></div>
-    </section>
-
-    <hr class="h-2.5 bg-[#f7f7f7]" />
-
-    <!-- CCF 추천게임 -->
-    <section class="px-6 mt-10">
-      <h2 class="text-[22px] font-semibold">CCF 추천게임</h2>
-      <div class="grid grid-cols-2 gap-1.5 mt-4">
-        <menu-card
-          v-for="item in menuListForTrainee"
-          :key="item.title"
-          :to="{ name: item.to }"
-          :title="item.title"
-          :subtitle="item.subtitle"
-          :icon="item.icon"
-        />
-      </div>
-      <div>
-        <button>전체 목록 보기</button>
-      </div>
-    </section>
-
-    <!-- 공군 생활 체험 -->
-    <section class="px-6 mt-[55px]">
-      <h2 class="text-[22px] font-semibold">CCF 추천 프로젝트</h2>
-      <q-list class="flex flex-col gap-[35px] mt-3">
-        <menu-item
-          v-for="item in shortcutBList"
-          :key="item.id"
-          :title="item.title"
-          :description="item.description"
-          tag="생활"
-          :image="item.image_file?.origin_addr"
-          :to="{
-            name: 'shortcut-detail',
-            params: { id: item.id },
-          }"
-        />
-      </q-list>
-    </section>
-
-    <!-- 배너영역 -->
-
-    <!-- FAQ -->
-    <section class="px-6 mt-[55px]">
-      <h2 class="text-[22px] font-semibold">FAQ</h2>
-      <faq-area />
-    </section>
-
+    {{ user }}
     <!-- footer -->
     <footer
       class="w-full h-[305px] bg-[#222] bottom-0 mt-[125px] min-w-[360px]"
@@ -135,23 +81,6 @@ const enter = (title: string, space_id: number) => {
         >
           개인정보 처리방침
         </p>
-        <p class="text-grey-3 font-pretendard text-xs leading-[17px] mt-[18px]">
-          민원안내 : 042-552-7945 | 군부대 전화번호 안내 : 042-52-0114
-          copyright(c) Republic of Korea Airforce. All Right Reserved
-        </p>
-        <div class="group-icon flex mt-[33px] gap-5 justify-center">
-          <c-btn-icon
-            v-for="item in socialList"
-            :key="item.name"
-            :icon="`img:/images/main/${item.name}.png`"
-            size="27px"
-            :href="item.url"
-            target="_blank"
-          />
-        </div>
-        <div class="flex justify-center">
-          <q-icon name="img:/icons/icon_footer.svg" size="102px"></q-icon>
-        </div>
       </div>
     </footer>
   </q-page>
