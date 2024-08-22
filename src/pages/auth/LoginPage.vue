@@ -9,8 +9,8 @@ import { GoogleLogin } from 'vue3-google-login';
 const joinStore = useJoinStore();
 const { joinData } = storeToRefs(joinStore);
 
-const isPrd = ref(process.env.IS_PRD !== undefined);
-const isStg = ref(process.env.IS_STG !== undefined);
+const isLocal = ref(process.env.IS_LOCAL !== undefined);
+const isDev = ref(process.env.IS_DEV !== undefined);
 onMounted(() => {
   joinStore.$reset();
 });
@@ -86,7 +86,7 @@ const socialLoginAPI = async (accessToken: string, provider: SocialType) => {
         </div>
       </q-card-section>
       <q-card-section class="q-gutter-md">
-        <GoogleLogin :callback="googleCallback" v-if="!(isPrd || isStg)" />
+        <GoogleLogin :callback="googleCallback" v-if="isLocal || isDev" />
         <q-card
           class="rounded-full flex py-4 px-5 items-center"
           flat
