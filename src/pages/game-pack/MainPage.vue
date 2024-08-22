@@ -90,6 +90,9 @@ const imgList = [
     </section>
 
     <!-- 배너영역 -->
+    <section class="mt-[55px]">
+      <img src="/images/dummy/banner_dummy.png" alt="banner" />
+    </section>
 
     <!-- FAQ -->
     <section class="mt-[55px]">
