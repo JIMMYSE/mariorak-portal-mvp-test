@@ -35,11 +35,12 @@ export const useUserInfo = () => {
  */
 export const useLogin = () => {
   const { getAgentInfo, agentInfo } = useBridge();
+
   async function socialLogin(accessToken: string, provider: SocialType) {
     getAgentInfo();
     await wait(300);
     const agent = agentInfo?.value ?? dummyAgentInfo;
-
+    console.log('>>>auth socialLogin', accessToken, provider, agent);
     const res = await useFetchItemPost<ApiResponse, OauthReqType>({
       url: AUTH_API_URL + '/oauth',
       data: {
@@ -48,6 +49,7 @@ export const useLogin = () => {
         agent: agent,
       },
     });
+    console.log('>>> after API', res);
 
     const data = res.data;
 

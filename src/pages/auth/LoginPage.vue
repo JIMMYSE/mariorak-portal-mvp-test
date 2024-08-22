@@ -9,7 +9,8 @@ import { GoogleLogin } from 'vue3-google-login';
 const joinStore = useJoinStore();
 const { joinData } = storeToRefs(joinStore);
 
-const isLocal = ref(process.env.IS_LOCAL !== undefined);
+const isPrd = ref(process.env.IS_PRD !== undefined);
+const isStg = ref(process.env.IS_STG !== undefined);
 onMounted(() => {
   joinStore.$reset();
 });
@@ -42,12 +43,14 @@ const googleCallback = (response: any) => {
 };
 
 const socialLoginAPI = async (accessToken: string, provider: SocialType) => {
+  console.log('>>>>SocialLoginAPI', accessToken, provider);
   const { isLogined, hasToJoined } = await socialLogin(accessToken, provider);
   console.log(
     '>>>LoginPage isLogined hasToJoined',
     isLogined.value,
     hasToJoined.value
   );
+
   if (hasToJoined.value) {
     // 회원가입이 필요한 경우
     joinStore.$init();
@@ -83,7 +86,7 @@ const socialLoginAPI = async (accessToken: string, provider: SocialType) => {
         </div>
       </q-card-section>
       <q-card-section class="q-gutter-md">
-        <GoogleLogin :callback="googleCallback" v-if="isLocal" />
+        <GoogleLogin :callback="googleCallback" v-if="isPrd || isStg" />
         <q-card
           class="rounded-full flex py-4 px-5 items-center"
           flat
