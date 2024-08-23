@@ -12,27 +12,25 @@ const headerClass = computed(() =>
 );
 
 // 알림 아이콘 뱃지
-const { isNew } = useNotificationCheck();
+const isNewNoti = ref(true);
+const isNewChat = ref(false);
 </script>
 
 <template>
   <q-layout view="hHh lpr fFf" class="main-layout bg-white">
     <q-header
-      class="flex flex-center px-3 pt-[var(--statusbar-h)]"
+      class="flex flex-center pl-3 pt-[var(--statusbar-h)] bg-grey"
+      reveal
+      elevated
       :class="headerClass"
     >
       <q-toolbar
         class="flex justify-between items-center h-[var(--main-header-h)]"
       >
-        <!-- <q-img v-if="footerVisible" class="w-[125px] h-[30px]" />
-        <q-img v-else class="w-[125px] h-[30px]" /> -->
-        <p v-if="footerVisible" class="w-[125px] h-[30px] text-grey-2 text-xl">
-          LOGO
-        </p>
-        <p v-else class="w-[125px] h-[30px] text-grey-5 text-xl">LOGO</p>
-        <div class="flex items-center gap-[14px]">
+        <p class="w-[125px] h-[30px] text-grey-5 text-xl">LOGO</p>
+        <div class="flex items-center">
           <q-btn size="md" round flat :to="{ name: 'profile' }">
-            <q-icon name="img:/images/avatar-1-thumb.png" size="40px" />
+            <q-icon name="img:/icons/icon_profile.svg" size="28px" />
           </q-btn>
           <q-btn
             class="size-10 bg-white"
@@ -41,8 +39,19 @@ const { isNew } = useNotificationCheck();
             flat
             :to="{ name: 'notice-list' }"
           >
-            <q-icon name="img:/icons/bell.svg" size="32px">
-              <q-badge v-if="isNew" floating color="red" rounded />
+            <q-icon name="img:/icons/icon_notification.svg" size="23px">
+              <q-badge v-if="isNewNoti" floating color="red" rounded />
+            </q-icon>
+          </q-btn>
+          <q-btn
+            class="size-10 bg-white"
+            size="md"
+            round
+            flat
+            :to="{ name: 'notice-list' }"
+          >
+            <q-icon name="img:/icons/icon_chat.svg" size="23px">
+              <q-badge v-if="isNewChat" floating color="red" rounded />
             </q-icon>
           </q-btn>
         </div>
