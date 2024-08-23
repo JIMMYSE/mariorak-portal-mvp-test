@@ -12,41 +12,69 @@ const headerClass = computed(() =>
 );
 
 // 알림 아이콘 뱃지
-const { isNew } = useNotificationCheck();
+const isNewNoti = ref(true);
+const isNewChat = ref(false);
+
+const route = useRoute();
+const tab = computed(() => route.name?.toString() ?? '');
+const tabInfos: { icon: string; label: string; name: string; to: string }[] = [
+  {
+    icon: 'icon_home',
+    label: '홈',
+    name: 'home',
+    to: '/home',
+  },
+  {
+    icon: 'icon_game',
+    label: '게임팩',
+    name: 'game-pack',
+    to: '/',
+  },
+  {
+    icon: 'icon_edit_game',
+    label: '작업실',
+    name: 'create-room',
+    to: '/',
+  },
+  {
+    icon: 'icon_add_user',
+    label: '인력사무실',
+    name: 'add-user',
+    to: '/',
+  },
+  {
+    icon: 'icon_edit',
+    label: '커뮤니티',
+    name: 'community',
+    to: '/setting',
+  },
+];
 </script>
 
 <template>
   <q-layout view="hHh lpr fFf" class="main-layout bg-white">
     <q-header
-      class="flex flex-center px-3 pt-[var(--statusbar-h)]"
+      class="flex flex-center pl-1 pt-[var(--statusbar-h)] bg-grey"
+      reveal
+      elevated
       :class="headerClass"
     >
       <q-toolbar
-        class="flex justify-between items-center h-[var(--main-header-h)]"
+        class="flex justify-between items-center h-[var(--main-header-h)] pr-1"
       >
-        <q-img
-          v-if="footerVisible"
-          class="w-[125px] h-[30px]"
-          src="/images/main-logo-blue.png"
-        />
-        <q-img
-          v-else
-          class="w-[125px] h-[30px]"
-          src="/images/main-logo-blue.png"
-        />
-        <div class="flex items-center gap-[14px]">
+        <p class="w-[125px] h-[30px] text-grey-5 text-xl">LOGO</p>
+        <div class="flex items-center">
           <q-btn size="md" round flat :to="{ name: 'profile' }">
-            <q-icon name="img:/images/avatar-1-thumb.png" size="40px" />
+            <q-icon name="img:/icons/icon_profile.svg" size="26px" />
           </q-btn>
-          <q-btn
-            class="size-10 bg-white"
-            size="md"
-            round
-            flat
-            :to="{ name: 'notice-list' }"
-          >
-            <q-icon name="img:/icons/bell.svg" size="32px">
-              <q-badge v-if="isNew" floating color="red" rounded />
+          <q-btn size="md" round flat :to="{ name: 'notice-list' }">
+            <q-icon name="img:/icons/icon_notification.svg" size="21px">
+              <q-badge v-if="isNewNoti" floating color="red" rounded />
+            </q-icon>
+          </q-btn>
+          <q-btn size="md" round flat :to="{ name: 'notice-list' }">
+            <q-icon name="img:/icons/icon_chat.svg" size="21px">
+              <q-badge v-if="isNewChat" floating color="red" rounded />
             </q-icon>
           </q-btn>
         </div>
@@ -60,83 +88,38 @@ const { isNew } = useNotificationCheck();
         <component :is="Component" :key="route.path" />
       </router-view>
     </q-page-container>
-    <transition
-      enter-active-class="animated fadeInUp "
-      leave-active-class="animated fadeOutDown "
+
+    <q-footer
+      class="bg-white justify-between items-center flex h-[76px] footer-border"
     >
-      <q-footer class="h-[83px] column justify-end pt-5 bg-transparent">
-        <div
-          class="absolute inset-0 -top-5"
-          style="
-            --border: calc(50vw - 130px);
-            border-left-width: var(--border);
-            border-right-width: var(--border);
-            border-top-width: 1rem;
-            border-image-source: url(/images/main-footer-bg.png);
-            border-image-slice: 25 110 fill;
-            border-image-repeat: stretch;
-            border-style: ridge;
-          "
-        ></div>
-        <!-- <c-svg -->
-        <!--   class="w-[405px] h-[83px] absolute top-0 -translate-x-4 mx-auto" -->
-        <!--   name="main-tabs-bg" -->
-        <!-- ></c-svg> -->
-        <q-tabs class="col px-8 absolute inset-0 bottom-5">
-          <!-- <div -->
-          <!--   class="absolute top-0 bottom-0 w-full bg-[url(/images/main-tabs-bg.svg)] bg-bottom shadow-[0px_-3px_10px_#00000014] bg-clip-padding bg-no-repeat opacity-100" -->
-          <!-- ></div> -->
-          <q-route-tab
-            icon="img:/icons/home.svg"
-            label="홈"
-            color="black"
-            to="/"
-            exact
+      <q-tabs class="w-full">
+        <q-route-tab
+          v-for="tabInfo in tabInfos"
+          :key="tabInfo.name"
+          :to="tabInfo.to"
+          color="red"
+          class="pt-1"
+          exact
+        >
+          <c-icon
+            :name="tabInfo.icon"
+            size="20px"
+            :active="tab?.includes(tabInfo?.name ?? '')"
+            :label="tabInfo.label"
           />
-          <q-route-tab class="center-btn" to="/event" exact>
-            <q-icon name="img:/images/airplane-circle.png" size="69px" />
-          </q-route-tab>
-          <q-route-tab
-            icon="img:/icons/setting.svg"
-            label="설정"
-            color="black"
-            active-class="text-primary"
-            to="/setting"
-            exact
-          />
-        </q-tabs>
-      </q-footer>
-    </transition>
+          <p class="text-grey-5"></p>
+        </q-route-tab>
+      </q-tabs>
+    </q-footer>
   </q-layout>
 </template>
 
 <style lang="scss" scoped>
-:deep(.q-tabs__content) {
-  overflow: visible !important;
-  .center-btn {
-    transform: translateY(-22px);
-    .q-icon::before {
-      content: '';
-      position: absolute;
-      background-color: #1048a8;
-      border-radius: 50%;
-      opacity: 0.25;
-      top: 20px;
-      width: 57px;
-      height: 57px;
-      filter: blur(5px);
-    }
-    .q-icon img {
-      mix-blend-mode: screen;
-      // background-color: white;
-      // height: 100%;
-      // border-radius: 50%;
-    }
-  }
-}
-
 .q-badge {
   padding: 4px 5px;
   border: 1px solid white;
+}
+.footer-border {
+  border-top: 1px solid #f0f0f0;
 }
 </style>
