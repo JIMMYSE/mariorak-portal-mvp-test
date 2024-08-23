@@ -24,16 +24,12 @@ const { isNew } = useNotificationCheck();
       <q-toolbar
         class="flex justify-between items-center h-[var(--main-header-h)]"
       >
-        <q-img
-          v-if="footerVisible"
-          class="w-[125px] h-[30px]"
-          src="/images/main-logo-blue.png"
-        />
-        <q-img
-          v-else
-          class="w-[125px] h-[30px]"
-          src="/images/main-logo-blue.png"
-        />
+        <!-- <q-img v-if="footerVisible" class="w-[125px] h-[30px]" />
+        <q-img v-else class="w-[125px] h-[30px]" /> -->
+        <p v-if="footerVisible" class="w-[125px] h-[30px] text-grey-2 text-xl">
+          LOGO
+        </p>
+        <p v-else class="w-[125px] h-[30px] text-grey-5 text-xl">LOGO</p>
         <div class="flex items-center gap-[14px]">
           <q-btn size="md" round flat :to="{ name: 'profile' }">
             <q-icon name="img:/images/avatar-1-thumb.png" size="40px" />

@@ -18,6 +18,9 @@ const shortcutBList = computed(
 );
 
 const slide = ref(0);
+const onClickGamePackMain = () => {
+  goToName('game-pack-main');
+};
 </script>
 
 <template>
@@ -41,6 +44,7 @@ const slide = ref(0);
     </c-carousel>
 
     {{ user }}
+    <c-btn class="mt-4" @click="onClickGamePackMain">게임팩 메인페이지로</c-btn>
     <!-- footer -->
     <footer
       class="w-full h-[305px] bg-[#222] bottom-0 mt-[125px] min-w-[360px]"
