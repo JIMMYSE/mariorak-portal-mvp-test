@@ -7,6 +7,41 @@ const slide = ref(0);
 const onClickGamePackMain = () => {
   goToName('game-pack-main');
 };
+
+const openDialog = () => {
+  useDialog({
+    type: 'confirm',
+    text: 'text',
+    htmlText: 'htmlText',
+    okLabel: 'okLabel',
+    cancelLabel: 'cancelLabel',
+    persistent: true,
+    buttons: [
+      {
+        label: '취소',
+        value: false,
+        color: '#ff0000',
+      },
+      {
+        label: '실행',
+        value: true,
+        color: '#ff0000',
+      },
+    ],
+    closeButton: true,
+  });
+};
+
+const openFullDialog = () => {
+  useFullDialog({
+    title: '알림',
+  });
+};
+const openContentDialog = () => {
+  useContentDialog({
+    title: '알림',
+  });
+};
 </script>
 
 <template>
@@ -32,7 +67,12 @@ const onClickGamePackMain = () => {
     <c-icon />
     {{ user }}
 
-    <c-btn class="mt-4" @click="onClickGamePackMain">게임팩 메인페이지로</c-btn>
+    <div class="flex col">
+      <c-btn @click="openDialog"> 기본 다이얼로그열기 </c-btn>
+      <c-btn @click="openFullDialog"> 풀 다이얼로그열기 </c-btn>
+      <c-btn @click="openContentDialog"> 컨텐츠 다이얼로그열기 </c-btn>
+    </div>
+
     <!-- footer -->
     <footer
       class="w-full h-[305px] bg-[#222] bottom-0 mt-[125px] min-w-[360px]"
@@ -53,83 +93,6 @@ const onClickGamePackMain = () => {
   </q-page>
 </template>
 
-<script lang="ts">
-const menuListForEnlist = [
-  {
-    title: '모병 안내',
-    subtitle: '입대',
-    icon: 'airplane',
-    to: 'enrollment-ip',
-  },
-  {
-    title: '입영 준비사항',
-    subtitle: '입대',
-    icon: 'airplane',
-    to: 'enrollment-ep',
-  },
-  {
-    title: '입영 행사안내',
-    subtitle: '입대',
-    icon: 'mic',
-    to: 'enrollment-ee',
-  },
-  {
-    title: '임관식 안내',
-    subtitle: '입대',
-    icon: 'soldier-1',
-    to: 'enrollment-cm',
-  },
-  {
-    title: '수료식 안내',
-    subtitle: '입대',
-    icon: 'certificate',
-    to: 'enrollment-cp',
-  },
-  {
-    title: '자주 묻는 질문',
-    subtitle: '입대',
-    icon: 'bulb',
-    to: 'enrollment-faq',
-  },
-  {
-    title: '찾아오는 법',
-    subtitle: '입대',
-    icon: 'search',
-    to: 'enrollment-ts',
-    class: 'col-span-3 !h-[100px]',
-  },
-];
-
-const menuListForTrainee = [
-  {
-    title: '사진보기',
-    subtitle: '훈련병',
-    icon: 'soldier-1',
-    to: 'trainee-photo-bookmark',
-  },
-  {
-    title: '편지쓰기',
-    subtitle: '훈련병',
-    icon: 'post',
-    // to: 'letter-favorite',
-    onClick: () => {
-      useAlertDialog({ text: '현재 이 기능은 지원되지 않습니다.' });
-    },
-  },
-  {
-    title: '소대 즐겨 찾기',
-    subtitle: '훈련병',
-    icon: 'star',
-    to: 'trainee-bookmark-list',
-  },
-];
-
-const socialList = [
-  { name: 'facebook', url: 'https://www.facebook.com/rokairforce' },
-  { name: 'youtube', url: 'https://www.youtube.com/user/rokafplay' },
-  { name: 'instagram', url: 'https://www.instagram.com/rokaf_official/' },
-  { name: 'tstory', url: 'https://afplay.tistory.com/' },
-];
-</script>
+<script lang="ts"></script>
 
 <style lang="scss" scoped></style>
