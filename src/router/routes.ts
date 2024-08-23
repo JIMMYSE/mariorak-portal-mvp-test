@@ -39,7 +39,7 @@ const routes: RouteRecordRaw[] = [
               title: '게임팩',
               bgColor: 'white',
             },
-            component: () => import('pages/game-pack/MainPage.vue'),
+            component: () => import('src/pages/game-pack/GPMainPage.vue'),
           },
           // 게임 목록/상세
           {

@@ -33,7 +33,7 @@ const isInitiated = computed(() => {
     v-if="!IsPrd"
     class="top-version fixed top-0 z-50 font-pretendard text-xs opacity-50"
   >
-    FE version: {{ version }} / BE version: {{ BEversion }}
+    <!-- FE version: {{ version }} / BE version: {{ BEversion }} -->
   </div>
 
   <router-view />
