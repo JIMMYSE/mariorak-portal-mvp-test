@@ -60,7 +60,7 @@ const imgList = [
       </q-carousel-slide>
     </c-carousel>
 
-    <!-- 공군입대에 대해 궁금하다면 -->
+    <!-- 게임팩 대해 궁금하다면 -->
     <section class="mt-10 px-6">
       <p class="text-[22px] font-semibold">WHAT IS GAME PACK</p>
       <p class="text-[#767676] text-sm font-normal">
