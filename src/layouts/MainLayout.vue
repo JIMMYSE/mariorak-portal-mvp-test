@@ -32,24 +32,12 @@ const isNewChat = ref(false);
           <q-btn size="md" round flat :to="{ name: 'profile' }">
             <q-icon name="img:/icons/icon_profile.svg" size="28px" />
           </q-btn>
-          <q-btn
-            class="size-10 bg-white"
-            size="md"
-            round
-            flat
-            :to="{ name: 'notice-list' }"
-          >
+          <q-btn size="md" round flat :to="{ name: 'notice-list' }">
             <q-icon name="img:/icons/icon_notification.svg" size="23px">
               <q-badge v-if="isNewNoti" floating color="red" rounded />
             </q-icon>
           </q-btn>
-          <q-btn
-            class="size-10 bg-white"
-            size="md"
-            round
-            flat
-            :to="{ name: 'notice-list' }"
-          >
+          <q-btn size="md" round flat :to="{ name: 'notice-list' }">
             <q-icon name="img:/icons/icon_chat.svg" size="23px">
               <q-badge v-if="isNewChat" floating color="red" rounded />
             </q-icon>
