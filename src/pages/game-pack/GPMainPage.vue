@@ -1,14 +1,6 @@
 <!-- 메인페이지 -->
 
 <script setup lang="ts">
-const { data: shortcutData } = useShortcutList();
-const shortcutAList = computed(
-  () => shortcutData.value?.rows.filter((r) => r.shortcut_area_cd === 'A') ?? []
-);
-const shortcutBList = computed(
-  () => shortcutData.value?.rows.filter((r) => r.shortcut_area_cd === 'B') ?? []
-);
-
 const slide = ref(0);
 
 // img dummy

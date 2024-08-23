@@ -19,7 +19,7 @@ const routes: RouteRecordRaw[] = [
         children: [
           {
             path: '',
-            name: 'main',
+            name: 'home-main',
             component: () => import('pages/MainPage.vue'),
           },
         ],

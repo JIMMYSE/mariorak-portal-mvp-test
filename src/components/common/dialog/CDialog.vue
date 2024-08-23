@@ -6,8 +6,8 @@ import { CDialogProps } from './CDialog';
 const props = withDefaults(defineProps<CDialogProps>(), {
   type: 'alert',
   dialogTitle: '',
-  title: '',
-  htmlTitle: '',
+  // title: '',
+  // htmlTitle: '',
   text: '',
   htmlText: '',
   okLabel: 'label.ok',
@@ -49,12 +49,11 @@ function getMessage(message: Message) {
   <q-dialog ref="dialogRef" :persistent="persistent" @hide="onDialogHide">
     <q-card class="q-dialog-plugin">
       <!-- HEADER -->
-      <q-card-section
+      <!-- <q-card-section
         class="px-[28px] pt-[37px] pb-[21px] leading-6"
         style="word-break: break-all"
         v-if="htmlTitle || title"
       >
-        <!-- TITLE TEXT -->
         <div
           class="text-h3 font-medium"
           v-html="getMessage(htmlTitle)"
@@ -63,7 +62,7 @@ function getMessage(message: Message) {
         <div v-else class="text-h3 font-medium">
           {{ getMessage(title) }}
         </div>
-      </q-card-section>
+      </q-card-section> -->
 
       <!-- CONTENT COMPONENT -->
       <component
@@ -76,7 +75,7 @@ function getMessage(message: Message) {
       <!-- CONTENT TEXT -->
       <q-card-section
         data-cy-id="text"
-        class="text-black p-10 text-[15px] tracking-tight break-all justify-center items-center column w-full"
+        class="text-black p-10 text-[16px] tracking-tight break-all justify-center items-center column w-full font-semibold"
         v-if="htmlText || text"
       >
         <div v-html="getMessage(htmlText)" v-if="htmlText"></div>
@@ -85,8 +84,8 @@ function getMessage(message: Message) {
 
       <div
         v-if="buttonsComputed.length > 0"
-        class="p-0 flex m-0"
-        style="height: 55px; background-color: #f3f4f6"
+        class="p-3 pt-0 flex m-0"
+        style="height: 60px"
       >
         <q-btn
           v-for="(b, i) in buttonsComputed"
@@ -97,7 +96,7 @@ function getMessage(message: Message) {
           square
           flat
           inelevated
-          class="text-[15px] flex-1"
+          class="text-[15px] flex-1 rounded-xl font-semibold"
           :class="b.value ? 'font-medium bg-primary' : 'font-light'"
           @click="b.value === false ? onDialogCancel() : onDialogOK(b.value)"
         />

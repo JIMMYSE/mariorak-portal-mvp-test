@@ -2,46 +2,45 @@
 
 <script setup lang="ts">
 const { user } = storeToRefs(useAuthStore());
-onMounted(() => {
-  const { data: listData } = useNoticePopupList();
-
-  if (listData.value?.rows?.length) {
-    useRequiredNoticeDialog();
-  }
-});
-const { data: shortcutData } = useShortcutList();
-const shortcutAList = computed(
-  () => shortcutData.value?.rows.filter((r) => r.shortcut_area_cd === 'A') ?? []
-);
-const shortcutBList = computed(
-  () => shortcutData.value?.rows.filter((r) => r.shortcut_area_cd === 'B') ?? []
-);
 
 const slide = ref(0);
+const onClickGamePackMain = () => {
+  goToName('game-pack-main');
+};
 
-const { enterRoom } = useBridge();
+const openDialog = () => {
+  useDialog({
+    type: 'confirm',
+    text: 'text',
+    htmlText: 'htmlText',
+    okLabel: 'okLabel',
+    cancelLabel: 'cancelLabel',
+    persistent: true,
+    buttons: [
+      {
+        label: '취소',
+        value: false,
+        color: '#ff0000',
+      },
+      {
+        label: '실행',
+        value: true,
+        color: '#ff0000',
+      },
+    ],
+    closeButton: true,
+  });
+};
 
-const enter = (title: string, space_id: number) => {
-  let spwan_id = 1;
-  switch (title) {
-    case '비행장 구역':
-      spwan_id = 2;
-      break;
-    case '훈련 구역':
-      spwan_id = 3;
-      break;
-    case '작전 구역':
-      spwan_id = 4;
-      break;
-    case '행정 구역':
-      spwan_id = 5;
-      break;
-    case '생활관 구역':
-      spwan_id = 6;
-      break;
-  }
-
-  // enterRoom(space_id, spwan_id);
+const openFullDialog = () => {
+  useFullDialog({
+    title: '알림',
+  });
+};
+const openContentDialog = () => {
+  useContentDialog({
+    title: '알림',
+  });
 };
 </script>
 
@@ -57,7 +56,7 @@ const enter = (title: string, space_id: number) => {
     >
       <q-carousel-slide
         class="p-0 h-[460px]"
-        v-for="(img, i) in imgList"
+        v-for="(img, i) in [{ id: 1, src: '/images/main-map-1.png' }]"
         :key="img.id"
         :name="i"
       >
@@ -65,7 +64,15 @@ const enter = (title: string, space_id: number) => {
       </q-carousel-slide>
     </c-carousel>
 
+    <c-icon />
     {{ user }}
+
+    <div class="flex col">
+      <c-btn @click="openDialog"> 기본 다이얼로그열기 </c-btn>
+      <c-btn @click="openFullDialog"> 풀 다이얼로그열기 </c-btn>
+      <c-btn @click="openContentDialog"> 컨텐츠 다이얼로그열기 </c-btn>
+    </div>
+
     <!-- footer -->
     <footer
       class="w-full h-[305px] bg-[#222] bottom-0 mt-[125px] min-w-[360px]"
@@ -86,83 +93,6 @@ const enter = (title: string, space_id: number) => {
   </q-page>
 </template>
 
-<script lang="ts">
-const menuListForEnlist = [
-  {
-    title: '모병 안내',
-    subtitle: '입대',
-    icon: 'airplane',
-    to: 'enrollment-ip',
-  },
-  {
-    title: '입영 준비사항',
-    subtitle: '입대',
-    icon: 'airplane',
-    to: 'enrollment-ep',
-  },
-  {
-    title: '입영 행사안내',
-    subtitle: '입대',
-    icon: 'mic',
-    to: 'enrollment-ee',
-  },
-  {
-    title: '임관식 안내',
-    subtitle: '입대',
-    icon: 'soldier-1',
-    to: 'enrollment-cm',
-  },
-  {
-    title: '수료식 안내',
-    subtitle: '입대',
-    icon: 'certificate',
-    to: 'enrollment-cp',
-  },
-  {
-    title: '자주 묻는 질문',
-    subtitle: '입대',
-    icon: 'bulb',
-    to: 'enrollment-faq',
-  },
-  {
-    title: '찾아오는 법',
-    subtitle: '입대',
-    icon: 'search',
-    to: 'enrollment-ts',
-    class: 'col-span-3 !h-[100px]',
-  },
-];
-
-const menuListForTrainee = [
-  {
-    title: '사진보기',
-    subtitle: '훈련병',
-    icon: 'soldier-1',
-    to: 'trainee-photo-bookmark',
-  },
-  {
-    title: '편지쓰기',
-    subtitle: '훈련병',
-    icon: 'post',
-    // to: 'letter-favorite',
-    onClick: () => {
-      useAlertDialog({ text: '현재 이 기능은 지원되지 않습니다.' });
-    },
-  },
-  {
-    title: '소대 즐겨 찾기',
-    subtitle: '훈련병',
-    icon: 'star',
-    to: 'trainee-bookmark-list',
-  },
-];
-
-const socialList = [
-  { name: 'facebook', url: 'https://www.facebook.com/rokairforce' },
-  { name: 'youtube', url: 'https://www.youtube.com/user/rokafplay' },
-  { name: 'instagram', url: 'https://www.instagram.com/rokaf_official/' },
-  { name: 'tstory', url: 'https://afplay.tistory.com/' },
-];
-</script>
+<script lang="ts"></script>
 
 <style lang="scss" scoped></style>

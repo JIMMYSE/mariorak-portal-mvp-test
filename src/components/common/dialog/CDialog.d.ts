@@ -2,9 +2,9 @@ import { Message } from 'src/types/common/common-model';
 
 export interface CDialogProps {
   type?: 'alert' | 'confirm';
-  dialogTitle?: Message;
-  title?: Message;
-  htmlTitle?: Message;
+  // dialogTitle?: Message;
+  // title?: Message;
+  // htmlTitle?: Message;
   text?: Message;
   htmlText?: Message;
   okLabel?: Message;
