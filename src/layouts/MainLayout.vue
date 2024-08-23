@@ -19,26 +19,26 @@ const isNewChat = ref(false);
 <template>
   <q-layout view="hHh lpr fFf" class="main-layout bg-white">
     <q-header
-      class="flex flex-center pl-3 pt-[var(--statusbar-h)] bg-grey"
+      class="flex flex-center pl-1 pt-[var(--statusbar-h)] bg-grey"
       reveal
       elevated
       :class="headerClass"
     >
       <q-toolbar
-        class="flex justify-between items-center h-[var(--main-header-h)]"
+        class="flex justify-between items-center h-[var(--main-header-h)] pr-1"
       >
         <p class="w-[125px] h-[30px] text-grey-5 text-xl">LOGO</p>
         <div class="flex items-center">
           <q-btn size="md" round flat :to="{ name: 'profile' }">
-            <q-icon name="img:/icons/icon_profile.svg" size="28px" />
+            <q-icon name="img:/icons/icon_profile.svg" size="26px" />
           </q-btn>
           <q-btn size="md" round flat :to="{ name: 'notice-list' }">
-            <q-icon name="img:/icons/icon_notification.svg" size="23px">
+            <q-icon name="img:/icons/icon_notification.svg" size="21px">
               <q-badge v-if="isNewNoti" floating color="red" rounded />
             </q-icon>
           </q-btn>
           <q-btn size="md" round flat :to="{ name: 'notice-list' }">
-            <q-icon name="img:/icons/icon_chat.svg" size="23px">
+            <q-icon name="img:/icons/icon_chat.svg" size="21px">
               <q-badge v-if="isNewChat" floating color="red" rounded />
             </q-icon>
           </q-btn>
