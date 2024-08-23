@@ -18,31 +18,6 @@ const shortcutBList = computed(
 );
 
 const slide = ref(0);
-
-const { enterRoom } = useBridge();
-
-const enter = (title: string, space_id: number) => {
-  let spwan_id = 1;
-  switch (title) {
-    case '비행장 구역':
-      spwan_id = 2;
-      break;
-    case '훈련 구역':
-      spwan_id = 3;
-      break;
-    case '작전 구역':
-      spwan_id = 4;
-      break;
-    case '행정 구역':
-      spwan_id = 5;
-      break;
-    case '생활관 구역':
-      spwan_id = 6;
-      break;
-  }
-
-  // enterRoom(space_id, spwan_id);
-};
 </script>
 
 <template>
@@ -57,7 +32,7 @@ const enter = (title: string, space_id: number) => {
     >
       <q-carousel-slide
         class="p-0 h-[460px]"
-        v-for="(img, i) in imgList"
+        v-for="(img, i) in [{ id: 1, src: '/images/main-map-1.png' }]"
         :key="img.id"
         :name="i"
       >
