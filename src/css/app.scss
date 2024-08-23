@@ -26,6 +26,7 @@ body {
     //   100vh - var(--statusbar-h) - var(--main-header-h)
     // ) !important;
     min-height: 100vh !important;
+    min-width: 360px;
   }
 }
 
@@ -208,6 +209,10 @@ input::placeholder {
 
 .q-notification {
   border-radius: 15px;
+}
+
+hr {
+  border-top: none;
 }
 
 @import './tiptap.scss';

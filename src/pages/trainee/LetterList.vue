@@ -20,7 +20,7 @@ const maxPages = computed(() =>
 </script>
 
 <template>
-  <q-page class="px-6 pt-[25px] min-w-[375px]">
+  <q-page class="px-6 pt-[25px] min-w-[360px]">
     <q-card
       flat
       outline
