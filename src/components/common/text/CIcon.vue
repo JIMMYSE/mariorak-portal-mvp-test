@@ -1,0 +1,70 @@
+<script lang="ts" setup>
+import { QIconProps } from 'quasar';
+import { useForwardPropsEmits } from 'radix-vue';
+import { HtmlHTMLAttributes } from 'vue';
+
+export interface CIconProps extends QIconProps {
+  activeColor?: string;
+  active?: boolean;
+  label?: string;
+}
+
+const props = withDefaults(defineProps<CIconProps>(), {
+  color: '#B6B6B6',
+  size: '24px',
+  name: 'icon_apple',
+  activeColor: '#056BF1',
+  active: false,
+  label: '',
+});
+
+const forwarded = useForwardPropsEmits(props);
+
+const originSvg = ref<string>('');
+const loadSVG = async () => {
+  try {
+    const response = await fetch(`/icons/${props.name}.svg`);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const svgText = await response.text();
+    originSvg.value = svgText;
+  } catch (error) {
+    console.error('Error loading SVG:', error);
+  }
+};
+
+const color = ref<string>(props.color);
+watch(
+  () => props.active,
+  (v) => {
+    {
+      color.value = v ? props.activeColor : props.color;
+    }
+  },
+  { immediate: true }
+);
+
+const changedSvg = computed(() => {
+  const svgColor = props.active
+    ? props.activeColor.replace('#', '%23')
+    : props.color.replace('#', '%23');
+  return (
+    'img:data:image/svg+xml;charset=utf8,' +
+    originSvg.value.replace(/fill="[^"]*"/g, `fill="${svgColor}"`)
+  );
+});
+
+loadSVG();
+</script>
+<template>
+  <q-icon v-bind="forwarded" :name="changedSvg" />
+  <p
+    v-if="label"
+    class="text-[10px] font-semibold pt-2"
+    :style="`color:${color}`"
+  >
+    {{ label }}
+  </p>
+</template>
+<style scoped lang="scss"></style>

@@ -2,20 +2,6 @@
 
 <script setup lang="ts">
 const { user } = storeToRefs(useAuthStore());
-onMounted(() => {
-  const { data: listData } = useNoticePopupList();
-
-  if (listData.value?.rows?.length) {
-    useRequiredNoticeDialog();
-  }
-});
-const { data: shortcutData } = useShortcutList();
-const shortcutAList = computed(
-  () => shortcutData.value?.rows.filter((r) => r.shortcut_area_cd === 'A') ?? []
-);
-const shortcutBList = computed(
-  () => shortcutData.value?.rows.filter((r) => r.shortcut_area_cd === 'B') ?? []
-);
 
 const slide = ref(0);
 const onClickGamePackMain = () => {
@@ -43,7 +29,9 @@ const onClickGamePackMain = () => {
       </q-carousel-slide>
     </c-carousel>
 
+    <c-icon />
     {{ user }}
+
     <c-btn class="mt-4" @click="onClickGamePackMain">게임팩 메인페이지로</c-btn>
     <!-- footer -->
     <footer

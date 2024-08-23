@@ -1,14 +1,6 @@
 <!-- 메인페이지 -->
 
 <script setup lang="ts">
-const { data: shortcutData } = useShortcutList();
-const shortcutAList = computed(
-  () => shortcutData.value?.rows.filter((r) => r.shortcut_area_cd === 'A') ?? []
-);
-const shortcutBList = computed(
-  () => shortcutData.value?.rows.filter((r) => r.shortcut_area_cd === 'B') ?? []
-);
-
 const slide = ref(0);
 
 // img dummy
@@ -60,7 +52,6 @@ const imgList = [
       </q-carousel-slide>
     </c-carousel>
 
-    <!-- 공군입대에 대해 궁금하다면 -->
     <section class="mt-10 px-6">
       <p class="text-[22px] font-semibold">WHAT IS GAME PACK</p>
       <p class="text-[#767676] text-sm font-normal">
