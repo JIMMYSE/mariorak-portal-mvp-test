@@ -257,18 +257,24 @@ module.exports = configure(function (ctx) {
 
     // animations: 'all', // --- includes all animations
     // https://v2.quasar.dev/options/animations
-    animations: [
-      'slideInUp',
-      'slideInDown',
-      'slideOutUp',
-      'slideOutDown',
-      'fadeInUp',
-      'fadeOutDown',
-      'fadeInUp',
-      'fadeOutRight',
-      'zoomInUp',
-      'zoomOutDown',
-    ],
+    animations: 'all',
+    // [
+    //   'slideInUp',
+    //   'slideInDown',
+    //   'slideOutUp',
+    //   'slideOutDown',
+    //   'fadeInUp',
+    //   'fadeOutDown',
+    //   'fadeInUp',
+    //   'fadeInLeft',
+    //   'fadeInRight',
+
+    //   'fadeOutRight',
+    //   'zoomInUp',
+    //   'zoomOutDown',
+    //   'slideInRight',
+    //   'slideOutRight',
+    // ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#sourcefiles
     // sourceFiles: {

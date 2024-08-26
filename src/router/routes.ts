@@ -26,14 +26,13 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: 'game-pack',
-        redirect: { name: 'game-pack-main' },
         meta: {
           requiresAuth: false,
         },
         component: MainLayout,
         children: [
           {
-            path: 'main',
+            path: '',
             name: 'game-pack-main',
             meta: {
               title: '게임팩',
