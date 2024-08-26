@@ -201,7 +201,7 @@ export const useBridge = () => {
     notifyLogoutFin() {
       log('notifyLogoutFin');
     },
-    loginSocial(loginType: string, backUrl: string) {
+    loginSocial(loginType: string) {
       log('loginSocial', loginType);
     },
     disconnectSocial() {
@@ -309,19 +309,9 @@ export const useBridge = () => {
        * @param backUrl - 소셜로그인 취소 후 실행할 url
        */
 
-      loginSocial(loginType: string, backUrl: string) {
-        const callbackUrl = window.location.origin + '/oauth/' + loginType;
-        log(
-          'oauthLogin with ',
-          loginType,
-          'callbackUrl',
-          callbackUrl,
-          'backUrl',
-          backUrl
-        );
-
+      loginSocial(loginType: string) {
         try {
-          JSOUT.loginSocial(loginType, callbackUrl, backUrl);
+          JSOUT.loginSocial(loginType);
         } catch (e) {
           error(e);
         }
