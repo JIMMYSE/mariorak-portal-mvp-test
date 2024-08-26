@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-type Props = {
-  toList: string;
-};
-const props = defineProps<Props>();
+// type Props = {
+//
+// };
+// const props = defineProps<Props>();
 
 const barStyle = {
   // 스크롤바 안보이게
@@ -20,20 +20,22 @@ const gameInfo = {
   description:
     'game의 새로운 시작을 소개합니다 game의 새로운 신작을 소개합니다',
 };
-
-const goToListPage = () => {
-  props.toList ? goToName(props.toList) : goToName('game-pack-main');
-};
 </script>
 <template>
   <div>
     <q-scroll-area
-      style="height: 300px"
+      style="height: 320px"
       :bar-style="barStyle"
       :thumb-style="thumbStyle"
     >
       <div class="row no-wrap">
         <div class="game-card q-mr-md" v-for="n in 5" :key="n">
+          <!-- INFO :: 상태 값에 따라서 q-icon 의 name 을 동적으로 지정하기 -->
+          <q-icon
+            name="img:/icons/icon_in_progress.svg"
+            size="50px"
+            class="absolute z-10 ml-[13px]"
+          />
           <q-img src="/images/dummy/game_dummy.svg" width="100%" />
           <div class="game-info q-mt-sm">
             <div class="text-caption q-mb-xs mt-[16px]">
@@ -53,18 +55,25 @@ const goToListPage = () => {
               {{ gameInfo.description }}
             </p>
           </div>
+          <div class="w-full mt-[20px]">
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-base font-medium leading-tight text-[#222222]"
+                >프로젝트 진행률</span
+              >
+              <span class="text-[#056bf1] text-2xl font-semibold">80%</span>
+            </div>
+            <!-- 응답값에 따라 style width 값 조절 -->
+            <div class="w-full bg-[#DBDBDB] rounded-full h-0.5">
+              <div
+                class="bg-[#056BF1] h-0.5 rounded-full"
+                style="width: 80%"
+              ></div>
+            </div>
+          </div>
         </div>
       </div>
     </q-scroll-area>
-    <div class="text-center">
-      <c-btn
-        @click="goToListPage()"
-        class="enter_btn rounded-[30px] text-[#056bf1] font-semibold text-sm py-3 pl-10 pr-[30px]"
-        outline
-        >전체 목록 보기
-        <q-icon name="img:/icons/icon_enter_arrow.svg" size="14px"></q-icon>
-      </c-btn>
-    </div>
+    <div class="text-center"></div>
   </div>
 </template>
 <style scoped>

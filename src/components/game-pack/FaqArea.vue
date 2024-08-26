@@ -65,7 +65,7 @@
             class="-mt-[1px] bg-grey w-full shrink overflow-hidden p-6"
             :class="detailId === item.id ? 'flex-1' : 'flex-none basis-0 py-0'"
           >
-            <p class="text-sm font-pretendard">
+            <p class="text-[#767676] text-sm font-normal">
               {{ detailData.description }}
             </p>
           </div>

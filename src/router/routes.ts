@@ -39,7 +39,46 @@ const routes: RouteRecordRaw[] = [
               title: '게임팩',
               bgColor: 'white',
             },
-            component: () => import('pages/game-pack/MainPage.vue'),
+            component: () => import('src/pages/game-pack/GPMainPage.vue'),
+          },
+          // 게임 목록/상세
+          {
+            path: 'game/list',
+            name: 'game-list',
+            meta: {
+              title: '게임 목록',
+              bgColor: 'white',
+            },
+            component: () => import('pages/game-pack/game/GameList.vue'),
+          },
+          {
+            path: 'game/:id',
+            name: 'game-detail',
+            meta: {
+              title: '게임 상세',
+              bgColor: 'white',
+            },
+            component: () => import('pages/game-pack/game/GameDetail.vue'),
+          },
+          // 프로젝트 목록/상세
+          {
+            path: 'project/list',
+            name: 'project-list',
+            meta: {
+              title: '프로젝트 목록',
+              bgColor: 'white',
+            },
+            component: () => import('pages/game-pack/project/ProjectList.vue'),
+          },
+          {
+            path: 'project/:id',
+            name: 'project-detail',
+            meta: {
+              title: '프로젝트 상세',
+              bgColor: 'white',
+            },
+            component: () =>
+              import('pages/game-pack/project/ProjectDetail.vue'),
           },
         ],
       },

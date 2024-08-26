@@ -1,0 +1,72 @@
+<script lang="ts" setup>
+// type Props = {
+//
+// };
+// const props = defineProps<Props>();
+
+const barStyle = {
+  // 스크롤바 안보이게
+  opacity: 1,
+};
+
+const thumbStyle = {
+  // 스크롤바 색상
+  backgroundColor: 'transparent',
+};
+
+const gameInfo = {
+  title: '[NEW][쿠키런 킹덤] 섬머소다 락 페스타',
+};
+</script>
+<template>
+  <div>
+    <q-scroll-area
+      style="height: 170px"
+      :bar-style="barStyle"
+      :thumb-style="thumbStyle"
+    >
+      <div class="row no-wrap">
+        <div class="game-card q-mr-md" v-for="n in 5" :key="n">
+          <q-img src="/images/dummy/recent_pj_dummy.png" width="100%" />
+          <div class="game-info q-mt-sm">
+            <p
+              class="text-[#222222] text-[16px] font-semibold leading-snug mt-[8px]"
+            >
+              {{ gameInfo.title }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </q-scroll-area>
+    <!-- 데이터 없을 시 -->
+    <!-- <div class="text-center text-[#767676] text-base font-normal">
+      아직 확인한 프로젝트가 없습니다.
+      <br />
+      추천 프로젝트를 확인해보세요.
+    </div> -->
+  </div>
+</template>
+<style scoped>
+.game-card {
+  width: 185px;
+  overflow: hidden;
+}
+
+.game-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.game-info {
+  color: white;
+}
+
+.badge {
+  background-color: #f0f0f0;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-right: 5px;
+  color: #222;
+}
+</style>
