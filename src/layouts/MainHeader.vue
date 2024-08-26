@@ -22,7 +22,9 @@ const isNewChat = ref(false);
     <q-toolbar
       class="flex justify-between items-center h-[var(--main-header-h)] pr-1"
     >
-      <p class="w-[125px] h-[30px] text-grey-5 text-xl">LOGO</p>
+      <p class="w-[60px] h-[30px] flex items-center ml-1">
+        <q-img src="/images/main-logo.png" alt="" />
+      </p>
       <div class="flex items-center">
         <q-btn size="md" round flat :to="{ name: 'profile' }">
           <q-icon name="img:/icons/icon_profile.svg" size="26px" />
