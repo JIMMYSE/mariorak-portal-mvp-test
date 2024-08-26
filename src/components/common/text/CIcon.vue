@@ -2,7 +2,15 @@
 import { QIconProps } from 'quasar';
 import { useForwardPropsEmits } from 'radix-vue';
 import { HtmlHTMLAttributes } from 'vue';
-
+/**
+ * @name CIcon
+ * @description
+ *
+ * @param {string} [color] - 기본 색상, 16진수('#B6B6B6') 사용
+ * @param {string} [size]
+ * @param {string} [activeColor] - 활성화 색상, 16진수('#B6B6B6') 사용
+ * @param {boolean} [active] - The state of the icon.
+ */
 export interface CIconProps extends QIconProps {
   activeColor?: string;
   active?: boolean;
