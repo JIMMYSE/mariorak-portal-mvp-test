@@ -14,13 +14,17 @@ const onLikeProject = () => {
           size="50px"
           class="absolute z-10 ml-[13px]"
         />
+        {{ like }}
         <c-icon
           name="icon_heart_btn"
           size="20px"
           :active="like"
-          active-color="#EA2E2E"
-          class="absolute z-10 mr-[13px]"
+          active-color="#FF0000"
+          color="#FFFF00"
+          input-class="absolute z-10 mr-[13px]"
+          @click="onLikeProject"
         />
+
         <q-img src="/images/dummy/game_detail_dummy.svg" width="100%" />
       </div>
     </section>
