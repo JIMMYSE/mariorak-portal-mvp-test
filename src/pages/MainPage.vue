@@ -4,10 +4,10 @@
 const { user } = storeToRefs(useAuthStore());
 
 const slide = ref(0);
-const onClickGamePackMain = () => {
-  goToName('game-pack-main');
+const { enterRoom } = useBridge();
+const openRoom = () => {
+  enterRoom(1, 1);
 };
-
 const openDialog = () => {
   useDialog({
     type: 'confirm',
@@ -71,6 +71,7 @@ const openContentDialog = () => {
       <c-btn @click="openDialog"> 기본 다이얼로그열기 </c-btn>
       <c-btn @click="openFullDialog"> 풀 다이얼로그열기 </c-btn>
       <c-btn @click="openContentDialog"> 컨텐츠 다이얼로그열기 </c-btn>
+      <c-btn @click="openRoom"> 룸 열기 </c-btn>
     </div>
 
     <!-- footer -->
