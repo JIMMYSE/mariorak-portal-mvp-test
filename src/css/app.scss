@@ -211,8 +211,16 @@ input::placeholder {
   border-radius: 15px;
 }
 
+// ccf custom
 hr {
   border-top: none;
 }
 
+.badge {
+  background-color: #f0f0f0;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-right: 5px;
+  color: #222;
+}
 @import './tiptap.scss';
