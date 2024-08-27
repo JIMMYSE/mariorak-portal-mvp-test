@@ -2,6 +2,7 @@
 
 <script setup lang="ts">
 const slide = ref(0);
+const keyword = ref<string>('');
 
 // img dummy
 const imgList = [
@@ -86,12 +87,13 @@ const imgList = [
       <img src="/images/dummy/banner_dummy.png" alt="banner" />
     </section>
 
+    <!--  게임 목록 -->
+    <c-search-input name="keyword" />
+
     <!-- FAQ -->
     <section class="mt-[55px]">
       <h2 class="text-[22px] font-semibold px-6">FAQ</h2>
-      <faq-area />
     </section>
-    <!--  게임 목록 -->
   </q-page>
 </template>
 

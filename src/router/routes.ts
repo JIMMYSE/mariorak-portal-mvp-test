@@ -7,11 +7,11 @@ import SubLayout from 'layouts/SubLayout.vue';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/game-pack/main',
+    redirect: { name: 'main' },
     children: [
       {
         path: '/home',
-        name: 'home',
+        name: 'main',
         meta: {
           requiresAuth: true,
         },

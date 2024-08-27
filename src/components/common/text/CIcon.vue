@@ -59,7 +59,9 @@ const changedSvg = computed(() => {
     : props.color.replace('#', '%23');
   return (
     'img:data:image/svg+xml;charset=utf8,' +
-    originSvg.value.replace(/fill="[^"]*"/g, `fill="${svgColor}"`)
+    originSvg.value
+      .replace(/fill="[^"]*"/g, `fill="${svgColor}"`)
+      .replace(/stroke="[^"]*"/g, `stroke="${svgColor}"`)
   );
 });
 
