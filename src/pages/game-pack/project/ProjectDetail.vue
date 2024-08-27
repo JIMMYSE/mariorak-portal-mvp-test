@@ -51,41 +51,74 @@ const gameInfo = {
           >
         </div>
         <div class="space-y-2 mt-[20px]">
-          <div class="flex justify-between">
-            <span class="text-[#b5b5b5] text-xs font-semibold leading-none"
+          <div class="flex justify-start items-center">
+            <span
+              class="text-[#b5b5b5] text-xs font-semibold leading-none w-[95px]"
               >프로젝트 매니저</span
             >
-            <span class="text-[#222222] text-sm font-normal leading-tight"
+            <span class="text-[#222222] text-sm font-normal leading-tight]"
               >가나다라마바사</span
             >
           </div>
-          <div class="flex justify-between">
-            <span class="text-[#b5b5b5] text-xs font-semibold leading-none"
+          <div class="flex justify-start items-center">
+            <span
+              class="text-[#b5b5b5] text-xs font-semibold leading-none w-[95px]"
               >프로젝트 시작일</span
             >
             <span class="text-[#222222] text-sm font-normal leading-tight"
               >2024.02.02</span
             >
           </div>
-          <div class="flex justify-between">
-            <span class="text-[#b5b5b5] text-xs font-semibold leading-none"
+          <div class="flex justify-start items-center">
+            <span
+              class="text-[#b5b5b5] text-xs font-semibold leading-none w-[95px]"
               >마지막 업데이트</span
             >
             <span class="text-[#222222] text-sm font-normal leading-tight"
               >2024.02.02</span
             >
           </div>
-          <div class="flex justify-between">
-            <span class="text-[#b5b5b5] text-xs font-semibold leading-none"
-              >등록일</span
+          <div class="flex justify-start items-center">
+            <span
+              class="text-[#b5b5b5] text-xs font-semibold leading-none w-[95px]"
+              >목표일</span
             >
             <span class="text-[#222222] text-sm font-normal leading-tight"
               >2024.02.02</span
             >
           </div>
         </div>
+        <!-- progress bar 추후 컴포넌트화 -->
+        <div class="w-full mt-[20px]">
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-base font-medium leading-tight text-[#222222]"
+              >프로젝트 진행률</span
+            >
+            <span class="text-[#056bf1] text-2xl font-semibold">80%</span>
+          </div>
+          <!-- 응답값에 따라 style width 값 조절 -->
+          <div class="w-full bg-[#DBDBDB] rounded-full h-0.5">
+            <div
+              class="bg-[#056BF1] h-0.5 rounded-full"
+              style="width: 80%"
+            ></div>
+          </div>
+        </div>
+        <div>
+          <c-btn
+            class="w-full rounded-[30px] text-[#056bf1] font-semibold text-sm py-4 pl-10 pr-[30px] mt-[23px]"
+            outline
+            >프로젝트 후원하기
+          </c-btn>
+          <c-btn
+            class="w-full rounded-[30px] text-[#056bf1] font-semibold text-sm py-4 pl-10 pr-[30px] mt-[8px]"
+            >메타버스 사무실 방문하기
+          </c-btn>
+        </div>
       </div>
     </section>
+    <hr class="h-2.5 bg-[#f7f7f7] mt-6" />
+    <!-- 탭 영역 -->
   </q-page>
 </template>
 <style lang="scss" scoped></style>
