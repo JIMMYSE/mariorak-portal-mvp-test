@@ -25,9 +25,7 @@ const props = withDefaults(defineProps<CIconProps>(), {
   active: false,
   label: '',
 });
-
 const forwarded = useForwardPropsEmits(props);
-
 const originSvg = ref<string>('');
 const loadSVG = async () => {
   try {
@@ -57,9 +55,12 @@ const changedSvg = computed(() => {
   const svgColor = props.active
     ? props.activeColor.replace('#', '%23')
     : props.color.replace('#', '%23');
+
   return (
     'img:data:image/svg+xml;charset=utf8,' +
-    originSvg.value.replace(/fill="[^"]*"/g, `fill="${svgColor}"`)
+    originSvg.value
+      .replace(/fill="[^"]*"/g, `fill="${svgColor}"`)
+      .replace(/stroke="[^"]*"/g, `stroke="${svgColor}"`)
   );
 });
 
