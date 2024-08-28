@@ -93,8 +93,11 @@ const computedStatus = computed(() => {
         >
           {{ computedStatus }}
         </div>
-        <div>
-          <c-icon :name="'icon_heart'" color="#EA2E2E" size="40px" />
+        <div class="flex text-[#767676]">
+          <c-icon :name="'icon_heart'" color="#EA2E2E" size="16px" />
+          <p class="pl-2">
+            {{ props.like }}
+          </p>
         </div>
       </div>
     </div>
