@@ -132,6 +132,7 @@ const info = {
   font-weight: 500;
 }
 .q-tab {
-  padding-left: 0px;
+  padding: 0;
+  margin-right: 16px;
 }
 </style>
