@@ -15,6 +15,8 @@ export interface CIconProps extends QIconProps {
   activeColor?: string;
   active?: boolean;
   label?: string;
+  fill?: boolean;
+  storke?: boolean;
 }
 
 const props = withDefaults(defineProps<CIconProps>(), {
@@ -24,6 +26,8 @@ const props = withDefaults(defineProps<CIconProps>(), {
   activeColor: '#056BF1',
   active: false,
   label: '',
+  fill: true,
+  storke: true,
 });
 
 const forwarded = useForwardPropsEmits(props);
@@ -58,11 +62,12 @@ const changedSvg = computed(() => {
     ? props.activeColor.replace('#', '%23')
     : props.color.replace('#', '%23');
 
-  const newSvg =
-    'img:data:image/svg+xml;charset=utf8,' +
-    originSvg.value
-      .replace(/fill="[^"]*"/g, `fill="${svgColor}"`)
-      .replace(/stroke="[^"]*"/g, `stroke="${svgColor}"`);
+  let newSvg = 'img:data:image/svg+xml;charset=utf8,' + originSvg.value;
+  if (props.fill)
+    newSvg = newSvg.replace(/fill="[^"]*"/g, `fill="${svgColor}"`);
+  if (props.storke)
+    newSvg = newSvg.replace(/stroke="[^"]*"/g, `stroke="${svgColor}"`);
+
   return newSvg;
 });
 

@@ -113,6 +113,14 @@ const info = {
       :status="info.status"
     />
   </div>
+  <div class="flex justify-center">
+    <c-btn
+      class="enter_btn rounded-[30px] text-primary font-semibold text-sm py-3 pl-10 pr-[30px] mt-[23px]"
+      outline
+      >목록으로 이동
+      <c-icon name="down_arrow" size="18px" :color="'#056BF1'" :fill="false" />
+    </c-btn>
+  </div>
 </template>
 
 <style lang="scss" scoped>
