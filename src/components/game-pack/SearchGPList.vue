@@ -81,6 +81,7 @@ const info = {
   description:
     'game의 새로운 시작을 소개합니다 game의 새로운 신작을 소개합니다',
   status: 13,
+  like: 29,
 };
 </script>
 <template>
@@ -111,19 +112,20 @@ const info = {
       :title="info.title"
       :description="info.description"
       :status="info.status"
+      :like="info.like"
     />
   </div>
   <div class="flex justify-center">
     <c-btn
       class="enter_btn rounded-[30px] text-primary font-semibold text-sm py-3 pl-10 pr-[30px] mt-[23px]"
       outline
-      >목록으로 이동
+      >더보기
       <c-icon name="down_arrow" size="18px" :color="'#056BF1'" :fill="false" />
     </c-btn>
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .q-tab .q-tab__label {
   font-size: 16px;
   color: #767676;
