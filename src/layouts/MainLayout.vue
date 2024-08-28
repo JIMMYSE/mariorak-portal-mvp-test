@@ -10,11 +10,7 @@
         leave-active-class="animated slideOutLeft"
         enter-active-class="animated slideInRight"
       > -->
-      <transition>
-        <router-view v-slot="{ Component, route }">
-          <component :is="Component" :key="route.path" />
-        </router-view>
-      </transition>
+      <router-view />
     </div>
   </q-page-container>
 </template>
