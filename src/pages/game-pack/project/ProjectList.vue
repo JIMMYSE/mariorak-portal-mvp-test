@@ -39,7 +39,9 @@
     <!--  게임 목록 -->
     <section class="mt-[55px] w-full">
       <h2 class="px-6 text-[22px] font-semibold">게임 목록</h2>
-      <search-g-p-list />
+      <div class="mt-4">
+        <search-g-p-list />
+      </div>
     </section>
 
     <section class="mt-[55px]">
