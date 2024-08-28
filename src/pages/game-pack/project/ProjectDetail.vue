@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const like = ref(false);
+const tab = ref('INFO');
 
 const onLikeProject = () => {
   like.value = !like.value;
@@ -21,10 +22,13 @@ const gameInfo = {
           size="50px"
           class="absolute z-10 ml-[13px]"
         />
-        <div @click="onLikeProject" class="absolute z-10 ml-[13px]">
+        <div
+          @click="onLikeProject"
+          class="absolute z-10 mr-[13px] right-0 top-2"
+        >
           <c-icon
             name="icon_heart_btn"
-            size="20px"
+            size="30px"
             :active="like"
             active-color="#EA2E2E"
           />
@@ -120,6 +124,22 @@ const gameInfo = {
     </section>
     <hr class="h-2.5 bg-[#f7f7f7] mt-6" />
     <!-- 탭 영역 -->
+    <section class="mt-[35px]">
+      <c-tabs
+        v-model="tab"
+        :tabs="[
+          { label: '정보', name: 'INFO' },
+          { label: '게시판', name: 'BOARD' },
+          { label: '소식', name: 'NEWS' },
+        ]"
+      />
+
+      <q-tab-panels v-model="tab" animated>
+        <q-tab-panel name="INFO" tab="INFO"></q-tab-panel>
+        <q-tab-panel name="BOARD"></q-tab-panel>
+        <q-tab-panel name="NEWS"></q-tab-panel>
+      </q-tab-panels>
+    </section>
   </q-page>
 </template>
 <style lang="scss" scoped></style>
