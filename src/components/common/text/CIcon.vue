@@ -57,10 +57,13 @@ const changedSvg = computed(() => {
   const svgColor = props.active
     ? props.activeColor.replace('#', '%23')
     : props.color.replace('#', '%23');
-  return (
+
+  const newSvg =
     'img:data:image/svg+xml;charset=utf8,' +
-    originSvg.value.replace(/fill="[^"]*"/g, `fill="${svgColor}"`)
-  );
+    originSvg.value
+      .replace(/fill="[^"]*"/g, `fill="${svgColor}"`)
+      .replace(/stroke="[^"]*"/g, `stroke="${svgColor}"`);
+  return newSvg;
 });
 
 loadSVG();

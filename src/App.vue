@@ -81,11 +81,13 @@ const isMain = computed(() => route.name?.toString().includes('main'));
       <!-- FE version: {{ version }} / BE version: {{ BEversion }} -->
     </div>
 
-    <main-header :footer-visible="footerVisible" v-if="isMain" />
-    <sub-header v-else />
-
+    <div v-if="isLoggedIn">
+      <main-header :footer-visible="footerVisible" v-if="isMain" />
+      <sub-header v-else />
+    </div>
     <router-view />
     <q-footer
+      v-if="isLoggedIn"
       class="bg-white justify-between items-center flex h-[76px] footer-border"
     >
       <q-tabs class="w-full">
