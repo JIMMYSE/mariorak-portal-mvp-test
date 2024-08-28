@@ -1,4 +1,3 @@
-<script lang="ts" setup></script>
 <template>
   <q-page>
     <section>
@@ -37,10 +36,12 @@
     <section class="mt-[55px]">
       <img src="/images/dummy/banner_dummy.png" alt="banner" />
     </section>
-    <section class="px-6 mt-10">
-      <h2 class="text-[20px] font-semibold">게임 목록</h2>
-      <div class="grid gap-1.5 mt-4"></div>
+    <!--  게임 목록 -->
+    <section class="mt-[55px] w-full">
+      <h2 class="px-6 text-[22px] font-semibold">게임 목록</h2>
+      <search-g-p-list />
     </section>
+
     <section class="mt-[55px]">
       <h2 class="text-[22px] font-semibold px-6">FAQ</h2>
       <faq-area />

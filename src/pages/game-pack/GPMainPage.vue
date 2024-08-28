@@ -87,16 +87,9 @@ const imgList = [
       <img src="/images/dummy/banner_dummy.png" alt="banner" />
     </section>
 
-    <!--  게임 목록 -->
-    <c-search-input name="keyword" />
-
     <!-- FAQ -->
     <section class="mt-[55px]">
       <h2 class="text-[22px] font-semibold px-6">FAQ</h2>
     </section>
   </q-page>
 </template>
-
-<script lang="ts"></script>
-
-<style lang="scss" scoped></style>

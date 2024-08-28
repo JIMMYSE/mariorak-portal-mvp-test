@@ -63,7 +63,7 @@ const eventer = (e: Event) => {
 </script>
 
 <template>
-  <div class="w-full h-11 bg-[#f7f7f7] rounded-[5px] flex">
+  <div class="w-full h-11 bg-[#f7f7f7] rounded-[5px] flex px-3">
     <img src="/icons/icon_search.svg" alt="shadow" />
     <input
       type="text"
@@ -71,7 +71,7 @@ const eventer = (e: Event) => {
       v-model="model"
       placeholder="검색어를 입력해주세요"
       @input="(e : Event) =>  eventer(e)"
-      class="bg-transparent w-full h-full pl-2"
+      class="bg-transparent h-full pl-2 col"
     />
   </div>
 </template>
