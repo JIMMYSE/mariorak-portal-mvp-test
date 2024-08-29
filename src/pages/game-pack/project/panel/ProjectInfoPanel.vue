@@ -1,9 +1,23 @@
 <script lang="ts" setup></script>
 <template>
-  <section class="mt-6 w-full">
-    <h2 class="text-[20px] font-semibold">게임 소개</h2>
-    <div class="grid gap-1.5 mt-4">
-      <introduce-text />
-    </div>
-  </section>
+  <div class="w-full">
+    <section class="mt-6">
+      <h2 class="text-[20px] font-semibold">게임 소개</h2>
+      <div class="mt-4">
+        <introduce-text />
+      </div>
+    </section>
+    <section class="mt-[60px]">
+      <h2 class="text-[20px] font-semibold">In Game Shot</h2>
+      <div class="mt-4">
+        <game-shot-movie />
+      </div>
+    </section>
+    <section class="mt-[60px]">
+      <h2 class="text-[20px] font-semibold">프로젝트 참여 멤버</h2>
+      <div class="mt-4">
+        <g-p-member-list />
+      </div>
+    </section>
+  </div>
 </template>
