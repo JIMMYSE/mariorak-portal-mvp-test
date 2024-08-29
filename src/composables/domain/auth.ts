@@ -102,7 +102,6 @@ export const useLogin = () => {
 export const useRequiredNoticeDialog = () => {
   return useAlertDialog({
     contentComponent: RequiredNoticeDialog,
-    title: '필수 공지사항',
     buttons: [],
     closeButton: true,
   });
