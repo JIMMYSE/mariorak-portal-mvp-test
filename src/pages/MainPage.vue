@@ -42,6 +42,11 @@ const openContentDialog = () => {
     title: '알림',
   });
 };
+async function doLogout() {
+  useLogout({
+    onSuccess: () => goToName('login'),
+  });
+}
 </script>
 
 <template>
@@ -72,6 +77,7 @@ const openContentDialog = () => {
       <c-btn @click="openFullDialog"> 풀 다이얼로그열기 </c-btn>
       <c-btn @click="openContentDialog"> 컨텐츠 다이얼로그열기 </c-btn>
       <c-btn @click="openRoom"> 룸 열기 </c-btn>
+      <c-btn @click="doLogout"> 로그아웃 </c-btn>
     </div>
 
     <!-- footer -->

@@ -71,7 +71,7 @@ const socialLoginAPI = async (accessToken: string, provider: SocialType) => {
   } else {
     // 로그인 성공
     console.log('>>> 로그인 성공');
-    goToName('main');
+    goToName('home-main');
   }
 };
 </script>
