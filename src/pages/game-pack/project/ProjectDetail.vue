@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import ProjectInfoPanel from './panel/ProjectInfoPanel.vue';
 const like = ref(false);
 const tab = ref('INFO');
 
@@ -135,7 +136,9 @@ const gameInfo = {
       />
 
       <q-tab-panels v-model="tab" animated>
-        <q-tab-panel name="INFO" tab="INFO"></q-tab-panel>
+        <q-tab-panel class="px-6" name="INFO">
+          <project-info-panel />
+        </q-tab-panel>
         <q-tab-panel name="BOARD"></q-tab-panel>
         <q-tab-panel name="NEWS"></q-tab-panel>
       </q-tab-panels>
