@@ -1,6 +1,7 @@
 <!-- 메인페이지 -->
 
 <script setup lang="ts">
+import FaqArea from 'src/components/game-pack/FaqArea.vue';
 import GPItemList from 'src/components/game-pack/GPItemList.vue';
 
 const slide = ref(0);
@@ -105,6 +106,7 @@ const recommendedProjectList = computed(() => {
     <!-- FAQ -->
     <section class="mt-[55px]">
       <h2 class="text-[22px] font-semibold px-6">FAQ</h2>
+      <faq-area />
     </section>
   </q-page>
 </template>

@@ -2,9 +2,8 @@ import { CodeList, CodeSearchRes } from 'meta-airforce-dto';
 import { MaybeRefOrGetter } from 'vue';
 
 export type CodeListType = InferType<typeof CodeList>;
-export type CodeSearchResType = InferType<typeof CodeSearchRes>;
 
-const url = '/code';
+const url = '/v1/codes';
 const CODE_QUERY_KEY = {
   LIST: 'codeList',
 };
@@ -91,19 +90,12 @@ export function initCommonCodeList(listQueryKeyName = CODE_QUERY_KEY.LIST) {
   const isInitiated = ref(false);
 
   const { user, isLoggedIn } = useUserInfo();
-  const { data } = useQueryFetchList<CodeSearchResType, SearchRequest>({
+  const { data } = useQueryFetch<any>({
     url,
-    searchRequest,
-    listQueryKeyName,
+    queryKeyName: listQueryKeyName,
     queryOption: {
       enabled: isLoggedIn,
-      // staleTime: 5 * 1000,
       refetchInterval: 1000 * 60 * 10,
-      // refetchOnMount: false,
-      // refetchOnReconnect : false,
-      // refetchOnWindowFocus: false,
-      // retry: 2,
-      // retryDelay: 2000,
     },
   });
   watch(
@@ -111,7 +103,7 @@ export function initCommonCodeList(listQueryKeyName = CODE_QUERY_KEY.LIST) {
     () => {
       if (data.value && user.value) {
         const { setCodeList } = useCommonCodeStore();
-        setCodeList(data.value.rows);
+        setCodeList(data.value.codes);
         isInitiated.value = true;
       }
     }
