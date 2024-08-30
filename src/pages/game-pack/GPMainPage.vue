@@ -69,6 +69,7 @@ const recommendedProjectList = computed(() => {
       height="360px"
       :total-slides="imgList.length"
       keep-alive
+      infinite
     >
       <q-carousel-slide
         class="p-0 h-[460px]"
