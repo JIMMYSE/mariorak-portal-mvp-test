@@ -30,7 +30,7 @@
     <section class="px-6 mt-10">
       <h2 class="text-[20px] font-semibold">최근 본 프로젝트</h2>
       <div class="grid gap-1.5 mt-4">
-        <recent-project-list />
+        <normal-project-list />
       </div>
     </section>
     <section class="mt-[55px]">
@@ -39,7 +39,9 @@
     <!--  게임 목록 -->
     <section class="mt-[55px] w-full">
       <h2 class="px-6 text-[22px] font-semibold">게임 목록</h2>
-      <search-g-p-list />
+      <div class="mt-4">
+        <search-g-p-list />
+      </div>
     </section>
 
     <section class="mt-[55px]">

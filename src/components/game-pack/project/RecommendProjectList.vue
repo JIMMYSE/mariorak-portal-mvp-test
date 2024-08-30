@@ -29,7 +29,12 @@ const gameInfo = {
       :thumb-style="thumbStyle"
     >
       <div class="row no-wrap">
-        <div class="game-card q-mr-md" v-for="n in 5" :key="n">
+        <div
+          class="game-card q-mr-md"
+          v-for="n in 5"
+          :key="n"
+          @click="goTo('/game-pack/project/1')"
+        >
           <!-- INFO :: 상태 값에 따라서 q-icon 의 name 을 동적으로 지정하기 -->
           <q-icon
             name="img:/icons/icon_in_progress.svg"
