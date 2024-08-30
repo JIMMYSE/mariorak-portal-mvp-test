@@ -39,3 +39,10 @@ export const DeviceAgent = object({
   os: string().optional(),
   sdk_version: string().optional(),
 });
+
+export const ThumbnailFileSchema = object({
+  id: number().required(),
+  file_name: string().required(),
+  origin_addr: string().url().required(),
+  convert_addr: string().url().required(),
+});

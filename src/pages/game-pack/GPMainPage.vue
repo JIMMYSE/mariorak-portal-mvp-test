@@ -1,6 +1,8 @@
 <!-- 메인페이지 -->
 
 <script setup lang="ts">
+import GPItemList from 'src/components/game-pack/GPItemList.vue';
+
 const slide = ref(0);
 const keyword = ref<string>('');
 
@@ -31,6 +33,16 @@ const imgList = [
     id: 6,
   },
 ];
+
+//fetecth
+const { data: recommendedGameData } = useRecommendedGameList();
+const recommendedGameList = computed(() => {
+  return recommendedGameData.value?.rows;
+});
+const { data: recommededProjectData } = useRecommendedProjectList();
+const recommendedProjectList = computed(() => {
+  return recommededProjectData.value?.rows;
+});
 </script>
 
 <template>
@@ -70,7 +82,7 @@ const imgList = [
     <section class="px-6 mt-10">
       <h2 class="text-[22px] font-semibold">CCF 추천게임</h2>
       <div class="grid gap-1.5 mt-4">
-        <game-item-list to-list="game-list" />
+        <g-p-item-list to-list="game-list" :gp-list="recommendedGameList" />
       </div>
     </section>
 
@@ -78,7 +90,10 @@ const imgList = [
     <section class="px-6 mt-[55px]">
       <h2 class="text-[22px] font-semibold">CCF 추천 프로젝트</h2>
       <div class="grid gap-1.5 mt-4">
-        <game-item-list to-list="project-list" />
+        <g-p-item-list
+          to-list="project-list"
+          :gp-list="recommendedProjectList"
+        />
       </div>
     </section>
 

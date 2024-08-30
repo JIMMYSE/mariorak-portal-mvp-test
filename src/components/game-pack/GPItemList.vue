@@ -1,6 +1,13 @@
 <script lang="ts" setup>
+import {
+  RecommendedGameListResType,
+  RecommendedGameListType,
+} from 'src/types/gamepack/game-model';
+import { RecommendedProjectListType } from 'src/types/gamepack/project-model';
+
 type Props = {
   toList: string;
+  gpList: RecommendedGameListType[] | RecommendedProjectListType[] | undefined;
 };
 const props = defineProps<Props>();
 
@@ -33,13 +40,21 @@ const goToListPage = () => {
       :thumb-style="thumbStyle"
     >
       <div class="row no-wrap">
-        <div class="game-card q-mr-md" v-for="n in 5" :key="n">
-          <q-img src="/images/dummy/game_dummy.svg" width="100%" />
+        <div
+          class="game-card q-mr-md"
+          v-for="gp in props.gpList"
+          :key="gp.created_at"
+        >
+          <c-img
+            :src="gp.thmn_file.convert_addr"
+            width="100%"
+            class="rounded-xl"
+          />
           <div class="game-info q-mt-sm">
             <div class="text-caption q-mb-xs mt-[16px]">
               <span
                 class="badge font-medium"
-                v-for="badge in gameInfo.badge"
+                v-for="badge in gp.tag_list"
                 :key="badge"
                 >{{ badge }}</span
               >
@@ -47,10 +62,10 @@ const goToListPage = () => {
             <p
               class="text-[#222222] text-[16px] font-semibold leading-snug mt-[8px]"
             >
-              {{ gameInfo.title }}
+              {{ gp.title }}
             </p>
             <p class="text-[#696969] text-xs font-normal leading-4 mt-[6px]">
-              {{ gameInfo.description }}
+              {{ gp.desc }}
             </p>
           </div>
         </div>
