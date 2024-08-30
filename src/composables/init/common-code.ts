@@ -1,4 +1,5 @@
 import { CodeList, CodeSearchRes } from 'meta-airforce-dto';
+import { CodeObjectType } from 'src/types/common/code-model';
 import { MaybeRefOrGetter } from 'vue';
 
 export type CodeListType = InferType<typeof CodeList>;
@@ -102,8 +103,31 @@ export function initCommonCodeList(listQueryKeyName = CODE_QUERY_KEY.LIST) {
     () => [data.value, user.value],
     () => {
       if (data.value && user.value) {
+        const groupedData = <any>{};
+
+        // 트로핏 코드를 section_cd로 그룹화
+        data.value.codes.forEach((item: CodeObjectType) => {
+          const { group, description, code, name, sequence } = item;
+
+          if (!groupedData[group]) {
+            groupedData[group] = {
+              section_cd: group,
+              section_name: description,
+              list: [],
+            };
+          }
+
+          groupedData[group].list.push({
+            cd: code,
+            cd_name: name,
+            cd_seq: sequence,
+          });
+        });
+
+        const result = Object.values(groupedData);
+
         const { setCodeList } = useCommonCodeStore();
-        setCodeList(data.value.codes);
+        setCodeList(result);
         isInitiated.value = true;
       }
     }

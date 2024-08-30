@@ -2,11 +2,11 @@
 
 <script lang="ts" setup>
 // 카테고리
-// const {
-//   code,
-//   cdList: categoryCdList,
-//   options: categoryOptions,
-// } = useCommonCode('FAQ_CATEGORY');
+const {
+  code,
+  cdList: categoryCdList,
+  options: categoryOptions,
+} = useCommonCode('FAQ_CATE');
 
 // const { request } = useSearchFilter({
 //   requestDefault: {
@@ -38,6 +38,7 @@
 
 <template>
   <q-card-section class="p-0">
+    {{ code }}
     <section class="mt-6 mb-[9px]">
       <ul>
         <li

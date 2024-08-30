@@ -12,8 +12,7 @@ export const useCommonCodeStore = defineStore(
       return codeList.value;
     }
 
-    function setCodeList(list: MaybeRefOrGetter<CodeListType[]>) {
-      console.log('>>>setCodeList', list);
+    function setCodeList(list: MaybeRefOrGetter<any[]>) {
       codeList.value = toValue(list);
     }
 
