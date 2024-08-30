@@ -37,6 +37,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '게임팩',
               bgColor: 'white',
+              faqCategory: '게임팩',
             },
             component: () => import('src/pages/game-pack/GPMainPage.vue'),
           },
@@ -47,6 +48,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '게임 목록',
               bgColor: 'white',
+              faqCategory: '게임팩>게임',
             },
             component: () => import('pages/game-pack/game/GameList.vue'),
           },
@@ -66,6 +68,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '프로젝트 목록',
               bgColor: 'white',
+              faqCategory: '게임팩>프로젝트',
             },
             component: () => import('pages/game-pack/project/ProjectList.vue'),
           },
