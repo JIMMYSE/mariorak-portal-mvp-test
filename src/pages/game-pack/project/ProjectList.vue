@@ -1,5 +1,9 @@
+<script lang="ts" setup>
+const el = ref<HTMLElement | null>(null);
+const { x, y, isScrolling, arrivedState, directions } = useScroll(el);
+</script>
 <template>
-  <q-page>
+  <q-page ref="el">
     <section>
       <div
         class="anchor-area h-[210px] w-full text-center flex items-center justify-center"
@@ -37,8 +41,8 @@
       <img src="/images/dummy/banner_dummy.png" alt="banner" />
     </section>
     <!--  게임 목록 -->
-    <section class="mt-[55px] w-full">
-      <h2 class="px-6 text-[22px] font-semibold">게임 목록</h2>
+    <section class="mt-[55px] w-full" id="list">
+      <h2 class="px-6 text-[22px] font-semibold">프로젝트 목록</h2>
       <div class="mt-4">
         <search-g-p-list />
       </div>

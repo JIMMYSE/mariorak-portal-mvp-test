@@ -75,14 +75,40 @@ const options = [
   },
 ];
 
-const info = {
-  badge: ['슈', '슈', 'ㅁㄴ', 'ㅁㄴㅇㄹ', 'ㅁㄴㅇㄹ'],
-  title: '[새롭게 돌아온] KINGDOM the blood 킹덤 더 블러드',
-  description:
-    'game의 새로운 시작을 소개합니다 game의 새로운 신작을 소개합니다',
-  status: 13,
-  like: 29,
-};
+const infoList = [
+  {
+    badge: ['슈', '슈', 'ㅁㄴ', 'ㅁㄴㅇㄹ', 'ㅁㄴㅇㄹ'],
+    title: '[새롭게 돌아온] KINGDOM the blood 킹덤 더 블러드',
+    description:
+      'game의 새로운 시작을 소개합니다 game의 새로운 신작을 소개합니다',
+    status: 13,
+    like: 29,
+  },
+  {
+    badge: ['슈', '슈', 'ㅁㄴ', 'ㅁㄴㅇㄹ', 'ㅁㄴㅇㄹ'],
+    title: '[새롭게 돌아온] KINGDOM the blood 킹덤 더 블러드',
+    description:
+      'game의 새로운 시작을 소개합니다 game의 새로운 신작을 소개합니다',
+    status: 13,
+    like: 29,
+  },
+  {
+    badge: ['슈', '슈', 'ㅁㄴ', 'ㅁㄴㅇㄹ', 'ㅁㄴㅇㄹ'],
+    title: '[새롭게 돌아온] KINGDOM the blood 킹덤 더 블러드',
+    description:
+      'game의 새로운 시작을 소개합니다 game의 새로운 신작을 소개합니다',
+    status: 13,
+    like: 29,
+  },
+  {
+    badge: ['슈', '슈', 'ㅁㄴ', 'ㅁㄴㅇㄹ', 'ㅁㄴㅇㄹ'],
+    title: '[새롭게 돌아온] KINGDOM the blood 킹덤 더 블러드',
+    description:
+      'game의 새로운 시작을 소개합니다 game의 새로운 신작을 소개합니다',
+    status: 13,
+    like: 29,
+  },
+];
 </script>
 <template>
   <q-tabs v-model="searchTab" dense class="pl-6">
@@ -106,8 +132,10 @@ const info = {
       dense
     />
   </div>
-  <div class="px-6">
+  <div class="px-6 q-gutter-y-md">
     <search-g-p-item
+      v-for="info in infoList"
+      :key="info"
       :badge="info.badge"
       :title="info.title"
       :description="info.description"

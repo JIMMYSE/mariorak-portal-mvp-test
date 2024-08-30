@@ -90,7 +90,7 @@ const isMain = computed(() => route.name?.toString().includes('main'));
       v-if="isLoggedIn"
       class="bg-white justify-between items-center flex h-[76px] footer-border"
     >
-      <q-tabs class="w-full">
+      <q-tabs class="w-full" align="justify">
         <q-route-tab
           v-for="tabInfo in tabInfos"
           :key="tabInfo.name"
