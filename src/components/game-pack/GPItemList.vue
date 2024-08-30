@@ -18,13 +18,6 @@ const thumbStyle = {
   backgroundColor: 'transparent',
 };
 
-const gameInfo = {
-  badge: ['어드벤쳐', 'Mobile', 'RPG'],
-  title: '[새롭게 돌아온] KINGDOM the blood 킹덤 더 블러드',
-  description:
-    'game의 새로운 시작을 소개합니다 game의 새로운 신작을 소개합니다',
-};
-
 const goToListPage = () => {
   props.toList ? goToName(props.toList) : goToName('game-pack-main');
 };
@@ -45,7 +38,7 @@ const goToListPage = () => {
           <c-img
             :src="gp.thmn_file.convert_addr"
             width="100%"
-            class="rounded-xl"
+            class="rounded-xl game-image"
           />
           <div class="game-info q-mt-sm">
             <div class="text-caption q-mb-xs mt-[16px]">
