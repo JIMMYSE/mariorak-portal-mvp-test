@@ -3,29 +3,21 @@ import { QCarouselProps } from 'quasar';
 import { useForwardPropsEmits } from 'radix-vue';
 import { computed, ref, onMounted } from 'vue';
 
-type Props = { controlColorActive: string } & QCarouselProps;
+type Props = {
+  controlColorActive: string;
+  totalSlides: number;
+} & QCarouselProps;
 const props = defineProps<Props>();
 const emits = defineEmits(['update:modelValue']);
 const forwarded = useForwardPropsEmits(props, emits);
 
 const currentSlide = ref(props.modelValue || 0);
-const totalSlides = ref(0);
+
 const carouselRef = ref(null);
-
-onMounted(() => {
-  updateTotalSlides();
-});
-
-const updateTotalSlides = () => {
-  if (carouselRef.value) {
-    // @ts-expect-error-error
-    totalSlides.value = carouselRef.value.panelsNumber || 0;
-  }
-};
 
 // 배지 텍스트 계산
 const badgeText = computed(() => {
-  return `${(currentSlide.value as number) + 1} / ${totalSlides.value}`;
+  return `${(currentSlide.value as number) + 1} / ${props.totalSlides}`;
 });
 </script>
 

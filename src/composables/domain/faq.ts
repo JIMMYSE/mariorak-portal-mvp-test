@@ -1,19 +1,11 @@
-/**
- * 입대 안내 > 자주 묻는 질문
- */
-
-import { FaqDetailRes, FaqSearchRes } from 'meta-airforce-dto';
+import { FaqSearchListResType } from 'src/types/faq/faq-model';
 import { MaybeRef, MaybeRefOrGetter } from 'vue';
 
-const API_URL = '/faq';
+const API_URL = '/v1/faq';
 const QUERY_KEY = {
   LIST: 'FAQ_LIST',
   DETAIL: 'FAQ_DETAIL',
 };
-
-/** DTO */
-export type FaqSearchResType = InferType<typeof FaqSearchRes>;
-export type FaqDetailResType = InferType<typeof FaqDetailRes>;
 
 /**
  * FAQ 목록 조회
@@ -27,24 +19,10 @@ export const useFaqList = ({
   queryOption?: QueryOption;
   listQueryKeyName?: string;
 }) => {
-  return useQueryFetchList<FaqSearchResType, SearchRequest>({
+  return useQueryFetchList<FaqSearchListResType, SearchRequest>({
     url: API_URL,
     searchRequest,
     queryOption,
     listQueryKeyName,
-  });
-};
-
-/**
- * FAQ 상세 조회
- */
-export const useFaqDetail = (
-  id: MaybeRefOrGetter<Id>,
-  queryKeyName = QUERY_KEY.DETAIL
-) => {
-  return useQueryFetchItem<FaqDetailResType>({
-    url: API_URL,
-    id,
-    queryKeyName,
   });
 };

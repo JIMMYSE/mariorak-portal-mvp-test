@@ -2,7 +2,6 @@ import { VueQueryPlugin, VueQueryPluginOptions } from '@tanstack/vue-query';
 import { boot } from 'quasar/wrappers';
 import { configure } from 'vee-validate';
 import vue3GoogleLogin from 'vue3-google-login';
-import InlineSvg from 'vue-inline-svg';
 
 export default boot(({ app }) => {
   // vue-query
@@ -31,7 +30,6 @@ export default boot(({ app }) => {
     clientId:
       '920995392907-pv9hmu5ibttqfsoinaei8v6nv2aj6bpf.apps.googleusercontent.com',
   });
-  app.component('InlineSvg', InlineSvg);
 
   // vee-validate
   configure({
