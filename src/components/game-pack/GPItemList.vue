@@ -1,8 +1,5 @@
 <script lang="ts" setup>
-import {
-  RecommendedGameListResType,
-  RecommendedGameListType,
-} from 'src/types/gamepack/game-model';
+import { RecommendedGameListType } from 'src/types/gamepack/game-model';
 import { RecommendedProjectListType } from 'src/types/gamepack/project-model';
 
 type Props = {
