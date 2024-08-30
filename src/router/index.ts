@@ -66,7 +66,7 @@ export default route(function (/* { store, ssrContext } */) {
       if (to.matched.some((record) => record.meta.requiresAuth)) {
         return { name: 'login', query: { next: to.fullPath } };
       }
-    }
+    } else if (to.name?.toString().includes('login')) return { name: 'main' };
 
     if (to.name?.toString().includes('join')) {
       console.log('>>>to.nameHasJoin');
