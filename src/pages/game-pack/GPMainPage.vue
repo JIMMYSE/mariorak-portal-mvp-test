@@ -69,6 +69,7 @@ const recommendedProjectList = computed(() => {
       height="360px"
       :total-slides="imgList.length"
       keep-alive
+      infinite
     >
       <q-carousel-slide
         class="p-0 h-[460px]"
@@ -114,7 +115,7 @@ const recommendedProjectList = computed(() => {
 
     <!-- 배너영역 -->
     <section class="mt-[55px]">
-      <img src="/images/dummy/banner_dummy.png" alt="banner" />
+      <img src="/images/dummy/banner_dummy.png" alt="banner" class="w-full" />
     </section>
 
     <!-- FAQ -->
