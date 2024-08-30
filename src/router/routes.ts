@@ -27,7 +27,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'game-pack',
         meta: {
-          requiresAuth: false,
+          requiresAuth: true,
         },
         component: MainLayout,
         children: [
