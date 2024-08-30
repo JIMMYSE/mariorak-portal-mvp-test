@@ -11,27 +11,40 @@ const keyword = ref<string>('');
 const imgList = [
   {
     src: '/images/dummy/main_dummy.svg',
+
     id: 1,
+    title: '지금 CCF\n2024에 투표하세요',
+    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
   },
   {
     src: '/images/dummy/main_dummy1.svg',
     id: 2,
+    title: '지금 CCF\n2024에 투표하세요',
+    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
   },
   {
     src: '/images/dummy/main_dummy2.svg',
     id: 3,
+    title: '지금 CCF\n2024에 투표하세요',
+    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
   },
   {
     src: '/images/dummy/main_dummy3.svg',
     id: 4,
+    title: '지금 CCF\n2024에 투표하세요',
+    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
   },
   {
     src: '/images/dummy/main_dummy4.svg',
     id: 5,
+    title: '지금 CCF\n2024에 투표하세요',
+    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
   },
   {
     src: '/images/dummy/main_dummy5.svg',
     id: 6,
+    title: '지금 CCF\n2024에 투표하세요',
+    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
   },
 ];
 
@@ -54,6 +67,7 @@ const recommendedProjectList = computed(() => {
       control-color-active="transparent"
       v-model="slide"
       height="360px"
+      :total-slides="imgList.length"
       keep-alive
     >
       <q-carousel-slide
@@ -62,7 +76,7 @@ const recommendedProjectList = computed(() => {
         :key="img.id"
         :name="i"
       >
-        <main-card :image-src="img.src" />
+        <main-card :image-src="img.src" :title="img.title" :desc="img.desc" />
       </q-carousel-slide>
     </c-carousel>
 
