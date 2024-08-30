@@ -29,9 +29,7 @@ const props = withDefaults(defineProps<CIconProps>(), {
   fill: true,
   storke: true,
 });
-
 const forwarded = useForwardPropsEmits(props);
-
 const originSvg = ref<string>('');
 const loadSVG = async () => {
   try {
