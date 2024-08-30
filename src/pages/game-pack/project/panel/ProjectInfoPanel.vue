@@ -13,7 +13,7 @@
         <game-shot-movie />
       </div>
     </section>
-    <section class="mt-[60px]">
+    <section class="mt-[40px]">
       <h2 class="text-[20px] font-semibold">프로젝트 참여 멤버</h2>
       <div class="mt-4">
         <g-p-member-list />

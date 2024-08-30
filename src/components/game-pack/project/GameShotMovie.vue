@@ -1,6 +1,16 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue';
 
+const barStyle = {
+  // 스크롤바 안보이게
+  opacity: 1,
+};
+
+const thumbStyle = {
+  // 스크롤바 색상
+  backgroundColor: 'transparent',
+};
+
 interface Video {
   id: number;
   title: string;
@@ -59,9 +69,13 @@ onMounted(() => {
       <source :src="currentVideo.src" type="video/mp4" />
       현재 비디오를 지원하지 않습니다.
     </video>
-    <q-scroll-area style="height: 120px; max-width: 100%">
+    <q-scroll-area
+      style="height: 120px; max-width: 100%"
+      :bar-style="barStyle"
+      :thumb-style="thumbStyle"
+    >
       <div class="row no-wrap">
-        <q-img
+        <c-img
           v-for="video in videos"
           :key="video.id"
           :src="video.thumbnail"
@@ -69,7 +83,7 @@ onMounted(() => {
           class="thumbnail cursor-pointer"
           :class="{ 'active-thumbnail': video.id === currentVideo.id }"
         >
-        </q-img>
+        </c-img>
       </div>
     </q-scroll-area>
   </div>
