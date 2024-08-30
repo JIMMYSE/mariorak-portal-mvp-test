@@ -84,30 +84,6 @@ const infoList = [
     status: 13,
     like: 29,
   },
-  {
-    badge: ['슈', '슈', 'ㅁㄴ', 'ㅁㄴㅇㄹ', 'ㅁㄴㅇㄹ'],
-    title: '[새롭게 돌아온] KINGDOM the blood 킹덤 더 블러드',
-    description:
-      'game의 새로운 시작을 소개합니다 game의 새로운 신작을 소개합니다',
-    status: 13,
-    like: 29,
-  },
-  {
-    badge: ['슈', '슈', 'ㅁㄴ', 'ㅁㄴㅇㄹ', 'ㅁㄴㅇㄹ'],
-    title: '[새롭게 돌아온] KINGDOM the blood 킹덤 더 블러드',
-    description:
-      'game의 새로운 시작을 소개합니다 game의 새로운 신작을 소개합니다',
-    status: 13,
-    like: 29,
-  },
-  {
-    badge: ['슈', '슈', 'ㅁㄴ', 'ㅁㄴㅇㄹ', 'ㅁㄴㅇㄹ'],
-    title: '[새롭게 돌아온] KINGDOM the blood 킹덤 더 블러드',
-    description:
-      'game의 새로운 시작을 소개합니다 game의 새로운 신작을 소개합니다',
-    status: 13,
-    like: 29,
-  },
 ];
 </script>
 <template>

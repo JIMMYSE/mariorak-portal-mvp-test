@@ -1,9 +1,6 @@
-<script lang="ts" setup>
-const el = ref<HTMLElement | null>(null);
-const { x, y, isScrolling, arrivedState, directions } = useScroll(el);
-</script>
+<script lang="ts" setup></script>
 <template>
-  <q-page ref="el">
+  <q-page>
     <section>
       <div
         class="anchor-area h-[210px] w-full text-center flex items-center justify-center"
@@ -19,6 +16,7 @@ const { x, y, isScrolling, arrivedState, directions } = useScroll(el);
           <c-btn
             class="enter_btn rounded-[30px] text-white font-semibold text-sm py-3 pl-10 pr-[30px] mt-[23px]"
             outline
+            @click="goTo({ path: '/game-pack/project/list', hash: '#list' })"
             >목록으로 이동
             <q-icon name="img:/icons/down_arrow.svg" size="18px"></q-icon>
           </c-btn>
