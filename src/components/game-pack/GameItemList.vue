@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import { RecommendedGameListType } from 'src/types/gamepack/game-model';
+import { RecommendedProjectListType } from 'src/types/gamepack/project-model';
+
 type Props = {
   toList: string;
 };
