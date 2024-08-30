@@ -1,10 +1,10 @@
 import { CodeList, CodeSearchRes } from 'meta-airforce-dto';
+import { CodeObjectType } from 'src/types/common/code-model';
 import { MaybeRefOrGetter } from 'vue';
 
 export type CodeListType = InferType<typeof CodeList>;
-export type CodeSearchResType = InferType<typeof CodeSearchRes>;
 
-const url = '/code';
+const url = '/v1/codes';
 const CODE_QUERY_KEY = {
   LIST: 'codeList',
 };
@@ -91,27 +91,43 @@ export function initCommonCodeList(listQueryKeyName = CODE_QUERY_KEY.LIST) {
   const isInitiated = ref(false);
 
   const { user, isLoggedIn } = useUserInfo();
-  const { data } = useQueryFetchList<CodeSearchResType, SearchRequest>({
+  const { data } = useQueryFetch<any>({
     url,
-    searchRequest,
-    listQueryKeyName,
+    queryKeyName: listQueryKeyName,
     queryOption: {
       enabled: isLoggedIn,
-      // staleTime: 5 * 1000,
       refetchInterval: 1000 * 60 * 10,
-      // refetchOnMount: false,
-      // refetchOnReconnect : false,
-      // refetchOnWindowFocus: false,
-      // retry: 2,
-      // retryDelay: 2000,
     },
   });
   watch(
     () => [data.value, user.value],
     () => {
       if (data.value && user.value) {
+        const groupedData = <any>{};
+
+        // 트로핏 코드를 section_cd로 그룹화
+        data.value.codes.forEach((item: CodeObjectType) => {
+          const { group, description, code, name, sequence } = item;
+
+          if (!groupedData[group]) {
+            groupedData[group] = {
+              section_cd: group,
+              section_name: description,
+              list: [],
+            };
+          }
+
+          groupedData[group].list.push({
+            cd: code,
+            cd_name: name,
+            cd_seq: sequence,
+          });
+        });
+
+        const result = Object.values(groupedData);
+
         const { setCodeList } = useCommonCodeStore();
-        setCodeList(data.value.rows);
+        setCodeList(result);
         isInitiated.value = true;
       }
     }
