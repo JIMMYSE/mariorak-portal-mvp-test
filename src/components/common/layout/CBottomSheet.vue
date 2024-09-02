@@ -48,8 +48,8 @@ watch(
 }
 
 .bottom-sheet {
-  width: 100%;
-  min-height: 500px;
+  width: 100vh;
+  min-height: 580px;
   background: #fff;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;

@@ -59,7 +59,7 @@ const openCategoryBottomSheet = () => {
       </c-btn>
     </section>
     <c-bottom-sheet v-model="showBottomSheet">
-      <div class="flex flex-col gap-[10px]">
+      <div class="flex flex-col justify-between">
         <section>
           <p class="text-[#767676] text-xs font-medium leading-none">
             채널 선택
@@ -103,6 +103,13 @@ const openCategoryBottomSheet = () => {
               ></q-item
             >
           </div>
+        </section>
+        <section class="bottom-[85px] w-full text-center mt-[85px]">
+          <c-btn
+            class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
+            color="primary"
+            >선택 완료
+          </c-btn>
         </section>
       </div>
     </c-bottom-sheet>
