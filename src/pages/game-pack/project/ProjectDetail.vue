@@ -19,7 +19,7 @@ const gameInfo = {
 <template>
   <q-page>
     <section>
-      <div class="h-[210px] w-full">
+      <div class="w-full">
         <q-icon
           name="img:/icons/icon_in_progress.svg"
           size="50px"
@@ -36,7 +36,11 @@ const gameInfo = {
             active-color="#EA2E2E"
           />
         </div>
-        <q-img src="/images/dummy/game_detail_dummy.svg" width="100%" />
+        <q-img
+          src="/images/dummy/game_detail_dummy.svg"
+          width="100%"
+          height="100%"
+        />
       </div>
     </section>
     <section class="px-6">
