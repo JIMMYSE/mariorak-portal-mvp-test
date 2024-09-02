@@ -1,7 +1,6 @@
 import {
   RecentProjectListResType,
   RecommendedProjectListResType,
-  SearchProjectListResType,
 } from 'src/types/gamepack/project-model';
 import { MaybeRef } from 'vue';
 
@@ -32,15 +31,17 @@ export const useSearchProjectList = ({
   searchRequest,
   queryOption,
   listQueryKeyName = QUERY_KEY.SEARCH,
+  setField,
 }: {
   searchRequest: MaybeRef<SearchRequest>;
   queryOption?: QueryOption;
   listQueryKeyName?: string;
+  setField: any;
 }) => {
-  return useQueryFetchList<SearchProjectListResType, SearchRequest>({
+  return useQueryFetchInfiniteList<any, SearchRequest>({
     url: API_URL,
     searchRequest,
-    queryOption,
-    listQueryKeyName,
+    queryKeyName: listQueryKeyName,
+    setField,
   });
 };

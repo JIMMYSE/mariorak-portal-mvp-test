@@ -18,7 +18,7 @@ export default boot(({ app }) => {
           // refetchOnMount: false,
           // refetchOnReconnect : false,
           // refetchOnWindowFocus: false,
-          // retry: 2,
+          retry: 1,
           // retryDelay: 2000,
         },
       },

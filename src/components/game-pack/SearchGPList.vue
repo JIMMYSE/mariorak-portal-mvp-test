@@ -1,8 +1,5 @@
 <script lang="ts" setup>
-import { set } from '@vueuse/core';
-import N from 'app/dist/spa/assets/JoinNicknameAndAvatar.d694e61e';
 import { watchDebounced } from '@vueuse/core';
-import { SearchProjectListType } from 'src/types/gamepack/project-model';
 
 const { code } = useCommonCode('GAME_GNRE');
 
@@ -19,7 +16,6 @@ const options = [
     value: 'popular',
   },
 ];
-const projectList = ref<SearchProjectListType>([]);
 // 검색 탭 리스트
 const searchTab = ref('9999');
 const searchTabList = computed(() => {
@@ -35,11 +31,6 @@ const searchTabList = computed(() => {
 // 검색 필터
 const { request } = useSearchFilter({
   requestDefault: {
-    filters: {
-      game_gnre_cd: {
-        eq: '9999',
-      },
-    },
     search: {
       fields: ['title'],
       keyword: '',
@@ -53,61 +44,53 @@ const { request } = useSearchFilter({
     ],
   },
 });
-const { values: form, setFieldValue } = useForm<SearchRequest>({
+const {
+  values: form,
+  setFieldValue,
+  resetField,
+} = useForm<SearchRequest>({
   validationSchema: toTypedSchema(SearchRequestSchema),
-  initialValues: request.value,
+  initialValues: request,
 });
 const queryParam = ref(form);
 
 // fetch
-const { data: SearchProjectListData } = useSearchProjectList({
+const {
+  data: searchProjectList,
+  hasNextPage,
+  fetchNextPage,
+  isFetched,
+  refetch,
+} = useSearchProjectList({
   searchRequest: queryParam,
   queryOption: {
     enabled: true,
   },
-});
-const searchProjectList = computed(() => {
-  return SearchProjectListData.value?.rows;
+  setField: setFieldValue, // TODO 추후 형태 변경필요
 });
 
 // 조회 조건
 // 검색 탭 변경 시
-watch(
-  searchTab,
-  (newVal) => {
-    if (newVal != '9999') setFieldValue('filters.game_gnre_cd.eq', newVal);
-    else setFieldValue('filters', {});
-  },
-  { immediate: true }
-);
+watch(searchTab, (newVal) => {
+  if (newVal != '9999') setFieldValue('filters.game_gnre_cd.eq', newVal);
+  else resetField('filters');
+  refetch();
+});
 // 검색 정렬 변경 시
 watch(searchSort, (newVal) => {
   if (newVal == 'latest') setFieldValue('sort', [{ created_at: 'asc' }]);
   else setFieldValue('sort', [{ like: 'desc' }]);
+  refetch();
 });
 // 검색어 변경 시
 watchDebounced(
   searchkeyword,
   () => {
-    console.log('changed!');
     setFieldValue('search.keyword', searchkeyword.value);
+    refetch();
   },
   { debounce: 500, maxWait: 1000 }
 );
-watch(
-  searchProjectList,
-  (newVal) => {
-    if (newVal) projectList.value.push(newVal);
-  },
-  { immediate: true }
-);
-
-const onNextPage = () => {
-  setFieldValue('from', request.value.from + 1);
-};
-const hasNextPage = computed(() => {
-  return SearchProjectListData.value?.total ?? 0 <= projectList.value?.length;
-});
 </script>
 <template>
   <q-tabs v-model="searchTab" dense class="pl-6">
@@ -131,9 +114,9 @@ const hasNextPage = computed(() => {
       dense
     />
   </div>
-  <div class="px-6 q-gutter-y-md">
+  <div class="px-6 q-gutter-y-md" v-if="isFetched">
     <search-g-p-item
-      v-for="info in searchProjectList"
+      v-for="info in searchProjectList.pages.flatMap((item : any) => item.data)"
       :key="info.prj_id"
       :badge="info?.tag_list ?? []"
       :title="info.title"
@@ -146,7 +129,7 @@ const hasNextPage = computed(() => {
     <c-btn
       class="enter_btn rounded-[30px] text-primary font-semibold text-sm py-3 pl-10 pr-[30px] mt-[23px]"
       outline
-      @click="onNextPage"
+      @click="fetchNextPage()"
       >더보기
       <c-icon name="down_arrow" size="18px" :color="'#056BF1'" :fill="false" />
     </c-btn>
