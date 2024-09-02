@@ -1,4 +1,9 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const { data: recommededProjectData } = useRecommendedProjectList();
+const recommendedProjectList = computed(() => {
+  return recommededProjectData.value?.rows;
+});
+</script>
 <template>
   <q-page>
     <section>
@@ -26,7 +31,7 @@
     <section class="px-6 mt-10">
       <h2 class="text-[20px] font-semibold">CCF가 주목하는 프로젝트</h2>
       <div class="grid gap-1.5 mt-4">
-        <recommend-project-list />
+        <recommend-project-list :gp-list="recommendedProjectList" />
       </div>
     </section>
     <section class="px-6 mt-10">
@@ -35,8 +40,8 @@
         <normal-project-list />
       </div>
     </section>
-    <section class="mt-[55px]">
-      <img src="/images/dummy/banner_dummy.png" alt="banner" />
+    <section class="mt-[55px] w-full">
+      <img src="/images/dummy/banner_dummy.png" alt="banner" class="w-full" />
     </section>
     <!--  게임 목록 -->
     <section class="mt-[55px] w-full" id="list">
