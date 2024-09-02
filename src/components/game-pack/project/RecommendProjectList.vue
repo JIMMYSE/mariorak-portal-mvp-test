@@ -16,6 +16,29 @@ const thumbStyle = {
   // 스크롤바 색상
   backgroundColor: 'transparent',
 };
+
+const prjStatusStyle = (code: string) => {
+  let color, bgColor;
+  switch (code) {
+    case '10':
+      color = '#767676';
+      bgColor = '#F8F8F8';
+      break;
+    case '20':
+      color = '#056BF1';
+      bgColor = '#D8E5F8';
+      break;
+    case '30':
+      color = '#FFF';
+      bgColor = '#056BF1';
+      break;
+    case '40':
+      color = '#FFF';
+      bgColor = '#222';
+      break;
+  }
+  return `color: ${color}; background-color: ${bgColor};`;
+};
 </script>
 <template>
   <div>
@@ -26,23 +49,27 @@ const thumbStyle = {
     >
       <div class="row no-wrap">
         <div
-          class="game-card q-mr-md"
+          class="game-card q-mr-md relative cursor-pointer"
           v-for="p in gpList"
           :key="p.prj_id"
           @click="goTo('/game-pack/project/1')"
         >
           <!-- INFO :: 상태 값에 따라서 q-icon 의 name 을 동적으로 지정하기 -->
-          {{ getCommonCodeName('PRJ_STT', p.prj_stt_cd) }}
-          <q-icon
-            name="img:/icons/icon_in_progress.svg"
-            size="50px"
-            class="absolute z-10 ml-[13px]"
-          />
+          <p
+            class="absolute z-10 w-[50px] rounded-lg text-center p-[2px] text-sm top-2 left-2"
+            :style="prjStatusStyle(p.prj_stt_cd)"
+          >
+            {{ getCommonCodeName('PRJ_STT', p.prj_stt_cd) }}
+          </p>
+
           <c-img
             :src="p.thmn_file.convert_addr"
             width="100%"
             class="rounded-xl"
           />
+          <div class="absolute top-2 right-2">
+            <c-icon :name="'icon_heart'" size="18px" />
+          </div>
           <div class="game-info q-mt-sm">
             <div class="text-caption q-mb-xs mt-[16px]">
               <span

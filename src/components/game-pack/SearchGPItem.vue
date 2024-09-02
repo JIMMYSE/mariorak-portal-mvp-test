@@ -15,9 +15,8 @@ const props = defineProps({
     default: '',
   },
   status: {
-    type: Number,
+    type: String,
     required: true,
-    default: 0,
   },
   like: {
     type: Number,
@@ -55,8 +54,8 @@ watch(height, (newHeight) => {
 });
 
 const computedStatus = computed(() => {
-  if (props.status == 0) return '진행전';
-  else if (props.status == 100) return '출시대기';
+  if (props.status == '10') return '진행전';
+  else if (props.status == '40') return '출시대기';
   else return `진행률 ${props.status}%`;
 });
 </script>
@@ -88,7 +87,7 @@ const computedStatus = computed(() => {
       </div>
       <div class="flex justify-between">
         <div
-          :class="props.status > 0 ? 'text-[#056bf1]' : ''"
+          :class="props?.status != '00' ? 'text-[#056bf1]' : ''"
           class="font-medium"
         >
           {{ computedStatus }}

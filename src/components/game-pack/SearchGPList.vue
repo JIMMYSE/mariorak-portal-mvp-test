@@ -1,68 +1,13 @@
 <script lang="ts" setup>
-const searchTab = ref(1);
+import { set } from '@vueuse/core';
+import N from 'app/dist/spa/assets/JoinNicknameAndAvatar.d694e61e';
+import { watchDebounced } from '@vueuse/core';
+import { SearchProjectListType } from 'src/types/gamepack/project-model';
 
-const searchTabList = [
-  {
-    label: '전체',
-    id: 1,
-  },
-  {
-    label: '롤플레잉',
-    id: 2,
-  },
-  {
-    label: '전략',
-    id: 3,
-  },
-  {
-    label: '협동',
-    id: 4,
-  },
-  {
-    label: '오픈월드',
-    id: 5,
-  },
-  {
-    label: '액션',
-    id: 6,
-  },
-  {
-    label: '어드벤쳐',
-    id: 7,
-  },
-  {
-    label: '시뮬레이션',
-    id: 8,
-  },
-  {
-    label: '스포츠',
-    id: 9,
-  },
-  {
-    label: '레이싱',
-    id: 10,
-  },
-  {
-    label: '퍼즐',
-    id: 11,
-  },
-  {
-    label: '호러',
-    id: 12,
-  },
-  {
-    label: '샌드박스',
-    id: 13,
-  },
-  {
-    label: '슈팅',
-    id: 14,
-  },
-  {
-    label: 'FPS',
-    id: 15,
-  },
-];
+const { code } = useCommonCode('GAME_GNRE');
+
+// 화면 구성
+const searchkeyword = ref('');
 const searchSort = ref('latest');
 const options = [
   {
@@ -74,17 +19,95 @@ const options = [
     value: 'popular',
   },
 ];
+const projectList = ref<SearchProjectListType>([]);
+// 검색 탭 리스트
+const searchTab = ref('9999');
+const searchTabList = computed(() => {
+  const list = code?.value?.list || [];
+  const tabList = list.map((item) => {
+    return { label: item.cd_name, id: item.cd };
+  });
+  tabList.unshift({ label: '전체', id: '9999' });
+  return tabList;
+});
 
-const infoList = [
-  {
-    badge: ['슈', '슈', 'ㅁㄴ', 'ㅁㄴㅇㄹ', 'ㅁㄴㅇㄹ'],
-    title: '[새롭게 돌아온] KINGDOM the blood 킹덤 더 블러드',
-    description:
-      'game의 새로운 시작을 소개합니다 game의 새로운 신작을 소개합니다',
-    status: 13,
-    like: 29,
+// form setup
+// 검색 필터
+const { request } = useSearchFilter({
+  requestDefault: {
+    filters: {
+      game_gnre_cd: {
+        eq: '9999',
+      },
+    },
+    search: {
+      fields: ['title'],
+      keyword: '',
+    },
+    from: 0,
+    size: 1,
+    sort: [
+      {
+        created_at: 'asc',
+      },
+    ],
   },
-];
+});
+const { values: form, setFieldValue } = useForm<SearchRequest>({
+  validationSchema: toTypedSchema(SearchRequestSchema),
+  initialValues: request.value,
+});
+const queryParam = ref(form);
+
+// fetch
+const { data: SearchProjectListData } = useSearchProjectList({
+  searchRequest: queryParam,
+  queryOption: {
+    enabled: true,
+  },
+});
+const searchProjectList = computed(() => {
+  return SearchProjectListData.value?.rows;
+});
+
+// 조회 조건
+// 검색 탭 변경 시
+watch(
+  searchTab,
+  (newVal) => {
+    if (newVal != '9999') setFieldValue('filters.game_gnre_cd.eq', newVal);
+    else setFieldValue('filters', {});
+  },
+  { immediate: true }
+);
+// 검색 정렬 변경 시
+watch(searchSort, (newVal) => {
+  if (newVal == 'latest') setFieldValue('sort', [{ created_at: 'asc' }]);
+  else setFieldValue('sort', [{ like: 'desc' }]);
+});
+// 검색어 변경 시
+watchDebounced(
+  searchkeyword,
+  () => {
+    console.log('changed!');
+    setFieldValue('search.keyword', searchkeyword.value);
+  },
+  { debounce: 500, maxWait: 1000 }
+);
+watch(
+  searchProjectList,
+  (newVal) => {
+    if (newVal) projectList.value.push(newVal);
+  },
+  { immediate: true }
+);
+
+const onNextPage = () => {
+  setFieldValue('from', request.value.from + 1);
+};
+const hasNextPage = computed(() => {
+  return SearchProjectListData.value?.total ?? 0 <= projectList.value?.length;
+});
 </script>
 <template>
   <q-tabs v-model="searchTab" dense class="pl-6">
@@ -97,7 +120,7 @@ const infoList = [
   </q-tabs>
   <div class="px-6">
     <div class="grid gap-1.5 mt-1">
-      <c-search-input name="keyword" />
+      <c-search-input v-model="searchkeyword" />
     </div>
     <c-select
       v-model="searchSort"
@@ -110,19 +133,20 @@ const infoList = [
   </div>
   <div class="px-6 q-gutter-y-md">
     <search-g-p-item
-      v-for="info in infoList"
-      :key="info"
-      :badge="info.badge"
+      v-for="info in searchProjectList"
+      :key="info.prj_id"
+      :badge="info?.tag_list ?? []"
       :title="info.title"
-      :description="info.description"
-      :status="info.status"
-      :like="info.like"
+      :description="info.desc"
+      :status="info.prj_stt_cd"
+      :like="info.like_cnt"
     />
   </div>
-  <div class="flex justify-center">
+  <div class="flex justify-center" v-if="hasNextPage">
     <c-btn
       class="enter_btn rounded-[30px] text-primary font-semibold text-sm py-3 pl-10 pr-[30px] mt-[23px]"
       outline
+      @click="onNextPage"
       >더보기
       <c-icon name="down_arrow" size="18px" :color="'#056BF1'" :fill="false" />
     </c-btn>
