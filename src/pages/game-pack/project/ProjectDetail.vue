@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import ProjectInfoPanel from './panel/ProjectInfoPanel.vue';
+import ProjectBoardPanel from './panel/ProjectBoardPanel.vue';
+
 const like = ref(false);
 const tab = ref('INFO');
 
@@ -131,7 +133,6 @@ const gameInfo = {
         :tabs="[
           { label: '정보', name: 'INFO' },
           { label: '게시판', name: 'BOARD' },
-          { label: '소식', name: 'NEWS' },
         ]"
       />
 
@@ -139,8 +140,9 @@ const gameInfo = {
         <q-tab-panel class="px-6" name="INFO">
           <project-info-panel />
         </q-tab-panel>
-        <q-tab-panel name="BOARD"></q-tab-panel>
-        <q-tab-panel name="NEWS"></q-tab-panel>
+        <q-tab-panel class="px-6" name="BOARD">
+          <project-board-panel />
+        </q-tab-panel>
       </q-tab-panels>
     </section>
   </q-page>
