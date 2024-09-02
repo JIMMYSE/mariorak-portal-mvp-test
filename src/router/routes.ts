@@ -83,6 +83,15 @@ const routes: RouteRecordRaw[] = [
               import('pages/game-pack/project/ProjectDetail.vue'),
           },
           {
+            path: 'project/:id/board-edit',
+            name: 'project-board-edit',
+            meta: {
+              title: '게시판 등록',
+              bgColor: 'white',
+            },
+            component: () => import('pages/game-pack/GPBoardEdit.vue'),
+          },
+          {
             path: 'project/:id/:boardId',
             name: 'project-board-detail',
             meta: {

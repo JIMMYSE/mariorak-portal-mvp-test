@@ -23,7 +23,13 @@ const options = [
             프로젝트에 참여한 개발자가 작성하는 게시판
           </p>
         </div>
-        <q-btn size="md" round flat class="flex justify-center items-center">
+        <q-btn
+          size="md"
+          round
+          flat
+          class="flex justify-center items-center"
+          @click="goTo('/game-pack/project/1/board-edit')"
+        >
           <q-icon name="img:/icons/icon_add_plus.svg" size="40px" />
         </q-btn>
       </div>
