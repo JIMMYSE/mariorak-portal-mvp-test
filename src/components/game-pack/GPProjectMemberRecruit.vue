@@ -1,21 +1,10 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { RecruitmentType } from 'src/types/gamepack/project-model';
 
-interface RecruitUser {
-  role: string;
-  headCount: string | number;
-}
-
-const recuritUsers = ref<RecruitUser[]>([
-  {
-    role: '3D Designer',
-    headCount: 10,
-  },
-  {
-    role: 'Animator',
-    headCount: 3,
-  },
-]);
+type Props = {
+  recruitList?: RecruitmentType;
+};
+const props = defineProps<Props>();
 
 const goToApplyPage = () => {
   goTo('/game-pack/member-list');
@@ -25,24 +14,23 @@ const goToApplyPage = () => {
 <template>
   <div class="flex flex-col">
     <div
-      v-for="user in recuritUsers"
-      :key="user.role"
+      v-for="user in recruitList?.rcrt_mkr_rol_cd_list"
+      :key="user"
       class="flex items-center bg-[#f8f8f8] mb-[10px] rounded-[20px] h-[80px] p-[12px]"
     >
       <div class="rounded-full bg-[#ffffff] p-[15px]">
         <q-icon
           name="img:/icons/icon_member_recruit.svg"
-          :alt="user.role"
           size="28px"
           class="left-[3px]"
         />
       </div>
       <div class="flex flex-col ml-[12px]">
         <div class="text-[#222222] text-base font-medium leading-snug">
-          {{ user.role }}
+          {{ getCommonCodeName('MKR_ROL', user) }}
         </div>
         <div class="text-[#056bf1] text-xs font-semibold leading-none">
-          {{ user.headCount }}명 모집중
+          {{ user }}명 모집중
         </div>
       </div>
     </div>

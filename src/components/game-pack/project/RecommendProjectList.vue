@@ -1,8 +1,12 @@
 <script lang="ts" setup>
-// type Props = {
-//
-// };
-// const props = defineProps<Props>();
+import { RecommendedProjectListType } from 'src/types/gamepack/project-model';
+import GPbadge from '../GPbadge.vue';
+
+type Props = {
+  toList?: string;
+  gpList: RecommendedProjectListType[] | undefined;
+};
+const props = defineProps<Props>();
 
 const barStyle = {
   // 스크롤바 안보이게
@@ -14,11 +18,27 @@ const thumbStyle = {
   backgroundColor: 'transparent',
 };
 
-const gameInfo = {
-  badge: ['어드벤쳐', 'Mobile', 'RPG'],
-  title: '[새롭게 돌아온] KINGDOM the blood 킹덤 더 블러드',
-  description:
-    'game의 새로운 시작을 소개합니다 game의 새로운 신작을 소개합니다',
+const prjStatusStyle = (code: string) => {
+  let color, bgColor;
+  switch (code) {
+    case '10':
+      color = '#767676';
+      bgColor = '#F8F8F8';
+      break;
+    case '20':
+      color = '#056BF1';
+      bgColor = '#D8E5F8';
+      break;
+    case '30':
+      color = '#FFF';
+      bgColor = '#056BF1';
+      break;
+    case '40':
+      color = '#FFF';
+      bgColor = '#222';
+      break;
+  }
+  return `color: ${color}; background-color: ${bgColor};`;
 };
 </script>
 <template>
@@ -30,23 +50,28 @@ const gameInfo = {
     >
       <div class="row no-wrap">
         <div
-          class="game-card q-mr-md"
-          v-for="n in 5"
-          :key="n"
+          class="game-card q-mr-md relative cursor-pointer"
+          v-for="p in gpList"
+          :key="p.prj_id"
           @click="goTo('/game-pack/project/1')"
         >
           <!-- INFO :: 상태 값에 따라서 q-icon 의 name 을 동적으로 지정하기 -->
-          <q-icon
-            name="img:/icons/icon_in_progress.svg"
-            size="50px"
-            class="absolute z-10 ml-[13px]"
+          <div class="absolute z-10 w-[50px] text-sm top-2 left-2">
+            <GPbadge :cd="p.prj_stt_cd" section-cd="PRJ_STT" />
+          </div>
+          <c-img
+            :src="p.thmn_file.convert_addr"
+            width="100%"
+            class="rounded-xl"
           />
-          <q-img src="/images/dummy/game_dummy.svg" width="100%" />
+          <div class="absolute top-2 right-2">
+            <c-icon :name="'icon_heart'" size="18px" />
+          </div>
           <div class="game-info q-mt-sm">
             <div class="text-caption q-mb-xs mt-[16px]">
               <span
                 class="badge font-medium"
-                v-for="badge in gameInfo.badge"
+                v-for="badge in p.tag_list"
                 :key="badge"
                 >{{ badge }}</span
               >
@@ -54,10 +79,10 @@ const gameInfo = {
             <p
               class="text-[#222222] text-[16px] font-semibold leading-snug mt-[8px]"
             >
-              {{ gameInfo.title }}
+              {{ p.title }}
             </p>
             <p class="text-[#696969] text-xs font-normal leading-4 mt-[6px]">
-              {{ gameInfo.description }}
+              {{ p.desc }}
             </p>
           </div>
           <div class="w-full mt-[20px]">
@@ -65,13 +90,15 @@ const gameInfo = {
               <span class="text-base font-medium leading-tight text-[#222222]"
                 >프로젝트 진행률</span
               >
-              <span class="text-[#056bf1] text-2xl font-semibold">80%</span>
+              <span class="text-[#056bf1] text-2xl font-semibold"
+                >{{ p.progress_percent }}%</span
+              >
             </div>
             <!-- 응답값에 따라 style width 값 조절 -->
             <div class="w-full bg-[#DBDBDB] rounded-full h-0.5">
               <div
                 class="bg-[#056BF1] h-0.5 rounded-full"
-                style="width: 80%"
+                :style="`width: ${p.progress_percent}%`"
               ></div>
             </div>
           </div>

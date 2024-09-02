@@ -1,35 +1,49 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import {
+  ProjectDetail,
+  SimilarProjectType,
+} from 'src/types/gamepack/project-model';
+
+type Props = {
+  detail?: ProjectDetail;
+  similarProjectList?: SimilarProjectType[];
+};
+const props = defineProps<Props>();
+</script>
 <template>
   <div class="w-full">
     <section class="mt-6">
       <h2 class="text-[20px] font-semibold">게임 소개</h2>
       <div class="mt-4">
-        <introduce-text />
+        <introduce-text :intro="detail?.cont" />
       </div>
     </section>
     <section class="mt-[60px]">
       <h2 class="text-[20px] font-semibold">In Game Shot</h2>
-      <div class="mt-4">
-        <game-shot-movie />
+      <div class="mt-4" v-if="detail?.detail_file_list">
+        <game-shot-movie :detail-file-list="detail?.detail_file_list" />
       </div>
+      <div v-else></div>
     </section>
     <section class="mt-[40px]">
       <h2 class="text-[20px] font-semibold">프로젝트 참여 멤버</h2>
       <div class="mt-4">
-        <g-p-member-list />
+        <g-p-member-list :maker-list="detail?.mkr_list" />
       </div>
     </section>
     <section class="mt-[40px]">
       <h2 class="text-[20px] font-semibold">프로젝트 참가자 모집 소식</h2>
       <div class="mt-4">
-        <introduce-text />
-        <g-p-project-member-recruit class="mt-[30px]" />
+        <g-p-project-member-recruit
+          class="mt-[30px]"
+          :recruit-list="detail?.rcrt"
+        />
       </div>
     </section>
     <section class="mt-[40px]">
       <h2 class="text-[20px] font-semibold">유사한 프로젝트</h2>
       <div class="mt-4">
-        <normal-project-list />
+        <normal-project-list :p-list="similarProjectList" />
       </div>
     </section>
   </div>

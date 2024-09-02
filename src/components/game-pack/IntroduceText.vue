@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, onMounted, nextTick } from 'vue';
-
-// const props = defineProps<{
-//   text: string;
-// }>();
+type Props = {
+  intro?: string;
+};
+const props = defineProps<Props>();
 
 const isExpanded = ref(false);
 const showButton = ref(false);
@@ -35,11 +35,7 @@ const toggleExpand = () => {
       }"
       class="text-[#767676] text-sm font-normal leading-tight"
     >
-      안녕하세요~~~재미난 웹툰 ㅋㅋ아이재미 정말...재미있으세요? 하하~ 오늘은
-      즐거워요 안녕하세요~~~재미난 웹툰 ㅋㅋ아이재미 정말...재미있으세요? 하하~
-      오늘은 즐거워요안녕하세요~~~재미난 웹툰 ㅋㅋ아이재미 정말...재미있으세요?
-      하하~ 오늘은 즐거워요안녕하세요~~~재미난 웹툰 ㅋㅋ아이재미
-      정말...재미있으세요? 하하~ 오늘은 즐거워요
+      {{ props.intro }}
     </p>
     <button
       v-if="showButton"

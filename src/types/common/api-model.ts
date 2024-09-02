@@ -27,11 +27,19 @@ export const SearchRequestSchema = object({
     keyword: string(),
   }).optional(),
   filters: lazy((item) => {
-    return object().shape({
-      [Object.keys(item)[0]]: object().shape({
-        [Object.keys(item)[0]]: mixed().nullable(),
-      }),
-    });
+    if (
+      item == null ||
+      typeof item !== 'object' ||
+      Object.keys(item).length === 0
+    ) {
+      return object().optional(); // null, undefined, 또는 빈 객체인 경우 유효함
+    } else {
+      return object().shape({
+        [Object.keys(item)[0]]: object().shape({
+          [Object.keys(item)[0]]: mixed().nullable(),
+        }),
+      });
+    }
   }).optional(),
   from: number().integer().min(0).optional().default(0),
   size: number().integer().positive().optional().default(10),
