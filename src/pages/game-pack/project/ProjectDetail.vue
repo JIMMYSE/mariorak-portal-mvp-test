@@ -17,7 +17,6 @@ const onLikeProject = () => {
   like.value ? onLike({}) : onUnlike(projectId);
 };
 const { data: similarProjectData } = useSimilarProjectList(projectId);
-const similarProjectList = computed(() => similarProjectData?.value?.rows);
 </script>
 <template>
   <q-page>
@@ -147,7 +146,7 @@ const similarProjectList = computed(() => similarProjectData?.value?.rows);
         <q-tab-panel class="px-6" name="INFO">
           <project-info-panel
             :detail="projectDetail"
-            :similar-project="similarProjectList"
+            :similar-project-list="similarProjectData?.rows"
           />
         </q-tab-panel>
         <q-tab-panel class="px-6" name="BOARD">

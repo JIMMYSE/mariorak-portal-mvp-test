@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import {
   RecentProjectListType,
-  SimilarProjectType,
+  SimilarProjectListType,
 } from 'src/types/gamepack/project-model';
 
 type Props = {
-  pList: RecentProjectListType[] | SimilarProjectType[] | undefined;
+  pList: RecentProjectListType[] | SimilarProjectListType | undefined;
 };
 const props = defineProps<Props>();
 
@@ -64,7 +64,7 @@ const gameInfo = {
 
 .game-image {
   width: 100%;
-  height: 150px;
+  height: 120px;
   object-fit: cover;
 }
 
