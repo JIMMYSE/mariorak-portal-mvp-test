@@ -1,4 +1,5 @@
 import {
+  ProjectDetailType,
   RecentProjectListResType,
   RecommendedProjectListResType,
 } from 'src/types/gamepack/project-model';
@@ -9,6 +10,7 @@ const QUERY_KEY = {
   RECOMMENED: 'project-recommended',
   RECENT: 'project-recent',
   SEARCH: 'project-search',
+  DETAIL: 'project-detail',
 };
 
 export const useRecommendedProjectList = () => {
@@ -43,5 +45,13 @@ export const useSearchProjectList = ({
     searchRequest,
     queryKeyName: listQueryKeyName,
     setField,
+  });
+};
+
+export const useProjectDetail = (id: string) => {
+  return useQueryFetchItem<ProjectDetailType>({
+    id: id,
+    queryKeyName: QUERY_KEY.DETAIL,
+    url: API_URL,
   });
 };

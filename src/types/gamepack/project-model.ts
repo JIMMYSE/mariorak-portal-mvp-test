@@ -1,4 +1,4 @@
-import { SuccessListRes } from 'meta-airforce-dto';
+import { SuccessListRes, SuccessObjectRes } from 'meta-airforce-dto';
 
 const RecommendedProjectObject = object({
   progress_percent: number().required(),
@@ -40,6 +40,37 @@ const SearchProjectObject = object({
   title: string().required(), // 필수, 문자열 타입
   prj_id: number().required(), // 필수, 숫자 타입
 });
+// mkr_list 배열의 개별 객체 스키마 정의
+const MakerListSchema = object({
+  mem_id: number().required(),
+  mkr_id: number().required(),
+  prfl_img: ThumbnailFileSchema.required(),
+  mem_nickname: string().required(),
+  mkr_rol_cd: string().required(),
+});
+const ProjectSchema = object({
+  rcrt: mixed().nullable(), // null일 수 있는 필드
+  mkr_list: array().of(MakerListSchema).required(), // 배열이며, 각 요소는 MakerListSchema를 따름
+  detail_file_list: mixed().nullable(), // null일 수 있는 필드
+  cont: string().required(),
+  office_id: number().required(),
+  office_updated_at: string().required(), // ISO 8601 형식의 날짜 문자열
+  end_dttm: string().required(), // ISO 8601 형식의 날짜 문자열
+  srt_dttm: string().required(), // ISO 8601 형식의 날짜 문자열
+  mngr_mem_nickname: string().required(),
+  progress_percent: number().required(),
+  prj_stt_cd: string().required(),
+  created_at: string().required(), // ISO 8601 형식의 날짜 문자열
+  is_liked: boolean().required(),
+  game_gnre_cd: mixed().nullable(), // null일 수 있는 필드
+  tag_list: mixed().nullable(), // null일 수 있는 필드
+  like_cnt: number().required(),
+  thmn_file: ThumbnailFileSchema.required(), // 썸네일 파일 객체
+  desc: string().required(),
+  title: string().required(),
+  prj_id: number().required(),
+});
+
 const SearchProjectList = array().of(SearchProjectObject).required();
 
 const RecommendedProjectListRes = SuccessListRes(RecommendedProjectObject);
@@ -57,3 +88,6 @@ export type RecentProjectListResType = InferType<typeof RecentProjectListRes>;
 const SearchProjectListRes = SuccessListRes(SearchProjectObject);
 export type SearchProjectListType = InferType<typeof SearchProjectList>;
 export type SearchProjectListResType = InferType<typeof SearchProjectListRes>;
+
+const ProjectDetailRes = SuccessObjectRes(ProjectSchema);
+export type ProjectDetailType = InferType<typeof ProjectDetailRes>;
