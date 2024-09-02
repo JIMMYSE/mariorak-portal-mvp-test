@@ -18,7 +18,7 @@ const recuritUsers = ref<RecruitUser[]>([
 ]);
 
 const goToApplyPage = () => {
-  goTo('/game-pack/member-list');
+  useProjectApplyDialog();
 };
 </script>
 
