@@ -59,6 +59,6 @@ export const useProjectDetail = (id: string) => {
 
 export const useSimilarProjectList = (id: string) => {
   return useQueryFetch<SimilarProjectResType>({
-    url: API_URL + `/similar${id}`,
+    url: API_URL + `/similarity/${id}`,
   });
 };
