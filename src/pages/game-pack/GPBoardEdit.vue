@@ -1,4 +1,10 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import CBottomSheet from 'src/components/common/layout/CBottomSheet.vue';
+const showBottomSheet = ref(false);
+const openCategoryBottomSheet = () => {
+  showBottomSheet.value = !showBottomSheet.value;
+};
+</script>
 <template>
   <div class="h-full">
     <section class="px-6">
@@ -7,6 +13,7 @@
       </p>
       <div
         class="mt-[16px] pb-[14px] border-b border-[#f7f7f7] text-[#b5b5b5] text-lg font-normal leading-[25.20px] flex justify-between items-center"
+        @click="openCategoryBottomSheet"
       >
         <p>카테고리를 선택해 주세요.</p>
         <c-icon
@@ -50,5 +57,6 @@
         >게시하기
       </c-btn>
     </section>
+    <c-bottom-sheet />
   </div>
 </template>
