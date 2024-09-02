@@ -38,9 +38,9 @@ const options = [
       />
       <div>
         <!-- 반복문 -->
-        <g-p-board-comment-item />
-        <g-p-board-comment-item />
-        <g-p-board-comment-item />
+        <g-p-board-content-item />
+        <g-p-board-content-item />
+        <g-p-board-content-item />
       </div>
     </section>
   </div>
