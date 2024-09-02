@@ -82,6 +82,15 @@ const routes: RouteRecordRaw[] = [
             component: () =>
               import('pages/game-pack/project/ProjectDetail.vue'),
           },
+          {
+            path: 'project/:id/:boardId',
+            name: 'project-board-detail',
+            meta: {
+              title: '게시판 상세',
+              bgColor: 'white',
+            },
+            component: () => import('pages/game-pack/GPBoardDetail.vue'),
+          },
         ],
       },
       {

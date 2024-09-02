@@ -38,7 +38,7 @@ const options = [
       />
       <div>
         <!-- 반복문 -->
-        <g-p-board-content-item />
+        <g-p-board-content-item @click="goTo('/game-pack/project/1/2')" />
         <g-p-board-content-item />
         <g-p-board-content-item />
       </div>
