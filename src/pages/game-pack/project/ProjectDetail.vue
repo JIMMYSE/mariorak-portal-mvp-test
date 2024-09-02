@@ -5,6 +5,8 @@ const route = useRoute();
 const projectId = route.params.id.toString();
 const { data: projectDetail } = useProjectDetail(projectId);
 
+import ProjectBoardPanel from './panel/ProjectBoardPanel.vue';
+
 const like = ref(false);
 const tab = ref('INFO');
 const { mutateAsync: onLike } = useLike('project', projectId);
@@ -15,7 +17,6 @@ const onLikeProject = () => {
   like.value ? onLike({}) : onUnlike(projectId);
 };
 const { data: similarProjectData } = useSimilarProjectList(projectId);
-const similarProjectList = computed(() => similarProjectData?.value?.rows);
 </script>
 <template>
   <q-page>
@@ -35,7 +36,11 @@ const similarProjectList = computed(() => similarProjectData?.value?.rows);
             active-color="#EA2E2E"
           />
         </div>
-        <q-img src="/images/dummy/game_detail_dummy.svg" width="100%" />
+        <q-img
+          src="/images/dummy/game_detail_dummy.svg"
+          width="100%"
+          height="100%"
+        />
       </div>
     </section>
     <section class="px-6">
@@ -134,7 +139,6 @@ const similarProjectList = computed(() => similarProjectData?.value?.rows);
         :tabs="[
           { label: '정보', name: 'INFO' },
           { label: '게시판', name: 'BOARD' },
-          { label: '소식', name: 'NEWS' },
         ]"
       />
 
@@ -142,11 +146,12 @@ const similarProjectList = computed(() => similarProjectData?.value?.rows);
         <q-tab-panel class="px-6" name="INFO">
           <project-info-panel
             :detail="projectDetail"
-            :similar-project="similarProjectList"
+            :similar-project-list="similarProjectData?.rows"
           />
         </q-tab-panel>
-        <q-tab-panel name="BOARD"></q-tab-panel>
-        <q-tab-panel name="NEWS"></q-tab-panel>
+        <q-tab-panel class="px-6" name="BOARD">
+          <project-board-panel />
+        </q-tab-panel>
       </q-tab-panels>
     </section>
   </q-page>

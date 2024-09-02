@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import {
   ProjectDetail,
-  SimilarProjectType,
+  SimilarProjectListType,
 } from 'src/types/gamepack/project-model';
 
 type Props = {
   detail?: ProjectDetail;
-  similarProjectList?: SimilarProjectType[];
+  similarProjectList?: SimilarProjectListType;
 };
 const props = defineProps<Props>();
 </script>

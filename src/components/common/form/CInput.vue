@@ -134,11 +134,11 @@ onMounted(() => {
 .border-radius {
   :deep(.q-field__control) {
     border-radius: v-bind(borderRadius) !important;
+    border: none;
   }
 }
 .q-input.inline-counter {
   :deep(.q-field__native) {
-    padding-right: 3.5rem;
   }
   :deep(.q-field__bottom) {
     margin-top: 0;
@@ -161,7 +161,6 @@ onMounted(() => {
   position: relative;
   :deep(.q-field__native) {
     margin-bottom: 2.5rem;
-    padding: 14px 20px;
   }
   :deep(.q-field__bottom) {
     position: absolute;
