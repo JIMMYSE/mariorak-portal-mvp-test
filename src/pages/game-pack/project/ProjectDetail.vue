@@ -1,23 +1,29 @@
 <script lang="ts" setup>
 import ProjectInfoPanel from './panel/ProjectInfoPanel.vue';
+
+const route = useRoute();
+const projectId = route.params.id.toString();
+const { data: projectDetail } = useProjectDetail(projectId);
+
 const like = ref(false);
 const tab = ref('INFO');
+const { mutateAsync: onLike } = useLike('project', projectId);
+const { mutateAsync: onUnlike } = useUnLike('project');
 
 const onLikeProject = () => {
   like.value = !like.value;
+  like.value ? onLike({}) : onUnlike(projectId);
 };
-const route = useRoute();
-const { data: projectDetail } = useProjectDetail(route.params.id.toString());
+const { data: similarProjectData } = useSimilarProjectList(projectId);
+const similarProjectList = computed(() => similarProjectData?.value?.rows);
 </script>
 <template>
   <q-page>
     <section>
       <div class="h-[210px] w-full">
-        <q-icon
-          name="img:/icons/icon_in_progress.svg"
-          size="50px"
-          class="absolute z-10 ml-[13px]"
-        />
+        <div class="absolute z-10 ml-[13px] left-0 top-2">
+          <g-pbadge :cd="projectDetail?.prj_stt_cd" section-cd="PJT_STT" />
+        </div>
         <div
           @click="onLikeProject"
           class="absolute z-10 mr-[13px] right-0 top-2"
@@ -134,7 +140,10 @@ const { data: projectDetail } = useProjectDetail(route.params.id.toString());
 
       <q-tab-panels v-model="tab" animated>
         <q-tab-panel class="px-6" name="INFO">
-          <project-info-panel />
+          <project-info-panel
+            :detail="projectDetail"
+            :similar-project="similarProjectList"
+          />
         </q-tab-panel>
         <q-tab-panel name="BOARD"></q-tab-panel>
         <q-tab-panel name="NEWS"></q-tab-panel>

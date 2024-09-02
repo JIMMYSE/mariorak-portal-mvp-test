@@ -582,7 +582,7 @@ export function useQueryDeleteItem({
 }) {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (id: MaybeRefOrGetter<Id>) =>
+    mutationFn: (id?: MaybeRefOrGetter<Id>) =>
       useDeleteItem({ url, id: toValue(id) }),
     onSuccess: () => {
       // Invalidate and refetch

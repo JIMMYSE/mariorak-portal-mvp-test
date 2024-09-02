@@ -1,51 +1,29 @@
 <script lang="ts" setup>
+import { MakerListType } from 'src/types/gamepack/project-model';
 import { ref } from 'vue';
 
-interface User {
-  name: string;
-  role: string;
-  avatar: string;
-  manager: boolean;
-}
-
-const users = ref<User[]>([
-  {
-    name: '가나다라마바사',
-    role: 'UI/UX Designer',
-    avatar: '/images/dummy/member_dummy1.jpg',
-    manager: true,
-  },
-  {
-    name: '김민지',
-    role: '3D Designer',
-    avatar: '/images/dummy/member_dummy2.png',
-    manager: false,
-  },
-  {
-    name: '오정아',
-    role: 'Programmer',
-    avatar: '/images/dummy/member_dummy3.png',
-    manager: false,
-  },
-]);
+type Props = {
+  makerList: MakerListType | undefined;
+};
+const props = defineProps<Props>();
 </script>
 
 <template>
   <div class="flex flex-col">
     <div
-      v-for="user in users"
-      :key="user.name"
+      v-for="maker in props.makerList"
+      :key="maker.mem_id"
       class="flex items-center pb-[15px]"
     >
       <div>
         <c-img
-          :src="user.avatar"
-          :alt="user.name"
+          :src="maker.prfl_img.convert_addr"
+          :alt="maker.mem_nickname"
           class="w-[60px] h-[60px] rounded-full"
         >
         </c-img>
         <q-icon
-          v-if="user.manager"
+          v-if="maker.mkr_rol_cd == '01'"
           name="img:/icons/icon_pm_badge.svg"
           size="20px"
           class="absolute z-10 left-[65px]"
@@ -54,10 +32,10 @@ const users = ref<User[]>([
 
       <div class="flex flex-col ml-[12px]">
         <p class="text-[#222222] text-base font-medium leading-snug">
-          {{ user.name }}
+          {{ maker.mem_nickname }}
         </p>
         <p class="text-[#056bf1] text-xs font-semibold leading-none mt-[2px]">
-          {{ user.role }}
+          {{ getCommonCodeName('MKR_ROL', maker.mkr_rol_cd) }}
         </p>
       </div>
     </div>

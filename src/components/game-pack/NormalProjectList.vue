@@ -1,8 +1,11 @@
 <script lang="ts" setup>
-import { RecentProjectListType } from 'src/types/gamepack/project-model';
+import {
+  RecentProjectListType,
+  SimilarProjectType,
+} from 'src/types/gamepack/project-model';
 
 type Props = {
-  pList: RecentProjectListType[] | undefined;
+  pList: RecentProjectListType[] | SimilarProjectType[] | undefined;
 };
 const props = defineProps<Props>();
 

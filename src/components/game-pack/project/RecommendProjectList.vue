@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { RecommendedProjectListType } from 'src/types/gamepack/project-model';
+import GPbadge from '../GPbadge.vue';
 
 type Props = {
   toList?: string;
@@ -55,13 +56,9 @@ const prjStatusStyle = (code: string) => {
           @click="goTo('/game-pack/project/1')"
         >
           <!-- INFO :: 상태 값에 따라서 q-icon 의 name 을 동적으로 지정하기 -->
-          <p
-            class="absolute z-10 w-[50px] rounded-lg text-center p-[2px] text-sm top-2 left-2"
-            :style="prjStatusStyle(p.prj_stt_cd)"
-          >
-            {{ getCommonCodeName('PRJ_STT', p.prj_stt_cd) }}
-          </p>
-
+          <div class="absolute z-10 w-[50px] text-sm top-2 left-2">
+            <GPbadge :cd="p.prj_stt_cd" section-cd="PRJ_STT" />
+          </div>
           <c-img
             :src="p.thmn_file.convert_addr"
             width="100%"

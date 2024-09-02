@@ -1,6 +1,11 @@
-import { SuccessListRes, SuccessObjectRes } from 'meta-airforce-dto';
+import {
+  SuccessListRes,
+  SuccessObjectRes,
+  Recruitment,
+  SimilarProjectRes,
+} from 'ccf-api-dto';
 
-const RecommendedProjectObject = object({
+const RecommendedProjectObjectSchema = object({
   progress_percent: number().required(),
   prj_stt_cd: string().required(),
   created_at: string().required(),
@@ -13,10 +18,10 @@ const RecommendedProjectObject = object({
   title: string().required(),
   prj_id: number().required(),
 });
-const RecentProjectObject = object({
+const RecentProjectObjectSchema = object({
   is_liked: boolean().required(), // 필수, 불리언 타입
   created_at: object().required(), // 필수, 객체 타입 (일반적으로 날짜 객체)
-  game_gnre_cd: string().required(), // 필수, 문자열 타입
+  project_gnre_cd: string().required(), // 필수, 문자열 타입
   tag_list: array().of(string()).required(), // 필수, 문자열 배열 타입
   like_cnt: number().required(), // 필수, 숫자 타입
   progress_percent: number().required(), // 필수, 숫자 타입
@@ -27,7 +32,7 @@ const RecentProjectObject = object({
   prj_id: number().required(), // 필수, 숫자 타입
 });
 
-const SearchProjectObject = object({
+const SearchProjectObjectSchema = object({
   is_liked: boolean().required(), // 필수, 불리언 타입
   created_at: object().required(), // 필수, 객체 타입 (일반적으로 날짜 객체, Date로 처리 가능)
   game_gnre_cd: string().required(), // 필수, 문자열 타입
@@ -41,17 +46,27 @@ const SearchProjectObject = object({
   prj_id: number().required(), // 필수, 숫자 타입
 });
 // mkr_list 배열의 개별 객체 스키마 정의
-const MakerListSchema = object({
+const MakerSchema = object({
   mem_id: number().required(),
   mkr_id: number().required(),
   prfl_img: ThumbnailFileSchema.required(),
   mem_nickname: string().required(),
   mkr_rol_cd: string().required(),
 });
+const MakerListSchema = array().of(MakerSchema);
+
+// 인게임샷 파일 리스트의 개별 요소 스키마 정의
+const DetailFileSchema = object({
+  detail_content_id: number().required(), // 필수, 상세 콘텐츠 아이디
+  file_ty_cd: string().required(), // 필수, 파일 유형 (이미지/영상)
+  content_file: ThumbnailFileSchema.required(), // 필수, 콘텐츠 파일 (본 파일)
+  thumbnail_file: ThumbnailFileSchema.required(), // 필수, 썸네일 파일
+});
+
 const ProjectSchema = object({
-  rcrt: mixed().nullable(), // null일 수 있는 필드
-  mkr_list: array().of(MakerListSchema).required(), // 배열이며, 각 요소는 MakerListSchema를 따름
-  detail_file_list: mixed().nullable(), // null일 수 있는 필드
+  rcrt: Recruitment,
+  mkr_list: array().of(MakerSchema).required(), // 배열이며, 각 요소는 MakerListSchema를 따름
+  detail_file_list: array().of(DetailFileSchema),
   cont: string().required(),
   office_id: number().required(),
   office_updated_at: string().required(), // ISO 8601 형식의 날짜 문자열
@@ -70,24 +85,44 @@ const ProjectSchema = object({
   title: string().required(),
   prj_id: number().required(),
 });
+const SimilarProjectObjectSchema = object({
+  created_at: date().required(), // 필수, 날짜 타입
+  thmn_file: ThumbnailFileSchema.required(), // 필수, 썸네일 파일 객체
+  srt_dttm: date().required(), // 필수, 날짜 타입 (프로젝트 시작일)
+  desc: string().required(), // 필수, 문자열 타입 (프로젝트 설명)
+  title: string().required(), // 필수, 문자열 타입 (프로젝트 제목)
+  prj_id: number().required(), // 필수, 숫자 타입 (프로젝트 아이디)
+  prdc_id: number().nullable(), // 선택적, 숫자 타입 (제품 아이디)
+});
 
-const SearchProjectList = array().of(SearchProjectObject).required();
+const SearchProjectList = array().of(SearchProjectObjectSchema).required();
 
-const RecommendedProjectListRes = SuccessListRes(RecommendedProjectObject);
+const RecommendedProjectListRes = SuccessListRes(
+  RecommendedProjectObjectSchema
+);
+export type MakerListType = InferType<typeof MakerListSchema>;
+export type RecruitmentType = InferType<typeof Recruitment>;
+
+export type DetailFileType = InferType<typeof DetailFileSchema>;
 export type RecommendedProjectListType = InferType<
-  typeof RecommendedProjectObject
+  typeof RecommendedProjectObjectSchema
 >;
 export type RecommendedProjectListResType = InferType<
   typeof RecommendedProjectListRes
 >;
 
-const RecentProjectListRes = SuccessListRes(RecentProjectObject);
-export type RecentProjectListType = InferType<typeof RecentProjectObject>;
+const RecentProjectListRes = SuccessListRes(RecentProjectObjectSchema);
+export type RecentProjectListType = InferType<typeof RecentProjectObjectSchema>;
 export type RecentProjectListResType = InferType<typeof RecentProjectListRes>;
 
-const SearchProjectListRes = SuccessListRes(SearchProjectObject);
+const SearchProjectListRes = SuccessListRes(SearchProjectObjectSchema);
 export type SearchProjectListType = InferType<typeof SearchProjectList>;
 export type SearchProjectListResType = InferType<typeof SearchProjectListRes>;
 
 const ProjectDetailRes = SuccessObjectRes(ProjectSchema);
+
+export type ProjectDetail = InferType<typeof ProjectSchema>;
 export type ProjectDetailType = InferType<typeof ProjectDetailRes>;
+
+export type SimilarProjectResType = InferType<typeof SimilarProjectRes>;
+export type SimilarProjectType = InferType<typeof SimilarProjectObjectSchema>;

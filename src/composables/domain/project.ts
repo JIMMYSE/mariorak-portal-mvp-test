@@ -2,6 +2,7 @@ import {
   ProjectDetailType,
   RecentProjectListResType,
   RecommendedProjectListResType,
+  SimilarProjectResType,
 } from 'src/types/gamepack/project-model';
 import { MaybeRef } from 'vue';
 
@@ -53,5 +54,11 @@ export const useProjectDetail = (id: string) => {
     id: id,
     queryKeyName: QUERY_KEY.DETAIL,
     url: API_URL,
+  });
+};
+
+export const useSimilarProjectList = (id: string) => {
+  return useQueryFetch<SimilarProjectResType>({
+    url: API_URL + `/similar${id}`,
   });
 };
