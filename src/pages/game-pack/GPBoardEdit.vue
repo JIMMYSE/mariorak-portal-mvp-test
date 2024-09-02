@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import CBottomSheet from 'src/components/common/layout/CBottomSheet.vue';
+import { BottomSheet } from 'quasar';
+
 const showBottomSheet = ref(false);
 const openCategoryBottomSheet = () => {
   showBottomSheet.value = !showBottomSheet.value;
@@ -57,6 +58,54 @@ const openCategoryBottomSheet = () => {
         >게시하기
       </c-btn>
     </section>
-    <c-bottom-sheet />
+    <c-bottom-sheet v-model="showBottomSheet">
+      <div class="flex flex-col gap-[10px]">
+        <section>
+          <p class="text-[#767676] text-xs font-medium leading-none">
+            채널 선택
+          </p>
+          <div class="mt-4">
+            <q-item
+              v-ripple
+              clickable
+              class="rounded-[5px] border border-[#dbdbdb] bg-[#fff] items-center px-4 py-0 w-fit h-[40px]"
+              ><span
+                class="text-center text-[#767676] text-sm font-medium leading-tight"
+                >게임 제목</span
+              ></q-item
+            >
+          </div>
+        </section>
+        <section class="mt-[30px]">
+          <p class="text-[#767676] text-xs font-medium leading-none">주제</p>
+          <div class="mt-4">
+            <q-item
+              v-ripple
+              clickable
+              class="rounded-[5px] border border-[#dbdbdb] bg-[#fff] items-center px-4 py-0 w-fit h-[40px]"
+              ><span
+                class="text-center text-[#767676] text-sm font-medium leading-tight"
+                >게임 제목</span
+              ></q-item
+            >
+          </div>
+        </section>
+        <section class="mt-[30px]">
+          <p class="text-[#767676] text-xs font-medium leading-none">공지</p>
+          <div class="mt-4">
+            <q-item
+              v-ripple
+              clickable
+              class="rounded-[5px] border border-[#dbdbdb] bg-[#fff] items-center px-4 py-0 w-fit h-[40px]"
+              ><span
+                class="text-center text-[#767676] text-sm font-medium leading-tight"
+                >게임 제목</span
+              ></q-item
+            >
+          </div>
+        </section>
+      </div>
+    </c-bottom-sheet>
   </div>
 </template>
+å
