@@ -36,7 +36,7 @@ const addBadge = setInterval(() => {
   if (!props.badge?.length) clearInterval(addBadge);
 
   if (height.value < 25) {
-    badgeList.value.push(props.badge[i]);
+    if (props.badge[i]) badgeList.value.push(props.badge[i]);
   }
   if (i == props.badge.length - 1) {
     clearInterval(addBadge);
@@ -70,7 +70,11 @@ const computedStatus = computed(() => {
     </div>
 
     <div class="text-caption q-mb-xs flex-grow pl-2">
-      <div class="flex items-center q-col-gutter-x-xs" ref="badgeContainer">
+      <div
+        class="flex items-center q-col-gutter-x-xs"
+        ref="badgeContainer"
+        v-if="badgeList.length > 0"
+      >
         <q-badge
           color="grey"
           text-color="black"
@@ -80,6 +84,7 @@ const computedStatus = computed(() => {
         />
         <c-icon name="icon_kebap" v-if="isEllipsis" />
       </div>
+      <div v-else class="h-[25px]"></div>
       <div
         class="text-[#222222] text-sm font-semibold leading-tight ellipsis-2-lines"
       >
