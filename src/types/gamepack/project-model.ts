@@ -1,9 +1,4 @@
-import {
-  SuccessListRes,
-  SuccessObjectRes,
-  Recruitment,
-  SimilarProjectRes,
-} from 'ccf-api-dto';
+import { SuccessListRes, SuccessObjectRes, Recruitment } from 'ccf-api-dto';
 
 const RecommendedProjectObjectSchema = object({
   progress_percent: number().required(),
@@ -120,9 +115,10 @@ export type SearchProjectListType = InferType<typeof SearchProjectList>;
 export type SearchProjectListResType = InferType<typeof SearchProjectListRes>;
 
 const ProjectDetailRes = SuccessObjectRes(ProjectSchema);
-
 export type ProjectDetail = InferType<typeof ProjectSchema>;
 export type ProjectDetailType = InferType<typeof ProjectDetailRes>;
 
+const SimilarProjectRes = SuccessListRes(SimilarProjectObjectSchema);
+const SimilarProjectList = array().of(SimilarProjectObjectSchema).required();
+export type SimilarProjectListType = InferType<typeof SimilarProjectList>;
 export type SimilarProjectResType = InferType<typeof SimilarProjectRes>;
-export type SimilarProjectType = InferType<typeof SimilarProjectObjectSchema>;
