@@ -2055,6 +2055,17 @@ caniuse-lite@^1.0.30001599, caniuse-lite@^1.0.30001629:
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001632.tgz"
   integrity sha512-udx3o7yHJfUxMLkGohMlVHCvFvWmirKh9JAH/d7WOLPetlH+LTL5cocMZ0t7oZx/mdlOWXti97xLZWc8uURRHg==
 
+"ccf-api-dto@github:coarsoft-tmp/ccf-api-dto":
+  version "1.5.0"
+  resolved "git+ssh://git@github.com/coarsoft-tmp/ccf-api-dto.git#c7532f33653a9e96a7fa09758119bb0ce6107241"
+  dependencies:
+    jest "^29.7.0"
+    josa "^3.0.1"
+    lodash "^4.17.21"
+    moment "^2.30.1"
+    moment-timezone "^0.5.45"
+    yup "^1.4.0"
+
 chalk@^2.4.2:
   version "2.4.2"
   resolved "https://registry.npmjs.org/chalk/-/chalk-2.4.2.tgz"

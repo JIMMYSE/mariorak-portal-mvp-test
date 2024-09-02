@@ -1,5 +1,11 @@
 <script lang="ts" setup>
+import { DetailFileType } from 'src/types/gamepack/project-model';
 import { ref, onMounted } from 'vue';
+
+type Props = {
+  detailFileList?: DetailFileType[];
+};
+const props = defineProps<Props>();
 
 const barStyle = {
   // 스크롤바 안보이게
@@ -11,44 +17,10 @@ const thumbStyle = {
   backgroundColor: 'transparent',
 };
 
-interface Video {
-  id: number;
-  title: string;
-  src: string;
-  thumbnail: string;
-}
-
-const videos = ref<Video[]>([
-  {
-    id: 1,
-    title: 'Kingdom: The Blood',
-    src: '/videos/dummy/video_dummy1.mp4',
-    thumbnail: '/thumbnails/kingdom1.jpg',
-  },
-  {
-    id: 2,
-    title: 'Kingdom: Cinematic',
-    src: '/videos/dummy/video_dummy1.mp4',
-    thumbnail: '/thumbnails/kingdom2.jpg',
-  },
-  {
-    id: 3,
-    title: 'Kingdom: Gameplay',
-    src: '/videos/dummy/video_dummy2.mp4',
-    thumbnail: '/thumbnails/kingdom3.jpg',
-  },
-  {
-    id: 4,
-    title: 'Kingdom: Trailer',
-    src: '/videos/dummy/video_dummy2.mp4',
-    thumbnail: '/thumbnails/kingdom4.jpg',
-  },
-]);
-
-const currentVideo = ref<Video>(videos.value[0]);
+const currentVideo = ref<DetailFileType>({} as DetailFileType);
 const videoPlayer = ref<HTMLVideoElement | null>(null);
 
-const playVideo = (video: Video) => {
+const playVideo = (video: DetailFileType) => {
   currentVideo.value = video;
   if (videoPlayer.value) {
     videoPlayer.value.load();
@@ -58,15 +30,20 @@ const playVideo = (video: Video) => {
 
 onMounted(() => {
   if (videoPlayer.value) {
-    videoPlayer.value.src = currentVideo.value.src;
+    videoPlayer.value.src = currentVideo.value.content_file.convert_addr;
   }
 });
 </script>
 
 <template>
   <div class="video-player-container">
-    <video ref="videoPlayer" controls class="main-video" :key="currentVideo.id">
-      <source :src="currentVideo.src" type="video/mp4" />
+    <video
+      ref="videoPlayer"
+      controls
+      class="main-video"
+      :key="currentVideo.detail_content_id"
+    >
+      <source :src="currentVideo.content_file.convert_addr" type="video/mp4" />
       현재 비디오를 지원하지 않습니다.
     </video>
     <q-scroll-area
@@ -76,12 +53,15 @@ onMounted(() => {
     >
       <div class="row no-wrap">
         <c-img
-          v-for="video in videos"
-          :key="video.id"
-          :src="video.thumbnail"
+          v-for="video in detailFileList"
+          :key="video.detail_content_id"
+          :src="video.thumbnail_file.convert_addr"
           @click="playVideo(video)"
           class="thumbnail cursor-pointer"
-          :class="{ 'active-thumbnail': video.id === currentVideo.id }"
+          :class="{
+            'active-thumbnail':
+              video.detail_content_id === currentVideo.detail_content_id,
+          }"
         >
         </c-img>
       </div>

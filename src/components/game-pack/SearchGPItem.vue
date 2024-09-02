@@ -15,9 +15,8 @@ const props = defineProps({
     default: '',
   },
   status: {
-    type: Number,
+    type: String,
     required: true,
-    default: 0,
   },
   like: {
     type: Number,
@@ -37,7 +36,7 @@ const addBadge = setInterval(() => {
   if (!props.badge?.length) clearInterval(addBadge);
 
   if (height.value < 25) {
-    badgeList.value.push(props.badge[i]);
+    if (props.badge[i]) badgeList.value.push(props.badge[i]);
   }
   if (i == props.badge.length - 1) {
     clearInterval(addBadge);
@@ -55,8 +54,8 @@ watch(height, (newHeight) => {
 });
 
 const computedStatus = computed(() => {
-  if (props.status == 0) return '진행전';
-  else if (props.status == 100) return '출시대기';
+  if (props.status == '10') return '진행전';
+  else if (props.status == '40') return '출시대기';
   else return `진행률 ${props.status}%`;
 });
 </script>
@@ -71,7 +70,11 @@ const computedStatus = computed(() => {
     </div>
 
     <div class="text-caption q-mb-xs flex-grow pl-2">
-      <div class="flex items-center q-col-gutter-x-xs" ref="badgeContainer">
+      <div
+        class="flex items-center q-col-gutter-x-xs"
+        ref="badgeContainer"
+        v-if="badgeList.length > 0"
+      >
         <q-badge
           color="grey"
           text-color="black"
@@ -81,6 +84,7 @@ const computedStatus = computed(() => {
         />
         <c-icon name="icon_kebap" v-if="isEllipsis" />
       </div>
+      <div v-else class="h-[25px]"></div>
       <div
         class="text-[#222222] text-sm font-semibold leading-tight ellipsis-2-lines"
       >
@@ -88,7 +92,7 @@ const computedStatus = computed(() => {
       </div>
       <div class="flex justify-between">
         <div
-          :class="props.status > 0 ? 'text-[#056bf1]' : ''"
+          :class="props?.status != '00' ? 'text-[#056bf1]' : ''"
           class="font-medium"
         >
           {{ computedStatus }}

@@ -48,7 +48,7 @@ const imgList = [
   },
 ];
 
-//fetecth
+//fecth
 const { data: recommendedGameData } = useRecommendedGameList();
 const recommendedGameList = computed(() => {
   return recommendedGameData.value?.rows;

@@ -1,3 +1,14 @@
+<script lang="ts" setup>
+const { data: recommededProjectData } = useRecommendedProjectList();
+const recommendedProjectList = computed(() => {
+  return recommededProjectData.value?.rows;
+});
+
+const { data: recentProjectData } = useRecentProjectList();
+const recentProjectList = computed(() => {
+  return recentProjectData.value?.rows;
+});
+</script>
 <template>
   <q-page>
     <section>
@@ -15,6 +26,7 @@
           <c-btn
             class="enter_btn rounded-[30px] text-white font-semibold text-sm py-3 pl-10 pr-[30px] mt-[23px]"
             outline
+            @click="goTo({ path: '/game-pack/project/list', hash: '#list' })"
             >목록으로 이동
             <q-icon name="img:/icons/down_arrow.svg" size="18px"></q-icon>
           </c-btn>
@@ -24,20 +36,20 @@
     <section class="px-6 mt-10">
       <h2 class="text-[20px] font-semibold">CCF가 주목하는 프로젝트</h2>
       <div class="grid gap-1.5 mt-4">
-        <recommend-project-list />
+        <recommend-project-list :gp-list="recommendedProjectList" />
       </div>
     </section>
     <section class="px-6 mt-10">
       <h2 class="text-[20px] font-semibold">최근 본 프로젝트</h2>
       <div class="grid gap-1.5 mt-4">
-        <normal-project-list />
+        <normal-project-list :p-list="recentProjectList" />
       </div>
     </section>
-    <section class="mt-[55px]">
+    <section class="mt-[55px] w-full">
       <img src="/images/dummy/banner_dummy.png" alt="banner" class="w-full" />
     </section>
     <!--  게임 목록 -->
-    <section class="mt-[55px] w-full">
+    <section class="mt-[55px] w-full" id="list">
       <h2 class="px-6 text-[22px] font-semibold">프로젝트 목록</h2>
       <div class="mt-4">
         <search-g-p-list />
