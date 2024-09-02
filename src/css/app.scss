@@ -67,11 +67,13 @@ body {
 .q-input {
   &.q-field--outlined .q-field__control:before {
     border: none !important;
+    outline: none !important;
     // border-color: transparent !important;
     // border-width: 1px;
   }
   &.q-field--outlined .q-field__control {
-    color: $grey-5;
+    outline: none !important;
+    // color: $grey-5;
   }
 
   .q-field__marginal {
@@ -79,14 +81,14 @@ body {
   }
 
   .q-field__control {
-    padding: 0 20px;
     border-radius: 23px !important;
     height: 44px !important;
     background: white;
+    outline: none !important;
 
     input::placeholder {
       /* WebKit, Blink, Edge */
-      color: $grey-2;
+      color: #b6b6b6;
       font-size: 14px;
     }
 
@@ -124,8 +126,9 @@ body {
 
     textarea::placeholder {
       /* WebKit, Blink, Edge */
-      color: $grey-2;
+      color: #b6b6b6;
       font-size: 14px;
+      padding: 0 10px;
     }
   }
 }
@@ -137,7 +140,7 @@ body {
 }
 
 input:focus {
-  outline: none;
+  outline: none !important;
 }
 input::placeholder {
   /* WebKit, Blink, Edge */
