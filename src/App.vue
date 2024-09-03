@@ -50,24 +50,26 @@ const tabInfos: { icon: string; label: string; name: string; to: string }[] = [
     name: 'game-pack',
     to: '/game-pack',
   },
-  {
-    icon: 'icon_edit_game',
-    label: '작업실',
-    name: 'create-room',
-    to: '/',
-  },
+  // TODO 앱 심사 히든
+  // {
+  //   icon: 'icon_edit_game',
+  //   label: '작업실',
+  //   name: 'create-room',
+  //   to: '/',
+  // },
   {
     icon: 'icon_add_user',
     label: '인력사무실',
     name: 'add-user',
     to: '/',
   },
-  {
-    icon: 'icon_edit',
-    label: '커뮤니티',
-    name: 'community',
-    to: '/setting',
-  },
+  // TODO 앱 심사 히든
+  // {
+  //   icon: 'icon_edit',
+  //   label: '커뮤니티',
+  //   name: 'community',
+  //   to: '/setting',
+  // },
 ];
 const isMain = computed(() => route.name?.toString().includes('main'));
 </script>

@@ -122,11 +122,12 @@ watch(projectDetail, () => {
           </div>
         </div>
         <div>
-          <c-btn
+          <!-- TODO 앱 심사 히든 처리 -->
+          <!-- <c-btn
             class="w-full rounded-[30px] text-[#056bf1] font-semibold text-sm py-4 pl-10 pr-[30px] mt-[23px]"
             outline
             >프로젝트 후원하기
-          </c-btn>
+          </c-btn> -->
           <c-btn
             class="w-full rounded-[30px] text-[#056bf1] font-semibold text-sm py-4 pl-10 pr-[30px] mt-[8px]"
             >메타버스 사무실 방문하기
