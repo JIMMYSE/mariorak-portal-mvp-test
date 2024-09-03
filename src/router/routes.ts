@@ -164,6 +164,14 @@ const routes: RouteRecordRaw[] = [
             },
             component: () => import('pages/my-page/MPMainPage.vue'),
           },
+          {
+            path: 'account-manage',
+            name: 'account-manage',
+            meta: {
+              title: '계정 정보 관리',
+            },
+            component: () => import('pages/my-page/AccountManage.vue'),
+          },
         ],
       },
       // 입영안내
