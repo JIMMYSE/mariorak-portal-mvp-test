@@ -77,7 +77,7 @@ const socialLoginAPI = async (accessToken: string, provider: SocialType) => {
 </script>
 
 <template>
-  <q-page class="column justify-top items-center px-2 py-40 bg-grey-3">
+  <q-page class="column justify-top items-center px-2 py-40">
     <!-- <q-img src="/images/.png" width="173px" height="45" /> -->
     <q-card class="w-full mt-12 bg-transparent" :flat="true">
       <!-- EMAIL LOGIN -->
