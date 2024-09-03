@@ -26,7 +26,7 @@ const isNewChat = ref(false);
         <q-img src="/images/main-logo.png" alt="" />
       </p>
       <div class="flex items-center">
-        <q-btn size="md" round flat :to="{ name: 'profile' }">
+        <q-btn size="md" round flat :to="{ name: 'my-page' }">
           <q-icon name="img:/icons/icon_profile.svg" size="26px" />
         </q-btn>
         <q-btn size="md" round flat :to="{ name: 'notice-list' }">

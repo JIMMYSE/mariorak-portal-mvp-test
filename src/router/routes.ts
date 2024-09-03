@@ -150,7 +150,7 @@ const routes: RouteRecordRaw[] = [
         ],
       },
       {
-        path: 'profile',
+        path: 'my-page',
         meta: {
           requiresAuth: true,
         },
@@ -158,11 +158,19 @@ const routes: RouteRecordRaw[] = [
         children: [
           {
             path: '',
-            name: 'profile',
+            name: 'my-page',
             meta: {
-              title: '아바타',
+              title: '마이페이지',
             },
-            component: () => import('pages/ProfilePage.vue'),
+            component: () => import('pages/my-page/MPMainPage.vue'),
+          },
+          {
+            path: 'account-manage',
+            name: 'account-manage',
+            meta: {
+              title: '계정 정보 관리',
+            },
+            component: () => import('pages/my-page/AccountManage.vue'),
           },
         ],
       },
