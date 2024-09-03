@@ -78,21 +78,28 @@ const socialLoginAPI = async (accessToken: string, provider: SocialType) => {
 
 <template>
   <q-page class="column justify-top items-center px-2 py-40">
-    <!-- <q-img src="/images/.png" width="173px" height="45" /> -->
+    <q-header class="flex flex-center pl-1 pt-[var(--statusbar-h)] bg-white">
+      <q-toolbar
+        class="flex justify-between items-center h-[var(--main-header-h)] pr-1"
+      >
+        <q-img src="/images/main-logo.png" alt="" class="w-14" />
+      </q-toolbar>
+    </q-header>
     <q-card class="w-full mt-12 bg-transparent" :flat="true">
       <!-- EMAIL LOGIN -->
       <q-card-section class="title-section">
-        <div class="text-white text-[32px] font-semibold">
-          혁신적인<br />인디게임 플랫폼 CCF
+        <div class="text-[32px] font-semibold">
+          Content Created<br />
+          with Fans
         </div>
         <div class="text-[#b4b4b4] mt-1 font-light">
-          인디게임, CCF와 함께 즐겨보세요
+          팬과 함께 만들어가는 게임 개발 커뮤니티
         </div>
       </q-card-section>
       <q-card-section class="q-gutter-md">
         <GoogleLogin :callback="googleCallback" v-if="isLocal || isDev" />
         <q-card
-          class="rounded-full flex py-4 px-5 items-center"
+          class="rounded-full flex py-4 px-5 items-center border-[#DBDBDB] border"
           flat
           @click="handleSocialLogin('google')"
         >
