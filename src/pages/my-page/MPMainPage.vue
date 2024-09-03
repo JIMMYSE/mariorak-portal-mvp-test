@@ -7,13 +7,18 @@ const props = defineProps<Props>();
 
 interface ListItem {
   label: string;
+  name: string;
 }
 
 const items = ref<ListItem[]>([
-  { label: '계정 정보 관리' },
-  { label: '개인 프로필 관리' },
-  { label: '개발자 프로필 관리' },
+  { label: '계정 정보 관리', name: 'account-manage' },
+  { label: '개인 프로필 관리', name: 'account-manage' },
+  { label: '개발자 프로필 관리', name: 'account-manage' },
 ]);
+
+const goToPage = (name: string) => {
+  goToName(name);
+};
 </script>
 <template>
   <q-page>
@@ -73,6 +78,7 @@ const items = ref<ListItem[]>([
             v-for="item in items"
             :key="item.label"
             clickable
+            @click="goToPage(item.name)"
             class="py-[20px] px-[24px] border-b-[1px] border-[#f0f0f0] last:border-0"
           >
             <q-item-section>
