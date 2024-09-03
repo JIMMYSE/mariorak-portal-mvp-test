@@ -1,0 +1,97 @@
+<script lang="ts" setup>
+import { MakerListType } from 'src/types/gamepack/project-model';
+type Props = {
+  makerList: MakerListType | undefined;
+};
+const props = defineProps<Props>();
+
+interface ListItem {
+  label: string;
+}
+
+const items = ref<ListItem[]>([
+  { label: '계정 정보 관리' },
+  { label: '개인 프로필 관리' },
+  { label: '개발자 프로필 관리' },
+]);
+</script>
+<template>
+  <q-page>
+    <section class="px-6">
+      <div class="flex flex-col">
+        <div class="flex items-center">
+          <div>
+            <c-img
+              src="/images/dummy/member_dummy2.png"
+              alt="maker.mem_nickname"
+              class="w-[60px] h-[60px] rounded-full"
+            >
+            </c-img>
+          </div>
+
+          <div class="flex flex-col ml-[12px]">
+            <p class="text-[#222222] text-base font-medium leading-snug">
+              사람이름
+              <span>
+                <q-icon name="img:/icons/icon_edit.svg" size="20px"></q-icon>
+              </span>
+            </p>
+            <p
+              class="text-[#056bf1] text-xs font-semibold leading-none mt-[2px]"
+            >
+              직업이름
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-[23px]">
+        <div
+          class="rounded-[10px] bg-[#056bf1]/5 h-[50px] flex justify-between items-center px-[20px]"
+        >
+          <p class="text-[#056bf1] text-sm font-semibold leading-tight">
+            <q-icon
+              name="img:/icons/icon_point.svg"
+              size="28px"
+              class="mr-1"
+            ></q-icon>
+            포인트
+          </p>
+          <p class="text-[#056bf1] text-lg font-semibold leading-tight">
+            100,000P
+          </p>
+        </div>
+      </div>
+    </section>
+    <hr class="h-2.5 bg-[#f7f7f7] mt-8" />
+    <section class="px-6 mt-[28px]">
+      <p class="text-[#767676] text-sm font-medium leading-none pl-[10px]">
+        정보 관리
+      </p>
+      <div class="mt-[8px]">
+        <q-list bordered class="rounded-[10px] border-[#f0f0f0]">
+          <q-item
+            v-for="item in items"
+            :key="item.label"
+            clickable
+            class="py-[20px] px-[24px] border-b-[1px] border-[#f0f0f0] last:border-0"
+          >
+            <q-item-section>
+              <q-item-label
+                class="text-[#222222] text-base font-medium leading-tight"
+                >{{ item.label }}</q-item-label
+              >
+            </q-item-section>
+            <q-item-section side>
+              <c-icon
+                name="icon_enter_arrow"
+                color="#b5b5b5"
+                size="16px"
+                :fill="false"
+              ></c-icon>
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </div>
+    </section>
+  </q-page>
+</template>
