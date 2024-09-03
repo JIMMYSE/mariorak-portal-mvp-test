@@ -22,7 +22,7 @@ const goToPage = (name: string) => {
 </script>
 <template>
   <q-page>
-    <section class="px-6">
+    <section class="px-6 pt-8">
       <div class="flex flex-col">
         <div class="flex items-center">
           <div>
