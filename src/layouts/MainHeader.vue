@@ -4,20 +4,14 @@ type Props = {
 };
 const props = defineProps<Props>();
 
-const headerClass = computed(() =>
-  props.footerVisible ? 'bg-white' : 'bg-transparent'
-);
-
 // 알림 아이콘 뱃지
 const isNewNoti = ref(true);
 const isNewChat = ref(false);
 </script>
 <template>
   <q-header
-    class="flex flex-center pl-1 pt-[var(--statusbar-h)] bg-grey"
+    class="flex flex-center pl-1 pt-[var(--statusbar-h)] bg-white"
     reveal
-    elevated
-    :class="headerClass"
   >
     <q-toolbar
       class="flex justify-between items-center h-[var(--main-header-h)] pr-1"

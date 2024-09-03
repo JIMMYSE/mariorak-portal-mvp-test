@@ -1,6 +1,7 @@
 <!-- 메인페이지 -->
 
 <script setup lang="ts">
+import P from 'app/dist/spa/assets/EnrollmentGuide.f93ad611';
 import FaqArea from 'src/components/game-pack/FaqArea.vue';
 import GPItemList from 'src/components/game-pack/GPItemList.vue';
 
@@ -10,44 +11,54 @@ const keyword = ref<string>('');
 // img dummy
 const imgList = [
   {
-    src: '/images/dummy/main_dummy.svg',
+    src: '/images/dummy/mainPage_dummy.svg',
 
     id: 1,
-    title: '지금 CCF\n2024에 투표하세요',
-    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
+    title: '온라인 다트의 혁명\n다트겜 출시',
+    desc: '임시 임시 내용을 적어놓았습니다',
   },
   {
-    src: '/images/dummy/main_dummy1.svg',
+    src: '/images/dummy/mainPage_dummy.svg',
     id: 2,
-    title: '지금 CCF\n2024에 투표하세요',
-    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
-  },
-  {
-    src: '/images/dummy/main_dummy2.svg',
-    id: 3,
-    title: '지금 CCF\n2024에 투표하세요',
-    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
-  },
-  {
-    src: '/images/dummy/main_dummy3.svg',
-    id: 4,
-    title: '지금 CCF\n2024에 투표하세요',
-    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
-  },
-  {
-    src: '/images/dummy/main_dummy4.svg',
-    id: 5,
-    title: '지금 CCF\n2024에 투표하세요',
-    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
-  },
-  {
-    src: '/images/dummy/main_dummy5.svg',
-    id: 6,
-    title: '지금 CCF\n2024에 투표하세요',
-    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
+    title: '온라인 다트의 혁명\n다트겜 출시',
+    desc: '임시 임시 내용을 적어놓았습니다',
   },
 ];
+const tabList = [
+  {
+    src: '/images/main/joystick.png',
+    title: '게임',
+  },
+  {
+    src: '/images/main/magicwand.png',
+    title: '프로젝트',
+  },
+  {
+    src: '/images/main/megaphone.png',
+    title: '모집중',
+  },
+  {
+    src: '/images/main/blacknib.png',
+    title: '개발자',
+  },
+  {
+    src: '/images/main/developer.png',
+    title: '개발자 게시판',
+  },
+  {
+    src: '/images/main/handshake.png',
+    title: '커뮤니티',
+  },
+];
+const barStyle = {
+  // 스크롤바 안보이게
+  opacity: 1,
+};
 
+const thumbStyle = {
+  // 스크롤바 색상
+  backgroundColor: 'transparent',
+};
 //fecth
 const { data: recommendedGameData } = useRecommendedGameList();
 const recommendedGameList = computed(() => {
@@ -81,14 +92,58 @@ const recommendedProjectList = computed(() => {
       </q-carousel-slide>
     </c-carousel>
 
+    <!-- 상단 탭 -->
+    <q-scroll-area
+      class="bg-[#f8f8f8] h-[100px] w-full px-3"
+      :bar-style="barStyle"
+      :thumb-style="thumbStyle"
+    >
+      <div class="row no-wrap">
+        <div
+          class="w-[70px] h-[100px] text-center mr-4"
+          v-for="n in tabList"
+          :key="n.src"
+        >
+          <div class="h-full flex flex-col items-center justify-center">
+            <q-img :src="n.src" class="h-[44px] w-[44px]" />
+            <p class="text-xs">
+              {{ n.title }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </q-scroll-area>
     <!-- 게임팩 대해 궁금하다면 -->
     <section class="mt-10 px-6">
-      <p class="text-[22px] font-semibold">WHAT IS GAME PACK</p>
+      <p class="text-[22px] font-semibold">유저와 함께하는 게임 제작 문화</p>
       <p class="text-[#767676] text-sm font-normal">
-        CCF가 함께하고 지원하는 모든 프로젝트
+        CCF가 제공하는 다양한 혜택을 즐겨보세요
       </p>
       <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4">
-        <intro-item-list />
+        <q-scroll-area
+          class="bg-[#f8f8f8] h-[100px] w-full px-3"
+          :bar-style="barStyle"
+          :thumb-style="thumbStyle"
+        >
+          <div class="row no-wrap">
+            <div
+              class="w-[183px] h-[150px] bg-white rounded-[10px] shadow p-4 mr-4"
+              v-for="n in introList"
+              :key="n.content"
+            >
+              <div class="flex items-center gap-1 mb-2">
+                <p class="text-[#056bf1] text-lg font-bold">{{ n.title }}</p>
+                <p class="text-[#222222] text-xs font-medium">
+                  {{ n.subTitle }}
+                </p>
+              </div>
+              <div
+                class="text-[#767676] text-[11px] leading-[16px]"
+                v-html="n.content"
+              ></div>
+            </div>
+          </div>
+        </q-scroll-area>
       </div>
     </section>
 

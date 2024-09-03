@@ -65,7 +65,7 @@ const tabInfos: { icon: string; label: string; name: string; to: string }[] = [
   },
   // TODO 앱 심사 히든
   // {
-  //   icon: 'icon_edit',
+  //   icon: 'icon_community',
   //   label: '커뮤니티',
   //   name: 'community',
   //   to: '/setting',
