@@ -1,13 +1,14 @@
 <!-- 메인페이지 -->
 
 <script setup lang="ts">
-import P from 'app/dist/spa/assets/EnrollmentGuide.f93ad611';
-import FaqArea from 'src/components/game-pack/FaqArea.vue';
 import GPItemList from 'src/components/game-pack/GPItemList.vue';
 
 const slide = ref(0);
 const keyword = ref<string>('');
-
+const businessInfo = ref(false);
+const toggleBusinessInfo = (target: boolean) => {
+  businessInfo.value = !target;
+};
 // img dummy
 const imgList = [
   {
@@ -22,6 +23,18 @@ const imgList = [
     id: 2,
     title: '온라인 다트의 혁명\n다트겜 출시',
     desc: '임시 임시 내용을 적어놓았습니다',
+  },
+];
+const cultureList = [
+  {
+    src: '/images/main/main_culture_2.png',
+    title: '팬과 크리에이터의\n공간',
+    desc: '팬과 크리에이터가 동반자의 관계가 되어\n실시간으로 피드백을 남기고\n응원하는 공간이에요.',
+  },
+  {
+    src: '/images/main/main_culture_1.png',
+    title: '재정적 안정을\n지원하는 공간',
+    desc: '제작부터 출시되는 순간까지\n팬들의 펀딩과 도네이션, CCF의\n지원이 함께해요.',
   },
 ];
 const tabList = [
@@ -54,12 +67,13 @@ const barStyle = {
   // 스크롤바 안보이게
   opacity: 1,
 };
-
 const thumbStyle = {
   // 스크롤바 색상
   backgroundColor: 'transparent',
 };
+
 //fecth
+
 const { data: recommendedGameData } = useRecommendedGameList();
 const recommendedGameList = computed(() => {
   return recommendedGameData.value?.rows;
@@ -119,28 +133,26 @@ const recommendedProjectList = computed(() => {
       <p class="text-[#767676] text-sm font-normal">
         CCF가 제공하는 다양한 혜택을 즐겨보세요
       </p>
-      <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4">
+      <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4 h-[270px]">
         <q-scroll-area
-          class="bg-[#f8f8f8] h-[100px] w-full px-3"
+          class="w-full"
           :bar-style="barStyle"
           :thumb-style="thumbStyle"
         >
           <div class="row no-wrap">
-            <div
-              class="w-[183px] h-[150px] bg-white rounded-[10px] shadow p-4 mr-4"
-              v-for="n in introList"
-              :key="n.content"
-            >
-              <div class="flex items-center gap-1 mb-2">
-                <p class="text-[#056bf1] text-lg font-bold">{{ n.title }}</p>
-                <p class="text-[#222222] text-xs font-medium">
-                  {{ n.subTitle }}
-                </p>
-              </div>
-              <div
-                class="text-[#767676] text-[11px] leading-[16px]"
-                v-html="n.content"
-              ></div>
+            <div class="h-[270px] mr-4" v-for="n in cultureList" :key="n.src">
+              <q-card class="rounded-xl">
+                <q-img :src="n.src" class="w-[200px] h-[123px]" />
+
+                <q-card-section>
+                  <p
+                    class="text-[#222222] font-semibold leading-snug whitespace-pre"
+                  >
+                    {{ n.title }}
+                  </p>
+                  <p class="text-[#767676] text-xs mt-3">{{ n.desc }}</p>
+                </q-card-section>
+              </q-card>
             </div>
           </div>
         </q-scroll-area>
@@ -169,14 +181,84 @@ const recommendedProjectList = computed(() => {
     </section>
 
     <!-- 배너영역 -->
-    <section class="mt-[55px]">
-      <img src="/images/dummy/banner_dummy.png" alt="banner" class="w-full" />
-    </section>
+    <q-img
+      class="mt-[55px]"
+      src="/images/dummy/banner_dummy.png"
+      alt="banner"
+      width="100%"
+      height="100%"
+    />
 
-    <!-- FAQ -->
-    <section class="mt-[55px]">
-      <h2 class="text-[22px] font-semibold px-6">FAQ</h2>
-      <faq-area />
+    <!-- 사업자 정보 -->
+
+    <section class="bg-[#f7f7f7] px-6 pt-6">
+      <div class="flex justify-between">
+        <div><q-img src="/images/main-logo.png" alt="" class="w-14" /></div>
+
+        <div>
+          <h6
+            class="text-[#767676] text-sm font-medium font-['Pretendard'] leading-tight relative pr-5"
+            @click="toggleBusinessInfo(businessInfo)"
+          >
+            사업자 정보
+            <q-icon
+              size="23px"
+              name="img:/icons/down_arrow.svg"
+              class="absolute left-16 bottom-0"
+              :class="businessInfo ? 'rotate-180' : ''"
+            />
+          </h6>
+        </div>
+      </div>
+      <div class="mt-6" v-show="businessInfo">
+        <div class="flex justify-center">
+          <div
+            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none"
+          >
+            개인정보 처리방침
+          </div>
+          <div class="border-l-2 border-[#f0f0f0] mx-3"></div>
+          <div
+            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none"
+          >
+            서비스 이용약관
+          </div>
+          <div class="border-l-2 border-[#f0f0f0] mx-3"></div>
+          <div
+            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none"
+          >
+            사업자 정보 확인
+          </div>
+        </div>
+        <div class="flex mt-3 justify-center">
+          <div
+            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none"
+          >
+            프로젝트 심사 기준
+          </div>
+          <div class="border-l-2 border-[#f0f0f0] mx-3"></div>
+          <div
+            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none"
+          >
+            CCF 정책
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="w-full h-[0px] border border-[#f0f0f0] mt-5"></div>
+        <div class="text-[#b5b5b5] text-[10px] leading-[14px] mt-7">
+          CCF는 플랫폼 제공자로서 프로젝트의 당사자가 아니며, 직접적인 통신
+          판매를 진행하지 않습니다. 프로젝트의 완수의 책임은 해당 프로젝트의
+          창작자에게 있으며, 프로젝트와 관련하여 후원자와 발생하는 법적 분쟁에
+          대한 책임은 해당 창작자가 부담합니다.
+        </div>
+        <div
+          class="text-[#767676] text-[10px] mt-16 pb-8 leading-[14px] text-center w-full"
+        >
+          Copyright©COARSOFT
+        </div>
+      </div>
     </section>
   </q-page>
 </template>
