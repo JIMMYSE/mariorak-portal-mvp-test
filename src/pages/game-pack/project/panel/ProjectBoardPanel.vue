@@ -65,11 +65,11 @@ const {
 
 // 조회 조건
 // 검색 정렬 변경 시
-watch(searchSort, (newVal) => {
-  if (newVal == 'latest') setFieldValue('sort', [{ created_at: 'asc' }]);
-  else setFieldValue('sort', [{ like: 'desc' }]);
-  refetch();
-});
+// watch(searchSort, (newVal) => {
+//   if (newVal == 'latest') setFieldValue('sort', [{ created_at: 'asc' }]);
+//   else setFieldValue('sort', [{ like: 'desc' }]);
+//   refetch();
+// });
 // 검색어 변경 시
 watchDebounced(
   searchKeyword,
@@ -103,18 +103,19 @@ watchDebounced(
         </q-btn>
       </div>
       <c-search-input v-model="searchKeyword" class="mt-[16px]" />
-      <c-select
+      <!-- <c-select
         v-model="searchSort"
         :options="options"
         map-options
         borderless
         class="w-[80px]"
         dense
-      />
+      /> -->
       <div v-if="isFetched">
         <!-- 반복문 -->
         <g-p-board-content-item
           v-for="post in postList.pages.flatMap((item : any) => item.data)"
+          :post="post"
           :key="post.id"
           @click="goTo('/game-pack/project/1/2')"
         />
