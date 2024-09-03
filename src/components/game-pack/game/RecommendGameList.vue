@@ -33,7 +33,7 @@ const gameInfo = {
           class="game-card q-mr-md"
           v-for="n in 5"
           :key="n"
-          @click="goTo('/game-pack/project/1')"
+          @click="goTo('/game-pack/game/1')"
         >
           <q-img src="/images/dummy/game_dummy.svg" width="100%" />
           <div class="game-info q-mt-sm">

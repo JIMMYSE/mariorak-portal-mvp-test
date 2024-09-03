@@ -5,6 +5,7 @@ import {
   SimilarProjectResType,
 } from 'src/types/gamepack/project-model';
 import { MaybeRef } from 'vue';
+import ProjectApplyDialog from 'src/components/game-pack/ProjectApplyDialog.vue';
 
 const API_URL = '/v3/pr/project';
 const QUERY_KEY = {
@@ -60,5 +61,21 @@ export const useProjectDetail = (id: string) => {
 export const useSimilarProjectList = (id: string) => {
   return useQueryFetch<SimilarProjectResType>({
     url: API_URL + `/similarity/${id}`,
+  });
+};
+
+/**
+ * dummy) 프로젝트 지원하기
+ */
+
+export const useProjectApplyDialog = () => {
+  return useAlertFullDialog({
+    contentComponent: ProjectApplyDialog,
+    buttons: [
+      {
+        label: '메인화면 바로가기',
+        value: 'main',
+      },
+    ],
   });
 };

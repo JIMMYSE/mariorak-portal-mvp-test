@@ -61,6 +61,24 @@ const routes: RouteRecordRaw[] = [
             },
             component: () => import('pages/game-pack/game/GameDetail.vue'),
           },
+          {
+            path: 'game/:id/board-edit',
+            name: 'game-board-edit',
+            meta: {
+              title: '게시판 등록',
+              bgColor: 'white',
+            },
+            component: () => import('pages/game-pack/GPBoardEdit.vue'),
+          },
+          {
+            path: 'game/:id/:boardId',
+            name: 'game-board-detail',
+            meta: {
+              title: '게시판 상세',
+              bgColor: 'white',
+            },
+            component: () => import('pages/game-pack/GPBoardDetail.vue'),
+          },
           // 프로젝트 목록/상세
           {
             path: 'project/list',

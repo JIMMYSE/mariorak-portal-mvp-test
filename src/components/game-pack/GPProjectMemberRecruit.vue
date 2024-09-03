@@ -7,7 +7,7 @@ type Props = {
 const props = defineProps<Props>();
 
 const goToApplyPage = () => {
-  goTo('/game-pack/member-list');
+  useProjectApplyDialog();
 };
 </script>
 
