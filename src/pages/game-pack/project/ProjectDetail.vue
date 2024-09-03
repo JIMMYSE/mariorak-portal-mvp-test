@@ -1,22 +1,25 @@
 <script lang="ts" setup>
 import ProjectInfoPanel from './panel/ProjectInfoPanel.vue';
+import ProjectBoardPanel from './panel/ProjectBoardPanel.vue';
 
 const route = useRoute();
 const projectId = route.params.id.toString();
-const { data: projectDetail } = useProjectDetail(projectId);
-
-import ProjectBoardPanel from './panel/ProjectBoardPanel.vue';
+const { data: projectDetail, refetch } = useProjectDetail(projectId);
 
 const like = ref(false);
 const tab = ref('INFO');
-const { mutateAsync: onLike } = useLike('project', projectId);
-const { mutateAsync: onUnlike } = useUnLike('project');
+const { mutateAsync: onLike } = useLike('project', projectId, 'project-detail');
+const { mutateAsync: onUnlike } = useUnLike('project', 'project-detail');
 
-const onLikeProject = () => {
+const onLikeProject = async () => {
   like.value = !like.value;
   like.value ? onLike({}) : onUnlike(projectId);
+  await refetch();
 };
 const { data: similarProjectData } = useSimilarProjectList(projectId);
+watch(projectDetail, () => {
+  like.value = projectDetail?.value?.is_liked ?? false;
+});
 </script>
 <template>
   <q-page>
@@ -150,7 +153,7 @@ const { data: similarProjectData } = useSimilarProjectList(projectId);
           />
         </q-tab-panel>
         <q-tab-panel class="px-6" name="BOARD">
-          <project-board-panel />
+          <project-board-panel :pj-id="projectId" />
         </q-tab-panel>
       </q-tab-panels>
     </section>
