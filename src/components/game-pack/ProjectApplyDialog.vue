@@ -1,14 +1,17 @@
 <script setup lang="ts">
+const badgeList = ref<string[]>([]);
 const isEllipsis = ref(true);
 </script>
 
 <template>
   <div
-    class="flex flex-col justify-center items-center h-screen pb-48 bg-white"
+    class="flex flex-col justify-center items-center h-screen pb-48 bg-white w-full"
   >
-    <div>
-      <section class="flex justify-center items-center flex-col">
-        <div class="flex no-wrap">
+    <div class="w-full px-6">
+      <section
+        class="flex justify-center items-center flex-col border-b-[1px] border-[#f0f0f0] pb-[20px]"
+      >
+        <div class="flex no-wrap w-full">
           <div>
             <q-img
               src="/images/dummy/recent_pj_dummy.png"
@@ -43,8 +46,18 @@ const isEllipsis = ref(true);
           </div>
         </div>
       </section>
-      <section class="mt-[34px]">
-        <c-input type="textarea"></c-input>
+      <section class="border-b-[1px] border-[#f0f0f0] py-[20px]">
+        <c-input
+          class="w-full border-0"
+          type="textarea"
+          maxlength="1000"
+          input-class="h-[163px]"
+          placeholder="프로젝트에 지원하는 내용을 입력해주세요.&#10;예)&#10; &#8226; 프로젝트 지원 분야&#10; &#8226; 본인의 역량&#10; &#8226; 포트폴리오"
+          :outlined="false"
+          :rounded="false"
+          border-radius="0px"
+          inline-counter
+        ></c-input>
       </section>
     </div>
   </div>

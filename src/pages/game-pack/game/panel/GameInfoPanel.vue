@@ -10,7 +10,7 @@
     <section class="mt-[60px]">
       <h2 class="text-[20px] font-semibold">In Game Shot</h2>
       <div class="mt-4">
-        <game-shot-movie />
+        <!-- <game-shot-movie /> -->
       </div>
     </section>
     <section class="mt-[40px]">

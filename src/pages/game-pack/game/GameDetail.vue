@@ -6,9 +6,9 @@ import GameReviewPanel from './panel/GameReviewPanel.vue';
 const like = ref(false);
 const tab = ref('INFO');
 
-const onLikeProject = () => {
-  like.value = !like.value;
-};
+// const onLikeProject = () => {
+//   like.value = !like.value;
+// };
 
 const gameInfo = {
   badge: ['어드벤쳐', 'Mobile', 'RPG'],
@@ -21,7 +21,7 @@ const gameInfo = {
   <q-page
     ><section>
       <div class="w-full">
-        <div
+        <!-- <div
           @click="onLikeProject"
           class="absolute z-10 mr-[13px] right-0 top-2"
         >
@@ -31,7 +31,7 @@ const gameInfo = {
             :active="like"
             active-color="#EA2E2E"
           />
-        </div>
+        </div> -->
         <q-img
           src="/images/dummy/game_detail_dummy.svg"
           width="100%"
@@ -52,12 +52,12 @@ const gameInfo = {
         <p class="text-[#222222] text-xl font-semibold leading-7 mt-[8px]">
           {{ gameInfo.title }}
         </p>
-        <div class="flex items-center mt-2">
+        <!-- <div class="flex items-center mt-2">
           <q-icon name="img:/icons/icon_heart_red.svg" size="15px" />
           <span class="text-[#222222] text-xs font-medium leading-none ml-[4px]"
             >264명</span
           >
-        </div>
+        </div> -->
         <div class="space-y-2 mt-[20px]">
           <div class="flex justify-start items-center">
             <span
