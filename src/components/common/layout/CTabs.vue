@@ -12,6 +12,7 @@ export interface ATabsProps extends QTabsProps {
 
 const props = withDefaults(defineProps<ATabsProps>(), {
   disable: false,
+  align: 'left',
 });
 
 const model = defineModel<Model>();
@@ -21,7 +22,7 @@ const model = defineModel<Model>();
   <q-tabs
     class="rounded-md"
     v-model="model"
-    align="left"
+    :align="props.align"
     active-color="primary"
     content-class="text-zinc-500"
   >

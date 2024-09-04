@@ -140,9 +140,10 @@ watch(projectDetail, () => {
     <section class="mt-[35px]">
       <c-tabs
         v-model="tab"
+        align="justify"
         :tabs="[
           { label: '정보', name: 'INFO' },
-          { label: '게시판', name: 'BOARD' },
+          // { label: '게시판', name: 'BOARD' }, TODO 앱 심사 히든 처리
         ]"
       />
 
@@ -161,3 +162,4 @@ watch(projectDetail, () => {
   </q-page>
 </template>
 <style lang="scss" scoped></style>
+1
