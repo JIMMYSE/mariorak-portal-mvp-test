@@ -54,7 +54,9 @@ const goToListPage = () => {
             >
               {{ gp.title }}
             </p>
-            <p class="text-[#696969] text-xs font-normal leading-4 mt-[6px]">
+            <p
+              class="text-[#696969] text-xs font-normal leading-4 mt-[6px] ellipsis-2-lines"
+            >
               {{ gp.desc }}
             </p>
           </div>

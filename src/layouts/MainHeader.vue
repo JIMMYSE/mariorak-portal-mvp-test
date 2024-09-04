@@ -4,20 +4,14 @@ type Props = {
 };
 const props = defineProps<Props>();
 
-const headerClass = computed(() =>
-  props.footerVisible ? 'bg-white' : 'bg-transparent'
-);
-
 // 알림 아이콘 뱃지
 const isNewNoti = ref(true);
 const isNewChat = ref(false);
 </script>
 <template>
   <q-header
-    class="flex flex-center pl-1 pt-[var(--statusbar-h)] bg-grey"
+    class="flex flex-center pl-1 pt-[var(--statusbar-h)] bg-white"
     reveal
-    elevated
-    :class="headerClass"
   >
     <q-toolbar
       class="flex justify-between items-center h-[var(--main-header-h)] pr-1"
@@ -29,7 +23,8 @@ const isNewChat = ref(false);
         <q-btn size="md" round flat :to="{ name: 'my-page' }">
           <q-icon name="img:/icons/icon_profile.svg" size="26px" />
         </q-btn>
-        <q-btn size="md" round flat :to="{ name: 'notice-list' }">
+        <!-- TODO 앱 심사 히든 -->
+        <!-- <q-btn size="md" round flat :to="{ name: 'notice-list' }">
           <q-icon name="img:/icons/icon_notification.svg" size="21px">
             <q-badge v-if="isNewNoti" floating color="red" rounded />
           </q-icon>
@@ -38,7 +33,7 @@ const isNewChat = ref(false);
           <q-icon name="img:/icons/icon_chat.svg" size="21px">
             <q-badge v-if="isNewChat" floating color="red" rounded />
           </q-icon>
-        </q-btn>
+        </q-btn> -->
       </div>
     </q-toolbar>
   </q-header>

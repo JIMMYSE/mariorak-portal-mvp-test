@@ -121,6 +121,24 @@ const routes: RouteRecordRaw[] = [
         ],
       },
       {
+        path: 'recruit',
+        meta: {
+          requiresAuth: true,
+        },
+        component: MainLayout,
+        children: [
+          {
+            path: '',
+            name: 'recruit-main',
+            meta: {
+              title: '인력사무소',
+              faqCategory: '인력사무소',
+            },
+            component: () => import('src/pages/recruit/RecruitMainPage.vue'),
+          },
+        ],
+      },
+      {
         path: 'notice',
         redirect: { name: 'notice-list' },
         meta: {
