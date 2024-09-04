@@ -127,5 +127,12 @@
       <h2 class="text-[22px] font-semibold">참여했던 프로젝트 (5000회)</h2>
       <normal-project-list />
     </section>
+    <section class="bottom-[85px] w-full text-center px-6 mt-[85px] mb-6">
+      <c-btn
+        class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
+        color="primary"
+        >수정하기
+      </c-btn>
+    </section>
   </q-page>
 </template>
