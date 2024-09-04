@@ -72,16 +72,7 @@ const recruitMakeRolList = (rolList: any) => {
                 >{{ badge }}</span
               >
             </div>
-            <p
-              class="text-[#222222] text-[16px] font-semibold leading-snug mt-[8px]"
-            >
-              {{ p.title }}
-            </p>
-            <p
-              class="text-[#696969] text-xs font-normal leading-4 mt-[6px] ellipsis-2-lines"
-            >
-              {{ p.desc }}
-            </p>
+            <card-info :title="p.title" :desc="p.desc" :height="'78px'" />
             <div class="flex row items-center mt-[8px]">
               <q-icon name="img:/icons/icon_profile_fill.svg" size="16px" />
               <p class="text-primary text-xs leading-none ellipsis col ml-1">

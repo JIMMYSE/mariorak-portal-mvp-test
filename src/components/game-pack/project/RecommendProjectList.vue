@@ -75,18 +75,7 @@ const prjStatusStyle = (code: string) => {
                 >{{ badge }}</span
               >
             </div>
-            <div class="min-h-[84px]">
-              <p
-                class="text-[#222222] text-[16px] font-semibold leading-snug mt-[8px] ellipsis-2-lines"
-              >
-                {{ p.title }}
-              </p>
-              <p
-                class="text-[#696969] text-xs font-normal leading-4 mt-[6px] ellipsis-2-lines"
-              >
-                {{ p.desc }}
-              </p>
-            </div>
+            <card-info :height="'84px'" :desc="p.desc" :title="p.title" />
           </div>
           <div class="w-full mt-[20px]">
             <div class="flex justify-between items-center mb-1">
