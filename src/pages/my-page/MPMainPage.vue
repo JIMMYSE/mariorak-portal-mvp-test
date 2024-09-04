@@ -12,8 +12,8 @@ interface ListItem {
 
 const items = ref<ListItem[]>([
   { label: '계정 정보 관리', name: 'account-manage' },
-  { label: '개인 프로필 관리', name: 'account-manage' },
-  { label: '개발자 프로필 관리', name: 'account-manage' },
+  // { label: '개인 프로필 관리', name: 'account-manage' },
+  { label: '개발자 프로필 관리', name: 'maker-profile-manage' },
 ]);
 
 const goToPage = (name: string) => {

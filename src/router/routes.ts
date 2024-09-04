@@ -172,6 +172,14 @@ const routes: RouteRecordRaw[] = [
             },
             component: () => import('pages/my-page/AccountManage.vue'),
           },
+          {
+            path: 'maker-profile-manage',
+            name: 'maker-profile-manage',
+            meta: {
+              title: '개발자 프로필 관리',
+            },
+            component: () => import('pages/my-page/MakerProfileManage.vue'),
+          },
         ],
       },
       // 입영안내
