@@ -88,12 +88,12 @@ async function doLogout() {
         <p
           class="text-grey-1 font-pretendard text-xs underline underline-offset-2"
         >
-          이용 약관
+          <router-link to="/policy/terms">이용 약관</router-link>
         </p>
         <p
           class="mt-2 text-grey-1 font-pretendard text-xs underline underline-offset-2"
         >
-          개인정보 처리방침
+          <router-link to="/policy/privacy">개인정보 처리방침</router-link>
         </p>
       </div>
     </footer>

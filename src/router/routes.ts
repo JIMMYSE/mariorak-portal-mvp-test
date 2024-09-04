@@ -547,19 +547,27 @@ const routes: RouteRecordRaw[] = [
     ],
   },
   {
-    path: '/terms',
+    path: '/policy',
     component: SubLayout,
     meta: {
-      requiresAuth: true,
+      requiresAuth: false,
     },
     children: [
       {
-        path: 'list',
-        name: 'terms-list',
+        path: 'terms',
+        name: 'terms',
         meta: {
           title: '이용약관',
         },
-        component: () => import('pages/terms/PolicyList.vue'),
+        component: () => import('pages/policy/TermsPage.vue'),
+      },
+      {
+        path: 'privacy',
+        name: 'privacy',
+        meta: {
+          title: '개인정보처리방침',
+        },
+        component: () => import('pages/policy/PrivacyPage.vue'),
       },
     ],
   },
