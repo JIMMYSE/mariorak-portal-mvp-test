@@ -19,5 +19,23 @@
       </div>
     </section>
     <hr class="h-2.5 bg-[#f7f7f7] mt-8" />
+    <section class="px-6 mt-8">
+      <div
+        class="flex items-center justify-evenly border-[1px] border-[#f0f0f0] rounded-[8px] py-[8px]"
+      >
+        <q-btn
+          class="text-[#767676] text-base font-medium leading-tight p-0"
+          flat
+          label="로그아웃"
+        />
+        <q-separator class="text-[#f0f0f0] my-[8px]" vertical inset />
+        <q-btn
+          flat
+          class="text-[#ff0000]/50 text-base font-medium leading-tight p-0"
+          label="회원탈퇴"
+        />
+      </div>
+    </section>
   </q-page>
 </template>
+<style scoped lang="scss"></style>
