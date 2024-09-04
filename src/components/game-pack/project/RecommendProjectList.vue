@@ -44,7 +44,7 @@ const prjStatusStyle = (code: string) => {
 <template>
   <div>
     <q-scroll-area
-      style="height: 320px"
+      style="height: 350px"
       :bar-style="barStyle"
       :thumb-style="thumbStyle"
     >
@@ -53,7 +53,7 @@ const prjStatusStyle = (code: string) => {
           class="game-card q-mr-md relative cursor-pointer"
           v-for="p in gpList"
           :key="p.prj_id"
-          @click="goTo('/game-pack/project/1')"
+          @click="goTo(`/game-pack/project/${p.prj_id}`)"
         >
           <!-- INFO :: 상태 값에 따라서 q-icon 의 name 을 동적으로 지정하기 -->
           <div class="absolute z-10 w-[50px] text-sm top-2 left-2">
@@ -61,8 +61,7 @@ const prjStatusStyle = (code: string) => {
           </div>
           <c-img
             :src="p.thmn_file.convert_addr"
-            width="100%"
-            class="rounded-xl"
+            class="rounded-xl h-[138px] w-[246px]"
           />
           <div class="absolute top-2 right-2">
             <c-icon :name="'icon_heart'" size="18px" />
@@ -76,14 +75,7 @@ const prjStatusStyle = (code: string) => {
                 >{{ badge }}</span
               >
             </div>
-            <p
-              class="text-[#222222] text-[16px] font-semibold leading-snug mt-[8px]"
-            >
-              {{ p.title }}
-            </p>
-            <p class="text-[#696969] text-xs font-normal leading-4 mt-[6px]">
-              {{ p.desc }}
-            </p>
+            <card-info :height="'84px'" :desc="p.desc" :title="p.title" />
           </div>
           <div class="w-full mt-[20px]">
             <div class="flex justify-between items-center mb-1">
@@ -110,7 +102,7 @@ const prjStatusStyle = (code: string) => {
 </template>
 <style scoped>
 .game-card {
-  width: 234px;
+  width: 246px;
   overflow: hidden;
 }
 
