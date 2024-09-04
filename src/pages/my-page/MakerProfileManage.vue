@@ -125,6 +125,7 @@
     </section>
     <section class="px-6 mt-[60px]">
       <h2 class="text-[22px] font-semibold">참여했던 프로젝트 (5000회)</h2>
+      <normal-project-list />
     </section>
   </q-page>
 </template>
