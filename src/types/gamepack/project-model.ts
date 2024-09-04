@@ -1,4 +1,15 @@
-import { SuccessListRes, SuccessObjectRes, Recruitment } from 'ccf-api-dto';
+// import { SuccessListRes, SuccessObjectRes, Recruitment } from 'ccf-api-dto';
+import { SuccessListRes, SuccessObjectRes } from 'meta-airforce-dto';
+
+const Recruitment = object({
+  prj_rcrt_id: number().label('멤버 모집 아이디'),
+  cont: string().nullable().label('상세 설명'),
+  rcrt_mkr_num: number().nullable().label('모집 제작자 수'),
+  end_remain_days: number().nullable().label('마감잔여일수'),
+  rcrt_mkr_rol_cd_list: array(string().label('직무코드'))
+    .required()
+    .label('모집 제작자 직무 코드 목록'),
+});
 
 const RecommendedProjectObjectSchema = object({
   progress_percent: number().required(),
@@ -96,7 +107,7 @@ const RecommendedProjectListRes = SuccessListRes(
   RecommendedProjectObjectSchema
 );
 export type MakerListType = InferType<typeof MakerListSchema>;
-export type RecruitmentType = InferType<typeof Recruitment>;
+// export type RecruitmentType = InferType<typeof Recruitment>;
 
 export type DetailFileType = InferType<typeof DetailFileSchema>;
 export type RecommendedProjectListType = InferType<
