@@ -1,4 +1,20 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const logout = () => {
+  useMyConfirmDialog({
+    htmlText: `회원 닉네임 님, <br/> 정말 로그아웃 하시겠습니까?`,
+  }).onOk(() => {
+    // logout
+  });
+};
+
+const withdrawal = () => {
+  useMyConfirmDialog({
+    htmlText: `회원 닉네임 님, <br/> 정말 탈퇴하시겠습니까?`,
+  }).onOk(() => {
+    // logout
+  });
+};
+</script>
 <template>
   <q-page>
     <section class="px-6 pt-8">
@@ -19,5 +35,25 @@
       </div>
     </section>
     <hr class="h-2.5 bg-[#f7f7f7] mt-8" />
+    <section class="px-6 mt-8">
+      <div
+        class="flex items-center justify-evenly border-[1px] border-[#f0f0f0] rounded-[8px] py-[8px]"
+      >
+        <q-btn
+          class="text-[#767676] text-base font-medium leading-tight p-0"
+          flat
+          label="로그아웃"
+          @click="logout"
+        />
+        <q-separator class="text-[#f0f0f0] my-[8px]" vertical inset />
+        <q-btn
+          flat
+          class="text-[#ff0000]/50 text-base font-medium leading-tight p-0"
+          label="회원탈퇴"
+          @click="withdrawal"
+        />
+      </div>
+    </section>
   </q-page>
 </template>
+<style scoped lang="scss"></style>
