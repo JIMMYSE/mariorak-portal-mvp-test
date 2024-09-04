@@ -140,7 +140,11 @@ const recommendedProjectList = computed(() => {
           :thumb-style="thumbStyle"
         >
           <div class="row no-wrap">
-            <div class="h-[270px] mr-4" v-for="n in cultureList" :key="n.src">
+            <div
+              class="h-[270px] mr-4 w-[200px]"
+              v-for="n in cultureList"
+              :key="n.src"
+            >
               <q-card class="rounded-xl">
                 <q-img :src="n.src" class="w-[200px] h-[123px]" />
 

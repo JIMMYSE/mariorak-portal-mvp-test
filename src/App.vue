@@ -60,8 +60,8 @@ const tabInfos: { icon: string; label: string; name: string; to: string }[] = [
   {
     icon: 'icon_add_user',
     label: '인력사무실',
-    name: 'add-user',
-    to: '/',
+    name: 'recruit',
+    to: '/recruit',
   },
   // TODO 앱 심사 히든
   // {
