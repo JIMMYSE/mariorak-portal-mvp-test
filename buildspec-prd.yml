@@ -1,0 +1,35 @@
+version: 0.2
+
+env:
+  secrets-manager:
+    GITHUB_SSH_KEY: "ccf-prd-github_ssh_key:ENCODED_SSH_PRIVATE_KEY"
+
+phases:
+  pre_build:
+    commands:
+      - echo now pre_build
+      - sudo apt install openssh-client
+      - sudo apt install openssl
+      - ls -al ~/.ssh
+      - mkdir -p ~/.ssh
+      - echo $GITHUB_SSH_KEY
+      - echo $GITHUB_SSH_KEY | base64 --decode > ~/.ssh/id_rsa
+      - chmod 600 ~/.ssh/id_rsa
+      - cat ~/.ssh/id_rsa
+      - eval "$(ssh-agent -s)"
+      - ssh-add ~/.ssh/id_rsa
+      - ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - git config --global user.email "eunju.jang.dev@gmail.com"
+      - git config --global user.name "eunju-jang"
+      - npm install meta-airforce-dto
+  build:
+    commands:
+      - echo now build
+      - npm cache clean --force
+      - npm install
+      - npm run build:prd
+  post_build:
+    commands:
+      - echo now post_build
+      - aws s3 sync ./dist/spa s3://ccf-prd-portal --acl bucket-owner-full-control
+      - aws cloudfront create-invalidation --distribution-id EEFRFT0PUX5M2 --paths "/*"
