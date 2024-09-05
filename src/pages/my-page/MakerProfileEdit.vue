@@ -40,7 +40,7 @@ const onYearClick = (year: number) => {
           class="text-[#767676] text-xs font-medium leading-none"
         >
           <c-input
-            class="w-full border-b border-[#f7f7f7] pb-[14px]"
+            class="w-full pb-[14px]"
             placeholder="닉네임을 입력하세요."
             :maxlength="20"
             autofocus
@@ -91,7 +91,7 @@ const onYearClick = (year: number) => {
           class="text-[#767676] text-xs font-medium leading-none"
         >
           <c-input
-            class="w-full border-b border-[#f7f7f7] pb-[14px]"
+            class="w-full pb-[14px]"
             placeholder="제목을 입력하세요."
             :maxlength="20"
             autofocus
@@ -131,7 +131,7 @@ const onYearClick = (year: number) => {
           class="text-[#767676] text-xs font-medium leading-none"
         >
           <c-input
-            class="w-full border-b border-[#f7f7f7] pb-[14px]"
+            class="w-full border-b pb-[14px]"
             placeholder="나를 한줄로 표현해 주세요."
             :maxlength="30"
             autofocus

@@ -18,10 +18,6 @@ const thumbStyle = {
   // 스크롤바 색상
   backgroundColor: 'transparent',
 };
-
-const gameInfo = {
-  title: '[NEW][쿠키런 킹덤] 섬머소다 락 페스타',
-};
 </script>
 <template>
   <div>
