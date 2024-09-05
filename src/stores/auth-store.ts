@@ -1,7 +1,7 @@
 export const useAuthStore = defineStore(
   'auth',
   () => {
-    const user = ref<User | null>(null);
+    const user = ref<any | null>(null);
 
     return {
       user,

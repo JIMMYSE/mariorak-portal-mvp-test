@@ -55,7 +55,7 @@ export default {
       invalid: '아이디 또는 비밀번호를 다시 확인해 주세요.',
     },
     logout: {
-      confirm: '로그아웃 하시겠습니까?',
+      confirm: ' 님, <br/> 정말 로그아웃 하시겠습니까?',
     },
     nickname: {
       required: '닉네임을 입력해주세요.',

@@ -8,6 +8,7 @@ import { Id } from 'src/types/common/api-model';
 import { MaybeRefOrGetter } from 'vue';
 
 export const USER_API_URL = '/v2/users';
+export const MYPAGE_API_URL = '/v1/mypage';
 export const USER_QUERY_KEY = {
   LIST: 'USER_LIST',
   DETAIL: 'USER_DETAIL',
@@ -30,6 +31,15 @@ export type UserNicknameResType = InferType<typeof UserNicknameRes>;
 export function getUserDetail(id: MaybeRefOrGetter<Id>) {
   return useAxiosGet<UserDetailResType>({
     url: USER_API_URL + '/' + id,
+  });
+}
+
+/**
+ *  내정보 조회
+ */
+export function getMyDetail() {
+  return useAxiosGet({
+    url: MYPAGE_API_URL + '/profile',
   });
 }
 
