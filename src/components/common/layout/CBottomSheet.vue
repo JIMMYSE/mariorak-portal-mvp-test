@@ -48,11 +48,12 @@ watch(
 
   .bottom-sheet {
     width: 100vh;
-    min-height: 580px;
+    min-height: 340px;
+    max-height: 100vh;
     background: #fff;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    padding: 20px;
+    padding: 20px 20px 90px 20px;
     box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.2);
     animation: slide-up 0.3s ease-out;
   }
