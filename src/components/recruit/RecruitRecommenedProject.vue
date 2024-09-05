@@ -38,6 +38,7 @@ const recruitMakeRolList = (rolList: any) => {
           class="project-card q-mr-md"
           v-for="p in pList"
           :key="p.created_at"
+          @click="goTo(`/recruit/project/${p.prj_id}`)"
         >
           <div class="relative">
             <div class="absolute z-10 top-2 left-3">
@@ -52,7 +53,9 @@ const recruitMakeRolList = (rolList: any) => {
                 class="bg-primary image_badge q-mt-xs"
                 v-if="p.rcrt_mkr_num > 0"
               >
-                <p class="text-white text-sm font-medium leading-tight">
+                <p
+                  class="text-white text-sm font-medium leading-tight vertical-middle"
+                >
                   {{ p.rcrt_mkr_num }}명 모집중
                 </p>
               </div>
@@ -126,7 +129,7 @@ const recruitMakeRolList = (rolList: any) => {
 .image_badge {
   height: 24px;
   width: fit-content;
-  padding: 2px 8px 2px 8px;
+  padding: 3px 8px 2px 8px;
   border-radius: 4px;
   justify-content: center;
   align-items: center;
