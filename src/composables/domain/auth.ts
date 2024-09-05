@@ -113,34 +113,34 @@ export const useRequiredNoticeDialog = () => {
 const saveLoginUser = async (payload: PortalLoginResponseType['data']) => {
   setAccessToken(payload.token);
   isAccessTokenListenerActive.value = true;
-  // await initUserDetailInfo(payload.user.id);
-  setUserInfo(payload.user);
+  await initUserDetailInfo();
 };
 
 // 유저 상세정보 조회 & 저장
-export const initUserDetailInfo = async (id: Id) => {
+export const initUserDetailInfo = async () => {
   try {
-    const { data: userDetail } = await getUserDetail(id);
+    const { data: userDetail } = await getMyDetail();
     if (userDetail.value?.data) {
-      const user: User = {
+      const user: any = {
         ...userDetail.value.data,
       };
       setUserInfo(user);
     }
   } catch (error) {
-    // console.error('#### 사용자 정보 조회 실패 ####');
-    // TODO 임시 정보
-    // alert('>>>>>>>>>> 더미 사용자 정보 입력');
-    // setUserInfo(dummyUser);
+    console.error('#### 사용자 정보 조회 실패 ####');
   }
 };
 
 /**
  * 로그아웃
  */
-export function useLogout({ onSuccess }: { onSuccess?: () => void }) {
+
+export function useLogout(
+  nickname: string,
+  { onSuccess }: { onSuccess?: () => void }
+) {
   useMyConfirmDialog({
-    text: 'auth.logout.confirm',
+    htmlText: nickname + t('auth.logout.confirm'),
   }).onOk(() => {
     doLogout(onSuccess);
   });
@@ -231,9 +231,10 @@ function useAccessTokenCookie() {
   return useCookies([ACCESS_TOKEN_KEY]);
 }
 
-function setUserInfo(userData: User) {
+function setUserInfo(userData: any) {
   const authStore = useAuthStore();
-  authStore.setUser(userData);
+  userData.user.nickname = decodeURI(userData.user.nickname);
+  authStore.setUser(userData.user);
 }
 
 function clearAuthInfo() {

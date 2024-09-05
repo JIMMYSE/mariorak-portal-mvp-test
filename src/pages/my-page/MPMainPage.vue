@@ -1,10 +1,4 @@
 <script lang="ts" setup>
-import { MakerListType } from 'src/types/gamepack/project-model';
-type Props = {
-  makerList: MakerListType | undefined;
-};
-const props = defineProps<Props>();
-
 interface ListItem {
   label: string;
   name: string;
@@ -19,6 +13,8 @@ const items = ref<ListItem[]>([
 const goToPage = (name: string) => {
   goToName(name);
 };
+
+const { user } = useAuthStore();
 </script>
 <template>
   <q-page>
@@ -36,7 +32,7 @@ const goToPage = (name: string) => {
 
           <div class="flex flex-col ml-[12px]">
             <p class="text-[#222222] text-base font-medium leading-snug">
-              사람이름
+              {{ user.nickname }}
               <span>
                 <q-icon name="img:/icons/icon_edit.svg" size="20px"></q-icon>
               </span>

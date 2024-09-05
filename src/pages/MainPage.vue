@@ -3,6 +3,8 @@
 <script setup lang="ts">
 import GPItemList from 'src/components/game-pack/GPItemList.vue';
 
+const { data } = getMyDetail();
+
 const slide = ref(0);
 const keyword = ref<string>('');
 const businessInfo = ref(false);
