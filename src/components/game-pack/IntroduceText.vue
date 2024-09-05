@@ -18,12 +18,8 @@ onMounted(async () => {
     );
     const height = textRef.value.clientHeight;
 
-    console.log('lineHeight:', lineHeight);
-    console.log('height:', height);
-
     // 텍스트 높이가 3줄 이상일 경우만 더보기 버튼 표시
     showButton.value = height > lineHeight * 3;
-    console.log('showButton:', showButton.value);
   }
 });
 

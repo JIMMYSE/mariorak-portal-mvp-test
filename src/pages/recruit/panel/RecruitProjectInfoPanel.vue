@@ -29,19 +29,19 @@ const props = defineProps<Props>();
       </div>
       <div v-else></div>
     </section> -->
-    <section class="mt-6">
+    <section class="mt-12">
       <h2 class="text-[20px] font-semibold">게임 설명</h2>
       <div class="mt-4">
         <introduce-text :intro="detail?.cont" />
       </div>
     </section>
-    <section class="mt-[40px]">
+    <section class="mt-12">
       <h2 class="text-[20px] font-semibold">프로젝트 참여 멤버</h2>
       <div class="mt-4">
         <g-p-member-list :maker-list="detail?.mkr_list" />
       </div>
     </section>
-    <section class="mt-[40px]">
+    <section class="mt-12">
       <h2 class="text-[20px] font-semibold">모집 중인 유사한 프로젝트</h2>
       <div class="mt-4">
         <normal-project-list :p-list="similarProjectList" />

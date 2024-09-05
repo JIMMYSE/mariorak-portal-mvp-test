@@ -46,7 +46,7 @@ const gameInfo = {
               {{ p.title }}
             </p>
             <p class="text-[#696969] text-xs font-normal leading-none">
-              {{ p.created_at }}
+              {{ formatDate(p?.created_at) }}
             </p>
           </div>
         </div>
