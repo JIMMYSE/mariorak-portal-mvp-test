@@ -13,7 +13,7 @@ defineEmits(['enter']);
 <template>
   <div class="relative">
     <img class="w-full" :src="imageSrc ?? undefined" />
-    <div class="absolute w-full bottom-14 left-5">
+    <div class="sticky w-full bottom-14 ml-[2rem]">
       <p
         class="text-white text-[28px] font-semibold leading-[33.60px] whitespace-pre"
       >
