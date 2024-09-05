@@ -146,6 +146,103 @@ const recommendedRecruitProjectList = [
   },
 ];
 
+const recommendedMakerList = [
+  {
+    prj_num: 1,
+    square_file: {
+      id: 9707,
+      file_name: 'Woman_01.png',
+      origin_addr:
+        'https://file-ccf.coardevelop.com/origin/2024/08/20/17/405gzn10m025zzes',
+      convert_addr:
+        'https://file-ccf.coardevelop.com/thumb/2024/08/20/17/405gzn10m025zzes',
+    },
+    circle_file: {
+      id: 9708,
+      file_name: 'Woman_01_th.png',
+      origin_addr:
+        'https://file-ccf.coardevelop.com/origin/2024/08/20/17/405gzn10m025zzek',
+      convert_addr:
+        'https://file-ccf.coardevelop.com/thumb/2024/08/20/17/405gzn10m025zzek',
+    },
+    nickname: '지구별전략가#2358',
+    prtf: {
+      prtf_url: 'https://github.com',
+      prtf_dspy_yn: true,
+    },
+    prfl: {
+      bio: {
+        lang: '영어',
+        loct: '미국 북부',
+        ntnl: '북한',
+      },
+      skills: [
+        '스킬1',
+        '스킬1',
+        '스킬1',
+        '스킬1',
+        '스킬1',
+        '스킬1',
+        '스킬1',
+        '스킬1',
+      ],
+      kjob_objs: [
+        '디자인',
+        '디자이너 리딩',
+        '프론트엔드',
+        '벡엔드',
+        '데브옵스',
+        '안드로이드',
+      ],
+      onln_prfl: '한줄 프로필입니다.',
+    },
+    desc: '저는 디자이너자입니다.',
+    expr_year: 10,
+    mkr_rol_cd: '02',
+    mem_id: 14157,
+    mkr_id: 1,
+  },
+  {
+    prj_num: 1,
+    square_file: {
+      id: 9707,
+      file_name: 'Woman_01.png',
+      origin_addr:
+        'https://file-ccf.coardevelop.com/origin/2024/08/20/17/405gzn10m025zzes',
+      convert_addr:
+        'https://file-ccf.coardevelop.com/thumb/2024/08/20/17/405gzn10m025zzes',
+    },
+    circle_file: {
+      id: 9708,
+      file_name: 'Woman_01_th.png',
+      origin_addr:
+        'https://file-ccf.coardevelop.com/origin/2024/08/20/17/405gzn10m025zzek',
+      convert_addr:
+        'https://file-ccf.coardevelop.com/thumb/2024/08/20/17/405gzn10m025zzek',
+    },
+    nickname: '지구별전략가#2358',
+    prtf: {
+      prtf_url: 'https://github.com',
+      prtf_dspy_yn: true,
+    },
+    prfl: {
+      bio: {
+        lang: '일본어',
+        loct: '경기 서부',
+        ntnl: '대한민국',
+      },
+      skills: ['스킬1'],
+      job_objs: ['개발보조', '개발리딩'],
+      onln_prfl: '한줄 프로필입니다.',
+    },
+    desc: '저는 개발자입니다.',
+    expr_year: 10,
+    mkr_rol_cd: '02',
+    mem_id: 14157,
+    mkr_id: 2,
+  },
+];
+
 //fecth
 const { data: recommendedGameData } = useRecommendedGameList();
 const recommendedGameList = computed(() => {
@@ -226,14 +323,11 @@ const recommendedProjectList = computed(() => {
       </div>
     </section>
 
-    <!-- CCF 추천 프로젝트 -->
+    <!-- CCF 추천 개발 인력 -->
     <section class="px-6 mt-[55px]">
-      <h2 class="text-[22px] font-semibold">CCF 추천 프로젝트</h2>
+      <h2 class="text-[22px] font-semibold">CCF 추천 개발 인력</h2>
       <div class="grid gap-1.5 mt-4">
-        <g-p-item-list
-          to-list="project-list"
-          :gp-list="recommendedProjectList"
-        />
+        <recruit-recommened-maker :m-list="recommendedMakerList" />
       </div>
     </section>
 
