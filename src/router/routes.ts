@@ -198,6 +198,24 @@ const routes: RouteRecordRaw[] = [
             },
             component: () => import('pages/my-page/MakerProfileManage.vue'),
           },
+          {
+            path: 'maker-profile-new',
+            name: 'maker-profile-new',
+            meta: {
+              title: '참여 개발자 등록',
+            },
+            component: () => import('pages/my-page/MakerProfileEdit.vue'),
+          },
+          //본인 프로필 수정
+          {
+            path: 'maker-profile-edit',
+            name: 'maker-profile-edit',
+            props: true,
+            meta: {
+              title: '개발자 프로필 수정',
+            },
+            component: () => import('pages/my-page/MakerProfileEdit.vue'),
+          },
         ],
       },
       // 입영안내

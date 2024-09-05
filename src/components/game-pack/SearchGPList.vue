@@ -116,7 +116,7 @@ watchDebounced(
   </div>
   <div class="px-6 q-gutter-y-md" v-if="isFetched">
     <search-g-p-item
-      v-for="info in searchProjectList.pages.flatMap((item : any) => item.data)"
+      v-for="info in searchProjectList.pages.flatMap((item: any) => item.data)"
       :key="info.prj_id"
       :badge="info?.tag_list ?? []"
       :title="info.title"

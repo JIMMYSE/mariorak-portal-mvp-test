@@ -33,7 +33,7 @@ watch(
     </div>
   </div>
 </template>
-<style scoped>
+<style lang="scss" scoped>
 .backdrop {
   position: fixed;
   top: 0;
@@ -45,17 +45,25 @@ watch(
   justify-content: center;
   align-items: flex-end;
   z-index: 999;
-}
 
-.bottom-sheet {
-  width: 100vh;
-  min-height: 580px;
-  background: #fff;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  padding: 20px;
-  box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.2);
-  animation: slide-up 0.3s ease-out;
+  .bottom-sheet {
+    width: 100vh;
+    min-height: 340px;
+    max-height: 100vh;
+    background: #fff;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 20px 20px 90px 20px;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.2);
+    animation: slide-up 0.3s ease-out;
+  }
+  .handle {
+    width: 40px;
+    height: 5px;
+    background: #ccc;
+    border-radius: 5px;
+    margin: 0 auto 10px auto;
+  }
 }
 
 @keyframes slide-up {
@@ -65,13 +73,5 @@ watch(
   to {
     transform: translateY(0);
   }
-}
-
-.handle {
-  width: 40px;
-  height: 5px;
-  background: #ccc;
-  border-radius: 5px;
-  margin: 0 auto 10px auto;
 }
 </style>
