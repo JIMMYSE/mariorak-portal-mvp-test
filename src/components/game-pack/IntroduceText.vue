@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, nextTick } from 'vue';
+
 type Props = {
   intro?: string;
 };
@@ -16,6 +17,8 @@ onMounted(async () => {
       window.getComputedStyle(textRef.value).lineHeight
     );
     const height = textRef.value.clientHeight;
+
+    // 텍스트 높이가 3줄 이상일 경우만 더보기 버튼 표시
     showButton.value = height > lineHeight * 3;
   }
 });
@@ -52,6 +55,5 @@ const toggleExpand = () => {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 </style>

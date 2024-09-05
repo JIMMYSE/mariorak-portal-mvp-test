@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import ProjectInfoPanel from '../game-pack/project/panel/ProjectInfoPanel.vue';
+import RecruitProjectInfoPanel from '../recruit/panel/RecruitProjectInfoPanel.vue';
 import ProjectBoardPanel from '../game-pack/project/panel/ProjectBoardPanel.vue';
 
 const route = useRoute();
@@ -123,17 +123,18 @@ const { enterRoom } = useBridge();
             ></div>
           </div>
         </div>
-        <div>
+        <div class="mt-4">
           <!-- TODO 앱 심사 히든 처리 -->
           <!-- <c-btn
-            class="w-full rounded-[30px] text-[#056bf1] font-semibold text-sm py-4 pl-10 pr-[30px] mt-[23px]"
+            class="w-full rounded-[30px] text-[#056bf1] font-semibold text-sm py-4 pl-10 pr-[30px]"
             outline
             >프로젝트 후원하기
           </c-btn> -->
           <c-btn
+            outline
             class="w-full rounded-[30px] text-[#056bf1] font-semibold text-sm py-4 pl-10 pr-[30px] mt-[8px]"
-            @click="enterRoom(projectDetail?.office_id ?? null, 1)"
-            >메타버스 사무실 방문하기
+            @click="goTo(`/game-pack/project/${projectId}`)"
+            >프로젝트 페이지로 이동하기
           </c-btn>
         </div>
       </div>
@@ -152,7 +153,7 @@ const { enterRoom } = useBridge();
 
       <q-tab-panels v-model="tab" animated>
         <q-tab-panel class="px-6" name="INFO">
-          <project-info-panel
+          <recruit-project-info-panel
             :detail="projectDetail"
             :similar-project-list="similarProjectData?.rows"
           />

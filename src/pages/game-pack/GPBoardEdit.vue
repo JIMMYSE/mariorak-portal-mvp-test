@@ -31,7 +31,7 @@ const openCategoryBottomSheet = () => {
         class="mt-[16px] pb-[14px] text-[#b5b5b5] text-lg font-normal leading-[25.20px] flex justify-between items-center"
       >
         <c-input
-          class="w-full border-b border-[#f7f7f7] pb-[14px]"
+          class="w-full pb-[14px]"
           placeholder="제목을 입력하세요."
           :maxlength="20"
           autofocus

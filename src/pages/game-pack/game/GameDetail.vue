@@ -98,9 +98,9 @@ const gameInfo = {
         </div>
         <!-- progress bar 추후 컴포넌트화 -->
 
-        <div>
+        <div class="mt-4">
           <c-btn
-            class="w-full rounded-[30px] text-[#056bf1] font-semibold text-sm py-4 pl-10 pr-[30px] mt-[23px]"
+            class="w-full rounded-[30px] text-[#056bf1] font-semibold text-sm py-4 pl-10 pr-[30px]"
             outline
             >게임 스토어로 이동하기
           </c-btn>

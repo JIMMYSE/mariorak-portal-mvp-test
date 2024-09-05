@@ -26,7 +26,7 @@ const RecommendedProjectObjectSchema = object({
 });
 const RecentProjectObjectSchema = object({
   is_liked: boolean().required(), // 필수, 불리언 타입
-  created_at: object().required(), // 필수, 객체 타입 (일반적으로 날짜 객체)
+  created_at: date().required(), // 필수, 객체 타입 (일반적으로 날짜 객체)
   project_gnre_cd: string().required(), // 필수, 문자열 타입
   tag_list: array().of(string()).required(), // 필수, 문자열 배열 타입
   like_cnt: number().required(), // 필수, 숫자 타입
@@ -40,7 +40,7 @@ const RecentProjectObjectSchema = object({
 
 const SearchProjectObjectSchema = object({
   is_liked: boolean().required(), // 필수, 불리언 타입
-  created_at: object().required(), // 필수, 객체 타입 (일반적으로 날짜 객체, Date로 처리 가능)
+  created_at: date().required(), // 필수, 객체 타입 (일반적으로 날짜 객체, Date로 처리 가능)
   game_gnre_cd: string().required(), // 필수, 문자열 타입
   tag_list: array().required().nonNullable(), // 필수, 문자열 배열 타입
   like_cnt: number().required(), // 필수, 숫자 타입

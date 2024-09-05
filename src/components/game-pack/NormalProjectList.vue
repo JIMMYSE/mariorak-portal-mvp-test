@@ -18,10 +18,6 @@ const thumbStyle = {
   // 스크롤바 색상
   backgroundColor: 'transparent',
 };
-
-const gameInfo = {
-  title: '[NEW][쿠키런 킹덤] 섬머소다 락 페스타',
-};
 </script>
 <template>
   <div>
@@ -46,7 +42,7 @@ const gameInfo = {
               {{ p.title }}
             </p>
             <p class="text-[#696969] text-xs font-normal leading-none">
-              {{ p.created_at }}
+              {{ formatDate(p?.created_at) }}
             </p>
           </div>
         </div>
