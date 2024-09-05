@@ -9,12 +9,9 @@ const isNewNoti = ref(true);
 const isNewChat = ref(false);
 </script>
 <template>
-  <q-header
-    class="flex flex-center pl-1 pt-[var(--statusbar-h)] bg-white"
-    reveal
-  >
+  <q-header class="flex flex-center pt-[var(--statusbar-h)] bg-white" reveal>
     <q-toolbar
-      class="flex justify-between items-center h-[var(--main-header-h)] pr-1"
+      class="flex justify-between items-center h-[var(--main-header-h)] pr-1 bg-white"
     >
       <p class="w-[60px] h-[30px] flex items-center ml-1">
         <q-img src="/images/main-logo.png" alt="" />

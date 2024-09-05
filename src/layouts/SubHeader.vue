@@ -9,7 +9,9 @@ const route = useRoute();
     class="fixed flex flex-center text-grey-5 pt-[var(--statusbar-h)]"
     :class="`bg-${bgColor}`"
   >
-    <q-toolbar class="flex justify- items-center h-[var(--main-header-h)] pr-1">
+    <q-toolbar
+      class="flex justify- items-center h-[var(--main-header-h)] pr-1 bg-white"
+    >
       <c-btn-icon
         @click="goBack()"
         icon="img:/icons/icon_back.svg"
