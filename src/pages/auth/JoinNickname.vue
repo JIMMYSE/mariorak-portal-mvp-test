@@ -40,6 +40,9 @@ const onSubmit = handleSubmit(() => {
           :maxlength="10"
           autofocus
           check-badwords
+          :outlined="false"
+          :rounded="false"
+          border-radius="0px"
         />
       </c-field>
     </form>
