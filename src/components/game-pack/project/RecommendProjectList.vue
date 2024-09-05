@@ -17,29 +17,6 @@ const thumbStyle = {
   // 스크롤바 색상
   backgroundColor: 'transparent',
 };
-
-const prjStatusStyle = (code: string) => {
-  let color, bgColor;
-  switch (code) {
-    case '10':
-      color = '#767676';
-      bgColor = '#F8F8F8';
-      break;
-    case '20':
-      color = '#056BF1';
-      bgColor = '#D8E5F8';
-      break;
-    case '30':
-      color = '#FFF';
-      bgColor = '#056BF1';
-      break;
-    case '40':
-      color = '#FFF';
-      bgColor = '#222';
-      break;
-  }
-  return `color: ${color}; background-color: ${bgColor};`;
-};
 </script>
 <template>
   <div>

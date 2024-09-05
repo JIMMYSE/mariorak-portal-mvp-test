@@ -76,41 +76,44 @@ const isMain = computed(() => route.name?.toString().includes('main'));
 
 <template>
   <q-layout view="hHh lpr fFf" class="main-layout bg-white">
-    <div
-      v-if="!IsPrd"
-      class="top-version fixed top-0 z-50 font-pretendard text-xs opacity-50"
-    >
-      <!-- FE version: {{ version }} / BE version: {{ BEversion }} -->
-    </div>
-
-    <div v-if="isLoggedIn">
-      <main-header :footer-visible="footerVisible" v-if="isMain" />
-      <sub-header v-else />
-    </div>
-    <router-view />
-    <q-footer
-      v-if="isLoggedIn"
-      class="bg-white justify-between items-center flex h-[76px] footer-border"
-    >
-      <q-tabs class="w-full" align="justify">
-        <q-route-tab
-          v-for="tabInfo in tabInfos"
-          :key="tabInfo.name"
-          :to="tabInfo.to"
-          color="red"
-          class="pt-1"
-          exact
+    <q-page-container class="q-pb-none border-grey-5">
+      <div
+        v-if="!IsPrd"
+        class="top-version fixed top-0 z-50 font-pretendard text-xs opacity-50 border-grey-5"
+      >
+        <!-- FE version: {{ version }} / BE version: {{ BEversion }} -->
+      </div>
+      <div style="max-width: 512px; margin: 0 auto" class="border-grey-5">
+        <div v-if="isLoggedIn">
+          <main-header :footer-visible="footerVisible" v-if="isMain" />
+          <sub-header v-else />
+        </div>
+        <router-view />
+        <q-footer
+          v-if="isLoggedIn"
+          class="bg-white justify-between items-center flex footer-border"
         >
-          <c-icon
-            :name="tabInfo.icon"
-            size="20px"
-            :active="tab?.includes(tabInfo?.name ?? '')"
-            :label="tabInfo.label"
-          />
-          <p class="text-grey-5"></p>
-        </q-route-tab>
-      </q-tabs>
-    </q-footer>
+          <q-tabs class="w-full" align="justify">
+            <q-route-tab
+              v-for="tabInfo in tabInfos"
+              :key="tabInfo.name"
+              :to="tabInfo.to"
+              color="red"
+              class="pt-1"
+              exact
+            >
+              <c-icon
+                :name="tabInfo.icon"
+                size="20px"
+                :active="tab?.includes(tabInfo?.name ?? '')"
+                :label="tabInfo.label"
+              />
+              <p class="text-grey-5"></p>
+            </q-route-tab>
+          </q-tabs>
+        </q-footer>
+      </div>
+    </q-page-container>
   </q-layout>
 
   <VueQueryDevtools v-if="showVueQueryDevTool" />
@@ -123,5 +126,14 @@ const isMain = computed(() => route.name?.toString().includes('main'));
 }
 .footer-border {
   border-top: 1px solid #f0f0f0;
+}
+</style>
+<style>
+.q-toolbar {
+  max-width: 512px;
+}
+.q-footer {
+  max-width: 512px;
+  left: calc(50vw - 256px);
 }
 </style>

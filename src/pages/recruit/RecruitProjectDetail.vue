@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import ProjectInfoPanel from './panel/ProjectInfoPanel.vue';
-import ProjectBoardPanel from './panel/ProjectBoardPanel.vue';
+import ProjectInfoPanel from '../game-pack/project/panel/ProjectInfoPanel.vue';
+import ProjectBoardPanel from '../game-pack/project/panel/ProjectBoardPanel.vue';
 
 const route = useRoute();
 const projectId = route.params.id.toString();
@@ -47,6 +47,7 @@ const { enterRoom } = useBridge();
         />
       </div>
     </section>
+
     <section class="px-6">
       <div>
         <div class="text-caption q-mb-xs mt-[16px]">

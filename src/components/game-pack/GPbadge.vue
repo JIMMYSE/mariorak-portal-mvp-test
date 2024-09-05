@@ -29,7 +29,7 @@ const prjStatusStyle = computed(() => {
 });
 </script>
 <template>
-  <p class="rounded-lg text-center p-[2px]" :style="prjStatusStyle">
+  <p class="rounded-lg text-center py-1 px-2" :style="prjStatusStyle">
     {{ getCommonCodeName(props.sectionCd, props.cd) }}
   </p>
 </template>

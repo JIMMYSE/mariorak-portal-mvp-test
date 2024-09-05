@@ -46,7 +46,7 @@ const badgeText = computed(() => {
 
 <style scoped lang="scss">
 .carousel-container {
-  width: 100vw;
+  width: 100%;
   position: relative;
 }
 
