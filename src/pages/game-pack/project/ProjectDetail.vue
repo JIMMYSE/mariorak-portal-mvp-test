@@ -20,6 +20,7 @@ const { data: similarProjectData } = useSimilarProjectList(projectId);
 watch(projectDetail, () => {
   like.value = projectDetail?.value?.is_liked ?? false;
 });
+const { enterRoom } = useBridge();
 </script>
 <template>
   <q-page>
@@ -40,7 +41,7 @@ watch(projectDetail, () => {
           />
         </div>
         <q-img
-          src="/images/dummy/game_detail_dummy.svg"
+          :src="projectDetail?.thmn_file.convert_addr"
           width="100%"
           height="100%"
         />
@@ -130,6 +131,7 @@ watch(projectDetail, () => {
           </c-btn> -->
           <c-btn
             class="w-full rounded-[30px] text-[#056bf1] font-semibold text-sm py-4 pl-10 pr-[30px] mt-[8px]"
+            @click="enterRoom(projectDetail?.office_id ?? null, 1)"
             >메타버스 사무실 방문하기
           </c-btn>
         </div>
