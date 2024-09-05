@@ -3,8 +3,8 @@
 <script setup lang="ts">
 const props = defineProps<{
   imageSrc: string | null | undefined;
-  title: string;
-  desc: string;
+  title?: string | null | undefined;
+  desc?: string | null | undefined;
 }>();
 
 defineEmits(['enter']);
@@ -12,7 +12,7 @@ defineEmits(['enter']);
 
 <template>
   <div class="relative">
-    <img class="w-full h-[360px] object-cover" :src="imageSrc ?? undefined" />
+    <img class="w-full" :src="imageSrc ?? undefined" />
     <div class="absolute w-full bottom-14 left-5">
       <p
         class="text-white text-[28px] font-semibold leading-[33.60px] whitespace-pre"

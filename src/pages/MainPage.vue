@@ -12,17 +12,22 @@ const toggleBusinessInfo = (target: boolean) => {
 // img dummy
 const imgList = [
   {
-    src: '/images/dummy/mainPage_dummy.svg',
-
+    src: '/images/main/Main_KV/512/kv_01.png',
     id: 1,
-    title: '온라인 다트의 혁명\n다트겜 출시',
-    desc: '임시 임시 내용을 적어놓았습니다',
+    title: '',
+    desc: '',
   },
   {
-    src: '/images/dummy/mainPage_dummy.svg',
+    src: '/images/main/Main_KV/512/kv_02.png',
     id: 2,
-    title: '온라인 다트의 혁명\n다트겜 출시',
-    desc: '임시 임시 내용을 적어놓았습니다',
+    title: '',
+    desc: '',
+  },
+  {
+    src: '/images/main/Main_KV/512/kv_03.png',
+    id: 2,
+    title: '',
+    desc: '',
   },
 ];
 const cultureList = [
@@ -91,7 +96,7 @@ const recommendedProjectList = computed(() => {
       class="bg-transparent"
       control-color-active="transparent"
       v-model="slide"
-      height="360px"
+      height="auto"
       :total-slides="imgList.length"
       keep-alive
       infinite
