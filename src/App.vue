@@ -134,6 +134,12 @@ const isMain = computed(() => route.name?.toString().includes('main'));
 }
 .q-footer {
   max-width: 512px;
-  left: calc(50vw - 256px);
+  width: 100vw;
+}
+
+@media (min-width: 512px) {
+  .q-footer {
+    left: calc(50vw - 256px);
+  }
 }
 </style>
