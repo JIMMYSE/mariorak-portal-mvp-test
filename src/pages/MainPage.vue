@@ -218,6 +218,7 @@ const recommendedProjectList = computed(() => {
         <div class="flex justify-center">
           <div
             class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none"
+            @click="goToName('privacy')"
           >
             개인정보 처리방침
           </div>
