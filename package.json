@@ -1,6 +1,6 @@
 {
   "name": "ccf-portal",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "ccf Portal",
   "productName": "ccf Portal",
   "author": "COARSOFT",
@@ -15,7 +15,8 @@
     "lint": "eslint --ext .js,.ts,.vue ./",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
-    "dto": "yarn cache clean && yarn add 'github:coarsoft-tmp/meta-airforce-dto'"
+    "dto": "yarn cache clean && yarn add 'github:coarsoft-tmp/meta-airforce-dto'",
+    "set-version": "coar-devtools set-version -f ./public/app.json"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.11",
@@ -71,6 +72,7 @@
     "@typescript-eslint/eslint-plugin": "^7.13.0",
     "@typescript-eslint/parser": "^7.13.0",
     "autoprefixer": "^10.4.19",
+    "coar-node-devtools": "github:coarsoft-tmp/coar-node-devtools#semver:1.0.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^8.10.0",
     "eslint-plugin-vue": "^9.25.0",
