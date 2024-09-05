@@ -48,7 +48,7 @@ const recruitMakeRolList = (rolList: any) => {
               <div class="font-semibold ml-2 q-gutter-y-[5px] col">
                 <p class="text-[#222222] leading-snug">{{ m.nickname }}</p>
                 <p class="text-primary text-xs p ellipsis">
-                  {{ m.prfl.job_objs.flatMap((rol: any) => rol).join(' / ') }}
+                  {{ m.prfl.job_objs?.flatMap((rol: any) => rol).join(' / ') }}
                 </p>
                 <div class="row font-normal align-middle flex items-center">
                   <p class="text-[#767676] text-xs">{{ m.expr_year }}년차</p>
@@ -70,7 +70,7 @@ const recruitMakeRolList = (rolList: any) => {
                 </p>
               </div>
               <p class="text-[#222222] text-xs ellipsis col ml-1">
-                {{ m.prfl.skills.flatMap((skill: any) => skill).join(' , ') }}
+                {{ m.prfl.skills?.flatMap((skill: any) => skill).join(' , ') }}
               </p>
             </div>
             <p class="] text-grey-3 text-xs mt-[9px]">
