@@ -41,12 +41,14 @@ const socialBgClass = computed(() => {
             size="17.5px"
           />
         </div>
-        <div class="ml-[12px]">
-          <p class="text-[#222222] text-lg font-semibold leading-[25.20px]">
+        <div class="ml-[12px] col">
+          <p
+            class="text-[#222222] text-lg q-sm-textt font-semibold leading-[25.20px] break-words"
+          >
             {{ user.emails[0]?.email }}
           </p>
           <p class="text-[#767676] text-sm font-normal leading-tight">
-            가입일 : {{ user.created_at }}
+            가입일 : {{ formatDate(user.created_at) }}
           </p>
         </div>
       </div>
