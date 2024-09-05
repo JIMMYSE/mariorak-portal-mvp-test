@@ -7,11 +7,9 @@ import SubLayout from 'layouts/SubLayout.vue';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: { name: 'main' },
     children: [
       {
         path: '/home',
-        name: 'main',
         meta: {
           requiresAuth: true,
         },
@@ -135,6 +133,15 @@ const routes: RouteRecordRaw[] = [
               faqCategory: '인력사무소',
             },
             component: () => import('src/pages/recruit/RecruitMainPage.vue'),
+          },
+          {
+            path: 'project/:id',
+            name: 'recruit-project-detail',
+            meta: {
+              title: '프로젝트 상세',
+              bgColor: 'white',
+            },
+            component: () => import('pages/recruit/RecruitProjectDetail.vue'),
           },
         ],
       },
@@ -641,7 +648,8 @@ const routes: RouteRecordRaw[] = [
   // but you can also remove it
   {
     path: '/:catchAll(.*)*',
-    redirect: { name: 'error-not-found' },
+    // redirect: { name: 'error-not-found' },
+    redirect: { name: 'home-main' },
   },
 ];
 
