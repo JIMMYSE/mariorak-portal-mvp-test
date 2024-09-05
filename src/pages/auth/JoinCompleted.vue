@@ -23,7 +23,7 @@ joinStore.$reset();
         <p
           class="px-6 font-pretendard text-[28px] font-semibold text-center leading-[1.325]"
         >
-          {유저닉네임} 님,
+          {{ user.nickname }} 님,
         </p>
         <p
           class="px-6 font-pretendard text-[28px] font-semibold text-center leading-relaxed"

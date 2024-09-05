@@ -3,13 +3,21 @@
 <script setup lang="ts">
 type Props = {
   label: string;
+  required?: boolean;
 };
 defineProps<Props>();
 </script>
 
 <template>
   <section class="mt-4">
-    <div class="text-[13px] text-grey-3 leading-8 pl-1">{{ label }}</div>
+    <div class="text-[#767676] text-xs leading-8">
+      {{ label
+      }}<span
+        v-if="required"
+        class="text-[#ea2d2d] text-xs pl-[2px] mb-1 top-[2px]"
+        ><c-asterisk
+      /></span>
+    </div>
     <slot />
     <slot name="bottom" />
   </section>

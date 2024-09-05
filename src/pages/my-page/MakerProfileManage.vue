@@ -131,6 +131,7 @@
       <c-btn
         class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
         color="primary"
+        @click="goToName('maker-profile-new')"
         >수정하기
       </c-btn>
     </section>
