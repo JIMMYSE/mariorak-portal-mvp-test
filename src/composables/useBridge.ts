@@ -213,7 +213,8 @@ export const useBridge = () => {
     toggleBackGestureActivation(isActivated: boolean) {
       log('toggleBackGestureActivation', isActivated);
     },
-    async enterRoom(room_id: number, spawn_id: number) {
+    async enterRoom(room_id: number | null, spawn_id: number) {
+      if (!room_id) return;
       if (networkError.value) return;
     },
     shareURL(url: string) {
