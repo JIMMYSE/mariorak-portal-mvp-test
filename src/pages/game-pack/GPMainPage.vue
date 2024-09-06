@@ -62,25 +62,9 @@ const recommendedProjectList = computed(() => {
 <template>
   <q-page class="column bg-white">
     <!-- 맵 바로가기 영역 -->
-    <c-carousel
-      class="bg-transparent"
-      control-color-active="transparent"
-      v-model="slide"
-      height="360px"
-      :total-slides="imgList.length"
-      keep-alive
-      infinite
-    >
-      <q-carousel-slide
-        class="p-0 h-[460px]"
-        v-for="(img, i) in imgList"
-        :key="img.id"
-        :name="i"
-      >
-        <main-card :image-src="img.src" :title="img.title" :desc="img.desc" />
-      </q-carousel-slide>
-    </c-carousel>
-
+    <section style="height: calc(100vw); max-height: 512px">
+      <ckv-banner :img-list="imgList" :counter="false" />
+    </section>
     <!-- 게임팩 대해 궁금하다면 -->
     <section class="mt-10 px-6">
       <p class="text-[22px] font-semibold">WHAT IS GAME PACK</p>

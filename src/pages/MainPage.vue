@@ -2,8 +2,6 @@
 
 <script setup lang="ts">
 import GPItemList from 'src/components/game-pack/GPItemList.vue';
-import 'vue3-carousel/dist/carousel.css';
-import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 
 const { data } = getMyDetail();
 
@@ -105,7 +103,7 @@ const slideEvent = (info: any) => {
 <template>
   <q-page class="column bg-white">
     <!-- 맵 바로가기 영역 -->
-    <CCarousel :img-list="imgList" />
+    <ckv-banner :img-list="imgList" counter />
 
     <!-- 상단 탭 -->
     <q-scroll-area

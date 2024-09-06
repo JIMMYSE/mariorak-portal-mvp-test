@@ -3,8 +3,11 @@ import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 type Props = {
   imgList: { src: string; id: number; title: string; desc: string }[];
+  counter?: boolean;
 };
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  counter: false,
+});
 
 const slideInfo = ref<any>({
   currentSlideIndex: 0,
@@ -19,11 +22,12 @@ const slideEvent = (info: any) => {
 <template>
   <div class="relative">
     <Carousel :items-to-show="1" wrap-around @slide-end="slideEvent">
-      <Slide v-for="img in imgList" :key="img.id">
+      <slide v-for="img in imgList" :key="img.src" class="w-full h-full block">
         <main-card :image-src="img.src" :title="img.title" :desc="img.desc" />
-      </Slide>
+      </slide>
     </Carousel>
     <div
+      v-if="counter"
       class="absolute bottom-5 right-7 row text-[#b5b5b5] text-sm items-center"
     >
       <p
