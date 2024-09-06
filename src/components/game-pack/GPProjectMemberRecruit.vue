@@ -13,6 +13,7 @@ const goToApplyPage = () => {
 
 <template>
   <div class="flex flex-col">
+    <introduce-text :intro="recruitList?.cont" class="mb-[20px]" />
     <div
       v-for="user in recruitList?.rcrt_mkr_rol_cd_list"
       :key="user"
