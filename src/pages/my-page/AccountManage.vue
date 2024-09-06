@@ -5,12 +5,14 @@ async function doLogout() {
     onSuccess: () => goToName('login'),
   });
 }
-
+const { unregister } = useAuthUnregister();
 const withdrawal = () => {
   useMyConfirmDialog({
-    htmlText: '회원 닉네임 님, <br/> 정말 탈퇴하시겠습니까?',
+    htmlText: `<div class="text-center">${user.nickname} 님, <br/> 정말 탈퇴하시겠습니까? </div>`,
   }).onOk(() => {
-    // logout
+    unregister(() => {
+      goToName('login');
+    });
   });
 };
 const socialBgClass = computed(() => {

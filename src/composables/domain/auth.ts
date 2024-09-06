@@ -14,7 +14,7 @@ const AUTH_API_URL = '/v1/auth';
 const LOGIN_URL = '/auth/login';
 const LOGOUT_URL = '/v1/auth/logout';
 
-const UNREGISTER_URL = '/auth/unregister';
+const UNREGISTER_URL = '/v1/auth/unregister-dev';
 const REGISTER_URL = '/v1/auth/register/social';
 
 type PortalLoginResponseType = InferType<typeof PortalLoginResponse>;
@@ -140,7 +140,9 @@ export function useLogout(
   { onSuccess }: { onSuccess?: () => void }
 ) {
   useMyConfirmDialog({
-    htmlText: nickname + t('auth.logout.confirm'),
+    htmlText: `<div class="text-center">${nickname} ${t(
+      'auth.logout.confirm'
+    )}</div>`,
   }).onOk(() => {
     doLogout(onSuccess);
   });
@@ -313,12 +315,20 @@ export const updateMyPassword = async (newPassword: string) => {
  * 회원탈퇴
  */
 export const useAuthUnregister = () => {
+  const { user } = storeToRefs(useAuthStore());
+  const { disconnectSocial } = useBridge();
   const unregister = async (onSuccess: () => void) => {
+    console.log('>>> auth unregister');
     await useAxiosPost({
       url: UNREGISTER_URL,
+      data: {
+        email: user.value?.emails[0].email,
+        register_type: user.value?.register_type,
+      },
     }).then(() => {
       isAccessTokenListenerActive.value = false;
       removeUserInfo(onSuccess);
+      disconnectSocial();
     });
   };
 
