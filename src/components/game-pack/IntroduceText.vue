@@ -11,16 +11,17 @@ const showButton = ref(false);
 const textRef = ref<HTMLParagraphElement | null>(null);
 
 onMounted(async () => {
-  await nextTick();
-  if (textRef.value) {
-    const lineHeight = parseInt(
-      window.getComputedStyle(textRef.value).lineHeight
-    );
-    const height = textRef.value.clientHeight;
+  setTimeout(() => {
+    if (textRef.value) {
+      const lineHeight = parseInt(
+        window.getComputedStyle(textRef.value).lineHeight
+      );
+      const height = textRef.value.clientHeight;
 
-    // 텍스트 높이가 3줄 이상일 경우만 더보기 버튼 표시
-    showButton.value = height > lineHeight * 3;
-  }
+      // 텍스트 높이가 3줄 이상일 경우만 더보기 버튼 표시
+      showButton.value = height > lineHeight * 3;
+    }
+  }, 100);
 });
 
 const toggleExpand = () => {
@@ -36,7 +37,7 @@ const toggleExpand = () => {
         'line-clamp-3': !isExpanded && showButton,
         'transition-all duration-300 ease-in-out': true,
       }"
-      class="text-[#767676] text-sm font-normal leading-tight"
+      class="text-[#767676] text-sm font-normal leading-tight break-words"
     >
       {{ props.intro }}
     </p>
