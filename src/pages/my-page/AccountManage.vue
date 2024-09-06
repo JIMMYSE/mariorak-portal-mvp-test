@@ -10,7 +10,7 @@ const withdrawal = () => {
   useMyConfirmDialog({
     htmlText: '회원 닉네임 님, <br/> 정말 탈퇴하시겠습니까?',
   }).onOk(() => {
-    // logout
+    useAuthUnregister();
   });
 };
 const socialBgClass = computed(() => {
