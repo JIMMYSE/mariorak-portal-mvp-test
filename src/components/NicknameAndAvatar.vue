@@ -89,7 +89,7 @@ onMounted(() => {
 
 <template>
   <div class="flex flex-col size-full bg-white" style="min-height: inherit">
-    <section class="flex-none w-full px-8 mt-[46px]">
+    <section class="flex-none w-full px-8">
       <p class="font-pretendard font-semibold text-2xl text-black">
         멋진 닉네임이에요
       </p>
@@ -117,7 +117,8 @@ onMounted(() => {
             <q-img
               :src="avatar.square_file?.url ?? undefined"
               alt="wr"
-              height="359px"
+              height="40vh"
+              class="max-h-[359px]"
               fit="contain"
             />
           </section>
