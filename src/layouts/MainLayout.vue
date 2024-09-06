@@ -3,7 +3,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <q-page-container class="mt-[calc(var(--statusbar-h)+var(--main-header-h))]">
+  <q-page-container
+    class="mt-[calc(var(--statusbar-h)+var(--main-header-h))] mb-[50px]"
+  >
     <div>
       <!-- <transition
         mode="in-out"

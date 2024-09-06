@@ -141,7 +141,15 @@ const routes: RouteRecordRaw[] = [
               title: '프로젝트 상세',
               bgColor: 'white',
             },
-            component: () => import('pages/recruit/RecruitProjectDetail.vue'),
+            // 프로젝트 상세에 SubLayout 사용
+            component: SubLayout,
+            children: [
+              {
+                path: '',
+                component: () =>
+                  import('pages/recruit/RecruitProjectDetail.vue'),
+              },
+            ],
           },
         ],
       },

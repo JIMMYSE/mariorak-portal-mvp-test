@@ -52,7 +52,7 @@ function onMoveList() {
         <search-g-p-list />
       </div>
     </section>
-    <section class="mt-[55px]">
+    <section class="mt-[55px] mb-[50px]">
       <h2 class="text-[22px] font-semibold px-6">FAQ</h2>
       <faq-area />
     </section>
