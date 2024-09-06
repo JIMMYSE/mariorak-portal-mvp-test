@@ -1,4 +1,12 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const movePoint = ref<HTMLElement | null>(null);
+
+function onMoveList() {
+  if (movePoint.value) {
+    movePoint.value.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+</script>
 <template>
   <q-page>
     <section>
@@ -16,6 +24,7 @@
           <c-btn
             class="enter_btn rounded-[30px] text-white font-semibold text-sm py-3 pl-10 pr-[30px] mt-[23px]"
             outline
+            @click="onMoveList()"
             >목록으로 이동
             <q-icon name="img:/icons/down_arrow.svg" size="18px"></q-icon>
           </c-btn>
@@ -34,7 +43,7 @@
         <normal-project-list />
       </div>
     </section>
-    <section class="mt-[55px]">
+    <section class="mt-[55px]" ref="movePoint">
       <img src="/images/dummy/banner_dummy.png" alt="banner" class="w-full" />
     </section>
     <section class="mt-[55px] w-full">

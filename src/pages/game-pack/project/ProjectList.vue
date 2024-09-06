@@ -1,4 +1,12 @@
 <script lang="ts" setup>
+const movePoint = ref<HTMLElement | null>(null);
+
+function onMoveList() {
+  if (movePoint.value) {
+    movePoint.value.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
 const { data: recommededProjectData } = useRecommendedProjectList();
 const recommendedProjectList = computed(() => {
   return recommededProjectData.value?.rows;
@@ -26,7 +34,7 @@ const recentProjectList = computed(() => {
           <c-btn
             class="enter_btn rounded-[30px] text-white font-semibold text-sm py-3 pl-10 pr-[30px] mt-[23px]"
             outline
-            @click="goTo({ path: '/game-pack/project/list', hash: '#list' })"
+            @click="onMoveList"
             >목록으로 이동
             <q-icon name="img:/icons/down_arrow.svg" size="18px"></q-icon>
           </c-btn>
@@ -45,7 +53,7 @@ const recentProjectList = computed(() => {
         <normal-project-list :p-list="recentProjectList" />
       </div>
     </section>
-    <section class="mt-[55px] w-full">
+    <section class="mt-[55px] w-full" ref="movePoint">
       <img src="/images/dummy/banner_dummy.png" alt="banner" class="w-full" />
     </section>
     <!--  게임 목록 -->
