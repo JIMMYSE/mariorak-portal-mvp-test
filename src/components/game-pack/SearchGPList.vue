@@ -123,6 +123,7 @@ watchDebounced(
       :description="info.desc"
       :status="info.prj_stt_cd"
       :like="info.like_cnt"
+      :img-src="info.thmn_file.convert_addr"
     />
   </div>
   <div class="flex justify-center" v-if="hasNextPage">

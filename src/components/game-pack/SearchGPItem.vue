@@ -23,6 +23,11 @@ const props = defineProps({
     required: true,
     default: 0,
   },
+  imgSrc: {
+    type: String,
+    required: true,
+    default: '',
+  },
 });
 
 const badgeContainer = ref<HTMLElement | null>(null);
@@ -63,10 +68,7 @@ const computedStatus = computed(() => {
 <template>
   <div class="flex no-wrap">
     <div>
-      <q-img
-        src="/images/dummy/recent_pj_dummy.png"
-        class="rounded-xl h-[78px] w-[139px]"
-      />
+      <q-img :src="imgSrc" class="rounded-xl h-[78px] w-[139px]" />
     </div>
 
     <div class="text-caption q-mb-xs flex-grow pl-2">
