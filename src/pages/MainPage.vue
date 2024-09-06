@@ -195,7 +195,7 @@ const slideEvent = (info: any) => {
 
     <!-- 사업자 정보 -->
 
-    <section class="bg-[#f7f7f7] px-6 pt-6">
+    <section class="bottom-0 bg-[#f7f7f7] px-6 pt-6">
       <div class="flex justify-between">
         <div><q-img src="/images/main-logo.png" alt="" class="w-14" /></div>
 

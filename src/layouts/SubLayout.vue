@@ -12,7 +12,7 @@ router.afterEach((to) => {
 </script>
 
 <template>
-  <div class="mt-[calc(var(--statusbar-h)+var(--main-header-h))]">
+  <div class="mt-[calc(var(--statusbar-h)+var(--main-header-h))] mb-[85px]">
     <router-view v-slot="{ Component, route: _route }">
       <keep-alive :include="/List$/" :max="1">
         <component :is="Component" :key="_route.path" @title="onSetTitle" />

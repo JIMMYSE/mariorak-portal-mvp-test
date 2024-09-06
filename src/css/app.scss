@@ -22,6 +22,7 @@ body {
 .main-layout .q-page-container {
   // padding-top: calc(var(--statusbar-h) + var(--main-header-h)) !important;
   padding-top: 0 !important;
+  padding-bottom: 0 !important;
   .q-page {
     // min-height: calc(
     //   100vh - var(--statusbar-h) - var(--main-header-h)
