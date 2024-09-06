@@ -21,12 +21,6 @@ const openHistoryBottomSheet = () => {
   showHistoryBottomSheet.value = !showHistoryBottomSheet.value;
 };
 
-// 희망 직무
-const showJobObjectivesBottomSheet = ref(false);
-const openJobObjectivesBottomSheet = () => {
-  showJobObjectivesBottomSheet.value = !showJobObjectivesBottomSheet.value;
-};
-
 // 관심분야
 const showInterestBottomSheet = ref(false);
 const openInterestBottomSheet = () => {
@@ -175,18 +169,16 @@ const onYearClick = (year: number) => {
           label="희망 직무 (선택)"
           class="text-[#767676] text-xs font-medium leading-none"
         >
-          <div
-            class="mt-[16px] pb-[14px] border-b border-[#f7f7f7] text-[#b5b5b5] text-lg font-normal leading-[25.20px] flex justify-between items-center"
-            @click="openJobObjectivesBottomSheet"
-          >
-            <p>희망 직무 추가</p>
-            <c-icon
-              name="icon_enter_arrow"
-              size="20px"
-              :color="'#767676'"
-              :fill="false"
-            />
-          </div>
+          <c-input
+            class="w-full border-0"
+            type="textarea"
+            maxlength="1000"
+            input-class="h-[163px]"
+            placeholder="희망 직무 추가"
+            :outlined="false"
+            :rounded="false"
+            border-radius="0px"
+          ></c-input>
         </c-field>
         <c-field
           label="관심 분야"
@@ -272,34 +264,6 @@ const onYearClick = (year: number) => {
           </div>
         </section>
         <section class="w-full text-center mt-[10px]">
-          <c-btn
-            class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
-            color="primary"
-            >선택 완료
-          </c-btn>
-        </section>
-      </div>
-    </c-bottom-sheet>
-
-    <c-bottom-sheet v-model="showJobObjectivesBottomSheet">
-      <div class="flex flex-col justify-between">
-        <section>
-          <p class="text-[#767676] text-xs font-medium leading-none">
-            희망 직무 선택
-          </p>
-          <div class="mt-4">
-            <q-item
-              v-ripple
-              clickable
-              class="rounded-[5px] border border-[#dbdbdb] bg-[#fff] items-center px-4 py-0 w-fit h-[40px]"
-              ><span
-                class="text-center text-[#767676] text-sm font-medium leading-tight"
-                >직무 종류</span
-              ></q-item
-            >
-          </div>
-        </section>
-        <section class="bottom-[85px] w-full text-center mt-[85px]">
           <c-btn
             class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
             color="primary"

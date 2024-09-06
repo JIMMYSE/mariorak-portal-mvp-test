@@ -114,6 +114,19 @@
           겠지요??????<br />
         </p>
       </div>
+      <div class="mt-[22px]">
+        <p class="text-[#b5b5b5] text-xs font-semibold leading-none">
+          희망 직무
+        </p>
+        <p class="mt-[8px] text-[#222222] text-xs font-normal leading-none">
+          어쩌고 저쩌고<br />
+          어쩌고 저쩌고<br />
+          어쩌고 저쩌고<br />
+          데이터 바인딩<br />
+          하면 제대로 보이<br />
+          겠지요??????<br />
+        </p>
+      </div>
       <div class="mt-[24px]">
         <p class="text-[#b5b5b5] text-xs font-semibold leading-none">
           관심 분야
