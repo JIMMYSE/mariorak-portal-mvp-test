@@ -73,9 +73,7 @@ const openDetailDialog = async (title: string, content: string) => {
     <section class="pt-24 px-6 font-semibold text-[24px]">
       <p>저희 CCF를</p>
       <p>이용하기 위한 약관이에요</p>
-      <p
-        class="text-[#767676] text-sm font-normal font-['Pretendard'] leading-tight mt-[6px]"
-      >
+      <p class="text-[#767676] text-sm leading-tight mt-[6px]">
         아래 약관을 자세히 확인해 주세요
       </p>
 
@@ -120,21 +118,21 @@ const openDetailDialog = async (title: string, content: string) => {
         </q-item>
       </q-list>
     </section>
-    <section
-      class="fixed inset-x-0 bottom-0 p-4 bg-primary row h-[64px]"
-      :class="{
-        'bg-primary': isSubmitAllowed,
-        'bg-grey-2': !isSubmitAllowed,
-      }"
-    >
-      <button
-        type="button"
-        class="text-center text-white font-base font-medium size-full flex justify-center items-center"
-        :disabled="!isSubmitAllowed"
-        @click="onSubmit"
-      >
-        계속하기
-      </button>
+    <section class="fixed inset-x-0 bottom-0 p-3">
+      <div class="flex justify-center items-center" style="padding-inline: 1%">
+        <button
+          type="button"
+          class="text-center text-white font-medium rounded-md w-full h-[64px] max-w-[512px]"
+          :class="{
+            'bg-primary': isSubmitAllowed,
+            'bg-grey-2': !isSubmitAllowed,
+          }"
+          :disabled="!isSubmitAllowed"
+          @click="onSubmit"
+        >
+          계속하기
+        </button>
+      </div>
     </section>
 
     <!-- 팝업 -->
