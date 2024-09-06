@@ -105,23 +105,8 @@ const slideEvent = (info: any) => {
 <template>
   <q-page class="column bg-white">
     <!-- 맵 바로가기 영역 -->
-    <div class="relative">
-      <Carousel :items-to-show="1" wrap-around @slide-start="slideEvent">
-        <Slide v-for="img in imgList" :key="img.id">
-          <main-card :image-src="img.src" :title="img.title" :desc="img.desc" />
-        </Slide>
-      </Carousel>
-      <div
-        class="absolute bottom-5 right-7 row text-[#b5b5b5] text-sm items-center"
-      >
-        <p
-          class="text-white font-semibold leading-snug tracking-wider mr-1 text-lg"
-        >
-          {{ slideInfo.currentSlideIndex }}
-        </p>
-        / {{ slideInfo.slidesCount }}
-      </div>
-    </div>
+    <CCarousel :img-list="imgList" />
+
     <!-- 상단 탭 -->
     <q-scroll-area
       class="bg-[#f8f8f8] h-[100px] w-full px-3"

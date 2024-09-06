@@ -1,66 +1,38 @@
 <script setup lang="ts">
-import { QCarouselProps } from 'quasar';
-import { useForwardPropsEmits } from 'radix-vue';
-import { computed, ref, onMounted } from 'vue';
-
+import 'vue3-carousel/dist/carousel.css';
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 type Props = {
-  controlColorActive: string;
-  totalSlides: number;
-} & QCarouselProps;
+  imgList: { src: string; id: number; title: string; desc: string }[];
+};
 const props = defineProps<Props>();
-const emits = defineEmits(['update:modelValue']);
-const forwarded = useForwardPropsEmits(props, emits);
 
-const currentSlide = ref(props.modelValue || 0);
-
-const carouselRef = ref(null);
-
-// 배지 텍스트 계산
-const badgeText = computed(() => {
-  return `${(currentSlide.value as number) + 1} / ${props.totalSlides}`;
+const slideInfo = ref<any>({
+  currentSlideIndex: 0,
+  slidesCount: props.imgList.length,
 });
+const slideEvent = (info: any) => {
+  console.log(info);
+  slideInfo.value = info;
+};
 </script>
 
 <template>
-  <div class="carousel-container">
-    <q-carousel
-      ref="carouselRef"
-      v-bind="forwarded"
-      transition-prev="slide-right"
-      transition-next="slide-left"
-      animated
-      swipeable
-      @update:model-value="currentSlide = $event"
+  <div class="relative">
+    <Carousel :items-to-show="1" wrap-around @slide-end="slideEvent">
+      <Slide v-for="img in imgList" :key="img.id">
+        <main-card :image-src="img.src" :title="img.title" :desc="img.desc" />
+      </Slide>
+    </Carousel>
+    <div
+      class="absolute bottom-5 right-7 row text-[#b5b5b5] text-sm items-center"
     >
-      <slot />
-    </q-carousel>
-    <div class="custom-navigation">
-      <q-badge
-        :color="controlColorActive"
-        :label="badgeText"
-        class="custom-badge"
-      />
+      <p
+        class="text-white font-semibold leading-snug tracking-wider mr-1 text-lg"
+      >
+        {{ slideInfo.currentSlideIndex + 1 }}
+      </p>
+      / {{ slideInfo.slidesCount }}
     </div>
   </div>
 </template>
-
-<style scoped lang="scss">
-.carousel-container {
-  width: 100%;
-  position: relative;
-}
-
-.custom-navigation {
-  position: absolute;
-  bottom: 15px;
-  right: 0;
-  transform: translateX(-50%);
-}
-
-.custom-badge {
-  padding: 4px 8px;
-  font-size: 14px;
-  border-radius: 12px;
-  color: white;
-}
-</style>
+<style scoped lang="scss"></style>
