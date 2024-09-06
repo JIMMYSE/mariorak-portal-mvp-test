@@ -3,7 +3,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="mt-[calc(var(--statusbar-h)+var(--main-header-h))]">
+  <div class="my-[calc(var(--statusbar-h)+var(--main-header-h))]">
     <div>
       <router-view />
     </div>

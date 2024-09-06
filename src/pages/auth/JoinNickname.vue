@@ -46,22 +46,22 @@ const onSubmit = handleSubmit(() => {
         />
       </c-field>
     </form>
-    <div
-      class="absolute bottom-0 bg-primary w-full h-[64px] left-0"
-      :class="{
-        'bg-primary': meta.valid,
-        'bg-grey-2': !meta.valid,
-      }"
-    >
-      <button
-        type="submit"
-        class="text-center text-white font-base font-medium size-full flex justify-center items-center"
-        :disabled="!meta.valid"
-        @click="onSubmit"
-      >
-        다음
-      </button>
-    </div>
+    <section class="fixed inset-x-0 bottom-0 p-3">
+      <div class="flex justify-center items-center" style="padding-inline: 1%">
+        <button
+          type="button"
+          class="text-center text-white font-medium rounded-md w-full h-[50px] max-w-[512px]"
+          :class="{
+            'bg-primary': meta.valid,
+            'bg-grey-2': !meta.valid,
+          }"
+          :disabled="!meta.valid"
+          @click="onSubmit"
+        >
+          다음
+        </button>
+      </div>
+    </section>
   </q-page>
 </template>
 

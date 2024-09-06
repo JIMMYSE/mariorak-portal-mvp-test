@@ -118,11 +118,11 @@ const openDetailDialog = async (title: string, content: string) => {
         </q-item>
       </q-list>
     </section>
-    <section class="fixed inset-x-0 bottom-0 p-3">
+    <section class="fixed inset-x-0 bottom-0 p-4">
       <div class="flex justify-center items-center" style="padding-inline: 1%">
         <button
           type="button"
-          class="text-center text-white font-medium rounded-md w-full h-[64px] max-w-[512px]"
+          class="text-center text-white font-base font-medium w-full max-w-[512px] h-[50px] rounded-md"
           :class="{
             'bg-primary': isSubmitAllowed,
             'bg-grey-2': !isSubmitAllowed,
