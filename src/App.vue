@@ -72,10 +72,15 @@ const tabInfos: { icon: string; label: string; name: string; to: string }[] = [
   // },
 ];
 const isMain = computed(() => route.name?.toString().includes('main'));
+const noHeader = computed(() => route.meta.noHeader);
 </script>
 
 <template>
   <q-layout view="hHh lpr fFf" class="main-layout bg-white">
+    <div v-if="!noHeader">
+      <main-header v-if="isMain && footerVisible" />
+      <sub-header v-else />
+    </div>
     <q-page-container class="q-pb-none border-grey-5">
       <div
         v-if="!IsPrd"
@@ -84,10 +89,6 @@ const isMain = computed(() => route.name?.toString().includes('main'));
         <!-- FE version: {{ version }} / BE version: {{ BEversion }} -->
       </div>
       <div style="max-width: 512px; margin: 0 auto" class="border-grey-5">
-        <div v-if="isLoggedIn">
-          <main-header :footer-visible="footerVisible" v-if="isMain" />
-          <sub-header v-else />
-        </div>
         <router-view />
         <q-footer
           v-if="isLoggedIn"

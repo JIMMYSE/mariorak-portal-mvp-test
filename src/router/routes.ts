@@ -252,6 +252,7 @@ const routes: RouteRecordRaw[] = [
         name: 'join-terms',
         meta: {
           title: '약관 동의',
+          noHeader: true,
         },
         component: () => import('pages/auth/JoinTerms.vue'),
       },
