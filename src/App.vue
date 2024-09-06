@@ -91,7 +91,7 @@ const isMain = computed(() => route.name?.toString().includes('main'));
         <router-view />
         <q-footer
           v-if="isLoggedIn"
-          class="bg-white justify-between items-center flex footer-border"
+          class="bg-white justify-between items-center flex footer-border py-2"
         >
           <q-tabs class="w-full" align="justify">
             <q-route-tab

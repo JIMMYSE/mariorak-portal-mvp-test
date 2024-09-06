@@ -12,13 +12,13 @@ router.afterEach((to) => {
 </script>
 
 <template>
-  <q-page-container class="mt-[calc(var(--statusbar-h)+var(--main-header-h))]">
+  <div class="mt-[calc(var(--statusbar-h)+var(--main-header-h))]">
     <router-view v-slot="{ Component, route: _route }">
       <keep-alive :include="/List$/" :max="1">
         <component :is="Component" :key="_route.path" @title="onSetTitle" />
       </keep-alive>
     </router-view>
-  </q-page-container>
+  </div>
 </template>
 
 <style lang="scss" scoped></style>

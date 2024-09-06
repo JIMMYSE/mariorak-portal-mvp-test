@@ -3,16 +3,11 @@
 <script setup lang="ts"></script>
 
 <template>
-  <q-page-container class="mt-[calc(var(--statusbar-h)+var(--main-header-h))]">
+  <div class="mt-[calc(var(--statusbar-h)+var(--main-header-h))]">
     <div>
-      <!-- <transition
-        mode="in-out"
-        leave-active-class="animated slideOutLeft"
-        enter-active-class="animated slideInRight"
-      > -->
       <router-view />
     </div>
-  </q-page-container>
+  </div>
 </template>
 
 <style lang="scss" scoped></style>

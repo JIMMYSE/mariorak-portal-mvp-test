@@ -2,6 +2,8 @@
 
 <script setup lang="ts">
 import GPItemList from 'src/components/game-pack/GPItemList.vue';
+import 'vue3-carousel/dist/carousel.css';
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 
 const { data } = getMyDetail();
 
@@ -16,18 +18,21 @@ const imgList = [
   {
     src: '/images/main/Main_KV/512/kv_01.png',
     id: 1,
+    seq: 1,
     title: '',
     desc: '',
   },
   {
     src: '/images/main/Main_KV/512/kv_02.png',
     id: 2,
+    seq: 2,
     title: '',
     desc: '',
   },
   {
     src: '/images/main/Main_KV/512/kv_03.png',
     id: 2,
+    seq: 3,
     title: '',
     desc: '',
   },
@@ -89,30 +94,34 @@ const { data: recommededProjectData } = useRecommendedProjectList();
 const recommendedProjectList = computed(() => {
   return recommededProjectData.value?.rows;
 });
+
+const slideInfo = ref<any>({});
+const slideEvent = (info: any) => {
+  console.log(info);
+  slideInfo.value = info;
+};
 </script>
 
 <template>
   <q-page class="column bg-white">
     <!-- 맵 바로가기 영역 -->
-    <c-carousel
-      class="bg-transparent"
-      control-color-active="transparent"
-      v-model="slide"
-      height="auto"
-      :total-slides="imgList.length"
-      keep-alive
-      infinite
-    >
-      <q-carousel-slide
-        class="p-0 h-[460px]"
-        v-for="(img, i) in imgList"
-        :key="img.id"
-        :name="i"
+    <div class="relative">
+      <Carousel :items-to-show="1" wrap-around @slide-start="slideEvent">
+        <Slide v-for="img in imgList" :key="img.id">
+          <main-card :image-src="img.src" :title="img.title" :desc="img.desc" />
+        </Slide>
+      </Carousel>
+      <div
+        class="absolute bottom-5 right-7 row text-[#b5b5b5] text-sm items-center"
       >
-        <main-card :image-src="img.src" :title="img.title" :desc="img.desc" />
-      </q-carousel-slide>
-    </c-carousel>
-
+        <p
+          class="text-white font-semibold leading-snug tracking-wider mr-1 text-lg"
+        >
+          {{ slideInfo.currentSlideIndex }}
+        </p>
+        / {{ slideInfo.slidesCount }}
+      </div>
+    </div>
     <!-- 상단 탭 -->
     <q-scroll-area
       class="bg-[#f8f8f8] h-[100px] w-full px-3"
@@ -134,6 +143,7 @@ const recommendedProjectList = computed(() => {
         </div>
       </div>
     </q-scroll-area>
+
     <!-- 게임팩 대해 궁금하다면 -->
     <section class="mt-10 px-6">
       <p class="text-[22px] font-semibold">유저와 함께하는 게임 제작 문화</p>
