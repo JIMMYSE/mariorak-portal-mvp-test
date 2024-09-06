@@ -129,7 +129,7 @@ onMounted(() => {
 
     <q-scroll-area
       v-if="myAvatarIndex != null"
-      class="h-[230px] w-full"
+      class="h-[130px] w-full"
       ref="thumbnailWrapper"
     >
       <div
@@ -162,15 +162,16 @@ onMounted(() => {
       </div>
     </q-scroll-area>
 
-    <section class="w-full fixed bottom-0 z-10 bg-white">
-      <q-btn
-        class="w-full h-16 text-subtitle1"
-        color="primary"
-        square
-        unelevated
-        @click="save"
-        >가입 완료하기</q-btn
-      >
+    <section class="fixed inset-x-0 bottom-0 p-3">
+      <div class="flex justify-center items-center" style="padding-inline: 1%">
+        <button
+          type="button"
+          class="text-center text-white font-medium rounded-md w-full h-[64px] max-w-[512px] bg-primary"
+          @click="save"
+        >
+          가입 완료하기
+        </button>
+      </div>
     </section>
   </div>
 </template>
