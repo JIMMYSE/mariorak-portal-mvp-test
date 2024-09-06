@@ -43,7 +43,7 @@ joinStore.$reset();
         <button
           type="button"
           class="text-center text-white font-base font-medium w-full max-w-[512px] h-[50px] rounded-md bg-primary"
-          @click="goToName('main')"
+          @click="goToName('home-main')"
         >
           로그인하기
         </button>

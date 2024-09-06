@@ -29,8 +29,10 @@ const isInitiated = computed(() => {
 });
 
 const footerVisible = computed(() => {
-  return !['join', 'join-completed', 'join-terms'].includes(
-    route.name?.toString() ?? ''
+  return (
+    !['join', 'join-completed', 'join-terms'].includes(
+      route.name?.toString() ?? ''
+    ) && isLoggedIn.value
   );
 });
 
@@ -76,7 +78,7 @@ const noHeader = computed(() => route.meta.noHeader);
 
 <template>
   <q-layout view="hHh lpr fFf" class="main-layout bg-white">
-    <div v-if="!noHeader && footerVisible">
+    <div v-if="!noHeader">
       <main-header v-if="isMain" />
       <sub-header v-else />
     </div>

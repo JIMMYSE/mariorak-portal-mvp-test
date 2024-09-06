@@ -269,6 +269,7 @@ const routes: RouteRecordRaw[] = [
         name: 'join-completed',
         meta: {
           title: '회원가입 완료',
+          noHeader: true,
           // requiresNonAuth: false,
           // requiresAuth: true,
         },
