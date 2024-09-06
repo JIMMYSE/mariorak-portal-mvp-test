@@ -1,9 +1,4 @@
 <script lang="ts" setup>
-type Props = {
-  footerVisible: boolean;
-};
-const props = defineProps<Props>();
-
 // 알림 아이콘 뱃지
 const isNewNoti = ref(true);
 const isNewChat = ref(false);
