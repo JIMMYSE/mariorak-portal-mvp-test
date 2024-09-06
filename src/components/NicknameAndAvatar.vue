@@ -166,7 +166,7 @@ onMounted(() => {
       <div class="flex justify-center items-center" style="padding-inline: 1%">
         <button
           type="button"
-          class="text-center text-white font-medium rounded-md w-full h-[64px] max-w-[512px] bg-primary"
+          class="text-center text-white font-medium rounded-md w-full h-[50px] max-w-[512px] bg-primary"
           @click="save"
         >
           가입 완료하기

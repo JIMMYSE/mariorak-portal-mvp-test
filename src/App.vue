@@ -28,11 +28,10 @@ const isInitiated = computed(() => {
   return isCommonCodeInitiated.value;
 });
 
-const footerVisible = ref(false);
-const { y } = useWindowScroll();
-
-watch(y, (v) => {
-  footerVisible.value = v > 50;
+const footerVisible = computed(() => {
+  return !['join', 'join-completed', 'join-terms'].includes(
+    route.name?.toString() ?? ''
+  );
 });
 
 const route = useRoute();
@@ -77,8 +76,8 @@ const noHeader = computed(() => route.meta.noHeader);
 
 <template>
   <q-layout view="hHh lpr fFf" class="main-layout bg-white">
-    <div v-if="!noHeader">
-      <main-header v-if="isMain && footerVisible" />
+    <div v-if="!noHeader && footerVisible">
+      <main-header v-if="isMain" />
       <sub-header v-else />
     </div>
     <q-page-container class="q-pb-none border-grey-5">
@@ -90,8 +89,9 @@ const noHeader = computed(() => route.meta.noHeader);
       </div>
       <div style="max-width: 512px; margin: 0 auto" class="border-grey-5">
         <router-view />
+
         <q-footer
-          v-if="isLoggedIn"
+          v-if="footerVisible"
           class="bg-white justify-between items-center flex footer-border py-2"
         >
           <q-tabs class="w-full" align="justify">

@@ -120,21 +120,21 @@ const openDetailDialog = async (title: string, content: string) => {
         </q-item>
       </q-list>
     </section>
-    <section
-      class="fixed inset-x-0 bottom-0 p-4 bg-primary row h-[64px]"
-      :class="{
-        'bg-primary': isSubmitAllowed,
-        'bg-grey-2': !isSubmitAllowed,
-      }"
-    >
-      <button
-        type="button"
-        class="text-center text-white font-base font-medium size-full flex justify-center items-center"
-        :disabled="!isSubmitAllowed"
-        @click="onSubmit"
-      >
-        계속하기
-      </button>
+    <section class="fixed inset-x-0 bottom-0 p-4">
+      <div class="flex justify-center items-center" style="padding-inline: 1%">
+        <button
+          type="button"
+          class="text-center text-white font-base font-medium w-full max-w-[512px] h-[50px] rounded-md"
+          :class="{
+            'bg-primary': isSubmitAllowed,
+            'bg-grey-2': !isSubmitAllowed,
+          }"
+          :disabled="!isSubmitAllowed"
+          @click="onSubmit"
+        >
+          계속하기
+        </button>
+      </div>
     </section>
 
     <!-- 팝업 -->

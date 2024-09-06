@@ -38,15 +38,16 @@ joinStore.$reset();
       </section>
     </div>
 
-    <section class="w-full fixed bottom-0 z-10 bg-white">
-      <q-btn
-        class="w-full h-16 text-subtitle1"
-        color="primary"
-        square
-        unelevated
-        @click="goToName('main')"
-        >시작하기</q-btn
-      >
+    <section class="fixed inset-x-0 bottom-0 bg-white p-4">
+      <div class="flex justify-center items-center">
+        <button
+          type="button"
+          class="text-center text-white font-base font-medium w-full max-w-[512px] h-[50px] rounded-md bg-primary"
+          @click="goToName('main')"
+        >
+          로그인하기
+        </button>
+      </div>
     </section>
   </div>
 </template>

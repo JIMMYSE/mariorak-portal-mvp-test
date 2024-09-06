@@ -50,7 +50,7 @@ const onSubmit = handleSubmit(() => {
       <div class="flex justify-center items-center" style="padding-inline: 1%">
         <button
           type="button"
-          class="text-center text-white font-medium rounded-md w-full h-[64px] max-w-[512px]"
+          class="text-center text-white font-medium rounded-md w-full h-[50px] max-w-[512px]"
           :class="{
             'bg-primary': meta.valid,
             'bg-grey-2': !meta.valid,
