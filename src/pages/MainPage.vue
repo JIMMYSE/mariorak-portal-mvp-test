@@ -217,37 +217,37 @@ const slideEvent = (info: any) => {
       <div class="mt-6" v-show="businessInfo">
         <div class="flex justify-center">
           <div
-            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none"
+            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none cursor-pointer"
             @click="goToName('privacy')"
           >
             개인정보 처리방침
           </div>
           <div class="border-l-2 border-[#f0f0f0] mx-3"></div>
           <div
-            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none"
+            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none cursor-pointer"
           >
             서비스 이용약관
           </div>
           <div class="border-l-2 border-[#f0f0f0] mx-3"></div>
-          <div
-            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none"
+          <!-- <div
+            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none cursor-pointer"
           >
             사업자 정보 확인
-          </div>
+          </div> -->
         </div>
-        <div class="flex mt-3 justify-center">
+        <!-- <div class="flex mt-3 justify-center">
           <div
-            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none"
+            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none cursor-pointer"
           >
             프로젝트 심사 기준
           </div>
           <div class="border-l-2 border-[#f0f0f0] mx-3"></div>
           <div
-            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none"
+            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none cursor-pointer"
           >
             CCF 정책
           </div>
-        </div>
+        </div> -->
       </div>
 
       <div>

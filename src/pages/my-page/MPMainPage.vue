@@ -14,7 +14,7 @@ const goToPage = (name: string) => {
   goToName(name);
 };
 
-const { user } = useAuthStore();
+const { data } = getMyDetail();
 </script>
 <template>
   <q-page>
@@ -23,8 +23,8 @@ const { user } = useAuthStore();
         <div class="flex items-center">
           <div>
             <c-img
-              src="/images/dummy/member_dummy2.png"
-              alt="maker.mem_nickname"
+              :src="data?.data?.user.avatar.circle_file.url"
+              :alt="data?.data?.user.avatar.circle_file.id"
               class="w-[60px] h-[60px] rounded-full"
             >
             </c-img>
@@ -32,15 +32,15 @@ const { user } = useAuthStore();
 
           <div class="flex flex-col ml-[12px]">
             <p class="text-[#222222] text-base font-medium leading-snug">
-              {{ user.nickname }}
-              <span>
+              {{ data?.data?.user.nickname }}
+              <!-- <span>
                 <q-icon name="img:/icons/icon_edit.svg" size="20px"></q-icon>
-              </span>
+              </span> -->
             </p>
             <p
               class="text-[#056bf1] text-xs font-semibold leading-none mt-[2px]"
             >
-              직업이름
+              {{ getCommonCodeName('MKR_ROL', data?.data?.user.mem_ty_cd) }}
             </p>
           </div>
         </div>
@@ -58,7 +58,7 @@ const { user } = useAuthStore();
             포인트
           </p>
           <p class="text-[#056bf1] text-lg font-semibold leading-tight">
-            100,000P
+            {{ data?.data?.user.sav_pint }}P
           </p>
         </div>
       </div>
