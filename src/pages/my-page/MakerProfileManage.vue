@@ -1,9 +1,19 @@
 <script lang="ts" setup>
-const { data } = useMyMakerProfile();
-const myMakerProfile = computed(() => data.value.data);
+const { data: myMakerProfile, isLoading } = useMyMakerProfile();
+
+watch(
+  () => myMakerProfile.value,
+  (newVal) => {
+    if (newVal) {
+      if (newVal.mkr_id == null) {
+        replaceToName('not-register-profile');
+      }
+    }
+  }
+);
 </script>
 <template>
-  <q-page>
+  <q-page v-show="!isLoading">
     <section class="px-6 pt-[30px]">
       <div class="flex flex-col">
         <div class="flex items-center pb-[15px]">

@@ -188,7 +188,7 @@ const routes: RouteRecordRaw[] = [
             path: 'maker-profile-new',
             name: 'maker-profile-new',
             meta: {
-              title: '참여 개발자 등록',
+              title: '개발자 프로필 등록',
             },
             component: () => import('pages/my-page/MakerProfileEdit.vue'),
           },
