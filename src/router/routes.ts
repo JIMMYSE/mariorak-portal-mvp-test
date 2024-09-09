@@ -202,6 +202,15 @@ const routes: RouteRecordRaw[] = [
             },
             component: () => import('pages/my-page/MakerProfileEdit.vue'),
           },
+          // 개발자 프로필 미등록
+          {
+            path: 'not-register-profile',
+            name: 'not-register-profile',
+            meta: {
+              title: '개발자 프로필 관리',
+            },
+            component: () => import('pages/my-page/NotRegisterProfile.vue'),
+          },
         ],
       },
     ],
@@ -216,6 +225,7 @@ const routes: RouteRecordRaw[] = [
         meta: {
           title: '로그인',
           requiresNonAuth: true,
+          noHeader: true,
         },
         component: () => import('pages/auth/LoginPage.vue'),
       },
