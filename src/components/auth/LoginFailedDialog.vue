@@ -1,10 +1,4 @@
-<script setup lang="ts">
-const { user } = useUserInfo();
-
-const openLoginFailed = () => {
-  useLoginFailedDialog();
-};
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div
