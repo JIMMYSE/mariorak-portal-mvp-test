@@ -2,7 +2,13 @@
 import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 type Props = {
-  imgList: { src: string; id: number; title: string; desc: string }[];
+  imgList: {
+    src: string;
+    id: number;
+    title: string;
+    desc: string;
+    link?: string;
+  }[];
   counter?: boolean;
 };
 const props = withDefaults(defineProps<Props>(), {
@@ -17,12 +23,26 @@ const slideEvent = (info: any) => {
   console.log(info);
   slideInfo.value = info;
 };
+
+const moveToLink = () => {
+  if (props.imgList[slideInfo.value.currentSlideIndex].link) {
+    window.open(
+      props.imgList[slideInfo.value.currentSlideIndex].link,
+      '_blank'
+    );
+  }
+};
 </script>
 
 <template>
   <div class="relative">
     <Carousel :items-to-show="1" wrap-around @slide-end="slideEvent">
-      <slide v-for="img in imgList" :key="img.src" class="w-full h-full block">
+      <slide
+        v-for="img in imgList"
+        :key="img.src"
+        class="w-full h-full block"
+        @click="moveToLink"
+      >
         <main-card :image-src="img.src" :title="img.title" :desc="img.desc" />
       </slide>
     </Carousel>
