@@ -64,7 +64,7 @@ const recentProjectList = computed(() => {
       </div>
     </section>
 
-    <section class="mt-[55px] mb-[50px]">
+    <section class="mt-[55px] pb-[50px]">
       <h2 class="text-[22px] font-semibold px-6">FAQ</h2>
       <faq-area />
     </section>
