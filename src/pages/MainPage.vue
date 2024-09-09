@@ -185,17 +185,17 @@ const slideEvent = (info: any) => {
     </section>
 
     <!-- 배너영역 -->
-    <q-img
+    <!-- <q-img
       class="mt-[55px]"
       src="/images/dummy/banner_dummy.png"
       alt="banner"
       width="100%"
       height="100%"
-    />
+    /> -->
 
     <!-- 사업자 정보 -->
 
-    <section class="bottom-0 bg-[#f7f7f7] px-6 pt-6">
+    <section class="bottom-0 bg-[#f7f7f7] px-6 pt-6 mt-[55px]">
       <div class="flex justify-between">
         <div><q-img src="/images/main-logo.png" alt="" class="w-14" /></div>
 

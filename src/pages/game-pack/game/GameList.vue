@@ -44,7 +44,7 @@ function onMoveList() {
       </div>
     </section>
     <section class="mt-[55px]" ref="movePoint">
-      <img src="/images/dummy/banner_dummy.png" alt="banner" class="w-full" />
+      <!-- <img src="/images/dummy/banner_dummy.png" alt="banner" class="w-full" /> -->
     </section>
     <section class="mt-[55px] w-full">
       <h2 class="px-6 text-[22px] font-semibold">게임 목록</h2>
