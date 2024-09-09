@@ -1,4 +1,7 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const { data } = useMyMakerProfile();
+const myMakerProfile = computed(() => data.value.data);
+</script>
 <template>
   <q-page>
     <section class="px-6 pt-[30px]">
@@ -6,7 +9,7 @@
         <div class="flex items-center pb-[15px]">
           <div>
             <c-img
-              src="/images/dummy/member_dummy2.png"
+              :src="myMakerProfile?.circle_thumbnail_url"
               class="w-[60px] h-[60px] rounded-full"
             >
             </c-img>
@@ -14,23 +17,24 @@
 
           <div class="flex flex-col ml-[12px]">
             <p class="text-[#222222] text-base font-medium leading-snug">
-              김민지
+              {{ myMakerProfile?.nickname }}
             </p>
             <p
               class="text-[#056bf1] text-xs font-semibold leading-none mt-[2px]"
             >
-              개발자입니다람쥐~
+              {{ myMakerProfile?.prfl.onln_prfl }}
             </p>
             <p class="flex items-center mt-[2px]">
               <span class="text-[#767676] text-xs font-normal leading-none"
-                >12년차</span
+                >{{ myMakerProfile?.expr_year }}년차</span
               >
               <q-separator
                 vertical
                 class="h-[10px] mx-[6px] my-[4px] top-[6px]"
               />
               <span class="text-[#b5b5b5] text-xs font-normal leading-none"
-                >프로젝트 1000회</span
+                >프로젝트
+                {{ myMakerProfile?.project_histories?.length ?? [] }}회</span
               >
             </p>
           </div>
@@ -138,7 +142,7 @@
     </section>
     <section class="px-6 mt-[60px]">
       <h2 class="text-[22px] font-semibold">참여했던 프로젝트 (5000회)</h2>
-      <normal-project-list />
+      <normal-project-list :p-list="[]" />
     </section>
     <section class="bottom-[85px] w-full text-center px-6 mt-[85px] mb-6">
       <c-btn
