@@ -225,6 +225,7 @@ const routes: RouteRecordRaw[] = [
         meta: {
           title: '로그인',
           requiresNonAuth: true,
+          noHeader: true,
         },
         component: () => import('pages/auth/LoginPage.vue'),
       },
