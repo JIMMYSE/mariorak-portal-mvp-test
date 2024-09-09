@@ -28,64 +28,66 @@ const recruitMakeRolList = (rolList: any) => {
 
 <template>
   <div>
-    <q-scroll-area
-      style="height: 300px"
-      :bar-style="barStyle"
-      :thumb-style="thumbStyle"
-    >
-      <div class="row no-wrap">
-        <div
-          class="project-card q-mr-md"
-          v-for="p in pList"
-          :key="p.created_at"
-          @click="goTo(`/recruit/project/${p.prj_id}`)"
-        >
-          <div class="relative">
-            <div class="absolute z-10 top-2 left-3">
-              <div class="bg-[#d8e5f8] image_badge">
-                <p
-                  class="text-[#056bf1] text-sm font-medium font-['Pretendard'] leading-tight"
+    <div class="pl-6">
+      <q-scroll-area
+        style="height: 300px"
+        :bar-style="barStyle"
+        :thumb-style="thumbStyle"
+      >
+        <div class="row no-wrap">
+          <div
+            class="project-card q-mr-md"
+            v-for="p in pList"
+            :key="p.created_at"
+            @click="goTo(`/recruit/project/${p.prj_id}`)"
+          >
+            <div class="relative">
+              <div class="absolute z-10 top-2 left-3">
+                <div class="bg-[#d8e5f8] image_badge">
+                  <p
+                    class="text-[#056bf1] text-sm font-medium font-['Pretendard'] leading-tight"
+                  >
+                    D-{{ p.end_remain_days }}
+                  </p>
+                </div>
+                <div
+                  class="bg-primary image_badge q-mt-xs"
+                  v-if="p.rcrt_mkr_num > 0"
                 >
-                  D-{{ p.end_remain_days }}
+                  <p
+                    class="text-white text-sm font-medium leading-tight vertical-middle"
+                  >
+                    {{ p.rcrt_mkr_num }}명 모집중
+                  </p>
+                </div>
+              </div>
+              <c-img
+                :src="p.thmn_file.convert_addr"
+                width="100%"
+                class="rounded-xl game-image"
+              />
+            </div>
+            <div class="game-info q-mt-sm">
+              <div class="text-caption q-mb-xs">
+                <span
+                  class="badge font-medium"
+                  v-for="badge in p.tag_list"
+                  :key="badge"
+                  >{{ badge }}</span
+                >
+              </div>
+              <card-info :title="p.title" :desc="p.desc" :height="'78px'" />
+              <div class="flex row items-center mt-[8px]">
+                <q-icon name="img:/icons/icon_profile_fill.svg" size="16px" />
+                <p class="text-primary text-xs leading-none ellipsis col ml-1">
+                  {{ recruitMakeRolList(p.rcrt_mkr_rol_list) }}
                 </p>
               </div>
-              <div
-                class="bg-primary image_badge q-mt-xs"
-                v-if="p.rcrt_mkr_num > 0"
-              >
-                <p
-                  class="text-white text-sm font-medium leading-tight vertical-middle"
-                >
-                  {{ p.rcrt_mkr_num }}명 모집중
-                </p>
-              </div>
-            </div>
-            <c-img
-              :src="p.thmn_file.convert_addr"
-              width="100%"
-              class="rounded-xl game-image"
-            />
-          </div>
-          <div class="game-info q-mt-sm">
-            <div class="text-caption q-mb-xs">
-              <span
-                class="badge font-medium"
-                v-for="badge in p.tag_list"
-                :key="badge"
-                >{{ badge }}</span
-              >
-            </div>
-            <card-info :title="p.title" :desc="p.desc" :height="'78px'" />
-            <div class="flex row items-center mt-[8px]">
-              <q-icon name="img:/icons/icon_profile_fill.svg" size="16px" />
-              <p class="text-primary text-xs leading-none ellipsis col ml-1">
-                {{ recruitMakeRolList(p.rcrt_mkr_rol_list) }}
-              </p>
             </div>
           </div>
         </div>
-      </div>
-    </q-scroll-area>
+      </q-scroll-area>
+    </div>
     <!-- TODO 앱 심사 히든처리 -->
     <!-- <div class="text-center" >
       <c-btn

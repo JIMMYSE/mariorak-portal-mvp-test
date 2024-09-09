@@ -66,12 +66,12 @@ const recommendedProjectList = computed(() => {
       <ckv-banner :img-list="imgList" :counter="false" />
     </section>
     <!-- 게임팩 대해 궁금하다면 -->
-    <section class="mt-10 px-6">
-      <p class="text-[22px] font-semibold">WHAT IS GAME PACK</p>
-      <p class="text-[#767676] text-sm font-normal">
+    <section class="mt-10">
+      <p class="pl-6 text-[22px] font-semibold">WHAT IS GAME PACK</p>
+      <p class="pl-6 text-[#767676] text-sm font-normal">
         CCF가 함께하고 지원하는 모든 프로젝트
       </p>
-      <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4">
+      <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4 pl-6">
         <intro-item-list />
       </div>
     </section>

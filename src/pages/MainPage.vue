@@ -128,12 +128,14 @@ const slideEvent = (info: any) => {
     </q-scroll-area>
 
     <!-- 게임팩 대해 궁금하다면 -->
-    <section class="mt-10 px-6">
-      <p class="text-[22px] font-semibold">유저와 함께하는 게임 제작 문화</p>
-      <p class="text-[#767676] text-sm font-normal">
+    <section class="mt-10">
+      <p class="pl-6 text-[22px] font-semibold">
+        유저와 함께하는 게임 제작 문화
+      </p>
+      <p class="pl-6 text-[#767676] text-sm font-normal">
         CCF가 제공하는 다양한 혜택을 즐겨보세요
       </p>
-      <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4 h-[270px]">
+      <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4 h-[270px] pl-6">
         <q-scroll-area
           class="w-full"
           :bar-style="barStyle"
@@ -166,16 +168,16 @@ const slideEvent = (info: any) => {
     <hr class="h-2.5 bg-[#f7f7f7] mt-10" />
 
     <!-- CCF 추천게임 -->
-    <section class="px-6 mt-10">
-      <h2 class="text-[22px] font-semibold">CCF 추천게임</h2>
+    <section class="mt-10">
+      <h2 class="pl-6 text-[22px] font-semibold">CCF 추천게임</h2>
       <div class="grid gap-1.5 mt-4">
         <g-p-item-list to-list="game-list" :gp-list="recommendedGameList" />
       </div>
     </section>
 
     <!-- CCF 추천 프로젝트 -->
-    <section class="px-6 mt-[55px]">
-      <h2 class="text-[22px] font-semibold">CCF 추천 프로젝트</h2>
+    <section class="mt-[55px]">
+      <h2 class="pl-6 text-[22px] font-semibold">CCF 추천 프로젝트</h2>
       <div class="grid gap-1.5 mt-4">
         <g-p-item-list
           to-list="project-list"
