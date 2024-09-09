@@ -310,9 +310,9 @@ const recommendedProjectList = computed(() => {
     </section>
 
     <!-- 배너영역 -->
-    <section class="mt-[55px]">
+    <!-- <section class="mt-[55px]">
       <img src="/images/dummy/banner_dummy.png" alt="banner" class="w-full" />
-    </section>
+    </section> -->
 
     <!-- FAQ -->
     <section class="mt-[55px] mb-[50px]">

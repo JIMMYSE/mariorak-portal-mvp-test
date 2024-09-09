@@ -54,7 +54,7 @@ const recentProjectList = computed(() => {
       </div>
     </section>
     <section class="mt-[55px] w-full" ref="movePoint">
-      <img src="/images/dummy/banner_dummy.png" alt="banner" class="w-full" />
+      <!-- <img src="/images/dummy/banner_dummy.png" alt="banner" class="w-full" /> -->
     </section>
     <!--  게임 목록 -->
     <section class="mt-[55px] w-full" id="list">
