@@ -40,7 +40,7 @@ const { data } = getMyDetail();
             <p
               class="text-[#056bf1] text-xs font-semibold leading-none mt-[2px]"
             >
-              {{ getCommonCodeName('MKR_ROL', data?.data?.user.mem_ty_cd) }}
+              {{ getCommonCodeName('MKR_ROL', data?.data?.user.mkr_rol_cd) }}
             </p>
           </div>
         </div>
