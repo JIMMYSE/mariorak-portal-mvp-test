@@ -98,6 +98,9 @@ const slideEvent = (info: any) => {
   console.log(info);
   slideInfo.value = info;
 };
+
+const isLocal = ref(process.env.IS_LOCAL !== undefined);
+const isDev = ref(process.env.IS_DEV !== undefined);
 </script>
 
 <template>
@@ -261,9 +264,12 @@ const slideEvent = (info: any) => {
           대한 책임은 해당 창작자가 부담합니다.
         </div>
         <div
-          class="text-[#767676] text-[10px] mt-16 pb-8 leading-[14px] text-center w-full"
+          class="text-[#767676] text-[10px] mt-16 pb-8 leading-[14px] text-center w-full underline"
         >
-          Copyright©COARSOFT
+          <a href="mailto:npc-dev@cc-fan.com" v-if="isLocal || isDev">
+            Copyright©COARSOFT
+          </a>
+          <a href="mailto:npc@cc-fan.com" v-else>Copyright©COARSOFT</a>
         </div>
       </div>
     </section>
