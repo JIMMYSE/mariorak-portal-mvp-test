@@ -254,12 +254,12 @@ const recommendedProjectList = computed(() => {
       <ckv-banner :img-list="imgList" :counter="false" />
     </section>
     <!-- 인력사무소 intro -->
-    <section class="mt-10 px-6">
-      <p class="text-[22px] font-semibold">인력사무소</p>
-      <p class="text-[#767676] text-sm font-normal">
+    <section class="mt-10">
+      <p class="pl-6 text-[22px] font-semibold">인력사무소</p>
+      <p class="pl-6 text-[#767676] text-sm font-normal">
         서로에게 도움이 되는 만남의 장소
       </p>
-      <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4 h-[150px]">
+      <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4 h-[150px] pl-6">
         <q-scroll-area
           class="w-full"
           :bar-style="barStyle"
@@ -294,16 +294,16 @@ const recommendedProjectList = computed(() => {
     <hr class="h-2.5 bg-[#f7f7f7] mt-10" />
 
     <!-- CCF 추천 모집중 프로젝트 -->
-    <section class="px-6 mt-10">
-      <h2 class="text-[22px] font-semibold">CCF 모집중 추천프로젝트</h2>
+    <section class="mt-10">
+      <h2 class="pl-6 text-[22px] font-semibold">CCF 모집중 추천프로젝트</h2>
       <div class="grid gap-1.5 mt-4">
         <recruit-recommened-project :p-list="recommendedRecruitProjectList" />
       </div>
     </section>
 
     <!-- CCF 추천 개발 인력 -->
-    <section class="px-6 mt-[55px]">
-      <h2 class="text-[22px] font-semibold">CCF 추천 개발 인력</h2>
+    <section class="mt-[55px]">
+      <h2 class="pl-6 text-[22px] font-semibold">CCF 추천 개발 인력</h2>
       <div class="grid gap-1.5 mt-4">
         <recruit-recommened-maker :m-list="recommendedMakerList" />
       </div>

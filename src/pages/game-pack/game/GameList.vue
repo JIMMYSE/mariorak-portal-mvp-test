@@ -31,14 +31,14 @@ function onMoveList() {
         </div>
       </div>
     </section>
-    <section class="px-6 mt-10">
-      <h2 class="text-[20px] font-semibold">CCF 추천 게임</h2>
+    <section class="mt-10">
+      <h2 class="pl-6 text-[20px] font-semibold">CCF 추천 게임</h2>
       <div class="grid gap-1.5 mt-4">
         <recommend-game-list />
       </div>
     </section>
-    <section class="px-6 mt-10">
-      <h2 class="text-[20px] font-semibold">최근 본 게임</h2>
+    <section class="mt-10">
+      <h2 class="pl-6 text-[20px] font-semibold">최근 본 게임</h2>
       <div class="grid gap-1.5 mt-4">
         <normal-project-list />
       </div>
