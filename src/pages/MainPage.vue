@@ -207,7 +207,7 @@ const isDev = ref(process.env.IS_DEV !== undefined);
 
         <div>
           <h6
-            class="text-[#767676] text-sm font-medium font-['Pretendard'] leading-tight relative pr-5"
+            class="text-[#767676] text-sm font-medium font-['Pretendard'] leading-tight relative pr-5 cursor-pointer"
             @click="toggleBusinessInfo(businessInfo)"
           >
             사업자 정보
@@ -231,6 +231,7 @@ const isDev = ref(process.env.IS_DEV !== undefined);
           <div class="border-l-2 border-[#f0f0f0] mx-3"></div>
           <div
             class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none cursor-pointer"
+            @click="goToName('terms')"
           >
             서비스 이용약관
           </div>
