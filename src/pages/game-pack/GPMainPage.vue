@@ -10,41 +10,11 @@ const keyword = ref<string>('');
 // img dummy
 const imgList = [
   {
-    src: '/images/dummy/main_dummy.svg',
+    src: '/images/game-pack/mainKV/gamepack_KV_1.png',
 
     id: 1,
-    title: '지금 CCF\n2024에 투표하세요',
-    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
-  },
-  {
-    src: '/images/dummy/main_dummy1.svg',
-    id: 2,
-    title: '지금 CCF\n2024에 투표하세요',
-    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
-  },
-  {
-    src: '/images/dummy/main_dummy2.svg',
-    id: 3,
-    title: '지금 CCF\n2024에 투표하세요',
-    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
-  },
-  {
-    src: '/images/dummy/main_dummy3.svg',
-    id: 4,
-    title: '지금 CCF\n2024에 투표하세요',
-    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
-  },
-  {
-    src: '/images/dummy/main_dummy4.svg',
-    id: 5,
-    title: '지금 CCF\n2024에 투표하세요',
-    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
-  },
-  {
-    src: '/images/dummy/main_dummy5.svg',
-    id: 6,
-    title: '지금 CCF\n2024에 투표하세요',
-    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
+    title: 'CCF가 함꼐하고\n지원하는 게임 모음집',
+    desc: '팬과 개발자가 만나 함께 게임을 키워가요.',
   },
 ];
 

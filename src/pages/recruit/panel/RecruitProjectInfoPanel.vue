@@ -44,7 +44,7 @@ const props = defineProps<Props>();
     <section class="mt-12">
       <h2 class="text-[20px] font-semibold">모집 중인 유사한 프로젝트</h2>
       <div class="mt-4">
-        <normal-project-list :p-list="similarProjectList" />
+        <normal-project-list :p-list="similarProjectList" type="project" />
       </div>
     </section>
   </div>

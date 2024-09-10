@@ -1,5 +1,4 @@
-// import { SuccessListRes, SuccessObjectRes, Recruitment } from 'ccf-api-dto';
-import { SuccessListRes, SuccessObjectRes } from 'meta-airforce-dto';
+import { SuccessListRes, SuccessObjectRes, Recruitment } from 'ccf-api-dto';
 
 const Recruitment = object({
   prj_rcrt_id: number().label('멤버 모집 아이디'),
