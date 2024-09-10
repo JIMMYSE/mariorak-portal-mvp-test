@@ -142,8 +142,10 @@ const openDetailDialog = (type: string) => {
     <!-- 맵 바로가기 영역 -->
     <ckv-banner :img-list="imgList" counter />
 
+    <!-- TODO 앱 심사 히든처리 -->
     <!-- 상단 탭 -->
-    <q-scroll-area
+    <!-- <q-scroll-area
+
       class="bg-[#f8f8f8] h-[100px] w-full px-3"
       :bar-style="barStyle"
       :thumb-style="thumbStyle"
@@ -162,7 +164,7 @@ const openDetailDialog = (type: string) => {
           </div>
         </div>
       </div>
-    </q-scroll-area>
+    </q-scroll-area> -->
 
     <!-- 게임팩 대해 궁금하다면 -->
     <section class="mt-10">
