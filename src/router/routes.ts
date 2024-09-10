@@ -310,6 +310,14 @@ const routes: RouteRecordRaw[] = [
         },
         component: () => import('pages/policy/PrivacyPage.vue'),
       },
+      {
+        path: 'secession',
+        name: 'secession',
+        meta: {
+          title: '회원탈퇴안내',
+        },
+        component: () => import('pages/policy/SecessionPage.vue'),
+      },
     ],
   },
   {
