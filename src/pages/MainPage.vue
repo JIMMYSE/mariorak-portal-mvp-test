@@ -47,6 +47,16 @@ const cultureList = [
     title: '재정적 안정을\n지원하는 공간',
     desc: '제작부터 출시되는 순간까지\n팬들의 펀딩과 도네이션, CCF의\n지원이 함께해요.',
   },
+  {
+    src: '/images/main/main_culture_3.png',
+    title: '실질적 도움이\n되어주는 공간',
+    desc: '게임 개발에 어려움이 있다면\n게임 전문 CCF 크루에게 지금\n문의해보세요.',
+  },
+  {
+    src: '/images/main/main_culture_4.png',
+    title: '재정적 안정을\n지원하는 공간',
+    desc: '개발 과정의 실시간 공개와\n게임의 지분 및 수익을 투명하게\n공유해드려요.',
+  },
 ];
 const tabList = [
   {
