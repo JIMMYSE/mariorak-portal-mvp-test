@@ -6,7 +6,13 @@ function onMoveList() {
     movePoint.value.scrollIntoView({ behavior: 'smooth' });
   }
 }
+
+const { data: recommededGameData } = useRecommendedGameList();
+const recommendedGameList = computed(() => {
+  return recommededGameData.value?.rows;
+});
 </script>
+
 <template>
   <q-page>
     <section>
@@ -14,7 +20,7 @@ function onMoveList() {
         class="anchor-area h-[210px] w-full text-center flex items-center justify-center"
       >
         <div>
-          <p class="text-white text-3xl font-semibold leading-9">PROJECT</p>
+          <p class="text-white text-3xl font-semibold leading-9">GAME</p>
           <p
             class="text-white text-sm font-normal leading-tight"
             style="color: #ffffff; opacity: 0.5"
@@ -34,22 +40,22 @@ function onMoveList() {
     <section class="mt-10">
       <h2 class="pl-6 text-[20px] font-semibold">CCF 추천 게임</h2>
       <div class="grid gap-1.5 mt-4">
-        <recommend-game-list />
+        <recommend-game-list :g-list="recommendedGameList" />
       </div>
     </section>
-    <section class="mt-10">
+    <!-- <section class="mt-10"> TODO: 앱심사를 위해 히든처리
       <h2 class="pl-6 text-[20px] font-semibold">최근 본 게임</h2>
       <div class="grid gap-1.5 mt-4">
         <normal-project-list />
       </div>
-    </section>
+    </section> -->
     <section class="mt-[55px]" ref="movePoint">
       <!-- <img src="/images/dummy/banner_dummy.png" alt="banner" class="w-full" /> -->
     </section>
     <section class="mt-[55px] w-full">
       <h2 class="px-6 text-[22px] font-semibold">게임 목록</h2>
       <div class="mt-4">
-        <search-g-p-list />
+        <search-g-p-list :type="'game'" />
       </div>
     </section>
     <section class="mt-[55px] pb-[50px]">

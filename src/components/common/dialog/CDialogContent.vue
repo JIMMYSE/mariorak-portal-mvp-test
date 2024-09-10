@@ -11,11 +11,17 @@ defineEmits([...useDialogPluginComponent.emits]);
 
 const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
   useDialogPluginComponent();
+const { width } = useWindowSize();
 </script>
 
 <template>
-  <q-dialog ref="dialogRef" persistent maximized @hide="onDialogHide">
-    <q-card class="flex flex-col flex-nowrap p-2" flat>
+  <q-dialog
+    ref="dialogRef"
+    persistent
+    :maximized="width <= 512"
+    @hide="onDialogHide"
+  >
+    <q-card class="flex flex-col flex-nowrap p-2 w-[512px] h-full" flat>
       <q-card-section
         class="sticky top-0 flex justify-center items-start h-12 py-1"
       >

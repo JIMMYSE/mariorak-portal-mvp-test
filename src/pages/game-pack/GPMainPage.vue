@@ -82,7 +82,11 @@ const recommendedProjectList = computed(() => {
     <section class="px-6 mt-10">
       <h2 class="text-[22px] font-semibold">CCF 추천게임</h2>
       <div class="grid gap-1.5 mt-4">
-        <g-p-item-list to-list="game-list" :gp-list="recommendedGameList" />
+        <g-p-item-list
+          to-list="game-list"
+          :gp-list="recommendedGameList"
+          type="game"
+        />
       </div>
     </section>
 
@@ -93,6 +97,7 @@ const recommendedProjectList = computed(() => {
         <g-p-item-list
           to-list="project-list"
           :gp-list="recommendedProjectList"
+          type="project"
         />
       </div>
     </section>
