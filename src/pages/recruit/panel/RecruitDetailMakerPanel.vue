@@ -18,6 +18,7 @@
       <c-btn
         class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
         color="primary"
+        @click="goTo('maker-maker-profile-new')"
         >참여 개발자 등록하기
       </c-btn>
     </section>
