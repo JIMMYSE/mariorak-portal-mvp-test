@@ -215,7 +215,7 @@ const openDetailDialog = async (type: string) => {
 
     <!-- CCF 추천 프로젝트 -->
     <section class="mt-[55px]">
-      <h2 class="pl-6 text-[22px] font-semibold">CCF 추천 프로젝트</h2>
+      <h2 class="pl-6 text-[22px] font-semibold">CCF가 주목하는 프로젝트</h2>
       <div class="grid gap-1.5 mt-4">
         <g-p-item-list
           type="project"
