@@ -10,8 +10,9 @@ import { GoogleLogin } from 'vue3-google-login';
 const joinStore = useJoinStore();
 const { joinData } = storeToRefs(joinStore);
 
-const isLocal = ref(process.env.IS_LOCAL !== undefined);
-const isDev = ref(process.env.IS_DEV !== undefined);
+const isLocal = process.env.IS_LOCAL;
+const isDev = process.env.IS_DEV;
+
 onMounted(() => {
   joinStore.$reset();
 });
