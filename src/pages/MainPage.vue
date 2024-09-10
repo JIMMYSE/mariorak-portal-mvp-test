@@ -125,10 +125,13 @@ const { request } = useSearchFilter({
 
 const { data: termsData } = useTermsList({ searchRequest: request });
 
-const openDetailDialog = async (type: string) => {
+const openDetailDialog = (type: string) => {
+  console.log(type, termsData.value);
   const term = termsData.value?.rows.find(
     (r: { type: string }) => r.type === type
   );
+
+  console.log(term);
   detail.value = { title: term.title, content: term.content };
   detailEnabled.value = true;
 };
@@ -259,7 +262,7 @@ const openDetailDialog = async (type: string) => {
         <div class="flex justify-center">
           <div
             class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none cursor-pointer"
-            @click="openDetailDialog('PERSONAL_DATA_PROCESS')"
+            @click="openDetailDialog('PERSONAL_DATA')"
           >
             개인정보 처리방침
           </div>
