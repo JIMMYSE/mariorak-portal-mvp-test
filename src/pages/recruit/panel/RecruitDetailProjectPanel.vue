@@ -16,12 +16,12 @@
       <h2 class="text-[22px] font-semibold px-6">FAQ</h2>
       <faq-area />
     </section>
-    <section class="w-full text-center mt-[75px] mb-[30px] px-6">
+    <!-- <section class="w-full text-center mt-[75px] mb-[30px] px-6">
       <c-btn
         class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
         color="primary"
         >참가자 모집 프로젝트 등록하기
       </c-btn>
-    </section>
+    </section> -->
   </div>
 </template>

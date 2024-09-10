@@ -3,7 +3,7 @@ import RecruitDetailApplyPanel from './panel/RecruitDetailApplyPanel.vue';
 import RecruitDetailProjectPanel from './panel/RecruitDetailProjectPanel.vue';
 import RecruitDetailMakerPanel from './panel/RecruitDetailMakerPanel.vue';
 
-const tab = ref('INFO');
+const tab = ref('PROJECT');
 </script>
 <template>
   <q-page>
