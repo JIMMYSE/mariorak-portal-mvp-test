@@ -1,5 +1,11 @@
 <script lang="ts" setup>
+import RecommendGameList from './game/RecommendGameList.vue';
+
 const props = defineProps({
+  id: {
+    type: Number,
+    required: true,
+  },
   type: {
     type: String as PropType<'game' | 'project'>,
     required: true,
@@ -72,10 +78,14 @@ const computedStatus = computed(() => {
   else if (props.status == '40') return '출시대기';
   else return `진행률 ${props.status}%`;
 });
+const goToDetail = (id: number) => {
+  if (props.type == 'game') goTo(`/game-pack/game/${id}`);
+  else goTo(`/game-pack/project/${id}`);
+};
 </script>
 
 <template>
-  <div class="flex no-wrap">
+  <div class="flex no-wrap" @click="goToDetail(id)">
     <div>
       <q-img :src="imgSrc" class="rounded-xl h-[78px] w-[139px]" />
     </div>

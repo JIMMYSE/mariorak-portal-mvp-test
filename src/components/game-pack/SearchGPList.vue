@@ -138,6 +138,7 @@ watchDebounced(
       :like="info.like_cnt"
       :img-src="info.thmn_file.convert_addr"
       :date="info.created_at"
+      :id="info?.game_id ?? info.prj_id"
     />
   </div>
   <div class="flex justify-center" v-if="hasNextPage">
