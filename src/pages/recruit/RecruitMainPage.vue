@@ -116,102 +116,102 @@ const recommendedRecruitProjectList = [
   },
 ];
 
-const recommendedMakerList = [
-  {
-    prj_num: 1,
-    square_file: {
-      id: 9707,
-      file_name: 'Woman_01.png',
-      origin_addr:
-        'https://file-ccf.coardevelop.com/origin/2024/08/20/17/405gzn10m025zzes',
-      convert_addr:
-        'https://file-ccf.coardevelop.com/thumb/2024/08/20/17/405gzn10m025zzes',
-    },
-    circle_file: {
-      id: 9708,
-      file_name: 'Woman_01_th.png',
-      origin_addr:
-        'https://file-ccf.coardevelop.com/origin/2024/08/20/17/405gzn10m025zzek',
-      convert_addr:
-        'https://file-ccf.coardevelop.com/thumb/2024/08/20/17/405gzn10m025zzek',
-    },
-    nickname: '지구별전략가#2358',
-    prtf: {
-      prtf_url: 'https://github.com',
-      prtf_dspy_yn: true,
-    },
-    prfl: {
-      bio: {
-        lang: '영어',
-        loct: '미국 북부',
-        ntnl: '북한',
-      },
-      skills: [
-        '스킬1',
-        '스킬1',
-        '스킬1',
-        '스킬1',
-        '스킬1',
-        '스킬1',
-        '스킬1',
-        '스킬1',
-      ],
-      kjob_objs: ['디자인', '개발보조'],
-      onln_prfl: '한줄 프로필입니다.',
-    },
-    desc: '저는 디자이너자입니다.',
-    expr_year: 10,
-    mkr_rol_cd: '02',
-    mem_id: 14157,
-    mkr_id: 1,
-  },
-  {
-    prj_num: 1,
-    square_file: {
-      id: 9707,
-      file_name: 'Woman_01.png',
-      origin_addr:
-        'https://file-ccf.coardevelop.com/origin/2024/08/20/17/405gzn10m025zzes',
-      convert_addr:
-        'https://file-ccf.coardevelop.com/thumb/2024/08/20/17/405gzn10m025zzes',
-    },
-    circle_file: {
-      id: 9708,
-      file_name: 'Woman_01_th.png',
-      origin_addr:
-        'https://file-ccf.coardevelop.com/origin/2024/08/20/17/405gzn10m025zzek',
-      convert_addr:
-        'https://file-ccf.coardevelop.com/thumb/2024/08/20/17/405gzn10m025zzek',
-    },
-    nickname: '지구별전략가#2358',
-    prtf: {
-      prtf_url: 'https://github.com',
-      prtf_dspy_yn: true,
-    },
-    prfl: {
-      bio: {
-        lang: '일본어',
-        loct: '경기 서부',
-        ntnl: '대한민국',
-      },
-      skills: ['스킬1'],
-      job_objs: ['개발보조', '개발리딩'],
-      onln_prfl: '한줄 프로필입니다.',
-    },
-    desc: '저는 개발자입니다.',
-    expr_year: 10,
-    mkr_rol_cd: '02',
-    mem_id: 14157,
-    mkr_id: 2,
-  },
-];
+// const recommendedMakerList = [
+//   {
+//     prj_num: 1,
+//     square_file: {
+//       id: 9707,
+//       file_name: 'Woman_01.png',
+//       origin_addr:
+//         'https://file-ccf.coardevelop.com/origin/2024/08/20/17/405gzn10m025zzes',
+//       convert_addr:
+//         'https://file-ccf.coardevelop.com/thumb/2024/08/20/17/405gzn10m025zzes',
+//     },
+//     circle_file: {
+//       id: 9708,
+//       file_name: 'Woman_01_th.png',
+//       origin_addr:
+//         'https://file-ccf.coardevelop.com/origin/2024/08/20/17/405gzn10m025zzek',
+//       convert_addr:
+//         'https://file-ccf.coardevelop.com/thumb/2024/08/20/17/405gzn10m025zzek',
+//     },
+//     nickname: '지구별전략가#2358',
+//     prtf: {
+//       prtf_url: 'https://github.com',
+//       prtf_dspy_yn: true,
+//     },
+//     prfl: {
+//       bio: {
+//         lang: '영어',
+//         loct: '미국 북부',
+//         ntnl: '북한',
+//       },
+//       skills: [
+//         '스킬1',
+//         '스킬1',
+//         '스킬1',
+//         '스킬1',
+//         '스킬1',
+//         '스킬1',
+//         '스킬1',
+//         '스킬1',
+//       ],
+//       kjob_objs: ['디자인', '개발보조'],
+//       onln_prfl: '한줄 프로필입니다.',
+//     },
+//     desc: '저는 디자이너자입니다.',
+//     expr_year: 10,
+//     mkr_rol_cd: '02',
+//     mem_id: 14157,
+//     mkr_id: 1,
+//   },
+//   {
+//     prj_num: 1,
+//     square_file: {
+//       id: 9707,
+//       file_name: 'Woman_01.png',
+//       origin_addr:
+//         'https://file-ccf.coardevelop.com/origin/2024/08/20/17/405gzn10m025zzes',
+//       convert_addr:
+//         'https://file-ccf.coardevelop.com/thumb/2024/08/20/17/405gzn10m025zzes',
+//     },
+//     circle_file: {
+//       id: 9708,
+//       file_name: 'Woman_01_th.png',
+//       origin_addr:
+//         'https://file-ccf.coardevelop.com/origin/2024/08/20/17/405gzn10m025zzek',
+//       convert_addr:
+//         'https://file-ccf.coardevelop.com/thumb/2024/08/20/17/405gzn10m025zzek',
+//     },
+//     nickname: '지구별전략가#2358',
+//     prtf: {
+//       prtf_url: 'https://github.com',
+//       prtf_dspy_yn: true,
+//     },
+//     prfl: {
+//       bio: {
+//         lang: '일본어',
+//         loct: '경기 서부',
+//         ntnl: '대한민국',
+//       },
+//       skills: ['스킬1'],
+//       job_objs: ['개발보조', '개발리딩'],
+//       onln_prfl: '한줄 프로필입니다.',
+//     },
+//     desc: '저는 개발자입니다.',
+//     expr_year: 10,
+//     mkr_rol_cd: '02',
+//     mem_id: 14157,
+//     mkr_id: 2,
+//   },
+// ];
 
 //fecth
-const { data: recommendedGameData } = useRecommendedGameList();
-const recommendedGameList = computed(() => {
-  return recommendedGameData.value?.rows;
+const { data: recommendedMakerData } = useRecruitRecommendedMakerList();
+const recommendedMakerList = computed(() => {
+  return recommendedMakerData.value?.rows;
 });
-const { data: recommededProjectData } = useRecommendedProjectList();
+const { data: recommededProjectData } = useRecruitRecommendedProjectList();
 const recommendedProjectList = computed(() => {
   return recommededProjectData.value?.rows;
 });
@@ -267,7 +267,7 @@ const recommendedProjectList = computed(() => {
     <section class="mt-10">
       <h2 class="pl-6 text-[22px] font-semibold">CCF 모집중 추천프로젝트</h2>
       <div class="grid gap-1.5 mt-4">
-        <recruit-recommened-project :p-list="recommendedRecruitProjectList" />
+        <recruit-recommened-project :p-list="recommendedProjectList" />
       </div>
     </section>
 

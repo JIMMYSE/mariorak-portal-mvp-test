@@ -1,4 +1,5 @@
 import { ProjectSchema as ProjectBase } from './project-model';
+import { MakerSchema } from './maker-model';
 import {
   SuccessListRes,
   SuccessObjectRes,
@@ -29,4 +30,21 @@ export type ProjectRecruitSearchType = InferType<
 >;
 export type ProjectRecruitSearchResType = InferType<
   typeof ProjectRecruitSearchRes
+>;
+
+const MakerBase = MakerSchema.shape({
+  nickname: string().required().label('닉네임'),
+  circle_file: ThumbnailFileSchema.nullable().label('아바타 circle 파일 정보'),
+  square_file: ThumbnailFileSchema.nullable().label('아바타 square 파일 정보'),
+  prj_num: number().required().label('프로젝트횟수'),
+});
+
+const ProjectRecruitMakersReq = SearchListReq(MakerBase);
+const ProjectRecruitMakersRes = SuccessListRes(MakerBase);
+
+export type ProjectRecruitMakersType = InferType<
+  typeof ProjectRecruitMakersReq
+>;
+export type ProjectRecruitMakersResType = InferType<
+  typeof ProjectRecruitMakersRes
 >;
