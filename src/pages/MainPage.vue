@@ -102,6 +102,36 @@ const slideEvent = (info: any) => {
 
 const isLocal = ref(process.env.IS_LOCAL !== undefined);
 const isDev = ref(process.env.IS_DEV !== undefined);
+
+/** 상세 보기 약관 */
+const detailEnabled = ref(false);
+const detail = ref<{ title: string; content: string } | null>(null);
+const { request } = useSearchFilter({
+  requestDefault: {
+    filters: {
+      is_active: {
+        eq: true,
+      },
+    },
+    from: 0,
+    size: 10,
+    sort: [
+      {
+        sequence: 'asc',
+      },
+    ],
+  },
+});
+
+const { data: termsData } = useTermsList({ searchRequest: request });
+
+const openDetailDialog = async (type: string) => {
+  const term = termsData.value?.rows.find(
+    (r: { type: string }) => r.type === type
+  );
+  detail.value = { title: term.title, content: term.content };
+  detailEnabled.value = true;
+};
 </script>
 
 <template>
@@ -224,14 +254,14 @@ const isDev = ref(process.env.IS_DEV !== undefined);
         <div class="flex justify-center">
           <div
             class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none cursor-pointer"
-            @click="goToName('privacy')"
+            @click="openDetailDialog('PERSONAL_DATA_PROCESS')"
           >
             개인정보 처리방침
           </div>
           <div class="border-l-2 border-[#f0f0f0] mx-3"></div>
           <div
             class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none cursor-pointer"
-            @click="goToName('terms')"
+            @click="openDetailDialog('SERVICE_AGREEMENT')"
           >
             서비스 이용약관
           </div>
@@ -276,4 +306,10 @@ const isDev = ref(process.env.IS_DEV !== undefined);
       </div>
     </section>
   </q-page>
+  <!-- 팝업 -->
+  <c-dialog-content
+    v-model="detailEnabled"
+    :title="detail?.title"
+    :html="detail?.content"
+  />
 </template>
