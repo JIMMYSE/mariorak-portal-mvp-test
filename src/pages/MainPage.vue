@@ -26,6 +26,7 @@ const imgList = [
     seq: 2,
     title: '',
     desc: '',
+    link: 'https://k-dmts.com/fairDash.do',
   },
   {
     src: '/images/main/Main_KV/512/kv_03.png',
@@ -98,6 +99,9 @@ const slideEvent = (info: any) => {
   console.log(info);
   slideInfo.value = info;
 };
+
+const isLocal = ref(process.env.IS_LOCAL !== undefined);
+const isDev = ref(process.env.IS_DEV !== undefined);
 </script>
 
 <template>
@@ -128,12 +132,14 @@ const slideEvent = (info: any) => {
     </q-scroll-area>
 
     <!-- 게임팩 대해 궁금하다면 -->
-    <section class="mt-10 px-6">
-      <p class="text-[22px] font-semibold">유저와 함께하는 게임 제작 문화</p>
-      <p class="text-[#767676] text-sm font-normal">
+    <section class="mt-10">
+      <p class="pl-6 text-[22px] font-semibold">
+        유저와 함께하는 게임 제작 문화
+      </p>
+      <p class="pl-6 text-[#767676] text-sm font-normal">
         CCF가 제공하는 다양한 혜택을 즐겨보세요
       </p>
-      <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4 h-[270px]">
+      <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4 h-[270px] pl-6">
         <q-scroll-area
           class="w-full"
           :bar-style="barStyle"
@@ -166,16 +172,16 @@ const slideEvent = (info: any) => {
     <hr class="h-2.5 bg-[#f7f7f7] mt-10" />
 
     <!-- CCF 추천게임 -->
-    <section class="px-6 mt-10">
-      <h2 class="text-[22px] font-semibold">CCF 추천게임</h2>
+    <section class="mt-10">
+      <h2 class="pl-6 text-[22px] font-semibold">CCF 추천게임</h2>
       <div class="grid gap-1.5 mt-4">
         <g-p-item-list to-list="game-list" :gp-list="recommendedGameList" />
       </div>
     </section>
 
     <!-- CCF 추천 프로젝트 -->
-    <section class="px-6 mt-[55px]">
-      <h2 class="text-[22px] font-semibold">CCF 추천 프로젝트</h2>
+    <section class="mt-[55px]">
+      <h2 class="pl-6 text-[22px] font-semibold">CCF 추천 프로젝트</h2>
       <div class="grid gap-1.5 mt-4">
         <g-p-item-list
           to-list="project-list"
@@ -185,17 +191,17 @@ const slideEvent = (info: any) => {
     </section>
 
     <!-- 배너영역 -->
-    <q-img
+    <!-- <q-img
       class="mt-[55px]"
       src="/images/dummy/banner_dummy.png"
       alt="banner"
       width="100%"
       height="100%"
-    />
+    /> -->
 
     <!-- 사업자 정보 -->
 
-    <section class="bottom-0 bg-[#f7f7f7] px-6 pt-6">
+    <section class="bottom-0 bg-[#f7f7f7] px-6 pt-6 mt-[55px]">
       <div class="flex justify-between">
         <div><q-img src="/images/main-logo.png" alt="" class="w-14" /></div>
 
@@ -217,37 +223,37 @@ const slideEvent = (info: any) => {
       <div class="mt-6" v-show="businessInfo">
         <div class="flex justify-center">
           <div
-            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none"
+            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none cursor-pointer"
             @click="goToName('privacy')"
           >
             개인정보 처리방침
           </div>
           <div class="border-l-2 border-[#f0f0f0] mx-3"></div>
           <div
-            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none"
+            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none cursor-pointer"
           >
             서비스 이용약관
           </div>
           <div class="border-l-2 border-[#f0f0f0] mx-3"></div>
-          <div
-            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none"
+          <!-- <div
+            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none cursor-pointer"
           >
             사업자 정보 확인
-          </div>
+          </div> -->
         </div>
-        <div class="flex mt-3 justify-center">
+        <!-- <div class="flex mt-3 justify-center">
           <div
-            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none"
+            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none cursor-pointer"
           >
             프로젝트 심사 기준
           </div>
           <div class="border-l-2 border-[#f0f0f0] mx-3"></div>
           <div
-            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none"
+            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none cursor-pointer"
           >
             CCF 정책
           </div>
-        </div>
+        </div> -->
       </div>
 
       <div>
@@ -259,9 +265,12 @@ const slideEvent = (info: any) => {
           대한 책임은 해당 창작자가 부담합니다.
         </div>
         <div
-          class="text-[#767676] text-[10px] mt-16 pb-8 leading-[14px] text-center w-full"
+          class="text-[#767676] text-[10px] mt-16 pb-8 leading-[14px] text-center w-full underline"
         >
-          Copyright©COARSOFT
+          <a href="mailto:npc-dev@cc-fan.com" v-if="isLocal || isDev">
+            Copyright©COARSOFT
+          </a>
+          <a href="mailto:npc@cc-fan.com" v-else>Copyright©COARSOFT</a>
         </div>
       </div>
     </section>

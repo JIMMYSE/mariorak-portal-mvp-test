@@ -24,45 +24,47 @@ const goToListPage = () => {
 </script>
 <template>
   <div>
-    <q-scroll-area
-      style="height: 300px"
-      :bar-style="barStyle"
-      :thumb-style="thumbStyle"
-    >
-      <div class="row no-wrap">
-        <div
-          class="game-card q-mr-md"
-          v-for="gp in props.gpList"
-          :key="gp.created_at"
-        >
-          <c-img
-            :src="gp.thmn_file.convert_addr"
-            width="100%"
-            class="rounded-xl game-image"
-          />
-          <div class="game-info q-mt-sm">
-            <div class="text-caption q-mb-xs mt-[16px]">
-              <span
-                class="badge font-medium"
-                v-for="badge in gp.tag_list"
-                :key="badge"
-                >{{ badge }}</span
+    <div class="pl-6">
+      <q-scroll-area
+        style="height: 300px"
+        :bar-style="barStyle"
+        :thumb-style="thumbStyle"
+      >
+        <div class="row no-wrap">
+          <div
+            class="game-card q-mr-md"
+            v-for="gp in props.gpList"
+            :key="gp.created_at"
+          >
+            <c-img
+              :src="gp.thmn_file.convert_addr"
+              width="100%"
+              class="rounded-xl game-image"
+            />
+            <div class="game-info q-mt-sm">
+              <div class="text-caption q-mb-xs mt-[16px]">
+                <span
+                  class="badge font-medium"
+                  v-for="badge in gp.tag_list"
+                  :key="badge"
+                  >{{ badge }}</span
+                >
+              </div>
+              <p
+                class="text-[#222222] text-[16px] font-semibold leading-snug mt-[8px]"
               >
+                {{ gp.title }}
+              </p>
+              <p
+                class="text-[#696969] text-xs font-normal leading-4 mt-[6px] ellipsis-2-lines"
+              >
+                {{ gp.desc }}
+              </p>
             </div>
-            <p
-              class="text-[#222222] text-[16px] font-semibold leading-snug mt-[8px]"
-            >
-              {{ gp.title }}
-            </p>
-            <p
-              class="text-[#696969] text-xs font-normal leading-4 mt-[6px] ellipsis-2-lines"
-            >
-              {{ gp.desc }}
-            </p>
           </div>
         </div>
-      </div>
-    </q-scroll-area>
+      </q-scroll-area>
+    </div>
     <div class="text-center">
       <c-btn
         @click="goToListPage()"

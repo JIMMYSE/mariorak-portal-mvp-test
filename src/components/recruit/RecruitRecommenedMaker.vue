@@ -28,58 +28,64 @@ const recruitMakeRolList = (rolList: any) => {
 
 <template>
   <div>
-    <q-scroll-area
-      style="height: 180px"
-      :bar-style="barStyle"
-      :thumb-style="thumbStyle"
-    >
-      <div class="row no-wrap">
-        <q-card
-          class="maker-card q-mr-md shadow-1 rounded-xl"
-          v-for="m in mList"
-          :key="m.created_at"
-        >
-          <q-card-section>
-            <div class="row items-center">
-              <q-img
-                class="w-14 h-14 rounded-full"
-                :src="m.circle_file.convert_addr"
-              />
-              <div class="font-semibold ml-2 q-gutter-y-[5px] col">
-                <p class="text-[#222222] leading-snug">{{ m.nickname }}</p>
-                <p class="text-primary text-xs p ellipsis">
-                  {{ m.prfl.job_objs?.flatMap((rol: any) => rol).join(' / ') }}
-                </p>
-                <div class="row font-normal align-middle flex items-center">
-                  <p class="text-[#767676] text-xs">{{ m.expr_year }}년차</p>
-                  <p
-                    class="h-[8px] w-0 border-r-[1px] border-[#b5b5b5] mx-[5px]"
-                  ></p>
-                  <p class="w-20 text-[#b5b5b5] text-xs">
-                    프로젝트 {{ m.prj_num }}회
+    <div class="pl-6">
+      <q-scroll-area
+        style="height: 180px"
+        :bar-style="barStyle"
+        :thumb-style="thumbStyle"
+      >
+        <div class="row no-wrap">
+          <q-card
+            class="maker-card q-mr-md shadow-1 rounded-xl"
+            v-for="m in mList"
+            :key="m.created_at"
+          >
+            <q-card-section>
+              <div class="row items-center">
+                <q-img
+                  class="w-14 h-14 rounded-full"
+                  :src="m.circle_file.convert_addr"
+                />
+                <div class="font-semibold ml-2 q-gutter-y-[5px] col">
+                  <p class="text-[#222222] leading-snug">{{ m.nickname }}</p>
+                  <p class="text-primary text-xs p ellipsis">
+                    {{
+                      m.prfl.job_objs?.flatMap((rol: any) => rol).join(' / ')
+                    }}
                   </p>
+                  <div class="row font-normal align-middle flex items-center">
+                    <p class="text-[#767676] text-xs">{{ m.expr_year }}년차</p>
+                    <p
+                      class="h-[8px] w-0 border-r-[1px] border-[#b5b5b5] mx-[5px]"
+                    ></p>
+                    <p class="w-20 text-[#b5b5b5] text-xs">
+                      프로젝트 {{ m.prj_num }}회
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="row items-center mt-[14px]">
-              <div
-                class="px-1.5 py-0.5 bg-primary rounded justify-center items-center"
-              >
-                <p class="text-white text-[10px] font-medium leading-[14px]">
-                  Skill
+              <div class="row items-center mt-[14px]">
+                <div
+                  class="px-1.5 py-0.5 bg-primary rounded justify-center items-center"
+                >
+                  <p class="text-white text-[10px] font-medium leading-[14px]">
+                    Skill
+                  </p>
+                </div>
+                <p class="text-[#222222] text-xs ellipsis col ml-1">
+                  {{
+                    m.prfl.skills?.flatMap((skill: any) => skill).join(' , ')
+                  }}
                 </p>
               </div>
-              <p class="text-[#222222] text-xs ellipsis col ml-1">
-                {{ m.prfl.skills?.flatMap((skill: any) => skill).join(' , ') }}
+              <p class="] text-grey-3 text-xs mt-[9px]">
+                {{ m.desc }}
               </p>
-            </div>
-            <p class="] text-grey-3 text-xs mt-[9px]">
-              {{ m.desc }}
-            </p>
-          </q-card-section>
-        </q-card>
-      </div>
-    </q-scroll-area>
+            </q-card-section>
+          </q-card>
+        </div>
+      </q-scroll-area>
+    </div>
     <!-- TODO 앱 심사 히든처리 -->
     <!-- <div class="text-center" >
       <c-btn

@@ -24,10 +24,10 @@ body {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
   .q-page {
-    // min-height: calc(
-    //   100vh - var(--statusbar-h) - var(--main-header-h)
-    // ) !important;
-    min-height: 100vh !important;
+    min-height: calc(
+      100% - var(--statusbar-h) - var(--main-header-h)
+    ) !important;
+    // min-height: 100% !important;
     min-width: 360px;
   }
 }
@@ -88,10 +88,15 @@ body {
     background: white;
     outline: none !important;
 
+    &::before {
+      border-bottom: 1px solid #f7f7f7 !important;
+    }
+
     input::placeholder {
       /* WebKit, Blink, Edge */
+      opacity: 1;
       color: #b6b6b6;
-      font-size: 14px;
+      font-size: 18px;
     }
 
     input[type='password'] {
@@ -128,9 +133,13 @@ body {
 
     textarea::placeholder {
       /* WebKit, Blink, Edge */
+      opacity: 1;
       color: #b6b6b6;
-      font-size: 14px;
-      padding: 0 10px;
+      font-size: 18px;
+    }
+
+    &::before {
+      border-bottom: 1px solid #f7f7f7 !important;
     }
   }
 }

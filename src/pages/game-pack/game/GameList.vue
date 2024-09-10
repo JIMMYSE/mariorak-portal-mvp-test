@@ -31,20 +31,20 @@ function onMoveList() {
         </div>
       </div>
     </section>
-    <section class="px-6 mt-10">
-      <h2 class="text-[20px] font-semibold">CCF 추천 게임</h2>
+    <section class="mt-10">
+      <h2 class="pl-6 text-[20px] font-semibold">CCF 추천 게임</h2>
       <div class="grid gap-1.5 mt-4">
         <recommend-game-list />
       </div>
     </section>
-    <section class="px-6 mt-10">
-      <h2 class="text-[20px] font-semibold">최근 본 게임</h2>
+    <section class="mt-10">
+      <h2 class="pl-6 text-[20px] font-semibold">최근 본 게임</h2>
       <div class="grid gap-1.5 mt-4">
         <normal-project-list />
       </div>
     </section>
     <section class="mt-[55px]" ref="movePoint">
-      <img src="/images/dummy/banner_dummy.png" alt="banner" class="w-full" />
+      <!-- <img src="/images/dummy/banner_dummy.png" alt="banner" class="w-full" /> -->
     </section>
     <section class="mt-[55px] w-full">
       <h2 class="px-6 text-[22px] font-semibold">게임 목록</h2>
@@ -52,7 +52,7 @@ function onMoveList() {
         <search-g-p-list />
       </div>
     </section>
-    <section class="mt-[55px] mb-[50px]">
+    <section class="mt-[55px] pb-[50px]">
       <h2 class="text-[22px] font-semibold px-6">FAQ</h2>
       <faq-area />
     </section>
