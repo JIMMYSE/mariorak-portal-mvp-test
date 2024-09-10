@@ -1,5 +1,9 @@
 <script lang="ts" setup>
 const props = defineProps({
+  type: {
+    type: String as PropType<'game' | 'project'>,
+    required: true,
+  },
   badge: {
     type: Array as PropType<string[]>,
     required: true,
@@ -24,6 +28,11 @@ const props = defineProps({
     default: 0,
   },
   imgSrc: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  date: {
     type: String,
     required: true,
     default: '',
@@ -72,38 +81,46 @@ const computedStatus = computed(() => {
     </div>
 
     <div class="text-caption q-mb-xs flex-grow pl-2">
-      <div
-        class="flex items-center q-col-gutter-x-xs"
-        ref="badgeContainer"
-        v-if="badgeList.length > 0"
-      >
-        <q-badge
-          color="grey"
-          text-color="black"
-          v-for="item in badgeList"
-          :label="item"
-          :key="item"
-        />
-        <c-icon name="icon_kebap" v-if="isEllipsis" />
-      </div>
-      <div v-else class="h-[25px]"></div>
-      <div
-        class="text-[#222222] text-sm font-semibold leading-tight ellipsis-2-lines"
-      >
-        {{ props.title }}
-      </div>
-      <div class="flex justify-between">
-        <div
-          :class="props?.status != '00' ? 'text-[#056bf1]' : ''"
-          class="font-medium"
-        >
-          {{ computedStatus }}
+      <div class="flex-col flex justify-between felx-col h-[78px]">
+        <div>
+          <div
+            class="flex items-center q-col-gutter-x-xs"
+            ref="badgeContainer"
+            v-if="badgeList.length > 0"
+          >
+            <q-badge
+              color="grey"
+              text-color="black"
+              v-for="item in badgeList"
+              :label="item"
+              :key="item"
+            />
+            <c-icon name="icon_kebap" v-if="isEllipsis" />
+          </div>
+          <div v-else class="h-[25px]"></div>
+          <div
+            class="text-[#222222] text-sm font-semibold leading-tight ellipsis-2-lines"
+          >
+            {{ props.title }}
+          </div>
         </div>
-        <div class="flex text-[#767676]">
-          <c-icon :name="'icon_heart'" color="#EA2E2E" size="16px" />
-          <p class="pl-2">
-            {{ props.like }}
-          </p>
+        <div class="row justify-between">
+          <div
+            v-if="props.type == 'project'"
+            :class="props?.status ?? null != '00' ? 'text-[#056bf1]' : ''"
+            class="font-medium"
+          >
+            {{ computedStatus }}
+          </div>
+          <div v-else class="flex text-[#767676]">
+            {{ formatDate(props.date) }}
+          </div>
+          <div class="flex text-[#767676]">
+            <c-icon :name="'icon_heart'" color="#EA2E2E" size="16px" />
+            <p class="pl-2">
+              {{ props.like }}
+            </p>
+          </div>
         </div>
       </div>
     </div>

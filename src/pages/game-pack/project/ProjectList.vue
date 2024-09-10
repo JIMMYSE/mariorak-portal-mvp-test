@@ -60,7 +60,7 @@ const recentProjectList = computed(() => {
     <section class="mt-[55px] w-full" id="list">
       <h2 class="px-6 text-[22px] font-semibold">프로젝트 목록</h2>
       <div class="mt-4">
-        <search-g-p-list />
+        <search-g-p-list :type="'project'" />
       </div>
     </section>
 

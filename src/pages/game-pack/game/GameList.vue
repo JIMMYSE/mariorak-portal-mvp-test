@@ -55,7 +55,7 @@ const recommendedGameList = computed(() => {
     <section class="mt-[55px] w-full">
       <h2 class="px-6 text-[22px] font-semibold">게임 목록</h2>
       <div class="mt-4">
-        <search-g-p-list />
+        <search-g-p-list :type="'game'" />
       </div>
     </section>
     <section class="mt-[55px] pb-[50px]">
