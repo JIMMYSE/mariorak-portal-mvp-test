@@ -6,6 +6,7 @@ const QUERY_KEY = {
   RECOMMENED: 'recommended',
   RECENT: 'recent',
   SEARCH: 'search',
+  DETAIL: 'detail',
 };
 
 export const useRecommendedGameList = () => {
@@ -31,5 +32,19 @@ export const useSearchGameList = ({
     searchRequest,
     queryKeyName: listQueryKeyName,
     setField,
+  });
+};
+
+export const useGameDetail = (id: MaybeRef) => {
+  return useQueryFetchItem<any>({
+    id: id,
+    queryKeyName: QUERY_KEY.DETAIL,
+    url: API_URL,
+  });
+};
+
+export const useSimilarGameList = (id: string) => {
+  return useQueryFetch<any>({
+    url: API_URL + `/similarity/${id}`,
   });
 };
