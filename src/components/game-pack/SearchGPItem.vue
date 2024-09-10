@@ -1,5 +1,15 @@
 <script lang="ts" setup>
+import RecommendGameList from './game/RecommendGameList.vue';
+
 const props = defineProps({
+  id: {
+    type: Number,
+    required: true,
+  },
+  type: {
+    type: String as PropType<'game' | 'project'>,
+    required: true,
+  },
   badge: {
     type: Array as PropType<string[]>,
     required: true,
@@ -24,6 +34,11 @@ const props = defineProps({
     default: 0,
   },
   imgSrc: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  date: {
     type: String,
     required: true,
     default: '',
@@ -63,47 +78,59 @@ const computedStatus = computed(() => {
   else if (props.status == '40') return '출시대기';
   else return `진행률 ${props.status}%`;
 });
+const goToDetail = (id: number) => {
+  if (props.type == 'game') goTo(`/game-pack/game/${id}`);
+  else goTo(`/game-pack/project/${id}`);
+};
 </script>
 
 <template>
-  <div class="flex no-wrap">
+  <div class="flex no-wrap" @click="goToDetail(id)">
     <div>
       <q-img :src="imgSrc" class="rounded-xl h-[78px] w-[139px]" />
     </div>
 
     <div class="text-caption q-mb-xs flex-grow pl-2">
-      <div
-        class="flex items-center q-col-gutter-x-xs"
-        ref="badgeContainer"
-        v-if="badgeList.length > 0"
-      >
-        <q-badge
-          color="grey"
-          text-color="black"
-          v-for="item in badgeList"
-          :label="item"
-          :key="item"
-        />
-        <c-icon name="icon_kebap" v-if="isEllipsis" />
-      </div>
-      <div v-else class="h-[25px]"></div>
-      <div
-        class="text-[#222222] text-sm font-semibold leading-tight ellipsis-2-lines"
-      >
-        {{ props.title }}
-      </div>
-      <div class="flex justify-between">
-        <div
-          :class="props?.status != '00' ? 'text-[#056bf1]' : ''"
-          class="font-medium"
-        >
-          {{ computedStatus }}
+      <div class="flex-col flex justify-between felx-col h-[78px]">
+        <div>
+          <div
+            class="flex items-center q-col-gutter-x-xs"
+            ref="badgeContainer"
+            v-if="badgeList.length > 0"
+          >
+            <q-badge
+              color="grey"
+              text-color="black"
+              v-for="item in badgeList"
+              :label="item"
+              :key="item"
+            />
+            <c-icon name="icon_kebap" v-if="isEllipsis" />
+          </div>
+          <div v-else class="h-[25px]"></div>
+          <div
+            class="text-[#222222] text-sm font-semibold leading-tight ellipsis-2-lines"
+          >
+            {{ props.title }}
+          </div>
         </div>
-        <div class="flex text-[#767676]">
-          <c-icon :name="'icon_heart'" color="#EA2E2E" size="16px" />
-          <p class="pl-2">
-            {{ props.like }}
-          </p>
+        <div class="row justify-between">
+          <div
+            v-if="props.type == 'project'"
+            :class="props?.status ?? null != '00' ? 'text-[#056bf1]' : ''"
+            class="font-medium"
+          >
+            {{ computedStatus }}
+          </div>
+          <div v-else class="flex text-[#767676]">
+            {{ formatDate(props.date) }}
+          </div>
+          <div class="flex text-[#767676]">
+            <c-icon :name="'icon_heart'" color="#EA2E2E" size="16px" />
+            <p class="pl-2">
+              {{ props.like }}
+            </p>
+          </div>
         </div>
       </div>
     </div>

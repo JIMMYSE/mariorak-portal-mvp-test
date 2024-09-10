@@ -1,8 +1,11 @@
 <script lang="ts" setup>
-// type Props = {
-//
-// };
-// const props = defineProps<Props>();
+import { RecommendedGameListType } from 'src/types/gamepack/game-model';
+
+type Props = {
+  toList?: string;
+  gList: RecommendedGameListType[] | undefined;
+};
+const props = defineProps<Props>();
 
 const barStyle = {
   // 스크롤바 안보이게
@@ -32,28 +35,24 @@ const gameInfo = {
         <div class="row no-wrap">
           <div
             class="game-card q-mr-md"
-            v-for="n in 5"
-            :key="n"
-            @click="goTo('/game-pack/game/1')"
+            v-for="g in gList"
+            :key="g.game_id"
+            @click="goTo(`/game-pack/game/${g.game_id}`)"
           >
-            <q-img src="/images/dummy/game_dummy.svg" width="100%" />
+            <c-img
+              :src="g.thmn_file.convert_addr"
+              class="rounded-xl h-[138px]"
+            />
             <div class="game-info q-mt-sm">
               <div class="text-caption q-mb-xs mt-[16px]">
                 <span
                   class="badge font-medium"
-                  v-for="badge in gameInfo.badge"
+                  v-for="badge in g.tag_list"
                   :key="badge"
                   >{{ badge }}</span
                 >
               </div>
-              <p
-                class="text-[#222222] text-[16px] font-semibold leading-snug mt-[8px]"
-              >
-                {{ gameInfo.title }}
-              </p>
-              <p class="text-[#696969] text-xs font-normal leading-4 mt-[6px]">
-                {{ gameInfo.description }}
-              </p>
+              <card-info :height="'84px'" :desc="g.desc" :title="g.title" />
             </div>
           </div>
         </div>
