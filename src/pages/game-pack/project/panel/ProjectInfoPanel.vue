@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import de from 'app/dist/spa/assets/JoinTerms.f83cbc3c';
 import {
   ProjectDetail,
   SimilarProjectListType,
@@ -32,8 +33,10 @@ const props = defineProps<Props>();
         <g-p-member-list :maker-list="detail?.mkr_list" />
       </div>
     </section>
-    <section class="mt-[40px]">
-      <h2 class="text-[20px] font-semibold">프로젝트 참가자 모집 소식</h2>
+    <section class="mt-[40px]" v-if="detail?.rcrt">
+      <h2 class="text-[20px] font-semibold">
+        프로젝트 참가자 모집 소식({{ detail?.rcrt.rcrt_mkr_num }}명)
+      </h2>
       <div class="mt-4">
         <g-p-project-member-recruit
           class="mt-[30px]"
@@ -44,7 +47,7 @@ const props = defineProps<Props>();
     <section class="mt-[40px]">
       <h2 class="text-[20px] font-semibold">유사한 프로젝트</h2>
       <div class="mt-4">
-        <normal-project-list :p-list="similarProjectList" />
+        <normal-project-list :p-list="similarProjectList" type="project" />
       </div>
     </section>
   </div>

@@ -100,8 +100,8 @@ const slideEvent = (info: any) => {
   slideInfo.value = info;
 };
 
-const isLocal = ref(process.env.IS_LOCAL !== undefined);
-const isDev = ref(process.env.IS_DEV !== undefined);
+const isLocal = process.env.IS_LOCAL;
+const isDev = process.env.IS_DEV;
 
 /** 상세 보기 약관 */
 const detailEnabled = ref(false);
