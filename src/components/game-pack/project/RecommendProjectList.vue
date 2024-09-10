@@ -34,7 +34,7 @@ const thumbStyle = {
             @click="goTo(`/game-pack/project/${p.prj_id}`)"
           >
             <!-- INFO :: 상태 값에 따라서 q-icon 의 name 을 동적으로 지정하기 -->
-            <div class="absolute z-10 w-[50px] text-sm top-2 left-2">
+            <div class="absolute z-10 w-[60px] text-sm top-2 left-2">
               <GPbadge :cd="p.prj_stt_cd" section-cd="PRJ_STT" />
             </div>
             <c-img
