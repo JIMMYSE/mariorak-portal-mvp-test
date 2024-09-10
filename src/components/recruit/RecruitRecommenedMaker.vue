@@ -16,7 +16,7 @@ const thumbStyle = {
 };
 
 const goToListPage = () => {
-  props.toList ? goToName(props.toList) : goToName('game-pack-main');
+  goToName('recruit-detail');
 };
 const recruitMakeRolList = (rolList: any) => {
   const rolNameList = rolList.map((rol: any) => {
@@ -87,12 +87,12 @@ const recruitMakeRolList = (rolList: any) => {
       </q-scroll-area>
     </div>
     <!-- TODO 앱 심사 히든처리 -->
-    <!-- <div class="text-center" >
+    <div class="text-center mt-[55px]">
       <c-btn
         @click="goToListPage()"
         class="enter_btn rounded-[30px] text-[#056bf1] font-semibold text-sm py-3 pl-10 pr-[30px]"
         outline
-        >모집 중인 프로젝트 더보기
+        >전체 목록 보기
         <c-icon
           name="icon_enter_arrow"
           size="14px"
@@ -100,7 +100,7 @@ const recruitMakeRolList = (rolList: any) => {
           :fill="false"
         />
       </c-btn>
-    </div>  -->
+    </div>
   </div>
 </template>
 <style scoped>

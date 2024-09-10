@@ -135,6 +135,15 @@ const routes: RouteRecordRaw[] = [
             component: () => import('src/pages/recruit/RecruitMainPage.vue'),
           },
           {
+            path: 'detail',
+            name: 'recruit-detail',
+            meta: {
+              title: '인력사무소 상세',
+              faqCategory: '인력사무소 상세',
+            },
+            component: () => import('src/pages/recruit/RecruitDetail.vue'),
+          },
+          {
             path: 'project/:id',
             name: 'recruit-project-detail',
             meta: {
