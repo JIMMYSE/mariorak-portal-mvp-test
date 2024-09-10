@@ -17,41 +17,11 @@ const thumbStyle = {
 // img dummy
 const imgList = [
   {
-    src: '/images/dummy/main_dummy.svg',
+    src: '/images/recruit/mainKV/recruit_KV_1.png',
 
     id: 1,
-    title: '지금 CCF\n2024에 투표하세요',
-    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
-  },
-  {
-    src: '/images/dummy/main_dummy1.svg',
-    id: 2,
-    title: '지금 CCF\n2024에 투표하세요',
-    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
-  },
-  {
-    src: '/images/dummy/main_dummy2.svg',
-    id: 3,
-    title: '지금 CCF\n2024에 투표하세요',
-    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
-  },
-  {
-    src: '/images/dummy/main_dummy3.svg',
-    id: 4,
-    title: '지금 CCF\n2024에 투표하세요',
-    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
-  },
-  {
-    src: '/images/dummy/main_dummy4.svg',
-    id: 5,
-    title: '지금 CCF\n2024에 투표하세요',
-    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
-  },
-  {
-    src: '/images/dummy/main_dummy5.svg',
-    id: 6,
-    title: '지금 CCF\n2024에 투표하세요',
-    desc: 'CCF 2024 출품작을 즐기고, 상품도 덤으로',
+    title: '보다 나은 게임 개발을\n위한 만남의 공간',
+    desc: '프로젝트 완성에 딱 맞는 개발 인력이 가득해요.',
   },
 ];
 

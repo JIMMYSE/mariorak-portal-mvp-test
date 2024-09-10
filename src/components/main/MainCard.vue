@@ -19,7 +19,7 @@ defineEmits(['enter']);
       >
         {{ title }}
       </p>
-      <p class="w-[250px] text-[#b5b5b5] text-sm font-normal leading-tight">
+      <p class="w-[360px] text-[#b5b5b5] text-sm font-normal leading-tight">
         {{ desc }}
       </p>
     </div>

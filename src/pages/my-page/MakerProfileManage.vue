@@ -138,7 +138,7 @@
     </section>
     <section class="px-6 mt-[60px]">
       <h2 class="text-[22px] font-semibold">참여했던 프로젝트 (5000회)</h2>
-      <normal-project-list />
+      <normal-project-list type="project" />
     </section>
     <section class="bottom-[85px] w-full text-center px-6 mt-[85px] mb-6">
       <c-btn
