@@ -86,7 +86,14 @@ const goToDetail = (id: number) => {
 
 <template>
   <div class="flex no-wrap" @click="goToDetail(id)">
-    <div>
+    <div class="relative">
+      <div
+        class="absolute z-10 w-[55px] top-1 left-1 text-xs"
+        v-if="type == 'project'"
+      >
+        <GPbadge :cd="status" section-cd="PRJ_STT" />
+      </div>
+
       <q-img :src="imgSrc" class="rounded-xl h-[78px] w-[139px]" />
     </div>
 
