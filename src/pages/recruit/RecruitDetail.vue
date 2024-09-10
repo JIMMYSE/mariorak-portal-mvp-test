@@ -1,9 +1,13 @@
 <script lang="ts" setup>
+import upperCase from 'lodash/upperCase';
+
 import RecruitDetailApplyPanel from './panel/RecruitDetailApplyPanel.vue';
 import RecruitDetailProjectPanel from './panel/RecruitDetailProjectPanel.vue';
 import RecruitDetailMakerPanel from './panel/RecruitDetailMakerPanel.vue';
 
-const tab = ref('INFO');
+const route = useRoute();
+
+const tab = ref(upperCase(route.query.active || 'project'));
 </script>
 <template>
   <q-page>

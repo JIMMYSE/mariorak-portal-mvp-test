@@ -139,7 +139,7 @@ const routes: RouteRecordRaw[] = [
             name: 'recruit-detail',
             meta: {
               title: '인력사무소 상세',
-              faqCategory: '인력사무소 상세',
+              faqCategory: '인력사무소',
             },
             component: () => import('src/pages/recruit/RecruitDetail.vue'),
           },

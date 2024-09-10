@@ -5,6 +5,8 @@ const route = useRoute();
 // 카테고리
 const { options: categoryOptions } = useCommonCode('FAQ_CATE');
 
+console.log('categoryOptions', categoryOptions);
+
 const faqCategoryCode = computed(() =>
   categoryOptions.value.find((item) => item.label == route.meta.faqCategory)
 );
