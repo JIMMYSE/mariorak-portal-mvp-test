@@ -106,7 +106,7 @@ const gameInfo = {
           </c-btn>
           <c-btn
             class="w-full rounded-[30px] text-[#056bf1] font-semibold text-sm py-4 pl-10 pr-[30px] mt-[8px]"
-            >메타버스 사무실 방문하기
+            >가상 오피스 방문하기
           </c-btn>
         </div>
       </div>
@@ -116,7 +116,7 @@ const gameInfo = {
       <c-tabs
         v-model="tab"
         :tabs="[
-          { label: '정보', name: 'INFO' },
+          // { label: '정보', name: 'INFO' },
           // { label: '게시판', name: 'BOARD' }, TODO 앱 심사 히든 처리
           // { label: '리뷰', name: 'REVIEW' },
         ]"
