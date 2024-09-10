@@ -2,7 +2,7 @@
 import { watchDebounced } from '@vueuse/core';
 
 type Props = {
-  pageType?: string;
+  pageType: string;
 };
 const props = defineProps<Props>();
 

@@ -1,27 +1,31 @@
 <script lang="ts" setup>
 const props = defineProps({
-  badge: {
+  skill: {
     type: Array as PropType<string[]>,
     required: true,
   },
-  title: {
+  name: {
     type: String,
     required: true,
     default: '',
+  },
+  job: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  years: {
+    type: String,
+    required: true,
+  },
+  projectNumber: {
+    type: Number,
+    required: true,
+    default: 0,
   },
   description: {
     type: String,
     required: true,
-    default: '',
-  },
-  status: {
-    type: String,
-    required: true,
-  },
-  like: {
-    type: Number,
-    required: true,
-    default: 0,
   },
   imgSrc: {
     type: String,
@@ -38,12 +42,12 @@ const badgeList = ref<string[]>([]);
 
 let i = 0;
 const addBadge = setInterval(() => {
-  if (!props.badge?.length) clearInterval(addBadge);
+  if (!props.skill?.length) clearInterval(addBadge);
 
   if (height.value < 25) {
-    if (props.badge[i]) badgeList.value.push(props.badge[i]);
+    if (props.skill[i]) badgeList.value.push(props.skill[i]);
   }
-  if (i == props.badge.length - 1) {
+  if (i == props.skill.length - 1) {
     clearInterval(addBadge);
   }
   i++;
@@ -57,56 +61,45 @@ watch(height, (newHeight) => {
     console.log('>>>pop', b);
   }
 });
-
-const computedStatus = computed(() => {
-  if (props.status == '10') return '진행전';
-  else if (props.status == '40') return '출시대기';
-  else return `진행률 ${props.status}%`;
-});
 </script>
 
 <template>
-  <div class="flex no-wrap">
-    <div>
-      <q-img :src="imgSrc" class="rounded-xl h-[78px] w-[139px]" />
-    </div>
-
-    <div class="text-caption q-mb-xs flex-grow pl-2">
-      <div
-        class="flex items-center q-col-gutter-x-xs"
-        ref="badgeContainer"
-        v-if="badgeList.length > 0"
-      >
-        <q-badge
-          color="grey"
-          text-color="black"
-          v-for="item in badgeList"
-          :label="item"
-          :key="item"
-        />
-        <c-icon name="icon_kebap" v-if="isEllipsis" />
-      </div>
-      <div v-else class="h-[25px]"></div>
-      <div
-        class="text-[#222222] text-sm font-semibold leading-tight ellipsis-2-lines"
-      >
-        {{ props.title }}
-      </div>
-      <div class="flex justify-between">
-        <div
-          :class="props?.status != '00' ? 'text-[#056bf1]' : ''"
-          class="font-medium"
-        >
-          {{ computedStatus }}
+  <div class="flex flex-col mt-[16px]">
+    <q-card class="w-full shadow-1 rounded-xl">
+      <q-card-section>
+        <div class="row items-center">
+          <q-img
+            class="w-14 h-14 rounded-full"
+            src="m.circle_file.convert_addr"
+          />
+          <div class="font-semibold ml-2 q-gutter-y-[5px] col">
+            <p class="text-[#222222] leading-snug">닉네임</p>
+            <p class="text-primary text-xs p ellipsis">직업</p>
+            <div class="row font-normal align-middle flex items-center">
+              <p class="text-[#767676] text-xs">1년차</p>
+              <p
+                class="h-[8px] w-0 border-r-[1px] border-[#b5b5b5] mx-[5px]"
+              ></p>
+              <p class="w-20 text-[#b5b5b5] text-xs">프로젝트 500회</p>
+            </div>
+          </div>
         </div>
-        <div class="flex text-[#767676]">
-          <c-icon :name="'icon_heart'" color="#EA2E2E" size="16px" />
-          <p class="pl-2">
-            {{ props.like }}
+        <div class="row items-center mt-[14px]">
+          <div
+            class="px-1.5 py-0.5 bg-primary rounded justify-center items-center"
+          >
+            <p class="text-white text-[10px] font-medium leading-[14px]">
+              Skill
+            </p>
+          </div>
+          <p class="text-[#222222] text-xs ellipsis col ml-1">
+            스킬 야호야호
+            <!-- {{ m.prfl.skills?.flatMap((skill: any) => skill).join(' , ') }} -->
           </p>
         </div>
-      </div>
-    </div>
+        <p class="] text-grey-3 text-xs mt-[9px]">이것은 설명</p>
+      </q-card-section>
+    </q-card>
   </div>
 </template>
 <style lang="scss" scoped>
