@@ -152,15 +152,6 @@ const routes: RouteRecordRaw[] = [
             component: () => import('pages/recruit/RecruitMakerProfile.vue'),
           },
           {
-            path: 'recruit-profile-register',
-            name: 'recruit-profile-register',
-            meta: {
-              title: '참여 개발자 등록',
-            },
-            component: () =>
-              import('pages/recruit/RecruitMakerProfileRegister.vue'),
-          },
-          {
             path: 'project/:id',
             name: 'recruit-project-detail',
             meta: {
