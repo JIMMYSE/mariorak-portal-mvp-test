@@ -73,6 +73,7 @@ const slideEvent = (info: any) => {
         v-for="img in imgList"
         :key="img.src"
         class="w-full h-full block"
+        :class="{ 'cursor-pointer': img.link }"
         @click="moveToLink"
       >
         <main-card :image-src="img.src" :title="img.title" :desc="img.desc" />
@@ -92,4 +93,8 @@ const slideEvent = (info: any) => {
   </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.cursor-pointer {
+  cursor: pointer;
+}
+</style>
