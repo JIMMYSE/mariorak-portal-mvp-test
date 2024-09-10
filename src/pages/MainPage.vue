@@ -205,7 +205,11 @@ const openDetailDialog = async (type: string) => {
     <section class="mt-10">
       <h2 class="pl-6 text-[22px] font-semibold">CCF 추천게임</h2>
       <div class="grid gap-1.5 mt-4">
-        <g-p-item-list to-list="game-list" :gp-list="recommendedGameList" />
+        <g-p-item-list
+          type="game"
+          to-list="game-list"
+          :gp-list="recommendedGameList"
+        />
       </div>
     </section>
 
@@ -214,6 +218,7 @@ const openDetailDialog = async (type: string) => {
       <h2 class="pl-6 text-[22px] font-semibold">CCF 추천 프로젝트</h2>
       <div class="grid gap-1.5 mt-4">
         <g-p-item-list
+          type="project"
           to-list="project-list"
           :gp-list="recommendedProjectList"
         />

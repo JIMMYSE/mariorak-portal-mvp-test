@@ -3,6 +3,7 @@ import { RecommendedGameListType } from 'src/types/gamepack/game-model';
 import { RecommendedProjectListType } from 'src/types/gamepack/project-model';
 
 type Props = {
+  type: 'game' | 'project';
   toList: string;
   gpList: RecommendedGameListType[] | RecommendedProjectListType[] | undefined;
 };
@@ -21,6 +22,15 @@ const thumbStyle = {
 const goToListPage = () => {
   props.toList ? goToName(props.toList) : goToName('game-pack-main');
 };
+
+const goToDetailPage = (gp: any) => {
+  const id = gp?.game_id ?? gp.prj_id;
+  if (props.type === 'game') {
+    goTo(`/game-pack/game/${id}`);
+  } else {
+    goTo(`/game-pack/project/${id}`);
+  }
+};
 </script>
 <template>
   <div>
@@ -35,6 +45,7 @@ const goToListPage = () => {
             class="game-card q-mr-md"
             v-for="gp in props.gpList"
             :key="gp.created_at"
+            @click="goToDetailPage(gp)"
           >
             <c-img
               :src="gp.thmn_file.convert_addr"
