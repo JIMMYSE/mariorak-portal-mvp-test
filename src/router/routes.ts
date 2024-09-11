@@ -12,6 +12,10 @@ const routes: RouteRecordRaw[] = [
         path: '/home',
         meta: {
           requiresAuth: true,
+          title: 'CCF ㅣ 팬과 함께 만들어가는 게임 개발 커뮤니티 ',
+          description:
+            '성공적인 게임 제작을 위해 팬과 크리에이터가 만나 아이디어를 내며 소통을 하는 글로벌 커뮤니티 공간 CCF_Content Created with Fans',
+          ogImage: '/images/meta-img.jpg',
         },
         component: MainLayout,
         children: [
@@ -26,6 +30,10 @@ const routes: RouteRecordRaw[] = [
         path: 'game-pack',
         meta: {
           requiresAuth: true,
+          title: '게임팩 ㅣ CCF가 함께하고 지원하는 게임 모음집',
+          description:
+            '성공적인 게임 제작을 위해 팬과 크리에이터가 만나 아이디어를 내며 소통을 하는 글로벌 커뮤니티 공간 CCF_Content Created with Fans',
+          ogImage: '/images/meta-img.jpg',
         },
         component: MainLayout,
         children: [
@@ -122,6 +130,10 @@ const routes: RouteRecordRaw[] = [
         path: 'recruit',
         meta: {
           requiresAuth: true,
+          title: '인력사무실 ㅣ 보다 나은 게임 개발을 위한 만남의 공간',
+          description:
+            '성공적인 게임 제작을 위해 팬과 크리에이터가 만나 아이디어를 내며 소통을 하는 글로벌 커뮤니티 공간 CCF_Content Created with Fans',
+          ogImage: '/images/meta-img.jpg',
         },
         component: MainLayout,
         children: [
