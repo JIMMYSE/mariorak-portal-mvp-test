@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
+import { wrap } from 'module';
 
 type Props = {
   imgList: {
@@ -61,24 +62,32 @@ const slideEvent = (info: any) => {
 
 <template>
   <div class="relative">
-    <Carousel
-      :items-to-show="1"
-      wrap-around
-      @slide-end="slideEvent"
-      @mousedown="startDrag"
-      @mouseup="endDrag"
-      @mouseleave="endDrag"
-    >
-      <slide
-        v-for="img in imgList"
-        :key="img.src"
-        class="w-full h-full block"
-        :class="{ 'cursor-pointer': img.link }"
-        @click="moveToLink"
+    <div v-if="imgList.length > 1">
+      <Carousel
+        :items-to-show="1"
+        @slide-end="slideEvent"
+        @mousedown="startDrag"
+        @mouseup="endDrag"
+        @mouseleave="endDrag"
       >
-        <main-card :image-src="img.src" :title="img.title" :desc="img.desc" />
-      </slide>
-    </Carousel>
+        <slide
+          v-for="img in imgList"
+          :key="img.src"
+          class="w-full h-full block"
+          :class="{ 'cursor-pointer': img.link }"
+          @click="moveToLink"
+        >
+          <main-card :image-src="img.src" :title="img.title" :desc="img.desc" />
+        </slide>
+      </Carousel>
+    </div>
+    <div v-else>
+      <main-card
+        :image-src="imgList[0].src"
+        :title="imgList[0].title"
+        :desc="imgList[0].desc"
+      />
+    </div>
     <div
       v-if="counter"
       class="absolute bottom-5 right-7 row text-[#b5b5b5] text-sm items-center"
