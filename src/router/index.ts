@@ -1,10 +1,5 @@
 import { route } from 'quasar/wrappers';
-import {
-  createMemoryHistory,
-  createRouter,
-  createWebHashHistory,
-  createWebHistory,
-} from 'vue-router';
+import { createMemoryHistory, createRouter, createWebHashHistory, createWebHistory } from 'vue-router';
 import routes from './routes';
 
 /*
@@ -63,8 +58,10 @@ export default route(function (/* { store, ssrContext } */) {
   Router.beforeEach((to, from: any) => {
     const { isLoggedIn } = useUserInfo();
     const { joinData } = storeToRefs(useJoinStore());
+    console.log('>>>> ', isLoggedIn.value);
     if (!isLoggedIn.value) {
       // 비로그인 상태에서 로그인이 필요한 페이지로 이동하려고 하면 로그인 페이지로 이동
+      console.log('>>>>', to);
       if (to.matched.some((record) => record.meta.requiresAuth)) {
         return { name: 'login', query: { next: to.fullPath } };
       }

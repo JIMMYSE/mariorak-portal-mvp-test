@@ -7,7 +7,8 @@ import { MaybeRef } from 'vue';
 
 const API_URL = '/v3/pr/recruit';
 const QUERY_KEY = {
-  SEARCH: 'recruit-search-project',
+  PRODUCT_SEARCH: 'recruit-search-project',
+  MAKER_SEARCH: 'recruit-search-maker',
   RECOMMENED_PROJECT: 'recruit-project-recommended',
   RECOMMENED_MAKER: 'recruit-maker-recommended',
 };
@@ -29,7 +30,7 @@ export const useRecruitRecommendedMakerList = () => {
 export const useRecruitSearchProjectList = ({
   searchRequest,
   queryOption,
-  listQueryKeyName = QUERY_KEY.SEARCH,
+  listQueryKeyName = QUERY_KEY.PRODUCT_SEARCH,
   setField,
 }: {
   searchRequest: MaybeRef<SearchRequest>;
@@ -39,6 +40,25 @@ export const useRecruitSearchProjectList = ({
 }) => {
   return useQueryFetchInfiniteList<any, SearchRequest>({
     url: API_URL + '/project',
+    searchRequest,
+    queryKeyName: listQueryKeyName,
+    setField,
+  });
+};
+
+export const useRecruitSearchMakerList = ({
+  searchRequest,
+  queryOption,
+  listQueryKeyName = QUERY_KEY.MAKER_SEARCH,
+  setField,
+}: {
+  searchRequest: MaybeRef<SearchRequest>;
+  queryOption?: QueryOption;
+  listQueryKeyName?: string;
+  setField: any;
+}) => {
+  return useQueryFetchInfiniteList<any, SearchRequest>({
+    url: API_URL + '/maker',
     searchRequest,
     queryKeyName: listQueryKeyName,
     setField,

@@ -1,8 +1,5 @@
 <script lang="ts" setup>
-import {
-  ProjectDetail,
-  SimilarProjectListType,
-} from 'src/types/gamepack/project-model';
+import { ProjectDetail, SimilarProjectListType } from 'src/types/gamepack/project-model';
 
 type Props = {
   detail?: ProjectDetail;
@@ -30,7 +27,7 @@ const props = defineProps<Props>();
         <g-p-member-list :maker-list="detail?.mkr_list" />
       </div>
     </section>
-    <section class="mt-[40px]">
+    <section class="my-[40px]">
       <h2 class="text-[20px] font-semibold">유사한 게임</h2>
       <div class="mt-4">
         <normal-project-list :p-list="similarProjectList" type="game" />
