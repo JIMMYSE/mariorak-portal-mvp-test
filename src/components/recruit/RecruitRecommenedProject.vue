@@ -35,7 +35,7 @@ const recruitMakeRolList = (rolList: any) => {
             class="project-card q-mr-md cursor-pointer"
             v-for="p in pList"
             :key="p.created_at"
-            @click="goTo(`/recruit/project/${p.prj_id}`)"
+            @click="goTo(`/recruit/project/${p.prj_rcrt_id}`)"
           >
             <div class="relative">
               <div class="absolute z-10 top-2 left-3">
@@ -68,7 +68,6 @@ const recruitMakeRolList = (rolList: any) => {
         </div>
       </q-scroll-area>
     </div>
-    <!-- TODO 앱 심사 히든처리 -->
     <div class="text-center mt-[55px]">
       <c-btn
         @click="goToListPage()"
