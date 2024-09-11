@@ -27,7 +27,7 @@ watch(
 
 <template>
   <div v-if="visible" class="backdrop" @click="closeSheet">
-    <div class="bottom-sheet" @click.stop>
+    <div class="bottom-sheet max-w-[512px]" @click.stop>
       <div class="handle"></div>
       <slot />
     </div>
@@ -44,7 +44,7 @@ watch(
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  z-index: 999;
+  z-index: 9999;
 
   .bottom-sheet {
     width: 100vh;

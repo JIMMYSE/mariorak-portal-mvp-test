@@ -22,11 +22,9 @@ body {
 .main-layout .q-page-container {
   // padding-top: calc(var(--statusbar-h) + var(--main-header-h)) !important;
   padding-top: 0 !important;
-  padding-bottom: 0 !important;
+  padding-bottom: 5px !important;
   .q-page {
-    min-height: calc(
-      100% - var(--statusbar-h) - var(--main-header-h)
-    ) !important;
+    min-height: calc(100% - var(--statusbar-h) - var(--main-header-h)) !important;
     // min-height: 100% !important;
     min-width: 360px;
   }
@@ -104,8 +102,7 @@ body {
     }
 
     input[type='password'] {
-      font-family: '-apple-system', 'Helvetica Neue', Helvetica, Arial,
-        sans-serif !important;
+      font-family: '-apple-system', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
     }
   }
 

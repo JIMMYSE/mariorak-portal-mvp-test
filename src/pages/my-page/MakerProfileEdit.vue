@@ -1,21 +1,31 @@
 <script lang="ts" setup>
 import { MakerCreateOrUpdateReq } from 'ccf-api-dto';
+import { MakerCreateOrUpdateReqType } from 'src/types/gamepack/maker-model';
 
 const barStyle = {
   // 스크롤바 안보이게
   opacity: 1,
 };
-
 const thumbStyle = {
   // 스크롤바 색상
   backgroundColor: 'transparent',
 };
-
 // 직무 선택
+const { options: jobOptions } = useCommonCode('MKR_ROL');
 const showJobBottomSheet = ref(false);
 const openJobBottomSheet = () => {
   showJobBottomSheet.value = !showJobBottomSheet.value;
 };
+const selectedJob = ref<string>('');
+const onClickJob = () => {
+  setValues({
+    mkr_rol_cd: selectedJob.value,
+  });
+  openJobBottomSheet();
+};
+const selectedJobLabel = computed(() => {
+  return jobOptions.value.find((job) => job.value === form.mkr_rol_cd)?.label ?? '직무를 선택해주세요.';
+});
 
 // 연도선택
 const showHistoryBottomSheet = ref(false);
@@ -23,36 +33,73 @@ const openHistoryBottomSheet = () => {
   showHistoryBottomSheet.value = !showHistoryBottomSheet.value;
 };
 
+const selectedYear = ref<number>(0);
+
+const onClickYear = () => {
+  setValues({
+    expr_year: selectedYear.value,
+  });
+  openHistoryBottomSheet();
+};
+
 // 관심분야
 const showInterestBottomSheet = ref(false);
 const openInterestBottomSheet = () => {
   showInterestBottomSheet.value = !showInterestBottomSheet.value;
 };
+/** 조회 */
+const nickname = ref('');
+const { data: maker } = useMyMakerDetail();
+const jobObjs = ref('');
+const skills = ref('');
 
-const years = ref<number[]>([]);
-const selectedYear = ref<number>(30);
-for (let i = 1; i <= 35; i++) {
-  years.value.push(i);
-}
+watch(maker, (value) => {
+  if (value) {
+    const data = value.data;
+    setValues({
+      mem_id: data?.mem_id,
+      desc: data?.desc,
+      mkr_rol_cd: data?.mkr_rol_cd,
+      expr_year: data?.expr_year,
+      prfl: data?.prfl,
+      prtf: data?.prtf,
+      updatedAt: data?.updatedAt,
+    });
+    nickname.value = data?.nickname ?? '';
+    selectedYear.value = data?.expr_year ?? 1;
+    jobObjs.value = data?.prfl?.job_objs?.toString() ?? '';
+    skills.value = data?.prfl?.skills?.toString() ?? '';
+    selectedJob.value = data?.mkr_rol_cd ?? '';
+  }
+});
 
-const onYearClick = (year: number) => {
-  selectedYear.value = year;
-};
-
-const { values: form, handleSubmit } = useForm<MakerCreateOrUpdateReqType>({
+const {
+  values: form,
+  handleSubmit,
+  setValues,
+} = useForm<MakerCreateOrUpdateReqType>({
   validationSchema: toTypedSchema(MakerCreateOrUpdateReq),
 });
 
 /** 등록 */
-const { dialogRef, onDialogHide, onDialogOK } = useDialogPluginComponent();
-const { mutateAsync, isSuccess } = useBookmarkRegister();
+const { mutateAsync, isSuccess } = useMakerCreateOrUpdate();
 const onSubmit = handleSubmit(async () => {
+  setValues({
+    prfl: {
+      onln_prfl: form.prfl.onln_prfl,
+      skills: skills.value.split(','),
+      job_objs: jobObjs.value.split(','),
+    },
+    expr_year: selectedYear.value,
+  });
   mutateAsync({
     ...form,
   });
 
   watch(isSuccess, (value) => {
-    if (value) onDialogOK();
+    if (value) {
+      goBack();
+    }
   });
 });
 </script>
@@ -61,11 +108,9 @@ const onSubmit = handleSubmit(async () => {
     <section class="px-6 pt-[30px]">
       <h2 class="text-[#222222] text-xl font-semibold">개발자 프로필</h2>
       <div class="mt-[16px]">
-        <c-field
-          label="닉네임"
-          class="text-[#767676] text-xs font-medium leading-none"
-        >
+        <c-field label="닉네임" class="text-[#767676] text-xs font-medium leading-none">
           <c-input
+            disable
             class="w-full pb-[14px]"
             placeholder="닉네임을 입력하세요."
             :maxlength="20"
@@ -73,51 +118,32 @@ const onSubmit = handleSubmit(async () => {
             :outlined="false"
             :rounded="false"
             border-radius="0px"
+            v-model="nickname"
           />
         </c-field>
 
-        <c-field
-          label="직무"
-          required
-          class="text-[#767676] text-xs font-medium leading-none"
-        >
+        <c-field label="직무" required class="text-[#767676] text-xs font-medium leading-none">
           <div
             class="mt-[16px] pb-[14px] border-b border-[#f7f7f7] text-[#b6b6b6] text-lg font-normal leading-[25.20px] flex justify-between items-center"
             @click="openJobBottomSheet"
           >
-            <p>직무를 선택해 주세요.</p>
-            <c-icon
-              name="icon_enter_arrow"
-              size="20px"
-              :color="'#767676'"
-              :fill="false"
-            />
+            <p>{{ selectedJobLabel }}</p>
+            <c-icon name="icon_enter_arrow" size="20px" :color="'#767676'" :fill="false" />
           </div>
         </c-field>
-        <c-field
-          label="연차"
-          required
-          class="text-[#767676] text-xs font-medium leading-none"
-        >
+        <c-field label="연차" required class="text-[#767676] text-xs font-medium leading-none">
           <div
             class="mt-[16px] pb-[14px] border-b border-[#f7f7f7] text-[#b6b6b6] text-lg font-normal leading-[25.20px] flex justify-between items-center"
             @click="openHistoryBottomSheet"
           >
-            <p>연차를 선택해 주세요.</p>
-            <c-icon
-              name="icon_enter_arrow"
-              size="20px"
-              :color="'#767676'"
-              :fill="false"
-            />
+            <p>{{ form.expr_year > 0 ? `${form.expr_year}년` : '연차를 선택해 주세요.' }}</p>
+            <c-icon name="icon_enter_arrow" size="20px" :color="'#767676'" :fill="false" />
           </div>
         </c-field>
-        <c-field
-          label="포트폴리오 url (선택)"
-          class="text-[#767676] text-xs font-medium leading-none"
-        >
+        <c-field label="포트폴리오 url (선택)" class="text-[#767676] text-xs font-medium leading-none">
           <c-input
             class="w-full pb-[14px]"
+            name="prtf.prtf_url"
             placeholder="제목을 입력하세요."
             :maxlength="20"
             autofocus
@@ -126,14 +152,11 @@ const onSubmit = handleSubmit(async () => {
             border-radius="0px"
           />
         </c-field>
-        <c-field
-          label="자기소개"
-          required
-          class="text-[#767676] text-xs font-medium leading-none"
-        >
+        <c-field label="자기소개" required class="text-[#767676] text-xs font-medium leading-none">
           <c-input
             class="w-full border-0"
             type="textarea"
+            name="desc"
             maxlength="1000"
             input-class="h-[163px]"
             placeholder="본인을 소개해 주세요."
@@ -151,11 +174,7 @@ const onSubmit = handleSubmit(async () => {
     <section class="px-6 mt-[40px]">
       <h2 class="text-[#222222] text-xl font-semibold">인적 사항</h2>
       <div class="mt-[16px]">
-        <c-field
-          required
-          label="한줄 프로필"
-          class="text-[#767676] text-xs font-medium leading-none"
-        >
+        <c-field required label="한줄 프로필" class="text-[#767676] text-xs font-medium leading-none">
           <c-input
             class="w-full pb-[14px]"
             placeholder="나를 한줄로 표현해 주세요."
@@ -164,34 +183,30 @@ const onSubmit = handleSubmit(async () => {
             :outlined="false"
             :rounded="false"
             border-radius="0px"
+            name="prfl.onln_prfl"
             inline-counter
           />
         </c-field>
 
-        <c-field
-          label="업무 스킬"
-          required
-          class="text-[#767676] text-xs font-medium leading-none"
-        >
+        <c-field label="업무 스킬" required class="text-[#767676] text-xs font-medium leading-none">
           <c-input
             class="w-full border-0"
             type="textarea"
             maxlength="1000"
             input-class="h-[163px]"
             placeholder="업무 스킬 추가"
+            v-model="skills"
             :outlined="false"
             :rounded="false"
             border-radius="0px"
           ></c-input>
         </c-field>
-        <c-field
-          label="희망 직무 (선택)"
-          class="text-[#767676] text-xs font-medium leading-none"
-        >
+        <c-field label="희망 직무 (선택)" class="text-[#767676] text-xs font-medium leading-none">
           <c-input
             class="w-full border-0"
             type="textarea"
             maxlength="1000"
+            v-model="jobObjs"
             input-class="h-[163px]"
             placeholder="희망 직무 추가"
             :outlined="false"
@@ -199,32 +214,21 @@ const onSubmit = handleSubmit(async () => {
             border-radius="0px"
           ></c-input>
         </c-field>
-        <c-field
-          label="관심 분야"
-          required
-          class="text-[#767676] text-xs font-medium leading-none"
-        >
+        <!-- TODO 오픈 범위 제외 -->
+        <!-- <c-field label="관심 분야" required class="text-[#767676] text-xs font-medium leading-none">
           <div
             class="mt-[16px] pb-[14px] border-b border-[#f7f7f7] text-[#b6b6b6] text-lg font-normal leading-[25.20px] flex justify-between items-center"
-            @click="openHistoryBottomSheet"
+            @click="openInterestBottomSheet"
           >
             <p>관심 분야를 추가해 보세요.</p>
-            <c-icon
-              name="icon_enter_arrow"
-              size="20px"
-              :color="'#767676'"
-              :fill="false"
-            />
+            <c-icon name="icon_enter_arrow" size="20px" :color="'#767676'" :fill="false" />
           </div>
-        </c-field>
+        </c-field> -->
       </div>
     </section>
 
     <section class="bottom-[85px] w-full text-center mt-[85px] px-6 mb-[15px]">
-      <c-btn
-        @click="onSubmit"
-        class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
-        color="primary"
+      <c-btn @click="onSubmit" class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0" color="primary"
         >등록하기
       </c-btn>
     </section>
@@ -232,18 +236,18 @@ const onSubmit = handleSubmit(async () => {
     <c-bottom-sheet v-model="showJobBottomSheet">
       <div class="flex flex-col justify-between">
         <section>
-          <p class="text-[#767676] text-xs font-medium leading-none">
-            직무 선택
-          </p>
-          <div class="mt-4">
+          <p class="text-[#767676] text-xs font-medium leading-none">직무 선택</p>
+          <div class="mt-4 flex q-gutter-sm">
             <q-item
+              v-for="job in jobOptions"
+              :key="job.value"
               v-ripple
               clickable
-              class="rounded-[5px] border border-[#dbdbdb] bg-[#fff] items-center px-4 py-0 w-fit h-[40px]"
-              ><span
-                class="text-center text-[#767676] text-sm font-medium leading-tight"
-                >직무 종류</span
-              ></q-item
+              @click="selectedJob = job.value"
+              class="rounded-[5px] border border-[#dbdbdb] bg-[#fff] items-center px-4 py-0 w-fit h-[40px] text-[#767676]"
+              :class="job.value == selectedJob ? 'bg-primary text-grey-1' : ''"
+            >
+              <span class="text-center text-sm font-medium leading-tight">{{ job.label }}</span></q-item
             >
           </div>
         </section>
@@ -251,6 +255,7 @@ const onSubmit = handleSubmit(async () => {
           <c-btn
             class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
             color="primary"
+            @click="onClickJob"
             >선택 완료
           </c-btn>
         </section>
@@ -260,22 +265,15 @@ const onSubmit = handleSubmit(async () => {
     <c-bottom-sheet v-model="showHistoryBottomSheet">
       <div class="flex flex-col justify-between">
         <section>
-          <p class="text-[#767676] text-xs font-medium leading-none">
-            연차 선택
-          </p>
+          <p class="text-[#767676] text-xs font-medium leading-none">연차 선택</p>
           <div class="mt-4">
-            <q-scroll-area
-              class="max-h-[300px]"
-              style="height: 150px"
-              :bar-style="barStyle"
-              :thumb-style="thumbStyle"
-            >
+            <q-scroll-area class="max-h-[300px]" style="height: 150px" :bar-style="barStyle" :thumb-style="thumbStyle">
               <div class="flex flex-col items-center">
                 <div
-                  v-for="year in years"
+                  v-for="year in 30"
                   :key="year"
                   :class="['year-item', { selected: year === selectedYear }]"
-                  @click="onYearClick(year)"
+                  @click="selectedYear = year"
                 >
                   {{ year }}년차
                 </div>
@@ -287,39 +285,34 @@ const onSubmit = handleSubmit(async () => {
           <c-btn
             class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
             color="primary"
+            @click="onClickYear"
             >선택 완료
           </c-btn>
         </section>
       </div>
     </c-bottom-sheet>
 
-    <c-bottom-sheet v-model="showInterestBottomSheet">
+    <!-- TODO 오픈 범위 제외 -->
+    <!-- <c-bottom-sheet v-model="showInterestBottomSheet">
       <div class="flex flex-col justify-between">
         <section>
-          <p class="text-[#767676] text-xs font-medium leading-none">
-            관심 분야
-          </p>
+          <p class="text-[#767676] text-xs font-medium leading-none">관심 분야</p>
           <div class="mt-4">
             <q-item
               v-ripple
               clickable
               class="rounded-[5px] border border-[#dbdbdb] bg-[#fff] items-center px-4 py-0 w-fit h-[40px]"
-              ><span
-                class="text-center text-[#767676] text-sm font-medium leading-tight"
-                >직무 종류</span
-              ></q-item
+              ><span class="text-center text-[#767676] text-sm font-medium leading-tight">직무 종류</span></q-item
             >
           </div>
         </section>
         <section class="bottom-[85px] w-full text-center mt-[85px]">
-          <c-btn
-            class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
-            color="primary"
+          <c-btn class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0" color="primary"
             >선택 완료
           </c-btn>
         </section>
       </div>
-    </c-bottom-sheet>
+    </c-bottom-sheet> -->
   </q-page>
 </template>
 
