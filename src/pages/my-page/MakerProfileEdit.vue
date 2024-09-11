@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { MakerCreateOrUpdateReq } from 'ccf-api-dto';
+import { MakerCreateOrUpdateReqType } from 'src/types/gamepack/maker-model';
 
 const barStyle = {
   // 스크롤바 안보이게
@@ -39,13 +40,35 @@ const onYearClick = (year: number) => {
   selectedYear.value = year;
 };
 
-const { values: form, handleSubmit } = useForm<MakerCreateOrUpdateReqType>({
+/** 조회 */
+const nickname = ref('');
+const { data: maker } = useMyMakerDetail();
+watch(maker, (value) => {
+  if (value) {
+    const data = value.data;
+    setValues({
+      desc: data?.desc,
+      mkr_rol_cd: data?.mkr_rol_cd,
+      expr_year: data?.expr_year,
+      prfl: data?.prfl,
+      prtf: data?.prtf,
+      updatedAt: data?.updatedAt,
+    });
+    nickname.value = data?.nickname ?? '';
+  }
+});
+
+const {
+  values: form,
+  handleSubmit,
+  setValues,
+} = useForm<MakerCreateOrUpdateReqType>({
   validationSchema: toTypedSchema(MakerCreateOrUpdateReq),
 });
 
 /** 등록 */
 const { dialogRef, onDialogHide, onDialogOK } = useDialogPluginComponent();
-const { mutateAsync, isSuccess } = useBookmarkRegister();
+const { mutateAsync, isSuccess } = useMakerCreateOrUpdate();
 const onSubmit = handleSubmit(async () => {
   mutateAsync({
     ...form,
@@ -66,6 +89,7 @@ const onSubmit = handleSubmit(async () => {
           class="text-[#767676] text-xs font-medium leading-none"
         >
           <c-input
+            disable
             class="w-full pb-[14px]"
             placeholder="닉네임을 입력하세요."
             :maxlength="20"
@@ -73,6 +97,7 @@ const onSubmit = handleSubmit(async () => {
             :outlined="false"
             :rounded="false"
             border-radius="0px"
+            v-model="nickname"
           />
         </c-field>
 

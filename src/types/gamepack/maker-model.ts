@@ -62,3 +62,9 @@ export const MakerSchema = object({
 
   updatedAt: date().nullable().label('수정일시'),
 });
+
+export type MakerCreateOrUpdateReqType = InferType<
+  typeof MakerCreateOrUpdateReq
+>;
+
+export type MakerOneResType = InferType<typeof MakerOneRes>;
