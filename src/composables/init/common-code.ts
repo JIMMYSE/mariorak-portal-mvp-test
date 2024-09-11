@@ -4,7 +4,7 @@ import { MaybeRefOrGetter } from 'vue';
 
 export type CodeListType = InferType<typeof CodeList>;
 
-const url = '/v1/codes';
+const url = '/v1/codessadf';
 const CODE_QUERY_KEY = {
   LIST: 'codeList',
 };

@@ -31,7 +31,7 @@ const isInitiated = computed(() => {
 
 const footerVisible = computed(() => {
   return (
-    !['join', 'join-completed', 'join-terms'].includes(
+    !['join', 'join-completed', 'join-terms', 'error'].includes(
       route.name?.toString() ?? ''
     ) && isLoggedIn.value
   );
