@@ -43,7 +43,8 @@
         </div>
         <div class="mt-[30px]">
           <div
-            class="rounded-[20px] bg-[#f7f7f7] h-20 flex items-center pl-[30px] pr-[20px] justify-between"
+            @click="notAvailableAlert()"
+            class="rounded-[20px] bg-[#f7f7f7] h-20 flex items-center pl-[30px] pr-[20px] justify-between cursor-pointer"
           >
             <div>
               <p class="text-[#222222] text-base font-medium leading-snug">
