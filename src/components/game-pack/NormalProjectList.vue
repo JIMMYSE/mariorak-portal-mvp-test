@@ -1,8 +1,5 @@
 <script lang="ts" setup>
-import {
-  RecentProjectListType,
-  SimilarProjectListType,
-} from 'src/types/gamepack/project-model';
+import { RecentProjectListType, SimilarProjectListType } from 'src/types/gamepack/project-model';
 
 type Props = {
   pList: RecentProjectListType[] | SimilarProjectListType | undefined;
@@ -30,29 +27,14 @@ const goToDetailPage = (gp: any) => {
 </script>
 <template>
   <div>
-    <div class="pl-6" v-if="pList && pList?.length > 0">
-      <q-scroll-area
-        style="height: 170px"
-        :bar-style="barStyle"
-        :thumb-style="thumbStyle"
-      >
+    <div v-if="pList && pList?.length > 0">
+      <q-scroll-area style="height: 170px" :bar-style="barStyle" :thumb-style="thumbStyle">
         <div class="row no-wrap">
-          <div
-            class="game-card q-mr-md"
-            v-for="p in pList"
-            :key="p.prj_id"
-            @click="goToDetailPage(p)"
-          >
-            <c-img
-              :src="p.thmn_file.convert_addr"
-              width="100%"
-              class="rounded-xl game-image"
-            />
+          <div class="game-card q-mr-md" v-for="p in pList" :key="p.prj_id" @click="goToDetailPage(p)">
+            <c-img :src="p.thmn_file.convert_addr" width="100%" class="rounded-xl game-image" />
 
             <div class="game-info q-mt-sm">
-              <p
-                class="text-[#222222] text-[16px] font-semibold leading-snug mt-[8px]"
-              >
+              <p class="text-[#222222] text-[16px] font-semibold leading-snug mt-[8px]">
                 {{ p.title }}
               </p>
               <p class="text-[#696969] text-xs font-normal leading-none">
@@ -63,10 +45,7 @@ const goToDetailPage = (gp: any) => {
         </div>
       </q-scroll-area>
     </div>
-    <div
-      class="text-center text-[#767676] text-base font-normal mt-[10px]"
-      v-else
-    >
+    <div class="text-center text-[#767676] text-base font-normal mt-[10px]" v-else>
       아직 확인한 프로젝트가 없어요.
       <br />
       추천 프로젝트를 확인해 볼까요?

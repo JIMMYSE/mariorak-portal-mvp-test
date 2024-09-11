@@ -2,17 +2,13 @@
 <template>
   <div>
     <section class="mt-[30px] px-6">
-      <p class="text-[#222222] text-xl font-semibold leading-7">
-        프로젝트 찾기
-      </p>
-      <p class="mt-[2px] text-[#767676] text-sm font-normal leading-tight">
-        참가자를 모집중인 프로젝트 목록입니다.
-      </p>
+      <p class="text-[#222222] text-xl font-semibold leading-7">프로젝트 찾기</p>
+      <p class="mt-[2px] text-[#767676] text-sm font-normal leading-tight">참가자를 모집중인 프로젝트 목록입니다.</p>
     </section>
     <section class="mt-[40px]">
       <search-rcrt-list page-type="project" />
     </section>
-    <section class="mt-[55px]">
+    <section class="mt-[55px] mb-[30px]">
       <h2 class="text-[22px] font-semibold px-6">FAQ</h2>
       <faq-area />
     </section>
