@@ -9,6 +9,10 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     children: [
       {
+        path: '',
+        redirect: { name: 'home-main' },
+      },
+      {
         path: '/home',
         meta: {
           requiresAuth: true,
