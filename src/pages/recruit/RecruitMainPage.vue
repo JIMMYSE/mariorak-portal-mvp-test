@@ -4,21 +4,6 @@
 import FaqArea from 'src/components/game-pack/FaqArea.vue';
 // import GPItemList from 'src/components/game-pack/GPItemList.vue';
 
-const introList = [
-  {
-    title: '검색, 추천',
-    desc: '조건에 알맞은 프로젝트 인력을 검색하거나 CCF가 추천하는 적합한 프로젝트/ 인력의 상세 정보를 확인해요.',
-  },
-  {
-    title: '신청, 요청',
-    desc: '알맞은 프로젝트/ 인력을 찾았다면, 신청/ 요청하기를 통하여 당사자에게 협업에 대한 자세한 연락을 해보세요.',
-  },
-  {
-    title: '결과, 참여',
-    desc: '전달한 정보를 바탕으로 협업에 대한 응답이 올거에요! CCF는 서로에게 도움이 될 수 있도록 완료까지 항상 함께해요.',
-  },
-];
-
 //fecth
 const { data: recommendedMakerData } = useRecruitRecommendedMakerList();
 const recommendedMakerList = computed(() => {
