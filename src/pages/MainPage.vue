@@ -118,11 +118,6 @@ const detailEnabled = ref(false);
 const detail = ref<{ title: string; content: string } | null>(null);
 const { request } = useSearchFilter({
   requestDefault: {
-    filters: {
-      is_active: {
-        eq: false, //TODO 회원가입에서 사용되는 약관과, 실제 메인페이지에서 사용되는 약관이 달라 임시로 처리해둠
-      },
-    },
     from: 0,
     size: 10,
     sort: [
@@ -281,7 +276,7 @@ const openDetailDialog = (type: string) => {
           <div class="border-l-2 border-[#f0f0f0] mx-3"></div>
           <div
             class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none cursor-pointer"
-            @click="openDetailDialog('OPERATION_POLICY')"
+            @click="openDetailDialog('SERVICE_AGREEMENT')"
           >
             서비스 이용약관
           </div>
