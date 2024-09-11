@@ -140,6 +140,12 @@ watchDebounced(
       :date="info.created_at"
       :id="info?.game_id ?? info.prj_id"
     />
+    <div
+      v-if="!searchProjectList.pages.flatMap((item: any) => item.data).length"
+      class="h-80 flex justify-center items-center"
+    >
+      <not-find-item :item-name="type == 'project' ? '프로젝트' : '게임'" />
+    </div>
   </div>
   <div class="flex justify-center" v-if="hasNextPage">
     <c-btn
