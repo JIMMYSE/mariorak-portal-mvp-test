@@ -60,7 +60,7 @@ export default route(function (/* { store, ssrContext } */) {
     history: createHistory(process.env.VUE_ROUTER_BASE),
   });
 
-  Router.beforeEach((to, from: any) => {
+  Router.beforeEach((to: any, from: any, next) => {
     const { isLoggedIn } = useUserInfo();
     const { joinData } = storeToRefs(useJoinStore());
     if (!isLoggedIn.value) {
@@ -74,6 +74,37 @@ export default route(function (/* { store, ssrContext } */) {
       console.log('>>>to.nameHasJoin');
       if (!joinData.value) return { name: from.name };
     }
+
+    // 메타태그 설정
+    if (to.meta.title) {
+      document.title = to.meta.title;
+    }
+
+    const descriptionTag = document.querySelector('meta[name="description"]');
+    if (to.meta.description) {
+      if (descriptionTag) {
+        descriptionTag.setAttribute('content', to.meta.description);
+      } else {
+        const meta = document.createElement('meta');
+        meta.name = 'description';
+        meta.content = to.meta.description;
+        document.head.appendChild(meta);
+      }
+    }
+
+    const ogImageTag = document.querySelector('meta[property="og:image"]');
+    if (to.meta.ogImage) {
+      if (ogImageTag) {
+        ogImageTag.setAttribute('content', to.meta.ogImage);
+      } else {
+        const meta = document.createElement('meta');
+        meta.setAttribute('property', 'og:image');
+        meta.content = to.meta.ogImage;
+        document.head.appendChild(meta);
+      }
+    }
+
+    next();
   });
   // ...
   return Router;
