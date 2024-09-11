@@ -46,7 +46,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '게임 목록',
               bgColor: 'white',
-              faqCategory: '게임팩>게임',
+              faqCategory: '게임팩', // TODO 오픈떄 수정
             },
             component: () => import('pages/game-pack/game/GameList.vue'),
           },
@@ -84,7 +84,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '프로젝트 목록',
               bgColor: 'white',
-              faqCategory: '게임팩>프로젝트',
+              faqCategory: '게임팩', // TODO 오픈떄 수정
             },
             component: () => import('pages/game-pack/project/ProjectList.vue'),
           },
@@ -133,6 +133,23 @@ const routes: RouteRecordRaw[] = [
               faqCategory: '인력사무소',
             },
             component: () => import('src/pages/recruit/RecruitMainPage.vue'),
+          },
+          {
+            path: 'detail',
+            name: 'recruit-detail',
+            meta: {
+              title: '인력사무소 상세',
+              faqCategory: '인력사무소',
+            },
+            component: () => import('src/pages/recruit/RecruitDetail.vue'),
+          },
+          {
+            path: 'recruit-profile',
+            name: 'recruit-profile',
+            meta: {
+              title: '개발자 프로필 관리',
+            },
+            component: () => import('pages/recruit/RecruitMakerProfile.vue'),
           },
           {
             path: 'project/:id',
@@ -309,6 +326,14 @@ const routes: RouteRecordRaw[] = [
           title: '개인정보처리방침',
         },
         component: () => import('pages/policy/PrivacyPage.vue'),
+      },
+      {
+        path: 'secession',
+        name: 'secession',
+        meta: {
+          title: '회원탈퇴안내',
+        },
+        component: () => import('pages/policy/SecessionPage.vue'),
       },
     ],
   },

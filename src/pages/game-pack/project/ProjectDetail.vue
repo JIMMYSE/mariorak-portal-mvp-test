@@ -144,7 +144,7 @@ const { enterRoom } = useBridge();
         v-model="tab"
         align="justify"
         :tabs="[
-          { label: '정보', name: 'INFO' },
+          // { label: '정보', name: 'INFO' },
           // { label: '게시판', name: 'BOARD' }, TODO 앱 심사 히든 처리
         ]"
       />

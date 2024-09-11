@@ -47,6 +47,16 @@ const cultureList = [
     title: '재정적 안정을\n지원하는 공간',
     desc: '제작부터 출시되는 순간까지\n팬들의 펀딩과 도네이션, CCF의\n지원이 함께해요.',
   },
+  {
+    src: '/images/main/main_culture_3.png',
+    title: '실질적 도움이\n되어주는 공간',
+    desc: '게임 개발에 어려움이 있다면\n게임 전문 CCF 크루에게 지금\n문의해보세요.',
+  },
+  {
+    src: '/images/main/main_culture_4.png',
+    title: '재정적 안정을\n지원하는 공간',
+    desc: '개발 과정의 실시간 공개와\n게임의 지분 및 수익을 투명하게\n공유해드려요.',
+  },
 ];
 const tabList = [
   {
@@ -100,8 +110,36 @@ const slideEvent = (info: any) => {
   slideInfo.value = info;
 };
 
-const isLocal = ref(process.env.IS_LOCAL !== undefined);
-const isDev = ref(process.env.IS_DEV !== undefined);
+const isLocal = process.env.IS_LOCAL;
+const isDev = process.env.IS_DEV;
+
+/** 상세 보기 약관 */
+const detailEnabled = ref(false);
+const detail = ref<{ title: string; content: string } | null>(null);
+const { request } = useSearchFilter({
+  requestDefault: {
+    from: 0,
+    size: 10,
+    sort: [
+      {
+        sequence: 'asc',
+      },
+    ],
+  },
+});
+
+const { data: termsData } = useTermsList({ searchRequest: request });
+
+const openDetailDialog = (type: string) => {
+  console.log(type, termsData.value);
+  const term = termsData.value?.rows.find(
+    (r: { type: string }) => r.type === type
+  );
+
+  console.log(term);
+  detail.value = { title: term.title, content: term.content };
+  detailEnabled.value = true;
+};
 </script>
 
 <template>
@@ -109,8 +147,10 @@ const isDev = ref(process.env.IS_DEV !== undefined);
     <!-- 맵 바로가기 영역 -->
     <ckv-banner :img-list="imgList" counter />
 
+    <!-- TODO 앱 심사 히든처리 -->
     <!-- 상단 탭 -->
-    <q-scroll-area
+    <!-- <q-scroll-area
+
       class="bg-[#f8f8f8] h-[100px] w-full px-3"
       :bar-style="barStyle"
       :thumb-style="thumbStyle"
@@ -129,7 +169,7 @@ const isDev = ref(process.env.IS_DEV !== undefined);
           </div>
         </div>
       </div>
-    </q-scroll-area>
+    </q-scroll-area> -->
 
     <!-- 게임팩 대해 궁금하다면 -->
     <section class="mt-10">
@@ -175,15 +215,20 @@ const isDev = ref(process.env.IS_DEV !== undefined);
     <section class="mt-10">
       <h2 class="pl-6 text-[22px] font-semibold">CCF 추천게임</h2>
       <div class="grid gap-1.5 mt-4">
-        <g-p-item-list to-list="game-list" :gp-list="recommendedGameList" />
+        <g-p-item-list
+          type="game"
+          to-list="game-list"
+          :gp-list="recommendedGameList"
+        />
       </div>
     </section>
 
     <!-- CCF 추천 프로젝트 -->
     <section class="mt-[55px]">
-      <h2 class="pl-6 text-[22px] font-semibold">CCF 추천 프로젝트</h2>
+      <h2 class="pl-6 text-[22px] font-semibold">CCF가 주목하는 프로젝트</h2>
       <div class="grid gap-1.5 mt-4">
         <g-p-item-list
+          type="project"
           to-list="project-list"
           :gp-list="recommendedProjectList"
         />
@@ -207,7 +252,7 @@ const isDev = ref(process.env.IS_DEV !== undefined);
 
         <div>
           <h6
-            class="text-[#767676] text-sm font-medium font-['Pretendard'] leading-tight relative pr-5"
+            class="text-[#767676] text-sm font-medium font-['Pretendard'] leading-tight relative pr-5 cursor-pointer"
             @click="toggleBusinessInfo(businessInfo)"
           >
             사업자 정보
@@ -224,13 +269,14 @@ const isDev = ref(process.env.IS_DEV !== undefined);
         <div class="flex justify-center">
           <div
             class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none cursor-pointer"
-            @click="goToName('privacy')"
+            @click="openDetailDialog('PERSONAL_DATA_PROCESS')"
           >
             개인정보 처리방침
           </div>
           <div class="border-l-2 border-[#f0f0f0] mx-3"></div>
           <div
             class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none cursor-pointer"
+            @click="openDetailDialog('SERVICE_AGREEMENT')"
           >
             서비스 이용약관
           </div>
@@ -275,4 +321,10 @@ const isDev = ref(process.env.IS_DEV !== undefined);
       </div>
     </section>
   </q-page>
+  <!-- 팝업 -->
+  <c-dialog-content
+    v-model="detailEnabled"
+    :title="detail?.title"
+    :html="detail?.content"
+  />
 </template>

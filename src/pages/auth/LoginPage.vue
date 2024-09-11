@@ -10,8 +10,9 @@ import { GoogleLogin } from 'vue3-google-login';
 const joinStore = useJoinStore();
 const { joinData } = storeToRefs(joinStore);
 
-const isLocal = ref(process.env.IS_LOCAL !== undefined);
-const isDev = ref(process.env.IS_DEV !== undefined);
+const isLocal = process.env.IS_LOCAL;
+const isDev = process.env.IS_DEV;
+
 onMounted(() => {
   joinStore.$reset();
 });
@@ -77,7 +78,7 @@ const socialLoginAPI = async (accessToken: string, provider: SocialType) => {
 </script>
 
 <template>
-  <q-page class="column justify-top items-center px-2 py-40">
+  <q-page class="column justify-top items-center px-2 py-[10vh]">
     <q-header class="flex flex-center pl-1 pt-[var(--statusbar-h)] bg-white">
       <q-toolbar
         class="flex justify-between items-center h-[var(--main-header-h)] pr-1"

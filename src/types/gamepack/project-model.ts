@@ -1,5 +1,4 @@
-// import { SuccessListRes, SuccessObjectRes, Recruitment } from 'ccf-api-dto';
-import { SuccessListRes, SuccessObjectRes } from 'meta-airforce-dto';
+import { SuccessListRes, SuccessObjectRes, Recruitment } from 'ccf-api-dto';
 
 const Recruitment = object({
   prj_rcrt_id: number().label('멤버 모집 아이디'),
@@ -69,7 +68,7 @@ const DetailFileSchema = object({
   thumbnail_file: ThumbnailFileSchema.required(), // 필수, 썸네일 파일
 });
 
-const ProjectSchema = object({
+export const ProjectSchema = object({
   rcrt: Recruitment,
   mkr_list: array().of(MakerSchema).required(), // 배열이며, 각 요소는 MakerListSchema를 따름
   detail_file_list: array().of(DetailFileSchema),

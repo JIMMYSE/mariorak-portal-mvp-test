@@ -3,23 +3,41 @@ import GameInfoPanel from './panel/GameInfoPanel.vue';
 import GameBoardPanel from './panel/GameBoardPanel.vue';
 import GameReviewPanel from './panel/GameReviewPanel.vue';
 
+const route = useRoute();
+const gameId = computed(() => route.params.id.toString());
+const { data: gameDetail, refetch, isFetching } = useGameDetail(gameId);
+watch(gameId, () => {
+  refetch();
+});
+
 const like = ref(false);
 const tab = ref('INFO');
+const { mutateAsync: onLike } = useLike('game', gameId.value, 'game-detail');
+const { mutateAsync: onUnlike } = useUnLike('game', 'game-detail');
 
-// const onLikeProject = () => {
-//   like.value = !like.value;
-// };
+const onLikeProject = async () => {
+  like.value = !like.value;
+  like.value ? onLike({}) : onUnlike(gameId.value);
+  await refetch();
+};
+const { data: similarGameData } = useSimilarGameList(gameId.value);
+watch(gameDetail, () => {
+  like.value = gameDetail?.value?.is_liked ?? false;
+});
+const { enterRoom } = useBridge();
 
-const gameInfo = {
-  badge: ['어드벤쳐', 'Mobile', 'RPG'],
-  title: '[새롭게 돌아온] KINGDOM the blood 킹덤 더 블러드',
-  description:
-    'game의 새로운 시작을 소개합니다 game의 새로운 신작을 소개합니다',
+const managerName = computed(
+  () =>
+    gameDetail.value.mkr_list.filter((mkr: any) => mkr.mngr_yn)[0].mem_nickname
+);
+
+const openStore = () => {
+  window.open(gameDetail?.value.stre_url, '_blank');
 };
 </script>
 <template>
-  <q-page
-    ><section>
+  <q-page v-if="!isFetching">
+    <section>
       <div class="w-full">
         <!-- <div
           @click="onLikeProject"
@@ -33,7 +51,7 @@ const gameInfo = {
           />
         </div> -->
         <q-img
-          src="/images/dummy/game_detail_dummy.svg"
+          :src="gameDetail?.thmn_file.convert_addr"
           width="100%"
           height="100%"
         />
@@ -44,13 +62,13 @@ const gameInfo = {
         <div class="text-caption q-mb-xs mt-[16px]">
           <span
             class="badge text-[10px] font-medium"
-            v-for="badge in gameInfo.badge"
+            v-for="badge in gameDetail?.tag_list"
             :key="badge"
             >{{ badge }}</span
           >
         </div>
         <p class="text-[#222222] text-xl font-semibold leading-7 mt-[8px]">
-          {{ gameInfo.title }}
+          {{ gameDetail.title }}
         </p>
         <!-- <div class="flex items-center mt-2">
           <q-icon name="img:/icons/icon_heart_red.svg" size="15px" />
@@ -64,36 +82,36 @@ const gameInfo = {
               class="text-[#b5b5b5] text-xs font-semibold leading-none w-[95px]"
               >프로젝트 이름</span
             >
-            <span class="text-[#222222] text-sm font-normal leading-tight]"
-              >가나다라마바사</span
-            >
+            <span class="text-[#222222] text-sm font-normal leading-tight]">{{
+              gameDetail.title
+            }}</span>
           </div>
           <div class="flex justify-start items-center">
             <span
               class="text-[#b5b5b5] text-xs font-semibold leading-none w-[95px]"
               >프로젝트 매니저</span
             >
-            <span class="text-[#222222] text-sm font-normal leading-tight"
-              >가나다라마바사</span
-            >
+            <span class="text-[#222222] text-sm font-normal leading-tight">{{
+              managerName
+            }}</span>
           </div>
           <div class="flex justify-start items-center">
             <span
               class="text-[#b5b5b5] text-xs font-semibold leading-none w-[95px]"
               >출시일</span
             >
-            <span class="text-[#222222] text-sm font-normal leading-tight"
-              >2024.02.02</span
-            >
+            <span class="text-[#222222] text-sm font-normal leading-tight">{{
+              formatDate(gameDetail.created_at)
+            }}</span>
           </div>
           <div class="flex justify-start items-center">
             <span
               class="text-[#b5b5b5] text-xs font-semibold leading-none w-[95px]"
               >마지막 업데이트</span
             >
-            <span class="text-[#222222] text-sm font-normal leading-tight"
-              >2024.02.02</span
-            >
+            <span class="text-[#222222] text-sm font-normal leading-tight">{{
+              formatDate(gameDetail.office_updated_at)
+            }}</span>
           </div>
         </div>
         <!-- progress bar 추후 컴포넌트화 -->
@@ -102,11 +120,13 @@ const gameInfo = {
           <c-btn
             class="w-full rounded-[30px] text-[#056bf1] font-semibold text-sm py-4 pl-10 pr-[30px]"
             outline
+            @click="openStore"
             >게임 스토어로 이동하기
           </c-btn>
           <c-btn
             class="w-full rounded-[30px] text-[#056bf1] font-semibold text-sm py-4 pl-10 pr-[30px] mt-[8px]"
-            >메타버스 사무실 방문하기
+            @click="enterRoom(gameDetail?.office_id ?? null, 1)"
+            >가상 오피스 방문하기
           </c-btn>
         </div>
       </div>
@@ -116,7 +136,7 @@ const gameInfo = {
       <c-tabs
         v-model="tab"
         :tabs="[
-          { label: '정보', name: 'INFO' },
+          // { label: '정보', name: 'INFO' },
           // { label: '게시판', name: 'BOARD' }, TODO 앱 심사 히든 처리
           // { label: '리뷰', name: 'REVIEW' },
         ]"
@@ -124,7 +144,10 @@ const gameInfo = {
 
       <q-tab-panels v-model="tab" animated>
         <q-tab-panel class="px-6" name="INFO">
-          <game-info-panel />
+          <game-info-panel
+            :detail="gameDetail"
+            :similar-project-list="similarGameData?.rows"
+          />
         </q-tab-panel>
         <q-tab-panel class="px-6" name="BOARD">
           <game-board-panel />

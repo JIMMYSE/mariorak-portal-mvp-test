@@ -6,6 +6,7 @@ import {
 
 type Props = {
   pList: RecentProjectListType[] | SimilarProjectListType | undefined;
+  type: 'game' | 'project';
 };
 const props = defineProps<Props>();
 
@@ -18,6 +19,14 @@ const thumbStyle = {
   // 스크롤바 색상
   backgroundColor: 'transparent',
 };
+const goToDetailPage = (gp: any) => {
+  const id = gp?.prdc_id ?? gp.prj_id;
+  if (props.type === 'game') {
+    goTo(`/game-pack/game/${id}`);
+  } else {
+    goTo(`/game-pack/project/${id}`);
+  }
+};
 </script>
 <template>
   <div>
@@ -28,7 +37,12 @@ const thumbStyle = {
         :thumb-style="thumbStyle"
       >
         <div class="row no-wrap">
-          <div class="game-card q-mr-md" v-for="p in pList" :key="p.prj_id">
+          <div
+            class="game-card q-mr-md"
+            v-for="p in pList"
+            :key="p.prj_id"
+            @click="goToDetailPage(p)"
+          >
             <c-img
               :src="p.thmn_file.convert_addr"
               width="100%"
@@ -49,10 +63,13 @@ const thumbStyle = {
         </div>
       </q-scroll-area>
     </div>
-    <div class="text-center text-[#767676] text-base font-normal" v-else>
-      아직 확인한 프로젝트가 없습니다.
+    <div
+      class="text-center text-[#767676] text-base font-normal mt-[10px]"
+      v-else
+    >
+      아직 확인한 프로젝트가 없어요.
       <br />
-      추천 프로젝트를 확인해보세요.
+      추천 프로젝트를 확인해 볼까요?
     </div>
   </div>
 </template>
