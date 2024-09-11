@@ -49,8 +49,8 @@ const recommendedProjectList = computed(() => {
     <hr class="h-2.5 bg-[#f7f7f7] mt-10" />
 
     <!-- CCF 추천게임 -->
-    <section class="px-6 mt-10">
-      <h2 class="text-[22px] font-semibold">CCF 추천게임</h2>
+    <section class="mt-10">
+      <h2 class="pl-6 text-[22px] font-semibold">CCF 추천게임</h2>
       <div class="grid gap-1.5 mt-4">
         <g-p-item-list
           to-list="game-list"
@@ -61,8 +61,8 @@ const recommendedProjectList = computed(() => {
     </section>
 
     <!-- CCF 추천 프로젝트 -->
-    <section class="px-6 mt-[55px]">
-      <h2 class="text-[22px] font-semibold">CCF 추천 프로젝트</h2>
+    <section class="mt-[55px]">
+      <h2 class="pl-6 text-[22px] font-semibold">CCF 추천 프로젝트</h2>
       <div class="grid gap-1.5 mt-4">
         <g-p-item-list
           to-list="project-list"
