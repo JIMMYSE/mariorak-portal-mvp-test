@@ -65,7 +65,7 @@ const jobName = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-col mt-[16px] cursor-pointer" @click="goTo(`/recruit/profile/${props.mkrId}`)">
+  <div class="flex flex-col mt-[16px] cursor-pointer" @click="goTo(`/recruit/profile/${props.memId}`)">
     <q-card class="w-full shadow-1 rounded-xl">
       <q-card-section>
         <div class="row items-center">

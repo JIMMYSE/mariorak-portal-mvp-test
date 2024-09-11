@@ -2,6 +2,7 @@ import {
   ProjectRecruitSearchResType,
   ProjectRecruitMakersResType,
   RecruitProjectDetailType,
+  ProjectAppliementDetailResType,
 } from 'src/types/gamepack/recruit-model';
 import { MaybeRef } from 'vue';
 
@@ -14,6 +15,10 @@ const QUERY_KEY = {
   PROJECT_DETAIL: 'recruit-project-detail',
 };
 
+/**
+ * 추천 프로젝트 목록 조회
+ * @returns
+ */
 export const useRecruitRecommendedProjectList = () => {
   return useQueryFetch<ProjectRecruitSearchResType>({
     url: API_URL + '/recommended-project',
@@ -21,6 +26,10 @@ export const useRecruitRecommendedProjectList = () => {
   });
 };
 
+/**
+ * 추천 제작자 목록 조회
+ * @returns
+ */
 export const useRecruitRecommendedMakerList = () => {
   return useQueryFetch<ProjectRecruitMakersResType>({
     url: API_URL + '/recommended-maker',
@@ -28,6 +37,11 @@ export const useRecruitRecommendedMakerList = () => {
   });
 };
 
+/**
+ * 프로젝트 목록 조회
+ * @param param0
+ * @returns
+ */
 export const useRecruitSearchProjectList = ({
   searchRequest,
   queryOption,
@@ -47,6 +61,11 @@ export const useRecruitSearchProjectList = ({
   });
 };
 
+/**
+ * 제작자 목록 조회
+ * @param param0
+ * @returns
+ */
 export const useRecruitSearchMakerList = ({
   searchRequest,
   queryOption,
@@ -66,6 +85,11 @@ export const useRecruitSearchMakerList = ({
   });
 };
 
+/**
+ * 프로젝트 상세 조회
+ * @param id
+ * @returns
+ */
 export const useProjectRecruitDetail = (id: number) => {
   return useQueryFetchItem<RecruitProjectDetailType>({
     id: id,

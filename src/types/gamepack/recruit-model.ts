@@ -33,9 +33,11 @@ const MakerBase = MakerSchema.shape({
 
 const ProjectRecruitMakersReq = SearchListReq(MakerBase);
 const ProjectRecruitMakersRes = SuccessListRes(MakerBase);
+const ProjectRecruitMakersDetailRes = SuccessObjectRes(MakerBase);
 
 export type ProjectRecruitMakersType = InferType<typeof ProjectRecruitMakersReq>;
 export type ProjectRecruitMakersResType = InferType<typeof ProjectRecruitMakersRes>;
+export type ProjectRecruitMakersDetailResType = InferType<typeof ProjectRecruitMakersDetailRes>;
 
 const RecruitProjectDetail = ProjectBase.shape({
   hasProfile: boolean().default(false).label('프로필 등록 여부'),
@@ -53,3 +55,28 @@ const RecruitProjectDetail = ProjectBase.shape({
 });
 const RecruitProjectDetailRes = SuccessObjectRes(RecruitProjectDetail);
 export type RecruitProjectDetailType = InferType<typeof RecruitProjectDetailRes>;
+
+const ProjectApplimentBase = object({
+  prj_aply_id: number().required().label('프로젝트 지원 아이디'),
+  prj_rcrt_id: number().required().label('프로젝트 모집 아이디'),
+  prj_id: number().required().label('프로젝트 아이디'),
+  title: string().required().label('프로젝트 제목'),
+  end_dttm: date().nullable().label('프로젝트 종료일'),
+  end_remain_days: number().nullable().label('모집 잔여일'),
+  thmn_file: ThumbnailFileSchema.nullable().label('썸네일 이미지 객체'),
+  prj_aply_stt_cd: string().required().label('지원상태코드'),
+  nickname: string().required().label('지원자 닉네임'),
+  mkr_rol_cd: string().required().label('제작자 역할'),
+  expr_year: number().required().label('경력연차'),
+  project_num: number().required().label('프로젝트 건수'),
+  avatar_file: ThumbnailFileSchema.nullable().label('아바타 이미지 객체'),
+  mkr_id: number().required().label('지원 제작자 아이디'),
+  mem_id: number().required().label('지원 회원 아이디'),
+});
+const ProjectAppliementDetailRes = SuccessObjectRes(
+  object({
+    appliedList: array(ProjectApplimentBase).required().label('내가 지원한 목록'),
+    requestedList: array(ProjectApplimentBase).required().label('지원요청받은 목록'),
+  })
+);
+export type ProjectAppliementDetailResType = InferType<typeof ProjectAppliementDetailRes>;

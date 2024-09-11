@@ -67,6 +67,7 @@ const DetailFileSchema = object({
 });
 
 export const ProjectSchema = object({
+  hasProfile: boolean(),
   rcrt: Recruitment,
   mkr_list: array().of(MakerSchema).required(), // 배열이며, 각 요소는 MakerListSchema를 따름
   detail_file_list: array().of(DetailFileSchema),

@@ -1,34 +1,52 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import toNumber from 'lodash/toNumber';
+
+const route = useRoute();
+const { data: maker } = useMakerDetail(toNumber(route.params.id));
+
+function openWindow(url: string) {
+  window.open(url, '_blank');
+}
+</script>
 <template>
-  <q-page>
+  <q-page v-if="maker?.data">
     <section class="px-6 pt-[30px]">
       <div class="flex flex-col">
         <div class="flex items-center pb-[15px]">
           <div>
-            <c-img src="/images/dummy/member_dummy2.png" class="w-[60px] h-[60px] rounded-full"> </c-img>
+            <c-img :src="maker.data.circle_thumbnail_url as string" class="w-[60px] h-[60px] rounded-full"> </c-img>
           </div>
 
           <div class="flex flex-col ml-[12px]">
-            <p class="text-[#222222] text-base font-medium leading-snug">김민지</p>
-            <p class="text-[#056bf1] text-xs font-semibold leading-none mt-[2px]">개발자</p>
+            <p class="text-[#222222] text-base font-medium leading-snug">{{ maker.data.nickname }}</p>
+            <p class="text-[#056bf1] text-xs font-semibold leading-none mt-[2px]">
+              {{ getCommonCodeName('MKR_ROL', maker.data.mkr_rol_cd) }}
+            </p>
             <p class="flex items-center mt-[2px]">
-              <span class="text-[#767676] text-xs font-normal leading-none">12년차</span>
+              <span class="text-[#767676] text-xs font-normal leading-none">{{ maker.data.expr_year }}년차</span>
               <q-separator vertical class="h-[10px] mx-[6px] my-[4px] top-[6px]" />
-              <span class="text-[#b5b5b5] text-xs font-normal leading-none">프로젝트 100회</span>
+              <span class="text-[#b5b5b5] text-xs font-normal leading-none"
+                >프로젝트 {{ maker.data.project_histories?.length }}회</span
+              >
             </p>
           </div>
         </div>
         <div class="mt-[12px]">
           <!-- <introduce-text /> 데이터 연동 시 붙여야 함-->
-          저희 프로젝트를 빛내줄 유능한 ‘프로그래머’와 ‘아티스트’를모집합니다! 총 5명의 참가자가 필요합니다.
+          <introduce-text :intro="maker.data.desc" />
+          <!-- 저희 프로젝트를 빛내줄 유능한 ‘프로그래머’와 ‘아티스트’를모집합니다! 총 5명의 참가자가 필요합니다. -->
         </div>
-        <div class="mt-[30px]">
+        <div v-if="maker.data.prtf?.prtf_dspy_yn" class="mt-[30px]">
           <div class="rounded-[20px] bg-[#f7f7f7] h-20 flex items-center pl-[30px] pr-[20px] justify-between">
             <div>
               <p class="text-[#222222] text-base font-medium leading-snug">포트폴리오 방문하기</p>
-              <p class="text-[#767676] text-xs font-medium leading-none">www.1234.com</p>
+              <p class="text-[#767676] text-xs font-medium leading-none">{{ maker.data.prtf.prtf_url }}</p>
             </div>
-            <q-icon name="img:/icons/icon_enter_arrow.svg" size="26px" />
+            <q-icon
+              name="img:/icons/icon_enter_arrow.svg"
+              size="26px"
+              @click="openWindow(maker.data.prtf.prtf_url as string)"
+            />
           </div>
         </div>
       </div>
@@ -39,15 +57,15 @@
       <div class="space-y-2 mt-[14px]">
         <div class="flex justify-start items-center">
           <span class="text-[#b5b5b5] text-xs font-semibold leading-none w-[95px]">국적</span>
-          <span class="text-[#222222] text-sm font-normal leading-tight]">대한민국</span>
+          <span class="text-[#222222] text-sm font-normal leading-tight]">{{ maker.data.prfl.bio.ntnl }}</span>
         </div>
         <div class="flex justify-start items-center">
           <span class="text-[#b5b5b5] text-xs font-semibold leading-none w-[95px]">언어</span>
-          <span class="text-[#222222] text-sm font-normal leading-tight">영어</span>
+          <span class="text-[#222222] text-sm font-normal leading-tight">{{ maker.data.prfl.bio.lang }}</span>
         </div>
         <div class="flex justify-start items-center">
           <span class="text-[#b5b5b5] text-xs font-semibold leading-none w-[95px]">거주지역</span>
-          <span class="text-[#222222] text-sm font-normal leading-tight">대한민국</span>
+          <span class="text-[#222222] text-sm font-normal leading-tight">{{ maker.data.prfl.bio.loct }}</span>
         </div>
       </div>
     </section>
@@ -55,34 +73,40 @@
       <h2 class="text-[22px] font-semibold">업무 정보</h2>
       <div class="mt-[12px]">
         <p class="text-[#b5b5b5] text-xs font-semibold leading-none">한 줄 프로필</p>
-        <p class="mt-[8px] text-[#222222] text-sm font-normal leading-tight">안녕하세요. 힘찬 개발자 김철수입니다!</p>
+        <p class="mt-[8px] text-[#222222] text-sm font-normal leading-tight">{{ maker.data.prfl.onln_prfl }}</p>
       </div>
       <div class="mt-[22px]">
         <p class="text-[#b5b5b5] text-xs font-semibold leading-none">업무 스킬</p>
-        <p class="mt-[8px] text-[#222222] text-xs font-normal leading-none">자바</p>
+        <p class="mt-[8px] text-[#222222] text-xs font-normal leading-none">{{ maker.data.prfl.skills.join(' , ') }}</p>
       </div>
       <div class="mt-[22px]">
         <p class="text-[#b5b5b5] text-xs font-semibold leading-none">희망 직무</p>
-        <p class="mt-[8px] text-[#222222] text-xs font-normal leading-none">개발자</p>
+        <p class="mt-[8px] text-[#222222] text-xs font-normal leading-none">
+          {{ maker.data.prfl.job_objs.join(' / ') }}
+        </p>
       </div>
-      <div class="mt-[24px]">
+      <!-- <div class="mt-[24px]">
         <p class="text-[#b5b5b5] text-xs font-semibold leading-none">관심 분야</p>
         <div class="text-caption q-mb-xs mt-[16px]">
           <span class="badge-primary text-[14px] font-medium">롤플레잉</span>
         </div>
-      </div>
+      </div> -->
     </section>
-    <section class="px-6 mt-[60px]">
-      <h2 class="text-[22px] font-semibold">참여했던 프로젝트 (5회)</h2>
-      <normal-project-list />
+    <section class="px-6 mt-[60px] mb-[90px]">
+      <h2 class="text-[22px] font-semibold">
+        참여했던 프로젝트
+        <template v-if="maker.data.project_histories?.length">({{ maker.data.project_histories?.length }}회)</template>
+      </h2>
+      <!-- @vue-expect-error -->
+      <RecruitMakerProjectList :p-list="maker.data.project_histories" />
     </section>
-    <section class="bottom-[85px] w-full text-center px-6 mt-[85px] pb-8">
+    <!-- <section class="bottom-[85px] w-full text-center px-6 mt-[85px] pb-8">
       <c-btn
         class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
         color="primary"
         @click="goToName('maker-profile-new')"
         >프로젝트 참여 요청
       </c-btn>
-    </section>
+    </section> -->
   </q-page>
 </template>
