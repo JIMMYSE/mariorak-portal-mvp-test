@@ -16,11 +16,7 @@
       <c-btn
         class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
         color="primary"
-        @click="
-          useAlertDialog({
-            text: '해당 서비스는 Grand Open 때 준비 될 예정입니다!!',
-          })
-        "
+        @click="$router.push('/my-page/maker-profile-edit')"
         >참여 개발자 등록하기
       </c-btn>
     </section>

@@ -40,7 +40,7 @@ const toggleApplyDropdown = (event: Event) => {
     <section class="px-6 mt-[30px]">
       <p class="text-[#222222] text-xl font-semibold leading-7">내가 신청한 프로젝트</p>
       <div class="mt-[15px]">
-        <div class="flex no-wrap w-full">
+        <div class="flex no-wrap w-full" v-if="false">
           <div>
             <q-img src="/images/dummy/recent_pj_dummy.png" class="rounded-xl h-[78px] w-[139px]" />
           </div>
@@ -84,12 +84,20 @@ const toggleApplyDropdown = (event: Event) => {
             </div>
           </div>
         </div>
+
+        <div class="flex no-wrap w-full justify-center">
+          <not-find-item message="신청한 프로젝트가 없어요." />
+        </div>
       </div>
     </section>
     <section class="px-6 mt-[30px]">
       <p class="text-[#222222] text-xl font-semibold leading-7">프로젝트 요청내역</p>
 
-      <div class="mt-[24px]">
+      <div class="mt-[24px]" v-if="true">
+        <not-find-item message="프로젝트 요청 내역이 없어요." />
+      </div>
+
+      <div class="mt-[24px]" v-if="false">
         <ul>
           <li class="flex flex-col relative cursor-pointer border-b-[1px] border-b-[#f0f0f0]">
             <!-- QUESTION  -->
@@ -156,7 +164,7 @@ const toggleApplyDropdown = (event: Event) => {
         </ul>
       </div>
 
-      <div>
+      <div v-if="false">
         <ul>
           <li
             class="flex flex-col relative cursor-pointer"

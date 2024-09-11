@@ -1,14 +1,45 @@
 <script lang="ts" setup>
 // import { RecruitmentType } from 'src/types/gamepack/project-model';
 
-type Props = {
+const props = defineProps<{
   recruitList?: any;
-};
-const props = defineProps<Props>();
+  hasProfile: boolean;
+}>();
+
+const emits = defineEmits<{
+  /**
+   * 프로젝트 지원
+   */
+  'project-applied': [];
+}>();
+
+const { isLoggedIn } = useUserInfo();
+
+// const { data: applimentData } = useRecruitApplymentDetail();
+
+function applyProject() {
+  if (!props.hasProfile) {
+    useAlertDialog({
+      text: '개발자 등록이 필요합니다. "마이페이지-개발자 프로필"에서 정보를 입력해주세요.',
+    });
+    return;
+  }
+
+  useMyConfirmDialog({
+    text: '프로젝트에 지원하시겠습니까?',
+  }).onOk(async () => {
+    await useApplyProject(props.recruitList.prj_rcrt_id);
+    emits('project-applied');
+
+    useAlertDialog({
+      htmlText: '프로젝트에 지원 하였습니다!<br/>지원 진행상황은 마이페이지에서 확인 가능합니다.',
+    });
+  });
+}
 </script>
 
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col" v-if="props.recruitList">
     <introduce-text :intro="recruitList?.cont" class="mb-[20px]" />
 
     <div
@@ -17,34 +48,30 @@ const props = defineProps<Props>();
       class="flex items-center bg-[#f8f8f8] mb-[10px] rounded-[20px] h-[80px] p-[12px]"
     >
       <div class="rounded-full bg-[#ffffff] p-[15px]">
-        <q-icon
-          name="img:/icons/icon_member_recruit.svg"
-          size="28px"
-          class="left-[3px]"
-        />
+        <q-icon name="img:/icons/icon_member_recruit.svg" size="28px" class="left-[3px]" />
       </div>
       <div class="flex flex-col ml-[12px]">
         <div class="text-[#222222] text-base font-medium leading-snug">
           {{ getCommonCodeName('MKR_ROL', user) }}
         </div>
-        <div class="text-[#056bf1] text-xs font-semibold leading-none">
-          모집중
-        </div>
+        <div class="text-[#056bf1] text-xs font-semibold leading-none">모집중</div>
       </div>
     </div>
 
-    <div class="text-center mt-[50px]">
+    <div class="text-center mt-[50px]" v-if="isLoggedIn && !props.recruitList.applied">
       <c-btn
-        @click="notAvailableAlert()"
+        @click="applyProject()"
         class="enter_btn rounded-[30px] text-[#056bf1] font-semibold text-sm py-3 pl-10 pr-[30px]"
         outline
         >프로젝트 지원하기
-        <c-icon
-          name="icon_enter_arrow"
-          size="14px"
-          :color="'#056BF1'"
-          :fill="false"
-        />
+        <c-icon name="icon_enter_arrow" size="14px" :color="'#056BF1'" :fill="false" />
+      </c-btn>
+    </div>
+
+    <div class="text-center mt-[50px]" v-if="isLoggedIn && props.recruitList.applied">
+      <c-btn class="enter_btn rounded-[30px] text-[#056bf1] font-semibold text-sm py-3 pl-10 pr-[30px]" outline disabled
+        >이미 프로젝트를 지원하였습니다.
+        <c-icon name="icon_enter_arrow" size="14px" :color="'#056BF1'" :fill="false" />
       </c-btn>
     </div>
   </div>

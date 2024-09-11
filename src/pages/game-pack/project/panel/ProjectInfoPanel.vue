@@ -1,15 +1,18 @@
 <script lang="ts" setup>
-import de from 'app/dist/spa/assets/JoinTerms.f83cbc3c';
-import {
-  ProjectDetail,
-  SimilarProjectListType,
-} from 'src/types/gamepack/project-model';
+import { ProjectDetail, SimilarProjectListType } from 'src/types/gamepack/project-model';
 
 type Props = {
   detail?: ProjectDetail;
   similarProjectList?: SimilarProjectListType;
 };
 const props = defineProps<Props>();
+
+const emits = defineEmits<{
+  /**
+   * 프로젝트 지원
+   */
+  'project-applied': [];
+}>();
 </script>
 <template>
   <div class="w-full">
@@ -34,13 +37,13 @@ const props = defineProps<Props>();
       </div>
     </section>
     <section class="mt-[40px]" v-if="detail?.rcrt">
-      <h2 class="text-[20px] font-semibold">
-        프로젝트 참가자 모집 소식({{ detail?.rcrt.rcrt_mkr_num }}명)
-      </h2>
+      <h2 class="text-[20px] font-semibold">프로젝트 참가자 모집 소식({{ detail?.rcrt.rcrt_mkr_num }}명)</h2>
       <div class="mt-4">
         <g-p-project-member-recruit
           class="mt-[30px]"
           :recruit-list="detail?.rcrt"
+          :has-profile="detail?.hasProfile as boolean"
+          @project-applied="emits('project-applied')"
         />
       </div>
     </section>

@@ -3,7 +3,7 @@ import moment from 'moment';
 
 const props = defineProps<{
   /**
-   * 프로젝트 아이디
+   * 프로젝트 공고 아이디
    */
   id: number;
   /**
