@@ -7,7 +7,7 @@ import RecruitDetailMakerPanel from './panel/RecruitDetailMakerPanel.vue';
 
 const route = useRoute();
 
-const tab = ref(upperCase(route.query.active || 'project'));
+const tab = ref(upperCase((route.query.active as string) || 'project'));
 </script>
 <template>
   <q-page>
