@@ -19,7 +19,7 @@
             <p
               class="text-[#056bf1] text-xs font-semibold leading-none mt-[2px]"
             >
-              개발자입니다람쥐~
+              개발자
             </p>
             <p class="flex items-center mt-[2px]">
               <span class="text-[#767676] text-xs font-normal leading-none"
@@ -30,7 +30,7 @@
                 class="h-[10px] mx-[6px] my-[4px] top-[6px]"
               />
               <span class="text-[#b5b5b5] text-xs font-normal leading-none"
-                >프로젝트 1000회</span
+                >프로젝트 100회</span
               >
             </p>
           </div>
@@ -38,8 +38,7 @@
         <div class="mt-[12px]">
           <!-- <introduce-text /> 데이터 연동 시 붙여야 함-->
           저희 프로젝트를 빛내줄 유능한 ‘프로그래머’와 ‘아티스트’를모집합니다!
-          총 5명의 참가자가 필요합니다. 프로젝트를 위하여 필요한 작업은 이러며,
-          해당 내...
+          총 5명의 참가자가 필요합니다.
         </div>
         <div class="mt-[30px]">
           <div
@@ -68,7 +67,7 @@
             >국적</span
           >
           <span class="text-[#222222] text-sm font-normal leading-tight]"
-            >가나다라마바사</span
+            >대한민국</span
           >
         </div>
         <div class="flex justify-start items-center">
@@ -77,7 +76,7 @@
             >언어</span
           >
           <span class="text-[#222222] text-sm font-normal leading-tight"
-            >가나다라마바사</span
+            >영어</span
           >
         </div>
         <div class="flex justify-start items-center">
@@ -86,7 +85,7 @@
             >거주지역</span
           >
           <span class="text-[#222222] text-sm font-normal leading-tight"
-            >2024.02.02</span
+            >대한민국</span
           >
         </div>
       </div>
@@ -106,12 +105,7 @@
           업무 스킬
         </p>
         <p class="mt-[8px] text-[#222222] text-xs font-normal leading-none">
-          어쩌고 저쩌고<br />
-          어쩌고 저쩌고<br />
-          어쩌고 저쩌고<br />
-          데이터 바인딩<br />
-          하면 제대로 보이<br />
-          겠지요??????<br />
+          자바
         </p>
       </div>
       <div class="mt-[22px]">
@@ -119,12 +113,7 @@
           희망 직무
         </p>
         <p class="mt-[8px] text-[#222222] text-xs font-normal leading-none">
-          어쩌고 저쩌고<br />
-          어쩌고 저쩌고<br />
-          어쩌고 저쩌고<br />
-          데이터 바인딩<br />
-          하면 제대로 보이<br />
-          겠지요??????<br />
+          개발자
         </p>
       </div>
       <div class="mt-[24px]">
@@ -137,7 +126,7 @@
       </div>
     </section>
     <section class="px-6 mt-[60px]">
-      <h2 class="text-[22px] font-semibold">참여했던 프로젝트 (5000회)</h2>
+      <h2 class="text-[22px] font-semibold">참여했던 프로젝트 (5회)</h2>
       <normal-project-list />
     </section>
     <section class="bottom-[85px] w-full text-center px-6 mt-[85px] mb-6">
