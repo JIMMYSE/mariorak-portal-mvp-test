@@ -95,8 +95,7 @@ const routes: RouteRecordRaw[] = [
               title: '프로젝트 상세',
               bgColor: 'white',
             },
-            component: () =>
-              import('pages/game-pack/project/ProjectDetail.vue'),
+            component: () => import('pages/game-pack/project/ProjectDetail.vue'),
           },
           {
             path: 'project/:id/board-edit',
@@ -144,10 +143,10 @@ const routes: RouteRecordRaw[] = [
             component: () => import('src/pages/recruit/RecruitDetail.vue'),
           },
           {
-            path: 'recruit-profile',
+            path: 'profile/:id',
             name: 'recruit-profile',
             meta: {
-              title: '개발자 프로필 관리',
+              title: '개발자 프로필',
             },
             component: () => import('pages/recruit/RecruitMakerProfile.vue'),
           },
@@ -163,8 +162,7 @@ const routes: RouteRecordRaw[] = [
             children: [
               {
                 path: '',
-                component: () =>
-                  import('pages/recruit/RecruitProjectDetail.vue'),
+                component: () => import('pages/recruit/RecruitProjectDetail.vue'),
               },
             ],
           },

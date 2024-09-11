@@ -3,9 +3,7 @@
   <div>
     <section class="mt-[30px] px-6">
       <p class="text-[#222222] text-xl font-semibold leading-7">개발자 찾기</p>
-      <p class="mt-[2px] text-[#767676] text-sm font-normal leading-tight">
-        프로젝트 참여가 가능한 개발자 목록입니다.
-      </p>
+      <p class="mt-[2px] text-[#767676] text-sm font-normal leading-tight">프로젝트 참여가 가능한 개발자 목록입니다.</p>
     </section>
     <section class="mt-[40px]">
       <search-rcrt-list page-type="maker" />
@@ -18,7 +16,11 @@
       <c-btn
         class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
         color="primary"
-        @click="goTo('maker-maker-profile-new')"
+        @click="
+          useAlertDialog({
+            text: '해당 서비스는 Grand Open 때 준비 될 예정입니다!!',
+          })
+        "
         >참여 개발자 등록하기
       </c-btn>
     </section>

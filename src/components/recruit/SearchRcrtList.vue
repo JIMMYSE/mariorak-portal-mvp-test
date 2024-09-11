@@ -81,14 +81,14 @@ const searchConditionAction = createAction(() => {
   const { request } = useSearchFilter({
     requestDefault: {
       search: {
-        fields: ['title'],
+        fields: isProject.value ? ['title'] : ['nickname'],
         keyword: '',
       },
       from: 0,
       size: 10,
       sort: [
         {
-          created_at: 'asc',
+          [searchSort.value]: 'asc',
         },
       ],
     },
@@ -127,29 +127,36 @@ const searchConditionAction = createAction(() => {
   };
 });
 
-/** 검색 처리 */
+/** 검색 처리 (Project) */
 const searchAction = createAction(() => {
   const queryParam = ref(searchConditionAction.form.values);
 
   // fetch
   const {
-    data: searchProjectList,
+    data: dataList,
     hasNextPage,
     fetchNextPage,
     isFetched,
     refetch,
-  } = useRecruitSearchProjectList({
-    searchRequest: queryParam,
-    queryOption: {
-      enabled: true,
-    },
-    setField: searchConditionAction.form.setFieldValue, // TODO 추후 형태 변경필요
-  });
+  } = isProject.value
+    ? useRecruitSearchProjectList({
+        searchRequest: queryParam,
+        queryOption: {
+          enabled: isProject.value,
+        },
+        setField: searchConditionAction.form.setFieldValue, // TODO 추후 형태 변경필요
+      })
+    : useRecruitSearchMakerList({
+        searchRequest: queryParam,
+        queryOption: {
+          enabled: !isProject.value,
+        },
+        setField: searchConditionAction.form.setFieldValue, // TODO 추후 형태 변경필요
+      });
 
-  const data = computed(() => searchProjectList.value?.pages?.flatMap((item: any) => item.data));
+  const data = computed(() => dataList.value?.pages?.flatMap((item: any) => item.data));
 
   return {
-    searchProjectList,
     hasNextPage,
     fetchNextPage,
     isFetched,
@@ -177,35 +184,40 @@ const searchAction = createAction(() => {
       dense
     />
   </div>
+
   <div class="px-6 q-gutter-y-md" v-if="searchAction.isFetched.value">
-    <template v-if="props.pageType === 'project'">
-      <search-project-item
+    <template v-if="isProject">
+      <SearchProjectItem
         v-for="info in searchAction.data.value"
         :key="info.prj_id"
+        :id="info.prj_id as number"
         :badge="info?.tag_list ?? []"
-        :title="info.title"
-        :description="info.desc"
-        :status="info.prj_stt_cd"
-        :like="info.like_cnt"
+        :title="info.title as string"
+        :rcrt-num="info.rcrt_mkr_num as number"
+        :end-dttm="new Date(info.end_dttm)"
         :img-src="info.thmn_file.convert_addr"
       />
     </template>
-    <template v-if="props.pageType === 'maker'">
-      <!-- @vue-ignore -->
+    <template v-else>
       <SearchMakerItem
-        v-for="info in searchProjectList.pages.flatMap((item: any) => item.data)"
-        :key="info.prj_id"
-        :badge="info?.tag_list ?? []"
-        :title="info.title"
-        :description="info.desc"
-        :status="info.prj_stt_cd"
-        :like="info.like_cnt"
-        :img-src="info.thmn_file.convert_addr"
+        v-for="info in searchAction.data.value"
+        :key="info.mkr_id"
+        :mkr-id="info.mkr_id as number"
+        :mem-id="info.mem_id as number"
+        :name="info.nickname as string"
+        :skills="info.prfl?.skills as string[]"
+        :job="info.mkr_rol_cd as string"
+        :years="info.expr_year as number"
+        :project-number="info.prj_num as number"
+        :description="info.desc as string"
+        :img-src="info.circle_file?.convert_addr as string"
       />
     </template>
   </div>
+
   <!-- 없는 아이템 예시 -->
-  <not-find-item v-if="!searchAction.data.value?.length" item-name="프로젝트" />
+  <not-find-item v-if="!searchAction.data.value?.length" :item-name="isProject ? '프로젝트' : '개발자'" />
+
   <div class="flex justify-center" v-if="searchAction.hasNextPage.value">
     <c-btn
       class="enter_btn rounded-[30px] text-primary font-semibold text-sm py-3 pl-10 pr-[30px] mt-[23px]"
