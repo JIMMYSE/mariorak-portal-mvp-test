@@ -44,7 +44,7 @@ module.exports = configure(function (ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
-    boot: ['boot-common', 'i18n', 'axios', 'html-filter'],
+    boot: ['boot-common', 'i18n', 'axios', 'html-filter', 'yup'],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: ['app.scss', 'tailwind.css'],
@@ -154,14 +154,7 @@ module.exports = configure(function (ctx) {
               },
               {
                 from: 'src/services/common/api-model',
-                imports: [
-                  'Id',
-                  'QueryOption',
-                  'ApiResponse',
-                  'ApiListResponse',
-                  'SearchRequest',
-                  'FileInfo',
-                ],
+                imports: ['Id', 'QueryOption', 'ApiResponse', 'ApiListResponse', 'SearchRequest', 'FileInfo'],
                 type: true,
               },
               {
