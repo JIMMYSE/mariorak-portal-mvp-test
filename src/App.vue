@@ -2,6 +2,7 @@
 import { VueQueryDevtools } from '@tanstack/vue-query-devtools';
 import MainHeader from './layouts/MainHeader.vue';
 import SubHeader from './layouts/SubHeader.vue';
+import { useMeta } from 'quasar';
 
 useAppRouter();
 const { fetchBadwords } = useBadwords();
@@ -29,11 +30,7 @@ const isInitiated = computed(() => {
 });
 
 const footerVisible = computed(() => {
-  return (
-    !['join', 'join-completed', 'join-terms'].includes(
-      route.name?.toString() ?? ''
-    ) && isLoggedIn.value
-  );
+  return !['join', 'join-completed', 'join-terms', 'error'].includes(route.name?.toString() ?? '') && isLoggedIn.value;
 });
 
 const route = useRoute();
@@ -60,7 +57,7 @@ const tabInfos: { icon: string; label: string; name: string; to: string }[] = [
   // },
   {
     icon: 'icon_add_user',
-    label: '인력사무실',
+    label: '인력사무소',
     name: 'recruit',
     to: '/recruit',
   },
@@ -74,6 +71,10 @@ const tabInfos: { icon: string; label: string; name: string; to: string }[] = [
 ];
 const isMain = computed(() => route.name?.toString().includes('main'));
 const noHeader = computed(() => route.meta.noHeader);
+
+useMeta({
+  title: 'CCF ㅣ 팬과 함께 만들어가는 게임 개발 커뮤니티',
+});
 </script>
 
 <template>
@@ -83,19 +84,13 @@ const noHeader = computed(() => route.meta.noHeader);
       <sub-header v-else />
     </div>
     <q-page-container class="q-pb-none border-grey-5">
-      <div
-        v-if="!IsPrd"
-        class="top-version fixed top-0 z-50 font-pretendard text-xs opacity-50 border-grey-5"
-      >
+      <div v-if="!IsPrd" class="top-version fixed top-0 z-50 font-pretendard text-xs opacity-50 border-grey-5">
         <!-- FE version: {{ version }} / BE version: {{ BEversion }} -->
       </div>
       <div style="max-width: 512px; margin: 0 auto" class="border-grey-5">
         <router-view />
 
-        <q-footer
-          v-if="footerVisible"
-          class="bg-white justify-between items-center flex footer-border py-2"
-        >
+        <q-footer v-if="footerVisible" class="bg-white justify-between items-center flex footer-border py-2">
           <q-tabs class="w-full" align="justify">
             <q-route-tab
               v-for="tabInfo in tabInfos"

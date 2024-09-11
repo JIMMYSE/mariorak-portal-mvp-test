@@ -1,19 +1,16 @@
 <script lang="ts" setup>
-import { RecruitmentType } from 'src/types/gamepack/project-model';
+// import { RecruitmentType } from 'src/types/gamepack/project-model';
 
 type Props = {
-  recruitList?: RecruitmentType;
+  recruitList?: any;
 };
 const props = defineProps<Props>();
-
-const goToApplyPage = () => {
-  useProjectApplyDialog();
-};
 </script>
 
 <template>
   <div class="flex flex-col">
     <introduce-text :intro="recruitList?.cont" class="mb-[20px]" />
+
     <div
       v-for="user in recruitList?.rcrt_mkr_rol_cd_list"
       :key="user"
@@ -31,13 +28,14 @@ const goToApplyPage = () => {
           {{ getCommonCodeName('MKR_ROL', user) }}
         </div>
         <div class="text-[#056bf1] text-xs font-semibold leading-none">
-          {{ user }}명 모집중
+          모집중
         </div>
       </div>
     </div>
+
     <div class="text-center mt-[50px]">
       <c-btn
-        @click="goToApplyPage()"
+        @click="notAvailableAlert()"
         class="enter_btn rounded-[30px] text-[#056bf1] font-semibold text-sm py-3 pl-10 pr-[30px]"
         outline
         >프로젝트 지원하기

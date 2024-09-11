@@ -1,0 +1,18 @@
+<template>
+  <section style="height: calc(100vw); max-height: 512px">
+    <ckv-banner :img-list="imgList" :counter="false" />
+  </section>
+</template>
+
+<script setup lang="ts">
+// img dummy
+const imgList = [
+  {
+    src: '/images/recruit/mainKV/recruit_KV_1.png',
+
+    id: 1,
+    title: '보다 나은 게임 개발을\n위한 만남의 공간',
+    desc: '프로젝트 완성에 딱 맞는 개발 인력이 가득해요.',
+  },
+];
+</script>

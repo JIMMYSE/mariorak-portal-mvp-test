@@ -32,7 +32,7 @@ watch(
             <p
               class="text-[#056bf1] text-xs font-semibold leading-none mt-[2px]"
             >
-              {{ myMakerProfile?.prfl.onln_prfl }}
+              3D Designer
             </p>
             <p class="flex items-center mt-[2px]">
               <span class="text-[#767676] text-xs font-normal leading-none"
@@ -43,21 +43,20 @@ watch(
                 class="h-[10px] mx-[6px] my-[4px] top-[6px]"
               />
               <span class="text-[#b5b5b5] text-xs font-normal leading-none"
-                >프로젝트
-                {{ myMakerProfile?.project_histories?.length ?? [] }}회</span
+                >프로젝트 10회</span
               >
             </p>
           </div>
         </div>
-        <div class="mt-[12px]">
+        <div class="mt-[12px] text-[#222222] text-sm font-normal leading-tight">
           <!-- <introduce-text /> 데이터 연동 시 붙여야 함-->
           저희 프로젝트를 빛내줄 유능한 ‘프로그래머’와 ‘아티스트’를모집합니다!
-          총 5명의 참가자가 필요합니다. 프로젝트를 위하여 필요한 작업은 이러며,
-          해당 내...
+          총 5명의 참가자가 필요합니다.
         </div>
         <div class="mt-[30px]">
           <div
-            class="rounded-[20px] bg-[#f7f7f7] h-20 flex items-center pl-[30px] pr-[20px] justify-between"
+            @click="notAvailableAlert()"
+            class="rounded-[20px] bg-[#f7f7f7] h-20 flex items-center pl-[30px] pr-[20px] justify-between cursor-pointer"
           >
             <div>
               <p class="text-[#222222] text-base font-medium leading-snug">
@@ -82,7 +81,7 @@ watch(
             >국적</span
           >
           <span class="text-[#222222] text-sm font-normal leading-tight]"
-            >가나다라마바사</span
+            >대한민국</span
           >
         </div>
         <div class="flex justify-start items-center">
@@ -91,7 +90,7 @@ watch(
             >언어</span
           >
           <span class="text-[#222222] text-sm font-normal leading-tight"
-            >가나다라마바사</span
+            >한국어, 영어</span
           >
         </div>
         <div class="flex justify-start items-center">
@@ -100,7 +99,7 @@ watch(
             >거주지역</span
           >
           <span class="text-[#222222] text-sm font-normal leading-tight"
-            >2024.02.02</span
+            >마포구 상암동</span
           >
         </div>
       </div>
@@ -112,7 +111,7 @@ watch(
           한 줄 프로필
         </p>
         <p class="mt-[8px] text-[#222222] text-sm font-normal leading-tight">
-          안녕하세요. 힘찬 개발자 손동오입니다!
+          안녕하세요. 힘찬 개발자 김철수입니다!
         </p>
       </div>
       <div class="mt-[22px]">
@@ -120,12 +119,7 @@ watch(
           업무 스킬
         </p>
         <p class="mt-[8px] text-[#222222] text-xs font-normal leading-none">
-          어쩌고 저쩌고<br />
-          어쩌고 저쩌고<br />
-          어쩌고 저쩌고<br />
-          데이터 바인딩<br />
-          하면 제대로 보이<br />
-          겠지요??????<br />
+          포토샵, 일러스트레이터, 3D Max, Zbrush
         </p>
       </div>
       <div class="mt-[22px]">
@@ -133,12 +127,7 @@ watch(
           희망 직무
         </p>
         <p class="mt-[8px] text-[#222222] text-xs font-normal leading-none">
-          어쩌고 저쩌고<br />
-          어쩌고 저쩌고<br />
-          어쩌고 저쩌고<br />
-          데이터 바인딩<br />
-          하면 제대로 보이<br />
-          겠지요??????<br />
+          디자이너
         </p>
       </div>
       <div class="mt-[24px]">
@@ -151,14 +140,20 @@ watch(
       </div>
     </section>
     <section class="px-6 mt-[60px]">
-      <h2 class="text-[22px] font-semibold">참여했던 프로젝트 (5000회)</h2>
-      <normal-project-list :p-list="[]" />
+      <h2 class="text-[22px] font-semibold">참여했던 프로젝트 (10회)</h2>
+      <normal-project-list type="project" />
     </section>
     <section class="bottom-[85px] w-full text-center px-6 mt-[85px] mb-6">
-      <c-btn
+      <!-- <c-btn
         class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
         color="primary"
         @click="goToName('maker-profile-new')"
+        >수정하기
+      </c-btn> -->
+      <c-btn
+        class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
+        color="primary"
+        @click="notAvailableAlert()"
         >수정하기
       </c-btn>
     </section>

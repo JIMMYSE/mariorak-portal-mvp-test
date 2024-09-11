@@ -162,3 +162,9 @@ export const useNotifyDone = (message: Message) => {
     // timeout: 1000,
   });
 };
+
+export function notAvailableAlert() {
+  return useAlertDialog({
+    text: '해당 서비스는 Grand Open 때 준비 될 예정입니다!!',
+  });
+}

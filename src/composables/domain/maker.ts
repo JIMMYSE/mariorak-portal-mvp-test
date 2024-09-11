@@ -1,11 +1,16 @@
-const API_URL = '/v3/mb/maker';
+import { MakerCreateOrUpdateReqType } from 'src/types/gamepack/maker-model';
+
+const API_URL = '/v3/mb';
 const QUERY_KEY = {
-  PROFILE: 'profile',
+  LIST: 'maker-list',
 };
 
-export const useMyMakerProfile = () => {
-  return useQueryFetch<any>({
+/**
+ * 개발자 등록
+ */
+export const useBookmarkRegister = () => {
+  return useQueryCreateItem<ApiResponse, MakerCreateOrUpdateReqType>({
     url: API_URL + '/profile',
-    queryKeyName: QUERY_KEY.PROFILE,
+    listQueryKeyName: QUERY_KEY.LIST,
   });
 };

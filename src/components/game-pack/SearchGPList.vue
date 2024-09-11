@@ -1,5 +1,9 @@
 <script lang="ts" setup>
 import { watchDebounced } from '@vueuse/core';
+type props = {
+  type: 'game' | 'project';
+};
+const props = defineProps<props>();
 
 const { code } = useCommonCode('GAME_GNRE');
 
@@ -61,13 +65,21 @@ const {
   fetchNextPage,
   isFetched,
   refetch,
-} = useSearchProjectList({
-  searchRequest: queryParam,
-  queryOption: {
-    enabled: true,
-  },
-  setField: setFieldValue, // TODO 추후 형태 변경필요
-});
+} = props.type == 'project'
+  ? useSearchProjectList({
+      searchRequest: queryParam,
+      queryOption: {
+        enabled: true,
+      },
+      setField: setFieldValue, // TODO 추후 형태 변경필요
+    })
+  : useSearchGameList({
+      searchRequest: queryParam,
+      queryOption: {
+        enabled: true,
+      },
+      setField: setFieldValue, // TODO 추후 형태 변경필요
+    });
 
 // 조회 조건
 // 검색 탭 변경 시
@@ -117,14 +129,23 @@ watchDebounced(
   <div class="px-6 q-gutter-y-md" v-if="isFetched">
     <search-g-p-item
       v-for="info in searchProjectList.pages.flatMap((item: any) => item.data)"
+      :type="props.type"
       :key="info.prj_id"
       :badge="info?.tag_list ?? []"
       :title="info.title"
       :description="info.desc"
-      :status="info.prj_stt_cd"
+      :status="info?.prj_stt_cd ?? ''"
       :like="info.like_cnt"
       :img-src="info.thmn_file.convert_addr"
+      :date="info.created_at"
+      :id="info?.game_id ?? info.prj_id"
     />
+    <div
+      v-if="!searchProjectList.pages.flatMap((item: any) => item.data).length"
+      class="h-80 flex justify-center items-center"
+    >
+      <not-find-item :item-name="type == 'project' ? '프로젝트' : '게임'" />
+    </div>
   </div>
   <div class="flex justify-center" v-if="hasNextPage">
     <c-btn

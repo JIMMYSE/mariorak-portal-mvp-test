@@ -1,4 +1,5 @@
 import { SuccessListRes } from 'meta-airforce-dto';
+import { GameDetail, GameDetailRes, GameSearchRes } from 'ccf-api-dto';
 
 const RecommenededGameList = object({
   game_id: number().required(),
@@ -14,6 +15,7 @@ const RecommenededGameList = object({
 });
 
 const RecommendedGameListRes = SuccessListRes(RecommenededGameList);
+export type GameDetail = InferType<typeof GameDetail>;
 
 export type RecommendedGameListType = InferType<typeof RecommenededGameList>;
 export type RecommendedGameListResType = InferType<

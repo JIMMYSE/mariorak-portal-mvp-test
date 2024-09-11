@@ -1,6 +1,6 @@
 {
   "name": "ccf-portal",
-  "version": "0.0.2",
+  "version": "0.0.10",
   "description": "ccf Portal",
   "productName": "ccf Portal",
   "author": "COARSOFT",
@@ -15,7 +15,7 @@
     "lint": "eslint --ext .js,.ts,.vue ./",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
-    "dto": "yarn cache clean && yarn add 'github:coarsoft-tmp/meta-airforce-dto'",
+    "dto": "yarn cache clean && yarn add 'github:coarsoft-tmp/meta-airforce-dto' && yarn add 'github:coarsoft-tmp/ccf-api-dto'",
     "set-version": "coar-devtools set-version -f ./public/app.json"
   },
   "dependencies": {
@@ -38,6 +38,7 @@
     "@vueuse/core": "^10.10.0",
     "@vueuse/integrations": "^10.10.0",
     "axios": "^1.6.8",
+    "ccf-api-dto": "github:coarsoft-tmp/ccf-api-dto",
     "clsx": "^2.1.0",
     "cross-env": "^7.0.3",
     "crypto-js": "^4.2.0",
@@ -68,6 +69,7 @@
     "@tanstack/eslint-plugin-query": "^5.43.1",
     "@types/crypto-js": "^4.2.2",
     "@types/josa": "^3.0.5",
+    "@types/lodash": "^4.17.7",
     "@types/node": "^20.14.2",
     "@types/sanitize-html": "^2.11.0",
     "@typescript-eslint/eslint-plugin": "^7.13.0",

@@ -5,7 +5,7 @@ const { request } = useSearchFilter({
   requestDefault: {
     filters: {
       is_active: {
-        eq: true,
+        eq: false,
       },
     },
     from: 0,
