@@ -142,10 +142,16 @@
       <normal-project-list type="project" />
     </section>
     <section class="bottom-[85px] w-full text-center px-6 mt-[85px] mb-6">
-      <c-btn
+      <!-- <c-btn
         class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
         color="primary"
         @click="goToName('maker-profile-new')"
+        >수정하기
+      </c-btn> -->
+      <c-btn
+        class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
+        color="primary"
+        @click="notAvailableAlert()"
         >수정하기
       </c-btn>
     </section>
