@@ -97,7 +97,7 @@
           한 줄 프로필
         </p>
         <p class="mt-[8px] text-[#222222] text-sm font-normal leading-tight">
-          안녕하세요. 힘찬 개발자 손동오입니다!
+          안녕하세요. 힘찬 개발자 김철수입니다!
         </p>
       </div>
       <div class="mt-[22px]">
