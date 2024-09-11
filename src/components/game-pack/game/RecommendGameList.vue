@@ -28,7 +28,7 @@ const gameInfo = {
   <div>
     <div class="pl-6">
       <q-scroll-area
-        style="height: 320px"
+        style="height: 260px"
         :bar-style="barStyle"
         :thumb-style="thumbStyle"
       >
@@ -58,7 +58,6 @@ const gameInfo = {
         </div>
       </q-scroll-area>
     </div>
-    <div class="text-center"></div>
   </div>
 </template>
 <style scoped>
