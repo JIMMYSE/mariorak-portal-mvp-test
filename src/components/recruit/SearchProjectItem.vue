@@ -92,19 +92,10 @@ const computedStatus = computed(() => {
       >
         {{ props.title }}
       </div>
-      <div class="flex justify-between">
-        <div
-          :class="props?.status != '00' ? 'text-[#056bf1]' : ''"
-          class="font-medium"
-        >
-          {{ computedStatus }}
-        </div>
-        <div class="flex text-[#767676]">
-          <c-icon :name="'icon_heart'" color="#EA2E2E" size="16px" />
-          <p class="pl-2">
-            {{ props.like }}
-          </p>
-        </div>
+      <div class="flex justify-between items-center">
+        <p class="text-[#b5b5b5] text-xs">2024.06.26</p>
+        <p class="h-[9px] w-0 border-r-[1px] border-[#b5b5b5]"></p>
+        <p class="w-20 text-[#b5b5b5] text-xs">프로젝트 30회</p>
       </div>
     </div>
   </div>
