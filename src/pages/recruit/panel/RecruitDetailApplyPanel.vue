@@ -38,16 +38,11 @@ const toggleApplyDropdown = (event: Event) => {
 <template>
   <div>
     <section class="px-6 mt-[30px]">
-      <p class="text-[#222222] text-xl font-semibold leading-7">
-        내가 신청한 프로젝트
-      </p>
+      <p class="text-[#222222] text-xl font-semibold leading-7">내가 신청한 프로젝트</p>
       <div class="mt-[15px]">
         <div class="flex no-wrap w-full">
           <div>
-            <q-img
-              src="/images/dummy/recent_pj_dummy.png"
-              class="rounded-xl h-[78px] w-[139px]"
-            />
+            <q-img src="/images/dummy/recent_pj_dummy.png" class="rounded-xl h-[78px] w-[139px]" />
           </div>
 
           <div class="text-caption q-mb-xs flex justify-between pl-2 w-full">
@@ -56,36 +51,34 @@ const toggleApplyDropdown = (event: Event) => {
             >
               <span class="w-[140px]">아아아아게임제목아아아아게게임제목</span>
 
-              <q-icon
-                name="img:/icons/icon_kebap.svg"
-                size="24px"
-                class="rotate-90 cursor-pointer"
-                @click.stop="toggleMenu"
-              />
+              <div class="absolute right-[30px]">
+                <q-icon
+                  name="img:/icons/icon_kebap.svg"
+                  size="24px"
+                  class="rotate-90 cursor-pointer"
+                  @click.stop="toggleMenu"
+                />
 
-              <q-menu v-model="isMenuOpen" anchor="top right" self="top right">
-                <q-list style="min-width: 120px">
-                  <q-item clickable v-ripple>
-                    <q-item-section>프로젝트 상세</q-item-section>
-                  </q-item>
-                  <q-item clickable v-ripple>
-                    <q-item-section>신청 취소하기</q-item-section>
-                  </q-item>
-                </q-list>
-              </q-menu>
+                <q-menu v-model="isMenuOpen" anchor="top right" self="top right">
+                  <q-list style="min-width: 120px">
+                    <q-item clickable v-ripple>
+                      <q-item-section>프로젝트 상세</q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple>
+                      <q-item-section>신청 취소하기</q-item-section>
+                    </q-item>
+                  </q-list>
+                </q-menu>
+              </div>
             </div>
 
-            <div class="flex justify-between items-end w-full">
+            <div class="flex flex-col justify-between items-start w-full">
               <div class="text-[#b5b5b5] text-xs font-normal leading-none">
-                <span class="text-[#056bf1] text-xs font-medium leading-none"
-                  >신청</span
-                >
+                <span class="text-[#056bf1] text-xs font-medium leading-none">신청</span>
                 2024.06.06
               </div>
               <div class="text-[#b5b5b5] text-xs font-normal leading-none">
-                <span class="text-[#767676] text-xs font-medium leading-none"
-                  >마감</span
-                >
+                <span class="text-[#767676] text-xs font-medium leading-none">마감</span>
                 2024.06.06
               </div>
             </div>
@@ -94,15 +87,11 @@ const toggleApplyDropdown = (event: Event) => {
       </div>
     </section>
     <section class="px-6 mt-[30px]">
-      <p class="text-[#222222] text-xl font-semibold leading-7">
-        프로젝트 요청내역
-      </p>
+      <p class="text-[#222222] text-xl font-semibold leading-7">프로젝트 요청내역</p>
 
       <div class="mt-[24px]">
         <ul>
-          <li
-            class="flex flex-col relative cursor-pointer border-b-[1px] border-b-[#f0f0f0]"
-          >
+          <li class="flex flex-col relative cursor-pointer border-b-[1px] border-b-[#f0f0f0]">
             <!-- QUESTION  -->
             <h3
               class="py-[15px] px-[5px] font-semibold text-[#767676] text-base relative bottom-0"
@@ -128,10 +117,7 @@ const toggleApplyDropdown = (event: Event) => {
               <q-card class="w-full shadow-1 rounded-xl">
                 <q-card-section>
                   <div class="row items-center">
-                    <q-img
-                      class="w-14 h-14 rounded-full"
-                      src="m.circle_file.convert_addr"
-                    />
+                    <q-img class="w-14 h-14 rounded-full" src="m.circle_file.convert_addr" />
                     <div class="font-semibold ml-2 q-gutter-y-[5px] col">
                       <p class="text-[#222222] leading-snug">닉네임</p>
 
@@ -143,11 +129,7 @@ const toggleApplyDropdown = (event: Event) => {
                           @click.stop="toggleProjectMenu"
                         />
 
-                        <q-menu
-                          v-model="isProjectMenuOpen"
-                          anchor="top right"
-                          self="top right"
-                        >
+                        <q-menu v-model="isProjectMenuOpen" anchor="top right" self="top right">
                           <q-list style="min-width: 120px">
                             <q-item clickable v-ripple>
                               <q-item-section>신청내용 확인</q-item-section>
@@ -160,16 +142,10 @@ const toggleApplyDropdown = (event: Event) => {
                       </div>
 
                       <p class="text-primary text-xs p ellipsis">직업</p>
-                      <div
-                        class="row font-normal align-middle flex items-center"
-                      >
+                      <div class="row font-normal align-middle flex items-center">
                         <p class="text-[#767676] text-xs">1년차</p>
-                        <p
-                          class="h-[8px] w-0 border-r-[1px] border-[#b5b5b5] mx-[5px]"
-                        ></p>
-                        <p class="w-20 text-[#b5b5b5] text-xs">
-                          프로젝트 500회
-                        </p>
+                        <p class="h-[8px] w-0 border-r-[1px] border-[#b5b5b5] mx-[5px]"></p>
+                        <p class="w-20 text-[#b5b5b5] text-xs">프로젝트 500회</p>
                       </div>
                     </div>
                   </div>
@@ -184,9 +160,7 @@ const toggleApplyDropdown = (event: Event) => {
         <ul>
           <li
             class="flex flex-col relative cursor-pointer"
-            :class="
-              isApplyDropdownOpen ? 'border-b-[1px] border-b-[#f0f0f0]' : ''
-            "
+            :class="isApplyDropdownOpen ? 'border-b-[1px] border-b-[#f0f0f0]' : ''"
           >
             <!-- QUESTION  -->
             <h3
@@ -213,10 +187,7 @@ const toggleApplyDropdown = (event: Event) => {
               <q-card class="w-full shadow-1 rounded-xl">
                 <q-card-section>
                   <div class="row items-center">
-                    <q-img
-                      class="w-14 h-14 rounded-full"
-                      src="m.circle_file.convert_addr"
-                    />
+                    <q-img class="w-14 h-14 rounded-full" src="m.circle_file.convert_addr" />
                     <div class="font-semibold ml-2 q-gutter-y-[5px] col">
                       <p class="text-[#222222] leading-snug">닉네임</p>
 
@@ -228,11 +199,7 @@ const toggleApplyDropdown = (event: Event) => {
                           @click.stop="toggleApplyMenu"
                         />
 
-                        <q-menu
-                          v-model="isApplyMenuOpen"
-                          anchor="top right"
-                          self="top right"
-                        >
+                        <q-menu v-model="isApplyMenuOpen" anchor="top right" self="top right">
                           <q-list style="min-width: 120px">
                             <q-item clickable v-ripple>
                               <q-item-section>개발자 프로필</q-item-section>
@@ -245,16 +212,10 @@ const toggleApplyDropdown = (event: Event) => {
                       </div>
 
                       <p class="text-primary text-xs p ellipsis">직업</p>
-                      <div
-                        class="row font-normal align-middle flex items-center"
-                      >
+                      <div class="row font-normal align-middle flex items-center">
                         <p class="text-[#767676] text-xs">1년차</p>
-                        <p
-                          class="h-[8px] w-0 border-r-[1px] border-[#b5b5b5] mx-[5px]"
-                        ></p>
-                        <p class="w-20 text-[#b5b5b5] text-xs">
-                          프로젝트 500회
-                        </p>
+                        <p class="h-[8px] w-0 border-r-[1px] border-[#b5b5b5] mx-[5px]"></p>
+                        <p class="w-20 text-[#b5b5b5] text-xs">프로젝트 500회</p>
                       </div>
                     </div>
                   </div>
