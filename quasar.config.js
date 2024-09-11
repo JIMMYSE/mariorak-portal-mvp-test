@@ -17,8 +17,8 @@ const env = require('dotenv').config({
 }).parsed;
 
 module.exports = configure(function (ctx) {
-  // console.log('\n#### quasar.config.js: QuasarContext ####\n', ctx);
-  // console.log('\n#### quasar.config.js: process.env ####\n', process.env);
+  console.log('\n#### quasar.config.js: QuasarContext ####\n', ctx);
+  console.log('\n#### quasar.config.js: process.env ####\n', process.env);
 
   const IS_LOCAL = process.env.ENV === 'localhost';
   const IS_DEV = process.env.ENV === 'development';

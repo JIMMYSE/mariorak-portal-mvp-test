@@ -16,7 +16,7 @@ const thumbStyle = {
 };
 
 const goToListPage = () => {
-  goToName('recruit-detail');
+  goToName('recruit-detail', { active: 'maker' });
 };
 const recruitMakeRolList = (rolList: any) => {
   const rolNameList = rolList.map((rol: any) => {

@@ -46,7 +46,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '게임 목록',
               bgColor: 'white',
-              faqCategory: '게임팩>게임',
+              faqCategory: '게임팩', // TODO 오픈떄 수정
             },
             component: () => import('pages/game-pack/game/GameList.vue'),
           },
@@ -84,7 +84,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '프로젝트 목록',
               bgColor: 'white',
-              faqCategory: '게임팩>프로젝트',
+              faqCategory: '게임팩', // TODO 오픈떄 수정
             },
             component: () => import('pages/game-pack/project/ProjectList.vue'),
           },
@@ -139,7 +139,7 @@ const routes: RouteRecordRaw[] = [
             name: 'recruit-detail',
             meta: {
               title: '인력사무소 상세',
-              faqCategory: '인력사무소 상세',
+              faqCategory: '인력사무소',
             },
             component: () => import('src/pages/recruit/RecruitDetail.vue'),
           },

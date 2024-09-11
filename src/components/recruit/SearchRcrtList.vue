@@ -13,15 +13,15 @@ const { code } =
 
 // 화면 구성
 const searchkeyword = ref('');
-const searchSort = ref('latest');
+const searchSort = ref('created_at');
 const options = [
   {
     label: '최신순',
-    value: 'latest',
+    value: 'created_at',
   },
   {
-    label: '인기순',
-    value: 'popular',
+    label: '종료일순',
+    value: 'end_dttm',
   },
 ];
 // 검색 탭 리스트
@@ -69,7 +69,7 @@ const {
   fetchNextPage,
   isFetched,
   refetch,
-} = useSearchProjectList({
+} = useRecruitSearchProjectList({
   searchRequest: queryParam,
   queryOption: {
     enabled: true,
