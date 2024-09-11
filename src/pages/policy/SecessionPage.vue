@@ -1,36 +1,32 @@
 <!-- 개인정보처리방침 -->
 
-<script setup lang="ts">
-const { request } = useSearchFilter({
-  requestDefault: {
-    filters: {
-      is_active: {
-        eq: false,
-      },
-    },
-    from: 0,
-    size: 10,
-    sort: [
-      {
-        sequence: 'asc',
-      },
-    ],
-  },
-});
-
-const { data: termsData } = useTermsList({ searchRequest: request });
-const privacyData = computed(() =>
-  termsData.value?.rows.find(
-    (r: { type: string }) => r.type === 'PERSONAL_DATA_PROCESS'
-  )
-);
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <q-page class="column">
-    <q-card v-if="privacyData" class="q-mb-xl" flat>
+    <q-card class="q-mb-xl" flat>
       <q-card-section>
-        <div v-html="privacyData.content"></div>
+        <div class="join__policy_desc col">
+          <span class="policy__title mt-6"> 회원탈퇴는 어떻게 하나요? </span>
+          <p class="policy__content mt-2 mb-6">
+            회원 탈퇴를 원하신다면 아래 내용을 확인하시어 순차적으로 진행하면
+            가능합니다. <br /><br />
+            1) CCF 로그인<br />
+            2) 우측 상단의 마이페이지 선택<br />
+            3) 계정 정보 관리 선택<br />
+            4) 페이지 중앙에 [회원탈퇴] 버튼 선택<br />
+            5) 확인 버튼 선택<br />
+            6) 회원탈퇴 완료<br />
+          </p>
+
+          <span class="policy__title">
+            회원 탈퇴 신청 후 탈퇴 신청을 취소할 수 있나요?
+          </span>
+          <p class="policy__content mt-2 mb-6">
+            탈퇴 시에는 즉시 계정 정보 및 개인 정보가 파기되기 때문에 탈퇴 취소
+            신청이 불가합니다.
+          </p>
+        </div>
       </q-card-section>
     </q-card>
   </q-page>

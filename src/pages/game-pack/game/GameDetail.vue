@@ -136,7 +136,7 @@ const openStore = () => {
       <c-tabs
         v-model="tab"
         :tabs="[
-          { label: '정보', name: 'INFO' },
+          // { label: '정보', name: 'INFO' },
           // { label: '게시판', name: 'BOARD' }, TODO 앱 심사 히든 처리
           // { label: '리뷰', name: 'REVIEW' },
         ]"

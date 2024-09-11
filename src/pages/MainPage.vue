@@ -110,8 +110,8 @@ const slideEvent = (info: any) => {
   slideInfo.value = info;
 };
 
-const isLocal = ref(process.env.IS_LOCAL !== undefined);
-const isDev = ref(process.env.IS_DEV !== undefined);
+const isLocal = process.env.IS_LOCAL;
+const isDev = process.env.IS_DEV;
 
 /** 상세 보기 약관 */
 const detailEnabled = ref(false);
@@ -230,7 +230,7 @@ const openDetailDialog = (type: string) => {
 
     <!-- CCF 추천 프로젝트 -->
     <section class="mt-[55px]">
-      <h2 class="pl-6 text-[22px] font-semibold">CCF 추천 프로젝트</h2>
+      <h2 class="pl-6 text-[22px] font-semibold">CCF가 주목하는 프로젝트</h2>
       <div class="grid gap-1.5 mt-4">
         <g-p-item-list
           type="project"

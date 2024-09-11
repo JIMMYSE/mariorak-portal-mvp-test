@@ -135,6 +135,23 @@ const routes: RouteRecordRaw[] = [
             component: () => import('src/pages/recruit/RecruitMainPage.vue'),
           },
           {
+            path: 'detail',
+            name: 'recruit-detail',
+            meta: {
+              title: '인력사무소 상세',
+              faqCategory: '인력사무소',
+            },
+            component: () => import('src/pages/recruit/RecruitDetail.vue'),
+          },
+          {
+            path: 'recruit-profile',
+            name: 'recruit-profile',
+            meta: {
+              title: '개발자 프로필 관리',
+            },
+            component: () => import('pages/recruit/RecruitMakerProfile.vue'),
+          },
+          {
             path: 'project/:id',
             name: 'recruit-project-detail',
             meta: {
@@ -309,6 +326,14 @@ const routes: RouteRecordRaw[] = [
           title: '개인정보처리방침',
         },
         component: () => import('pages/policy/PrivacyPage.vue'),
+      },
+      {
+        path: 'secession',
+        name: 'secession',
+        meta: {
+          title: '회원탈퇴안내',
+        },
+        component: () => import('pages/policy/SecessionPage.vue'),
       },
     ],
   },

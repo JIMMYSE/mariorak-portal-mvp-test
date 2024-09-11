@@ -65,6 +65,10 @@ body {
   opacity: 1;
 }
 
+.q-tab-panel {
+  padding: 0;
+}
+
 // -------- q-input -----------//
 .q-input {
   &.q-field--outlined .q-field__control:before {
