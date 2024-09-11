@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { MakerCreateOrUpdateReq } from 'ccf-api-dto';
+
 const barStyle = {
   // 스크롤바 안보이게
   opacity: 1,
@@ -36,6 +38,23 @@ for (let i = 1; i <= 35; i++) {
 const onYearClick = (year: number) => {
   selectedYear.value = year;
 };
+
+const { values: form, handleSubmit } = useForm<MakerCreateOrUpdateReqType>({
+  validationSchema: toTypedSchema(MakerCreateOrUpdateReq),
+});
+
+/** 등록 */
+const { dialogRef, onDialogHide, onDialogOK } = useDialogPluginComponent();
+const { mutateAsync, isSuccess } = useBookmarkRegister();
+const onSubmit = handleSubmit(async () => {
+  mutateAsync({
+    ...form,
+  });
+
+  watch(isSuccess, (value) => {
+    if (value) onDialogOK();
+  });
+});
 </script>
 <template>
   <q-page>
@@ -203,6 +222,7 @@ const onYearClick = (year: number) => {
 
     <section class="bottom-[85px] w-full text-center mt-[85px] px-6 mb-[15px]">
       <c-btn
+        @click="onSubmit"
         class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
         color="primary"
         >등록하기

@@ -28,7 +28,7 @@
         404 오류 입니다.
       </p>
     </q-card> -->
-    <div class="w-screen -ml-6 p-4 fixed bottom-0 bg-white">
+    <div class="-ml-6 p-4 fixed bottom-0 bg-white max-w-[512px] w-full">
       <c-btn
         type="submit"
         class="w-full h-[55px]"

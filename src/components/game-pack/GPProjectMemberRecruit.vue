@@ -5,13 +5,6 @@ type Props = {
   recruitList?: any;
 };
 const props = defineProps<Props>();
-
-const goToApplyPage = () => {
-  // useProjectApplyDialog();
-  useAlertDialog({
-    text: '해당 서비스는 Grand Open 때 준비 될 예정입니다!!',
-  });
-};
 </script>
 
 <template>
@@ -42,7 +35,7 @@ const goToApplyPage = () => {
 
     <div class="text-center mt-[50px]">
       <c-btn
-        @click="goToApplyPage()"
+        @click="notAvailableAlert()"
         class="enter_btn rounded-[30px] text-[#056bf1] font-semibold text-sm py-3 pl-10 pr-[30px]"
         outline
         >프로젝트 지원하기
