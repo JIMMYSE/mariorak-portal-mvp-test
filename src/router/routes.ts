@@ -3,7 +3,6 @@ import { RouteRecordRaw } from 'vue-router';
 import DefaultLayout from 'layouts/DefaultLayout.vue';
 import MainLayout from 'layouts/MainLayout.vue';
 import SubLayout from 'layouts/SubLayout.vue';
-import { title } from 'process';
 
 const routes: RouteRecordRaw[] = [
   {
