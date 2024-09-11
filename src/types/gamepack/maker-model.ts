@@ -51,10 +51,7 @@ export const MakerSchema = object({
     .required()
     .shape({
       /** 포트폴리오 활성화 여부 */
-      prtf_dspy_yn: boolean()
-        .default(false)
-        .required()
-        .label('포트폴리오 활성화 여부'),
+      prtf_dspy_yn: boolean().default(false).required().label('포트폴리오 활성화 여부'),
       /** 포트폴리오 URL */
       prtf_url: string().notRequired().label('포트폴리오 URL'),
     })
@@ -62,3 +59,11 @@ export const MakerSchema = object({
 
   updatedAt: date().nullable().label('수정일시'),
 });
+
+const test = MakerCreateOrUpdateReq.shape({
+  desc: string().required().label('어어어'),
+});
+
+export type MakerCreateOrUpdateReqType = InferType<typeof test>;
+
+export type MakerOneResType = InferType<typeof MakerOneRes>;
