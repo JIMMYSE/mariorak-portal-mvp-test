@@ -118,11 +118,6 @@ const detailEnabled = ref(false);
 const detail = ref<{ title: string; content: string } | null>(null);
 const { request } = useSearchFilter({
   requestDefault: {
-    filters: {
-      is_active: {
-        eq: true,
-      },
-    },
     from: 0,
     size: 10,
     sort: [
@@ -274,7 +269,7 @@ const openDetailDialog = (type: string) => {
         <div class="flex justify-center">
           <div
             class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none cursor-pointer"
-            @click="openDetailDialog('PERSONAL_DATA')"
+            @click="openDetailDialog('PERSONAL_DATA_PROCESS')"
           >
             개인정보 처리방침
           </div>
