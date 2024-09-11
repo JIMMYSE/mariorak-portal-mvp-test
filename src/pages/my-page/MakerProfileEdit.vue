@@ -5,24 +5,23 @@ const barStyle = {
   // 스크롤바 안보이게
   opacity: 1,
 };
-
 const thumbStyle = {
   // 스크롤바 색상
   backgroundColor: 'transparent',
 };
-
 // 직무 선택
 const showJobBottomSheet = ref(false);
 const openJobBottomSheet = () => {
   showJobBottomSheet.value = !showJobBottomSheet.value;
 };
+const { options: jobOptions } = useCommonCode('MKR_ROL');
+const selectedStyle = 'background-color:primary; color:white;';
 
 // 연도선택
 const showHistoryBottomSheet = ref(false);
 const openHistoryBottomSheet = () => {
   showHistoryBottomSheet.value = !showHistoryBottomSheet.value;
 };
-
 // 관심분야
 const showInterestBottomSheet = ref(false);
 const openInterestBottomSheet = () => {
@@ -118,6 +117,7 @@ const onSubmit = handleSubmit(async () => {
         >
           <c-input
             class="w-full pb-[14px]"
+            name="prtf.prtf_url"
             placeholder="제목을 입력하세요."
             :maxlength="20"
             autofocus
@@ -134,6 +134,7 @@ const onSubmit = handleSubmit(async () => {
           <c-input
             class="w-full border-0"
             type="textarea"
+            name="desc"
             maxlength="1000"
             input-class="h-[163px]"
             placeholder="본인을 소개해 주세요."
@@ -164,6 +165,7 @@ const onSubmit = handleSubmit(async () => {
             :outlined="false"
             :rounded="false"
             border-radius="0px"
+            name="prfl.onln_prfl"
             inline-counter
           />
         </c-field>
@@ -181,6 +183,7 @@ const onSubmit = handleSubmit(async () => {
             placeholder="업무 스킬 추가"
             :outlined="false"
             :rounded="false"
+            name="prfl.skills"
             border-radius="0px"
           ></c-input>
         </c-field>
@@ -192,6 +195,7 @@ const onSubmit = handleSubmit(async () => {
             class="w-full border-0"
             type="textarea"
             maxlength="1000"
+            name="prfl.job_objs"
             input-class="h-[163px]"
             placeholder="희망 직무 추가"
             :outlined="false"
@@ -235,14 +239,18 @@ const onSubmit = handleSubmit(async () => {
           <p class="text-[#767676] text-xs font-medium leading-none">
             직무 선택
           </p>
-          <div class="mt-4">
+          <div class="mt-4 flex q-gutter-sm">
             <q-item
+              v-for="job in jobOptions"
+              :key="job.value"
+              name="mkr_rol_cd"
               v-ripple
               clickable
+              :style="job.value == form.mkr_rol_cd ? selectedStyle : ''"
               class="rounded-[5px] border border-[#dbdbdb] bg-[#fff] items-center px-4 py-0 w-fit h-[40px]"
               ><span
                 class="text-center text-[#767676] text-sm font-medium leading-tight"
-                >직무 종류</span
+                >{{ job.value }} {{ form.mkr_rol_cd }}</span
               ></q-item
             >
           </div>

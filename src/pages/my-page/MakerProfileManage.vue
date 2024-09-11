@@ -1,12 +1,25 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const { data: myMakerProfile, isLoading } = useMyMakerProfile();
+
+watch(
+  () => myMakerProfile.value,
+  (newVal) => {
+    if (newVal) {
+      if (newVal.mkr_id == null) {
+        replaceToName('not-register-profile');
+      }
+    }
+  }
+);
+</script>
 <template>
-  <q-page>
+  <q-page v-show="!isLoading">
     <section class="px-6 pt-[30px]">
       <div class="flex flex-col">
         <div class="flex items-center pb-[15px]">
           <div>
             <c-img
-              src="/images/dummy/member_dummy2.png"
+              :src="myMakerProfile?.circle_thumbnail_url"
               class="w-[60px] h-[60px] rounded-full"
             >
             </c-img>
@@ -14,7 +27,7 @@
 
           <div class="flex flex-col ml-[12px]">
             <p class="text-[#222222] text-base font-medium leading-snug">
-              김민지
+              {{ myMakerProfile?.nickname }}
             </p>
             <p
               class="text-[#056bf1] text-xs font-semibold leading-none mt-[2px]"
@@ -23,7 +36,7 @@
             </p>
             <p class="flex items-center mt-[2px]">
               <span class="text-[#767676] text-xs font-normal leading-none"
-                >12년차</span
+                >{{ myMakerProfile?.expr_year }}년차</span
               >
               <q-separator
                 vertical
