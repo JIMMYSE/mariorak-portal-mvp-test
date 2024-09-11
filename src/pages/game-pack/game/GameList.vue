@@ -49,10 +49,10 @@ const recommendedGameList = computed(() => {
         <normal-project-list />
       </div>
     </section> -->
-    <section class="mt-[55px]" ref="movePoint">
-      <!-- <img src="/images/dummy/banner_dummy.png" alt="banner" class="w-full" /> -->
-    </section>
-    <section class="mt-[55px] w-full">
+    <!-- <section class="mt-[55px]" ref="movePoint">
+      <img src="/images/dummy/banner_dummy.png" alt="banner" class="w-full" />
+    </section> -->
+    <section class="mt-[55px] w-full" ref="movePoint">
       <h2 class="px-6 text-[22px] font-semibold">게임 목록</h2>
       <div class="mt-4">
         <search-g-p-list :type="'game'" />

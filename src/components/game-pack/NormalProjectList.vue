@@ -63,10 +63,13 @@ const goToDetailPage = (gp: any) => {
         </div>
       </q-scroll-area>
     </div>
-    <div class="text-center text-[#767676] text-base font-normal" v-else>
-      아직 확인한 프로젝트가 없습니다.
+    <div
+      class="text-center text-[#767676] text-base font-normal mt-[10px]"
+      v-else
+    >
+      아직 확인한 프로젝트가 없어요.
       <br />
-      추천 프로젝트를 확인해보세요.
+      추천 프로젝트를 확인해 볼까요?
     </div>
   </div>
 </template>

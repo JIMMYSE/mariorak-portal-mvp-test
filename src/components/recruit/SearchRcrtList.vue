@@ -148,6 +148,8 @@ watchDebounced(
       />
     </template>
   </div>
+  <!-- 없는 아이템 예시 -->
+  <not-find-item item-name="게임" />
   <div class="flex justify-center" v-if="hasNextPage">
     <c-btn
       class="enter_btn rounded-[30px] text-primary font-semibold text-sm py-3 pl-10 pr-[30px] mt-[23px]"
