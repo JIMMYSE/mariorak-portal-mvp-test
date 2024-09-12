@@ -26,7 +26,7 @@ const goToDetailPage = (gp: any) => {
 <template>
   <div>
     <div>
-      <q-scroll-area style="height: 270px" :bar-style="barStyle" :thumb-style="thumbStyle">
+      <q-scroll-area style="height: 280px" :bar-style="barStyle" :thumb-style="thumbStyle">
         <div class="row no-wrap pl-6">
           <div class="game-card q-mr-md" v-for="gp in props.gpList" :key="gp.created_at" @click="goToDetailPage(gp)">
             <c-img :src="gp.thmn_file.convert_addr" width="100%" class="rounded-xl game-image" />
@@ -37,9 +37,10 @@ const goToDetailPage = (gp: any) => {
               <p class="text-[#222222] text-[16px] font-semibold leading-snug mt-[8px]">
                 {{ gp.title }}
               </p>
-              <p class="text-[#696969] text-xs font-normal leading-4 mt-[6px] ellipsis-2-lines">
-                {{ gp.desc }}
-              </p>
+              <p
+                class="text-[#696969] text-xs font-normal leading-4 mt-[6px] ellipsis-2-lines"
+                v-html="filterHtml(gp.desc)"
+              ></p>
             </div>
           </div>
         </div>
