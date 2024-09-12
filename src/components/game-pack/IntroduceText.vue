@@ -35,7 +35,7 @@ const toggleExpand = () => {
         'line-clamp-3': !isExpanded && showButton,
         'transition-all duration-300 ease-in-out': true,
       }"
-      class="text-[#767676] text-sm font-normal leading-tight break-words whitespace-pre w-[103%]"
+      class="text-[#767676] text-sm font-normal leading-tight whitespace-break-spaces break-words"
     >
       {{ props.intro }}
     </p>
