@@ -1,19 +1,10 @@
 <script lang="ts" setup>
+import { barStyle, thumbStyle } from 'src/utils/style-variable';
 type Props = {
   toList?: string;
   pList: any;
 };
 const props = defineProps<Props>();
-
-const barStyle = {
-  // 스크롤바 안보이게
-  opacity: 1,
-};
-
-const thumbStyle = {
-  // 스크롤바 색상
-  backgroundColor: 'transparent',
-};
 
 const goToListPage = () => {
   goToName('recruit-detail');

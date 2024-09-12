@@ -1,37 +1,22 @@
 <script lang="ts" setup>
 import { RecommendedGameListType } from 'src/types/gamepack/game-model';
-
+import { barStyle, thumbStyle } from 'src/utils/style-variable';
 type Props = {
   toList?: string;
   gList: RecommendedGameListType[] | undefined;
 };
 const props = defineProps<Props>();
 
-const barStyle = {
-  // 스크롤바 안보이게
-  opacity: 1,
-};
-
-const thumbStyle = {
-  // 스크롤바 색상
-  backgroundColor: 'transparent',
-};
-
 const gameInfo = {
   badge: ['어드벤쳐', 'Mobile', 'RPG'],
   title: '[새롭게 돌아온] KINGDOM the blood 킹덤 더 블러드',
-  description:
-    'game의 새로운 시작을 소개합니다 game의 새로운 신작을 소개합니다',
+  description: 'game의 새로운 시작을 소개합니다 game의 새로운 신작을 소개합니다',
 };
 </script>
 <template>
   <div>
     <div class="pl-6">
-      <q-scroll-area
-        style="height: 260px"
-        :bar-style="barStyle"
-        :thumb-style="thumbStyle"
-      >
+      <q-scroll-area style="height: 270px" :bar-style="barStyle" :thumb-style="thumbStyle">
         <div class="row no-wrap">
           <div
             class="game-card q-mr-md"
@@ -39,18 +24,10 @@ const gameInfo = {
             :key="g.game_id"
             @click="goTo(`/game-pack/game/${g.game_id}`)"
           >
-            <c-img
-              :src="g.thmn_file.convert_addr"
-              class="rounded-xl h-[138px]"
-            />
+            <c-img :src="g.thmn_file.convert_addr" class="rounded-xl h-[138px]" />
             <div class="game-info q-mt-sm">
               <div class="text-caption q-mb-xs mt-[16px]">
-                <span
-                  class="badge font-medium"
-                  v-for="badge in g.tag_list"
-                  :key="badge"
-                  >{{ badge }}</span
-                >
+                <span class="badge font-medium" v-for="badge in g.tag_list" :key="badge">{{ badge }}</span>
               </div>
               <card-info :height="'84px'" :desc="g.desc" :title="g.title" />
             </div>

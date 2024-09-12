@@ -1,21 +1,12 @@
 <script lang="ts" setup>
 import { DetailFileType } from 'src/types/gamepack/project-model';
 import { ref, onMounted } from 'vue';
+import { barStyle, thumbStyle } from 'src/utils/style-variable';
 
 type Props = {
   detailFileList?: DetailFileType[];
 };
 const props = defineProps<Props>();
-
-const barStyle = {
-  // 스크롤바 안보이게
-  opacity: 1,
-};
-
-const thumbStyle = {
-  // 스크롤바 색상
-  backgroundColor: 'transparent',
-};
 
 const currentVideo = ref<DetailFileType>({} as DetailFileType);
 const videoPlayer = ref<HTMLVideoElement | null>(null);
@@ -37,20 +28,11 @@ onMounted(() => {
 
 <template>
   <div class="video-player-container">
-    <video
-      ref="videoPlayer"
-      controls
-      class="main-video"
-      :key="currentVideo.detail_content_id"
-    >
+    <video ref="videoPlayer" controls class="main-video" :key="currentVideo.detail_content_id">
       <source :src="currentVideo.content_file.convert_addr" type="video/mp4" />
       현재 비디오를 지원하지 않습니다.
     </video>
-    <q-scroll-area
-      style="height: 120px; max-width: 100%"
-      :bar-style="barStyle"
-      :thumb-style="thumbStyle"
-    >
+    <q-scroll-area style="height: 120px; max-width: 100%" :bar-style="barStyle" :thumb-style="thumbStyle">
       <div class="row no-wrap">
         <c-img
           v-for="video in detailFileList"
@@ -59,8 +41,7 @@ onMounted(() => {
           @click="playVideo(video)"
           class="thumbnail cursor-pointer"
           :class="{
-            'active-thumbnail':
-              video.detail_content_id === currentVideo.detail_content_id,
+            'active-thumbnail': video.detail_content_id === currentVideo.detail_content_id,
           }"
         >
         </c-img>
