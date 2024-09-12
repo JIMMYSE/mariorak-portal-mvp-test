@@ -16,7 +16,7 @@ const props = defineProps<Props>();
 <template>
   <div class="w-full">
     <section class="mt-[40px]">
-      <h2 class="text-[20px] font-semibold">프로젝트 참가자 모집 소식</h2>
+      <h2 class="text-[20px] font-semibold">프로젝트 참가자 모집 소식 ({{ detail?.rcrt?.rcrt_mkr_num }}명)</h2>
       <div class="mt-4">
         <g-p-project-member-recruit
           class="mt-[30px]"
