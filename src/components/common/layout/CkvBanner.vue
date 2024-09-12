@@ -44,14 +44,8 @@ const endDrag = (event: MouseEvent) => {
 };
 
 const moveToLink = () => {
-  if (
-    !isDragging.value &&
-    props.imgList[slideInfo.value.currentSlideIndex].link
-  ) {
-    window.open(
-      props.imgList[slideInfo.value.currentSlideIndex].link,
-      '_blank'
-    );
+  if (!isDragging.value && props.imgList[slideInfo.value.currentSlideIndex].link) {
+    window.open(props.imgList[slideInfo.value.currentSlideIndex].link, '_blank');
   }
 };
 
@@ -69,6 +63,7 @@ const slideEvent = (info: any) => {
         @mousedown="startDrag"
         @mouseup="endDrag"
         @mouseleave="endDrag"
+        :autoplay="3000"
       >
         <slide
           v-for="img in imgList"
@@ -82,19 +77,10 @@ const slideEvent = (info: any) => {
       </Carousel>
     </div>
     <div v-else>
-      <main-card
-        :image-src="imgList[0].src"
-        :title="imgList[0].title"
-        :desc="imgList[0].desc"
-      />
+      <main-card :image-src="imgList[0].src" :title="imgList[0].title" :desc="imgList[0].desc" />
     </div>
-    <div
-      v-if="counter"
-      class="absolute bottom-5 right-7 row text-[#b5b5b5] text-sm items-center"
-    >
-      <p
-        class="text-white font-semibold leading-snug tracking-wider mr-1 text-lg"
-      >
+    <div v-if="counter" class="absolute bottom-5 right-7 row text-[#b5b5b5] text-sm items-center">
+      <p class="text-white font-semibold leading-snug tracking-wider mr-1 text-lg">
         {{ slideInfo.currentSlideIndex + 1 }}
       </p>
       / {{ slideInfo.slidesCount }}

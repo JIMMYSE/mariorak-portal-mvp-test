@@ -1,19 +1,10 @@
 <script lang="ts" setup>
+import { barStyle, thumbStyle } from 'src/utils/style-variable';
 type Props = {
   toList?: string;
   pList: any;
 };
 const props = defineProps<Props>();
-
-const barStyle = {
-  // 스크롤바 안보이게
-  opacity: 1,
-};
-
-const thumbStyle = {
-  // 스크롤바 색상
-  backgroundColor: 'transparent',
-};
 
 const goToListPage = () => {
   goToName('recruit-detail');
@@ -28,9 +19,9 @@ const recruitMakeRolList = (rolList: any) => {
 
 <template>
   <div>
-    <div class="pl-6">
+    <div>
       <q-scroll-area style="height: 300px" :bar-style="barStyle" :thumb-style="thumbStyle">
-        <div class="row no-wrap">
+        <div class="row no-wrap pl-6">
           <div
             class="project-card q-mr-md cursor-pointer"
             v-for="p in pList"

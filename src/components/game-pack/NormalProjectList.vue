@@ -1,21 +1,12 @@
 <script lang="ts" setup>
 import { RecentProjectListType, SimilarProjectListType } from 'src/types/gamepack/project-model';
-
+import { barStyle, thumbStyle } from 'src/utils/style-variable';
 type Props = {
   pList: RecentProjectListType[] | SimilarProjectListType | undefined;
   type: 'game' | 'project';
 };
 const props = defineProps<Props>();
 
-const barStyle = {
-  // 스크롤바 안보이게
-  opacity: 1,
-};
-
-const thumbStyle = {
-  // 스크롤바 색상
-  backgroundColor: 'transparent',
-};
 const goToDetailPage = (gp: any) => {
   const id = gp?.prdc_id ?? gp.prj_id;
   if (props.type === 'game') {
@@ -28,13 +19,13 @@ const goToDetailPage = (gp: any) => {
 <template>
   <div>
     <div v-if="pList && pList?.length > 0">
-      <q-scroll-area style="height: 170px" :bar-style="barStyle" :thumb-style="thumbStyle">
+      <q-scroll-area style="height: 200px" :bar-style="barStyle" :thumb-style="thumbStyle">
         <div class="row no-wrap">
           <div class="game-card q-mr-md" v-for="p in pList" :key="p.prj_id" @click="goToDetailPage(p)">
             <c-img :src="p.thmn_file.convert_addr" width="100%" class="rounded-xl game-image" />
 
             <div class="game-info q-mt-sm">
-              <p class="text-[#222222] text-[16px] font-semibold leading-snug mt-[8px]">
+              <p class="h-[50px] text-[#222222] text-[16px] font-semibold leading-snug mt-[8px]">
                 {{ p.title }}
               </p>
               <p class="text-[#696969] text-xs font-normal leading-none">

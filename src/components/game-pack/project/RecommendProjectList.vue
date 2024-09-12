@@ -1,32 +1,18 @@
 <script lang="ts" setup>
 import { RecommendedProjectListType } from 'src/types/gamepack/project-model';
 import GPbadge from '../GPbadge.vue';
-
+import { barStyle, thumbStyle } from 'src/utils/style-variable';
 type Props = {
   toList?: string;
   gpList: RecommendedProjectListType[] | undefined;
 };
 const props = defineProps<Props>();
-
-const barStyle = {
-  // 스크롤바 안보이게
-  opacity: 1,
-};
-
-const thumbStyle = {
-  // 스크롤바 색상
-  backgroundColor: 'transparent',
-};
 </script>
 <template>
   <div>
-    <div class="pl-6">
-      <q-scroll-area
-        style="height: 350px"
-        :bar-style="barStyle"
-        :thumb-style="thumbStyle"
-      >
-        <div class="row no-wrap">
+    <div>
+      <q-scroll-area style="height: 350px" :bar-style="barStyle" :thumb-style="thumbStyle">
+        <div class="row no-wrap pl-6">
           <div
             class="game-card q-mr-md relative cursor-pointer"
             v-for="p in gpList"
@@ -37,39 +23,24 @@ const thumbStyle = {
             <div class="absolute z-10 w-[60px] text-sm top-2 left-2">
               <GPbadge :cd="p.prj_stt_cd" section-cd="PRJ_STT" />
             </div>
-            <c-img
-              :src="p.thmn_file.convert_addr"
-              class="rounded-xl h-[138px] w-[246px]"
-            />
+            <c-img :src="p.thmn_file.convert_addr" class="rounded-xl h-[138px] w-[246px]" />
             <div class="absolute top-2 right-2">
               <c-icon :name="'icon_heart'" size="18px" />
             </div>
             <div class="game-info q-mt-sm">
               <div class="text-caption q-mb-xs mt-[16px]">
-                <span
-                  class="badge font-medium"
-                  v-for="badge in p.tag_list"
-                  :key="badge"
-                  >{{ badge }}</span
-                >
+                <span class="badge font-medium" v-for="badge in p.tag_list" :key="badge">{{ badge }}</span>
               </div>
               <card-info :height="'84px'" :desc="p.desc" :title="p.title" />
             </div>
             <div class="w-full mt-[20px]">
               <div class="flex justify-between items-center mb-1">
-                <span class="text-base font-medium leading-tight text-[#222222]"
-                  >프로젝트 진행률</span
-                >
-                <span class="text-[#056bf1] text-2xl font-semibold"
-                  >{{ p.progress_percent }}%</span
-                >
+                <span class="text-base font-medium leading-tight text-[#222222]">프로젝트 진행률</span>
+                <span class="text-[#056bf1] text-2xl font-semibold">{{ p.progress_percent }}%</span>
               </div>
               <!-- 응답값에 따라 style width 값 조절 -->
               <div class="w-full bg-[#DBDBDB] rounded-full h-0.5">
-                <div
-                  class="bg-[#056BF1] h-0.5 rounded-full"
-                  :style="`width: ${p.progress_percent}%`"
-                ></div>
+                <div class="bg-[#056BF1] h-0.5 rounded-full" :style="`width: ${p.progress_percent}%`"></div>
               </div>
             </div>
           </div>

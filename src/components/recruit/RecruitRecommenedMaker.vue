@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { barStyle, thumbStyle } from 'src/utils/style-variable';
+
 const props = defineProps<{
   toList?: string;
   mList: any;
@@ -23,19 +25,9 @@ const goToListPage = () => {
 
 <template>
   <div>
-    <div class="pl-6">
-      <q-scroll-area
-        style="height: 180px"
-        :bar-style="{
-          // 스크롤바 안보이게
-          opacity: 1,
-        }"
-        :thumb-style="{
-          // 스크롤바 색상
-          backgroundColor: 'transparent',
-        }"
-      >
-        <div class="row no-wrap">
+    <div>
+      <q-scroll-area style="height: 185px" :bar-style="barStyle" :thumb-style="thumbStyle">
+        <div class="row no-wrap pl-6">
           <q-card
             class="maker-card q-mr-md shadow-1 rounded-xl cursor-pointer"
             @click="goTo(`/recruit/profile/${m.mem_id}`)"
