@@ -1,8 +1,9 @@
-import { PostSearchResType } from 'src/types/community/post-model';
+import { PostDetailResType, PostDetailType, PostSearchResType } from 'src/types/community/post-model';
 import { MaybeRef } from 'vue';
 const API_URL = '/v3/cm/post';
 const QUERY_KEY = {
   list: 'post-list',
+  DETAIL: 'post-detail',
 };
 
 export const usePostList = ({
@@ -20,5 +21,13 @@ export const usePostList = ({
     searchRequest,
     queryKeyName: listQueryKeyName,
     setField,
+  });
+};
+
+export const usePostDetail = (id: MaybeRef) => {
+  return useQueryFetchItem<PostDetailResType>({
+    id: id,
+    queryKeyName: QUERY_KEY.DETAIL,
+    url: API_URL,
   });
 };
