@@ -5,7 +5,6 @@ const API_URL = 'v3/cm/like';
 /**
  * 좋아요 등록
  */
-
 export const useLike = (type: 'project' | 'game', id: MaybeRefOrGetter<string>, queryKeyName: string) => {
   return useQueryCreateItem<ApiResponse>({
     url: computed(() => API_URL + `/${type}/${toValue(id)}`),
