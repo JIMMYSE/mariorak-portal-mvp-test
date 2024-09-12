@@ -1,3 +1,4 @@
+import { PostSearchResType } from 'src/types/community/post-model';
 import { MaybeRef } from 'vue';
 const API_URL = '/v3/cm/post';
 const QUERY_KEY = {
@@ -14,7 +15,7 @@ export const usePostList = ({
   listQueryKeyName?: string;
   setField: any;
 }) => {
-  return useQueryFetchInfiniteList<any, SearchRequest>({
+  return useQueryFetchInfiniteList<PostSearchResType, SearchRequest>({
     url: API_URL,
     searchRequest,
     queryKeyName: listQueryKeyName,
