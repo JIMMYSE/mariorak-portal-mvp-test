@@ -111,7 +111,6 @@ const onSubmit = handleSubmit(async () => {
             class="w-full pb-[14px]"
             placeholder="닉네임을 입력하세요."
             :maxlength="20"
-            autofocus
             :outlined="false"
             :rounded="false"
             border-radius="0px"
@@ -143,7 +142,6 @@ const onSubmit = handleSubmit(async () => {
             name="prtf.prtf_url"
             placeholder="제목을 입력하세요."
             :maxlength="20"
-            autofocus
             :outlined="false"
             :rounded="false"
             border-radius="0px"
@@ -176,7 +174,6 @@ const onSubmit = handleSubmit(async () => {
             class="w-full pb-[14px]"
             placeholder="나를 한줄로 표현해 주세요."
             :maxlength="30"
-            autofocus
             :outlined="false"
             :rounded="false"
             border-radius="0px"
