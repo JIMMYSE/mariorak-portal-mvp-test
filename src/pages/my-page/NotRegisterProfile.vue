@@ -30,6 +30,7 @@
         <c-btn
           class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
           color="primary"
+          @click="goToName('maker-profile-new')"
           >등록하기
         </c-btn>
       </section>

@@ -1,4 +1,5 @@
-import yup, { LocaleObject, Message } from 'yup';
+import { LocaleObject, Message } from 'yup';
+import * as yup from 'yup';
 import { date } from 'yup';
 import { josa } from 'josa';
 import moment from 'moment-timezone';
@@ -14,8 +15,7 @@ export default function config() {
       required: (ref) => msg(ref, '필수입력입니다.'),
       // oneOf: '다음 값 중 하나여야 합니다. : ${values}',
       oneOf: (ref) => msg(ref, `다음 값 중 하나여야 합니다. - ${ref.values}`),
-      notOneOf: (ref) =>
-        msg(ref, `다음 값 중 하나가 아니어야 합니다. - ${ref.values}`),
+      notOneOf: (ref) => msg(ref, `다음 값 중 하나가 아니어야 합니다. - ${ref.values}`),
       notType: function notType(ref) {
         // const path = ref.path;
         const type = ref.type;
@@ -28,9 +28,7 @@ export default function config() {
         } else if (type == 'date') {
           return msg(ref, '날짜 형식으로 입력하세요.');
         } else {
-          return (
-            getItemName(ref) + ' 항목은 `' + type + '` 형식으로 입력하세요.'
-          );
+          return getItemName(ref) + ' 항목은 `' + type + '` 형식으로 입력하세요.';
         }
       },
       defined: '정의되지 않았습니다.',
@@ -80,9 +78,7 @@ export default function config() {
 
   function formatDate(date: any) {
     const mdate = moment(date);
-    return mdate.format('HHmmss') === '000000'
-      ? mdate.format('YYYY-MM-DD')
-      : mdate.format('YYYY-MM-DD HH:mm:ss');
+    return mdate.format('HHmmss') === '000000' ? mdate.format('YYYY-MM-DD') : mdate.format('YYYY-MM-DD HH:mm:ss');
   }
 
   yup.addMethod(date, 'sameOrAfter', function (compareField, message) {
@@ -97,9 +93,7 @@ export default function config() {
 
       const compareValue = context.parent[compareField];
       // const compareDate = moment(compareValue);
-      const compareFieldName =
-        (context.from?.[0].schema as any).fields[compareField].spec.label ??
-        compareField;
+      const compareFieldName = (context.from?.[0].schema as any).fields[compareField].spec.label ?? compareField;
       // const dateFmt =
       //   compareDate.format('HHmmss') === '000000'
       //     ? compareDate.format('YYYY-MM-DD')
@@ -110,8 +104,7 @@ export default function config() {
         createError({
           message:
             // message ?? `${name} 항목은 ${dateFmt} 보다 크거나 같아야합니다.`,
-            message ??
-            josa(`${name}#{은} ${compareFieldName}보다 크거나 같아야합니다.`),
+            message ?? josa(`${name}#{은} ${compareFieldName}보다 크거나 같아야합니다.`),
         })
       );
     });
@@ -128,27 +121,20 @@ export default function config() {
         });
       }
       const compareValue = context.parent[compareField];
-      const compareFieldName =
-        (context.from?.[0].schema as any).fields[compareField].spec.label ??
-        compareField;
+      const compareFieldName = (context.from?.[0].schema as any).fields[compareField].spec.label ?? compareField;
       const cmpDate = formatDate(compareValue);
       const curDate = formatDate(value);
       if (resultMessage) {
         resultMessage = resultMessage.replaceAll('${name}', name);
         resultMessage = resultMessage.replaceAll('${value}', curDate);
-        resultMessage = resultMessage.replaceAll(
-          '${compareFieldName}',
-          compareFieldName
-        );
+        resultMessage = resultMessage.replaceAll('${compareFieldName}', compareFieldName);
         resultMessage = resultMessage.replaceAll('${compareValue}', cmpDate);
         resultMessage = josa(resultMessage);
       }
       return (
         value > compareValue ||
         createError({
-          message:
-            message ??
-            josa(`${name}#{은} ${compareFieldName}보다 커야 합니다.`),
+          message: message ?? josa(`${name}#{은} ${compareFieldName}보다 커야 합니다.`),
         })
       );
     });

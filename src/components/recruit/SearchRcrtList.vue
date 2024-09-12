@@ -190,7 +190,7 @@ const searchAction = createAction(() => {
       <SearchProjectItem
         v-for="info in searchAction.data.value"
         :key="info.prj_id"
-        :id="info.prj_id as number"
+        :id="info.prj_rcrt_id as number"
         :badge="info?.tag_list ?? []"
         :title="info.title as string"
         :rcrt-num="info.rcrt_mkr_num as number"

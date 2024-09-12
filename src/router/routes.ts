@@ -16,7 +16,7 @@ const routes: RouteRecordRaw[] = [
         path: '/home',
         meta: {
           requiresAuth: true,
-          title: 'CCF ㅣ 팬과 함께 만들어가는 게임 개발 커뮤니티 ',
+          title: 'CCF ㅣ 팬과 함께 만들어가는 게임 개발 커뮤니티',
           description:
             '성공적인 게임 제작을 위해 팬과 크리에이터가 만나 아이디어를 내며 소통을 하는 글로벌 커뮤니티 공간 CCF_Content Created with Fans',
           ogImage: '/images/meta-img.jpg',
@@ -219,7 +219,7 @@ const routes: RouteRecordRaw[] = [
             path: 'maker-profile-new',
             name: 'maker-profile-new',
             meta: {
-              title: '참여 개발자 등록',
+              title: '개발자 프로필 등록',
             },
             component: () => import('pages/my-page/MakerProfileEdit.vue'),
           },
