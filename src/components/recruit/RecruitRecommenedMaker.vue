@@ -19,9 +19,9 @@ const recruitMakeRolList = (rolList: any) => {
 
 <template>
   <div>
-    <div class="pl-6">
+    <div>
       <q-scroll-area style="height: 185px" :bar-style="barStyle" :thumb-style="thumbStyle">
-        <div class="row no-wrap">
+        <div class="row no-wrap pl-6">
           <q-card
             class="maker-card q-mr-md shadow-1 rounded-xl cursor-pointer"
             @click="goTo(`/recruit/profile/${m.mem_id}`)"

@@ -10,9 +10,9 @@ const props = defineProps<Props>();
 </script>
 <template>
   <div>
-    <div class="pl-6">
+    <div>
       <q-scroll-area style="height: 350px" :bar-style="barStyle" :thumb-style="thumbStyle">
-        <div class="row no-wrap">
+        <div class="row no-wrap pl-6">
           <div
             class="game-card q-mr-md relative cursor-pointer"
             v-for="p in gpList"
