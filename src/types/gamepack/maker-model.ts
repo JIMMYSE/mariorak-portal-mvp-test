@@ -1,4 +1,4 @@
-import { MakerOneRes, MakerCreateOrUpdateReq, Maker } from 'ccf-api-dto';
+import { MakerOneRes, MakerCreateOrUpdateReq } from 'ccf-api-dto';
 
 /**
  * 제작자
@@ -60,10 +60,9 @@ export const MakerSchema = object({
   updatedAt: date().nullable().label('수정일시'),
 });
 
-const test = MakerCreateOrUpdateReq.shape({
-  desc: string().required().label('어어어'),
+export const MakerCreateOrUpdateReqFront = MakerCreateOrUpdateReq.shape({
+  mem_id: number().label('회원 아이디').notRequired().nullable(),
 });
-
-export type MakerCreateOrUpdateReqType = InferType<typeof test>;
+export type MakerCreateOrUpdateReqType = InferType<typeof MakerCreateOrUpdateReqFront>;
 
 export type MakerOneResType = InferType<typeof MakerOneRes>;

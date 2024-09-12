@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { MakerCreateOrUpdateReq } from 'ccf-api-dto';
-import { MakerCreateOrUpdateReqType } from 'src/types/gamepack/maker-model';
+import { MakerCreateOrUpdateReqType, MakerCreateOrUpdateReqFront } from 'src/types/gamepack/maker-model';
 
 const barStyle = {
   // 스크롤바 안보이게
@@ -72,33 +71,39 @@ watch(maker, (value) => {
     selectedJob.value = data?.mkr_rol_cd ?? '';
   }
 });
-
-const {
-  values: form,
-  handleSubmit,
-  setValues,
-} = useForm<MakerCreateOrUpdateReqType>({
-  validationSchema: toTypedSchema(MakerCreateOrUpdateReq),
-});
-
-/** 등록 */
-const { mutateAsync, isSuccess } = useMakerCreateOrUpdate();
-const onSubmit = handleSubmit(async () => {
+watch([skills, jobObjs], () => {
   setValues({
     prfl: {
       onln_prfl: form.prfl.onln_prfl,
       skills: skills.value.split(','),
       job_objs: jobObjs.value.split(','),
     },
+  });
+});
+
+const {
+  values: form,
+  handleSubmit,
+  setValues,
+} = useForm<MakerCreateOrUpdateReqType>({
+  validationSchema: toTypedSchema(MakerCreateOrUpdateReqFront),
+});
+
+/** 등록 */
+const { mutateAsync, isSuccess } = useMakerCreateOrUpdate();
+
+const onSubmit = handleSubmit(async () => {
+  setValues({
     expr_year: selectedYear.value,
   });
+
   mutateAsync({
     ...form,
   });
 
   watch(isSuccess, (value) => {
     if (value) {
-      goBack();
+      goToName('maker-profile-manage');
     }
   });
 });

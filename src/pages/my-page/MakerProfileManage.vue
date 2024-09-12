@@ -1,17 +1,15 @@
 <script lang="ts" setup>
-const { data: myMakerProfileData, isLoading } = useMyMakerDetail();
+const { data: myMakerProfileData, isFinished } = useMyMakerDetail();
 const myMakerProfile = computed(() => myMakerProfileData.value?.data);
 
-watch(
-  () => myMakerProfile,
-  (newVal) => {
-    if (newVal) {
-      if (newVal.value?.mkr_id == null) {
-        replaceToName('not-register-profile');
-      }
+watch(myMakerProfile, (newVal) => {
+  console.log('>>>', newVal);
+  if (newVal) {
+    if (newVal?.mkr_id == null) {
+      replaceToName('not-register-profile');
     }
   }
-);
+});
 
 const { options: jobOptions } = useCommonCode('MKR_ROL');
 const job = computed(() => jobOptions.value.find((option) => option.value === myMakerProfile?.value?.mkr_rol_cd));
@@ -20,7 +18,7 @@ const openPortfolio = () => {
 };
 </script>
 <template>
-  <q-page v-show="!isLoading">
+  <q-page v-show="isFinished && myMakerProfile?.mkr_id">
     <section class="px-6 pt-[30px]">
       <div class="flex flex-col">
         <div class="flex items-center pb-[15px]">
