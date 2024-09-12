@@ -37,6 +37,7 @@
     "@vee-validate/yup": "^4.13.1",
     "@vueuse/core": "^10.10.0",
     "@vueuse/integrations": "^10.10.0",
+    "@vueuse/router": "^11.0.3",
     "axios": "^1.6.8",
     "ccf-api-dto": "github:coarsoft-tmp/ccf-api-dto",
     "clsx": "^2.1.0",

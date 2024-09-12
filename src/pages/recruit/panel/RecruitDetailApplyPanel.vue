@@ -1,6 +1,58 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 
+const router = useRouter();
+const { data: applimentData, isFetched } = useRecruitApplymentDetail({
+  staleTime: 0,
+});
+
+// #region 내가 신청한 프로젝트
+/** 내가 신청한 프로젝트 */
+const appliedProjectAction = createAction(() => {
+  const menuOpenStates = ref([]);
+
+  watch(
+    isFetched,
+    (v) => {
+      if (!v) {
+        menuOpenStates.value = [];
+        return;
+      }
+
+      menuOpenStates.value = applimentData.value.appliedList.map((item) => false);
+    },
+    {
+      deep: true,
+    }
+  );
+
+  /**
+   * 메뉴 토글 처리
+   * @param index
+   */
+  function toggleMenu(index: number) {
+    menuOpenStates.value[index] = !menuOpenStates.value[index];
+  }
+
+  /**
+   * 프로젝트 이동
+   * @param prj_rcrt_id 프로젝트 지원 아이디
+   */
+  function goToProjectDetail(prj_rcrt_id: number) {
+    router.push(`/recruit/project/${prj_rcrt_id}`);
+  }
+
+  return {
+    /**
+     * 메뉴 상태
+     */
+    menuOpenStates,
+    toggleMenu,
+    goToProjectDetail,
+  };
+});
+// #endregion
+
 const isMenuOpen = ref(false); // 내가 신청한 프로젝트 메뉴 열림 여부 상태
 
 const toggleMenu = (event: Event) => {
@@ -36,56 +88,68 @@ const toggleApplyDropdown = (event: Event) => {
 </script>
 
 <template>
-  <div>
+  <div v-if="applimentData">
     <section class="px-6 mt-[30px]">
       <p class="text-[#222222] text-xl font-semibold leading-7">내가 신청한 프로젝트</p>
       <div class="mt-[15px]">
-        <div class="flex no-wrap w-full" v-if="false">
-          <div>
-            <q-img src="/images/dummy/recent_pj_dummy.png" class="rounded-xl h-[78px] w-[139px]" />
-          </div>
-
-          <div class="text-caption q-mb-xs flex justify-between pl-2 w-full">
-            <div
-              class="flex items-start justify-between text-[#222222] h-[40px] text-sm font-semibold leading-tight ellipsis-2-lines"
-            >
-              <span class="w-[140px]">아아아아게임제목아아아아게게임제목</span>
-
-              <div class="absolute right-[30px]">
-                <q-icon
-                  name="img:/icons/icon_kebap.svg"
-                  size="24px"
-                  class="rotate-90 cursor-pointer"
-                  @click.stop="toggleMenu"
-                />
-
-                <q-menu v-model="isMenuOpen" anchor="top right" self="top right">
-                  <q-list style="min-width: 120px">
-                    <q-item clickable v-ripple>
-                      <q-item-section>프로젝트 상세</q-item-section>
-                    </q-item>
-                    <q-item clickable v-ripple>
-                      <q-item-section>신청 취소하기</q-item-section>
-                    </q-item>
-                  </q-list>
-                </q-menu>
-              </div>
+        <template v-if="isFetched">
+          <div
+            v-for="(item, index) in applimentData.appliedList"
+            :key="item.prj_rcrt_id"
+            class="flex no-wrap w-full mb-[25px]"
+          >
+            <div>
+              <q-img :src="item.thmn_file?.convert_addr" class="rounded-xl h-[78px] w-[139px]" />
             </div>
 
-            <div class="flex flex-col justify-between items-start w-full">
-              <div class="text-[#b5b5b5] text-xs font-normal leading-none">
-                <span class="text-[#056bf1] text-xs font-medium leading-none">신청</span>
-                2024.06.06
+            <div class="text-caption q-mb-xs flex justify-between pl-2 w-full">
+              <div
+                class="flex items-start justify-between text-[#222222] h-[40px] text-sm font-semibold leading-tight ellipsis-2-lines"
+              >
+                <span class="w-[140px]">{{ item.title }}</span>
+
+                <div class="absolute right-[30px]">
+                  <q-icon
+                    name="img:/icons/icon_kebap.svg"
+                    size="24px"
+                    class="rotate-90 cursor-pointer"
+                    @click.stop="appliedProjectAction.toggleMenu(index)"
+                  />
+
+                  <q-menu
+                    v-model="appliedProjectAction.menuOpenStates.value[index]"
+                    anchor="top right"
+                    self="top right"
+                  >
+                    <q-list style="min-width: 120px">
+                      <q-item clickable v-ripple>
+                        <q-item-section @click="appliedProjectAction.goToProjectDetail(item.prj_rcrt_id)"
+                          >프로젝트 상세</q-item-section
+                        >
+                      </q-item>
+                      <q-item clickable v-ripple v-if="item.prj_aply_stt_cd === '10'">
+                        <q-item-section>신청 취소하기</q-item-section>
+                      </q-item>
+                    </q-list>
+                  </q-menu>
+                </div>
               </div>
-              <div class="text-[#b5b5b5] text-xs font-normal leading-none">
-                <span class="text-[#767676] text-xs font-medium leading-none">마감</span>
-                2024.06.06
+
+              <div class="flex flex-col justify-between items-start w-full">
+                <div class="text-[#b5b5b5] text-xs font-normal leading-none">
+                  <span class="text-[#056bf1] text-xs font-medium leading-none">신청</span>
+                  {{ formatDate(item.applied_dttm) }}
+                </div>
+                <div class="text-[#b5b5b5] text-xs font-normal leading-none">
+                  <span class="text-[#767676] text-xs font-medium leading-none">마감</span>
+                  {{ formatDate(item.end_dttm) }}
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </template>
 
-        <div class="flex no-wrap w-full justify-center">
+        <div class="flex no-wrap w-full justify-center" v-else>
           <not-find-item message="신청한 프로젝트가 없어요." />
         </div>
       </div>
