@@ -62,6 +62,7 @@ export const MakerSchema = object({
 
 export const MakerCreateOrUpdateReqFront = MakerCreateOrUpdateReq.shape({
   mem_id: number().label('회원 아이디').notRequired().nullable(),
+  mkr_id: number().label('제작자 아이디').notRequired().nullable(),
 });
 export type MakerCreateOrUpdateReqType = InferType<typeof MakerCreateOrUpdateReqFront>;
 
