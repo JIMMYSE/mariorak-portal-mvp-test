@@ -21,15 +21,15 @@ const playVideo = (video: DetailFileType) => {
 
 onMounted(() => {
   if (videoPlayer.value) {
-    videoPlayer.value.src = currentVideo.value.content_file.convert_addr;
+    videoPlayer.value.src = currentVideo.value.content_file?.convert_addr ?? '';
   }
 });
 </script>
 
 <template>
   <div class="video-player-container">
-    <video ref="videoPlayer" controls class="main-video" :key="currentVideo.detail_content_id">
-      <source :src="currentVideo.content_file.convert_addr" type="video/mp4" />
+    <video controls class="main-video" :key="currentVideo?.detail_content_id" ref="videoPlayer">
+      <source :src="currentVideo?.content_file?.convert_addr ?? ''" type="video/mp4" />
       현재 비디오를 지원하지 않습니다.
     </video>
     <q-scroll-area style="height: 120px; max-width: 100%" :bar-style="barStyle" :thumb-style="thumbStyle">
