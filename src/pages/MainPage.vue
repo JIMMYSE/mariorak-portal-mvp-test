@@ -169,7 +169,7 @@ const openDetailDialog = (type: string) => {
         <q-scroll-area class="w-full" :bar-style="barStyle" :thumb-style="thumbStyle">
           <div class="row no-wrap pl-6">
             <div class="h-[270px] mr-4 w-[200px]" v-for="n in cultureList" :key="n.src">
-              <q-card class="rounded-xl">
+              <q-card class="rounded-[10px] shadow">
                 <q-img :src="n.src" class="w-[200px] h-[123px]" />
 
                 <q-card-section>

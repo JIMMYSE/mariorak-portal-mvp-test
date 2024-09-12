@@ -92,9 +92,7 @@ export function useContentDialog(option: CDialogContentProps) {
 /**
  * 에러 발생 시 Alert
  */
-export function useAlertErrorDialogWatcher(
-  errors: MaybeRefOrGetter<any | unknown>
-) {
+export function useAlertErrorDialogWatcher(errors: MaybeRefOrGetter<any | unknown>) {
   return watch(errors, (err) => {
     let text = '';
 
@@ -165,6 +163,6 @@ export const useNotifyDone = (message: Message) => {
 
 export function notAvailableAlert() {
   return useAlertDialog({
-    text: '해당 서비스는 Grand Open 때 준비 될 예정입니다!!',
+    text: '해당 서비스는 추후 업데이트 예정입니다.',
   });
 }

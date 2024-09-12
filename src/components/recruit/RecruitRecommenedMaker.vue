@@ -29,7 +29,7 @@ const goToListPage = () => {
       <q-scroll-area style="height: 185px" :bar-style="barStyle" :thumb-style="thumbStyle">
         <div class="row no-wrap pl-6">
           <q-card
-            class="maker-card q-mr-md shadow-1 rounded-xl cursor-pointer"
+            class="maker-card q-mr-md shadow rounded-[10px] cursor-pointer"
             @click="goTo(`/recruit/profile/${m.mem_id}`)"
             v-for="m in props.mList"
             :key="m.created_at"
