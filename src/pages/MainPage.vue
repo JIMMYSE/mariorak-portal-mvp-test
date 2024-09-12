@@ -165,9 +165,9 @@ const openDetailDialog = (type: string) => {
     <section class="mt-10">
       <p class="pl-6 text-[22px] font-semibold">유저와 함께하는 게임 제작 문화</p>
       <p class="pl-6 text-[#767676] text-sm font-normal">CCF가 제공하는 다양한 혜택을 즐겨보세요</p>
-      <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4 h-[280px] pl-6">
+      <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4 h-[280px]">
         <q-scroll-area class="w-full" :bar-style="barStyle" :thumb-style="thumbStyle">
-          <div class="row no-wrap">
+          <div class="row no-wrap pl-6">
             <div class="h-[270px] mr-4 w-[200px]" v-for="n in cultureList" :key="n.src">
               <q-card class="rounded-xl">
                 <q-img :src="n.src" class="w-[200px] h-[123px]" />

@@ -18,9 +18,9 @@ const introList = [
   <section class="mt-10">
     <p class="pl-6 text-[22px] font-semibold">인력사무소</p>
     <p class="pl-6 text-[#767676] text-sm font-normal">서로에게 도움이 되는 만남의 장소</p>
-    <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4 h-[150px] pl-6">
+    <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4 h-[150px]">
       <q-scroll-area class="w-full" :bar-style="barStyle" :thumb-style="thumbStyle">
-        <div class="row no-wrap">
+        <div class="row no-wrap pl-6">
           <div class="mr-4 w-[183px] h-[131px]" v-for="n in introList" :key="n.title">
             <q-card class="rounded-xl p-1">
               <q-card-section>

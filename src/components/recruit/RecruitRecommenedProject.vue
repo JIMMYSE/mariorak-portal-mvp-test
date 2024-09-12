@@ -19,9 +19,9 @@ const recruitMakeRolList = (rolList: any) => {
 
 <template>
   <div>
-    <div class="pl-6">
+    <div>
       <q-scroll-area style="height: 300px" :bar-style="barStyle" :thumb-style="thumbStyle">
-        <div class="row no-wrap">
+        <div class="row no-wrap pl-6">
           <div
             class="project-card q-mr-md cursor-pointer"
             v-for="p in pList"

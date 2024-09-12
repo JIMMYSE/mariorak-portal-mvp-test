@@ -15,9 +15,9 @@ const gameInfo = {
 </script>
 <template>
   <div>
-    <div class="pl-6">
+    <div>
       <q-scroll-area style="height: 270px" :bar-style="barStyle" :thumb-style="thumbStyle">
-        <div class="row no-wrap">
+        <div class="row no-wrap pl-6">
           <div
             class="game-card q-mr-md"
             v-for="g in gList"
