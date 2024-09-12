@@ -13,9 +13,7 @@ const textRef = ref<HTMLParagraphElement | null>(null);
 onMounted(async () => {
   setTimeout(() => {
     if (textRef.value) {
-      const lineHeight = parseInt(
-        window.getComputedStyle(textRef.value).lineHeight
-      );
+      const lineHeight = parseInt(window.getComputedStyle(textRef.value).lineHeight);
       const height = textRef.value.clientHeight;
 
       // 텍스트 높이가 3줄 이상일 경우만 더보기 버튼 표시
@@ -37,15 +35,11 @@ const toggleExpand = () => {
         'line-clamp-3': !isExpanded && showButton,
         'transition-all duration-300 ease-in-out': true,
       }"
-      class="text-[#767676] text-sm font-normal leading-tight break-words"
+      class="text-[#767676] text-sm font-normal leading-tight break-words whitespace-pre w-[103%]"
     >
       {{ props.intro }}
     </p>
-    <button
-      v-if="showButton"
-      @click="toggleExpand"
-      class="text-[#056bf1] text-sm font-medium underline leading-tight"
-    >
+    <button v-if="showButton" @click="toggleExpand" class="text-[#056bf1] text-sm font-medium underline leading-tight">
       {{ isExpanded ? '접기' : '더보기' }}
     </button>
   </div>
