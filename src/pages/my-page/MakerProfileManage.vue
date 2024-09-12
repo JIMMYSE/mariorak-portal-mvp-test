@@ -58,7 +58,7 @@ const openPortfolio = () => {
       </div>
     </section>
     <hr class="h-2.5 bg-[#f7f7f7] mt-8" />
-    <section class="px-6 mt-[40px]">
+    <!-- <section class="px-6 mt-[40px]">
       <h2 class="text-[22px] font-semibold">인적 사항</h2>
       <div class="space-y-2 mt-[14px]">
         <div class="flex justify-start items-center">
@@ -74,7 +74,7 @@ const openPortfolio = () => {
           <span class="text-[#222222] text-sm font-normal leading-tight">{{ myMakerProfile?.prfl?.bio?.loct }}</span>
         </div>
       </div>
-    </section>
+    </section> -->
     <section class="px-6 mt-[60px]">
       <h2 class="text-[22px] font-semibold">업무 정보</h2>
       <div class="mt-[12px]">
