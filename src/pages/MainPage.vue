@@ -54,8 +54,8 @@ const cultureList = [
   },
   {
     src: '/images/main/main_culture_4.png',
-    title: '재정적 안정을\n지원하는 공간',
-    desc: '개발 과정의 실시간 공개와\n게임의 지분 및 수익을 투명하게\n공유해드려요.',
+    title: '투명하고 건강한\n게임 개발 공간',
+    desc: '개발 과정의 실시간 공개와\n게임의 지분 및 수익을 투명하\n공유해드려요.',
   },
 ];
 const tabList = [
