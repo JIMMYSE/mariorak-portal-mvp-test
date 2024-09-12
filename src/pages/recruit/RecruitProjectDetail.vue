@@ -13,12 +13,13 @@ const prjId = computed(() => toString(projectDetail.value?.prj_id));
 
 const likeAction = createAction(() => {
   const like = ref(false);
+
   const { mutateAsync: onLike } = useLike('project', prjId, 'project-detail');
   const { mutateAsync: onUnlike } = useUnLike('project', 'project-detail');
 
   const onLikeProject = async () => {
     like.value = !like.value;
-    like.value ? onLike({}) : onUnlike(prjId.value);
+    like.value ? await onLike({}) : await onUnlike(prjId.value);
     await refetch();
   };
 

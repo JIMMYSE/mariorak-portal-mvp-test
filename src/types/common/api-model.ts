@@ -12,7 +12,7 @@ export interface ApiResponse<T = any> {
 }
 
 export interface ApiListResponse<T = any> {
-  code: string;
+  code?: string;
   data?: {
     total: number;
     count: number;

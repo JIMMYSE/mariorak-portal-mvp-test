@@ -8,7 +8,7 @@ const API_URL = 'v3/cm/like';
 
 export const useLike = (type: 'project' | 'game', id: MaybeRefOrGetter<string>, queryKeyName: string) => {
   return useQueryCreateItem<ApiResponse>({
-    url: API_URL + `/${type}/${toValue(id)}`,
+    url: computed(() => API_URL + `/${type}/${toValue(id)}`),
     queryKeyName: queryKeyName,
   });
 };
