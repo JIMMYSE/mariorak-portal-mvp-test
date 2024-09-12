@@ -18,6 +18,7 @@ const { data } = getMyDetail();
 
 const isLocal = process.env.IS_LOCAL;
 const isDev = process.env.IS_DEV;
+const { enterRoom } = useBridge();
 </script>
 <template>
   <q-page>
@@ -75,7 +76,11 @@ const isDev = process.env.IS_DEV;
               <c-icon name="icon_enter_arrow" color="#b5b5b5" size="16px" :fill="false"></c-icon>
             </q-item-section>
           </q-item>
-          <q-item v-if="isLocal || isDev" class="py-[20px] px-[24px] border-b-[1px] border-[#f0f0f0] last:border-0">
+          <q-item
+            v-if="isLocal || isDev"
+            class="py-[20px] px-[24px] border-b-[1px] border-[#f0f0f0] last:border-0"
+            @click="enterRoom(1, 1)"
+          >
             <q-item-section>
               <q-item-label class="text-[#056bf1] text-base font-medium leading-tight">컨퍼런스 입장</q-item-label>
             </q-item-section>
