@@ -16,8 +16,8 @@ export const MakerSchema = object({
   /** 경력 연차 */
   expr_year: number().required().min(1).max(50).label('경력 연차'),
 
-  /** 설명 */
-  desc: string().required().label('설명'),
+  /** 자기소개 */
+  desc: string().required().label('자기소개'),
 
   /** 프로필 */
   prfl: object()
