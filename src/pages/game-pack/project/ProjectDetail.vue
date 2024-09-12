@@ -115,7 +115,11 @@ const { enterRoom } = useBridge();
 
       <q-tab-panels v-model="tab" animated>
         <q-tab-panel class="px-6" name="INFO">
-          <project-info-panel :detail="projectDetail" :similar-project-list="similarProjectData?.rows" />
+          <project-info-panel
+            :detail="projectDetail"
+            :similar-project-list="similarProjectData?.rows"
+            @project-applied="refetch"
+          />
         </q-tab-panel>
         <q-tab-panel class="px-6" name="BOARD">
           <project-board-panel :pj-id="projectId" />
