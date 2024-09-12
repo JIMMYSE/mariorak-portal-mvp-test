@@ -18,15 +18,15 @@ export function useAppRouter() {
 export function goTo(route: RouteLocationRaw) {
   appRouter?.push(route);
 }
+export function replaceTo(route: RouteLocationRaw) {
+  appRouter?.replace(route);
+}
 
 export function goToName(name: string, query?: LocationQueryRaw | undefined) {
   appRouter?.push({ name, query });
 }
 
-export function replaceToName(
-  name: string,
-  query?: LocationQueryRaw | undefined
-) {
+export function replaceToName(name: string, query?: LocationQueryRaw | undefined) {
   appRouter?.replace({ name, query });
 }
 
