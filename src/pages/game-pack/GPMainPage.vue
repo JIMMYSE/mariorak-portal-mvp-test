@@ -33,14 +33,12 @@ const recommendedProjectList = computed(() => {
   <q-page class="column bg-white">
     <!-- 맵 바로가기 영역 -->
     <section style="height: calc(100vw); max-height: 512px">
-      <ckv-banner :img-list="imgList" :counter="false" />
+      <ckv-banner :img-list="imgList" :counter="true" />
     </section>
     <!-- 게임팩 대해 궁금하다면 -->
     <section class="mt-10">
       <p class="pl-6 text-[22px] font-semibold">WHAT IS GAME PACK</p>
-      <p class="pl-6 text-[#767676] text-sm font-normal">
-        CCF가 함께하고 지원하는 모든 프로젝트
-      </p>
+      <p class="pl-6 text-[#767676] text-sm font-normal">CCF가 함께하고 지원하는 모든 프로젝트</p>
       <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4 pl-6">
         <intro-item-list />
       </div>
@@ -52,11 +50,7 @@ const recommendedProjectList = computed(() => {
     <section class="mt-10">
       <h2 class="pl-6 text-[22px] font-semibold">CCF 추천게임</h2>
       <div class="grid gap-1.5 mt-4">
-        <g-p-item-list
-          to-list="game-list"
-          :gp-list="recommendedGameList"
-          type="game"
-        />
+        <g-p-item-list to-list="game-list" :gp-list="recommendedGameList" type="game" />
       </div>
     </section>
 
@@ -64,11 +58,7 @@ const recommendedProjectList = computed(() => {
     <section class="mt-[55px]">
       <h2 class="pl-6 text-[22px] font-semibold">CCF 추천 프로젝트</h2>
       <div class="grid gap-1.5 mt-4">
-        <g-p-item-list
-          to-list="project-list"
-          :gp-list="recommendedProjectList"
-          type="project"
-        />
+        <g-p-item-list to-list="project-list" :gp-list="recommendedProjectList" type="project" />
       </div>
     </section>
 
