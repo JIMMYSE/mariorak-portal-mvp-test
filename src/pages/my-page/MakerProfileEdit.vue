@@ -67,8 +67,8 @@ watch([skills, jobObjs], () => {
   setValues({
     prfl: {
       onln_prfl: form.prfl.onln_prfl,
-      skills: skills.value.split(','),
-      job_objs: jobObjs.value.split(','),
+      skills: [skills.value],
+      job_objs: [jobObjs?.value],
     },
   });
 });
