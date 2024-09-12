@@ -55,7 +55,7 @@ export default route(function (/* { store, ssrContext } */) {
     history: createHistory(process.env.VUE_ROUTER_BASE),
   });
 
-  Router.beforeEach((to: any, from: any, next) => {
+  Router.beforeEach((to: any, from: any) => {
     const { isLoggedIn } = useUserInfo();
     const { joinData } = storeToRefs(useJoinStore());
     if (!isLoggedIn.value) {
@@ -98,8 +98,6 @@ export default route(function (/* { store, ssrContext } */) {
         document.head.appendChild(meta);
       }
     }
-
-    next();
   });
   // ...
   return Router;
