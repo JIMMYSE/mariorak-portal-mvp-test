@@ -47,7 +47,7 @@ const emits = defineEmits<{
         />
       </div>
     </section>
-    <section class="mt-[40px]">
+    <section class="mt-[40px] pb-[30px]">
       <h2 class="text-[20px] font-semibold">유사한 프로젝트</h2>
       <div class="mt-4">
         <normal-project-list :p-list="similarProjectList" type="project" />

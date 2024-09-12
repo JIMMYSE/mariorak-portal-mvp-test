@@ -98,7 +98,7 @@ function openWindow(url: string) {
         <template v-if="maker.data.project_histories?.length">({{ maker.data.project_histories?.length }}회)</template>
       </h2>
       <!-- @vue-expect-error -->
-      <RecruitMakerProjectList :p-list="maker.data.project_histories" />
+      <RecruitMakerProjectList class="mt-[20px]" :p-list="maker.data.project_histories" />
     </section>
     <!-- <section class="bottom-[85px] w-full text-center px-6 mt-[85px] pb-8">
       <c-btn
