@@ -62,6 +62,7 @@ const ProjectApplimentBase = object({
   prj_id: number().required().label('프로젝트 아이디'),
   title: string().required().label('프로젝트 제목'),
   end_dttm: date().nullable().label('프로젝트 종료일'),
+  applied_dttm: date().nullable().label('프로젝트 지원일시'),
   end_remain_days: number().nullable().label('모집 잔여일'),
   thmn_file: ThumbnailFileSchema.nullable().label('썸네일 이미지 객체'),
   prj_aply_stt_cd: string().required().label('지원상태코드'),

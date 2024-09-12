@@ -28,7 +28,7 @@ export default route(function (/* { store, ssrContext } */) {
     // Vue Router - Scroll Behavior: https://router.vuejs.org/guide/advanced/scroll-behavior.html
 
     scrollBehavior(to, from, savedPosition) {
-      console.log('scrollBehavior', to, from, savedPosition);
+      // console.log('scrollBehavior', to, from, savedPosition);
       if (savedPosition) {
         return new Promise((resolve) => {
           setTimeout(() => {

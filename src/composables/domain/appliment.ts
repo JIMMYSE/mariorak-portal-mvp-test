@@ -1,5 +1,6 @@
 import { ProjectAppliementDetailResType } from 'src/types/gamepack/recruit-model';
 import { MaybeRefOrGetter } from 'vue';
+import { QueryOption } from 'src/types/common/api-model';
 
 const API_URL = '/v3/pr/appliment';
 const QUERY_KEY = {
@@ -9,14 +10,12 @@ const QUERY_KEY = {
 /**
  * 로그인 사용자의 지원 목록 조회
  */
-export const useRecruitApplymentDetail = () => {
-  return useAxiosGet<ProjectAppliementDetailResType>({
-    url: API_URL,
-  });
+export const useRecruitApplymentDetail = (queryOption?: QueryOption) => {
+  return useQueryFetch<ProjectAppliementDetailResType>({ url: API_URL, queryKeyName: QUERY_KEY.DETAIL, queryOption });
 };
 
 /**
- * 개발자 등록
+ * 프로젝트 지원
  */
 export const useApplyProject = (prj_rcrt_id: MaybeRefOrGetter<number>) => {
   return useAxiosPost<ApiResponse>({

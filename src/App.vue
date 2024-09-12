@@ -2,7 +2,7 @@
 import { VueQueryDevtools } from '@tanstack/vue-query-devtools';
 import MainHeader from './layouts/MainHeader.vue';
 import SubHeader from './layouts/SubHeader.vue';
-import { useMeta } from 'quasar';
+// import { useMeta } from 'quasar';
 
 useAppRouter();
 const { fetchBadwords } = useBadwords();
@@ -72,9 +72,9 @@ const tabInfos: { icon: string; label: string; name: string; to: string }[] = [
 const isMain = computed(() => route.name?.toString().includes('main'));
 const noHeader = computed(() => route.meta.noHeader);
 
-useMeta({
-  title: 'CCF ㅣ 팬과 함께 만들어가는 게임 개발 커뮤니티',
-});
+// useMeta({
+//   title: 'CCF ㅣ 팬과 함께 만들어가는 게임 개발 커뮤니티',
+// });
 </script>
 
 <template>
