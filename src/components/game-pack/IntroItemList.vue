@@ -1,13 +1,5 @@
 <script lang="ts" setup>
-const barStyle = {
-  // 스크롤바 안보이게
-  opacity: 1,
-};
-
-const thumbStyle = {
-  // 스크롤바 색상
-  backgroundColor: 'transparent',
-};
+import { barStyle, thumbStyle } from 'src/utils/style-variable';
 
 const introList = [
   {
@@ -31,25 +23,14 @@ const introList = [
 ];
 </script>
 <template>
-  <q-scroll-area
-    style="height: 151px"
-    :bar-style="barStyle"
-    :thumb-style="thumbStyle"
-  >
+  <q-scroll-area style="height: 165px" :bar-style="barStyle" :thumb-style="thumbStyle">
     <div class="row no-wrap">
-      <div
-        class="w-[183px] h-[150px] bg-white rounded-[10px] shadow p-4 mr-4"
-        v-for="n in introList"
-        :key="n.content"
-      >
+      <div class="w-[183px] h-[150px] bg-white rounded-[10px] shadow p-4 mr-4" v-for="n in introList" :key="n.content">
         <div class="flex items-center gap-1 mb-2">
           <p class="text-[#056bf1] text-lg font-bold">{{ n.title }}</p>
           <p class="text-[#222222] text-xs font-medium">{{ n.subTitle }}</p>
         </div>
-        <div
-          class="text-[#767676] text-[11px] leading-[16px]"
-          v-html="n.content"
-        ></div>
+        <div class="text-[#767676] text-[11px] leading-[16px]" v-html="n.content"></div>
       </div>
     </div>
   </q-scroll-area>
