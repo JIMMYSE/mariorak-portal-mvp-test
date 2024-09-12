@@ -5,11 +5,9 @@ const route = useRoute();
 // 카테고리
 const { options: categoryOptions } = useCommonCode('FAQ_CATE');
 
-console.log('categoryOptions', categoryOptions);
+// console.log('categoryOptions', categoryOptions);
 
-const faqCategoryCode = computed(() =>
-  categoryOptions.value.find((item) => item.label == route.meta.faqCategory)
-);
+const faqCategoryCode = computed(() => categoryOptions.value.find((item) => item.label == route.meta.faqCategory));
 const { request } = useSearchFilter({
   requestDefault: {
     filters: {
@@ -42,18 +40,11 @@ const selectFaqId = ref<number | undefined>(undefined);
   <q-card-section class="p-0">
     <section class="mt-6 mbj-[9px]">
       <ul>
-        <li
-          v-for="item in listData?.rows"
-          :key="item.faq_id"
-          class="flex flex-col relative cursor-pointer"
-        >
+        <li v-for="item in listData?.rows" :key="item.faq_id" class="flex flex-col relative cursor-pointer">
           <!-- QUESTION  -->
           <h3
             class="mx-6 py-[15px] text-[13px] font-medium relative"
-            @click="
-              selectFaqId =
-                selectFaqId === item.faq_id ? undefined : item.faq_id
-            "
+            @click="selectFaqId = selectFaqId === item.faq_id ? undefined : item.faq_id"
           >
             {{ item.title }}
             <!-- ARROW ICON -->
@@ -67,18 +58,14 @@ const selectFaqId = ref<number | undefined>(undefined);
           <!-- ANSWER -->
           <div
             class="-mt-[1px] bg-grey w-full shrink overflow-hidden p-6"
-            :class="
-              selectFaqId === item.faq_id ? 'flex-1' : 'flex-none basis-0 py-0'
-            "
+            :class="selectFaqId === item.faq_id ? 'flex-1' : 'flex-none basis-0 py-0'"
           >
             <p class="text-[#767676] text-sm font-normal">
               {{ item.cont }}
             </p>
           </div>
           <!-- LINE -->
-          <div
-            class="absolute inset-x-6 bottom-0 h-[1px] border-b-[1px] border-b-[#E6E6E6]"
-          />
+          <div class="absolute inset-x-6 bottom-0 h-[1px] border-b-[1px] border-b-[#E6E6E6]" />
         </li>
       </ul>
     </section>
