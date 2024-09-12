@@ -16,15 +16,10 @@ const recommendedGameList = computed(() => {
 <template>
   <q-page>
     <section>
-      <div
-        class="anchor-area h-[210px] w-full text-center flex items-center justify-center"
-      >
+      <div class="anchor-area h-[210px] w-full text-center flex items-center justify-center">
         <div>
           <p class="text-white text-3xl font-semibold leading-9">GAME</p>
-          <p
-            class="text-white text-sm font-normal leading-tight"
-            style="color: #ffffff; opacity: 0.5"
-          >
+          <p class="text-white text-sm font-normal leading-tight" style="color: #ffffff; opacity: 0.5">
             출시하는 그날까지 함께하는 인디게임 프로젝트
           </p>
           <c-btn

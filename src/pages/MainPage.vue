@@ -2,7 +2,7 @@
 
 <script setup lang="ts">
 import GPItemList from 'src/components/game-pack/GPItemList.vue';
-
+import { barStyle, thumbStyle } from 'src/utils/style-variable';
 const { data } = getMyDetail();
 
 const slide = ref(0);
@@ -54,8 +54,8 @@ const cultureList = [
   },
   {
     src: '/images/main/main_culture_4.png',
-    title: '재정적 안정을\n지원하는 공간',
-    desc: '개발 과정의 실시간 공개와\n게임의 지분 및 수익을 투명하게\n공유해드려요.',
+    title: '투명하고 건강한\n게임 개발 공간',
+    desc: '개발 과정의 실시간 공개와\n게임의 지분 및 수익을 투명하\n공유해드려요.',
   },
 ];
 const tabList = [
@@ -84,14 +84,6 @@ const tabList = [
     title: '커뮤니티',
   },
 ];
-const barStyle = {
-  // 스크롤바 안보이게
-  opacity: 1,
-};
-const thumbStyle = {
-  // 스크롤바 색상
-  backgroundColor: 'transparent',
-};
 
 //fecth
 
@@ -132,9 +124,7 @@ const { data: termsData } = useTermsList({ searchRequest: request });
 
 const openDetailDialog = (type: string) => {
   console.log(type, termsData.value);
-  const term = termsData.value?.rows.find(
-    (r: { type: string }) => r.type === type
-  );
+  const term = termsData.value?.rows.find((r: { type: string }) => r.type === type);
 
   console.log(term);
   detail.value = { title: term.title, content: term.content };
@@ -173,31 +163,17 @@ const openDetailDialog = (type: string) => {
 
     <!-- 게임팩 대해 궁금하다면 -->
     <section class="mt-10">
-      <p class="pl-6 text-[22px] font-semibold">
-        유저와 함께하는 게임 제작 문화
-      </p>
-      <p class="pl-6 text-[#767676] text-sm font-normal">
-        CCF가 제공하는 다양한 혜택을 즐겨보세요
-      </p>
-      <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4 h-[270px] pl-6">
-        <q-scroll-area
-          class="w-full"
-          :bar-style="barStyle"
-          :thumb-style="thumbStyle"
-        >
+      <p class="pl-6 text-[22px] font-semibold">유저와 함께하는 게임 제작 문화</p>
+      <p class="pl-6 text-[#767676] text-sm font-normal">CCF가 제공하는 다양한 혜택을 즐겨보세요</p>
+      <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4 h-[280px] pl-6">
+        <q-scroll-area class="w-full" :bar-style="barStyle" :thumb-style="thumbStyle">
           <div class="row no-wrap">
-            <div
-              class="h-[270px] mr-4 w-[200px]"
-              v-for="n in cultureList"
-              :key="n.src"
-            >
+            <div class="h-[270px] mr-4 w-[200px]" v-for="n in cultureList" :key="n.src">
               <q-card class="rounded-xl">
                 <q-img :src="n.src" class="w-[200px] h-[123px]" />
 
                 <q-card-section>
-                  <p
-                    class="text-[#222222] font-semibold leading-snug whitespace-pre"
-                  >
+                  <p class="text-[#222222] font-semibold leading-snug whitespace-pre">
                     {{ n.title }}
                   </p>
                   <p class="text-[#767676] text-xs mt-3">{{ n.desc }}</p>
@@ -215,11 +191,7 @@ const openDetailDialog = (type: string) => {
     <section class="mt-10">
       <h2 class="pl-6 text-[22px] font-semibold">CCF 추천게임</h2>
       <div class="grid gap-1.5 mt-4">
-        <g-p-item-list
-          type="game"
-          to-list="game-list"
-          :gp-list="recommendedGameList"
-        />
+        <g-p-item-list type="game" to-list="game-list" :gp-list="recommendedGameList" />
       </div>
     </section>
 
@@ -227,11 +199,7 @@ const openDetailDialog = (type: string) => {
     <section class="mt-[55px]">
       <h2 class="pl-6 text-[22px] font-semibold">CCF가 주목하는 프로젝트</h2>
       <div class="grid gap-1.5 mt-4">
-        <g-p-item-list
-          type="project"
-          to-list="project-list"
-          :gp-list="recommendedProjectList"
-        />
+        <g-p-item-list type="project" to-list="project-list" :gp-list="recommendedProjectList" />
       </div>
     </section>
 
@@ -305,26 +273,17 @@ const openDetailDialog = (type: string) => {
       <div>
         <div class="w-full h-[0px] border border-[#f0f0f0] mt-5"></div>
         <div class="text-[#b5b5b5] text-[10px] leading-[14px] mt-7">
-          CCF는 플랫폼 제공자로서 프로젝트의 당사자가 아니며, 직접적인 통신
-          판매를 진행하지 않습니다. 프로젝트의 완수의 책임은 해당 프로젝트의
-          창작자에게 있으며, 프로젝트와 관련하여 후원자와 발생하는 법적 분쟁에
-          대한 책임은 해당 창작자가 부담합니다.
+          CCF는 플랫폼 제공자로서 프로젝트의 당사자가 아니며, 직접적인 통신 판매를 진행하지 않습니다. 프로젝트의 완수의
+          책임은 해당 프로젝트의 창작자에게 있으며, 프로젝트와 관련하여 후원자와 발생하는 법적 분쟁에 대한 책임은 해당
+          창작자가 부담합니다.
         </div>
-        <div
-          class="text-[#767676] text-[10px] mt-16 pb-8 leading-[14px] text-center w-full underline"
-        >
-          <a href="mailto:npc-dev@cc-fan.com" v-if="isLocal || isDev">
-            Copyright©COARSOFT
-          </a>
+        <div class="text-[#767676] text-[10px] mt-16 pb-8 leading-[14px] text-center w-full underline">
+          <a href="mailto:npc-dev@cc-fan.com" v-if="isLocal || isDev"> Copyright©COARSOFT </a>
           <a href="mailto:npc@cc-fan.com" v-else>Copyright©COARSOFT</a>
         </div>
       </div>
     </section>
   </q-page>
   <!-- 팝업 -->
-  <c-dialog-content
-    v-model="detailEnabled"
-    :title="detail?.title"
-    :html="detail?.content"
-  />
+  <c-dialog-content v-model="detailEnabled" :title="detail?.title" :html="detail?.content" />
 </template>

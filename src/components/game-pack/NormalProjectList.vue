@@ -1,21 +1,12 @@
 <script lang="ts" setup>
 import { RecentProjectListType, SimilarProjectListType } from 'src/types/gamepack/project-model';
-
+import { barStyle, thumbStyle } from 'src/utils/style-variable';
 type Props = {
   pList: RecentProjectListType[] | SimilarProjectListType | undefined;
   type: 'game' | 'project';
 };
 const props = defineProps<Props>();
 
-const barStyle = {
-  // 스크롤바 안보이게
-  opacity: 1,
-};
-
-const thumbStyle = {
-  // 스크롤바 색상
-  backgroundColor: 'transparent',
-};
 const goToDetailPage = (gp: any) => {
   const id = gp?.prdc_id ?? gp.prj_id;
   if (props.type === 'game') {

@@ -1,15 +1,7 @@
 <script lang="ts" setup>
 import { MakerCreateOrUpdateReqType, MakerCreateOrUpdateReqFront } from 'src/types/gamepack/maker-model';
+import { barStyle, thumbStyle } from 'src/utils/style-variable'; // 직무 선택
 
-const barStyle = {
-  // 스크롤바 안보이게
-  opacity: 1,
-};
-const thumbStyle = {
-  // 스크롤바 색상
-  backgroundColor: 'transparent',
-};
-// 직무 선택
 const { options: jobOptions } = useCommonCode('MKR_ROL');
 const showJobBottomSheet = ref(false);
 const openJobBottomSheet = () => {
