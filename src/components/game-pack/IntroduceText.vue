@@ -17,7 +17,7 @@ onMounted(async () => {
       const height = textRef.value.clientHeight;
 
       // 텍스트 높이가 3줄 이상일 경우만 더보기 버튼 표시
-      showButton.value = height > lineHeight * 3;
+      showButton.value = height > lineHeight * 4;
     }
   }, 100);
 });
