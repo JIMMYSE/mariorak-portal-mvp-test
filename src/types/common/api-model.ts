@@ -6,7 +6,7 @@ export type Id = string | number | undefined;
 export type QueryOption = Partial<Omit<UseQueryOptions, 'select'>>;
 
 export interface ApiResponse<T = any> {
-  code: string;
+  code?: string;
   data?: T;
   message?: string;
 }
@@ -27,11 +27,7 @@ export const SearchRequestSchema = object({
     keyword: string(),
   }).optional(),
   filters: lazy((item) => {
-    if (
-      item == null ||
-      typeof item !== 'object' ||
-      Object.keys(item).length === 0
-    ) {
+    if (item == null || typeof item !== 'object' || Object.keys(item).length === 0) {
       return object().optional(); // null, undefined, 또는 빈 객체인 경우 유효함
     } else {
       return object().shape({
@@ -75,15 +71,7 @@ export class SearchRequestClass implements SearchRequest {
 }
 
 // 목록 검색 필터 연산자
-export type FilterOperator =
-  | 'eq'
-  | 'ne'
-  | 'lt'
-  | 'lte'
-  | 'gt'
-  | 'gte'
-  | 'in'
-  | 'like';
+export type FilterOperator = 'eq' | 'ne' | 'lt' | 'lte' | 'gt' | 'gte' | 'in' | 'like';
 
 export interface FileBase extends InferType<typeof FileBase> {}
 export interface FileInfo extends InferType<typeof FileInfo> {}
