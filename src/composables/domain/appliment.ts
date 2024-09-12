@@ -22,3 +22,21 @@ export const useApplyProject = (prj_rcrt_id: MaybeRefOrGetter<number>) => {
     url: API_URL + '/add/' + toValue(prj_rcrt_id),
   });
 };
+
+/**
+ * 지원 취소
+ */
+export const cancelRecruitApplyment = (prj_rcrt_id: number) => {
+  return useAxiosPatch<ApiResponse>({
+    url: API_URL + '/cancel/' + prj_rcrt_id,
+  });
+};
+
+/**
+ * 지원 거절
+ */
+export const rejectRecruitApplyment = (prj_rcrt_id: number) => {
+  return useAxiosPatch<ApiResponse>({
+    url: API_URL + '/reject/' + prj_rcrt_id,
+  });
+};
