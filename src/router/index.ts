@@ -55,12 +55,12 @@ export default route(function (/* { store, ssrContext } */) {
     history: createHistory(process.env.VUE_ROUTER_BASE),
   });
 
-  Router.beforeEach((to, from: any) => {
+  Router.beforeEach((to: any, from: any, next) => {
     const { isLoggedIn } = useUserInfo();
     const { joinData } = storeToRefs(useJoinStore());
     if (!isLoggedIn.value) {
       // 비로그인 상태에서 로그인이 필요한 페이지로 이동하려고 하면 로그인 페이지로 이동
-      if (to.matched.some((record) => record.meta.requiresAuth)) {
+      if (to.matched.some((record: any) => record.meta.requiresAuth)) {
         return { name: 'login', query: { next: to.fullPath } };
       }
     } else if (to.name?.toString().includes('login')) return { name: 'main' };
@@ -69,6 +69,37 @@ export default route(function (/* { store, ssrContext } */) {
       console.log('>>>to.nameHasJoin');
       if (!joinData.value) return { name: from.name };
     }
+
+    // 메타태그 설정
+    if (to.meta.title) {
+      document.title = to.meta.title;
+    }
+
+    const descriptionTag = document.querySelector('meta[name="description"]');
+    if (to.meta.description) {
+      if (descriptionTag) {
+        descriptionTag.setAttribute('content', to.meta.description);
+      } else {
+        const meta = document.createElement('meta');
+        meta.name = 'description';
+        meta.content = to.meta.description;
+        document.head.appendChild(meta);
+      }
+    }
+
+    const ogImageTag = document.querySelector('meta[property="og:image"]');
+    if (to.meta.ogImage) {
+      if (ogImageTag) {
+        ogImageTag.setAttribute('content', to.meta.ogImage);
+      } else {
+        const meta = document.createElement('meta');
+        meta.setAttribute('property', 'og:image');
+        meta.content = to.meta.ogImage;
+        document.head.appendChild(meta);
+      }
+    }
+
+    next();
   });
   // ...
   return Router;
