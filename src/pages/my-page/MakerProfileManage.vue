@@ -43,14 +43,14 @@ const openPortfolio = () => {
         <div class="mt-[12px] text-[#222222] text-sm font-normal leading-tight">
           <introduce-text :intro="myMakerProfile?.desc" />
         </div>
-        <div class="mt-[30px]">
+        <div class="mt-[30px]" v-if="myMakerProfile?.prtf?.prtf_url">
           <div
             @click="notAvailableAlert()"
             class="rounded-[20px] bg-[#f7f7f7] h-20 flex items-center pl-[30px] pr-[20px] justify-between cursor-pointer"
           >
             <div @click="openPortfolio">
               <p class="text-[#222222] text-base font-medium leading-snug">포트폴리오 방문하기</p>
-              <p class="text-[#767676] text-xs font-medium leading-none">{{ myMakerProfile?.prtf.prtf_url }}</p>
+              <p class="text-[#767676] text-xs font-medium leading-none">{{ myMakerProfile?.prtf?.prtf_url }}</p>
             </div>
             <q-icon name="img:/icons/icon_enter_arrow.svg" size="26px" />
           </div>
@@ -63,15 +63,15 @@ const openPortfolio = () => {
       <div class="space-y-2 mt-[14px]">
         <div class="flex justify-start items-center">
           <span class="text-[#b5b5b5] text-xs font-semibold leading-none w-[95px]">국적</span>
-          <span class="text-[#222222] text-sm font-normal leading-tight]">{{ myMakerProfile?.prfl.bio.ntnl }}</span>
+          <span class="text-[#222222] text-sm font-normal leading-tight]">{{ myMakerProfile?.prfl?.bio?.ntnl }}</span>
         </div>
         <div class="flex justify-start items-center">
           <span class="text-[#b5b5b5] text-xs font-semibold leading-none w-[95px]">언어</span>
-          <span class="text-[#222222] text-sm font-normal leading-tight">{{ myMakerProfile?.prfl.bio.lang }}</span>
+          <span class="text-[#222222] text-sm font-normal leading-tight">{{ myMakerProfile?.prfl?.bio?.lang }}</span>
         </div>
         <div class="flex justify-start items-center">
           <span class="text-[#b5b5b5] text-xs font-semibold leading-none w-[95px]">거주지역</span>
-          <span class="text-[#222222] text-sm font-normal leading-tight">{{ myMakerProfile?.prfl.bio.loct }}</span>
+          <span class="text-[#222222] text-sm font-normal leading-tight">{{ myMakerProfile?.prfl?.bio?.loct }}</span>
         </div>
       </div>
     </section>
@@ -79,18 +79,18 @@ const openPortfolio = () => {
       <h2 class="text-[22px] font-semibold">업무 정보</h2>
       <div class="mt-[12px]">
         <p class="text-[#b5b5b5] text-xs font-semibold leading-none">한 줄 프로필</p>
-        <p class="mt-[8px] text-[#222222] text-sm font-normal leading-tight">{{ myMakerProfile?.prfl.onln_prfl }}</p>
+        <p class="mt-[8px] text-[#222222] text-sm font-normal leading-tight">{{ myMakerProfile?.prfl?.onln_prfl }}</p>
       </div>
       <div class="mt-[22px]">
         <p class="text-[#b5b5b5] text-xs font-semibold leading-none">업무 스킬</p>
         <p class="mt-[8px] text-[#222222] text-xs font-normal leading-none">
-          {{ myMakerProfile?.prfl.skills.toString() }}
+          {{ myMakerProfile?.prfl?.skills?.toString() }}
         </p>
       </div>
       <div class="mt-[22px]">
         <p class="text-[#b5b5b5] text-xs font-semibold leading-none">희망 직무</p>
         <p class="mt-[8px] text-[#222222] text-xs font-normal leading-none">
-          {{ myMakerProfile?.prfl.job_objs.toString() }}
+          {{ myMakerProfile?.prfl?.job_objs?.toString() }}
         </p>
       </div>
       <!-- TODO 오픈 때 히든처리 -->

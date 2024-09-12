@@ -1,8 +1,8 @@
 {
   "name": "ccf-portal",
-  "version": "0.0.10",
-  "description": "ccf Portal",
-  "productName": "ccf Portal",
+  "version": "1.0.0",
+  "description": "CCF ㅣ 팬과 함께 만들어가는 게임 개발 커뮤니티",
+  "productName": "CCF ㅣ 팬과 함께 만들어가는 게임 개발 커뮤니티",
   "author": "COARSOFT",
   "private": true,
   "scripts": {

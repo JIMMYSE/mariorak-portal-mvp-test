@@ -1,7 +1,4 @@
-import {
-  MakerCreateOrUpdateReqType,
-  MakerOneResType,
-} from 'src/types/gamepack/maker-model';
+import { MakerCreateOrUpdateReqType, MakerOneResType } from 'src/types/gamepack/maker-model';
 
 const API_URL = '/v3/mb/maker';
 const QUERY_KEY = {
@@ -26,3 +23,12 @@ export function useMyMakerDetail() {
     url: API_URL + '/profile',
   });
 }
+
+/**
+ * 제작자 상세 조회
+ */
+export const useMakerDetail = (memId: number) => {
+  return useAxiosGet<MakerOneResType>({
+    url: API_URL + '/info/' + memId,
+  });
+};

@@ -33,7 +33,7 @@ const recruitMakeRolList = (rolList: any) => {
         <div class="row no-wrap">
           <q-card
             class="maker-card q-mr-md shadow-1 rounded-xl cursor-pointer"
-            @click="goTo(`/recruit/profile/${m.mkrId}`)"
+            @click="goTo(`/recruit/profile/${m.mem_id}`)"
             v-for="m in mList"
             :key="m.created_at"
           >
@@ -43,7 +43,8 @@ const recruitMakeRolList = (rolList: any) => {
                 <div class="font-semibold ml-2 q-gutter-y-[5px] col">
                   <p class="text-[#222222] leading-snug">{{ m.nickname }}</p>
                   <p class="text-primary text-xs p ellipsis">
-                    {{ m.prfl.job_objs?.flatMap((rol: any) => rol).join(' / ') }}
+                    {{ getCommonCodeName('MKR_ROL', m.mkr_rol_cd) }}
+                    <!-- {{ m.prfl.job_objs?.flatMap((rol: any) => rol).join(' / ') }} -->
                   </p>
                   <div class="row font-normal align-middle flex items-center">
                     <p class="text-[#767676] text-xs">{{ m.expr_year }}년차</p>

@@ -1,16 +1,14 @@
+import { MaybeRefOrGetter, toValue } from 'vue';
+
 const API_URL = 'v3/cm/like';
 
 /**
  * 좋아요 등록
  */
 
-export const useLike = (
-  type: 'project' | 'game',
-  id: string,
-  queryKeyName: string
-) => {
+export const useLike = (type: 'project' | 'game', id: MaybeRefOrGetter<string>, queryKeyName: string) => {
   return useQueryCreateItem<ApiResponse>({
-    url: API_URL + `/${type}/${id}`,
+    url: API_URL + `/${type}/${toValue(id)}`,
     queryKeyName: queryKeyName,
   });
 };

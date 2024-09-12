@@ -1,12 +1,15 @@
 <script lang="ts" setup>
-import {
-  ProjectDetail,
-  SimilarProjectListType,
-} from 'src/types/gamepack/project-model';
+import { RecruitProjectDetailType } from 'src/types/gamepack/recruit-model';
+
+const emits = defineEmits<{
+  /**
+   * 프로젝트 지원
+   */
+  'project-applied': [];
+}>();
 
 type Props = {
-  detail?: ProjectDetail;
-  similarProjectList?: SimilarProjectListType;
+  detail?: RecruitProjectDetailType['data'];
 };
 const props = defineProps<Props>();
 </script>
@@ -18,6 +21,8 @@ const props = defineProps<Props>();
         <g-p-project-member-recruit
           class="mt-[30px]"
           :recruit-list="detail?.rcrt"
+          :has-profile="detail?.hasProfile as boolean"
+          @project-applied="emits('project-applied')"
         />
       </div>
     </section>
@@ -44,7 +49,8 @@ const props = defineProps<Props>();
     <section class="mt-12">
       <h2 class="text-[20px] font-semibold">모집 중인 유사한 프로젝트</h2>
       <div class="mt-4">
-        <normal-project-list :p-list="similarProjectList" type="project" />
+        <!-- @vue-expect-error -->
+        <normal-project-list :p-list="detail?.relative_projects" type="project" />
       </div>
     </section>
   </div>

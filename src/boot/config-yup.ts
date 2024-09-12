@@ -1,4 +1,5 @@
-import yup, { LocaleObject, Message } from 'yup';
+import { LocaleObject, Message } from 'yup';
+import * as yup from 'yup';
 import { date } from 'yup';
 import { josa } from 'josa';
 import moment from 'moment-timezone';
