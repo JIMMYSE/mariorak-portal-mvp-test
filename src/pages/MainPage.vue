@@ -16,22 +16,19 @@ const imgList = [
   {
     src: '/images/main/Main_KV/512/kv_01.png',
     id: 1,
-    seq: 1,
     title: '',
     desc: '',
   },
   {
     src: '/images/main/Main_KV/512/kv_02.png',
     id: 2,
-    seq: 2,
     title: '',
     desc: '',
     link: 'https://k-dmts.com/fairDash.do',
   },
   {
     src: '/images/main/Main_KV/512/kv_03.png',
-    id: 2,
-    seq: 3,
+    id: 3,
     title: '',
     desc: '',
   },

@@ -11,10 +11,22 @@ const keyword = ref<string>('');
 const imgList = [
   {
     src: '/images/game-pack/mainKV/gamepack_KV_1.png',
-
     id: 1,
     title: 'CCF가 함께하고\n지원하는 게임 모음집',
     desc: '팬과 개발자가 만나 함께 게임을 키워가요.',
+  },
+  {
+    src: '/images/main/Main_KV/512/kv_02.png',
+    id: 2,
+    title: '',
+    desc: '',
+    link: 'https://k-dmts.com/fairDash.do',
+  },
+  {
+    src: '/images/main/Main_KV/512/kv_03.png',
+    id: 3,
+    title: '',
+    desc: '',
   },
 ];
 
