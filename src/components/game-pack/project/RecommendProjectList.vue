@@ -24,9 +24,9 @@ const props = defineProps<Props>();
               <GPbadge :cd="p.prj_stt_cd" section-cd="PRJ_STT" />
             </div>
             <c-img :src="p.thmn_file.convert_addr" class="rounded-xl h-[138px] w-[246px]" />
-            <div class="absolute top-2 right-2">
+            <!-- <div class="absolute top-2 right-2">
               <c-icon :name="'icon_heart'" size="18px" />
-            </div>
+            </div> -->
             <div class="game-info q-mt-sm">
               <div class="text-caption q-mb-xs mt-[16px]">
                 <span class="badge font-medium" v-for="badge in p.tag_list" :key="badge">{{ badge }}</span>
