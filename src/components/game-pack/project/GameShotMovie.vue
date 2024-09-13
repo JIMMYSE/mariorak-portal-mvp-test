@@ -32,7 +32,12 @@ onMounted(() => {
       <source :src="currentVideo?.content_file?.convert_addr ?? ''" type="video/mp4" />
       현재 비디오를 지원하지 않습니다.
     </video>
-    <q-scroll-area style="height: 120px; max-width: 100%" :bar-style="barStyle" :thumb-style="thumbStyle">
+    <q-scroll-area
+      style="height: 120px; max-width: 100%"
+      :bar-style="barStyle"
+      :thumb-style="thumbStyle"
+      v-if="detailFileList?.length ?? 0 > 1"
+    >
       <div class="row no-wrap">
         <c-img
           v-for="video in detailFileList"

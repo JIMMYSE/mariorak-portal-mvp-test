@@ -8,8 +8,8 @@ const { data: projectDetail, refetch } = useProjectDetail(projectId);
 
 const like = ref(false);
 const tab = ref('INFO');
-const { mutateAsync: onLike } = useLike('project', projectId, 'project-detail');
-const { mutateAsync: onUnlike } = useUnLike('project', 'project-detail');
+const { mutateAsync: onLike } = useLike('projectOrgame', projectId, 'project-detail');
+const { mutateAsync: onUnlike } = useUnLike('projectOrgame', 'project-detail');
 
 const onLikeProject = async () => {
   like.value = !like.value;
