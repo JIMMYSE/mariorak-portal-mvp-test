@@ -75,7 +75,7 @@ watchDebounced(
 </script>
 <template>
   <div class="w-full">
-    <section class="mt-6">
+    <section class="my-6">
       <div class="flex justify-between items-center">
         <div>
           <p class="text-[#222222] text-xl font-semibold leading-7">
@@ -107,7 +107,7 @@ watchDebounced(
       <div v-if="isFetched">
         <!-- 반복문 -->
         <g-p-board-content-item
-          v-for="post in postList.pages.flatMap((item : any) => item.data)"
+          v-for="post in postList?.pages.flatMap((item : any) => item.data)"
           :post="post"
           :key="post.post_id"
           @click="goTo(`/game-pack/project/${pjId}/${post.post_id}`)"
