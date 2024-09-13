@@ -1,7 +1,5 @@
 <template>
-  <section style="height: calc(100vw); max-height: 512px">
-    <ckv-banner :img-list="imgList" :counter="true" />
-  </section>
+  <ckv-banner :img-list="imgList" :counter="true" />
 </template>
 
 <script setup lang="ts">

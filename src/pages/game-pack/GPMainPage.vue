@@ -44,9 +44,7 @@ const recommendedProjectList = computed(() => {
 <template>
   <q-page class="column bg-white">
     <!-- 맵 바로가기 영역 -->
-    <section style="height: calc(100vw); max-height: 512px">
-      <ckv-banner :img-list="imgList" :counter="true" />
-    </section>
+    <ckv-banner :img-list="imgList" :counter="true" />
     <!-- 게임팩 대해 궁금하다면 -->
     <section class="mt-10">
       <p class="pl-6 text-[22px] font-semibold">WHAT IS GAME PACK</p>
