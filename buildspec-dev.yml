@@ -33,4 +33,5 @@ phases:
     commands:
       - echo now post_build
       - aws s3 sync ./dist/spa s3://ccf-dev-portal --acl bucket-owner-full-control
+      - aws s3 mv s3://ccf-dev-portal/.well-known/apple-app-site-association.json s3://ccf-dev-portal/.well-known/apple-app-site-association --acl bucket-owner-full-control
       - aws cloudfront create-invalidation --distribution-id E31OVQPALU18GN --paths "/*"
