@@ -1,0 +1,20 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.coarsoft.ccf",
+      "sha256_cert_fingerprints":
+        ["E4:1E:6C:F5:C8:31:4B:07:0E:4C:38:F9:04:87:A9:16:D6:81:94:5E:6D:2E:E4:9B:B4:9B:89:EC:3D:54:21:4D"]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.coarsoft.ccf.dev",
+      "sha256_cert_fingerprints":
+        ["E4:1E:6C:F5:C8:31:4B:07:0E:4C:38:F9:04:87:A9:16:D6:81:94:5E:6D:2E:E4:9B:B4:9B:89:EC:3D:54:21:4D"]
+    }
+  }
+]
