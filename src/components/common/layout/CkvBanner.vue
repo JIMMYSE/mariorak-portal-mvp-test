@@ -64,6 +64,8 @@ const slideEvent = (info: any) => {
         @mouseup="endDrag"
         @mouseleave="endDrag"
         :autoplay="3000"
+        :loop="true"
+        :wrap-around="true"
       >
         <slide
           v-for="img in imgList"
