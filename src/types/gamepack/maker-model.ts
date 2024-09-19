@@ -58,6 +58,43 @@ export const MakerSchema = object({
     .label('포트폴리오'),
 
   updatedAt: date().nullable().label('수정일시'),
+
+  /** 닉네임 */
+  nickname: string().notRequired(),
+
+  /** circle 아바타 url */
+  circle_url: string().notRequired(),
+
+  /** circle 아바타 썸네일 url */
+  circle_thumbnail_url: string().notRequired(),
+
+  /** square 아바타 square url */
+  square_url: string().notRequired(),
+
+  /** square 아바타 썸네일 url */
+  square_thumbnail_url: string().notRequired(),
+
+  /** project history */
+  project_histories: array()
+    .notRequired()
+    .of(
+      object({
+        /** 프로젝트 아이디 */
+        prj_id: number(),
+
+        /** 프로젝트 제목 */
+        title: string(),
+
+        /** 프로젝트 종료일 */
+        end_dttm: date(),
+
+        /** 썸네일 파일 URL */
+        thmn_url: string(),
+
+        /** 프로젝트 상태 */
+        prj_stt_cd: string(),
+      })
+    ),
 });
 
 export const MakerCreateOrUpdateReqFront = MakerCreateOrUpdateReq.shape({
