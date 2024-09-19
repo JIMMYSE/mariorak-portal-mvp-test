@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import ProjectApplyDialog from 'src/components/game-pack/ProjectApplyDialog.vue';
 // import { RecruitmentType } from 'src/types/gamepack/project-model';
 
 const props = defineProps<{
@@ -25,23 +26,27 @@ function applyProject() {
     return;
   }
 
-  useMyConfirmDialog({
-    text: '프로젝트에 지원하시겠습니까?',
-  }).onOk(async () => {
-    await useApplyProject(props.recruitList.prj_rcrt_id);
-    emits('project-applied');
+  projectApplyDialog.value.open();
 
-    useAlertDialog({
-      htmlText: '프로젝트에 지원 하였습니다!<br/>지원 진행상황은 마이페이지에서 확인 가능합니다.',
-    });
-  });
+  // useMyConfirmDialog({
+  //   text: '프로젝트에 지원하시겠습니까?',
+  // }).onOk(async () => {
+  //   await useApplyProject(props.recruitList.prj_rcrt_id);
+  //   emits('project-applied');
+
+  //   useAlertDialog({
+  //     htmlText: '프로젝트에 지원 하였습니다!<br/>지원 진행상황은 마이페이지에서 확인 가능합니다.',
+  //   });
+  // });
 }
+
+const projectApplyDialog = shallowRef<InstanceType<typeof ProjectApplyDialog>>();
 </script>
 
 <template>
-  <div class="flex flex-col" v-if="props.recruitList">
+  <div class="flex flex-col" v-if="props.recruitList && props.recruitList.active">
     <introduce-text :intro="recruitList?.cont" class="mb-[20px]" />
-
+    <ProjectApplyDialog ref="projectApplyDialog" />
     <div
       v-for="user in recruitList?.rcrt_mkr_rol_cd_list"
       :key="user"
@@ -74,6 +79,10 @@ function applyProject() {
         <c-icon name="icon_enter_arrow" size="14px" :color="'#056BF1'" :fill="false" />
       </c-btn>
     </div>
+  </div>
+
+  <div v-else>
+    <!-- TODO: 비활성화 처리-->
   </div>
 </template>
 
