@@ -7,7 +7,7 @@ const {
   data: applimentData,
   isFetched,
   refetch,
-} = useRecruitApplymentDetail({
+} = useRecruitApplymentRequestDetail({
   staleTime: 0,
 });
 
@@ -85,6 +85,11 @@ const appliedProjectAction = createAction(() => {
 const requestedAction = createAction(() => {
   const menuOpenStates = ref([]);
 
+  /**
+   * 확인 팝업 컴포넌트
+   */
+  const confirmPopup = shallowRef<InstanceType<typeof RecruitConfirm>>();
+
   watch(
     isFetched,
     (v) => {
@@ -113,7 +118,14 @@ const requestedAction = createAction(() => {
    * @param prj_aply_id
    */
   function checkRequestedContent(prj_aply_id: number) {
-    notAvailableAlert();
+    // notAvailableAlert();
+    confirmPopup.value.open(prj_aply_id, {
+      onClosed(isUpdated) {
+        if (isUpdated) {
+          refetch();
+        }
+      },
+    });
   }
 
   /**
@@ -144,6 +156,7 @@ const requestedAction = createAction(() => {
     toggleMenu,
     checkRequestedContent,
     rejectAppliment,
+    confirmPopup,
   };
 });
 // #endregion
@@ -240,7 +253,7 @@ const toggleApplyDropdown = (event: Event) => {
     <section class="px-6 mt-[30px]">
       <p class="text-[#222222] text-xl font-semibold leading-7">프로젝트 요청내역</p>
 
-      <RecruitConfirm />
+      <RecruitConfirm :ref="(comp: InstanceType<typeof RecruitConfirm>) => requestedAction.confirmPopup.value = comp" />
       <template v-if="isFetched && applimentData.requestedList.length > 0">
         <div class="mt-[24px]">
           <ul>
@@ -293,12 +306,24 @@ const toggleApplyDropdown = (event: Event) => {
                           >
                             <q-list style="min-width: 120px">
                               <q-item clickable v-ripple>
-                                <q-item-section @click="requestedAction.checkRequestedContent(item.prj_aply_id)"
+                                <q-item-section
+                                  @click="
+                                    () => {
+                                      requestedAction.checkRequestedContent(item.prj_aply_id);
+                                      requestedAction.menuOpenStates.value[index] = false;
+                                    }
+                                  "
                                   >신청내용 확인</q-item-section
                                 >
                               </q-item>
                               <q-item clickable v-ripple>
-                                <q-item-section @click="requestedAction.rejectAppliment(item.prj_aply_id)"
+                                <q-item-section
+                                  @click="
+                                    () => {
+                                      requestedAction.rejectAppliment(item.prj_aply_id);
+                                      requestedAction.menuOpenStates.value[index] = false;
+                                    }
+                                  "
                                   >거절하기</q-item-section
                                 >
                               </q-item>
@@ -328,7 +353,7 @@ const toggleApplyDropdown = (event: Event) => {
         <not-find-item message="프로젝트 요청 내역이 없어요." />
       </div>
 
-      <div>
+      <div v-if="false">
         <ul>
           <li
             class="flex flex-col relative cursor-pointer"
