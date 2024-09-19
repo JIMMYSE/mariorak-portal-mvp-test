@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
+import RecruitConfirm from '../RecruitConfirm.vue';
 
 const router = useRouter();
 const {
@@ -80,6 +81,7 @@ const appliedProjectAction = createAction(() => {
 });
 // #endregion
 
+// #region 요청 받은 프로젝트
 const requestedAction = createAction(() => {
   const menuOpenStates = ref([]);
 
@@ -144,6 +146,7 @@ const requestedAction = createAction(() => {
     rejectAppliment,
   };
 });
+// #endregion
 
 const isApplyMenuOpen = ref(false); // 참여 요청 보낸 개발자 메뉴 열림 여부 상태
 
@@ -237,6 +240,7 @@ const toggleApplyDropdown = (event: Event) => {
     <section class="px-6 mt-[30px]">
       <p class="text-[#222222] text-xl font-semibold leading-7">프로젝트 요청내역</p>
 
+      <RecruitConfirm />
       <template v-if="isFetched && applimentData.requestedList.length > 0">
         <div class="mt-[24px]">
           <ul>
