@@ -60,7 +60,6 @@ const recruitMakeRolList = (rolList: any) => {
         </div>
       </q-scroll-area>
     </div>
-    <!-- TODO 앱 심사 히든처리 -->
     <div class="text-center mt-[55px]">
       <c-btn
         @click="goToListPage()"
