@@ -194,13 +194,7 @@ const openDetailDialog = (type: string) => {
     </section>
 
     <!-- 배너영역 -->
-    <!-- <q-img
-      class="mt-[55px]"
-      src="/images/dummy/banner_dummy.png"
-      alt="banner"
-      width="100%"
-      height="100%"
-    /> -->
+    <q-img class="mt-[55px]" src="/images/dummy/banner_dummy.png" alt="banner" width="100%" height="100%" />
 
     <!-- 사업자 정보 -->
 
@@ -259,7 +253,6 @@ const openDetailDialog = (type: string) => {
           </div>
         </div> -->
       </div>
-
       <div>
         <div class="w-full h-[0px] border border-[#f0f0f0] mt-5"></div>
         <div class="text-[#b5b5b5] text-[10px] leading-[14px] mt-7">
