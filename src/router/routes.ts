@@ -87,6 +87,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '게시판 상세',
               bgColor: 'white',
+              noFooter: true,
             },
             component: () => import('pages/game-pack/GPBoardDetail.vue'),
           },
@@ -125,6 +126,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '게시판 상세',
               bgColor: 'white',
+              noFooter: true,
             },
             component: () => import('pages/game-pack/GPBoardDetail.vue'),
           },

@@ -48,4 +48,18 @@
       <c-btn class="font-normal text-xs leading-none p-0 mt-[2px]" color="grey-2" flat>답글쓰기 </c-btn>
     </div>
   </section>
+  <q-footer class="py-[19px] px-[16px] fixed bottom-0 w-full bg-[#fff]" elevated>
+    <div class="row no-wrap items-center bg-[#f7f7f7] rounded-[5px]">
+      <c-input placeholder="댓글을 남겨주세요." class="comment_input" hide-bottom-space
+        ><c-btn class="p-0" size="28px" flat icon="icon_send"
+      /></c-input>
+    </div>
+  </q-footer>
 </template>
+<style lang="scss">
+.comment_input {
+  .q-field__control {
+    background-color: #f7f7f7 !important;
+  }
+}
+</style>
