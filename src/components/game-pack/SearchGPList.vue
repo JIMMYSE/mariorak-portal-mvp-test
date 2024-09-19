@@ -40,7 +40,7 @@ const { request } = useSearchFilter({
       keyword: '',
     },
     from: 0,
-    size: 10,
+    size: 1,
     sort: [
       {
         created_at: 'asc',
@@ -106,25 +106,13 @@ watchDebounced(
 </script>
 <template>
   <q-tabs v-model="searchTab" dense class="pl-6">
-    <q-tab
-      v-for="tab in searchTabList"
-      :key="tab.id"
-      :name="tab.id"
-      :label="tab.label"
-    />
+    <q-tab v-for="tab in searchTabList" :key="tab.id" :name="tab.id" :label="tab.label" />
   </q-tabs>
   <div class="px-6">
     <div class="grid gap-1.5 mt-1">
       <c-search-input v-model="searchkeyword" />
     </div>
-    <c-select
-      v-model="searchSort"
-      :options="options"
-      map-options
-      borderless
-      class="w-[80px]"
-      dense
-    />
+    <c-select v-model="searchSort" :options="options" map-options borderless class="w-[80px]" dense />
   </div>
   <div class="px-6 q-gutter-y-md" v-if="isFetched">
     <search-g-p-item

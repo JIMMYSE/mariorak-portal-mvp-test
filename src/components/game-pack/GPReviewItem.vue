@@ -8,6 +8,31 @@ const { options } = useCommonCode('MKR_ROL');
 const role = computed(() => {
   return options.value.find((option: any) => option.cd === props.review.mkr_rol_cd)?.label;
 });
+
+const { mutateAsync: onLike } = useLike('review', props.review.prdc_revw_id);
+const { mutateAsync: onUnlike } = useUnLike('reivew');
+
+// 좋아요/좋아요 취소
+const onClickLikeButton = async () => {
+  console.log(likeStatus.value);
+  if (likeStatus.value.is_liked) {
+    await onUnlike(ref(props.review.prdc_revw_id));
+    likeStatus.value = { is_liked: false, like_cnt: likeStatus.value.like_cnt - 1 };
+  } else {
+    await onLike({});
+    likeStatus.value = { is_liked: true, like_cnt: likeStatus.value.like_cnt + 1 };
+  }
+};
+
+// 로컬 좋아요 상태
+const likeStatus = ref({ is_liked: false, like_cnt: 0 });
+watch(
+  () => props.review,
+  (value) => {
+    likeStatus.value = { is_liked: value.is_liked, like_cnt: value.like_cnt };
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
@@ -31,21 +56,25 @@ const role = computed(() => {
           </p>
         </div>
 
-        <div
-          class="w-[55px] h-7 bg-[#d8e5f8] rounded-[14px] ml-auto flex justify-center items-center"
-          v-if="review.is_liked"
-        >
-          <div class="flex items-center justify-center">
-            <q-icon name="img:/icons/icon_thumbup_blue.svg" size="15px" class="mr-1" />
-            <p class="text-primary text-sm font-medium font-['Pretendard'] leading-tight mt-1">{{ review.like_cnt }}</p>
+        <div @click="onClickLikeButton" class="cursor-pointer">
+          <div
+            class="w-[55px] h-7 bg-[#d8e5f8] rounded-[14px] ml-auto flex justify-center items-center"
+            v-if="likeStatus.is_liked"
+          >
+            <div class="flex items-center justify-center">
+              <q-icon name="img:/icons/icon_thumbup_blue.svg" size="15px" class="mr-1" />
+              <p class="text-primary text-sm font-medium font-['Pretendard'] leading-tight mt-1">
+                {{ likeStatus.like_cnt }}
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="w-[55px] h-7 bg-[#F0F0F0] rounded-[14px] ml-auto flex justify-center items-center" v-else>
-          <div class="flex items-center justify-center">
-            <q-icon name="img:/icons/icon_thumbup_grey.svg" size="15px" class="mr-1" />
-            <p class="text-[#b5b5b5] text-sm font-medium font-['Pretendard'] leading-tight mt-1">
-              {{ review.like_cnt }}
-            </p>
+          <div class="w-[55px] h-7 bg-[#F0F0F0] rounded-[14px] ml-auto flex justify-center items-center" v-else>
+            <div class="flex items-center justify-center">
+              <q-icon name="img:/icons/icon_thumbup_grey.svg" size="15px" class="mr-1" />
+              <p class="text-[#b5b5b5] text-sm font-medium font-['Pretendard'] leading-tight mt-1">
+                {{ likeStatus.like_cnt }}
+              </p>
+            </div>
           </div>
         </div>
       </div>

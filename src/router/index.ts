@@ -58,12 +58,13 @@ export default route(function (/* { store, ssrContext } */) {
   Router.beforeEach((to: any, from: any) => {
     const { isLoggedIn } = useUserInfo();
     const { joinData } = storeToRefs(useJoinStore());
+
     if (!isLoggedIn.value) {
       // 비로그인 상태에서 로그인이 필요한 페이지로 이동하려고 하면 로그인 페이지로 이동
       if (to.matched.some((record: any) => record.meta.requiresAuth)) {
         return { name: 'login', query: { next: to.fullPath } };
       }
-    } else if (to.name?.toString().includes('login')) return { name: 'main' };
+    } else if (to.name?.toString().includes('login')) return { name: 'home-main' };
 
     if (to.name?.toString().includes('join')) {
       console.log('>>>to.nameHasJoin');

@@ -5,13 +5,7 @@
  * @see {@link https://tanstack.com/query/latest/docs/framework/react/overview}
  */
 
-import {
-  UseInfiniteQueryOptions,
-  useInfiniteQuery,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/vue-query';
+import { UseInfiniteQueryOptions, useInfiniteQuery, useMutation, useQuery, useQueryClient } from '@tanstack/vue-query';
 import { UseAxiosOptions, useAxios } from '@vueuse/integrations/useAxios';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { axiosInstance as api } from 'src/boot/axios';
@@ -28,13 +22,7 @@ import { MaybeRef, MaybeRefOrGetter } from 'vue';
 /**
  * Axios Get 호출
  */
-export function useGet<T extends ApiResponse, D = any>({
-  url,
-  params,
-}: {
-  url: string;
-  params?: MaybeRefOrGetter<D>;
-}) {
+export function useGet<T extends ApiResponse, D = any>({ url, params }: { url: string; params?: MaybeRefOrGetter<D> }) {
   return api.get<T, AxiosResponse<T>, D>(url, {
     params: toValue(params),
   });
@@ -43,13 +31,7 @@ export function useGet<T extends ApiResponse, D = any>({
 /**
  * Axios Post 호출
  */
-export function usePost<T extends ApiResponse, D = any>({
-  url,
-  data,
-}: {
-  url: string;
-  data?: MaybeRefOrGetter<D>;
-}) {
+export function usePost<T extends ApiResponse, D = any>({ url, data }: { url: string; data?: MaybeRefOrGetter<D> }) {
   return api.post<T, AxiosResponse<T>, D>(url, toValue(data));
 }
 
@@ -85,10 +67,7 @@ export function useFetchItem<T extends ApiResponse>({
   if (!id) {
     throw new Error('id가 필요합니다.');
   }
-  return api.get<T, AxiosResponse<T>>(
-    url + '/' + id + (subUrl ? '/' + subUrl : ''),
-    config
-  );
+  return api.get<T, AxiosResponse<T>>(url + '/' + id + (subUrl ? '/' + subUrl : ''), config);
 }
 
 /**
@@ -109,10 +88,7 @@ export function useFetchItemPost<T extends ApiListResponse, D>({
 /**
  * 목록 조회 API 호출
  */
-export function useFetchList<
-  T extends ApiListResponse,
-  D extends SearchRequest
->({
+export function useFetchList<T extends ApiListResponse, D extends SearchRequest>({
   url,
   searchRequest,
   config,
@@ -140,11 +116,7 @@ export function useUpdateItem<T extends ApiResponse, D = any>({
   data: D;
   config?: AxiosRequestConfig<D>;
 }) {
-  return api.put<T, AxiosResponse<T>, D>(
-    url + '/' + id + (subUrl ? '/' + subUrl : ''),
-    data,
-    config
-  );
+  return api.put<T, AxiosResponse<T>, D>(url + '/' + id + (subUrl ? '/' + subUrl : ''), data, config);
 }
 
 /**
@@ -208,12 +180,7 @@ export function useAxiosGet<T extends ApiResponse, D = any>({
   params?: D;
   options?: UseAxiosOptions;
 }) {
-  return useAxios<T, AxiosResponse<T>, D>(
-    url,
-    { method: 'get', params },
-    api,
-    options
-  );
+  return useAxios<T, AxiosResponse<T>, D>(url, { method: 'get', params }, api, options);
 }
 
 /**
@@ -228,12 +195,7 @@ export function useAxiosPost<T extends ApiResponse, D = any>({
   data?: D;
   options?: UseAxiosOptions;
 }) {
-  return useAxios<T, AxiosResponse<T>, D>(
-    url,
-    { method: 'post', data },
-    api,
-    options
-  );
+  return useAxios<T, AxiosResponse<T>, D>(url, { method: 'post', data }, api, options);
 }
 
 /**
@@ -248,12 +210,7 @@ export function useAxiosPut<T extends ApiResponse, D = any>({
   data?: D;
   options?: UseAxiosOptions;
 }) {
-  return useAxios<T, AxiosResponse<T>, D>(
-    url,
-    { method: 'put', data },
-    api,
-    options
-  );
+  return useAxios<T, AxiosResponse<T>, D>(url, { method: 'put', data }, api, options);
 }
 
 /**
@@ -268,12 +225,7 @@ export function useAxiosPatch<T extends ApiResponse, D = any>({
   data?: D;
   options?: UseAxiosOptions;
 }) {
-  return useAxios<T, AxiosResponse<T>, D>(
-    url,
-    { method: 'patch', data },
-    api,
-    options
-  );
+  return useAxios<T, AxiosResponse<T>, D>(url, { method: 'patch', data }, api, options);
 }
 
 /**
@@ -301,21 +253,13 @@ export function useAxiosFetchItem<T extends ApiResponse, D = any>({
   id: number | string;
   options?: UseAxiosOptions;
 }) {
-  return useAxios<T, AxiosResponse<T>, D>(
-    `${url}/${id}`,
-    { method: 'GET' },
-    api,
-    options
-  );
+  return useAxios<T, AxiosResponse<T>, D>(`${url}/${id}`, { method: 'GET' }, api, options);
 }
 
 /**
  * Vueuse useAxios를 이용한 목록 조회
  */
-export function useAxiosFetchList<
-  T extends ApiListResponse,
-  D extends SearchRequest
->({
+export function useAxiosFetchList<T extends ApiListResponse, D extends SearchRequest>({
   url,
   searchRequest,
   options,
@@ -325,12 +269,7 @@ export function useAxiosFetchList<
   options?: UseAxiosOptions;
 }) {
   const data = toValue(searchRequest);
-  return useAxios<T, AxiosResponse<T>, SearchRequest>(
-    url,
-    { method: 'POST', data },
-    api,
-    options
-  );
+  return useAxios<T, AxiosResponse<T>, SearchRequest>(url, { method: 'POST', data }, api, options);
 }
 
 /**
@@ -350,10 +289,8 @@ export function useQueryCreateItem<T extends ApiResponse, D = any>({
     mutationFn: (data: D) => useCreateItem<T, D>({ url, data }),
     onSuccess: () => {
       // Invalidate and refetch
-      if (queryKeyName)
-        queryClient.invalidateQueries({ queryKey: [queryKeyName] });
-      if (listQueryKeyName)
-        queryClient.invalidateQueries({ queryKey: [listQueryKeyName] });
+      if (queryKeyName) queryClient.invalidateQueries({ queryKey: [queryKeyName] });
+      if (listQueryKeyName) queryClient.invalidateQueries({ queryKey: [listQueryKeyName] });
     },
   });
 }
@@ -381,9 +318,7 @@ export function useQueryFetchItem<T extends ApiResponse>({
     },
     select: (data): T['data'] => data.data.data,
     ...queryOption,
-    enabled: computed(
-      () => toValue((queryOption as any)?.enabled) !== false && !!toValue(id)
-    ),
+    enabled: computed(() => toValue((queryOption as any)?.enabled) !== false && !!toValue(id)),
   });
 }
 
@@ -437,10 +372,7 @@ export function useQueryFetchItemPost<T extends ApiResponse, D>({
 /**
  * Vue Query를 이용한 목록 조회
  */
-export function useQueryFetchList<
-  T extends ApiListResponse,
-  D extends SearchRequest
->({
+export function useQueryFetchList<T extends ApiListResponse, D extends SearchRequest>({
   url,
   searchRequest,
   listQueryKeyName,
@@ -468,10 +400,7 @@ export function useQueryFetchList<
 /**
  * Vue Query를 이용한 무한 스크롤 목록 조회
  */
-export function useQueryFetchInfiniteList<
-  T extends ApiListResponse,
-  D extends SearchRequest
->({
+export function useQueryFetchInfiniteList<T extends ApiListResponse, D extends SearchRequest>({
   url,
   searchRequest,
   queryKeyName,
@@ -529,13 +458,10 @@ export function useQueryUpdateItem<T extends ApiResponse, D = any>({
 }) {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: D) =>
-      useUpdateItem<T, D>({ url, subUrl, id: toValue(id), data }),
+    mutationFn: (data: D) => useUpdateItem<T, D>({ url, subUrl, id: toValue(id), data }),
     onSuccess: () => {
-      if (queryKeyName)
-        queryClient.invalidateQueries({ queryKey: [queryKeyName, id] });
-      if (listQueryKeyName)
-        queryClient.invalidateQueries({ queryKey: [listQueryKeyName] });
+      if (queryKeyName) queryClient.invalidateQueries({ queryKey: [queryKeyName, id] });
+      if (listQueryKeyName) queryClient.invalidateQueries({ queryKey: [listQueryKeyName] });
     },
   });
 }
@@ -556,14 +482,11 @@ export function useQueryPatchItem<T extends ApiResponse, D = any>({
 }) {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data?: D) =>
-      usePatchItem<T, D>({ url, id: toValue(id), data }),
+    mutationFn: (data?: D) => usePatchItem<T, D>({ url, id: toValue(id), data }),
     onSuccess: () => {
       // Invalidate and refetch
-      if (queryKeyName)
-        queryClient.invalidateQueries({ queryKey: [queryKeyName, id] });
-      if (listQueryKeyName)
-        queryClient.invalidateQueries({ queryKey: [listQueryKeyName] });
+      if (queryKeyName) queryClient.invalidateQueries({ queryKey: [queryKeyName, id] });
+      if (listQueryKeyName) queryClient.invalidateQueries({ queryKey: [listQueryKeyName] });
     },
   });
 }
@@ -582,14 +505,11 @@ export function useQueryDeleteItem({
 }) {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (id?: MaybeRefOrGetter<Id>) =>
-      useDeleteItem({ url, id: toValue(id) }),
+    mutationFn: (id?: MaybeRefOrGetter<Id>) => useDeleteItem({ url, id: toValue(id) }),
     onSuccess: () => {
       // Invalidate and refetch
-      if (queryKeyName)
-        queryClient.invalidateQueries({ queryKey: [queryKeyName] });
-      if (listQueryKeyName)
-        queryClient.invalidateQueries({ queryKey: [listQueryKeyName] });
+      if (queryKeyName) queryClient.invalidateQueries({ queryKey: [queryKeyName] });
+      if (listQueryKeyName) queryClient.invalidateQueries({ queryKey: [listQueryKeyName] });
     },
   });
 }
@@ -608,14 +528,11 @@ export function useQueryDeleteList({
 }) {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (idList: MaybeRefOrGetter<Id[]>) =>
-      useDeleteList({ url, idList: toValue(idList) }),
+    mutationFn: (idList: MaybeRefOrGetter<Id[]>) => useDeleteList({ url, idList: toValue(idList) }),
     onSuccess: () => {
       // Invalidate and refetch
-      if (queryKeyName)
-        queryClient.invalidateQueries({ queryKey: [queryKeyName] });
-      if (listQueryKeyName)
-        queryClient.invalidateQueries({ queryKey: [listQueryKeyName] });
+      if (queryKeyName) queryClient.invalidateQueries({ queryKey: [queryKeyName] });
+      if (listQueryKeyName) queryClient.invalidateQueries({ queryKey: [listQueryKeyName] });
     },
   });
 }
@@ -623,10 +540,7 @@ export function useQueryDeleteList({
 /**
  * 목록 검색란 필터 값 생성
  */
-export function getFilterValue(
-  operator: FilterOperator | undefined,
-  value: MaybeRefOrGetter<any>
-) {
+export function getFilterValue(operator: FilterOperator | undefined, value: MaybeRefOrGetter<any>) {
   const val = toValue(value);
   if (!operator) {
     return val;
@@ -710,9 +624,7 @@ export async function downloadFile(id: number, fileName: string) {
   });
 
   // const url = window.URL.createObjectURL(new Blob());
-  const url = window.URL.createObjectURL(
-    new Blob([response.data], { type: response.headers['content-type'] })
-  );
+  const url = window.URL.createObjectURL(new Blob([response.data], { type: response.headers['content-type'] }));
   const link = document.createElement('a');
   link.href = url;
   link.setAttribute('download', fileName);
