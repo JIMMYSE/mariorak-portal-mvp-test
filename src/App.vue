@@ -71,6 +71,7 @@ const tabInfos: { icon: string; label: string; name: string; to: string }[] = [
 ];
 const isMain = computed(() => route.name?.toString().includes('main'));
 const noHeader = computed(() => route.meta.noHeader);
+const noFooter = computed(() => route.meta.noFooter);
 
 // useMeta({
 //   title: 'CCF ㅣ 팬과 함께 만들어가는 게임 개발 커뮤니티',
@@ -90,7 +91,7 @@ const noHeader = computed(() => route.meta.noHeader);
       <div style="max-width: 512px; margin: 0 auto" class="border-grey-5">
         <router-view />
 
-        <q-footer v-if="footerVisible" class="bg-white justify-between items-center flex footer-border py-2">
+        <q-footer v-if="!noFooter" class="bg-white justify-between items-center flex footer-border py-2">
           <q-tabs class="w-full" align="justify">
             <q-route-tab
               v-for="tabInfo in tabInfos"
