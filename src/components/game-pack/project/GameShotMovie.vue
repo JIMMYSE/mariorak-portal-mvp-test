@@ -28,7 +28,7 @@ onMounted(() => {
 
 <template>
   <div class="video-player-container">
-    <video controls class="main-video" :key="currentVideo?.detail_content_id" ref="videoPlayer">
+    <video controls class="main-video" :key="currentVideo?.detail_content_id" ref="videoPlayer" autoplay>
       <source :src="currentVideo?.content_file?.convert_addr ?? ''" type="video/mp4" />
       현재 비디오를 지원하지 않습니다.
     </video>
@@ -42,7 +42,7 @@ onMounted(() => {
         <c-img
           v-for="video in detailFileList"
           :key="video.detail_content_id"
-          :src="video.thumbnail_file.convert_addr"
+          :src="video.thumbnail_file?.convert_addr ?? ''"
           @click="playVideo(video)"
           class="thumbnail cursor-pointer"
           :class="{
