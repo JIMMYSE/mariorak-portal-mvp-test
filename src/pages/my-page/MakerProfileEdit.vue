@@ -53,7 +53,10 @@ watch(maker, (value) => {
       mkr_rol_cd: data?.mkr_rol_cd,
       expr_year: data?.expr_year,
       prfl: data?.prfl,
-      prtf: data?.prtf,
+      prtf: {
+        prtf_dspy_yn: true,
+        prtf_url: data?.prtf?.prtf_url,
+      },
       updatedAt: data?.updatedAt,
     });
     nickname.value = data?.nickname ?? '';
