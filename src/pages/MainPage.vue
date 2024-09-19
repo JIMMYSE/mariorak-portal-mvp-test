@@ -137,6 +137,20 @@ const openDetailDialog = (type: string) => {
     <!-- 맵 바로가기 영역 -->
     <ckv-banner :img-list="imgList" counter />
 
+    <!-- 상단 탭 -->
+    <q-scroll-area class="bg-[#f8f8f8] h-[100px] w-full px-3" :bar-style="barStyle" :thumb-style="thumbStyle">
+      <div class="row no-wrap">
+        <div class="w-[70px] h-[100px] text-center mr-4" v-for="n in tabList" :key="n.src">
+          <div class="h-full flex flex-col items-center justify-center">
+            <q-img :src="n.src" class="h-[44px] w-[44px]" />
+            <p class="text-xs">
+              {{ n.title }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </q-scroll-area>
+
     <!-- 게임팩 대해 궁금하다면 -->
     <section class="mt-10">
       <p class="pl-6 text-[22px] font-semibold">유저와 함께하는 게임 제작 문화</p>
