@@ -130,6 +130,30 @@ const openDetailDialog = (type: string) => {
   detail.value = { title: term.title, content: term.content };
   detailEnabled.value = true;
 };
+
+const moveToList = (type: string) => {
+  console.log(type);
+  switch (type) {
+    case '게임':
+      goToName('game-list');
+      break;
+    case '프로젝트':
+      goToName('project-list');
+      break;
+    case '모집중':
+      goToName('recruit-detail', { active: 'project' });
+      break;
+    case '개발자':
+      goToName('recruit-detail', { active: 'maker' });
+      break;
+    case '개발자 게시판':
+      notAvailableAlert();
+      break;
+    case '커뮤니티':
+      notAvailableAlert();
+      break;
+  }
+};
 </script>
 
 <template>
@@ -140,7 +164,7 @@ const openDetailDialog = (type: string) => {
     <!-- 상단 탭 -->
     <q-scroll-area class="bg-[#f8f8f8] h-[100px] w-full px-3" :bar-style="barStyle" :thumb-style="thumbStyle">
       <div class="row no-wrap">
-        <div class="w-[70px] h-[100px] text-center mr-4" v-for="n in tabList" :key="n.src">
+        <div class="w-[70px] h-[100px] text-center mr-4" v-for="n in tabList" :key="n.src" @click="moveToList(n.title)">
           <div class="h-full flex flex-col items-center justify-center">
             <q-img :src="n.src" class="h-[44px] w-[44px]" />
             <p class="text-xs">
