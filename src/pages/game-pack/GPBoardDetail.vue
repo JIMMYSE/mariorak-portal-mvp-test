@@ -49,10 +49,18 @@
     </div>
   </section>
   <q-footer class="py-[19px] px-[16px] fixed bottom-0 w-full bg-[#fff]" elevated>
-    <div class="row no-wrap items-center bg-[#f7f7f7] rounded-[5px]">
-      <c-input placeholder="댓글을 남겨주세요." class="comment_input" hide-bottom-space
-        ><c-btn class="p-0" size="28px" flat icon="icon_send"
-      /></c-input>
+    <div class="bg-[#f7f7f7] rounded-[5px] pr-[10px]">
+      <div class="row no-wrap items-center">
+        <c-input
+          placeholder="댓글을 남겨주세요."
+          :outlined="false"
+          :rounded="false"
+          class="col comment_input"
+          hide-bottom-space
+        >
+        </c-input>
+        <c-icon name="icon_send" size="28px" :color="'#767676'" :fill="false" />
+      </div>
     </div>
   </q-footer>
 </template>
@@ -60,6 +68,17 @@
 .comment_input {
   .q-field__control {
     background-color: #f7f7f7 !important;
+    padding: 0 0 0 15px;
+
+    &::before {
+      border: none;
+    }
+
+    input::placeholder {
+      line-height: 19.6px;
+      font-size: 14px;
+      color: #767676;
+    }
   }
 }
 </style>
