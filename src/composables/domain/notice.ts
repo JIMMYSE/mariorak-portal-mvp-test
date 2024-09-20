@@ -1,7 +1,7 @@
 import { NoticeDetailRes, NoticeSearchRes } from 'meta-airforce-dto';
 import { MaybeRef, MaybeRefOrGetter } from 'vue';
 
-const API_URL = '/notice';
+const API_URL = '/v1/notice';
 const QUERY_KEY = {
   LIST: 'NOTICE_LIST',
   DETAIL: 'NOTICE_DETAIL',
@@ -34,10 +34,7 @@ export const useNoticeList = ({
 /**
  * 공지사항 상세 조회
  */
-export const useNoticeDetail = (
-  id: MaybeRefOrGetter<Id>,
-  queryKeyName = QUERY_KEY.DETAIL
-) => {
+export const useNoticeDetail = (id: MaybeRefOrGetter<Id>, queryKeyName = QUERY_KEY.DETAIL) => {
   return useQueryFetchItem<NoticeDetailResType>({
     url: API_URL,
     id,
