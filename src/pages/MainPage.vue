@@ -216,6 +216,12 @@ const moveToList = (type: string) => {
         <g-p-item-list type="project" to-list="project-list" :gp-list="recommendedProjectList" />
       </div>
     </section>
+    <section class="mt-[55px]">
+      <h2 class="pl-6 text-[22px] font-semibold pb-3">커뮤니티 최신 게시물</h2>
+      <div class="grid gap-1.5 mt-[18px] px-6">
+        <community-card-list />
+      </div>
+    </section>
 
     <!-- 배너영역 -->
     <q-img class="mt-[55px]" src="/images/dummy/banner_dummy.png" alt="banner" width="100%" height="100%" />
