@@ -59,7 +59,7 @@
           hide-bottom-space
         >
         </c-input>
-        <c-icon name="icon_send" size="28px" :color="'#767676'" :fill="false" />
+        <c-btn class="p-0" flat><c-icon name="icon_send" size="28px" :fill="false" /></c-btn>
       </div>
     </div>
   </q-footer>
