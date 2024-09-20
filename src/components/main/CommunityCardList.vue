@@ -43,13 +43,13 @@ const onClickPostCard = () => {
 </script>
 <template>
   <ul class="custom-list cursor-pointer">
-    <li v-for="post in postList?.pages.flatMap((item: any) => item.data)" :key="post.title" @click="onClickPostCard">
+    <li v-for="post in postList?.pages.flatMap((item: any) => item.data)" :key="post.post_id" @click="onClickPostCard">
       <div class="text-[#222222] font-medium leading-snug">
         {{ post.title }}
       </div>
 
       <div class="flex justify-between mt-1">
-        <div class="text-[#767676] text-sm">{{ formatDate(post.created_at) }}{{ post.mem_nickname }}</div>
+        <div class="text-[#767676] text-sm">{{ formatDate(post.created_at) }} {{ post.mem_nickname }}</div>
         <div class="flex items-center">
           <q-icon :name="`img:/icons/icon_comment.svg`" size="20px" class="mr-1" />
           <div class="text-[#767676] text-sm pt-[1px]">
