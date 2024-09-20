@@ -35,10 +35,16 @@ export const useRecruiteApplyment = (prjAplyId: MaybeRefOrGetter<number>, queryO
 
 /**
  * 프로젝트 지원
+ * @param prj_rcrt_id 프로젝트 공고 아이디
+ * @param cont 지원 내용
+ * @returns
  */
-export const useApplyProject = (prj_rcrt_id: MaybeRefOrGetter<number>) => {
+export const useApplyProject = (prj_rcrt_id: MaybeRefOrGetter<number>, cont: string) => {
   return useAxiosPost<ApiResponse>({
     url: API_URL + '/add/' + toValue(prj_rcrt_id),
+    data: {
+      cont,
+    },
   });
 };
 

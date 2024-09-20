@@ -16,8 +16,6 @@ const emits = defineEmits<{
 
 const { isLoggedIn } = useUserInfo();
 
-// const { data: applimentData } = useRecruitApplymentDetail();
-
 function applyProject() {
   if (!props.hasProfile) {
     useAlertDialog({
@@ -26,25 +24,20 @@ function applyProject() {
     return;
   }
 
-  projectApplyDialog.value.open();
-
-  // useMyConfirmDialog({
-  //   text: '프로젝트에 지원하시겠습니까?',
-  // }).onOk(async () => {
-  //   await useApplyProject(props.recruitList.prj_rcrt_id);
-  //   emits('project-applied');
-
-  //   useAlertDialog({
-  //     htmlText: '프로젝트에 지원 하였습니다!<br/>지원 진행상황은 마이페이지에서 확인 가능합니다.',
-  //   });
-  // });
+  projectApplyDialog.value.open(props.recruitList.prj_rcrt_id, {
+    onClosed(isUpdated) {
+      if (isUpdated) {
+        emits('project-applied');
+      }
+    },
+  });
 }
 
 const projectApplyDialog = shallowRef<InstanceType<typeof ProjectApplyDialog>>();
 </script>
 
 <template>
-  <div class="flex flex-col" v-if="props.recruitList && props.recruitList.active">
+  <div class="flex flex-col" v-if="props.recruitList && props.recruitList.end_remain_days > 0">
     <introduce-text :intro="recruitList?.cont" class="mb-[20px]" />
     <ProjectApplyDialog ref="projectApplyDialog" />
     <div
@@ -81,8 +74,10 @@ const projectApplyDialog = shallowRef<InstanceType<typeof ProjectApplyDialog>>()
     </div>
   </div>
 
-  <div v-else>
-    <!-- TODO: 비활성화 처리-->
+  <div v-else-if="props.recruitList && props.recruitList.end_remain_days <= 0">
+    <!-- <introduce-text intro="프로젝트에 함께 참여해보세요!" class="mb-[20px]" /> -->
+
+    <div class="text-center">프로젝트 인원 모집이<br />마감되었어요.</div>
   </div>
 </template>
 

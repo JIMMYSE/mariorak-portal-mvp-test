@@ -4,7 +4,7 @@ import {
   RecruitProjectDetailType,
   ProjectAppliementDetailResType,
 } from 'src/types/gamepack/recruit-model';
-import { MaybeRef } from 'vue';
+import { MaybeRef, MaybeRefOrGetter } from 'vue';
 
 const API_URL = '/v3/pr/recruit';
 const QUERY_KEY = {
@@ -90,10 +90,11 @@ export const useRecruitSearchMakerList = ({
  * @param id
  * @returns
  */
-export const useProjectRecruitDetail = (id: number) => {
+export const useProjectRecruitDetail = (id: MaybeRefOrGetter<number>, queryOption?: QueryOption) => {
   return useQueryFetchItem<RecruitProjectDetailType>({
     id: id,
     queryKeyName: QUERY_KEY.PROJECT_DETAIL,
     url: API_URL + '/detail',
+    queryOption,
   });
 };
