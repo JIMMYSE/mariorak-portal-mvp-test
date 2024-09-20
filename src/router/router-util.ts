@@ -23,10 +23,7 @@ export function goToName(name: string, query?: LocationQueryRaw | undefined) {
   appRouter?.push({ name, query });
 }
 
-export function replaceToName(
-  name: string,
-  query?: LocationQueryRaw | undefined
-) {
+export function replaceToName(name: string, query?: LocationQueryRaw | undefined) {
   appRouter?.replace({ name, query });
 }
 
