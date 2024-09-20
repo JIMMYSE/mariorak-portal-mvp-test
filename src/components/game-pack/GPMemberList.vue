@@ -3,21 +3,17 @@ import { MakerListType } from 'src/types/gamepack/project-model';
 import { ref } from 'vue';
 
 type Props = {
-  makerList: MakerListType | undefined;
+  makerList: MakerListType;
 };
 const props = defineProps<Props>();
 </script>
 
 <template>
   <div class="flex flex-col">
-    <div
-      v-for="maker in props.makerList"
-      :key="maker.mem_id"
-      class="flex items-center pb-[15px]"
-    >
+    <div v-for="maker in props.makerList" :key="maker.mem_id" class="flex items-center pb-[15px]">
       <div>
         <c-img
-          :src="maker.prfl_img.convert_addr"
+          :src="maker.prfl_img?.convert_addr ?? ''"
           :alt="maker.mem_nickname"
           class="w-[60px] h-[60px] rounded-full"
         >

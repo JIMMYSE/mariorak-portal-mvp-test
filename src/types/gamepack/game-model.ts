@@ -18,6 +18,4 @@ const RecommendedGameListRes = SuccessListRes(RecommenededGameList);
 export type GameDetail = InferType<typeof GameDetail>;
 
 export type RecommendedGameListType = InferType<typeof RecommenededGameList>;
-export type RecommendedGameListResType = InferType<
-  typeof RecommendedGameListRes
->;
+export type RecommendedGameListResType = InferType<typeof RecommendedGameListRes>;

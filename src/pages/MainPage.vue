@@ -127,6 +127,30 @@ const openDetailDialog = (type: string) => {
   detail.value = { title: term.title, content: term.content };
   detailEnabled.value = true;
 };
+
+const moveToList = (type: string) => {
+  console.log(type);
+  switch (type) {
+    case '게임':
+      goToName('game-list');
+      break;
+    case '프로젝트':
+      goToName('project-list');
+      break;
+    case '모집중':
+      goToName('recruit-detail', { active: 'project' });
+      break;
+    case '개발자':
+      goToName('recruit-detail', { active: 'maker' });
+      break;
+    case '개발자 게시판':
+      notAvailableAlert();
+      break;
+    case '커뮤니티':
+      notAvailableAlert();
+      break;
+  }
+};
 </script>
 
 <template>
@@ -134,20 +158,10 @@ const openDetailDialog = (type: string) => {
     <!-- 맵 바로가기 영역 -->
     <ckv-banner :img-list="imgList" counter />
 
-    <!-- TODO 앱 심사 히든처리 -->
     <!-- 상단 탭 -->
-    <!-- <q-scroll-area
-
-      class="bg-[#f8f8f8] h-[100px] w-full px-3"
-      :bar-style="barStyle"
-      :thumb-style="thumbStyle"
-    >
+    <q-scroll-area class="bg-[#f8f8f8] h-[100px] w-full px-3" :bar-style="barStyle" :thumb-style="thumbStyle">
       <div class="row no-wrap">
-        <div
-          class="w-[70px] h-[100px] text-center mr-4"
-          v-for="n in tabList"
-          :key="n.src"
-        >
+        <div class="w-[70px] h-[100px] text-center mr-4" v-for="n in tabList" :key="n.src" @click="moveToList(n.title)">
           <div class="h-full flex flex-col items-center justify-center">
             <q-img :src="n.src" class="h-[44px] w-[44px]" />
             <p class="text-xs">
@@ -156,7 +170,7 @@ const openDetailDialog = (type: string) => {
           </div>
         </div>
       </div>
-    </q-scroll-area> -->
+    </q-scroll-area>
 
     <!-- 게임팩 대해 궁금하다면 -->
     <section class="mt-10">
@@ -199,15 +213,15 @@ const openDetailDialog = (type: string) => {
         <g-p-item-list type="project" to-list="project-list" :gp-list="recommendedProjectList" />
       </div>
     </section>
+    <section class="mt-[55px]">
+      <h2 class="pl-6 text-[22px] font-semibold pb-3">커뮤니티 최신 게시물</h2>
+      <div class="grid gap-1.5 mt-[18px] px-6">
+        <community-card-list />
+      </div>
+    </section>
 
     <!-- 배너영역 -->
-    <!-- <q-img
-      class="mt-[55px]"
-      src="/images/dummy/banner_dummy.png"
-      alt="banner"
-      width="100%"
-      height="100%"
-    /> -->
+    <q-img class="mt-[55px]" src="/images/dummy/banner_dummy.png" alt="banner" width="100%" height="100%" />
 
     <!-- 사업자 정보 -->
 
@@ -266,7 +280,6 @@ const openDetailDialog = (type: string) => {
           </div>
         </div> -->
       </div>
-
       <div>
         <div class="w-full h-[0px] border border-[#f0f0f0] mt-5"></div>
         <div class="text-[#b5b5b5] text-[10px] leading-[14px] mt-7">

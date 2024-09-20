@@ -22,14 +22,13 @@ const emits = defineEmits<{
         <introduce-text :intro="detail?.cont" />
       </div>
     </section>
-    <!-- TODO 앱심사 히든처리 -->
-    <!-- <section class="mt-[60px]" v-if="false">
+    <section class="mt-[60px]">
       <h2 class="text-[20px] font-semibold">In Game Shot</h2>
       <div class="mt-4" v-if="detail?.detail_file_list">
         <game-shot-movie :detail-file-list="detail?.detail_file_list" />
       </div>
       <div v-else></div>
-    </section> -->
+    </section>
     <section class="mt-[40px]">
       <h2 class="text-[20px] font-semibold">프로젝트 참여 멤버</h2>
       <div class="mt-4">

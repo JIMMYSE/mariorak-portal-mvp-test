@@ -8,8 +8,8 @@ const { data: projectDetail, refetch } = useProjectDetail(projectId);
 
 const like = ref(false);
 const tab = ref('INFO');
-const { mutateAsync: onLike } = useLike('project', projectId, 'project-detail');
-const { mutateAsync: onUnlike } = useUnLike('project', 'project-detail');
+const { mutateAsync: onLike } = useLike('projectOrgame', projectId, 'project-detail');
+const { mutateAsync: onUnlike } = useUnLike('projectOrgame', 'project-detail');
 
 const onLikeProject = async () => {
   like.value = !like.value;
@@ -87,12 +87,9 @@ const { enterRoom } = useBridge();
           </div>
         </div>
         <div class="mt-4">
-          <!-- TODO 앱 심사 히든 처리 -->
-          <!-- <c-btn
-            class="w-full rounded-[30px] text-[#056bf1] font-semibold text-sm py-4 pl-10 pr-[30px]"
-            outline
+          <c-btn class="w-full rounded-[30px] text-[#056bf1] font-semibold text-sm py-4 pl-10 pr-[30px]" outline
             >프로젝트 후원하기
-          </c-btn> -->
+          </c-btn>
           <c-btn
             class="w-full rounded-[30px] text-[#056bf1] font-semibold text-sm py-4 pl-10 pr-[30px] mt-[8px]"
             @click="enterRoom(projectDetail?.office_id ?? null, 1)"
@@ -108,8 +105,8 @@ const { enterRoom } = useBridge();
         v-model="tab"
         align="justify"
         :tabs="[
-          // { label: '정보', name: 'INFO' },
-          // { label: '게시판', name: 'BOARD' }, TODO 앱 심사 히든 처리
+          { label: '정보', name: 'INFO' },
+          { label: '게시판', name: 'BOARD' },
         ]"
       />
 

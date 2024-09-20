@@ -19,9 +19,7 @@ const props = defineProps<Props>();
       </div>
       <div>
         <q-icon name="img:/icons/icon_comment.svg" size="20px" />
-        <span class="text-[#767676] text-sm font-normal leading-tight">{{
-          post.cmmt_cnt
-        }}</span>
+        <span class="text-[#767676] text-sm font-normal leading-tight">{{ post.cmmt_cnt }}</span>
       </div>
     </div>
   </div>
