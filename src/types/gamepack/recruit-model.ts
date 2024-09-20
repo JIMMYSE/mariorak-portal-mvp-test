@@ -40,6 +40,7 @@ export type ProjectRecruitMakersResType = InferType<typeof ProjectRecruitMakersR
 export type ProjectRecruitMakersDetailResType = InferType<typeof ProjectRecruitMakersDetailRes>;
 
 const RecruitProjectDetail = ProjectBase.shape({
+  active: boolean().label('공고활성화 여부'),
   hasProfile: boolean().default(false).label('프로필 등록 여부'),
   relative_projects: array(
     ProjectBase.omit(['like_cnt', 'tag_list', 'game_gnre_cd', 'is_liked']).shape({
@@ -102,6 +103,14 @@ const ProjectAppliementDetailRes = SuccessObjectRes(
     appliment: ProjectApplimentDetailBase.label('지원 상세 정보'),
   })
 );
+
+/**
+ * 프로젝트 지원 요청
+ */
+export const ProjectApplimentAddReq = object({
+  cont: string().required().label('지원내용'),
+});
+export type ProjectApplimentAddReqType = InferType<typeof ProjectApplimentAddReq>;
 
 /**
  * 지원정보 상세

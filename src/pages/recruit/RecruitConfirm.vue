@@ -23,9 +23,15 @@ const {
  * 팝업 오픈 여부
  */
 function open(_prjAplyId: number, options?: Options) {
+  init();
   prjAplyId.value = _prjAplyId;
   finalOptions.value = options;
   showPopup.value = true;
+}
+
+function init() {
+  prjAplyId.value = 0;
+  finalOptions.value = null;
   isUpdated.value = false;
 }
 
@@ -208,9 +214,14 @@ defineExpose({
           <h2 class="text-[22px] font-semibold">
             참여했던 프로젝트 ({{ applimentData.appliment.maker.project_histories.length }}회)
           </h2>
-          <NormalProjectList type="project" :p-list="applimentData.appliment.maker.project_histories" />
+          <!-- <NormalProjectList type="project" :p-list="applimentData.appliment.maker.project_histories" /> -->
+          <!-- @vue-expect-error -->
+          <RecruitMakerProjectList class="mt-[20px]" :p-list="applimentData.appliment.maker.project_histories" />
         </section>
-        <section class="bottom-[85px] w-full text-center px-6 mt-[85px] mb-6 flex flex-row gap-1">
+        <section
+          class="bottom-[85px] w-full text-center px-6 mt-[85px] mb-6 flex flex-row gap-1"
+          v-if="applimentData.recruitment.active"
+        >
           <c-btn
             class="rounded-[10px] font-semibold text-base py-[14px] bottom-0 grow"
             color="primary"
