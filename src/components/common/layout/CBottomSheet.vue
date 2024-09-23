@@ -25,7 +25,7 @@ watch(
   }
 );
 
-useStyleTag('.desktop { overflow : hidden; }');
+useStyleTag('body { overflow : hidden; }');
 </script>
 
 <template>
