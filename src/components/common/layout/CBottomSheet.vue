@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref, watch, defineProps, defineEmits } from 'vue';
 import { useStyleTag } from '@vueuse/core';
+import { on } from 'events';
 
 const props = defineProps({
   modelValue: {
@@ -18,14 +19,19 @@ const closeSheet = () => {
   emit('update:modelValue', false);
 };
 
+const { id, css, load, unload, isLoaded } = useStyleTag('body { overflow: auto; }');
+
 watch(
   () => props.modelValue,
   (newVal) => {
     visible.value = newVal;
+    if (visible.value) {
+      css.value = 'body { overflow: hidden !important; }';
+    } else {
+      css.value = 'body { overflow: auto; }';
+    }
   }
 );
-
-useStyleTag('body { overflow : hidden; }');
 </script>
 
 <template>
