@@ -63,13 +63,6 @@ const {
   setField: setFieldValue, // TODO 추후 형태 변경필요
 });
 
-// 조회 조건
-// 검색 정렬 변경 시
-// watch(searchSort, (newVal) => {
-//   if (newVal == 'latest') setFieldValue('sort', [{ created_at: 'asc' }]);
-//   else setFieldValue('sort', [{ like: 'desc' }]);
-//   refetch();
-// });
 // 검색어 변경 시
 watchDebounced(
   searchKeyword,
@@ -82,11 +75,11 @@ watchDebounced(
 </script>
 <template>
   <div class="w-full">
-    <section class="mt-6">
+    <section class="my-6">
       <div class="flex justify-between items-center">
         <div>
           <p class="text-[#222222] text-xl font-semibold leading-7">
-            개발자 게시판 (135)
+            개발자 게시판 ({{ postList?.pages.flatMap((item: any) => item.data).length }})
           </p>
           <p class="text-[#767676] text-sm font-normal leading-tight mt-[2px]">
             프로젝트에 참여한 개발자가 작성하는 게시판
@@ -114,10 +107,10 @@ watchDebounced(
       <div v-if="isFetched">
         <!-- 반복문 -->
         <g-p-board-content-item
-          v-for="post in postList.pages.flatMap((item : any) => item.data)"
+          v-for="post in postList?.pages.flatMap((item : any) => item.data)"
           :post="post"
-          :key="post.id"
-          @click="goTo('/game-pack/project/1/2')"
+          :key="post.post_id"
+          @click="goTo(`/game-pack/project/${pjId}/${post.post_id}`)"
         />
       </div>
       <div class="flex justify-center" v-if="hasNextPage">
@@ -126,12 +119,7 @@ watchDebounced(
           outline
           @click="fetchNextPage()"
           >더보기
-          <c-icon
-            name="down_arrow"
-            size="18px"
-            :color="'#056BF1'"
-            :fill="false"
-          />
+          <c-icon name="down_arrow" size="18px" :color="'#056BF1'" :fill="false" />
         </c-btn>
       </div>
     </section>

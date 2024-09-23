@@ -1,7 +1,9 @@
-import { MaybeRef } from 'vue';
+import { PostDetailResType, PostDetailType, PostSearchResType } from 'src/types/community/post-model';
+import { MaybeRef, MaybeRefOrGetter } from 'vue';
 const API_URL = '/v3/cm/post';
 const QUERY_KEY = {
   list: 'post-list',
+  DETAIL: 'post-detail',
 };
 
 export const usePostList = ({
@@ -14,10 +16,33 @@ export const usePostList = ({
   listQueryKeyName?: string;
   setField: any;
 }) => {
-  return useQueryFetchInfiniteList<any, SearchRequest>({
+  return useQueryFetchInfiniteList<PostSearchResType, SearchRequest>({
     url: API_URL,
     searchRequest,
     queryKeyName: listQueryKeyName,
     setField,
+  });
+};
+
+export const usePostDetail = ({
+  postId,
+  prjId,
+  category,
+}: {
+  postId: MaybeRefOrGetter<Id>;
+  prjId?: MaybeRefOrGetter<Id>;
+  category?: 'gp' | 'maker' | 'support' | 'RecentOrAll';
+}) => {
+  const categoryCode = category == 'gp' ? '01' : category == 'maker' ? '01' : category == 'support' ? '02' : null;
+  console.log(categoryCode);
+  let subUrl = '';
+
+  if (categoryCode != null) subUrl += `?cate=${categoryCode}`;
+  if (prjId.value) subUrl += `&prj=${prjId.value}`;
+
+  return useQueryFetchItem<PostDetailResType>({
+    id: postId.value + subUrl,
+    queryKeyName: QUERY_KEY.DETAIL,
+    url: API_URL,
   });
 };

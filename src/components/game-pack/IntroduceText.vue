@@ -2,7 +2,7 @@
 import { ref, onMounted, nextTick } from 'vue';
 
 type Props = {
-  intro?: string;
+  intro?: string | null;
 };
 const props = defineProps<Props>();
 

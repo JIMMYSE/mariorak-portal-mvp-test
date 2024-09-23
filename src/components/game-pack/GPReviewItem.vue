@@ -1,46 +1,47 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
+type Props = {
+  review: any;
+};
+const props = defineProps<Props>();
+const { options } = useCommonCode('MKR_ROL');
+const role = computed(() => {
+  return options.value.find((option: any) => option.cd === props.review.mkr_rol_cd)?.label;
+});
 
-interface User {
-  name: string;
-  role: string;
-  avatar: string;
-  like: string | number;
-}
+const { mutateAsync: onLike } = useLike('review', props.review.prdc_revw_id);
+const { mutateAsync: onUnlike } = useUnLike('reivew');
 
-const users = ref<User[]>([
-  {
-    name: '가나다라마바사',
-    role: 'UI/UX Designer',
-    avatar: '/images/dummy/member_dummy1.jpg',
-    like: 1,
+// 좋아요/좋아요 취소
+const onClickLikeButton = async () => {
+  console.log(likeStatus.value);
+  if (likeStatus.value.is_liked) {
+    await onUnlike(ref(props.review.prdc_revw_id));
+    likeStatus.value = { is_liked: false, like_cnt: likeStatus.value.like_cnt - 1 };
+  } else {
+    await onLike({});
+    likeStatus.value = { is_liked: true, like_cnt: likeStatus.value.like_cnt + 1 };
+  }
+};
+
+// 로컬 좋아요 상태
+const likeStatus = ref({ is_liked: false, like_cnt: 0 });
+watch(
+  () => props.review,
+  (value) => {
+    likeStatus.value = { is_liked: value.is_liked, like_cnt: value.like_cnt };
   },
-  {
-    name: '김민지',
-    role: '3D Designer',
-    avatar: '/images/dummy/member_dummy2.png',
-    like: 1,
-  },
-  {
-    name: '오정아',
-    role: 'Programmer',
-    avatar: '/images/dummy/member_dummy3.png',
-    like: 1,
-  },
-]);
+  { immediate: true }
+);
 </script>
 
 <template>
-  <div class="flex flex-col">
-    <div
-      v-for="user in users"
-      :key="user.name"
-      class="flex items-center py-[15px] border-b-[1px] border-[#f0f0f0]"
-    >
+  <div class="flex flex-col" v-if="review">
+    <div class="flex items-center py-[15px] border-b-[1px] border-[#f0f0f0]">
       <div>
         <c-img
-          :src="user.avatar"
-          :alt="user.name"
+          :src="review.prfl_img.convert_addr"
+          :alt="review.mem_nickname"
           class="w-[40px] h-[40px] rounded-full"
         ></c-img>
       </div>
@@ -48,25 +49,37 @@ const users = ref<User[]>([
       <div class="flex justify-between items-end ml-[12px] flex-1">
         <div>
           <p class="text-[#222222] text-base font-semibold leading-snug">
-            {{ user.name }}
+            {{ review.mem_nickname }}
           </p>
           <p class="text-[#767676] text-sm font-normal leading-tight">
-            {{ user.role }}
+            {{ role }}
           </p>
         </div>
-        <div class="ml-auto">
-          <q-icon name="img:/icons/icon_comment.svg" size="20px" />
-          <span class="text-[#767676] text-sm font-normal leading-tight"
-            >25</span
+
+        <div @click="onClickLikeButton" class="cursor-pointer">
+          <div
+            class="w-[55px] h-7 bg-[#d8e5f8] rounded-[14px] ml-auto flex justify-center items-center"
+            v-if="likeStatus.is_liked"
           >
+            <div class="flex items-center justify-center">
+              <q-icon name="img:/icons/icon_thumbup_blue.svg" size="15px" class="mr-1" />
+              <p class="text-primary text-sm font-medium font-['Pretendard'] leading-tight mt-1">
+                {{ likeStatus.like_cnt }}
+              </p>
+            </div>
+          </div>
+          <div class="w-[55px] h-7 bg-[#F0F0F0] rounded-[14px] ml-auto flex justify-center items-center" v-else>
+            <div class="flex items-center justify-center">
+              <q-icon name="img:/icons/icon_thumbup_grey.svg" size="15px" class="mr-1" />
+              <p class="text-[#b5b5b5] text-sm font-medium font-['Pretendard'] leading-tight mt-1">
+                {{ likeStatus.like_cnt }}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <p class="mt-[10px] text-[#767676] text-sm font-normal leading-tight">
-        게임을 체험한 서포터즈가 작성한 리뷰입니다게임을 체험한 서포터즈가
-        작성한 리뷰입니다게임을 체험한 서포터즈가 작성한 리뷰입니다게임을 체험한
-        서포터즈가 작성한 리뷰입니다 게임을 체험한 서포터즈가 작성한 리뷰입니다
-      </p>
+      <p class="mt-[10px] text-[#767676] text-sm font-normal leading-tight w-full">{{ review.cont }}</p>
     </div>
   </div>
 </template>
