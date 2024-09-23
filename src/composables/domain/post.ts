@@ -53,6 +53,7 @@ export const usePostDetail = ({
   });
 };
 
+// 게시글 목록 조회
 export const usePostCommentList = ({
   postId,
   searchRequest,
@@ -69,5 +70,16 @@ export const usePostCommentList = ({
     searchRequest,
     queryOption,
     listQueryKeyName,
+  });
+};
+
+// 게시글 댓글 등록
+
+export const useCreateComment = (id: MaybeRefOrGetter<Id>, cont: any) => {
+  return useCreateItem<ApiResponse>({
+    url: API_URL + `/${id}/comment`,
+    data: {
+      cont,
+    },
   });
 };

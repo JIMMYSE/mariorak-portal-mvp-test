@@ -47,6 +47,12 @@ const { data: commentList, refetch } = usePostCommentList({
     enabled: true,
   },
 });
+
+// 댓글 등록
+const onRegisterCommnet = () => {
+  console.log(form.values.cont);
+  useCreateComment(postId.value, form.values.cont);
+};
 </script>
 <template>
   <section class="px-6">
@@ -109,6 +115,7 @@ const { data: commentList, refetch } = usePostCommentList({
       <div class="row no-wrap items-center">
         <c-input
           placeholder="댓글을 남겨주세요."
+          name="cont"
           :outlined="false"
           :rounded="false"
           class="col comment_input"
@@ -116,7 +123,7 @@ const { data: commentList, refetch } = usePostCommentList({
         >
         </c-input>
 
-        <c-btn class="p-0" flat><c-icon name="icon_send" size="28px" :fill="false" /></c-btn>
+        <c-btn class="p-0" flat @click="onRegisterCommnet"><c-icon name="icon_send" size="28px" :fill="false" /></c-btn>
       </div>
     </div>
   </q-footer>
