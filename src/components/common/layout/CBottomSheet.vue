@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref, watch, defineProps, defineEmits } from 'vue';
+import { useStyleTag } from '@vueuse/core';
 
 const props = defineProps({
   modelValue: {
@@ -23,6 +24,8 @@ watch(
     visible.value = newVal;
   }
 );
+
+useStyleTag('.desktop { overflow : hidden; }');
 </script>
 
 <template>
@@ -33,6 +36,7 @@ watch(
     </div>
   </div>
 </template>
+
 <style lang="scss" scoped>
 .backdrop {
   position: fixed;
