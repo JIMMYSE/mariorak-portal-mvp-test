@@ -6,16 +6,6 @@ async function doLogout() {
     onSuccess: () => goToName('login'),
   });
 }
-const { unregister } = useAuthUnregister();
-const withdrawal = () => {
-  useMyConfirmDialog({
-    htmlText: `<div class="text-center">${user.nickname} 님, <br/> 정말 탈퇴하시겠습니까? </div>`,
-  }).onOk(() => {
-    unregister(() => {
-      goToName('login');
-    });
-  });
-};
 const socialBgClass = computed(() => {
   switch (user.register_type) {
     case 'google':
@@ -55,7 +45,7 @@ const socialBgClass = computed(() => {
           flat
           class="text-[#ff0000]/50 text-base font-medium leading-tight p-0"
           label="회원탈퇴"
-          @click="withdrawal"
+          @click="goToName('account-withdrawal')"
         />
       </div>
     </section>
