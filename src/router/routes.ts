@@ -189,6 +189,62 @@ const routes: RouteRecordRaw[] = [
         ],
       },
       {
+        path: 'community',
+        meta: {
+          requiresAuth: true,
+          title: '인력사무소 ㅣ 서로 소통하며 키워나가는 창작 공간',
+          description:
+            '성공적인 게임 제작을 위해 팬과 크리에이터가 만나 아이디어를 내며 소통을 하는 글로벌 커뮤니티 공간 CCF_Content Created with Fans',
+          ogImage: '/images/meta-img.jpg',
+        },
+        component: MainLayout,
+        children: [
+          {
+            path: '',
+            name: 'community-main',
+            meta: {
+              title: '커뮤니티',
+              faqCategory: '커뮤니티',
+            },
+            component: () => import('src/pages/community/CMMainPage.vue'),
+          },
+          {
+            path: 'detail',
+            name: 'recruit-detail',
+            meta: {
+              title: '인력사무소 상세',
+              faqCategory: '인력사무소',
+              disabledHashScroll: true,
+            },
+            component: () => import('src/pages/recruit/RecruitDetail.vue'),
+          },
+          {
+            path: 'profile/:id',
+            name: 'recruit-profile',
+            meta: {
+              title: '개발자 프로필',
+            },
+            component: () => import('pages/recruit/RecruitMakerProfile.vue'),
+          },
+          {
+            path: 'project/:id',
+            name: 'recruit-project-detail',
+            meta: {
+              title: '프로젝트 상세',
+              bgColor: 'white',
+            },
+            // 프로젝트 상세에 SubLayout 사용
+            component: SubLayout,
+            children: [
+              {
+                path: '',
+                component: () => import('pages/recruit/RecruitProjectDetail.vue'),
+              },
+            ],
+          },
+        ],
+      },
+      {
         path: 'my-page',
         meta: {
           requiresAuth: true,
