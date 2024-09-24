@@ -63,17 +63,11 @@ export const useLogin = () => {
     const hasToJoined = computed<boolean>(() => {
       return !!(
         // 0000: 로그인 성공
-        (
-          data.code === '0000' &&
-          !data.data.social_profile?.is_joined &&
-          !isLogined.value
-        )
+        (data.code === '0000' && !data.data.social_profile?.is_joined && !isLogined.value)
       );
     });
 
-    const loginData = ref<
-      InferType<typeof PortalLoginResponse>['data'] | undefined
-    >();
+    const loginData = ref<InferType<typeof PortalLoginResponse>['data'] | undefined>();
 
     if (data.code === '0000') {
       const { data: result } = data ?? {};
@@ -135,14 +129,9 @@ export const initUserDetailInfo = async () => {
  * 로그아웃
  */
 
-export function useLogout(
-  nickname: string,
-  { onSuccess }: { onSuccess?: () => void }
-) {
+export function useLogout(nickname: string, { onSuccess }: { onSuccess?: () => void }) {
   useMyConfirmDialog({
-    htmlText: `<div class="text-center">${nickname} ${t(
-      'auth.logout.confirm'
-    )}</div>`,
+    htmlText: `<div class="text-center">${nickname} ${t('auth.logout.confirm')}</div>`,
   }).onOk(() => {
     doLogout(onSuccess);
   });
@@ -154,19 +143,16 @@ export function useLogout(
  * 1003: 비밀번호 5회 오류
  * 1011: 서비스 이용제한 -> 실행 후 이용 제한 계정 정보 API 호출 필요
  */
-export const useServiceRestrictionLogout = useThrottleFn(
-  (code: string | number, userId: number) => {
-    const { isLoggedIn } = useUserInfo();
-    if (isLoggedIn.value) {
-      doLogout(() => {
-        goTo(`/login/restriction/${code}/${userId}`);
-      });
-    } else {
+export const useServiceRestrictionLogout = useThrottleFn((code: string | number, userId: number) => {
+  const { isLoggedIn } = useUserInfo();
+  if (isLoggedIn.value) {
+    doLogout(() => {
       goTo(`/login/restriction/${code}/${userId}`);
-    }
-  },
-  4000
-);
+    });
+  } else {
+    goTo(`/login/restriction/${code}/${userId}`);
+  }
+}, 4000);
 
 /**
  * 강제 로그아웃(401, 토큰 만료 등). 중복방지 처리.
@@ -344,18 +330,12 @@ export const registerUser = async (data: any) => {
   data.agent = agentInfo?.value ?? dummyAgentInfo;
 
   type PortalLoginResponseType = InferType<typeof PortalLoginResponse>;
-  const { data: responseData } = await useAxiosPost<
-    PortalLoginResponseType,
-    SocialRegistration
-  >({
+  const { data: responseData } = await useAxiosPost<PortalLoginResponseType, SocialRegistration>({
     url: REGISTER_URL,
     data,
   });
 
-  if (
-    responseData.value?.code === '0000' &&
-    responseData.value?.data?.token?.length
-  ) {
+  if (responseData.value?.code === '0000' && responseData.value?.data?.token?.length) {
     await saveLoginUser(responseData.value.data);
   } else useLoginFailedDialog();
 };
@@ -383,42 +363,4 @@ export const useLoginFailedDialog = () => {
       },
     ],
   });
-};
-
-/**
- * dummy) 유저 정보
- *
- */
-
-const dummyUser: User = {
-  mobile: '123-456-7890', // 실제 문자열 값
-  last_login_at: new Date('2023-08-20T12:00:00Z'), // 실제 날짜 값
-  id: 1,
-  email: 'user@example.com',
-  created_at: new Date('2023-01-01T10:00:00Z'),
-  updated_at: new Date('2023-08-20T12:00:00Z'),
-  nickname: 'Traveler1234',
-  signup_type_cd: 'email',
-  avatar: {
-    id: 101,
-    name: 'Default Avatar',
-    profile_image: {
-      convert_addr: 'https://example.com/profile/convert.jpg',
-      id: 201,
-      file_name: 'profile.jpg',
-      origin_addr: 'https://example.com/profile/original.jpg',
-    },
-    circle_image: {
-      convert_addr: 'https://example.com/circle/convert.jpg',
-      id: 202,
-      file_name: 'circle.jpg',
-      origin_addr: 'https://example.com/circle/original.jpg',
-    },
-    square_image: {
-      convert_addr: 'https://example.com/square/convert.jpg',
-      id: 203,
-      file_name: 'square.jpg',
-      origin_addr: 'https://example.com/square/original.jpg',
-    },
-  },
 };

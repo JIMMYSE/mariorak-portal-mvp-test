@@ -38,15 +38,15 @@ const recommendedGameList = computed(() => {
         <recommend-game-list :g-list="recommendedGameList" />
       </div>
     </section>
-    <!-- <section class="mt-10"> TODO: 앱심사를 위해 히든처리
+    <section class="mt-10">
       <h2 class="pl-6 text-[20px] font-semibold">최근 본 게임</h2>
       <div class="grid gap-1.5 mt-4">
         <normal-project-list />
       </div>
-    </section> -->
-    <!-- <section class="mt-[55px]" ref="movePoint">
+    </section>
+    <section class="mt-[55px]" ref="movePoint">
       <img src="/images/dummy/banner_dummy.png" alt="banner" class="w-full" />
-    </section> -->
+    </section>
     <section class="mt-[55px] w-full" ref="movePoint">
       <h2 class="px-6 text-[22px] font-semibold">게임 목록</h2>
       <div class="mt-4">

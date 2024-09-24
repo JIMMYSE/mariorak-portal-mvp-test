@@ -1,5 +1,3 @@
-import { t } from 'src/utils/message-util';
-
 export interface Option {
   label: string;
   value: any;
@@ -43,6 +41,6 @@ export const DeviceAgent = object({
 export const ThumbnailFileSchema = object({
   id: number().required(),
   file_name: string().required(),
-  origin_addr: string().url().required(),
-  convert_addr: string().url().required(),
+  origin_addr: string().nullable(),
+  convert_addr: string().nullable(),
 });

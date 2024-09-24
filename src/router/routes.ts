@@ -207,7 +207,42 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '계정 정보 관리',
             },
-            component: () => import('pages/my-page/AccountManage.vue'),
+            component: () => import('pages/my-page/info/account/AccountManage.vue'),
+          },
+          {
+            path: 'account-withdrawal',
+            name: 'account-withdrawal',
+            meta: {
+              title: '회원탈퇴',
+              noFooter: true,
+            },
+            component: () => import('pages/my-page/info/account/AccountWithdrawal.vue'),
+          },
+          {
+            path: 'user-profile-manage',
+            name: 'user-profile-manage',
+            meta: {
+              title: '개인 프로필 관리',
+            },
+            component: () => import('src/pages/my-page/info/account/UserProfileManage.vue'),
+          },
+          {
+            path: 'change-nickname',
+            name: 'change-nickname',
+            meta: {
+              title: '닉네임 변경',
+              noFooter: true,
+            },
+            component: () => import('pages/my-page/info/user/ChangeNickname.vue'),
+          },
+          {
+            path: 'change-avatar',
+            name: 'change-avatar',
+            meta: {
+              title: '아바타 변경',
+              noFooter: true,
+            },
+            component: () => import('pages/my-page/info/user/ChangeAvatar.vue'),
           },
           {
             path: 'maker-profile-manage',
@@ -216,7 +251,7 @@ const routes: RouteRecordRaw[] = [
               title: '개발자 프로필 관리',
               noFooter: true,
             },
-            component: () => import('pages/my-page/MakerProfileManage.vue'),
+            component: () => import('pages/my-page/info/maker/MakerProfileManage.vue'),
           },
           {
             path: 'maker-profile-new',
@@ -225,7 +260,7 @@ const routes: RouteRecordRaw[] = [
               title: '개발자 프로필 등록',
               noFooter: true,
             },
-            component: () => import('pages/my-page/MakerProfileEdit.vue'),
+            component: () => import('pages/my-page/info/maker/MakerProfileEdit.vue'),
           },
           //본인 프로필 수정
           {
@@ -236,7 +271,7 @@ const routes: RouteRecordRaw[] = [
               title: '개발자 프로필 수정',
               noFooter: true,
             },
-            component: () => import('pages/my-page/MakerProfileEdit.vue'),
+            component: () => import('pages/my-page/info/maker/MakerProfileEdit.vue'),
           },
           // 개발자 프로필 미등록
           {
@@ -246,7 +281,7 @@ const routes: RouteRecordRaw[] = [
               title: '개발자 프로필 관리',
               noFooter: true,
             },
-            component: () => import('pages/my-page/NotRegisterProfile.vue'),
+            component: () => import('pages/my-page/info/maker/NotRegisterProfile.vue'),
           },
         ],
       },
