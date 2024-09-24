@@ -60,10 +60,7 @@ export const checkEmailUnique = async (email: MaybeRefOrGetter<string>) => {
     await getUserEmailInfo(email);
     return false;
   } catch (e: any) {
-    return (
-      e.response.status === HttpStatusCode.NotFound &&
-      e.response.data.code === '9999'
-    );
+    return e.response.status === HttpStatusCode.NotFound && e.response.data.code === '9999';
   }
 };
 
@@ -79,17 +76,12 @@ export function getUserNicknameInfo(nickname: MaybeRefOrGetter<string>) {
 /**
  * 닉네임 사용 가능 유무 체크
  */
-export const getIsUserNicknameAvailable = async (
-  email: MaybeRefOrGetter<string>
-) => {
+export const getIsUserNicknameAvailable = async (email: MaybeRefOrGetter<string>) => {
   try {
     await getUserNicknameInfo(email);
     return false;
   } catch (e: any) {
-    return (
-      e.response.status === HttpStatusCode.NotFound &&
-      e.response.data.code === '9999'
-    );
+    return e.response.status === HttpStatusCode.NotFound && e.response.data.code === '9999';
   }
 };
 
@@ -121,11 +113,11 @@ export const useAvatarList = ({
 };
 
 /**
- * 아바타 변경
+ * 아바타/닉네임 변경
  */
-export const updateUserAvatar = (id: MaybeRefOrGetter<number>) => {
+export const updateUserAvatarNickname = (nickname: MaybeRefOrGetter<string>, avatatId: MaybeRefOrGetter<number>) => {
   return useAxiosPut({
-    url: USER_API_URL + '/avatar',
-    data: { avatar_id: toValue(id) },
+    url: MYPAGE_API_URL + '/profile',
+    data: { nickname: toValue(nickname), avatar_id: toValue(avatatId) },
   });
 };

@@ -1,5 +1,3 @@
-import { t } from 'src/utils/message-util';
-
 export interface Option {
   label: string;
   value: any;

@@ -9,6 +9,8 @@ import { goToName } from 'src/router/router-util';
 
 type Props = {
   initialAvatarId: number;
+  submitLabel: string;
+  defaultAvatarId: number;
 };
 
 const props = defineProps({
@@ -16,6 +18,11 @@ const props = defineProps({
     type: Number,
     required: false,
     default: 1,
+  },
+  submitLabel: {
+    type: String,
+    required: false,
+    default: '가입 완료하기',
   },
 });
 
@@ -77,9 +84,7 @@ const scrollThumbnailOn = () => {
 };
 
 const myAvatarIndex = computed(() => {
-  return avatarData.value?.avatars.findIndex(
-    (avatar: any) => avatar.id === form.avatarId
-  );
+  return avatarData.value?.avatars.findIndex((avatar: any) => avatar.id === form.avatarId);
 });
 
 onMounted(() => {
@@ -90,19 +95,12 @@ onMounted(() => {
 <template>
   <div class="flex flex-col size-full bg-white" style="min-height: inherit">
     <section class="flex-none w-full px-8">
-      <p class="font-pretendard font-semibold text-2xl text-black">
-        멋진 닉네임이에요
-      </p>
-      <p class="font-pretendard font-semibold text-2xl text-black">
-        아바타를 선택해 주세요!
-      </p>
+      <p class="font-pretendard font-semibold text-2xl text-black">멋진 닉네임이에요</p>
+      <p class="font-pretendard font-semibold text-2xl text-black">아바타를 선택해 주세요!</p>
     </section>
 
     <!-- AVATAR SWIPER -->
-    <section
-      v-if="myAvatarIndex != null"
-      class="flex-none w-full mt-[52px] px-6"
-    >
+    <section v-if="myAvatarIndex != null" class="flex-none w-full mt-[52px] px-6">
       <swiper
         :initial-slide="myAvatarIndex"
         direction="horizontal"
@@ -128,14 +126,8 @@ onMounted(() => {
 
     <!-- THUMBNAIL LIST -->
 
-    <q-scroll-area
-      v-if="myAvatarIndex != null"
-      class="h-[130px] w-full"
-      ref="thumbnailWrapper"
-    >
-      <div
-        class="row no-wrap flex-1 flex justify-center items-start gap-[10px] mt-[18px] p-3 py-5 bg-white"
-      >
+    <q-scroll-area v-if="myAvatarIndex != null" class="h-[130px] w-full" ref="thumbnailWrapper">
+      <div class="row no-wrap flex-1 flex justify-center items-start gap-[10px] mt-[18px] p-3 py-5 bg-white">
         <div
           v-for="(avatar, i) in avatarData?.avatars"
           :key="avatar.id"
@@ -146,18 +138,9 @@ onMounted(() => {
         >
           <div
             class="w-[69px] h-[69px] flex justify-center items-center rounded-[5px] relative"
-            :class="
-              form.avatarId === avatar.id
-                ? 'border-[--q-primary] border-[2px] bg-white'
-                : 'bg-grey-1'
-            "
+            :class="form.avatarId === avatar.id ? 'border-[--q-primary] border-[2px] bg-white' : 'bg-grey-1'"
           >
-            <q-img
-              :src="avatar.circle_file.url ?? undefined"
-              fit="contain"
-              width="full"
-              height="full"
-            />
+            <q-img :src="avatar.circle_file.url ?? undefined" fit="contain" width="full" height="full" />
           </div>
         </div>
       </div>
@@ -170,7 +153,7 @@ onMounted(() => {
           class="text-center text-white font-medium rounded-md w-full h-[50px] max-w-[512px] bg-primary"
           @click="save"
         >
-          가입 완료하기
+          {{ submitLabel }}
         </button>
       </div>
     </section>
