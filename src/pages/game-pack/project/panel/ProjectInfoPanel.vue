@@ -19,30 +19,29 @@ const emits = defineEmits<{
     <section class="mt-6">
       <h2 class="text-[20px] font-semibold">게임 소개</h2>
       <div class="mt-4">
-        <introduce-text :intro="detail?.cont" />
+        <introduce-text :intro="props.detail?.cont" />
       </div>
     </section>
-    <!-- TODO 앱심사 히든처리 -->
-    <!-- <section class="mt-[60px]" v-if="false">
+    <section class="mt-[60px]">
       <h2 class="text-[20px] font-semibold">In Game Shot</h2>
       <div class="mt-4" v-if="detail?.detail_file_list">
         <game-shot-movie :detail-file-list="detail?.detail_file_list" />
       </div>
       <div v-else></div>
-    </section> -->
+    </section>
     <section class="mt-[40px]">
       <h2 class="text-[20px] font-semibold">프로젝트 참여 멤버</h2>
       <div class="mt-4">
-        <g-p-member-list :maker-list="detail?.mkr_list" />
+        <g-p-member-list :maker-list="props.detail?.mkr_list" />
       </div>
     </section>
-    <section class="mt-[40px]" v-if="detail?.rcrt">
-      <h2 class="text-[20px] font-semibold">프로젝트 참가자 모집 소식({{ detail?.rcrt.rcrt_mkr_num }}명)</h2>
+    <section class="mt-[40px]" v-if="props.detail?.rcrt">
+      <h2 class="text-[20px] font-semibold">프로젝트 참가자 모집 소식({{ props.detail?.rcrt.rcrt_mkr_num }}명)</h2>
       <div class="mt-4">
         <g-p-project-member-recruit
           class="mt-[30px]"
-          :recruit-list="detail?.rcrt"
-          :has-profile="detail?.hasProfile as boolean"
+          :recruit-list="props.detail?.rcrt"
+          :has-profile="props.detail?.hasProfile as boolean"
           @project-applied="emits('project-applied')"
         />
       </div>

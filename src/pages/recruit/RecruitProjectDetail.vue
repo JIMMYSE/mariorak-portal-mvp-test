@@ -13,9 +13,8 @@ const prjId = computed(() => toString(projectDetail.value?.prj_id));
 
 const likeAction = createAction(() => {
   const like = ref(false);
-
-  const { mutateAsync: onLike } = useLike('project', prjId, 'project-detail');
-  const { mutateAsync: onUnlike } = useUnLike('project', 'project-detail');
+  const { mutateAsync: onLike } = useLike('projectOrgame', prjId, 'project-detail');
+  const { mutateAsync: onUnlike } = useUnLike('projectOrgame', 'project-detail');
 
   const onLikeProject = async () => {
     like.value = !like.value;

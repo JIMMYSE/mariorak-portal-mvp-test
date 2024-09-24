@@ -60,7 +60,7 @@ watch(maker, (value) => {
       updatedAt: data?.updatedAt,
     });
     nickname.value = data?.nickname ?? '';
-    selectedYear.value = data?.expr_year ?? 1;
+    selectedYear.value = data?.expr_year ?? 0;
     jobObjs.value = data?.prfl?.job_objs?.toString() ?? '';
     skills.value = data?.prfl?.skills?.toString() ?? '';
     selectedJob.value = data?.mkr_rol_cd ?? '';
@@ -253,6 +253,7 @@ const onSubmit = handleSubmit(async () => {
             class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
             color="primary"
             @click="onClickJob"
+            :disabled="!selectedJob"
             >선택 완료
           </c-btn>
         </section>
@@ -283,6 +284,7 @@ const onSubmit = handleSubmit(async () => {
             class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
             color="primary"
             @click="onClickYear"
+            :disabled="selectedYear == 0"
             >선택 완료
           </c-btn>
         </section>

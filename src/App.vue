@@ -61,13 +61,12 @@ const tabInfos: { icon: string; label: string; name: string; to: string }[] = [
     name: 'recruit',
     to: '/recruit',
   },
-  // TODO 앱 심사 히든
-  // {
-  //   icon: 'icon_community',
-  //   label: '커뮤니티',
-  //   name: 'community',
-  //   to: '/setting',
-  // },
+  {
+    icon: 'icon_community',
+    label: '커뮤니티',
+    name: 'community',
+    to: '/community',
+  },
 ];
 const isMain = computed(() => route.name?.toString().includes('main'));
 const noHeader = computed(() => route.meta.noHeader);
