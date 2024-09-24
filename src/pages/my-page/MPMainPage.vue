@@ -34,7 +34,7 @@ const { enterRoom } = useBridge();
           <div>
             <c-img
               :src="data?.data?.user.avatar.circle_file.url"
-              :alt="data?.data?.user.avatar.circle_file.id"
+              :alt="data?.data?.user.avatar.circle_file.id?.toString()"
               class="w-[60px] h-[60px] rounded-full"
             >
             </c-img>
