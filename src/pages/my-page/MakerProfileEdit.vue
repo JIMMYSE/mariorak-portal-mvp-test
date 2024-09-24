@@ -230,7 +230,7 @@ const onSubmit = handleSubmit(async () => {
       </c-btn>
     </section>
 
-    <c-bottom-sheet v-model="showJobBottomSheet">
+    <c-bottom-sheet v-model="showJobBottomSheet" hash="#job-sheet">
       <div class="flex flex-col justify-between">
         <section>
           <p class="text-[#767676] text-xs font-medium leading-none">직무 선택</p>
@@ -260,7 +260,7 @@ const onSubmit = handleSubmit(async () => {
       </div>
     </c-bottom-sheet>
 
-    <c-bottom-sheet v-model="showHistoryBottomSheet">
+    <c-bottom-sheet v-model="showHistoryBottomSheet" hash="#year-sheet">
       <div class="flex flex-col justify-between">
         <section>
           <p class="text-[#767676] text-xs font-medium leading-none">연차 선택</p>
