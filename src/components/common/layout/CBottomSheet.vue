@@ -1,41 +1,74 @@
 <script lang="ts" setup>
 import { ref, watch, defineProps, defineEmits } from 'vue';
 import { useStyleTag } from '@vueuse/core';
-import { on } from 'events';
+import { useRouteHash } from '@vueuse/router';
 
-const props = defineProps({
-  modelValue: {
-    type: Boolean,
-    required: true,
-  },
+const props = defineProps<{
+  /**
+   * hash url과 연계할 경우, 설정할 hash 값
+   */
+  hash?: `#${string}`;
+}>();
+const modelValue = defineModel<boolean>('modelValue');
+const router = useRouter();
+const route = useRoute();
+const routeHash = useRouteHash(undefined, {
+  mode: 'push',
 });
 
-const emit = defineEmits(['update:modelValue']);
-
-const visible = ref(props.modelValue);
-
-const closeSheet = () => {
-  visible.value = false;
-  emit('update:modelValue', false);
-};
-
 const { id, css, load, unload, isLoaded } = useStyleTag('body { overflow: auto; }');
-
 watch(
-  () => props.modelValue,
+  () => modelValue.value,
   (newVal) => {
-    visible.value = newVal;
-    if (visible.value) {
+    if (newVal) {
       css.value = 'body { overflow: hidden !important; }';
     } else {
       css.value = 'body { overflow: auto; }';
     }
+
+    if (props.hash) {
+      if (newVal) {
+        routeHash.value = props.hash;
+      } else {
+        const previouseUrl = router.options.history.state.back;
+        if (route.path === previouseUrl) {
+          router.back();
+        }
+      }
+    }
+  }
+);
+
+// FIXME: routeHash 2개 이상 import될 경우, 감지되지 않는 버그가 존재함.
+// watch(
+//   routeHash,
+//   () => {
+//     console.log('routeHash chagned', routeHash.value);
+//     if (props.hash) {
+//       modelValue.value = props.hash === routeHash.value;
+//     }
+//   },
+//   {
+//     immediate: true,
+//     deep: true,
+//   }
+// );
+
+watch(
+  () => route.hash,
+  (v) => {
+    if (props.hash) {
+      modelValue.value = props.hash === v;
+    }
+  },
+  {
+    immediate: true,
   }
 );
 </script>
 
 <template>
-  <div v-if="visible" class="backdrop" @click="closeSheet">
+  <div v-if="modelValue" class="backdrop" @click="modelValue = false">
     <div class="bottom-sheet max-w-[512px]" @click.stop>
       <div class="handle"></div>
       <slot />
