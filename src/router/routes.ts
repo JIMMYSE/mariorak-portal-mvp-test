@@ -210,7 +210,7 @@ const routes: RouteRecordRaw[] = [
           },
           {
             path: 'detail',
-            name: 'recruit-detail',
+            name: 'community-detail',
             meta: {
               title: '인력사무소 상세',
               faqCategory: '인력사무소',
@@ -220,7 +220,7 @@ const routes: RouteRecordRaw[] = [
           },
           {
             path: 'profile/:id',
-            name: 'recruit-profile',
+            name: 'community-profile',
             meta: {
               title: '개발자 프로필',
             },
@@ -228,7 +228,7 @@ const routes: RouteRecordRaw[] = [
           },
           {
             path: 'project/:id',
-            name: 'recruit-project-detail',
+            name: 'community-project-detail',
             meta: {
               title: '프로젝트 상세',
               bgColor: 'white',
