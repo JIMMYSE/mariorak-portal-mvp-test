@@ -4,11 +4,17 @@ interface ListItem {
   name: string;
 }
 
-const items = ref<ListItem[]>([
+const infoItems = ref<ListItem[]>([
   { label: '계정 정보 관리', name: 'account-manage' },
   { label: '개인 프로필 관리', name: 'user-profile-manage' },
   { label: '개발자 프로필 관리', name: 'maker-profile-manage' },
 ]);
+const ActionItems = ref<ListItem[]>([
+  { label: '나의 프로젝트 내역', name: '' },
+  { label: '나의 서포트 내역', name: '' },
+  { label: '나의 활동 내역', name: '' },
+]);
+const csItems = ref<ListItem[]>([{ label: '1:1 문의하기', name: '' }]);
 
 const goToPage = (name: string) => {
   goToName(name);
@@ -63,7 +69,7 @@ const { enterRoom } = useBridge();
       <div class="mt-[8px]">
         <q-list bordered class="rounded-[10px] border-[#f0f0f0]">
           <q-item
-            v-for="item in items"
+            v-for="item in infoItems"
             :key="item.label"
             clickable
             @click="goToPage(item.name)"
@@ -86,6 +92,48 @@ const { enterRoom } = useBridge();
             </q-item-section>
             <q-item-section side>
               <c-icon name="icon_enter_arrow" color="#056bf1" size="16px" :fill="false"></c-icon>
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </div>
+    </section>
+    <section class="px-6 mt-[28px]">
+      <p class="text-[#767676] text-sm font-medium leading-none pl-[10px]">활동 관리</p>
+      <div class="mt-[8px]">
+        <q-list bordered class="rounded-[10px] border-[#f0f0f0]">
+          <q-item
+            v-for="item in ActionItems"
+            :key="item.label"
+            clickable
+            @click="goToPage(item.name)"
+            class="py-[20px] px-[24px] border-b-[1px] border-[#f0f0f0] last:border-0"
+          >
+            <q-item-section>
+              <q-item-label class="text-[#222222] text-base font-medium leading-tight">{{ item.label }}</q-item-label>
+            </q-item-section>
+            <q-item-section side>
+              <c-icon name="icon_enter_arrow" color="#b5b5b5" size="16px" :fill="false"></c-icon>
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </div>
+    </section>
+    <section class="px-6 mt-[28px]">
+      <p class="text-[#767676] text-sm font-medium leading-none pl-[10px]">고객 센터</p>
+      <div class="mt-[8px]">
+        <q-list bordered class="rounded-[10px] border-[#f0f0f0]">
+          <q-item
+            v-for="item in csItems"
+            :key="item.label"
+            clickable
+            @click="goToPage(item.name)"
+            class="py-[20px] px-[24px] border-b-[1px] border-[#f0f0f0] last:border-0"
+          >
+            <q-item-section>
+              <q-item-label class="text-[#222222] text-base font-medium leading-tight">{{ item.label }}</q-item-label>
+            </q-item-section>
+            <q-item-section side>
+              <c-icon name="icon_enter_arrow" color="#b5b5b5" size="16px" :fill="false"></c-icon>
             </q-item-section>
           </q-item>
         </q-list>
