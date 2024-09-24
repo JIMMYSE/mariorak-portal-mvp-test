@@ -208,6 +208,30 @@ const routes: RouteRecordRaw[] = [
             component: () => import('pages/my-page/AccountManage.vue'),
           },
           {
+            path: 'user-profile-manage',
+            name: 'user-profile-manage',
+            meta: {
+              title: '개인 프로필 관리',
+            },
+            component: () => import('pages/my-page/UserProfileManage.vue'),
+          },
+          {
+            path: 'change-nickname',
+            name: 'change-nickname',
+            meta: {
+              title: '닉네임 변경',
+            },
+            component: () => import('pages/my-page/ChangeNickname.vue'),
+          },
+          {
+            path: 'change-avatar',
+            name: 'change-avatar',
+            meta: {
+              title: '아바타 변경',
+            },
+            component: () => import('pages/my-page/ChangeAvatar.vue'),
+          },
+          {
             path: 'maker-profile-manage',
             name: 'maker-profile-manage',
             meta: {
