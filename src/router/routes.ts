@@ -214,6 +214,7 @@ const routes: RouteRecordRaw[] = [
             name: 'account-withdrawal',
             meta: {
               title: '회원탈퇴',
+              noFooter: true,
             },
             component: () => import('pages/my-page/info/account/AccountWithdrawal.vue'),
           },
