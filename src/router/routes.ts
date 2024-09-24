@@ -210,6 +210,14 @@ const routes: RouteRecordRaw[] = [
             component: () => import('pages/my-page/info/account/AccountManage.vue'),
           },
           {
+            path: 'account-withdrawal',
+            name: 'account-withdrawal',
+            meta: {
+              title: '회원탈퇴',
+            },
+            component: () => import('pages/my-page/info/account/AccountWithdrawal.vue'),
+          },
+          {
             path: 'user-profile-manage',
             name: 'user-profile-manage',
             meta: {
