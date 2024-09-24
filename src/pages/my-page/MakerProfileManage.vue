@@ -58,7 +58,8 @@ const openPortfolio = () => {
       </div>
     </section>
     <hr class="h-2.5 bg-[#f7f7f7] mt-8" />
-    <section class="px-6 mt-[40px]">
+    <!-- 숨김 처리 -->
+    <!-- <section class="px-6 mt-[40px]">
       <h2 class="text-[22px] font-semibold">인적 사항</h2>
       <div class="space-y-2 mt-[14px]">
         <div class="flex justify-start items-center">
@@ -74,7 +75,7 @@ const openPortfolio = () => {
           <span class="text-[#222222] text-sm font-normal leading-tight">{{ myMakerProfile?.prfl?.bio?.loct }}</span>
         </div>
       </div>
-    </section>
+    </section> -->
     <section class="px-6 mt-[60px]">
       <h2 class="text-[22px] font-semibold">업무 정보</h2>
       <div class="mt-[12px]">
@@ -83,14 +84,22 @@ const openPortfolio = () => {
       </div>
       <div class="mt-[22px]">
         <p class="text-[#b5b5b5] text-xs font-semibold leading-none">업무 스킬</p>
-        <p class="mt-[8px] text-[#222222] text-xs font-normal leading-none">
-          {{ myMakerProfile?.prfl?.skills?.toString() }}
+        <p
+          class="mt-[8px] text-[#222222] text-xs font-normal leading-none"
+          v-for="(skill, i) in myMakerProfile?.prfl?.skills"
+          :key="i"
+        >
+          · {{ skill }}
         </p>
       </div>
       <div class="mt-[22px]">
         <p class="text-[#b5b5b5] text-xs font-semibold leading-none">희망 직무</p>
-        <p class="mt-[8px] text-[#222222] text-xs font-normal leading-none">
-          {{ myMakerProfile?.prfl?.job_objs?.toString() }}
+        <p
+          class="mt-[8px] text-[#222222] text-xs font-normal leading-none"
+          v-for="(jobObj, i) in myMakerProfile?.prfl?.job_objs"
+          :key="i"
+        >
+          · {{ jobObj }}
         </p>
       </div>
       <!-- TODO 오픈 때 히든처리 -->

@@ -41,8 +41,10 @@ const openInterestBottomSheet = () => {
 /** 조회 */
 const nickname = ref('');
 const { data: maker } = useMyMakerDetail();
-const jobObjs = ref('');
-const skills = ref('');
+const jobObjs = ref<(string | undefined)[]>([]);
+const skills = ref<(string | undefined)[]>([]);
+const skill = ref<string>('');
+const jobObj = ref<string>('');
 
 watch(maker, (value) => {
   if (value) {
@@ -53,22 +55,25 @@ watch(maker, (value) => {
       mkr_rol_cd: data?.mkr_rol_cd,
       expr_year: data?.expr_year,
       prfl: data?.prfl,
-      prtf: data?.prtf,
+      prtf: {
+        prtf_dspy_yn: true,
+        prtf_url: data?.prtf?.prtf_url,
+      },
       updatedAt: data?.updatedAt,
     });
     nickname.value = data?.nickname ?? '';
     selectedYear.value = data?.expr_year ?? 1;
-    jobObjs.value = data?.prfl?.job_objs?.toString() ?? '';
-    skills.value = data?.prfl?.skills?.toString() ?? '';
+    jobObjs.value = data?.prfl?.job_objs ?? [];
+    skills.value = data?.prfl?.skills ?? [];
     selectedJob.value = data?.mkr_rol_cd ?? '';
   }
 });
 watch([skills, jobObjs], () => {
   setValues({
     prfl: {
-      onln_prfl: form.prfl.onln_prfl,
-      skills: skills.value.split(','),
-      job_objs: jobObjs.value.split(','),
+      onln_prfl: form?.prfl?.onln_prfl ?? '',
+      skills: skills.value,
+      job_objs: jobObjs.value,
     },
   });
 });
@@ -76,6 +81,7 @@ watch([skills, jobObjs], () => {
 const {
   values: form,
   handleSubmit,
+  errors,
   setValues,
 } = useForm<MakerCreateOrUpdateReqType>({
   validationSchema: toTypedSchema(MakerCreateOrUpdateReqFront),
@@ -99,6 +105,26 @@ const onSubmit = handleSubmit(async () => {
     }
   });
 });
+
+/* 스킬 희망 직무 추가 삭제 */
+const onClickAddSkill = () => {
+  if (skill.value) {
+    skills.value.push(skill.value);
+    skill.value = '';
+  }
+};
+const onClickRemoveSkill = (index: number) => {
+  skills.value.splice(index, 1);
+};
+const onClickAddJob = () => {
+  if (jobObj.value) {
+    jobObjs.value.push(jobObj.value);
+    jobObj.value = '';
+  }
+};
+const onClickRemoveJob = (index: number) => {
+  jobObjs.value.splice(index, 1);
+};
 </script>
 <template>
   <q-page>
@@ -186,30 +212,58 @@ const onSubmit = handleSubmit(async () => {
         </c-field>
 
         <c-field label="업무 스킬" required class="text-[#767676] text-xs font-medium leading-none">
+          <div v-for="(s, i) in skills" :key="i" class="flex items-center text-base font-normal leading-8">
+            <div class="flex-1">
+              {{ s }}
+            </div>
+            <div @click="onClickRemoveSkill(i)">
+              <q-icon name="img:/icons/close.svg" size="25px" />
+            </div>
+          </div>
           <c-input
             class="w-full border-0"
-            type="textarea"
-            maxlength="1000"
-            input-class="h-[163px]"
+            maxlength="50"
+            input-class="h-[40px]"
             placeholder="업무 스킬 추가"
-            v-model="skills"
+            v-model="skill"
             :outlined="false"
             :rounded="false"
             border-radius="0px"
-          ></c-input>
+            :clearable="false"
+          >
+            <template #after>
+              <div @click="onClickAddSkill">
+                <c-icon name="icon_plus" />
+              </div>
+            </template>
+          </c-input>
         </c-field>
         <c-field label="희망 직무 (선택)" class="text-[#767676] text-xs font-medium leading-none">
+          <div v-for="(j, i) in jobObjs" :key="i" class="flex items-center text-base font-normal leading-8">
+            <div class="flex-1">
+              {{ j }}
+            </div>
+            <div @click="onClickRemoveJob(i)">
+              <q-icon name="img:/icons/close.svg" size="25px" />
+            </div>
+          </div>
           <c-input
             class="w-full border-0"
-            type="textarea"
-            maxlength="1000"
-            v-model="jobObjs"
-            input-class="h-[163px]"
+            maxlength="50"
+            input-class="h-[40px]"
             placeholder="희망 직무 추가"
+            v-model="jobObj"
             :outlined="false"
             :rounded="false"
             border-radius="0px"
-          ></c-input>
+            :clearable="false"
+          >
+            <template #after>
+              <div @click="onClickAddJob">
+                <c-icon name="icon_plus" />
+              </div>
+            </template>
+          </c-input>
         </c-field>
         <!-- TODO 오픈 범위 제외 -->
         <!-- <c-field label="관심 분야" required class="text-[#767676] text-xs font-medium leading-none">
