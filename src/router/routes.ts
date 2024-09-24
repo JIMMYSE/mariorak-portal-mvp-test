@@ -222,6 +222,7 @@ const routes: RouteRecordRaw[] = [
             name: 'change-nickname',
             meta: {
               title: '닉네임 변경',
+              noFooter: true,
             },
             component: () => import('pages/my-page/ChangeNickname.vue'),
           },
@@ -230,6 +231,7 @@ const routes: RouteRecordRaw[] = [
             name: 'change-avatar',
             meta: {
               title: '아바타 변경',
+              noFooter: true,
             },
             component: () => import('pages/my-page/ChangeAvatar.vue'),
           },

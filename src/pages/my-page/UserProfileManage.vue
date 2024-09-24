@@ -22,7 +22,7 @@ const { data } = getMyDetail();
         <div class="flex-col text-center q-gutter-y-md">
           <c-img
             :src="data?.data?.user.avatar.circle_file.url"
-            :alt="data?.data?.user.avatar.circle_file.id"
+            :alt="data?.data?.user.avatar.circle_file?.id.toString()"
             class="w-[88px] h-[88px] rounded-full"
           >
           </c-img>

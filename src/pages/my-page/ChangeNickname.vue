@@ -1,30 +1,33 @@
 <!-- 회원가입 -->
 
 <script lang="ts" setup>
-import { NicknameJoinForm } from 'src/types/auth/auth-model';
-const joinStore = useJoinStore();
-const { joinData } = storeToRefs(joinStore);
-
-const { isLoggedIn } = useUserInfo();
-watch(isLoggedIn, (b) => {
-  if (b) goToName('main');
-});
+import { NicknameAvatorChangeForm } from 'src/types/auth/auth-model';
 
 const {
   meta,
   values: form,
   handleSubmit,
-} = useForm<NicknameJoinForm>({
-  validationSchema: toTypedSchema(NicknameJoinSchema),
-});
-
-const onSubmit = handleSubmit(() => {
-  if (!joinData.value) return;
-  joinData.value.nickname = form.nickname;
-  goToName('join-avatar');
+  setFieldValue,
+} = useForm<NicknameAvatorChangeForm>({
+  validationSchema: toTypedSchema(NicknameAvatorChangeSchema),
 });
 
 const { user } = useAuthStore();
+setFieldValue('avatar_id', user.avatar.id);
+
+//데이터 가져온거 뿌리기
+const onSubmit = handleSubmit(async () => {
+  const { nickname } = form;
+  if (!nickname) return;
+
+  await updateUserAvatarNickname(nickname, user.avatar.id);
+  useAlertDialog({
+    text: 'message.nicknameUpdated',
+  }).onOk(() => {
+    initUserDetailInfo();
+    replaceToName('user-profile-manage');
+  });
+});
 </script>
 
 <template>
@@ -60,7 +63,7 @@ const { user } = useAuthStore();
           :disabled="!meta.valid"
           @click="onSubmit"
         >
-          다음
+          변경하기
         </button>
       </div>
     </section>

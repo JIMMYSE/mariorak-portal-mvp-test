@@ -1,7 +1,7 @@
 import { UserDetail } from 'meta-airforce-dto';
 import { t } from 'src/utils/message-util';
 import { ref } from 'yup';
-const { hasBadword } = useBadwords();
+
 //type
 export type UserDetailType = InferType<typeof UserDetail>;
 export type ChangePasswordForm = InferType<typeof NewPasswordFormSchema>;
@@ -53,15 +53,11 @@ export const AccountBase = object({
   mbl_telno: string().label('모바일전화번호').max(11).required(),
   reg_type_cd: string().label('계정 등록유형코드').max(1).required(),
   eml_addr: string().label('이메일').max(320).required(),
-  mobile_verified_token: string()
-    .label('비밀번호 재설정 인증 토큰')
-    .default(null)
-    .required()
-    .nullable(),
+  mobile_verified_token: string().label('비밀번호 재설정 인증 토큰').default(null).required().nullable(),
 });
 
 // 소셜 로그인 요청 스키마
-export type OauthReqType = InferType<typeof oauthReqSchema>;
+export type OauthReqType = InferType<typeof OauthReqSchema>;
 export const OauthReqSchema = object({
   access_token: string().required(),
   social_type: string().required(),
@@ -76,4 +72,11 @@ export const OauthReqSchema = object({
     os: string().oneOf(['A', 'O']).required(),
     sdk_version: string().required(),
   }).required(),
+});
+
+export type NicknameAvatorChangeForm = InferType<typeof NicknameAvatorChangeSchema>;
+
+export const NicknameAvatorChangeSchema = object().shape({
+  nickname: NicknameSchema,
+  avatar_id: number().required(),
 });
