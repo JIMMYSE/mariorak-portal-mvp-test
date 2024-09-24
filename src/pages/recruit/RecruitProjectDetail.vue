@@ -18,7 +18,7 @@ const likeAction = createAction(() => {
 
   const onLikeProject = async () => {
     like.value = !like.value;
-    like.value ? onLike({}) : onUnlike(prjId.value);
+    like.value ? await onLike({}) : await onUnlike(prjId.value);
     await refetch();
   };
 

@@ -16,22 +16,19 @@ const imgList = [
   {
     src: '/images/main/Main_KV/512/kv_01.png',
     id: 1,
-    seq: 1,
     title: '',
     desc: '',
   },
   {
     src: '/images/main/Main_KV/512/kv_02.png',
     id: 2,
-    seq: 2,
     title: '',
     desc: '',
     link: 'https://k-dmts.com/fairDash.do',
   },
   {
     src: '/images/main/Main_KV/512/kv_03.png',
-    id: 2,
-    seq: 3,
+    id: 3,
     title: '',
     desc: '',
   },
@@ -183,7 +180,7 @@ const moveToList = (type: string) => {
         <q-scroll-area class="w-full" :bar-style="barStyle" :thumb-style="thumbStyle">
           <div class="row no-wrap pl-6">
             <div class="h-[270px] mr-4 w-[200px]" v-for="n in cultureList" :key="n.src">
-              <q-card class="rounded-xl">
+              <q-card class="rounded-[10px] shadow">
                 <q-img :src="n.src" class="w-[200px] h-[123px]" />
 
                 <q-card-section>

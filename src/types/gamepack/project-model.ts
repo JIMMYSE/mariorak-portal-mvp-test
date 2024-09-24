@@ -6,6 +6,7 @@ export const Recruitment = object({
   rcrt_mkr_num: number().nullable().label('모집 제작자 수'),
   end_remain_days: number().nullable().label('마감잔여일수'),
   rcrt_mkr_rol_cd_list: array(string().label('직무코드')).required().label('모집 제작자 직무 코드 목록'),
+  end_dttm: date().nullable().label('모집 종료일'),
 });
 
 const RecommendedProjectObjectSchema = object({

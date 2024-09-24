@@ -1,0 +1,14 @@
+{
+    "applinks": {
+        "details": [
+            {
+                "appIDs": [ "9KJ7742PG5.com.coar.ccf", "9KJ7742PG5.com.coarsoft.ccf" ],
+                "components": [ 
+                    {
+                        "/": "*"
+                    }
+                 ]
+            }
+        ]
+    }
+}

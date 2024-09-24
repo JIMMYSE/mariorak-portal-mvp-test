@@ -77,6 +77,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '게시판 등록',
               bgColor: 'white',
+              noFooter: true,
             },
             component: () => import('pages/game-pack/GPBoardEdit.vue'),
           },
@@ -155,6 +156,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '인력사무소 상세',
               faqCategory: '인력사무소',
+              disabledHashScroll: true,
             },
             component: () => import('src/pages/recruit/RecruitDetail.vue'),
           },
@@ -236,6 +238,7 @@ const routes: RouteRecordRaw[] = [
             name: 'maker-profile-manage',
             meta: {
               title: '개발자 프로필 관리',
+              noFooter: true,
             },
             component: () => import('pages/my-page/MakerProfileManage.vue'),
           },
@@ -244,6 +247,7 @@ const routes: RouteRecordRaw[] = [
             name: 'maker-profile-new',
             meta: {
               title: '개발자 프로필 등록',
+              noFooter: true,
             },
             component: () => import('pages/my-page/MakerProfileEdit.vue'),
           },
@@ -254,6 +258,7 @@ const routes: RouteRecordRaw[] = [
             props: true,
             meta: {
               title: '개발자 프로필 수정',
+              noFooter: true,
             },
             component: () => import('pages/my-page/MakerProfileEdit.vue'),
           },
@@ -263,6 +268,7 @@ const routes: RouteRecordRaw[] = [
             name: 'not-register-profile',
             meta: {
               title: '개발자 프로필 관리',
+              noFooter: true,
             },
             component: () => import('pages/my-page/NotRegisterProfile.vue'),
           },
@@ -281,6 +287,7 @@ const routes: RouteRecordRaw[] = [
           title: '로그인',
           requiresNonAuth: true,
           noHeader: true,
+          noFooter: true,
         },
         component: () => import('pages/auth/LoginPage.vue'),
       },
@@ -301,6 +308,7 @@ const routes: RouteRecordRaw[] = [
     name: 'join',
     meta: {
       requiresNonAuth: true,
+      noFooter: true,
     },
     component: SubLayout,
     children: [
@@ -377,6 +385,9 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/error',
+    meta: {
+      noFooter: true,
+    },
     component: DefaultLayout,
     children: [
       {

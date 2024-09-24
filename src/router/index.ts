@@ -1,3 +1,4 @@
+import cloneDeep from 'lodash/cloneDeep';
 import { route } from 'quasar/wrappers';
 import { createMemoryHistory, createRouter, createWebHashHistory, createWebHistory } from 'vue-router';
 import routes from './routes';
@@ -28,7 +29,6 @@ export default route(function (/* { store, ssrContext } */) {
     // Vue Router - Scroll Behavior: https://router.vuejs.org/guide/advanced/scroll-behavior.html
 
     scrollBehavior(to, from, savedPosition) {
-      console.log('scrollBehavior', to, from, savedPosition);
       if (savedPosition) {
         return new Promise((resolve) => {
           setTimeout(() => {
@@ -37,7 +37,7 @@ export default route(function (/* { store, ssrContext } */) {
         });
 
         // return savedPosition;
-      } else if (to.hash) {
+      } else if (to.hash && !to.meta.disabledHashScroll) {
         return {
           el: to.hash,
           // 20px above the element
@@ -70,36 +70,46 @@ export default route(function (/* { store, ssrContext } */) {
       console.log('>>>to.nameHasJoin');
       if (!joinData.value) return { name: from.name };
     }
+  });
+
+  Router.afterEach((to) => {
+    if (to.matched.length <= 1) {
+      return;
+    }
+
+    const meta = cloneDeep(to.matched.length > 1 ? to.matched[1].meta : {});
+    meta.title = meta.title || 'CCF ㅣ 팬과 함께 만들어가는 게임 개발 커뮤니티';
 
     // 메타태그 설정
-    if (to.meta.title) {
-      document.title = to.meta.title;
+    if (meta.title) {
+      document.title = meta.title as string;
     }
 
     const descriptionTag = document.querySelector('meta[name="description"]');
-    if (to.meta.description) {
+    if (meta.description) {
       if (descriptionTag) {
-        descriptionTag.setAttribute('content', to.meta.description);
+        descriptionTag.setAttribute('content', meta.description as string);
       } else {
-        const meta = document.createElement('meta');
-        meta.name = 'description';
-        meta.content = to.meta.description;
-        document.head.appendChild(meta);
+        const metaEl = document.createElement('meta');
+        metaEl.name = 'description';
+        metaEl.content = meta.description as string;
+        document.head.appendChild(metaEl);
       }
     }
 
     const ogImageTag = document.querySelector('meta[property="og:image"]');
     if (to.meta.ogImage) {
       if (ogImageTag) {
-        ogImageTag.setAttribute('content', to.meta.ogImage);
+        ogImageTag.setAttribute('content', meta.ogImage as string);
       } else {
-        const meta = document.createElement('meta');
-        meta.setAttribute('property', 'og:image');
-        meta.content = to.meta.ogImage;
-        document.head.appendChild(meta);
+        const metaEl = document.createElement('meta');
+        metaEl.setAttribute('property', 'og:image');
+        metaEl.content = meta.ogImage as string;
+        document.head.appendChild(metaEl);
       }
     }
   });
+
   // ...
   return Router;
 });

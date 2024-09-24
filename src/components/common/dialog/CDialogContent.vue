@@ -9,22 +9,14 @@ const props = withDefaults(defineProps<CDialogContentProps>(), {
 
 defineEmits([...useDialogPluginComponent.emits]);
 
-const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
-  useDialogPluginComponent();
+const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } = useDialogPluginComponent();
 const { width } = useWindowSize();
 </script>
 
 <template>
-  <q-dialog
-    ref="dialogRef"
-    persistent
-    :maximized="width <= 512"
-    @hide="onDialogHide"
-  >
+  <q-dialog ref="dialogRef" persistent :maximized="width <= 512" @hide="onDialogHide">
     <q-card class="flex flex-col flex-nowrap p-2 w-[512px] h-full" flat>
-      <q-card-section
-        class="sticky top-0 flex justify-center items-start h-12 py-1"
-      >
+      <q-card-section class="sticky top-0 flex justify-center items-start h-12 py-1">
         <div class="text-[17px]">
           {{ title }}
         </div>
@@ -111,8 +103,7 @@ const { width } = useWindowSize();
   }
 
   strong {
-    color: #8365e8;
-    font-size: 1.4rem;
+    color: #111;
   }
 }
 

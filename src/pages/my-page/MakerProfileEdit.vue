@@ -137,7 +137,6 @@ const onClickRemoveJob = (index: number) => {
             class="w-full pb-[14px]"
             placeholder="닉네임을 입력하세요."
             :maxlength="20"
-            autofocus
             :outlined="false"
             :rounded="false"
             border-radius="0px"
@@ -169,7 +168,6 @@ const onClickRemoveJob = (index: number) => {
             name="prtf.prtf_url"
             placeholder="제목을 입력하세요."
             :maxlength="20"
-            autofocus
             :outlined="false"
             :rounded="false"
             border-radius="0px"
@@ -202,7 +200,6 @@ const onClickRemoveJob = (index: number) => {
             class="w-full pb-[14px]"
             placeholder="나를 한줄로 표현해 주세요."
             :maxlength="30"
-            autofocus
             :outlined="false"
             :rounded="false"
             border-radius="0px"
@@ -307,6 +304,7 @@ const onClickRemoveJob = (index: number) => {
             class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
             color="primary"
             @click="onClickJob"
+            :disabled="!selectedJob"
             >선택 완료
           </c-btn>
         </section>
@@ -337,6 +335,7 @@ const onClickRemoveJob = (index: number) => {
             class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
             color="primary"
             @click="onClickYear"
+            :disabled="selectedYear == 0"
             >선택 완료
           </c-btn>
         </section>

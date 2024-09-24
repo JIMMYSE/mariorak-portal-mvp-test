@@ -37,9 +37,10 @@ const goToDetailPage = (gp: any) => {
               <p class="text-[#222222] text-[16px] font-semibold leading-snug mt-[8px]">
                 {{ gp.title }}
               </p>
-              <p class="text-[#696969] text-xs font-normal leading-4 mt-[6px] ellipsis-2-lines">
-                {{ gp.desc }}
-              </p>
+              <p
+                class="text-[#696969] text-xs font-normal leading-4 mt-[6px] ellipsis-2-lines"
+                v-html="filterHtml(gp.desc)"
+              ></p>
             </div>
           </div>
         </div>

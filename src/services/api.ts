@@ -43,11 +43,11 @@ export function useCreateItem<T extends ApiResponse, D = any>({
   data,
   config,
 }: {
-  url: string;
+  url: MaybeRefOrGetter<string>;
   data: D;
   config?: AxiosRequestConfig<D>;
 }) {
-  return api.post<T, AxiosResponse<T>, D>(url, data, config);
+  return api.post<T, AxiosResponse<T>, D>(toValue(url), data, config);
 }
 
 /**
@@ -280,7 +280,7 @@ export function useQueryCreateItem<T extends ApiResponse, D = any>({
   queryKeyName,
   listQueryKeyName,
 }: {
-  url: string;
+  url: MaybeRefOrGetter<string>;
   queryKeyName?: string;
   listQueryKeyName?: string;
 }) {

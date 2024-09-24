@@ -1,20 +1,26 @@
 <script lang="ts" setup>
 import { barStyle, thumbStyle } from 'src/utils/style-variable';
-type Props = {
+
+const props = defineProps<{
   toList?: string;
   mList: any;
-};
-const props = defineProps<Props>();
+}>();
+
+const router = useRouter();
 
 const goToListPage = () => {
-  goToName('recruit-detail', { active: 'maker' });
-};
-const recruitMakeRolList = (rolList: any) => {
-  const rolNameList = rolList.map((rol: any) => {
-    return rol.name;
+  // goToName('recruit-detail', { active: 'maker' });
+  router.push({
+    path: '/recruit/detail',
+    hash: '#maker',
   });
-  return rolNameList.join('/');
 };
+// const recruitMakeRolList = (rolList: any) => {
+//   const rolNameList = rolList.map((rol: any) => {
+//     return rol.name;
+//   });
+//   return rolNameList.join('/');
+// };
 </script>
 
 <template>
@@ -23,9 +29,9 @@ const recruitMakeRolList = (rolList: any) => {
       <q-scroll-area style="height: 185px" :bar-style="barStyle" :thumb-style="thumbStyle">
         <div class="row no-wrap pl-6">
           <q-card
-            class="maker-card q-mr-md shadow-1 rounded-xl cursor-pointer"
+            class="maker-card q-mr-md shadow rounded-[10px] cursor-pointer"
             @click="goTo(`/recruit/profile/${m.mem_id}`)"
-            v-for="m in mList"
+            v-for="m in props.mList"
             :key="m.created_at"
           >
             <q-card-section>

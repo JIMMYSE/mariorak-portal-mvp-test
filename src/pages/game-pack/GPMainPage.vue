@@ -11,10 +11,22 @@ const keyword = ref<string>('');
 const imgList = [
   {
     src: '/images/game-pack/mainKV/gamepack_KV_1.png',
-
     id: 1,
     title: 'CCF가 함께하고\n지원하는 게임 모음집',
     desc: '팬과 개발자가 만나 함께 게임을 키워가요.',
+  },
+  {
+    src: '/images/main/Main_KV/512/kv_02.png',
+    id: 2,
+    title: '',
+    desc: '',
+    link: 'https://k-dmts.com/fairDash.do',
+  },
+  {
+    src: '/images/main/Main_KV/512/kv_03.png',
+    id: 3,
+    title: '',
+    desc: '',
   },
 ];
 
@@ -32,14 +44,12 @@ const recommendedProjectList = computed(() => {
 <template>
   <q-page class="column bg-white">
     <!-- 맵 바로가기 영역 -->
-    <section style="height: calc(100vw); max-height: 512px">
-      <ckv-banner :img-list="imgList" :counter="true" />
-    </section>
+    <ckv-banner :img-list="imgList" :counter="true" />
     <!-- 게임팩 대해 궁금하다면 -->
     <section class="mt-10">
       <p class="pl-6 text-[22px] font-semibold">WHAT IS GAME PACK</p>
       <p class="pl-6 text-[#767676] text-sm font-normal">CCF가 함께하고 지원하는 모든 프로젝트</p>
-      <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4 pl-6">
+      <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4">
         <intro-item-list />
       </div>
     </section>

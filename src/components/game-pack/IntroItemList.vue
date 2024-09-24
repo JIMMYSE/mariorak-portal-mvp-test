@@ -24,7 +24,7 @@ const introList = [
 </script>
 <template>
   <q-scroll-area style="height: 165px" :bar-style="barStyle" :thumb-style="thumbStyle">
-    <div class="row no-wrap">
+    <div class="row no-wrap pl-6">
       <div class="w-[183px] h-[150px] bg-white rounded-[10px] shadow p-4 mr-4" v-for="n in introList" :key="n.content">
         <div class="flex items-center gap-1 mb-2">
           <p class="text-[#056bf1] text-lg font-bold">{{ n.title }}</p>
