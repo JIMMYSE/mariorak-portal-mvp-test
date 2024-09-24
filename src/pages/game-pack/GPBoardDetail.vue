@@ -49,9 +49,12 @@ const { data: commentList, refetch } = usePostCommentList({
 });
 
 // 댓글 등록
+
+const newCommnet = ref('');
 const onRegisterCommnet = () => {
-  console.log(form.values.cont);
-  useCreateComment(postId.value, form.values.cont);
+  useCreateComment(postId.value, newCommnet.value);
+  refetch();
+  newCommnet.value = '';
 };
 </script>
 <template>
@@ -98,7 +101,7 @@ const onRegisterCommnet = () => {
   </section>
   <hr class="h-2.5 bg-[#f7f7f7] mt-4" />
   <section class="px-6 mt-[30px] pb-[50px]">
-    <p class="text-[#222222] text-lg font-semibold leading-[25.20px]">댓글 ({{ postDetailData?.cmmt_cnt }})</p>
+    <p class="text-[#222222] text-lg font-semibold leading-[25.20px]">댓글 ({{ commentList?.count }})</p>
     <div class="py-[14px] border-b border-[#f0f0f0]" v-for="commnet in commentList?.rows" :key="commnet.post_cmmt_id">
       <div class="flex justify-between items-center">
         <p class="text-[#767676] text-xs font-medium leading-none">
@@ -115,7 +118,7 @@ const onRegisterCommnet = () => {
       <div class="row no-wrap items-center">
         <c-input
           placeholder="댓글을 남겨주세요."
-          name="cont"
+          v-model="newCommnet"
           :outlined="false"
           :rounded="false"
           class="col comment_input"
