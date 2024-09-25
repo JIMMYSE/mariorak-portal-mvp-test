@@ -5,6 +5,7 @@ type Props = {
   gameId: string;
 };
 const props = defineProps<Props>();
+const { maker } = useAuthStore();
 // const searchSort = ref('latest');
 const searchKeyword = ref('');
 // const options = [
@@ -62,6 +63,10 @@ const {
   },
   setField: setFieldValue, // TODO 추후 형태 변경필요
 });
+
+onMounted(() => {
+  refetch();
+});
 </script>
 <template>
   <div class="w-full">
@@ -76,6 +81,7 @@ const {
           </p>
         </div>
         <q-btn
+          v-if="maker?.project_histories?.map((prj: any) => prj.prj_id).includes(gameId)"
           size="md"
           round
           flat
