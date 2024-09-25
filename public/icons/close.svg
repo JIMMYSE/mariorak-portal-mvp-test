@@ -1,8 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
-  <g id="btn_delete" transform="translate(-460 -321)">
-    <g id="그룹_1161" data-name="그룹 1161" transform="translate(404 312)">
-      <rect id="사각형_193" data-name="사각형 193" width="30" height="30" transform="translate(56 9)" fill="none" opacity="0.17"/>
-    </g>
-    <path id="Icon_ionic-ios-close" data-name="Icon ionic-ios-close" d="M19.944,18.289l5-5a1.172,1.172,0,1,0-1.657-1.657l-5,5-5-5a1.172,1.172,0,1,0-1.657,1.657l5,5-5,5a1.172,1.172,0,1,0,1.657,1.657l5-5,5,5a1.172,1.172,0,0,0,1.657-1.657Z" transform="translate(456.715 317.711)" fill="#111"/>
-  </g>
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="icon_close_20">
+<rect width="20" height="20" rx="10" fill="#DBDBDB"/>
+<path id="Union" fill-rule="evenodd" clip-rule="evenodd" d="M13.5303 7.53033C13.8232 7.23744 13.8232 6.76256 13.5303 6.46967C13.2374 6.17678 12.7626 6.17678 12.4697 6.46967L10 8.93934L7.53033 6.46967C7.23744 6.17678 6.76256 6.17678 6.46967 6.46967C6.17678 6.76256 6.17678 7.23744 6.46967 7.53033L8.93934 10L6.46967 12.4697C6.17678 12.7626 6.17678 13.2374 6.46967 13.5303C6.76256 13.8232 7.23744 13.8232 7.53033 13.5303L10 11.0607L12.4697 13.5303C12.7626 13.8232 13.2374 13.8232 13.5303 13.5303C13.8232 13.2374 13.8232 12.7626 13.5303 12.4697L11.0607 10L13.5303 7.53033Z" fill="white"/>
+</g>
 </svg>
