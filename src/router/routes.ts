@@ -116,6 +116,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '게시판 등록',
               bgColor: 'white',
+              noFooter: true,
             },
             component: () => import('pages/game-pack/GPBoardEdit.vue'),
           },

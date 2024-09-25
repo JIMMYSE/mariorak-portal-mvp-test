@@ -20,7 +20,7 @@ const searchKeyword = ref('');
 
 // form setup
 // 검색 필터
-const maxQty = ref(0);
+
 const { request } = useSearchFilter({
   requestDefault: {
     from: 0,

@@ -1,12 +1,11 @@
 <script lang="ts" setup>
-import { ITEM_NAME } from 'radix-vue/dist/Menu/utils';
-
 type Props = {
   gameId: string;
 };
 const props = defineProps<Props>();
 const searchSort = ref('latest');
 const searchKeyword = ref('');
+const { maker } = useAuthStore();
 const options = [
   {
     label: '최신순',
@@ -64,6 +63,9 @@ const {
   },
   setField: setFieldValue, // TODO 추후 형태 변경필요
 });
+onMounted(() => {
+  refetch();
+});
 
 // 검색어 변경 시
 watchDebounced(
@@ -81,13 +83,14 @@ watchDebounced(
       <div class="flex justify-between items-center">
         <div>
           <p class="text-[#222222] text-xl font-semibold leading-7">
-            개발자 게시판 ({{ postList?.pages.flatMap((item: any) => item.data).length }})
+            개발자 게시판 ({{ postList?.pages[0].total ?? 0 }})
           </p>
           <p class="text-[#767676] text-sm font-normal leading-tight mt-[2px]">
             프로젝트에 참여한 개발자가 작성하는 게시판
           </p>
         </div>
         <q-btn
+          v-if="maker?.project_histories?.map((prj: any) => prj.prj_id).includes(gameId)"
           size="md"
           round
           flat
