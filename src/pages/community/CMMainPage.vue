@@ -80,7 +80,7 @@ const recommendedProjectList = computed(() => {
     <!-- FAQ -->
     <section class="mt-[55px] mb-[50px]">
       <h2 class="text-[22px] font-semibold px-6">컨퍼런스</h2>
-      <recommend-project-list :gp-list="recommendedProjectList" />
+      <c-m-conference-item-list />
     </section>
   </q-page>
 </template>

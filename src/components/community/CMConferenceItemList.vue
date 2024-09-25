@@ -29,6 +29,9 @@ const goToDetailPage = (gp: any) => {
       <q-scroll-area style="height: 280px" :bar-style="barStyle" :thumb-style="thumbStyle">
         <div class="row no-wrap pl-6">
           <div class="game-card q-mr-md" v-for="gp in props.gpList" :key="gp.created_at" @click="goToDetailPage(gp)">
+            <div class="absolute z-10 w-[60px] text-sm top-2 left-2">
+              <GPbadge :cd="gp.prj_stt_cd" section-cd="PRJ_STT" />
+            </div>
             <c-img :src="gp.thmn_file.convert_addr" width="100%" class="rounded-xl game-image" />
             <div class="game-info q-mt-sm">
               <div class="text-caption q-mb-xs mt-[16px]">
