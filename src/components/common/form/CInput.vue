@@ -32,7 +32,7 @@ const props = withDefaults(defineProps<Props>(), {
   noError: false,
 });
 
-const forwarded = useForwardProps(props);
+const forwarded = useForwardProps({ ...props, clearable: false });
 const model = defineModel<Model>({
   required: false,
   default: '',
@@ -103,6 +103,13 @@ onMounted(() => {
         <!-- done icon -->
         <q-icon name="img:/icons/check.svg" size="30px" color="primary" v-if="done" />
       </div>
+      <q-icon
+        v-if="model && clearable"
+        class="cursor-pointer"
+        name="img:/icons/close.svg"
+        size="20px"
+        @click.stop.prevent="model = null"
+      />
     </template>
     <template #after v-if="$slots.after">
       <slot name="after" />
@@ -134,7 +141,7 @@ onMounted(() => {
     .q-field__counter {
       position: absolute;
       bottom: 1rem;
-      right: 1.2rem;
+      right: 1.5rem;
       color: $grey-2;
     }
   }
