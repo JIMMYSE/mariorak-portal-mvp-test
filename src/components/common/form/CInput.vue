@@ -57,9 +57,7 @@ if (props.name) {
 const inputEl = ref<null | QInput>(null);
 
 const isPasswordVisible = ref(false);
-const inputType = computed(() =>
-  isPasswordVisible.value ? 'text' : props.type
-);
+const inputType = computed(() => (isPasswordVisible.value ? 'text' : props.type));
 
 defineExpose({
   focus() {
@@ -85,14 +83,8 @@ onMounted(() => {
     :type="inputType"
     :class="{ 'border-radius': borderRadius, 'inline-counter': inlineCounter }"
     :counter="inlineCounter"
-    :error="
-      !props.noError &&
-      (props.name ? !!field?.errorMessage.value : !!errorMessage)
-    "
-    :error-message="
-      props.errorMessage ??
-      (props.name ? field?.errorMessage.value : errorMessage)
-    "
+    :error="!props.noError && (props.name ? !!field?.errorMessage.value : !!errorMessage)"
+    :error-message="props.errorMessage ?? (props.name ? field?.errorMessage.value : errorMessage)"
   >
     <template #before v-if="$slots.before">
       <slot name="before" />
@@ -102,21 +94,14 @@ onMounted(() => {
       <div v-if="done || props.type === 'password'" class="mr-2">
         <!-- eye icon -->
         <q-icon
-          :name="
-            isPasswordVisible ? 'img:/icons/eye_a.svg' : 'img:/icons/eye_d.svg'
-          "
+          :name="isPasswordVisible ? 'img:/icons/eye_a.svg' : 'img:/icons/eye_d.svg'"
           class="cursor-pointer"
           size="30px"
           @click="isPasswordVisible = !isPasswordVisible"
           v-if="props.type === 'password'"
         />
         <!-- done icon -->
-        <q-icon
-          name="img:/icons/check.svg"
-          size="30px"
-          color="primary"
-          v-if="done"
-        />
+        <q-icon name="img:/icons/check.svg" size="30px" color="primary" v-if="done" />
       </div>
     </template>
     <template #after v-if="$slots.after">

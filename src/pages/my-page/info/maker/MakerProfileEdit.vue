@@ -43,8 +43,6 @@ const nickname = ref('');
 const { data: maker } = useMyMakerDetail();
 const jobObjs = ref<(string | undefined)[]>([]);
 const skills = ref<(string | undefined)[]>([]);
-const skill = ref<string>('');
-const jobObj = ref<string>('');
 
 watch(maker, (value) => {
   if (value) {
@@ -108,19 +106,13 @@ const onSubmit = handleSubmit(async () => {
 
 /* 스킬 희망 직무 추가 삭제 */
 const onClickAddSkill = () => {
-  if (skill.value) {
-    skills.value.push(skill.value);
-    skill.value = '';
-  }
+  skills.value.push('');
 };
 const onClickRemoveSkill = (index: number) => {
   skills.value.splice(index, 1);
 };
 const onClickAddJob = () => {
-  if (jobObj.value) {
-    jobObjs.value.push(jobObj.value);
-    jobObj.value = '';
-  }
+  jobObjs.value.push('');
 };
 const onClickRemoveJob = (index: number) => {
   jobObjs.value.splice(index, 1);
@@ -197,7 +189,7 @@ const onClickRemoveJob = (index: number) => {
       <div class="mt-[16px]">
         <c-field required label="한줄 프로필" class="text-[#767676] text-xs font-medium leading-none">
           <c-input
-            class="w-full pb-[14px]"
+            class="w-full pb-[14px] text-lg"
             placeholder="나를 한줄로 표현해 주세요."
             :maxlength="30"
             :outlined="false"
@@ -209,55 +201,77 @@ const onClickRemoveJob = (index: number) => {
         </c-field>
 
         <c-field label="업무 스킬" required class="text-[#767676] text-xs font-medium leading-none">
-          <div v-for="(s, i) in skills" :key="i" class="flex items-center text-base font-normal leading-8">
-            <div class="flex-1">
-              {{ s }}
-            </div>
-            <div @click="onClickRemoveSkill(i)">
-              <q-icon name="img:/icons/close.svg" size="25px" />
-            </div>
-          </div>
+          <c-input
+            v-for="(s, i) in skills"
+            :key="i"
+            class="w-full border-0 text-lg"
+            maxlength="50"
+            input-class="h-[40px]"
+            placeholder="업무 스킬을 입력하세요"
+            v-model="skills[i]"
+            :outlined="false"
+            :rounded="false"
+            border-radius="0px"
+            :clearable="false"
+          >
+            <template #after>
+              <div @click="onClickRemoveSkill(i)">
+                <q-icon name="img:/icons/close.svg" size="20px" />
+              </div>
+            </template>
+          </c-input>
           <c-input
             class="w-full border-0"
             maxlength="50"
             input-class="h-[40px]"
             placeholder="업무 스킬 추가"
-            v-model="skill"
             :outlined="false"
             :rounded="false"
             border-radius="0px"
             :clearable="false"
+            disable
           >
             <template #after>
-              <div @click="onClickAddSkill">
-                <c-icon name="icon_plus" />
+              <div @click="onClickAddSkill" class="p-[2px]">
+                <c-icon name="icon_plus" size="15px" />
               </div>
             </template>
           </c-input>
         </c-field>
         <c-field label="희망 직무 (선택)" class="text-[#767676] text-xs font-medium leading-none">
-          <div v-for="(j, i) in jobObjs" :key="i" class="flex items-center text-base font-normal leading-8">
-            <div class="flex-1">
-              {{ j }}
-            </div>
-            <div @click="onClickRemoveJob(i)">
-              <q-icon name="img:/icons/close.svg" size="25px" />
-            </div>
-          </div>
           <c-input
-            class="w-full border-0"
+            v-for="(s, i) in jobObjs"
+            :key="i"
+            class="w-full border-0 text-lg"
             maxlength="50"
             input-class="h-[40px]"
-            placeholder="희망 직무 추가"
-            v-model="jobObj"
+            placeholder="희망 직무을 입력하세요"
+            v-model="jobObjs[i]"
             :outlined="false"
             :rounded="false"
             border-radius="0px"
             :clearable="false"
           >
             <template #after>
-              <div @click="onClickAddJob">
-                <c-icon name="icon_plus" />
+              <div @click="onClickRemoveJob(i)">
+                <q-icon name="img:/icons/close.svg" size="20px" />
+              </div>
+            </template>
+          </c-input>
+          <c-input
+            class="w-full border-0"
+            maxlength="50"
+            input-class="h-[40px]"
+            placeholder="희망 직무 추가"
+            :outlined="false"
+            :rounded="false"
+            border-radius="0px"
+            :clearable="false"
+            disable
+          >
+            <template #after>
+              <div @click="onClickAddJob" class="p-[2px]">
+                <c-icon name="icon_plus" size="15px" />
               </div>
             </template>
           </c-input>
