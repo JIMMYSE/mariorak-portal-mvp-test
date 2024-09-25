@@ -3,45 +3,69 @@ import { RecommendedGameListType } from 'src/types/gamepack/game-model';
 import { RecommendedProjectListType } from 'src/types/gamepack/project-model';
 import { barStyle, thumbStyle } from 'src/utils/style-variable';
 
-type Props = {
-  type: 'game' | 'project';
-  toList: string;
-  gpList: RecommendedGameListType[] | RecommendedProjectListType[] | undefined;
-};
-const props = defineProps<Props>();
-
 const goToListPage = () => {
-  props.toList ? goToName(props.toList) : goToName('community-main');
+  goToName('community-main');
 };
 
-const goToDetailPage = (gp: any) => {
-  const id = gp?.game_id ?? gp.prj_id;
-  if (props.type === 'game') {
-    goTo(`/game-pack/game/${id}`);
-  } else {
-    goTo(`/game-pack/project/${id}`);
-  }
+const goToDetailPage = (news: any) => {
+  const id = news?.game_id ?? news.prj_id;
+  goTo(`/game-pack/game/${id}`);
 };
+
+const { request } = useSearchFilter({
+  requestDefault: {
+    filters: {
+      clum_sesn_id: {
+        eq: 1,
+      },
+    },
+    from: 0,
+    size: 5,
+    sort: [
+      {
+        created_at: 'desc',
+      },
+    ],
+  },
+});
+
+const {
+  values: form,
+  setFieldValue,
+  resetField,
+} = useForm<SearchRequest>({
+  validationSchema: toTypedSchema(SearchRequestSchema),
+  initialValues: request,
+});
+
+const queryParam = ref(form);
+
+const { data: newsList, refetch } = useCommunityNewsList({
+  searchRequest: queryParam,
+  queryOption: {
+    enabled: true,
+  },
+});
 </script>
 <template>
   <div>
     <div>
       <q-scroll-area style="height: 280px" :bar-style="barStyle" :thumb-style="thumbStyle">
         <div class="row no-wrap pl-6">
-          <div class="game-card q-mr-md" v-for="gp in props.gpList" :key="gp.created_at" @click="goToDetailPage(gp)">
-            <c-img :src="gp.thmn_file.convert_addr" width="100%" class="rounded-xl game-image" />
+          <!-- <div class="game-card q-mr-md" v-for="news in newsList" :key="news.created_at" @click="goToDetailPage(news)">
+            <c-img :src="news.thmn_file.convert_addr" width="100%" class="rounded-xl game-image" />
             <div class="game-info q-mt-sm">
               <div class="text-caption q-mb-xs mt-[16px]">
-                <span class="badge font-medium" v-for="badge in gp.tag_list" :key="badge">{{ badge }}</span>
+                <span class="badge font-medium" v-for="badge in news.tag_list" :key="badge">{{ badge }}</span>
               </div>
               <p class="text-[#222222] text-[16px] font-semibold leading-snug mt-[8px]">
-                {{ gp.title }}
+                {{ news.title }}
               </p>
               <p class="text-[#696969] text-xs font-normal leading-4 mt-[6px] ellipsis-2-lines">
-                {{ formatDate(gp.created_at) }}
+                {{ formatDate(news.created_at) }}
               </p>
             </div>
-          </div>
+          </div> -->
         </div>
       </q-scroll-area>
     </div>

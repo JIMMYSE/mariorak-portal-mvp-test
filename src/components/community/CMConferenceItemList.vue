@@ -1,26 +1,41 @@
 <script lang="ts" setup>
-import { RecommendedGameListType } from 'src/types/gamepack/game-model';
-import { RecommendedProjectListType } from 'src/types/gamepack/project-model';
-import { barStyle, thumbStyle } from 'src/utils/style-variable';
+const { request } = useSearchFilter({
+  requestDefault: {
+    from: 0,
+    size: 5,
+    sort: [
+      {
+        created_at: 'desc',
+      },
+    ],
+  },
+});
 
-type Props = {
-  type: 'game' | 'project';
-  toList: string;
-  gpList: RecommendedGameListType[] | RecommendedProjectListType[] | undefined;
-};
-const props = defineProps<Props>();
+const {
+  values: form,
+  setFieldValue,
+  resetField,
+} = useForm<SearchRequest>({
+  validationSchema: toTypedSchema(SearchRequestSchema),
+  initialValues: request,
+});
+
+const queryParam = ref(form);
+
+const { data: conferenceList, refetch } = useCommunityConferenceList({
+  searchRequest: queryParam,
+  queryOption: {
+    enabled: true,
+  },
+});
 
 const goToListPage = () => {
-  props.toList ? goToName(props.toList) : goToName('community-main');
+  goToName('community-main');
 };
 
 const goToDetailPage = (gp: any) => {
-  const id = gp?.game_id ?? gp.prj_id;
-  if (props.type === 'game') {
-    goTo(`/game-pack/game/${id}`);
-  } else {
-    goTo(`/game-pack/project/${id}`);
-  }
+  const id = gp?.cnfr_id ?? gp.cnfr_id;
+  goTo(`/game-pack/game/${id}`);
 };
 </script>
 <template>
@@ -28,20 +43,25 @@ const goToDetailPage = (gp: any) => {
     <div>
       <q-scroll-area style="height: 280px" :bar-style="barStyle" :thumb-style="thumbStyle">
         <div class="row no-wrap pl-6">
-          <div class="game-card q-mr-md" v-for="gp in props.gpList" :key="gp.created_at" @click="goToDetailPage(gp)">
+          <div
+            class="game-card q-mr-md"
+            v-for="conf in conferenceList.rows"
+            :key="conf.created_at"
+            @click="goToDetailPage(conf)"
+          >
             <div class="absolute z-10 w-[60px] text-sm top-2 left-2">
-              <GPbadge :cd="gp.prj_stt_cd" section-cd="PRJ_STT" />
+              <GPbadge :cd="conf.prj_stt_cd" section-cd="PRJ_STT" />
             </div>
-            <c-img :src="gp.thmn_file.convert_addr" width="100%" class="rounded-xl game-image" />
+            <c-img :src="conf.thmn_file?.convert_addr" width="100%" class="rounded-xl game-image" />
             <div class="game-info q-mt-sm">
               <div class="text-caption q-mb-xs mt-[16px]">
-                <span class="badge font-medium" v-for="badge in gp.tag_list" :key="badge">{{ badge }}</span>
+                <span class="badge font-medium" v-for="badge in conf.tag_list" :key="badge">{{ badge }}</span>
               </div>
               <p class="text-[#222222] text-[16px] font-semibold leading-snug mt-[8px]">
-                {{ gp.title }}
+                {{ conf.title }}
               </p>
               <p class="text-[#696969] text-xs font-normal leading-4 mt-[6px] ellipsis-2-lines">
-                {{ formatDate(gp.created_at) }}
+                {{ formatDate(conf.created_at) }}
               </p>
             </div>
           </div>
