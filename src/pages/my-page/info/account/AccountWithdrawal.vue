@@ -40,6 +40,9 @@ const checkWithdrawal = ref(false);
 const disabled = computed(() => {
   return !checkWithdrawal.value || !reason.value;
 });
+const onSubmit = () => {
+  return;
+};
 </script>
 <template>
   <q-page>

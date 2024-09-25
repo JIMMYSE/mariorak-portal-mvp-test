@@ -116,6 +116,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '게시판 등록',
               bgColor: 'white',
+              noFooter: true,
             },
             component: () => import('pages/game-pack/GPBoardEdit.vue'),
           },
@@ -224,7 +225,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '개인 프로필 관리',
             },
-            component: () => import('src/pages/my-page/info/account/UserProfileManage.vue'),
+            component: () => import('pages/my-page/info/user/UserProfileManage.vue'),
           },
           {
             path: 'change-nickname',
