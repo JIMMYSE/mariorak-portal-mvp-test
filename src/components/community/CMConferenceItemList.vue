@@ -45,7 +45,7 @@ const goToDetailPage = (gp: any) => {
         <div class="row no-wrap pl-6">
           <div
             class="game-card q-mr-md"
-            v-for="conf in conferenceList.rows"
+            v-for="conf in conferenceList?.rows"
             :key="conf.created_at"
             @click="goToDetailPage(conf)"
           >
@@ -68,10 +68,10 @@ const goToDetailPage = (gp: any) => {
         </div>
       </q-scroll-area>
     </div>
-    <div class="text-center mt-5">
+    <div class="flex justify-center mt-5">
       <c-btn
         @click="goToListPage()"
-        class="enter_btn rounded-[30px] text-[#056bf1] font-semibold text-sm py-3 pl-10 pr-[30px]"
+        class="rounded-[30px] text-[#056bf1] font-semibold text-sm py-3 pl-10 pr-[30px]"
         outline
         >전체 목록 보기
         <c-icon name="icon_enter_arrow" size="14px" :color="'#056BF1'" :fill="false" />
