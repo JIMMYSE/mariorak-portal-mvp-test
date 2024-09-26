@@ -95,7 +95,7 @@ watchDebounced(
           round
           flat
           class="flex justify-center items-center"
-          @click="goTo('/game-pack/project/1/board-edit')"
+          @click="goTo(`/game-pack/project/${gameId}/board-edit`)"
         >
           <q-icon name="img:/icons/icon_add_plus.svg" size="40px" />
         </q-btn>

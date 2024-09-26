@@ -1,10 +1,39 @@
 <script lang="ts" setup>
-import { BottomSheet } from 'quasar';
+import { PostCreate } from 'ccf-api-dto';
+import { set } from 'lodash';
+import { PostCreateType } from 'src/types/community/post-model';
 
+const route = useRoute();
+const gpId = route.params.id;
 const showBottomSheet = ref(false);
 const openCategoryBottomSheet = () => {
   showBottomSheet.value = !showBottomSheet.value;
 };
+const { maker } = useAuthStore();
+const channels = computed(() =>
+  maker.project_histories
+    ?.map((prj: any) => {
+      return { prj_id: prj.prj_id, title: prj.title };
+    })
+    .filter((prj: any) => prj.prj_id == gpId)
+);
+const {
+  values: form,
+  handleSubmit,
+  errors,
+  setFieldValue,
+} = useForm<PostCreateType>({
+  validationSchema: toTypedSchema(PostCreate),
+});
+watch(
+  channels,
+  (newVal) => {
+    if (newVal.length == 1) {
+      setFieldValue('prj_id', newVal[0].prj_id);
+    }
+  },
+  { immediate: true }
+);
 </script>
 <template>
   <div class="h-full pt-4">
@@ -27,7 +56,6 @@ const openCategoryBottomSheet = () => {
           class="w-full pb-[14px]"
           placeholder="제목을 입력하세요."
           :maxlength="20"
-          autofocus
           :outlined="false"
           :rounded="false"
           border-radius="0px"
@@ -55,10 +83,14 @@ const openCategoryBottomSheet = () => {
           <p class="text-[#767676] text-xs font-medium leading-none">채널 선택</p>
           <div class="mt-4">
             <q-item
+              v-for="(channel, index) in channels"
+              :key="index"
               v-ripple
               clickable
-              class="rounded-[5px] border border-[#dbdbdb] bg-[#fff] items-center px-4 py-0 w-fit h-[40px]"
-              ><span class="text-center text-[#767676] text-sm font-medium leading-tight">게임 제목</span></q-item
+              :active="channel.prj_id == form.prj_id"
+              active-class="bg-primary text-white"
+              class="rounded-[5px] border border-[#dbdbdb] bg-[#fff] items-center px-4 py-0 w-fit h-[40px] text-[#767676]"
+              ><span class="text-center text-sm font-medium leading-tight">{{ channel.title }}</span></q-item
             >
           </div>
         </section>
