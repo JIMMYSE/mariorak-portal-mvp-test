@@ -4,7 +4,7 @@ import { RecommendedProjectListType } from 'src/types/gamepack/project-model';
 import { barStyle, thumbStyle } from 'src/utils/style-variable';
 
 const goToListPage = () => {
-  goToName('community-main');
+  goToName('community-news-list');
 };
 
 const goToDetailPage = (news: any) => {

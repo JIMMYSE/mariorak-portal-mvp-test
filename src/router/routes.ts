@@ -210,14 +210,13 @@ const routes: RouteRecordRaw[] = [
             component: () => import('src/pages/community/CMMainPage.vue'),
           },
           {
-            path: 'detail',
-            name: 'community-detail',
+            path: 'news/list',
+            name: 'community-news-list',
             meta: {
-              title: '인력사무소 상세',
-              faqCategory: '인력사무소',
+              title: '소식통 목록',
               disabledHashScroll: true,
             },
-            component: () => import('src/pages/recruit/RecruitDetail.vue'),
+            component: () => import('src/pages/community/CMNewsList.vue'),
           },
           {
             path: 'profile/:id',
