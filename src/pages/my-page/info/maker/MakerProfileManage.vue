@@ -4,7 +4,7 @@ const myMakerProfile = computed(() => myMakerProfileData.value?.data);
 
 watch(isFinished, (newVal) => {
   if (newVal) {
-    if (error) {
+    if (error.value) {
       replaceToName('not-register-profile');
     }
   }
