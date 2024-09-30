@@ -24,8 +24,8 @@ const emits = defineEmits<{
     </section>
     <section class="mt-[60px]">
       <h2 class="text-[20px] font-semibold">In Game Shot</h2>
-      <div class="mt-4" v-if="detail?.detail_file_list">
-        <game-shot-movie :detail-file-list="detail?.detail_file_list" />
+      <div class="mt-4" v-if="props.detail?.detail_file_list">
+        <game-shot-movie :detail-file-list="props.detail?.detail_file_list" />
       </div>
       <div v-else></div>
     </section>

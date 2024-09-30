@@ -6,6 +6,7 @@ import RequiredNoticeDialog from 'src/pages/auth/RequiredNoticeDialog.vue';
 import { OauthReqType } from 'src/types/auth/auth-model';
 import { SocialType } from 'src/types/util/code';
 import LoginFailedDialog from 'src/components/auth/LoginFailedDialog.vue';
+import { MakerWithFileType } from 'src/types/gamepack/maker-model';
 
 const ACCESS_TOKEN_KEY = process.env.ACCESS_TOKEN_KEY as string;
 const TOKEN_EXPIRE_DAYS = Number(process.env.TOKEN_EXPIRE_DAYS as string);
@@ -120,6 +121,14 @@ export const initUserDetailInfo = async () => {
       };
       setUserInfo(user);
     }
+
+    const { data: makerDetail } = await useMyMakerDetail();
+    if (makerDetail.value?.data) {
+      const maker: MakerWithFileType = {
+        ...makerDetail.value.data,
+      };
+      setMakerInfo(maker);
+    }
   } catch (error) {
     console.error('#### 사용자 정보 조회 실패 ####');
   }
@@ -223,6 +232,11 @@ function setUserInfo(userData: any) {
   const authStore = useAuthStore();
   userData.user.nickname = decodeURI(userData.user.nickname);
   authStore.setUser(userData.user);
+}
+
+function setMakerInfo(makerData: MakerWithFileType) {
+  const authStore = useAuthStore();
+  authStore.setMaker(makerData);
 }
 
 function clearAuthInfo() {
