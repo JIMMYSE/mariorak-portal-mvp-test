@@ -225,7 +225,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               title: '개인 프로필 관리',
             },
-            component: () => import('src/pages/my-page/info/account/UserProfileManage.vue'),
+            component: () => import('pages/my-page/info/user/UserProfileManage.vue'),
           },
           {
             path: 'change-nickname',

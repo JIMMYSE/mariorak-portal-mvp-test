@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { PostCreate } from 'ccf-api-dto';
 import { isInteger, set, toInteger } from 'lodash';
+import { QUploader } from 'quasar';
 import { PostCreateType } from 'src/types/community/post-model';
 
 const isMakerBoard = ref(true);
@@ -99,6 +100,8 @@ const tempcategoryText = computed(() => {
           :clearable="false"
           readonly
           disable
+          :no-error="categoryText.length > 0"
+          error-message="채널과 주제/공지를 1개씩 꼭 선택해주세요."
           v-model="categoryText"
           ><template #append><c-icon name="icon_enter_arrow" size="20px" :color="'#767676'" :fill="false" /></template
         ></c-input>
@@ -130,6 +133,23 @@ const tempcategoryText = computed(() => {
           border-radius="0px"
         />
       </div>
+      <q-uploader style="max-width: 300px" flat ref="fileUploader" multiple>
+        <template #header></template>
+        <template #list="scope">
+          <div v-for="file in scope.files" :key="file.__key" class="flex relative bg-grey-4">
+            <div v-if="file.__img">
+              <img :src="file.__img.src" />
+            </div>
+            <button @click="scope.removeFile(file)"><q-icon name="img:/icons/close.svg" size="20px" /></button>
+          </div>
+          <div @click="scope.pickFiles" class="w-20 h-20 rounded-md flex justify-center items-center border">
+            <div>
+              <q-icon :name="`img:/icons/icon_plus.svg`" />
+              <q-uploader-add-trigger />
+            </div>
+          </div>
+        </template>
+      </q-uploader>
     </section>
     <section class="fixed bottom-[85px] px-6 w-full max-w-[512px]">
       <c-btn
