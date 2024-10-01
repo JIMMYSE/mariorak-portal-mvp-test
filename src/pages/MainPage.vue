@@ -129,7 +129,6 @@ const openDetailDialog = (type: string) => {
 };
 
 const moveToList = (type: string) => {
-  console.log(type);
   switch (type) {
     case '게임':
       goToName('game-list');
@@ -138,10 +137,11 @@ const moveToList = (type: string) => {
       goToName('project-list');
       break;
     case '모집중':
-      goToName('recruit-detail', { active: 'project' });
+      goToName('recruit-detail');
       break;
     case '개발자':
-      goToName('recruit-detail', { active: 'maker' });
+      // goToName('recruit-detail', { active: 'maker' });
+      goTo('/recruit/detail#maker');
       break;
     case '개발자 게시판':
       notAvailableAlert();
