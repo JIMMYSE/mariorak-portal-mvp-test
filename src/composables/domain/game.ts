@@ -56,3 +56,22 @@ export const useRecentGameList = () => {
     queryKeyName: QUERY_KEY.RECENT,
   });
 };
+
+export const useSearchLikeGameList = ({
+  searchRequest,
+  queryOption,
+  listQueryKeyName = QUERY_KEY.SEARCH,
+  setField,
+}: {
+  searchRequest: MaybeRef<SearchRequest>;
+  queryOption?: QueryOption;
+  listQueryKeyName?: string;
+  setField: any;
+}) => {
+  return useQueryFetchInfiniteList<any, SearchRequest>({
+    url: API_URL + '/liked',
+    searchRequest,
+    queryKeyName: listQueryKeyName,
+    setField,
+  });
+};

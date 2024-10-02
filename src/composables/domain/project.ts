@@ -64,6 +64,25 @@ export const useSimilarProjectList = (id: string) => {
   });
 };
 
+export const useSearchLikeProjectList = ({
+  searchRequest,
+  queryOption,
+  listQueryKeyName = QUERY_KEY.SEARCH,
+  setField,
+}: {
+  searchRequest: MaybeRef<SearchRequest>;
+  queryOption?: QueryOption;
+  listQueryKeyName?: string;
+  setField: any;
+}) => {
+  return useQueryFetchInfiniteList<any, SearchRequest>({
+    url: API_URL + '/liked',
+    searchRequest,
+    queryKeyName: listQueryKeyName,
+    setField,
+  });
+};
+
 /**
  * dummy) 프로젝트 지원하기
  */

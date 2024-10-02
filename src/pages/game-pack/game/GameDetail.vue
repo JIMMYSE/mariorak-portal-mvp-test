@@ -10,13 +10,12 @@ const { data: gameDetail, refetch, isFetching } = useGameDetail(gameId);
 
 const like = ref(false);
 const tab = ref('INFO');
-const { mutateAsync: onLike } = useLike('projectOrgame', gameId, 'game-detail');
+
 const { mutateAsync: onUnlike } = useUnLike('projectOrgame', 'game-detail');
 
 const onLikeProject = async () => {
   like.value = !like.value;
-  like.value ? onLike({}) : onUnlike(gameId);
-  await refetch();
+  like.value ? useLike('projectOrgame', gameDetail.value.prj_id, 'game-detail') : onUnlike(gameDetail?.value.prj_id);
 };
 const { data: similarGameData } = useSimilarGameList(gameId);
 watch(gameDetail, () => {
