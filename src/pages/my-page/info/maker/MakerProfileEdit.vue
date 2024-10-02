@@ -91,7 +91,9 @@ const {
   values: form,
   handleSubmit,
   errors,
+  setFieldError,
   setValues,
+  meta,
 } = useForm<MakerCreateOrUpdateReqType>({
   validationSchema: toTypedSchema(MakerCreateOrUpdateReqFront),
 });
@@ -305,7 +307,11 @@ const onClickRemoveJob = (index: number) => {
     </section>
 
     <section class="bottom-[85px] w-full text-center mt-[85px] px-6 mb-[15px]">
-      <c-btn @click="onSubmit" class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0" color="primary"
+      <c-btn
+        @click="onSubmit"
+        class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
+        color="primary"
+        :disable="!meta.valid || form.prfl.skills?.length == 0"
         >등록하기
       </c-btn>
     </section>

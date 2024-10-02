@@ -3,9 +3,9 @@ const { data: myMakerProfileData, isFinished, error } = useMyMakerDetail();
 const myMakerProfile = computed(() => myMakerProfileData.value?.data);
 
 watch(isFinished, (newVal) => {
-  console.log('>>>', newVal);
+  console.log('>>>', error.value);
   if (newVal) {
-    if (!error.value) {
+    if (myMakerProfile.value) {
       replaceToName('maker-profile-manage');
     }
   }
