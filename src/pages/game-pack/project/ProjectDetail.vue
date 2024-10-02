@@ -16,7 +16,6 @@ const { mutateAsync: onUnlike } = useUnLike('projectOrgame', 'project-detail');
 const onLikeProject = async () => {
   like.value = !like.value;
   like.value ? onLike({}) : onUnlike(projectId);
-  await refetch();
 };
 const { data: similarProjectData } = useSimilarProjectList(projectId);
 watch(projectDetail, () => {

@@ -8,9 +8,9 @@ const API_URL = 'v3/cm/like';
 
 export const useLike = (type: 'projectOrgame' | 'review', id: MaybeRefOrGetter<string>, queryKeyName?: string) => {
   const subUrl = type === 'projectOrgame' ? 'project' : 'review';
-  return useQueryCreateItem<ApiResponse>({
+  return useCreateItem<ApiResponse>({
     url: API_URL + `/${subUrl}/${toValue(id)}`,
-    queryKeyName: queryKeyName,
+    data: {},
   });
 };
 

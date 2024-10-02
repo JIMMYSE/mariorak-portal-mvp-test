@@ -31,6 +31,9 @@ const {
   },
   setField: setFieldValue, // TODO 추후 형태 변경필요
 });
+onMounted(() => {
+  refetch();
+});
 </script>
 <template>
   <div class="px-6 q-gutter-y-md mt-16" v-if="isFetched">
