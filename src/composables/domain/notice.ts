@@ -1,4 +1,5 @@
-import { NoticeDetailRes, NoticeSearchRes } from 'meta-airforce-dto';
+import { NoticeDetail, NoticeSearchListRes, NoticeSearchOneRes } from 'ccf-api-dto';
+import { SuccessObjectRes } from 'meta-airforce-dto';
 import { MaybeRef, MaybeRefOrGetter } from 'vue';
 
 const API_URL = '/v1/notice';
@@ -8,8 +9,9 @@ const QUERY_KEY = {
 };
 
 // DTO 선언
-export type NoticeSearchResType = InferType<typeof NoticeSearchRes>;
-export type NoticeDetailResType = InferType<typeof NoticeDetailRes>;
+
+export type NoticeSearchResType = InferType<typeof NoticeSearchListRes>;
+export type NoticeDetailResType = InferType<typeof NoticeSearchOneRes>;
 
 /**
  * 공지사항 목록 조회

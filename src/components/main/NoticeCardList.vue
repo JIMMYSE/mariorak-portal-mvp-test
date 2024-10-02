@@ -34,13 +34,13 @@ const {
   },
 });
 
-const onClickPostCard = () => {
-  notAvailableAlert();
+const onClickPostCard = (id: number) => {
+  goTo(`/notice/${id}`);
 };
 </script>
 <template>
   <ul class="custom-list cursor-pointer">
-    <li v-for="notice in noticeList?.rows" :key="notice.id" @click="onClickPostCard">
+    <li v-for="notice in noticeList?.rows" :key="notice.ntc_id" @click="onClickPostCard(notice.ntc_id)">
       <div class="text-[#222222] font-medium leading-snug">
         {{ notice.title }}
       </div>
@@ -71,3 +71,4 @@ const onClickPostCard = () => {
   border-bottom: none;
 }
 </style>
+c
