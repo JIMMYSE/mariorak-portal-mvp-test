@@ -3,6 +3,7 @@ import { MakerCreateOrUpdateReqType, MakerCreateOrUpdateReqFront } from 'src/typ
 import { barStyle, thumbStyle } from 'src/utils/style-variable'; // 직무 선택
 
 const { options: jobOptions } = useCommonCode('MKR_ROL');
+const { user } = useAuthStore();
 const showJobBottomSheet = ref(false);
 const openJobBottomSheet = () => {
   showJobBottomSheet.value = !showJobBottomSheet.value;
@@ -39,10 +40,11 @@ const openInterestBottomSheet = () => {
   showInterestBottomSheet.value = !showInterestBottomSheet.value;
 };
 /** 조회 */
-const nickname = ref('');
+
 const { data: maker } = useMyMakerDetail();
 const jobObjs = ref<(string | undefined)[]>([]);
 const skills = ref<(string | undefined)[]>([]);
+const dspyYn = ref(true);
 
 watch(maker, (value) => {
   if (value) {
@@ -59,28 +61,39 @@ watch(maker, (value) => {
       },
       updatedAt: data?.updatedAt,
     });
-    nickname.value = data?.nickname ?? '';
+
     selectedYear.value = data?.expr_year ?? 1;
     jobObjs.value = data?.prfl?.job_objs ?? [];
     skills.value = data?.prfl?.skills ?? [];
     selectedJob.value = data?.mkr_rol_cd ?? '';
+    dspyYn.value = data?.dspy_yn ?? true;
   }
 });
-watch([skills, jobObjs], () => {
-  setValues({
-    prfl: {
-      onln_prfl: form?.prfl?.onln_prfl ?? '',
-      skills: skills.value,
-      job_objs: jobObjs.value,
-    },
-  });
-});
+watch(
+  [skills, jobObjs, dspyYn],
+  () => {
+    console.log('skills', skills.value);
+    setValues({
+      prfl: {
+        onln_prfl: form?.prfl?.onln_prfl ?? '',
+        skills: skills.value,
+        job_objs: jobObjs.value,
+      },
+      dspy_yn: dspyYn.value,
+    });
+  },
+  {
+    deep: true,
+  }
+);
 
 const {
   values: form,
   handleSubmit,
   errors,
+  setFieldError,
   setValues,
+  meta,
 } = useForm<MakerCreateOrUpdateReqType>({
   validationSchema: toTypedSchema(MakerCreateOrUpdateReqFront),
 });
@@ -121,7 +134,10 @@ const onClickRemoveJob = (index: number) => {
 <template>
   <q-page>
     <section class="px-6 pt-[30px]">
-      <h2 class="text-[#222222] text-xl font-semibold">개발자 프로필</h2>
+      <div class="flex justify-between">
+        <h2 class="text-[#222222] text-xl font-semibold">개발자 프로필</h2>
+        <q-toggle v-model="dspyYn" color="primary" keep-color />
+      </div>
       <div class="mt-[16px]">
         <c-field label="닉네임" class="text-[#767676] text-xs font-medium leading-none">
           <c-input
@@ -132,7 +148,8 @@ const onClickRemoveJob = (index: number) => {
             :outlined="false"
             :rounded="false"
             border-radius="0px"
-            v-model="nickname"
+            :clearable="false"
+            v-model="user.nickname"
           />
         </c-field>
 
@@ -290,7 +307,11 @@ const onClickRemoveJob = (index: number) => {
     </section>
 
     <section class="bottom-[85px] w-full text-center mt-[85px] px-6 mb-[15px]">
-      <c-btn @click="onSubmit" class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0" color="primary"
+      <c-btn
+        @click="onSubmit"
+        class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
+        color="primary"
+        :disable="!meta.valid || form.prfl.skills?.length == 0"
         >등록하기
       </c-btn>
     </section>
