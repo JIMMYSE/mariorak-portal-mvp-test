@@ -13,6 +13,15 @@ const routes: RouteRecordRaw[] = [
         redirect: { name: 'home-main' },
       },
       {
+        path: 'notice/:id',
+        name: 'notice-detail',
+        meta: {
+          title: '공지사항 상세',
+          bgColor: 'white',
+        },
+        component: () => import('pages/main/NoticeDetail.vue'),
+      },
+      {
         path: '/home',
         meta: {
           requiresAuth: true,
