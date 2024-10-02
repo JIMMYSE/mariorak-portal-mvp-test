@@ -45,7 +45,7 @@ export const useSimilarGameList = (id: string) => {
   });
 };
 
-// 소식통 목록 조회
+// 컨퍼런스 목록 조회
 export const useCommunityConferenceList = ({
   searchRequest,
   queryOption,

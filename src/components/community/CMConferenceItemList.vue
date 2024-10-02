@@ -29,10 +29,6 @@ const { data: conferenceList, refetch } = useCommunityConferenceList({
   },
 });
 
-const goToListPage = () => {
-  goToName('community-conference-detail');
-};
-
 const goToDetailPage = (gp: any) => {
   const id = gp?.cnfr_id ?? gp.cnfr_id;
   goTo(`/game-pack/game/${id}`);

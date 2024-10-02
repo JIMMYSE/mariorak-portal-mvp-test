@@ -52,8 +52,16 @@ const { data: newsList, refetch } = useCommunityNewsList({
     <div>
       <q-scroll-area style="height: 280px" :bar-style="barStyle" :thumb-style="thumbStyle">
         <div class="row no-wrap pl-6">
-          <!-- <div class="game-card q-mr-md" v-for="news in newsList" :key="news.created_at" @click="goToDetailPage(news)">
-            <c-img :src="news.thmn_file.convert_addr" width="100%" class="rounded-xl game-image" />
+          <div
+            class="game-card q-mr-md"
+            v-for="news in newsList?.rows"
+            :key="news.created_at"
+            @click="goToDetailPage(news)"
+          >
+            <div class="absolute z-10 w-[60px] text-sm top-2 left-2">
+              <GPbadge :cd="news.prj_stt_cd" section-cd="PRJ_STT" />
+            </div>
+            <c-img :src="news.thmn_file?.convert_addr" width="100%" class="rounded-xl game-image" />
             <div class="game-info q-mt-sm">
               <div class="text-caption q-mb-xs mt-[16px]">
                 <span class="badge font-medium" v-for="badge in news.tag_list" :key="badge">{{ badge }}</span>
@@ -65,7 +73,7 @@ const { data: newsList, refetch } = useCommunityNewsList({
                 {{ formatDate(news.created_at) }}
               </p>
             </div>
-          </div> -->
+          </div>
         </div>
       </q-scroll-area>
     </div>

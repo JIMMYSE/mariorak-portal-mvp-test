@@ -1,7 +1,32 @@
 <script lang="ts" setup>
-const { data: recommededGameData } = useRecommendedGameList();
-const recommendedGameList = computed(() => {
-  return recommededGameData.value?.rows;
+const { request } = useSearchFilter({
+  requestDefault: {
+    from: 0,
+    size: 5,
+    sort: [
+      {
+        created_at: 'desc',
+      },
+    ],
+  },
+});
+
+const {
+  values: form,
+  setFieldValue,
+  resetField,
+} = useForm<SearchRequest>({
+  validationSchema: toTypedSchema(SearchRequestSchema),
+  initialValues: request,
+});
+
+const queryParam = ref(form);
+
+const { data: newsList, refetch } = useCommunityNewsList({
+  searchRequest: queryParam,
+  queryOption: {
+    enabled: true,
+  },
 });
 </script>
 

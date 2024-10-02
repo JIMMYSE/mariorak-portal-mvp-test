@@ -77,10 +77,12 @@ const recommendedProjectList = computed(() => {
       </div>
     </section>
 
-    <!-- FAQ -->
     <section class="mt-[55px] mb-[50px]">
       <h2 class="text-[22px] font-semibold px-6">컨퍼런스</h2>
-      <c-m-conference-item-list />
+      <p class="pl-6 text-[#767676] text-sm font-normal leading-tight">게임을 사랑하는 사람들을 위한 축제의 장</p>
+      <div class="mt-4">
+        <c-m-conference-item-list />
+      </div>
     </section>
   </q-page>
 </template>
