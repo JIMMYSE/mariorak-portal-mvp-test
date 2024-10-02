@@ -176,7 +176,7 @@ const onClickRemoveJob = (index: number) => {
             class="w-full pb-[14px]"
             name="prtf.prtf_url"
             placeholder="제목을 입력하세요."
-            :maxlength="20"
+            :maxlength="100"
             :outlined="false"
             :rounded="false"
             border-radius="0px"

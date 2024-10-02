@@ -98,6 +98,23 @@ export const MakerSchema = object({
 });
 
 export const MakerCreateOrUpdateReqFront = MakerCreateOrUpdateReq.shape({
+  /** 포트 폴리오 */
+  prtf: object()
+    .required()
+    .shape({
+      /** 포트폴리오 활성화 여부 */
+      prtf_dspy_yn: boolean().nullable().label('포트폴리오 활성화 여부'),
+      /** 포트폴리오 URL */
+      prtf_url: string()
+        .nullable()
+        .label('포트폴리오 URL')
+        .matches(
+          /^((http|https):\/\/)?(www.)?(?!.*(http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+(\/)?.([\w\?[a-zA-Z-_%\/@?]+)*([^\/\w\?[a-zA-Z0-9_-]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/,
+          '웹 URL 형식이 아닙니다.'
+        ),
+    })
+    .label('포트폴리오'),
+
   mem_id: number().label('회원 아이디').notRequired().nullable(),
   mkr_id: number().label('제작자 아이디').notRequired().nullable(),
 });
