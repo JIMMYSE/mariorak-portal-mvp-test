@@ -20,7 +20,7 @@ const goToDetailPage = (gp: any) => {
   <div>
     <div v-if="pList && pList?.length > 0">
       <q-scroll-area style="height: 200px" :bar-style="barStyle" :thumb-style="thumbStyle">
-        <div class="row no-wrap">
+        <div class="row no-wrap pl-6">
           <div class="game-card q-mr-md" v-for="p in pList" :key="p.prj_id" @click="goToDetailPage(p)">
             <c-img :src="p.thmn_file.convert_addr" width="100%" class="rounded-xl game-image" />
 

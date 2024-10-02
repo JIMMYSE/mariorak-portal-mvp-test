@@ -24,3 +24,17 @@ export const useUnLike = (type: 'projectOrgame' | 'reivew', queryKeyName?: strin
     queryKeyName: queryKeyName,
   });
 };
+
+/**
+ * 페이지 조회 이력 등록
+ */
+
+export const createPageView = (type: 'GAMD' | 'PRJD', id: number) => {
+  return useAxiosPost<ApiResponse>({
+    url: '/v3/et/pv',
+    data: {
+      acc_hist_ty_cd: type,
+      ctnt_tgt_id: id,
+    },
+  });
+};
