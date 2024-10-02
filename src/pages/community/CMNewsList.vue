@@ -50,6 +50,7 @@ const { data: newsList, refetch } = useCommunityNewsList({
       </p>
       <div class="mt-4">
         <search-g-p-list :type="'game'" />
+        <news-project-item />
       </div>
     </section>
   </q-page>

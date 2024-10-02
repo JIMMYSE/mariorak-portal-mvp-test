@@ -80,7 +80,7 @@ const { data: newsList, refetch } = useCommunityNewsList({
     <div class="text-center mt-5">
       <c-btn
         @click="goToListPage()"
-        class="enter_btn rounded-[30px] text-[#056bf1] font-semibold text-sm py-3 pl-10 pr-[30px]"
+        class="rounded-[30px] text-[#056bf1] font-semibold text-sm py-3 pl-10 pr-[30px]"
         outline
         >전체 목록 보기
         <c-icon name="icon_enter_arrow" size="14px" :color="'#056BF1'" :fill="false" />

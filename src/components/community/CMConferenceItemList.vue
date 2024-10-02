@@ -30,7 +30,7 @@ const { data: conferenceList, refetch } = useCommunityConferenceList({
 });
 
 const goToDetailPage = (gp: any) => {
-  const id = gp?.cnfr_id ?? gp.cnfr_id;
+  const id = gp?.clum_id ?? gp.clum_id;
   goTo(`/game-pack/game/${id}`);
 };
 </script>
