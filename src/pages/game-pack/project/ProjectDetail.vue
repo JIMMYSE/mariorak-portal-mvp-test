@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 import ProjectInfoPanel from './panel/ProjectInfoPanel.vue';
 import ProjectBoardPanel from './panel/ProjectBoardPanel.vue';
+import { toInteger } from 'lodash';
 
 const route = useRoute();
 const projectId = route.params.id.toString();
+
 const { data: projectDetail, refetch } = useProjectDetail(projectId);
 
 const like = ref(false);
@@ -21,6 +23,10 @@ watch(projectDetail, () => {
   like.value = projectDetail?.value?.is_liked ?? false;
 });
 const { enterRoom } = useBridge();
+
+onMounted(() => {
+  createPageView('PRJD', toInteger(projectId));
+});
 </script>
 <template>
   <q-page>

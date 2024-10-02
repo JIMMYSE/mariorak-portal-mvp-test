@@ -1,4 +1,5 @@
 import { RecommendedGameListResType } from 'src/types/gamepack/game-model';
+import { RecentProjectListResType } from 'src/types/gamepack/project-model';
 import { MaybeRef } from 'vue';
 
 const API_URL = '/v3/pr/game';
@@ -46,5 +47,12 @@ export const useGameDetail = (id: MaybeRef) => {
 export const useSimilarGameList = (id: string) => {
   return useQueryFetch<any>({
     url: API_URL + `/similarity/${id}`,
+  });
+};
+
+export const useRecentGameList = () => {
+  return useQueryFetch<RecentProjectListResType>({
+    url: API_URL + '/recent',
+    queryKeyName: QUERY_KEY.RECENT,
   });
 };
