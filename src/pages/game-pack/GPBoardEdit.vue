@@ -1,21 +1,110 @@
 <script lang="ts" setup>
-import { BottomSheet } from 'quasar';
+import { PostCreate } from 'ccf-api-dto';
+import { isInteger, set, toInteger } from 'lodash';
+import { QUploader } from 'quasar';
+import { PostCreateType } from 'src/types/community/post-model';
 
+const isMakerBoard = ref(true);
+const route = useRoute();
+const gpId = route.params.id;
 const showBottomSheet = ref(false);
 const openCategoryBottomSheet = () => {
   showBottomSheet.value = !showBottomSheet.value;
 };
+const { options } = useCommonCode('POST_TY');
+const postTypeSubject = options.value.filter((opt) => toInteger(opt.value) > 10);
+const postTypeNotice = options.value.filter((opt) => toInteger(opt.value) < 10);
+const { maker } = useAuthStore();
+const channels = computed(() =>
+  maker.project_histories
+    ?.map((prj: any) => {
+      return { prj_id: prj.prj_id, title: prj.title };
+    })
+    .filter((prj: any) => prj.prj_id == gpId)
+);
+const {
+  values: form,
+  handleSubmit,
+  errors,
+  setFieldValue,
+  setValues,
+  meta,
+} = useForm<PostCreateType>({
+  validationSchema: toTypedSchema(PostCreate),
+  initialValues: {
+    prj_id: null,
+    post_cate_cd: null,
+    post_ty_cd: null,
+    title: '',
+    cont: '',
+  },
+});
+
+watch(
+  channels,
+  (newVal) => {
+    if (newVal.length == 1) {
+      setFieldValue('prj_id', newVal[0].prj_id);
+      setFieldValue('post_cate_cd', '01');
+    }
+  },
+  { immediate: true }
+);
+
+watch(
+  () => form.prj_id,
+  (newVal) => {
+    if (newVal) setFieldValue('post_cate_cd', '01');
+  }
+);
+
+// 선택 완료 버튼 클릭시
+const temp = ref({});
+const categoryText = ref('');
+let isReset = true; // 초기화여부
+
+watch(showBottomSheet, (val) => {
+  if (val) {
+    temp.value = { ...form };
+  }
+  if (!val && isReset) {
+    setValues(temp.value);
+  }
+});
+
+const onClickSelect = () => {
+  isReset = false;
+  categoryText.value = tempcategoryText.value;
+  showBottomSheet.value = false;
+};
+
+const tempcategoryText = computed(() => {
+  const prefix = !form.prj_id ? '' : channels.value.find((ch) => ch.prj_id == form.prj_id)?.title + '/';
+  const postfix = options.value.find((opt) => opt.value === form.post_ty_cd)?.label ?? null;
+
+  if (!postfix) return null;
+  return `${prefix} ${postfix}`;
+});
 </script>
 <template>
-  <div class="h-full">
+  <div class="h-full pt-10">
     <section class="px-6">
       <p class="text-[#767676] text-xs font-medium leading-none">카테고리 선택</p>
-      <div
-        class="mt-[16px] pb-[14px] border-b border-[#f7f7f7] text-[#b5b5b5] text-lg font-normal leading-[25.20px] flex justify-between items-center"
-        @click="openCategoryBottomSheet"
-      >
-        <p>카테고리를 선택해 주세요.</p>
-        <c-icon name="icon_enter_arrow" size="20px" :color="'#767676'" :fill="false" />
+      <div @click="openCategoryBottomSheet">
+        <c-input
+          class="w-full pb-[14px] text-[#222222] text-lg"
+          placeholder="카테고리를 선택해 주세요."
+          :outlined="false"
+          :rounded="false"
+          border-radius="0px"
+          :clearable="false"
+          readonly
+          disable
+          :no-error="categoryText.length > 0"
+          error-message="채널과 주제/공지를 1개씩 꼭 선택해주세요."
+          v-model="categoryText"
+          ><template #append><c-icon name="icon_enter_arrow" size="20px" :color="'#767676'" :fill="false" /></template
+        ></c-input>
       </div>
     </section>
     <section class="px-6 mt-[30px]">
@@ -24,10 +113,10 @@ const openCategoryBottomSheet = () => {
         class="mt-[16px] pb-[14px] text-[#b5b5b5] text-lg font-normal leading-[25.20px] flex justify-between items-center"
       >
         <c-input
-          class="w-full pb-[14px]"
+          class="w-full mb-[14px]"
           placeholder="제목을 입력하세요."
           :maxlength="20"
-          autofocus
+          name="title"
           :outlined="false"
           :rounded="false"
           border-radius="0px"
@@ -37,15 +126,36 @@ const openCategoryBottomSheet = () => {
           type="textarea"
           :maxlength="100"
           input-class="h-[163px]"
+          name="content"
           placeholder="게시글 내용을 입력해 주세요."
           :outlined="false"
           :rounded="false"
           border-radius="0px"
         />
       </div>
+      <q-uploader style="max-width: 300px" flat ref="fileUploader" multiple>
+        <template #header></template>
+        <template #list="scope">
+          <div v-for="file in scope.files" :key="file.__key" class="flex relative bg-grey-4">
+            <div v-if="file.__img">
+              <img :src="file.__img.src" />
+            </div>
+            <button @click="scope.removeFile(file)"><q-icon name="img:/icons/close.svg" size="20px" /></button>
+          </div>
+          <div @click="scope.pickFiles" class="w-20 h-20 rounded-md flex justify-center items-center border">
+            <div>
+              <q-icon :name="`img:/icons/icon_plus.svg`" />
+              <q-uploader-add-trigger />
+            </div>
+          </div>
+        </template>
+      </q-uploader>
     </section>
-    <section class="fixed bottom-[85px] px-6 max-w-[512px] w-full">
-      <c-btn class="rounded-[10px] font-semibold text-base mt-[30px] w-full py-[14px] bottom-0" color="primary"
+    <section class="fixed bottom-[85px] px-6 w-full max-w-[512px]">
+      <c-btn
+        class="rounded-[10px] font-semibold text-base mt-[30px] w-full py-[14px] bottom-0"
+        color="primary"
+        :disable="!meta.valid"
         >게시하기
       </c-btn>
     </section>
@@ -53,39 +163,67 @@ const openCategoryBottomSheet = () => {
       <div class="flex flex-col justify-between">
         <section>
           <p class="text-[#767676] text-xs font-medium leading-none">채널 선택</p>
-          <div class="mt-4">
+          <div class="mt-4 flex q-gutter-md">
             <q-item
+              v-if="isMakerBoard"
               v-ripple
               clickable
-              class="rounded-[5px] border border-[#dbdbdb] bg-[#fff] items-center px-4 py-0 w-fit h-[40px]"
-              ><span class="text-center text-[#767676] text-sm font-medium leading-tight">게임 제목</span></q-item
+              @click="setFieldValue('prj_id', null)"
+              :active="!form.prj_id"
+              active-class="bg-primary text-white"
+              class="rounded-[5px] border border-[#dbdbdb] bg-[#fff] items-center px-4 py-0 w-fit h-[40px] text-[#767676]"
+              ><span class="text-center text-sm font-medium leading-tight">개발자 게시판</span></q-item
+            >
+            <q-item
+              v-for="(channel, index) in channels"
+              :key="index"
+              v-ripple
+              clickable
+              @click="setFieldValue('prj_id', channel.prj_id)"
+              :active="channel.prj_id == form.prj_id"
+              active-class="bg-primary text-white"
+              class="rounded-[5px] border border-[#dbdbdb] bg-[#fff] items-center px-4 py-0 w-fit h-[40px] text-[#767676]"
+              ><span class="text-center text-sm font-medium leading-tight">{{ channel.title }}</span></q-item
             >
           </div>
         </section>
         <section class="mt-[30px]">
           <p class="text-[#767676] text-xs font-medium leading-none">주제</p>
-          <div class="mt-4">
+          <div class="mt-4 flex q-gutter-md">
             <q-item
+              v-for="(subject, index) in postTypeSubject"
+              :key="index"
               v-ripple
               clickable
-              class="rounded-[5px] border border-[#dbdbdb] bg-[#fff] items-center px-4 py-0 w-fit h-[40px]"
-              ><span class="text-center text-[#767676] text-sm font-medium leading-tight">게임 제목</span></q-item
+              @click="setFieldValue('post_ty_cd', subject.value)"
+              :active="subject.value == form.post_ty_cd"
+              active-class="bg-primary text-white"
+              class="rounded-[5px] border text-[#767676] border-[#dbdbdb] bg-[#fff] items-center px-4 py-0 w-fit h-[40px]"
+              ><span class="text-center text-sm font-medium leading-tight">{{ subject.label }}</span></q-item
             >
           </div>
         </section>
         <section class="mt-[30px]">
           <p class="text-[#767676] text-xs font-medium leading-none">공지</p>
-          <div class="mt-4">
+          <div class="mt-4 flex q-gutter-md">
             <q-item
+              v-for="(notice, index) in postTypeNotice"
+              :key="index"
               v-ripple
               clickable
-              class="rounded-[5px] border border-[#dbdbdb] bg-[#fff] items-center px-4 py-0 w-fit h-[40px]"
-              ><span class="text-center text-[#767676] text-sm font-medium leading-tight">게임 제목</span></q-item
+              @click="setFieldValue('post_ty_cd', notice.value)"
+              :active="notice.value == form.post_ty_cd"
+              active-class="bg-primary text-white"
+              class="rounded-[5px] border text-[#767676] border-[#dbdbdb] bg-[#fff] items-center px-4 py-0 w-fit h-[40px]"
+              ><span class="text-center text-sm font-medium leading-tight">{{ notice.label }}</span></q-item
             >
           </div>
         </section>
         <section class="bottom-[85px] w-full text-center mt-[85px]">
-          <c-btn class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0" color="primary"
+          <c-btn
+            class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
+            color="primary"
+            @click="onClickSelect"
             >선택 완료
           </c-btn>
         </section>
@@ -93,4 +231,3 @@ const openCategoryBottomSheet = () => {
     </c-bottom-sheet>
   </div>
 </template>
-å

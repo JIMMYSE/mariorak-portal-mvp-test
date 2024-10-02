@@ -1,4 +1,4 @@
-import { MakerOneRes, MakerCreateOrUpdateReq } from 'ccf-api-dto';
+import { MakerOneRes, MakerCreateOrUpdateReq, MakerWithFile } from 'ccf-api-dto';
 
 /**
  * 제작자
@@ -104,3 +104,4 @@ export const MakerCreateOrUpdateReqFront = MakerCreateOrUpdateReq.shape({
 export type MakerCreateOrUpdateReqType = InferType<typeof MakerCreateOrUpdateReqFront>;
 
 export type MakerOneResType = InferType<typeof MakerOneRes>;
+export type MakerWithFileType = InferType<typeof MakerWithFile>;

@@ -41,7 +41,10 @@ const disabled = computed(() => {
   return !checkWithdrawal.value || !reason.value;
 });
 const onSubmit = () => {
-  return;
+  if (disabled.value) {
+    return;
+  }
+  withdrawal();
 };
 </script>
 <template>
