@@ -15,6 +15,8 @@
     "lint": "eslint --ext .js,.ts,.vue ./",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
+    "dto:dev": "rm -rf ./node_modules/meta-airforce-dto && npm install 'github:coarsoft-tmp/meta-airforce-dto#develop' --no-save && rm -rf ./node_modules/ccf-api-dto && npm install 'github:coarsoft-tmp/ccf-api-dto#develop' --no-save",
+    "dto:prd": "rm -rf ./node_modules/meta-airforce-dto && npm install 'github:coarsoft-tmp/meta-airforce-dto#develop' --no-save && rm -rf ./node_modules/ccf-api-dto && npm install 'github:coarsoft-tmp/ccf-api-dto#main' --no-save",
     "dto": "yarn cache clean && yarn add 'github:coarsoft-tmp/meta-airforce-dto' && yarn add 'github:coarsoft-tmp/ccf-api-dto#develop'",
     "set-version": "coar-devtools set-version -f ./public/app.json"
   },
@@ -46,7 +48,7 @@
     "dayjs": "^1.11.11",
     "dotenv": "^16.4.4",
     "josa": "^3.0.1",
-    "meta-airforce-dto": "github:coarsoft-tmp/meta-airforce-dto",
+    "meta-airforce-dto": "github:coarsoft-tmp/meta-airforce-dto#develop",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
     "pretendard": "^1.3.9",
