@@ -24,7 +24,9 @@ watch(gameDetail, () => {
 });
 const { enterRoom } = useBridge();
 
-const managerName = computed(() => gameDetail.value.mkr_list.filter((mkr: any) => mkr.mngr_yn)[0].mem_nickname);
+const managerName = computed(
+  () => gameDetail.value.mkr_list.filter((mkr: any) => mkr.mngr_yn)[0]?.mem_nickname ?? null
+);
 
 const openStore = () => {
   window.open(gameDetail?.value.stre_url, '_blank');
@@ -105,7 +107,7 @@ onMounted(() => {
           { label: '정보', name: 'INFO' },
           { label: '게시판', name: 'BOARD' },
           { label: '리뷰', name: 'REVIEW' },
-          { label: '소식', name: 'NEWS' },
+          { label: '뉴스', name: 'NEWS' },
         ]"
       />
 
@@ -120,7 +122,7 @@ onMounted(() => {
           <game-review-panel :game-id="gameId" :prj-id="gameDetail.prj_id" />
         </q-tab-panel>
         <q-tab-panel class="px-6" name="NEWS">
-          <game-news-panel :game-id="gameId" :prj-id="gameDetail.prj_id" />
+          <game-news-panel :prj-id="gameDetail.prj_id" :mngr-yn="managerName" />
         </q-tab-panel>
       </q-tab-panels>
     </section>

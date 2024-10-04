@@ -1,25 +1,29 @@
 <script lang="ts" setup>
-import { PostType } from 'src/types/community/post-model';
+import { GameNewsType } from 'src/types/community/news-model';
 
 type Props = {
-  post: PostType;
+  news: GameNewsType;
 };
 const props = defineProps<Props>();
 </script>
 <template>
-  <div class="py-[16px] border-b border-[#f0f0f0]">
-    <div class="flex justify-between items-end">
-      <div>
-        <p class="text-[#222222] text-base font-medium leading-snug">
-          {{ props.post.title }}
-        </p>
-        <p class="text-[#767676] text-sm font-normal leading-tight mt-1">
-          {{ formatDate(props.post.created_at) }} {{ props.post.mem_nickname }}
-        </p>
-      </div>
-      <div>
-        <q-icon name="img:/icons/icon_comment.svg" size="20px" />
-        <span class="text-[#767676] text-sm font-normal leading-tight">{{ props.post.cmmt_cnt }}</span>
+  <div class="flex no-wrap mt-3">
+    <div class="relative">
+      <c-img :src="props.news.thmn_file.convert_addr" class="h-[78px] w-[139px]" />
+    </div>
+
+    <div class="text-caption q-mb-xs flex-grow pl-2">
+      <div class="flex-col flex h-[78px]">
+        <div>
+          <div class="text-[#222222] text-sm font-semibold leading-tight ellipsis-2-lines">
+            {{ props.news.title }}
+          </div>
+        </div>
+        <div class="row justify-between">
+          <div class="flex text-[#767676]">
+            {{ formatDate(props.news.created_at) }}
+          </div>
+        </div>
       </div>
     </div>
   </div>
