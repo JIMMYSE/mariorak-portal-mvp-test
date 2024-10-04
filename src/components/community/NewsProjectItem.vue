@@ -6,10 +6,6 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-  type: {
-    type: String as PropType<'game' | 'project'>,
-    required: true,
-  },
   badge: {
     type: Array as PropType<string[]>,
     required: true,
@@ -18,20 +14,6 @@ const props = defineProps({
     type: String,
     required: true,
     default: '',
-  },
-  description: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  status: {
-    type: String,
-    required: true,
-  },
-  like: {
-    type: Number,
-    required: true,
-    default: 0,
   },
   imgSrc: {
     type: String,
@@ -72,25 +54,14 @@ watch(height, (newHeight) => {
     console.log('>>>pop', b);
   }
 });
-
-const computedStatus = computed(() => {
-  if (props.status == '10') return '진행전';
-  else if (props.status == '40') return '출시대기';
-  else return `진행률 ${props.status}%`;
-});
 const goToDetail = (id: number) => {
-  if (props.type == 'game') goTo(`/game-pack/game/${id}`);
-  else goTo(`/game-pack/project/${id}`);
+  goTo(`/game-pack/game/${id}`);
 };
 </script>
 
 <template>
   <div class="flex no-wrap" @click="goToDetail(id)">
     <div class="relative">
-      <div class="absolute z-10 w-[55px] top-1 left-1 text-xs" v-if="type == 'project'">
-        <GPbadge :cd="status" section-cd="PRJ_STT" />
-      </div>
-
       <q-img :src="imgSrc" class="rounded-xl h-[78px] w-[139px]" />
     </div>
 
@@ -107,14 +78,7 @@ const goToDetail = (id: number) => {
           </div>
         </div>
         <div class="row justify-between">
-          <div
-            v-if="props.type == 'project'"
-            :class="props?.status ?? null != '00' ? 'text-[#056bf1]' : ''"
-            class="font-medium"
-          >
-            {{ computedStatus }}
-          </div>
-          <div v-else class="flex text-[#767676]">
+          <div class="flex text-[#767676]">
             {{ formatDate(props.date) }}
           </div>
         </div>

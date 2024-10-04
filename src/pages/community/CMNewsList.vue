@@ -51,6 +51,15 @@ const { data: newsList, refetch } = useCommunityNewsList({
       <div class="mt-4">
         <search-g-p-list :type="'game'" />
         <news-project-item />
+        <div class="flex justify-center" v-if="hasNextPage">
+          <c-btn
+            class="enter_btn rounded-[30px] text-primary font-semibold text-sm py-3 pl-10 pr-[30px] mt-[23px]"
+            outline
+            @click="fetchNextPage()"
+            >더보기
+            <c-icon name="down_arrow" size="18px" :color="'#056BF1'" :fill="false" />
+          </c-btn>
+        </div>
       </div>
     </section>
   </q-page>
