@@ -114,6 +114,23 @@ yarn dev // or yarn dev2 dto 업데이트가 없었을시
 yarn build //빌드된 파일은 /dist 폴더에 저장됩니다.
 ```
 
+### DTO 설치
+
+로컬 및 개발 서버에서는 연계된 DTO(meta-airforce-dto, ccf-api-dto) 모두 develop 브랜치를 기준으로 사용합니다.
+만약 `ENOTEMPTY: directory not empty` 관련 오류가 발생하면 대상 모듈의 디렉토리를 제거 후 install을 재시도 합니다.
+
+```shell
+rm -rf ./node_modules/meta-airforce-dto
+
+rm -rf ./node_modules/ccf-api-dto
+```
+
+ccf-api-dto는 운영 환경 배포 시 main 브랜치를 사용합니다. 따라서 운영 배포 시에는 다음 스크립트를 실행합니다.
+
+```shell
+npm run dto:prd
+```
+
 ### Development Environment
 
 프레임워크: Quasar
