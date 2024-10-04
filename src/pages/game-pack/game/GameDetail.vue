@@ -2,25 +2,22 @@
 import GameInfoPanel from './panel/GameInfoPanel.vue';
 import GameBoardPanel from './panel/GameBoardPanel.vue';
 import GameReviewPanel from './panel/GameReviewPanel.vue';
+import { toInteger } from 'lodash';
 
 const route = useRoute();
-const gameId = computed(() => route.params.id.toString());
+const gameId = route.params.id.toString();
 const { data: gameDetail, refetch, isFetching } = useGameDetail(gameId);
-watch(gameId, () => {
-  refetch();
-});
 
 const like = ref(false);
 const tab = ref('INFO');
-const { mutateAsync: onLike } = useLike('projectOrgame', gameId.value, 'game-detail');
+
 const { mutateAsync: onUnlike } = useUnLike('projectOrgame', 'game-detail');
 
 const onLikeProject = async () => {
   like.value = !like.value;
-  like.value ? onLike({}) : onUnlike(gameId.value);
-  await refetch();
+  like.value ? useLike('projectOrgame', gameDetail.value.prj_id, 'game-detail') : onUnlike(gameDetail?.value.prj_id);
 };
-const { data: similarGameData } = useSimilarGameList(gameId.value);
+const { data: similarGameData } = useSimilarGameList(gameId);
 watch(gameDetail, () => {
   like.value = gameDetail?.value?.is_liked ?? false;
 });
@@ -31,6 +28,10 @@ const managerName = computed(() => gameDetail.value.mkr_list.filter((mkr: any) =
 const openStore = () => {
   window.open(gameDetail?.value.stre_url, '_blank');
 };
+
+onMounted(() => {
+  createPageView('GAMD', toInteger(gameId));
+});
 </script>
 <template>
   <q-page v-if="!isFetching">

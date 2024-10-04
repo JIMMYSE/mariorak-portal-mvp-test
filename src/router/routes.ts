@@ -13,6 +13,16 @@ const routes: RouteRecordRaw[] = [
         redirect: { name: 'home-main' },
       },
       {
+        path: 'notice/:id',
+        name: 'notice-detail',
+        meta: {
+          title: '공지사항 상세',
+          bgColor: 'white',
+          noFooter: true,
+        },
+        component: () => import('pages/main/NoticeDetail.vue'),
+      },
+      {
         path: '/home',
         meta: {
           requiresAuth: true,
@@ -258,6 +268,32 @@ const routes: RouteRecordRaw[] = [
               title: '마이페이지',
             },
             component: () => import('pages/my-page/MPMainPage.vue'),
+          },
+          {
+            path: 'activity-manage',
+            name: 'activity-manage',
+            meta: {
+              title: '나의 활동 내역',
+            },
+            component: () => import('pages/my-page/activity/ActivityManage.vue'),
+          },
+          {
+            path: 'like-project',
+            name: 'like-project',
+            meta: {
+              title: '좋아요 표시한 프로젝트',
+              noFooter: true,
+            },
+            component: () => import('pages/my-page/activity/LikeProjectList.vue'),
+          },
+          {
+            path: 'like-game',
+            name: 'like-game',
+            meta: {
+              title: '좋아요 표시한 게임',
+              noFooter: true,
+            },
+            component: () => import('pages/my-page/activity/LikeGameList.vue'),
           },
           {
             path: 'account-manage',
