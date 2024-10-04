@@ -2242,7 +2242,7 @@ caniuse-lite@^1.0.30001599, caniuse-lite@^1.0.30001629:
 
 "ccf-api-dto@github:coarsoft-tmp/ccf-api-dto#develop":
   version "1.0.5"
-  resolved "git+ssh://git@github.com/coarsoft-tmp/ccf-api-dto.git#348e0af35c0250427cc72cfa1c0ccd38c8981cd1"
+  resolved "git+ssh://git@github.com/coarsoft-tmp/ccf-api-dto.git#14c717fc6d2d7336b20c3ef6db439c1f66dee819"
   dependencies:
     jest "^29.7.0"
     josa "^3.0.1"
