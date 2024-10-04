@@ -83,11 +83,9 @@ watchDebounced(
     <section class="my-6">
       <div class="flex justify-between items-center">
         <div>
-          <p class="text-[#222222] text-xl font-semibold leading-7">
-            개발자 게시판 ({{ postList?.pages[0].total ?? 0 }})
-          </p>
+          <p class="text-[#222222] text-xl font-semibold leading-7">게임 소식 ({{ postList?.pages[0].total ?? 0 }})</p>
           <p class="text-[#767676] text-sm font-normal leading-tight mt-[2px]">
-            프로젝트에 참여한 개발자가 작성하는 게시판
+            다른 플랫폼에 올라온 게임 소식 입니다.
           </p>
         </div>
         <q-btn
@@ -105,22 +103,22 @@ watchDebounced(
       <!-- <c-select v-model="searchSort" :options="options" map-options borderless class="w-[80px]" dense /> -->
       <div v-if="isFetched">
         <!-- 반복문 -->
-        <g-p-board-content-item
+        <g-p-news-content-item
           v-for="post in postList?.pages.flatMap((item : any) => item.data)"
           :post="post"
           :key="post.post_id"
           @click="goTo(`/game-pack/project/${gameId}/${post.post_id}`)"
         />
       </div>
-      <div class="flex justify-center" v-if="hasNextPage">
-        <c-btn
-          class="enter_btn rounded-[30px] text-primary font-semibold text-sm py-3 pl-10 pr-[30px] mt-[23px]"
-          outline
-          @click="fetchNextPage()"
-          >더보기
-          <c-icon name="down_arrow" size="18px" :color="'#056BF1'" :fill="false" />
-        </c-btn>
-      </div>
     </section>
+    <div class="flex justify-center" v-if="hasNextPage">
+      <c-btn
+        class="enter_btn rounded-[30px] text-primary font-semibold text-sm py-3 pl-10 pr-[30px] mt-[23px]"
+        outline
+        @click="fetchNextPage()"
+        >더보기
+        <c-icon name="down_arrow" size="18px" :color="'#056BF1'" :fill="false" />
+      </c-btn>
+    </div>
   </div>
 </template>

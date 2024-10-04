@@ -3,6 +3,7 @@ import { off } from 'process';
 
 type Props = {
   gameId: string;
+  prjId: number;
 };
 const props = defineProps<Props>();
 const { maker } = useAuthStore();
@@ -81,7 +82,7 @@ onMounted(() => {
           </p>
         </div>
         <q-btn
-          v-if="maker?.project_histories?.map((prj: any) => prj.prj_id).includes(gameId)"
+          v-if="maker?.project_histories?.map((prj: any) => prj.prj_id).includes(prjId)"
           size="md"
           round
           flat

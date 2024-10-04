@@ -2240,9 +2240,9 @@ caniuse-lite@^1.0.30001599, caniuse-lite@^1.0.30001629:
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001632.tgz"
   integrity sha512-udx3o7yHJfUxMLkGohMlVHCvFvWmirKh9JAH/d7WOLPetlH+LTL5cocMZ0t7oZx/mdlOWXti97xLZWc8uURRHg==
 
-"ccf-api-dto@github:coarsoft-tmp/ccf-api-dto":
+"ccf-api-dto@github:coarsoft-tmp/ccf-api-dto#develop":
   version "1.0.5"
-  resolved "git+ssh://git@github.com/coarsoft-tmp/ccf-api-dto.git#b9fbe800639ed1bc38e3647930a7fdb27f8f8d7f"
+  resolved "git+ssh://git@github.com/coarsoft-tmp/ccf-api-dto.git#348e0af35c0250427cc72cfa1c0ccd38c8981cd1"
   dependencies:
     jest "^29.7.0"
     josa "^3.0.1"
