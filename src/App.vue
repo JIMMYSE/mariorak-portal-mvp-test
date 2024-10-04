@@ -65,7 +65,7 @@ const tabInfos: { icon: string; label: string; name: string; to: string }[] = [
     icon: 'icon_community',
     label: '커뮤니티',
     name: 'community',
-    to: '/setting',
+    to: '/community',
   },
 ];
 const isMain = computed(() => route.name?.toString().includes('main'));
