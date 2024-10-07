@@ -96,7 +96,7 @@ watchDebounced(
           round
           flat
           class="flex justify-center items-center"
-          @click="goTo(`/game-pack/project/${pjId}/board-edit`)"
+          @click="goTo(`/game-pack/board/${pjId}/board-edit`)"
         >
           <q-icon name="img:/icons/icon_add_plus.svg" size="40px" />
         </q-btn>
@@ -116,7 +116,7 @@ watchDebounced(
           v-for="post in postList?.pages.flatMap((item : any) => item.data)"
           :post="post"
           :key="post.post_id"
-          @click="goTo(`/game-pack/project/${pjId}/${post.post_id}`)"
+          @click="goTo(`/game-pack/board/${pjId}/${post.post_id}`)"
         />
       </div>
       <div class="flex justify-center" v-if="hasNextPage">

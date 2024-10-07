@@ -82,8 +82,8 @@ const routes: RouteRecordRaw[] = [
             component: () => import('pages/game-pack/game/GameDetail.vue'),
           },
           {
-            path: 'game/:id/board-edit',
-            name: 'game-board-edit',
+            path: 'board/:id/board-edit',
+            name: 'board-edit',
             meta: {
               title: '게시판 등록',
               bgColor: 'white',
@@ -92,8 +92,8 @@ const routes: RouteRecordRaw[] = [
             component: () => import('pages/game-pack/GPBoardEdit.vue'),
           },
           {
-            path: 'game/:id/:boardId',
-            name: 'game-board-detail',
+            path: 'board/:id/:boardId',
+            name: 'board-detail',
             meta: {
               title: '게시판 상세',
               bgColor: 'white',
@@ -120,26 +120,6 @@ const routes: RouteRecordRaw[] = [
               bgColor: 'white',
             },
             component: () => import('pages/game-pack/project/ProjectDetail.vue'),
-          },
-          {
-            path: 'project/:id/board-edit',
-            name: 'project-board-edit',
-            meta: {
-              title: '게시판 등록',
-              bgColor: 'white',
-              noFooter: true,
-            },
-            component: () => import('pages/game-pack/GPBoardEdit.vue'),
-          },
-          {
-            path: 'project/:id/:boardId',
-            name: 'project-board-detail',
-            meta: {
-              title: '게시판 상세',
-              bgColor: 'white',
-              noFooter: true,
-            },
-            component: () => import('pages/game-pack/GPBoardDetail.vue'),
           },
         ],
       },

@@ -82,7 +82,6 @@ onMounted(() => {
           </p>
         </div>
         <q-btn
-          v-if="maker?.project_histories?.map((prj: any) => prj.prj_id).includes(prjId)"
           size="md"
           round
           flat
