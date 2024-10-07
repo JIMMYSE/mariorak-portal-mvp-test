@@ -12,7 +12,7 @@ const postType = computed(
 );
 const onClickPost = (id: number | null | undefined) => {
   if (!id) return;
-  replaceTo(`/game-pack/project/${prjId}/${id}`);
+  replaceTo(`/game-pack/board/${prjId}/${id}`);
 };
 
 // 댓글 목록
@@ -62,8 +62,6 @@ const onRegisterCommnet = () => {
     <div class="py-[16px] border-b border-[#f0f0f0]">
       <div class="flex justify-between items-end">
         <div>
-          <p class="text-[#222222] text-base font-medium leading-snug">[게임공지] 게임 관련 안내사항</p>
-
           <p class="text-[#222222] text-base font-medium leading-snug">[{{ postType }}] {{ postDetailData?.title }}</p>
           <p class="text-[#767676] text-sm font-normal leading-tight">
             {{ formatDate(postDetailData?.created_at) }} {{ postDetailData?.mem_nickname }}

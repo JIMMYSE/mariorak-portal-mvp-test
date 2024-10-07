@@ -95,7 +95,7 @@ watchDebounced(
           round
           flat
           class="flex justify-center items-center"
-          @click="goTo(`/game-pack/project/${gameId}/board-edit`)"
+          @click="goTo(`/game-pack/board/${prjId}/board-edit`)"
         >
           <q-icon name="img:/icons/icon_add_plus.svg" size="40px" />
         </q-btn>
@@ -108,7 +108,7 @@ watchDebounced(
           v-for="post in postList?.pages.flatMap((item : any) => item.data)"
           :post="post"
           :key="post.post_id"
-          @click="goTo(`/game-pack/project/${gameId}/${post.post_id}`)"
+          @click="goTo(`/game-pack/board/${prjId}/${post.post_id}`)"
         />
       </div>
     </section>
