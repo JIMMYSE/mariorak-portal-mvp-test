@@ -35,7 +35,7 @@ const { request } = useSearchFilter({
     size: 1,
     sort: [
       {
-        created_at: 'asc',
+        created_at: 'desc',
       },
     ],
   },

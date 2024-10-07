@@ -86,13 +86,35 @@ const tempcategoryText = computed(() => {
   return `${prefix} ${postfix}`;
 });
 
-const fileUploader = ref<QUploader | null>(null);
+const fileUploader = ref<any | null>(null);
 
-const onImageUpload = () => {
-  const files = fileUploader.value?.files;
+const getFlieId = async () => {
+  const files = fileUploader.value.files;
+  if (files.length > 0) {
+    const { data } = await uploadFiles({ files: files });
+    return data.data.files.map((file: any) => file.id);
+  } else return [];
 };
+/** 등록 */
+const { mutateAsync, isSuccess, data } = usePostCreate();
 
-const dummyImages = ref([]);
+const onSubmit = handleSubmit(async () => {
+  const fileIds = await getFlieId();
+  if (fileIds) {
+    setFieldValue('attch_file_id_list', fileIds);
+  }
+
+  mutateAsync({
+    ...form,
+  });
+
+  watch(isSuccess, (value) => {
+    if (value) {
+      console.log(data.value);
+      goBack();
+    }
+  });
+});
 
 const onRejected = (e: any) => {
   console.log(e);
@@ -155,7 +177,7 @@ const onRejected = (e: any) => {
         flat
         ref="fileUploader"
         multiple
-        :max-files="5 - dummyImages.length"
+        :max-files="5"
         max-file-size="10485760"
         @rejected="($event) => onRejected($event)"
         accept="image/*"
@@ -163,12 +185,12 @@ const onRejected = (e: any) => {
         <template #header="scope"></template>
         <template #list="scope">
           <div class="flex q-gutter-sm">
-            <div v-for="(img, i) in dummyImages" :key="i" class="w-[75px] h-[75px] relative">
+            <!-- <div v-for="(img, i) in dummyImages" :key="i" class="w-[75px] h-[75px] relative">
               <c-img src="https://picsum.photos/200" class="w-[75px] h-[75px] rounded-[5px]" />
               <button class="absolute top-0 right-0" @click="dummyImages.splice(i, 1)">
                 <q-icon name="img:/icons/close_image.svg" size="16px" />
               </button>
-            </div>
+            </div> -->
             <div v-for="file in scope.files" :key="file.__key" class="flex relative">
               <div v-if="file.__img" class="relative">
                 <c-img :src="file.__img.src" class="w-[75px] h-[75px] rounded-[5px]" />
@@ -180,13 +202,10 @@ const onRejected = (e: any) => {
             <div
               class="w-[75px] h-[75px] bg-[#f0f0f0] rounded-[5px] border border-[#b5b5b5] flex justify-center items-center z-0 relative"
             >
-              <q-uploader-add-trigger
-                style="position: unset; height: 80px"
-                v-if="dummyImages.length + scope.files.length < 5"
-              />
+              <q-uploader-add-trigger style="position: unset; height: 80px" />
               <q-icon :name="`img:/icons/add_image.svg`" class="absolute" />
               <div class="text-[#b5b5b5] text-sm font-medium leading-tight absolute bottom-1">
-                {{ dummyImages.length + scope.files.length }} / 5
+                {{ scope.files.length }} / 5
               </div>
             </div>
           </div>
@@ -198,6 +217,7 @@ const onRejected = (e: any) => {
         class="rounded-[10px] font-semibold text-base mt-[30px] w-full py-[14px] bottom-0"
         color="primary"
         :disable="!meta.valid"
+        @click="onSubmit"
         >게시하기
       </c-btn>
     </section>

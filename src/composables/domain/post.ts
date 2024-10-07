@@ -3,6 +3,7 @@ import {
   PostDetailType,
   PostSearchResType,
   PostCommentListType,
+  PostCreateType,
 } from 'src/types/community/post-model';
 import { MaybeRef, MaybeRefOrGetter } from 'vue';
 const API_URL = '/v3/cm/post';
@@ -49,6 +50,15 @@ export const usePostDetail = ({
   return useQueryFetchItem<PostDetailResType>({
     id: postId.value + subUrl,
     queryKeyName: QUERY_KEY.DETAIL,
+    url: API_URL,
+  });
+};
+
+/**
+ * 게시글 등록
+ */
+export const usePostCreate = () => {
+  return useQueryCreateItem<ApiResponse, PostCreateType>({
     url: API_URL,
   });
 };
