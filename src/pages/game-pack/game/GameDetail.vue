@@ -28,6 +28,11 @@ const managerName = computed(
   () => gameDetail.value.mkr_list.filter((mkr: any) => mkr.mngr_yn)[0]?.mem_nickname ?? null
 );
 
+const { maker } = useAuthStore();
+const isManager = computed(
+  () => (gameDetail.value.mkr_list.filter((mkr: any) => mkr.mngr_yn)[0]?.mem_id ?? null) == maker.mem_id
+);
+
 const openStore = () => {
   window.open(gameDetail?.value.stre_url, '_blank');
 };
@@ -122,7 +127,7 @@ onMounted(() => {
           <game-review-panel :game-id="gameId" :prj-id="gameDetail.prj_id" />
         </q-tab-panel>
         <q-tab-panel class="px-6" name="NEWS">
-          <game-news-panel :prj-id="gameDetail.prj_id" :mngr-yn="managerName" />
+          <game-news-panel :prj-id="gameDetail.prj_id" :mngr-yn="isManager" />
         </q-tab-panel>
       </q-tab-panels>
     </section>

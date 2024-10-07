@@ -1,6 +1,6 @@
 import { GameNewsCreateReqType, GameNewsSearchResType, GameNewsType } from 'src/types/community/news-model';
 import { MaybeRef, MaybeRefOrGetter } from 'vue';
-const API_URL = '/v3/pr/game-news';
+const API_URL = '/v3/pr/project-news';
 const QUERY_KEY = {
   list: 'news-list',
 };

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 type Props = {
-  prjId: number;
+  prjId: string;
   mngrYn: boolean;
 };
 const props = defineProps<Props>();
