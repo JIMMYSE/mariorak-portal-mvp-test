@@ -31,20 +31,6 @@ export const useCommunityNewsList = ({
   });
 };
 
-export const useGameDetail = (id: MaybeRef) => {
-  return useQueryFetchItem<any>({
-    id: id,
-    queryKeyName: QUERY_KEY.DETAIL,
-    url: API_URL,
-  });
-};
-
-export const useSimilarGameList = (id: string) => {
-  return useQueryFetch<any>({
-    url: API_URL + `/similarity/${id}`,
-  });
-};
-
 // 컨퍼런스 목록 조회
 export const useCommunityConferenceList = ({
   searchRequest,
