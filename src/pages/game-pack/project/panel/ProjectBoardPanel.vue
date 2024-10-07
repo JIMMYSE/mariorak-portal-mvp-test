@@ -32,7 +32,7 @@ const { request } = useSearchFilter({
       keyword: '',
     },
     from: 0,
-    size: 1,
+    size: 10,
     sort: [
       {
         created_at: 'asc',

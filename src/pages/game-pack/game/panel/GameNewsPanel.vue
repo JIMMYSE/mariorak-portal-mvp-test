@@ -69,7 +69,7 @@ const openWindow = (url: string) => {
             다른 플랫폼에 올라온 게임 뉴스 입니다.
           </p>
         </div>
-        <q-btn v-if="maker?.mngr_yn" size="md" round flat class="flex justify-center items-center" @click="goTo('')">
+        <q-btn v-if="mngrYn" size="md" round flat class="flex justify-center items-center" @click="goTo('')">
           <q-icon name="img:/icons/icon_add_plus.svg" size="40px" />
         </q-btn>
       </div>

@@ -412,6 +412,7 @@ export function useQueryFetchInfiniteList<T extends ApiListResponse, D extends S
   queryKeyName: string;
   setField: any;
 } & Partial<UseInfiniteQueryOptions<any>>) {
+  const isDev = process.env.IS_DEV;
   const queryReturn = useInfiniteQuery({
     initialPageParam: 0,
     // eslint-disable-next-line @tanstack/query/exhaustive-deps
@@ -419,6 +420,7 @@ export function useQueryFetchInfiniteList<T extends ApiListResponse, D extends S
     queryFn: async ({ pageParam = 0 }) => {
       // searchRequest.value.from = pageParam as number;
       setField('from', pageParam);
+
       const { data } = await useFetchList<T, D>({
         url,
         searchRequest: toValue(searchRequest),

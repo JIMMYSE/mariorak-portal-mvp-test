@@ -110,8 +110,7 @@ const onSubmit = handleSubmit(async () => {
 
   watch(isSuccess, (value) => {
     if (value) {
-      console.log(data.value);
-      goBack();
+      replaceTo(`/game-pack/board/${prjId}/${data.value.data.data.post_id}`);
     }
   });
 });
