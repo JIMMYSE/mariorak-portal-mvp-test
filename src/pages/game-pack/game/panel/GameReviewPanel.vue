@@ -3,6 +3,7 @@ import { off } from 'process';
 
 type Props = {
   gameId: string;
+  prjId: number;
 };
 const props = defineProps<Props>();
 const { maker } = useAuthStore();

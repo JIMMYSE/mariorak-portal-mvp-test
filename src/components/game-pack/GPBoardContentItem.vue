@@ -11,15 +11,15 @@ const props = defineProps<Props>();
     <div class="flex justify-between items-end">
       <div>
         <p class="text-[#222222] text-base font-medium leading-snug">
-          {{ post.title }}
+          {{ props.post.title }}
         </p>
-        <p class="text-[#767676] text-sm font-normal leading-tight">
-          {{ formatDate(post.created_at) }} {{ post.mem_nickname }}
+        <p class="text-[#767676] text-sm font-normal leading-tight mt-1">
+          {{ formatDate(props.post.created_at) }} {{ props.post.mem_nickname }}
         </p>
       </div>
       <div>
         <q-icon name="img:/icons/icon_comment.svg" size="20px" />
-        <span class="text-[#767676] text-sm font-normal leading-tight">{{ post.cmmt_cnt }}</span>
+        <span class="text-[#767676] text-sm font-normal leading-tight">{{ props.post.cmmt_cnt }}</span>
       </div>
     </div>
   </div>
