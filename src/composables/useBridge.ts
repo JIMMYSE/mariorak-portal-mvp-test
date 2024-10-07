@@ -25,16 +25,12 @@ const webkit = window.webkit || {
   },
 };
 
-export type DeviceEventType =
-  | 'back_button_pressed'
-  | 'resumed'
-  | 'paused'
-  | 'login_social';
+export type DeviceEventType = 'back_button_pressed' | 'resumed' | 'paused' | 'login_social';
 export type DeviceEvent = { type: DeviceEventType; detail: any };
 
 export type DeviceInfo = LoginReqType['agent'];
 // 현재 호출한 디바이스가 어떤 것인지 체크합니다.
-export const agentInfo = ref<DeviceInfo | undefined>();
+export const agentInfo = ref<DeviceInfo | undefined | any>();
 export const accessModalVisible = ref(false);
 export const isBackground = ref(false);
 
@@ -45,16 +41,10 @@ const eventListeners: Record<string, Array<(event: DeviceEvent) => void>> = {};
 
 export const useBridge = () => {
   const $q = useQuasar();
-  const os = computed(() =>
-    $q.platform.is.ios ? 'ios' : $q.platform.is.android ? 'android' : 'web'
-  );
+  const os = computed(() => ($q.platform.is.ios ? 'ios' : $q.platform.is.android ? 'android' : 'web'));
   const deviceType: ComputedRef<DeviceType> = computed(
     () =>
-      $q.platform.is.desktop || $q.platform.is.mac
-        ? 'PC'
-        : $q.platform.is.iphone || $q.platform.is.ipad
-        ? 'iOS'
-        : 'aOS'
+      $q.platform.is.desktop || $q.platform.is.mac ? 'PC' : $q.platform.is.iphone || $q.platform.is.ipad ? 'iOS' : 'aOS'
     // /iPhone/i.test(navigator.userAgent)
     //   ? 'iOS'
     //   : /Android/i.test(navigator.userAgent)
@@ -116,13 +106,7 @@ export const useBridge = () => {
   }
 
   const queryClient = useQueryClient();
-  const queryKeys = [
-    ['notice'],
-    ['bookstore'],
-    ['library'],
-    ['notification'],
-    ['banner'],
-  ];
+  const queryKeys = [['notice'], ['bookstore'], ['library'], ['notification'], ['banner']];
 
   //controll accessbilityModal
   // function showAccessibilityModal() {
@@ -163,16 +147,10 @@ export const useBridge = () => {
   /**
    * @param  type;
    * @param  listener*/
-  function addEventListener(
-    type: DeviceEventType,
-    listener: (event: DeviceEvent) => void
-  ) {
+  function addEventListener(type: DeviceEventType, listener: (event: DeviceEvent) => void) {
     eventListeners[type] = [...(eventListeners[type] ?? []), listener];
     // return handler to remove event listener
-    return () =>
-      (eventListeners[type] = eventListeners[type].filter(
-        (cb) => cb !== listener
-      ));
+    return () => (eventListeners[type] = eventListeners[type].filter((cb) => cb !== listener));
   }
 
   /**  @param  type;*/
@@ -409,6 +387,7 @@ export const useBridge = () => {
         };
 
         try {
+          // @ts-expect-error webkit  messageHandlers
           webkit.messageHandlers.iOSBridge.postMessage(payload);
         } catch (e) {
           error(e);
@@ -425,6 +404,7 @@ export const useBridge = () => {
         };
 
         try {
+          // @ts-expect-error webkit  messageHandlers
           webkit.messageHandlers.iOSBridge.postMessage(payload);
         } catch (e) {
           error(e);
@@ -438,6 +418,7 @@ export const useBridge = () => {
         };
 
         try {
+          // @ts-expect-error webkit  messageHandlers
           webkit.messageHandlers.iOSBridge.postMessage(payload);
         } catch (e) {
           error(e);
@@ -456,6 +437,7 @@ export const useBridge = () => {
         };
 
         try {
+          // @ts-expect-error webkit  messageHandlers
           webkit.messageHandlers.iOSBridge.postMessage(payload);
         } catch (e) {
           error(e);
@@ -471,6 +453,7 @@ export const useBridge = () => {
         };
 
         try {
+          // @ts-expect-error webkit  messageHandlers
           webkit.messageHandlers.iOSBridge.postMessage(payload);
         } catch (e) {
           error(e);
@@ -486,6 +469,7 @@ export const useBridge = () => {
         };
 
         try {
+          // @ts-expect-error webkit  messageHandlers
           webkit.messageHandlers.iOSBridge.postMessage(payload);
         } catch (e) {
           error(e);
@@ -505,6 +489,7 @@ export const useBridge = () => {
 
         log('loginSocial', payload);
         try {
+          // @ts-expect-error webkit  messageHandlers
           webkit.messageHandlers.iOSBridge.postMessage(payload);
         } catch (e) {
           error(e);
@@ -517,6 +502,7 @@ export const useBridge = () => {
 
         log('disconnectSocial', payload);
         try {
+          // @ts-expect-error webkit  messageHandlers
           webkit.messageHandlers.iOSBridge.postMessage(payload);
         } catch (e) {
           error(e);
@@ -534,6 +520,7 @@ export const useBridge = () => {
         };
 
         try {
+          // @ts-expect-error webkit  messageHandlers
           webkit.messageHandlers.iOSBridge.postMessage(payload);
         } catch (e) {
           error(e);
@@ -548,6 +535,7 @@ export const useBridge = () => {
         };
 
         try {
+          // @ts-expect-error webkit  messageHandlers
           webkit.messageHandlers.iOSBridge.postMessage(payload);
         } catch (e) {
           error(e);
@@ -573,6 +561,7 @@ export const useBridge = () => {
         log('enterRoom', payload);
 
         try {
+          // @ts-expect-error webkit  messageHandlers
           webkit.messageHandlers.iOSBridge.postMessage(payload);
           isBackground.value = true;
         } catch (e) {
@@ -590,6 +579,7 @@ export const useBridge = () => {
         log('shareURL', payload);
 
         try {
+          // @ts-expect-error webkit  messageHandlers
           webkit.messageHandlers.iOSBridge.postMessage(payload);
         } catch (e) {
           error(e);
@@ -606,6 +596,7 @@ export const useBridge = () => {
         };
 
         try {
+          // @ts-expect-error webkit  messageHandlers
           webkit.messageHandlers.iOSBridge.postMessage(payload);
         } catch (e) {
           error(e);
@@ -621,6 +612,7 @@ export const useBridge = () => {
         };
 
         try {
+          // @ts-expect-error webkit  messageHandlers
           webkit.messageHandlers.iOSBridge.postMessage(payload);
         } catch (e) {
           error(e);
@@ -632,11 +624,7 @@ export const useBridge = () => {
 
   api.getAgentInfo();
 
-  if (
-    !!window.refetchData &&
-    !!window.getDeviceInfoCB &&
-    !!window.onDeviceEvent
-  ) {
+  if (!!window.refetchData && !!window.getDeviceInfoCB && !!window.onDeviceEvent) {
     log('webBridgeReady');
     try {
       api.webBridgeReady();

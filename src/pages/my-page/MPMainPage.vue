@@ -9,10 +9,10 @@ const infoItems = ref<ListItem[]>([
   { label: '개인 프로필 관리', name: 'user-profile-manage' },
   { label: '개발자 프로필 관리', name: 'maker-profile-manage' },
 ]);
-const ActionItems = ref<ListItem[]>([
-  { label: '나의 프로젝트 내역', name: '' },
-  { label: '나의 서포트 내역', name: '' },
-  { label: '나의 활동 내역', name: '' },
+const activityItems = ref<ListItem[]>([
+  // { label: '나의 프로젝트 내역', name: '' },
+  // { label: '나의 서포트 내역', name: '' },
+  { label: '나의 활동 내역', name: 'activity-manage' },
 ]);
 const csItems = ref<ListItem[]>([{ label: '1:1 문의하기', name: '' }]);
 
@@ -102,7 +102,7 @@ const { enterRoom } = useBridge();
       <div class="mt-[8px]">
         <q-list bordered class="rounded-[10px] border-[#f0f0f0]">
           <q-item
-            v-for="item in ActionItems"
+            v-for="item in activityItems"
             :key="item.label"
             clickable
             @click="goToPage(item.name)"

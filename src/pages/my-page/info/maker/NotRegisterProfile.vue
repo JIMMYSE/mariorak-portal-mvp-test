@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-const { data: myMakerProfileData, isFinished } = useMyMakerDetail();
+const { data: myMakerProfileData, isFinished, error } = useMyMakerDetail();
 const myMakerProfile = computed(() => myMakerProfileData.value?.data);
 
-watch(myMakerProfile, (newVal) => {
-  console.log('>>>', newVal);
+watch(isFinished, (newVal) => {
+  console.log('>>>', error.value);
   if (newVal) {
-    if (newVal?.mkr_id != null) {
+    if (myMakerProfile.value) {
       replaceToName('maker-profile-manage');
     }
   }

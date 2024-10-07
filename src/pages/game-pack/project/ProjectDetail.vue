@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 import ProjectInfoPanel from './panel/ProjectInfoPanel.vue';
 import ProjectBoardPanel from './panel/ProjectBoardPanel.vue';
+import { toInteger } from 'lodash';
 
 const route = useRoute();
 const projectId = route.params.id.toString();
+
 const { data: projectDetail, refetch } = useProjectDetail(projectId);
 
 const like = ref(false);
@@ -14,13 +16,16 @@ const { mutateAsync: onUnlike } = useUnLike('projectOrgame', 'project-detail');
 const onLikeProject = async () => {
   like.value = !like.value;
   like.value ? onLike({}) : onUnlike(projectId);
-  await refetch();
 };
 const { data: similarProjectData } = useSimilarProjectList(projectId);
 watch(projectDetail, () => {
   like.value = projectDetail?.value?.is_liked ?? false;
 });
 const { enterRoom } = useBridge();
+
+onMounted(() => {
+  createPageView('PRJD', toInteger(projectId));
+});
 </script>
 <template>
   <q-page>

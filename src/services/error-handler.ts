@@ -15,9 +15,7 @@ export function handleAxiosError(error: any, router: Router): void {
     //  사용자 에러 처리
     const errorCode = parseInt(error.response?.data?.code);
     if (errorCode && errorCodeList.includes(errorCode)) {
-      const errorAction = errorActions.find(
-        (item) => item.code === parseInt(error.response.data.code)
-      );
+      const errorAction = errorActions.find((item) => item.code === parseInt(error.response.data.code));
       if (errorAction) {
         const { action, message } = errorAction;
 
@@ -54,7 +52,8 @@ export function handleAxiosError(error: any, router: Router): void {
     } else if (status === HttpStatusCode.NotFound) {
       // console.log(error.response.data);
       // 모바일 인증하는 경우 콤포넌트 내부에서 다이얼로그 처리하기 때문에 다이얼로그 띄우지 않음
-      const ignoreList = ['/v2/users/nicknames/'];
+      const ignoreList = ['/v2/users/nicknames/', '/v3/mb/maker/profile'];
+      console.log(ignoreList.some((url) => error.config.url.startsWith(url)));
       // 가입시 사용자 이메일 존재여부 확인용이므로 에러처리하지 않음
       if (ignoreList.some((url) => error.config.url.startsWith(url))) return;
 
