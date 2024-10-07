@@ -112,7 +112,7 @@ onMounted(() => {
           <game-info-panel :detail="gameDetail" :similar-project-list="similarGameData?.rows" />
         </q-tab-panel>
         <q-tab-panel class="px-6" name="BOARD">
-          <game-board-panel :game-id="gameId" />
+          <game-board-panel :prj-id="gameDetail.prj_id" />
         </q-tab-panel>
         <q-tab-panel class="px-6" name="REVIEW">
           <game-review-panel :game-id="gameId" />

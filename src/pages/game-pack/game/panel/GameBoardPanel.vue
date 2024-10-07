@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 type Props = {
-  gameId: string;
+  prjId: string;
 };
 const props = defineProps<Props>();
 const searchSort = ref('latest');
@@ -23,7 +23,7 @@ const { request } = useSearchFilter({
   requestDefault: {
     filters: {
       prj_id: {
-        eq: props.gameId,
+        eq: props.prjId,
       },
     },
     search: {
@@ -90,7 +90,7 @@ watchDebounced(
           </p>
         </div>
         <q-btn
-          v-if="maker?.project_histories?.map((prj: any) => prj.prj_id).includes(gameId)"
+          v-if="maker?.project_histories?.map((prj: any) => prj.prj_id).includes(prjId)"
           size="md"
           round
           flat
