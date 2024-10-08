@@ -82,8 +82,8 @@ const routes: RouteRecordRaw[] = [
             component: () => import('pages/game-pack/game/GameDetail.vue'),
           },
           {
-            path: 'game/:id/board-edit',
-            name: 'game-board-edit',
+            path: 'board/:id/board-edit',
+            name: 'board-edit',
             meta: {
               title: '게시판 등록',
               bgColor: 'white',
@@ -92,10 +92,10 @@ const routes: RouteRecordRaw[] = [
             component: () => import('pages/game-pack/GPBoardEdit.vue'),
           },
           {
-            path: 'game/:id/:boardId',
-            name: 'game-board-detail',
+            path: 'board/:id/:boardId',
+            name: 'board-detail',
             meta: {
-              title: '게시판 상세',
+              title: '게시글 상세',
               bgColor: 'white',
               noFooter: true,
             },
@@ -122,24 +122,24 @@ const routes: RouteRecordRaw[] = [
             component: () => import('pages/game-pack/project/ProjectDetail.vue'),
           },
           {
-            path: 'project/:id/board-edit',
-            name: 'project-board-edit',
+            path: 'news/:id/news-edit',
+            name: 'news-edit',
             meta: {
-              title: '게시판 등록',
+              title: '뉴스 등록하기',
               bgColor: 'white',
               noFooter: true,
             },
-            component: () => import('pages/game-pack/GPBoardEdit.vue'),
+            component: () => import('pages/game-pack/GPNewsEdit.vue'),
           },
           {
-            path: 'project/:id/:boardId',
-            name: 'project-board-detail',
+            path: 'review/:id/review-edit',
+            name: 'review-edit',
             meta: {
-              title: '게시판 상세',
+              title: '리뷰 작성',
               bgColor: 'white',
               noFooter: true,
             },
-            component: () => import('pages/game-pack/GPBoardDetail.vue'),
+            component: () => import('pages/game-pack/GPReviewEdit.vue'),
           },
         ],
       },

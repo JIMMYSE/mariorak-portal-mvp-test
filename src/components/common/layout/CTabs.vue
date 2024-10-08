@@ -24,15 +24,11 @@ const model = defineModel<Model>();
     v-model="model"
     :align="props.align"
     active-color="primary"
+    keep-alive
     content-class="text-zinc-500"
   >
     <template v-for="tab in props.tabs" :key="tab.name">
-      <q-tab
-        class="px-6"
-        :name="tab.name"
-        :label="tab.label"
-        :disable="props.disable"
-      />
+      <q-tab class="px-6" :name="tab.name" :label="tab.label" :disable="props.disable" />
     </template>
   </q-tabs>
   <q-separator />

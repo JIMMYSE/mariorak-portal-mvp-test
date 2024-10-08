@@ -2,6 +2,7 @@
 import GameInfoPanel from './panel/GameInfoPanel.vue';
 import GameBoardPanel from './panel/GameBoardPanel.vue';
 import GameReviewPanel from './panel/GameReviewPanel.vue';
+import GameNewsPanel from './panel/GameNewsPanel.vue';
 import { toInteger } from 'lodash';
 
 const route = useRoute();
@@ -23,7 +24,14 @@ watch(gameDetail, () => {
 });
 const { enterRoom } = useBridge();
 
-const managerName = computed(() => gameDetail.value.mkr_list.filter((mkr: any) => mkr.mngr_yn)[0].mem_nickname);
+const managerName = computed(
+  () => gameDetail.value.mkr_list.filter((mkr: any) => mkr.mngr_yn)[0]?.mem_nickname ?? null
+);
+
+const { maker } = useAuthStore();
+const isManager = computed(
+  () => (gameDetail.value.mkr_list.filter((mkr: any) => mkr.mngr_yn)[0]?.mem_id ?? null) == maker.mem_id
+);
 
 const openStore = () => {
   window.open(gameDetail?.value.stre_url, '_blank');
@@ -104,18 +112,22 @@ onMounted(() => {
           { label: '정보', name: 'INFO' },
           { label: '게시판', name: 'BOARD' },
           { label: '리뷰', name: 'REVIEW' },
+          { label: '뉴스', name: 'NEWS' },
         ]"
       />
 
-      <q-tab-panels v-model="tab" animated>
+      <q-tab-panels v-model="tab" animated :keep-alive-include="tab">
         <q-tab-panel class="px-6" name="INFO">
           <game-info-panel :detail="gameDetail" :similar-project-list="similarGameData?.rows" />
         </q-tab-panel>
         <q-tab-panel class="px-6" name="BOARD">
-          <game-board-panel :game-id="gameId" />
+          <game-board-panel :game-id="gameId" :prj-id="gameDetail.prj_id" />
         </q-tab-panel>
         <q-tab-panel class="px-6" name="REVIEW">
-          <game-review-panel :game-id="gameId" />
+          <game-review-panel :game-id="gameId" :prj-id="gameDetail.prj_id" />
+        </q-tab-panel>
+        <q-tab-panel class="px-6" name="NEWS">
+          <game-news-panel :prj-id="gameDetail.prj_id" :mngr-yn="isManager" />
         </q-tab-panel>
       </q-tab-panels>
     </section>

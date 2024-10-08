@@ -3,13 +3,18 @@ import {
   PostDetailType,
   PostSearchResType,
   PostCommentListType,
+  PostCreateType,
 } from 'src/types/community/post-model';
 import { MaybeRef, MaybeRefOrGetter } from 'vue';
+const currentPost = ref(null);
 const API_URL = '/v3/cm/post';
 const QUERY_KEY = {
   list: 'post-list',
   DETAIL: 'post-detail',
   COMMENT: 'post-comment',
+};
+export const useCurrentPostInfo = () => {
+  return { currentPost };
 };
 
 export const usePostList = ({
@@ -53,6 +58,15 @@ export const usePostDetail = ({
   });
 };
 
+/**
+ * 게시글 등록
+ */
+export const usePostCreate = () => {
+  return useQueryCreateItem<ApiResponse, PostCreateType>({
+    url: API_URL,
+  });
+};
+
 // 게시글 목록 조회
 export const usePostCommentList = ({
   postId,
@@ -81,5 +95,11 @@ export const useCreateComment = (id: MaybeRefOrGetter<Id>, cont: any) => {
     data: {
       cont,
     },
+  });
+};
+
+export const usePostDelete = (id: MaybeRefOrGetter<Id>) => {
+  return useQueryDeleteItem({
+    url: API_URL,
   });
 };
