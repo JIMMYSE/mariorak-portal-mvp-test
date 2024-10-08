@@ -116,7 +116,7 @@ onMounted(() => {
         ]"
       />
 
-      <q-tab-panels v-model="tab" animated>
+      <q-tab-panels v-model="tab" animated :keep-alive-include="tab">
         <q-tab-panel class="px-6" name="INFO">
           <game-info-panel :detail="gameDetail" :similar-project-list="similarGameData?.rows" />
         </q-tab-panel>

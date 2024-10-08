@@ -6,7 +6,7 @@
   <div class="my-[calc(var(--statusbar-h)+var(--main-header-h))]">
     <div>
       <router-view v-slot="{ Component, route }">
-        <component :is="Component" :key="route.path" />
+        <keep-alive> <component :is="Component" :key="route.path" /></keep-alive>
       </router-view>
     </div>
   </div>

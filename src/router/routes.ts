@@ -121,6 +121,16 @@ const routes: RouteRecordRaw[] = [
             },
             component: () => import('pages/game-pack/project/ProjectDetail.vue'),
           },
+          {
+            path: 'news/:id/news-edit',
+            name: 'news-edit',
+            meta: {
+              title: '뉴스 등록하기',
+              bgColor: 'white',
+              noFooter: true,
+            },
+            component: () => import('pages/game-pack/GPNewsEdit.vue'),
+          },
         ],
       },
       {
