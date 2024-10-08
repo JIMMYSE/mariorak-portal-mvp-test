@@ -95,7 +95,7 @@ const routes: RouteRecordRaw[] = [
             path: 'board/:id/:boardId',
             name: 'board-detail',
             meta: {
-              title: '게시판 상세',
+              title: '게시글 상세',
               bgColor: 'white',
               noFooter: true,
             },

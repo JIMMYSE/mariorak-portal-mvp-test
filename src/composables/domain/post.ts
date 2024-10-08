@@ -6,11 +6,15 @@ import {
   PostCreateType,
 } from 'src/types/community/post-model';
 import { MaybeRef, MaybeRefOrGetter } from 'vue';
+const currentPost = ref(null);
 const API_URL = '/v3/cm/post';
 const QUERY_KEY = {
   list: 'post-list',
   DETAIL: 'post-detail',
   COMMENT: 'post-comment',
+};
+export const useCurrentPostInfo = () => {
+  return { currentPost };
 };
 
 export const usePostList = ({
@@ -91,5 +95,11 @@ export const useCreateComment = (id: MaybeRefOrGetter<Id>, cont: any) => {
     data: {
       cont,
     },
+  });
+};
+
+export const usePostDelete = (id: MaybeRefOrGetter<Id>) => {
+  return useQueryDeleteItem({
+    url: API_URL,
   });
 };

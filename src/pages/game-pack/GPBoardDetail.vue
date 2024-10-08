@@ -48,6 +48,16 @@ const { data: commentList, refetch } = usePostCommentList({
   },
 });
 
+const { currentPost } = useCurrentPostInfo();
+watch(postDetailData, () => {
+  if (postDetailData.value) {
+    currentPost.value = postDetailData.value;
+  }
+});
+
+onUnmounted(() => {
+  currentPost.value = null;
+});
 // 댓글 등록
 
 const newCommnet = ref('');
