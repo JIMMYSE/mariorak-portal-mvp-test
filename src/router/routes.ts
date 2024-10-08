@@ -131,6 +131,16 @@ const routes: RouteRecordRaw[] = [
             },
             component: () => import('pages/game-pack/GPNewsEdit.vue'),
           },
+          {
+            path: 'review/:id/review-edit',
+            name: 'review-edit',
+            meta: {
+              title: '리뷰 작성',
+              bgColor: 'white',
+              noFooter: true,
+            },
+            component: () => import('pages/game-pack/GPReviewEdit.vue'),
+          },
         ],
       },
       {

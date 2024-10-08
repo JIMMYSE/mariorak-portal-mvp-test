@@ -55,13 +55,9 @@ const {
   data: reviewList,
   hasNextPage,
   fetchNextPage,
-  isFetched,
   refetch,
 } = useReviewList(props.gameId, {
   searchRequest: queryParam,
-  queryOption: {
-    enabled: true,
-  },
   setField: setFieldValue, // TODO 추후 형태 변경필요
 });
 
@@ -86,7 +82,7 @@ onMounted(() => {
           round
           flat
           class="flex justify-center items-center"
-          @click="goTo('/game-pack/project/1/board-edit')"
+          @click="goTo(`/game-pack/review/${props.gameId}/review-edit`)"
         >
           <q-icon name="img:/icons/icon_add_plus.svg" size="40px" />
         </q-btn>

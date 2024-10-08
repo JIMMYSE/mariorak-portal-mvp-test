@@ -3,10 +3,10 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="my-[calc(var(--statusbar-h)+var(--main-header-h))]">
+  <div class="py-[calc(var(--statusbar-h)+var(--main-header-h))]">
     <div>
       <router-view v-slot="{ Component, route }">
-        <keep-alive> <component :is="Component" :key="route.path" /></keep-alive>
+        <component :is="Component" :key="route.path" />
       </router-view>
     </div>
   </div>
