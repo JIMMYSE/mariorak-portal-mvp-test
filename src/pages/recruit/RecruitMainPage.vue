@@ -40,6 +40,11 @@ const recommendedProjectList = computed(() => {
       </div>
     </section>
 
+    <section class="mt-[55px]">
+      <h2 class="pl-6 text-[22px] font-semibold">CCF와 함께하는 프로 PD</h2>
+      <img src="/images/recruit/mainKV/addPROPD.png" alt="banner" class="w-full" />
+    </section>
+
     <!-- 배너영역 -->
     <!-- <section class="mt-[55px]">
       <img src="/images/dummy/banner_dummy.png" alt="banner" class="w-full" />
