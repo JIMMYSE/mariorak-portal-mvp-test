@@ -252,6 +252,56 @@ const routes: RouteRecordRaw[] = [
               },
             ],
           },
+          // 개발자 게시판
+          {
+            path: 'maker/board/list',
+            name: 'maker-board-list',
+            meta: {
+              title: '개발자 게시판 목록',
+            },
+            component: () => import('pages/recruit/RecruitMakerProfile.vue'),
+          },
+          {
+            path: 'maker/board/edit',
+            name: 'maker-board-edit',
+            meta: {
+              title: '개발자 게시판 작성',
+            },
+            component: () => import('pages/recruit/RecruitMakerProfile.vue'),
+          },
+          {
+            path: 'maker/board/:id',
+            name: 'maker-board-detail',
+            meta: {
+              title: '개발자 게시판 조회',
+            },
+            component: () => import('pages/recruit/RecruitMakerProfile.vue'),
+          },
+          // 서포터즈 게시판
+          {
+            path: 'supporters/board/list',
+            name: 'supporters-board-list',
+            meta: {
+              title: '서포터즈 게시판 목록',
+            },
+            component: () => import('pages/recruit/RecruitMakerProfile.vue'),
+          },
+          {
+            path: 'supporters/board/edit',
+            name: 'supporters-board-edit',
+            meta: {
+              title: '서포터즈 게시판 작성',
+            },
+            component: () => import('pages/recruit/RecruitMakerProfile.vue'),
+          },
+          {
+            path: 'supporters/board/:id',
+            name: 'supporters-board-detail',
+            meta: {
+              title: '서포터즈 게시판 조회',
+            },
+            component: () => import('pages/recruit/RecruitMakerProfile.vue'),
+          },
         ],
       },
       {
