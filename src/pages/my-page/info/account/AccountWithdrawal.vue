@@ -2,39 +2,24 @@
 const { user } = useAuthStore();
 
 const { unregister } = useAuthUnregister();
+const cont = ref('');
 const withdrawal = () => {
   useMyConfirmDialog({
     htmlText: `<div class="text-center">${user.nickname} 님, <br/> 정말 탈퇴하시겠습니까? </div>`,
   }).onOk(() => {
-    unregister(() => {
-      goToName('login');
-    });
+    console.log(reason.value, cont.value);
+    unregister(
+      () => {
+        goToName('login');
+      },
+      reason.value,
+      cont.value
+    );
   });
 };
 
 const reason = ref('');
-const reasons = [
-  {
-    label: '재가입(ID변경)',
-    value: 'rejoin',
-  },
-  {
-    label: '나에게 필요한 정보가 부족한 것 같습니다.',
-    value: 'info',
-  },
-  {
-    label: '타사용자로 인한 불쾌감',
-    value: 'bad',
-  },
-  {
-    label: '개인정보 유출 방지 등 보안 상의 문제',
-    value: 'privacy',
-  },
-  {
-    label: '기타',
-    value: 'etc',
-  },
-];
+const { options: reasons } = useCommonCode('WHDR_RSN');
 
 const checkWithdrawal = ref(false);
 const disabled = computed(() => {
@@ -72,11 +57,20 @@ const onSubmit = () => {
           <div class="text-[#767676]">{{ r.label }}</div>
         </div>
       </div>
-      <div class="w-full min-h-[114px] bg-[#f7f7f7] rounded-[10px] p-3">
-        <div class="text-[#767676] leading-normal">탈퇴사유를 직접 입력해주세요.</div>
+    </section>
+    <section class="px-6">
+      <div class="bg-[#f7f7f7] rounded-[10px]">
+        <c-input
+          class="w-full h-[114px]"
+          type="textarea"
+          :clearable="false"
+          v-model="cont"
+          placeholder="탈퇴사유를 직접 입력해주세요."
+          input-class="bg-[#f7f7f7] px-3 text-[#767676] font-normal text-base "
+        />
       </div>
     </section>
-    <section class="p-3 mb-20">
+    <section class="p-3 mt-4 mb-20">
       <div class="flex justify-start items-center">
         <c-checkbox v-model="checkWithdrawal">
           <div class="text-[#222222] text-lg">상기 내용을 확인하였으며 동의합니다.</div>
