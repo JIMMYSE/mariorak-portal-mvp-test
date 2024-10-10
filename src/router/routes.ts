@@ -233,8 +233,9 @@ const routes: RouteRecordRaw[] = [
             name: 'community-profile',
             meta: {
               title: '소식통 상세',
+              noFooter: true,
             },
-            component: () => import('pages/recruit/RecruitMakerProfile.vue'),
+            component: () => import('pages/community/CMNewsDetail.vue'),
           },
           {
             path: 'conference/:id',
