@@ -2,10 +2,10 @@
 const { request } = useSearchFilter({
   requestDefault: {
     from: 0,
-    size: 5,
+    size: null,
     sort: [
       {
-        created_at: 'desc',
+        clum_sesn_id: 'asc',
       },
     ],
   },
@@ -22,11 +22,22 @@ const {
 
 const queryParam = ref(form);
 
-const { data: newsList, refetch } = useCommunityNewsList({
+const { data: seasonList, refetch } = useColumnSeasonList({
   searchRequest: queryParam,
   queryOption: {
     enabled: true,
   },
+});
+
+const searchSort = ref(1);
+const options = seasonList?.value?.rows.map((item) => ({
+  label: item.name,
+  value: item.clum_sesn_id,
+}));
+
+// 검색 정렬 변경 시
+watch(searchSort, (newVal) => {
+  refetch();
 });
 </script>
 
@@ -44,22 +55,14 @@ const { data: newsList, refetch } = useCommunityNewsList({
       </div>
     </section>
     <section class="mt-10">
-      <h2 class="pl-6 text-[20px] font-semibold">시즌 1</h2>
+      <h2 class="pl-6 text-[20px] font-semibold">
+        <c-select v-model="searchSort" :options="options" map-options borderless class="w-[80px]" dense></c-select>
+      </h2>
       <p class="pl-6 mt-[8px] text-[#767676] text-sm font-normal leading-tight">
-        CCF 크루의 막내 귀염둥이 염둥이의 게임 정복기
+        {{ seasonList?.rows[searchSort - 1].desc }}
       </p>
       <div class="mt-4">
-        <search-g-p-list :type="'game'" />
-        <news-project-item />
-        <div class="flex justify-center" v-if="hasNextPage">
-          <c-btn
-            class="enter_btn rounded-[30px] text-primary font-semibold text-sm py-3 pl-10 pr-[30px] mt-[23px]"
-            outline
-            @click="fetchNextPage()"
-            >더보기
-            <c-icon name="down_arrow" size="18px" :color="'#056BF1'" :fill="false" />
-          </c-btn>
-        </div>
+        <news-project-item-list v-if="seasonList && seasonList.rows.length > 0" :season-id="searchSort" />
       </div>
     </section>
   </q-page>

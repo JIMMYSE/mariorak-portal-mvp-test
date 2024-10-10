@@ -229,18 +229,18 @@ const routes: RouteRecordRaw[] = [
             component: () => import('src/pages/community/CMNewsList.vue'),
           },
           {
-            path: 'profile/:id',
+            path: 'news/:id',
             name: 'community-profile',
             meta: {
-              title: '개발자 프로필',
+              title: '소식통 상세',
             },
             component: () => import('pages/recruit/RecruitMakerProfile.vue'),
           },
           {
-            path: 'project/:id',
-            name: 'community-project-detail',
+            path: 'conference/:id',
+            name: 'community-conference-detail',
             meta: {
-              title: '프로젝트 상세',
+              title: '컨퍼런스 상세',
               bgColor: 'white',
             },
             // 프로젝트 상세에 SubLayout 사용
@@ -248,9 +248,59 @@ const routes: RouteRecordRaw[] = [
             children: [
               {
                 path: '',
-                component: () => import('pages/recruit/RecruitProjectDetail.vue'),
+                component: () => import('pages/community/CMConferenceDetail.vue'),
               },
             ],
+          },
+          // 개발자 게시판
+          {
+            path: 'maker/board/list',
+            name: 'maker-board-list',
+            meta: {
+              title: '개발자 게시판 목록',
+            },
+            component: () => import('pages/recruit/RecruitMakerProfile.vue'),
+          },
+          {
+            path: 'maker/board/edit',
+            name: 'maker-board-edit',
+            meta: {
+              title: '개발자 게시판 작성',
+            },
+            component: () => import('pages/recruit/RecruitMakerProfile.vue'),
+          },
+          {
+            path: 'maker/board/:id',
+            name: 'maker-board-detail',
+            meta: {
+              title: '개발자 게시판 조회',
+            },
+            component: () => import('pages/recruit/RecruitMakerProfile.vue'),
+          },
+          // 서포터즈 게시판
+          {
+            path: 'supporters/board/list',
+            name: 'supporters-board-list',
+            meta: {
+              title: '서포터즈 게시판 목록',
+            },
+            component: () => import('pages/recruit/RecruitMakerProfile.vue'),
+          },
+          {
+            path: 'supporters/board/edit',
+            name: 'supporters-board-edit',
+            meta: {
+              title: '서포터즈 게시판 작성',
+            },
+            component: () => import('pages/recruit/RecruitMakerProfile.vue'),
+          },
+          {
+            path: 'supporters/board/:id',
+            name: 'supporters-board-detail',
+            meta: {
+              title: '서포터즈 게시판 조회',
+            },
+            component: () => import('pages/recruit/RecruitMakerProfile.vue'),
           },
         ],
       },
