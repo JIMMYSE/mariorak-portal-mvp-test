@@ -2,7 +2,7 @@
 const { user } = useAuthStore();
 
 const { unregister } = useAuthUnregister();
-const cont = ref('');
+const cont = ref(null);
 const withdrawal = () => {
   useMyConfirmDialog({
     htmlText: `<div class="text-center">${user.nickname} 님, <br/> 정말 탈퇴하시겠습니까? </div>`,
@@ -10,7 +10,7 @@ const withdrawal = () => {
     console.log(reason.value, cont.value);
     unregister(
       () => {
-        goToName('login');
+        goToName('withdrawal-complete');
       },
       reason.value,
       cont.value
@@ -23,7 +23,7 @@ const { options: reasons } = useCommonCode('WHDR_RSN');
 
 const checkWithdrawal = ref(false);
 const disabled = computed(() => {
-  return !checkWithdrawal.value || !reason.value;
+  return (!checkWithdrawal.value || !reason.value) && !(reason.value === '05' && cont.value);
 });
 const onSubmit = () => {
   if (disabled.value) {
@@ -31,6 +31,11 @@ const onSubmit = () => {
   }
   withdrawal();
 };
+watch(reason, (val) => {
+  if (val !== '05') {
+    cont.value = null;
+  }
+});
 </script>
 <template>
   <q-page>
@@ -64,6 +69,7 @@ const onSubmit = () => {
           class="w-full h-[114px]"
           type="textarea"
           :clearable="false"
+          :disable="reason !== '05'"
           v-model="cont"
           placeholder="탈퇴사유를 직접 입력해주세요."
           input-class="bg-[#f7f7f7] px-3 text-[#767676] font-normal text-base "
@@ -89,7 +95,7 @@ const onSubmit = () => {
           :disabled="disabled"
           @click="onSubmit"
         >
-          다음
+          회원탈퇴하기
         </button>
       </div>
     </section>

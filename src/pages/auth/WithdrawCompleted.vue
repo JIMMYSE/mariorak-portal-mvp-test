@@ -1,9 +1,4 @@
-<script setup lang="ts">
-const { user } = useUserInfo();
-const joinStore = useJoinStore();
-
-joinStore.$reset();
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="flex flex-col justify-center items-center h-screen pb-48 bg-white">
@@ -13,12 +8,10 @@ joinStore.$reset();
         <q-img src="/images/icon_shadow.svg" width="110px" height="25px" class="mt-[5px]" />
       </section>
       <section class="mt-[34px]">
-        <p class="px-6 font-pretendard text-[28px] font-semibold text-center leading-[1.325]">
-          {{ user?.nickname }} 님,
-        </p>
-        <p class="px-6 font-pretendard text-[28px] font-semibold text-center leading-relaxed">가입이 완료되었어요!</p>
+        <p class="px-6 font-pretendard text-[28px] font-semibold text-center leading-relaxed">탈퇴가 완료되었어요!</p>
         <p class="mt-2 text-center text-[#767676] text-base font-normal font-['Pretendard'] leading-snug">
-          항상 최선의 서비스로 보답할게요
+          CCF를 이용해주시고 사랑해주셔서 감사합니다. <br />
+          더욱더 노력하고 발전하는 CCF가 되겠습니다
         </p>
       </section>
     </div>
@@ -28,9 +21,9 @@ joinStore.$reset();
         <button
           type="button"
           class="text-center text-white font-base font-medium w-full max-w-[512px] h-[50px] rounded-md bg-primary"
-          @click="goToName('home-main')"
+          @click="goToName('login')"
         >
-          로그인하기
+          확인
         </button>
       </div>
     </section>
