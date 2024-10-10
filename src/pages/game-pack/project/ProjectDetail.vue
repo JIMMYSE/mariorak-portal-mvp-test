@@ -31,6 +31,7 @@ const { maker } = useAuthStore();
 const isManager = computed(
   () => (projectDetail.value.mkr_list.filter((mkr: any) => mkr.mngr_yn)[0]?.mem_id ?? null) == maker.mem_id
 );
+const showDonationPopup = ref(true);
 </script>
 <template>
   <q-page>
@@ -138,6 +139,7 @@ const isManager = computed(
       </q-tab-panels>
     </section>
   </q-page>
+  <c-dialog-content v-model="showDonationPopup" :dialog-title="'후원하기 알림'" />
 </template>
 <style lang="scss" scoped></style>
 1

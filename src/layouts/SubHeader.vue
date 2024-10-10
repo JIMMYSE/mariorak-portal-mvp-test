@@ -6,8 +6,7 @@ const route = useRoute();
 
 const isPost = computed(() => route.name === 'board-detail');
 const showTooltip = ref(false);
-const postId = ref(route.params.boardId);
-const prjId = ref(route.params.id);
+const boardId = computed(() => route.params.boardId);
 
 const { target } = useOutSideTarget();
 
@@ -15,12 +14,12 @@ onClickOutside(target, (event) => {
   showTooltip.value = false;
 });
 
-const { mutateAsync: onDelete } = usePostDelete(postId);
+const { mutateAsync: onDelete } = usePostDelete(boardId);
 const onClick = () => {
   useMyConfirmDialog({
     text: t('message.deleteConfirm'),
   }).onOk(async () => {
-    await onDelete(postId.value.toString());
+    await onDelete(boardId.value.toString());
     goBack();
   });
 };
@@ -41,7 +40,7 @@ const { maker } = useAuthStore();
         {{ route.meta.title }}
       </div>
       <div>
-        <div v-if="isPost && currentPost.mem_id == maker.mem_id">
+        <div v-if="isPost && currentPost?.mem_id == maker?.mem_id">
           <q-icon name="img:/icons/icon_detail.svg" @click="showTooltip = !showTooltip" />
           <div
             class="w-[120px] h-[52px] p-2 bg-white rounded-md shadow flex-col justify-start items-start gap-1 inline-flex tooltip"

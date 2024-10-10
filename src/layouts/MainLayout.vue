@@ -10,7 +10,7 @@ watch(target, (value) => {
 </script>
 
 <template>
-  <div class="py-[calc(var(--statusbar-h)+var(--main-header-h))]" j>
+  <div class="my-[calc(var(--statusbar-h)+var(--main-header-h))]" j>
     <div>
       <router-view v-slot="{ Component, route }" ref="target">
         <component :is="Component" :key="route.path" />
