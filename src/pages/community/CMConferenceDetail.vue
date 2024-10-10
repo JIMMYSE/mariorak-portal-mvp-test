@@ -7,7 +7,7 @@ const route = useRoute();
 const prjRcrtId = toNumber(route.params.id.toString());
 const { data: confDetail, refetch } = useConferenceDetail(prjRcrtId);
 
-const confId = computed(() => toString(confDetail.value?.cnfr_id));
+const boxId = computed(() => toString(confDetail.value?.box_id));
 
 const { enterRoom } = useBridge();
 </script>
@@ -48,7 +48,7 @@ const { enterRoom } = useBridge();
           </c-btn> -->
           <c-btn
             class="w-full rounded-[30px] text-[#056bf1] font-semibold text-sm py-4 pl-10 pr-[30px] mt-[8px]"
-            @click="enterRoom(toInteger(confId), 1)"
+            @click="enterRoom(toInteger(boxId), 1)"
             >컨퍼런스 입장하기
           </c-btn>
         </div>
