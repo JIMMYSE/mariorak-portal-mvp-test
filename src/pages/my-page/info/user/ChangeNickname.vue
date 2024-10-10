@@ -25,7 +25,7 @@ const onSubmit = handleSubmit(async () => {
     text: 'message.nicknameUpdated',
   }).onOk(() => {
     initUserDetailInfo();
-    replaceToName('user-profile-manage');
+    goBack();
   });
 });
 </script>
