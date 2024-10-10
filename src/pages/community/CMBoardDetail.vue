@@ -1,16 +1,15 @@
 <script lang="ts" setup>
 const route = useRoute();
-const postId = ref(route.params.boardId);
-const prjId = ref(route.params.id);
+const postId = ref(route.params.id);
+const prjId = ref(null);
 
-const { data: postDetailData } = usePostDetail({ postId: postId, prjId: prjId, category: 'gp' });
+const { data: postDetailData } = usePostDetail({ postId: postId, prjId: null, category: 'maker' });
 const { options } = useCommonCode('POST_TY');
 const postType = computed(
   () => options.value.find((item: Option) => item.value === postDetailData.value?.post_ty_cd)?.label
 );
 const onClickPost = (id: number | null | undefined) => {
   if (!id) return;
-  replaceTo(`/game-pack/board/${prjId.value}/${id}`);
 };
 
 // 댓글 목록
@@ -113,31 +112,30 @@ const onRegisterReply = (post_cmmt_id: number) => {
       <c-img :src="file.origin_addr" style="max-width: 100%; max-height: 300px" fit="contain" />
     </div>
   </section>
-
   <section>
     <div class="flex justify-between">
       <c-btn
         class="enter_btn rounded-[30px] font-semibold text-base"
         flat
-        :color="postDetailData.prev_post_id ? 'primary' : 'grey-3'"
+        :color="postDetailData?.prev_post_id ? 'primary' : 'grey-3'"
         :disabled="!postDetailData?.prev_post_id"
         @click="onClickPost(postDetailData?.prev_post_id)"
         ><c-icon
           name="icon_preview_arrow"
           size="16px"
-          :color="postDetailData.prev_post_id ? '#056bf1' : '#767676'"
+          :color="postDetailData?.prev_post_id ? '#056bf1' : '#767676'"
           :fill="false"
         />이전글
       </c-btn>
       <c-btn
         class="enter_btn rounded-[30px] font-semibold text-base"
         flat
-        :color="postDetailData.next_post_id ? 'primary' : 'grey-3'"
+        :color="postDetailData?.next_post_id ? 'primary' : 'grey-3'"
         @click="onClickPost(postDetailData?.next_post_id)"
         >다음글<c-icon
           name="icon_enter_arrow"
           size="16px"
-          :color="postDetailData.next_post_id ? '#056bf1' : '#767676'"
+          :color="postDetailData?.next_post_id ? '#056bf1' : '#767676'"
           :fill="false"
         />
       </c-btn>
@@ -223,5 +221,14 @@ const onRegisterReply = (post_cmmt_id: number) => {
       color: #767676;
     }
   }
+}
+</style>
+<style>
+code {
+  display: inline-block;
+  white-space: normal;
+  max-width: 100%;
+  word-break: break-all;
+  word-wrap: break-word;
 }
 </style>

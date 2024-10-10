@@ -4,6 +4,11 @@ import { PostType } from 'src/types/community/post-model';
 type Props = {
   post: PostType;
 };
+
+const { options: postOptions } = useCommonCode('POST_TY');
+const postType = (type: string) => {
+  return postOptions.value.find((item: Option) => item.value === type)?.label;
+};
 const props = defineProps<Props>();
 </script>
 <template>
@@ -11,7 +16,7 @@ const props = defineProps<Props>();
     <div class="flex justify-between items-end">
       <div>
         <p class="text-[#222222] text-base font-medium leading-snug">
-          {{ props.post.title }}
+          [{{ postType(props.post.post_ty_cd) }}] {{ props.post.title }}
         </p>
         <p class="text-[#767676] text-sm font-normal leading-tight mt-1">
           {{ formatDate(props.post.created_at) }} {{ props.post.mem_nickname }}

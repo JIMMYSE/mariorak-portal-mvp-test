@@ -266,16 +266,18 @@ const routes: RouteRecordRaw[] = [
             name: 'maker-board-edit',
             meta: {
               title: '개발자 게시판 작성',
+              noFooter: true,
             },
-            component: () => import('pages/recruit/RecruitMakerProfile.vue'),
+            component: () => import('pages/community/CMBoardEdit.vue'),
           },
           {
             path: 'maker/board/:id',
             name: 'maker-board-detail',
             meta: {
               title: '개발자 게시판 조회',
+              noFooter: true,
             },
-            component: () => import('pages/recruit/RecruitMakerProfile.vue'),
+            component: () => import('pages/community/CMBoardDetail.vue'),
           },
           // 서포터즈 게시판
           {
@@ -291,16 +293,18 @@ const routes: RouteRecordRaw[] = [
             name: 'supporters-board-edit',
             meta: {
               title: '서포터즈 게시판 작성',
+              noFooter: true,
             },
-            component: () => import('pages/recruit/RecruitMakerProfile.vue'),
+            component: () => import('pages/community/CMBoardEdit.vue'),
           },
           {
             path: 'supporters/board/:id',
             name: 'supporters-board-detail',
             meta: {
               title: '서포터즈 게시판 조회',
+              noFooter: true,
             },
-            component: () => import('pages/recruit/RecruitMakerProfile.vue'),
+            component: () => import('pages/community/CMBoardDetail.vue'),
           },
         ],
       },

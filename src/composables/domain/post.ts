@@ -49,7 +49,7 @@ export const usePostDetail = ({
   let subUrl = '';
 
   if (categoryCode != null) subUrl += `?cate=${categoryCode}`;
-  if (prjId.value) subUrl += `&prj=${prjId.value}`;
+  if (prjId?.value) subUrl += `&prj=${prjId?.value}`;
 
   return useQueryFetchItem<PostDetailResType>({
     id: postId.value + subUrl,
