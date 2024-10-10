@@ -9,7 +9,7 @@ const boardType = computed(() =>
   isCommunityBoard.value ? (route.path.includes('supporters') ? 'supporters' : 'maker') : 'game-pack'
 );
 const route = useRoute();
-const prjId = route.params.id;
+const prjId = route.params.boardId;
 const showBottomSheet = ref(false);
 const openCategoryBottomSheet = () => {
   showBottomSheet.value = !showBottomSheet.value;

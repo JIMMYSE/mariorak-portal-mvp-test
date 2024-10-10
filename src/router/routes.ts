@@ -271,7 +271,7 @@ const routes: RouteRecordRaw[] = [
             component: () => import('pages/community/CMBoardEdit.vue'),
           },
           {
-            path: 'maker/board/:id',
+            path: 'maker/board/:boardId',
             name: 'maker-board-detail',
             meta: {
               title: '개발자 게시판 조회',
@@ -298,7 +298,7 @@ const routes: RouteRecordRaw[] = [
             component: () => import('pages/community/CMBoardEdit.vue'),
           },
           {
-            path: 'supporters/board/:id',
+            path: 'supporters/board/:boardId',
             name: 'supporters-board-detail',
             meta: {
               title: '서포터즈 게시판 조회',

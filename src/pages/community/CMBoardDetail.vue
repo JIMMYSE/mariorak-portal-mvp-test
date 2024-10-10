@@ -1,15 +1,21 @@
 <script lang="ts" setup>
 const route = useRoute();
-const postId = ref(route.params.id);
+const postId = ref(route.params.boardId);
 const prjId = ref(null);
 
 const { data: postDetailData } = usePostDetail({ postId: postId, prjId: null, category: 'maker' });
+const isCommunityBoard = computed(() => route.path.includes('community'));
+const boardType = computed(() =>
+  isCommunityBoard.value ? (route.path.includes('supporters') ? 'supporters' : 'maker') : 'game-pack'
+);
 const { options } = useCommonCode('POST_TY');
 const postType = computed(
   () => options.value.find((item: Option) => item.value === postDetailData.value?.post_ty_cd)?.label
 );
 const onClickPost = (id: number | null | undefined) => {
   if (!id) return;
+  if (boardType.value == 'maker') replaceTo(`/community/maker/board/${id}`);
+  else if (boardType.value == 'supporters') replaceTo(`/community/supporters/board/${id}`);
 };
 
 // 댓글 목록

@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 import { onClickOutside } from '@vueuse/core';
+import { includes } from 'lodash';
 const { bgColor } = useHeaderBGColor();
 
 const route = useRoute();
+const deleteActiveList = ['board-detail', 'maker-board-detail', 'supporters-board-detail'];
 
-const isPost = computed(() => route.name === 'board-detail');
+const isPost = computed(() => deleteActiveList.includes(route.name?.toString()));
 const showTooltip = ref(false);
 const boardId = computed(() => route.params.boardId);
 
@@ -43,7 +45,7 @@ const { maker } = useAuthStore();
         <div v-if="isPost && currentPost?.mem_id == maker?.mem_id">
           <q-icon name="img:/icons/icon_detail.svg" @click="showTooltip = !showTooltip" />
           <div
-            class="w-[120px] h-[52px] p-2 bg-white rounded-md shadow flex-col justify-start items-start gap-1 inline-flex tooltip"
+            class="w-[120px] h-[52px] p-2 bg-white rounded-md shadow flex-col justify-start items-start gap-1 inline-flex tooltip cursor-pointer"
             v-if="showTooltip"
           >
             <div class="self-stretch px-3 py-2 bg-white rounded-md justify-start items-start inline-flex">

@@ -33,9 +33,7 @@ const {
   refetch,
 } = usePostList({
   searchRequest: queryParam,
-  queryOption: {
-    enabled: true,
-  },
+
   setField: setFieldValue, // TODO 추후 형태 변경필요
 });
 
@@ -43,6 +41,9 @@ const onClickPostCard = (post: PostType) => {
   if (post.post_cate_cd == '01') goTo(`/community/maker/board/${post.post_id}`);
   else if (post.post_cate_cd == '02') goTo(`/community/supporters/board/${post.post_id}`);
 };
+onMounted(() => {
+  refetch();
+});
 </script>
 <template>
   <ul class="custom-list cursor-pointer">
