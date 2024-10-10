@@ -12,6 +12,7 @@ const QUERY_KEY = {
   DETAIL: 'detail',
   COMMENT: 'comment',
   SEASON: 'season',
+  CONF: 'conference',
 };
 
 // 소식통 목록 조회(커뮤니티 메인)
@@ -84,5 +85,14 @@ export const useColumnSeasonList = ({
     searchRequest,
     queryOption,
     listQueryKeyName: queryKeyName,
+  });
+};
+
+// 컨퍼런스 상세
+export const useConferenceDetail = (id: MaybeRef) => {
+  return useQueryFetchItem<any>({
+    id: id,
+    queryKeyName: QUERY_KEY.CONF,
+    url: CONFERENCE_URL,
   });
 };

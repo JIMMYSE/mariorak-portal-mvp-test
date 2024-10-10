@@ -229,18 +229,18 @@ const routes: RouteRecordRaw[] = [
             component: () => import('src/pages/community/CMNewsList.vue'),
           },
           {
-            path: 'profile/:id',
+            path: 'news/:id',
             name: 'community-profile',
             meta: {
-              title: '개발자 프로필',
+              title: '소식통 상세',
             },
             component: () => import('pages/recruit/RecruitMakerProfile.vue'),
           },
           {
-            path: 'project/:id',
-            name: 'community-project-detail',
+            path: 'conference/:id',
+            name: 'community-conference-detail',
             meta: {
-              title: '프로젝트 상세',
+              title: '컨퍼런스 상세',
               bgColor: 'white',
             },
             // 프로젝트 상세에 SubLayout 사용
@@ -248,7 +248,7 @@ const routes: RouteRecordRaw[] = [
             children: [
               {
                 path: '',
-                component: () => import('pages/recruit/RecruitProjectDetail.vue'),
+                component: () => import('pages/community/CMConferenceDetail.vue'),
               },
             ],
           },
