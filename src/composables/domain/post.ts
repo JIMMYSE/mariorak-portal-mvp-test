@@ -98,6 +98,22 @@ export const useCreateComment = (id: MaybeRefOrGetter<Id>, cont: any) => {
   });
 };
 
+export const useCreateReply = (id: MaybeRefOrGetter<Id>, cont: any, upr_cmmt_id: any) => {
+  return useCreateItem<ApiResponse>({
+    url: API_URL + `/${id}/comment`,
+    data: {
+      cont,
+      upr_cmmt_id,
+    },
+  });
+};
+export const useCommentDelete = (id: MaybeRefOrGetter<Id>) => {
+  return useDeleteItem({
+    url: `/v3/cm/post-comment/${id}`,
+    id: '',
+  });
+};
+
 export const usePostDelete = (id: MaybeRefOrGetter<Id>) => {
   return useQueryDeleteItem({
     url: API_URL,
