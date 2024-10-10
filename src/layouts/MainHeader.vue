@@ -13,7 +13,7 @@ const isNewChat = ref(false);
         <q-btn size="md" round flat :to="{ name: 'my-page' }">
           <q-icon name="img:/icons/icon_profile.svg" size="26px" />
         </q-btn>
-        <q-btn size="md" round flat :to="{ name: 'notice-list' }">
+        <!-- <q-btn size="md" round flat :to="{ name: 'notice-list' }">
           <q-icon name="img:/icons/icon_notification.svg" size="21px">
             <q-badge v-if="isNewNoti" floating color="red" rounded />
           </q-icon>
@@ -22,7 +22,7 @@ const isNewChat = ref(false);
           <q-icon name="img:/icons/icon_chat.svg" size="21px">
             <q-badge v-if="isNewChat" floating color="red" rounded />
           </q-icon>
-        </q-btn>
+        </q-btn> -->
       </div>
     </q-toolbar>
   </q-header>
