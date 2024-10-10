@@ -9,7 +9,7 @@ const goToListPage = () => {
 
 const goToDetailPage = (news: any) => {
   const id = news?.game_id ?? news.prj_id;
-  goTo(`/game-pack/game/${id}`);
+  goTo(`/community/news/${id}`);
 };
 
 const { request } = useSearchFilter({
