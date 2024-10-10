@@ -154,7 +154,7 @@ const onRegisterReply = (clum_cmmt_id: number) => {
     >
       <div class="flex justify-between items-center">
         <p class="text-[#767676] text-xs font-medium leading-none">
-          {{ formatDate(comment?.created_at) }} {{ comment?.mem_nickname }}
+          {{ formatDate(comment?.created_at) }} &nbsp; {{ comment?.mem_nickname }}
         </p>
 
         <c-btn class="p-0 font-semibold text-base" flat @click="onDeleteComment(comment.clum_cmmt_id)"
