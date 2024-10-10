@@ -266,6 +266,7 @@ const routes: RouteRecordRaw[] = [
             name: 'maker-board-edit',
             meta: {
               title: '개발자 게시판 작성',
+              noFooter: true,
             },
             component: () => import('pages/community/CMBoardEdit.vue'),
           },
@@ -274,6 +275,7 @@ const routes: RouteRecordRaw[] = [
             name: 'maker-board-detail',
             meta: {
               title: '개발자 게시판 조회',
+              noFooter: true,
             },
             component: () => import('pages/community/CMBoardDetail.vue'),
           },
@@ -291,6 +293,7 @@ const routes: RouteRecordRaw[] = [
             name: 'supporters-board-edit',
             meta: {
               title: '서포터즈 게시판 작성',
+              noFooter: true,
             },
             component: () => import('pages/community/CMBoardEdit.vue'),
           },
@@ -299,6 +302,7 @@ const routes: RouteRecordRaw[] = [
             name: 'supporters-board-detail',
             meta: {
               title: '서포터즈 게시판 조회',
+              noFooter: true,
             },
             component: () => import('pages/community/CMBoardDetail.vue'),
           },

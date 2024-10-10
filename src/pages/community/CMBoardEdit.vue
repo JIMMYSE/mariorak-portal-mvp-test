@@ -4,7 +4,10 @@ import { isInteger, set, toInteger } from 'lodash';
 import { QUploader } from 'quasar';
 import { PostCreateType } from 'src/types/community/post-model';
 
-const isMakerBoard = ref(true);
+const isCommunityBoard = computed(() => route.path.includes('community'));
+const boardType = computed(() =>
+  isCommunityBoard.value ? (route.path.includes('supporters') ? 'supporters' : 'maker') : 'game-pack'
+);
 const route = useRoute();
 const prjId = route.params.id;
 const showBottomSheet = ref(false);
@@ -58,6 +61,15 @@ watch(
   }
 );
 
+watch(
+  boardType,
+  (type) => {
+    if (type == 'supporters') setFieldValue('post_cate_cd', '02');
+    else setFieldValue('post_cate_cd', '01');
+  },
+  { immediate: true }
+);
+
 // 선택 완료 버튼 클릭시
 const temp = ref({});
 const categoryText = ref('');
@@ -104,13 +116,17 @@ const onSubmit = handleSubmit(async () => {
     setFieldValue('attch_file_id_list', fileIds);
   }
 
+  console.log(form);
   mutateAsync({
     ...form,
   });
 
   watch(isSuccess, (value) => {
     if (value) {
-      replaceTo(`/game-pack/board/${prjId}/${data.value.data.data.post_id}`);
+      if (!isCommunityBoard) replaceTo(`/game-pack/board/${prjId}/${data.value.data.data.post_id}`);
+      else if (boardType.value == 'maker') replaceTo(`/community/maker/board/${data.value.data.data.post_id}`);
+      else if (boardType.value == 'supporters')
+        replaceTo(`/community/supporters/board/${data.value.data.data.post_id}`);
     }
   });
 });
@@ -226,7 +242,7 @@ const onRejected = (e: any) => {
           <p class="text-[#767676] text-xs font-medium leading-none">채널 선택</p>
           <div class="mt-4 flex q-gutter-md">
             <q-item
-              v-if="isMakerBoard"
+              v-if="!isCommunityBoard"
               v-ripple
               clickable
               @click="setFieldValue('prj_id', null)"

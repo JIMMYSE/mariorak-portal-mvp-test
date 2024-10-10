@@ -112,57 +112,30 @@ const onRegisterReply = (post_cmmt_id: number) => {
       <c-img :src="file.origin_addr" style="max-width: 100%; max-height: 300px" fit="contain" />
     </div>
   </section>
-  <div class="flex justify-between">
-      <c-btn
-        class="enter_btn rounded-[30px] font-semibold text-base"
-        flat
-        :color="postDetailData.prev_post_id ? 'primary' : 'grey-3'"
-        :disabled="!postDetailData?.prev_post_id"
-        @click="onClickPost(postDetailData?.prev_post_id)"
-        ><c-icon
-          name="icon_preview_arrow"
-          size="16px"
-          :color="postDetailData.prev_post_id ? '#056bf1' : '#767676'"
-          :fill="false"
-        />이전글
-      </c-btn>
-      <c-btn
-        class="enter_btn rounded-[30px] font-semibold text-base"
-        flat
-        :color="postDetailData.next_post_id ? 'primary' : 'grey-3'"
-        @click="onClickPost(postDetailData?.next_post_id)"
-        >다음글<c-icon
-          name="icon_enter_arrow"
-          size="16px"
-          :color="postDetailData.next_post_id ? '#056bf1' : '#767676'"
-          :fill="false"
-        />
-      </c-btn>
-    </div>
   <section>
     <div class="flex justify-between">
       <c-btn
         class="enter_btn rounded-[30px] font-semibold text-base"
         flat
-        :color="postDetailData.prev_post_id ? 'primary' : 'grey-3'"
+        :color="postDetailData?.prev_post_id ? 'primary' : 'grey-3'"
         :disabled="!postDetailData?.prev_post_id"
         @click="onClickPost(postDetailData?.prev_post_id)"
         ><c-icon
           name="icon_preview_arrow"
           size="16px"
-          :color="postDetailData.prev_post_id ? '#056bf1' : '#767676'"
+          :color="postDetailData?.prev_post_id ? '#056bf1' : '#767676'"
           :fill="false"
         />이전글
       </c-btn>
       <c-btn
         class="enter_btn rounded-[30px] font-semibold text-base"
         flat
-        :color="postDetailData.next_post_id ? 'primary' : 'grey-3'"
+        :color="postDetailData?.next_post_id ? 'primary' : 'grey-3'"
         @click="onClickPost(postDetailData?.next_post_id)"
         >다음글<c-icon
           name="icon_enter_arrow"
           size="16px"
-          :color="postDetailData.next_post_id ? '#056bf1' : '#767676'"
+          :color="postDetailData?.next_post_id ? '#056bf1' : '#767676'"
           :fill="false"
         />
       </c-btn>
