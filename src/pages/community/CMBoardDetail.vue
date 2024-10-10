@@ -125,14 +125,15 @@ const onRegisterReply = (post_cmmt_id: number) => {
           size="16px"
           :color="postDetailData?.prev_post_id ? '#056bf1' : '#767676'"
           :fill="false"
-        />이전글
+        /><span class="pt-1">이전글</span>
       </c-btn>
       <c-btn
         class="enter_btn rounded-[30px] font-semibold text-base"
         flat
         :color="postDetailData?.next_post_id ? 'primary' : 'grey-3'"
         @click="onClickPost(postDetailData?.next_post_id)"
-        >다음글<c-icon
+        ><span class="pt-1">다음글</span
+        ><c-icon
           name="icon_enter_arrow"
           size="16px"
           :color="postDetailData?.next_post_id ? '#056bf1' : '#767676'"

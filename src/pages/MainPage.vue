@@ -216,7 +216,7 @@ const moveToList = (type: string) => {
 
     <!-- 커뮤니티 최신 게시물 -->
     <section class="mt-[55px]">
-      <h2 class="pl-6 text-[22px] font-semibold pb-3">커뮤니티 최신 게시물</h2>
+      <h2 class="pl-6 text-[22px] font-semibold pb-3">커뮤니티 최근 게시물</h2>
       <div class="grid gap-1.5 mt-[18px] px-6">
         <community-card-list />
       </div>

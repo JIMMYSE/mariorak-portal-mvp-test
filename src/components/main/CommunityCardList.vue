@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { PostType } from 'src/types/community/post-model';
+
 // form setup
 // 검색 필터
 const { request } = useSearchFilter({
@@ -37,13 +39,18 @@ const {
   setField: setFieldValue, // TODO 추후 형태 변경필요
 });
 
-const onClickPostCard = () => {
-  notAvailableAlert();
+const onClickPostCard = (post: PostType) => {
+  if (post.post_cate_cd == '01') goTo(`/community/maker/board/${post.post_id}`);
+  else if (post.post_cate_cd == '02') goTo(`/community/supporters/board/${post.post_id}`);
 };
 </script>
 <template>
   <ul class="custom-list cursor-pointer">
-    <li v-for="post in postList?.pages.flatMap((item: any) => item.data)" :key="post.post_id" @click="onClickPostCard">
+    <li
+      v-for="post in postList?.pages.flatMap((item: any) => item.data)"
+      :key="post.post_id"
+      @click="onClickPostCard(post)"
+    >
       <div class="text-[#222222] font-medium leading-snug">
         {{ post.title }}
       </div>
@@ -69,6 +76,7 @@ const onClickPostCard = () => {
 
 .custom-list li {
   padding: 10px;
+  padding-inline: 0;
   border-bottom: 1px solid #f0f0f0;
 }
 

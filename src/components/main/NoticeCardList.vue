@@ -60,6 +60,7 @@ const onClickPostCard = (id: number) => {
 
 .custom-list li {
   padding: 10px;
+  padding-inline: 0;
   border-bottom: 1px solid #f0f0f0;
 }
 
