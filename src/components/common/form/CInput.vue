@@ -13,6 +13,7 @@ interface Props extends Omit<QInputProps, 'modelValue'> {
   inlineCounter?: boolean;
   noError?: boolean;
   checkBadwords?: boolean;
+  disable?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -30,6 +31,7 @@ const props = withDefaults(defineProps<Props>(), {
   borderRadius: undefined,
   inlineCounter: false,
   noError: false,
+  disable: false,
 });
 
 const forwarded = useForwardProps({ ...props, clearable: false });
@@ -85,6 +87,7 @@ onMounted(() => {
     :counter="inlineCounter"
     :error="!props.noError && (props.name ? !!field?.errorMessage.value : !!errorMessage)"
     :error-message="props.errorMessage ?? (props.name ? field?.errorMessage.value : errorMessage)"
+    :disable="props.disable"
   >
     <template #before v-if="$slots.before">
       <slot name="before" />

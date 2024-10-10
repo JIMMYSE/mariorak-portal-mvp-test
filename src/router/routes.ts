@@ -312,6 +312,7 @@ const routes: RouteRecordRaw[] = [
             },
             component: () => import('pages/my-page/info/account/AccountWithdrawal.vue'),
           },
+
           {
             path: 'user-profile-manage',
             name: 'user-profile-manage',
@@ -409,6 +410,27 @@ const routes: RouteRecordRaw[] = [
     ],
   },
   {
+    path: '/withdrawal',
+    name: 'withdrawal',
+    meta: {
+      requiresNonAuth: true,
+      noFooter: true,
+    },
+    component: DefaultLayout,
+    children: [
+      {
+        path: 'complete',
+        name: 'withdrawal-complete',
+        meta: {
+          title: '회원탈퇴 완료',
+          noFooter: true,
+          requiresNonAuth: true,
+        },
+        component: () => import('pages/auth/WithdrawCompleted.vue'),
+      },
+    ],
+  },
+  {
     path: '/join',
     name: 'join',
     meta: {
@@ -455,6 +477,7 @@ const routes: RouteRecordRaw[] = [
       },
     ],
   },
+
   {
     path: '/policy',
     component: SubLayout,
