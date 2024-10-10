@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { toInteger } from 'lodash';
 import toNumber from 'lodash/toNumber';
 import toString from 'lodash/toString';
 
@@ -47,7 +48,7 @@ const { enterRoom } = useBridge();
           </c-btn> -->
           <c-btn
             class="w-full rounded-[30px] text-[#056bf1] font-semibold text-sm py-4 pl-10 pr-[30px] mt-[8px]"
-            @click="goTo(`/game-pack/project/${confId}`)"
+            @click="enterRoom(toInteger(confId), 1)"
             >컨퍼런스 입장하기
           </c-btn>
         </div>
