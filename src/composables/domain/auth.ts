@@ -15,7 +15,7 @@ const AUTH_API_URL = '/v1/auth';
 const LOGIN_URL = '/auth/login';
 const LOGOUT_URL = '/v1/auth/logout';
 
-const UNREGISTER_URL = '/v1/auth/unregister-dev';
+const UNREGISTER_URL = '/v1/auth/unregister';
 const REGISTER_URL = '/v1/auth/register/social';
 
 type PortalLoginResponseType = InferType<typeof PortalLoginResponse>;
@@ -317,13 +317,13 @@ export const updateMyPassword = async (newPassword: string) => {
 export const useAuthUnregister = () => {
   const { user } = storeToRefs(useAuthStore());
   const { disconnectSocial } = useBridge();
-  const unregister = async (onSuccess: () => void) => {
+  const unregister = async (onSuccess: () => void, whdr_rsn_cd, whdr_rsn_cont) => {
     console.log('>>> auth unregister');
     await useAxiosPost({
       url: UNREGISTER_URL,
       data: {
-        email: user.value?.emails[0].email,
-        register_type: user.value?.register_type,
+        whdr_rsn_cd,
+        whdr_rsn_cont,
       },
     }).then(() => {
       isAccessTokenListenerActive.value = false;

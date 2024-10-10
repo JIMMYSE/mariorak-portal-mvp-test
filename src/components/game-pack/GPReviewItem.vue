@@ -9,7 +9,6 @@ const role = computed(() => {
   return options.value.find((option: any) => option.cd === props.review.mkr_rol_cd)?.label;
 });
 
-const { mutateAsync: onLike } = useLike('review', props.review.prdc_revw_id);
 const { mutateAsync: onUnlike } = useUnLike('reivew');
 
 // 좋아요/좋아요 취소
@@ -19,7 +18,7 @@ const onClickLikeButton = async () => {
     await onUnlike(ref(props.review.prdc_revw_id));
     likeStatus.value = { is_liked: false, like_cnt: likeStatus.value.like_cnt - 1 };
   } else {
-    await onLike({});
+    await useLike('review', props.review.prdc_revw_id, 'review');
     likeStatus.value = { is_liked: true, like_cnt: likeStatus.value.like_cnt + 1 };
   }
 };

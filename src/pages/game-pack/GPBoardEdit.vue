@@ -6,7 +6,7 @@ import { PostCreateType } from 'src/types/community/post-model';
 
 const isMakerBoard = ref(true);
 const route = useRoute();
-const gpId = route.params.id;
+const prjId = route.params.id;
 const showBottomSheet = ref(false);
 const openCategoryBottomSheet = () => {
   showBottomSheet.value = !showBottomSheet.value;
@@ -20,7 +20,7 @@ const channels = computed(() =>
     ?.map((prj: any) => {
       return { prj_id: prj.prj_id, title: prj.title };
     })
-    .filter((prj: any) => prj.prj_id == gpId)
+    .filter((prj: any) => prj.prj_id == prjId)
 );
 const {
   values: form,
@@ -85,6 +85,44 @@ const tempcategoryText = computed(() => {
   if (!postfix) return null;
   return `${prefix} ${postfix}`;
 });
+
+const fileUploader = ref<any | null>(null);
+
+const getFlieId = async () => {
+  const files = fileUploader.value.files;
+  if (files.length > 0) {
+    const { data } = await uploadFiles({ files: files });
+    return data.data.files.map((file: any) => file.id);
+  } else return [];
+};
+/** 등록 */
+const { mutateAsync, isSuccess, data } = usePostCreate();
+
+const onSubmit = handleSubmit(async () => {
+  const fileIds = await getFlieId();
+  if (fileIds) {
+    setFieldValue('attch_file_id_list', fileIds);
+  }
+
+  mutateAsync({
+    ...form,
+  });
+
+  watch(isSuccess, (value) => {
+    if (value) {
+      replaceTo(`/game-pack/board/${prjId}/${data.value.data.data.post_id}`);
+    }
+  });
+});
+
+const onRejected = (e: any) => {
+  console.log(e);
+  if (e[0].failedPropValidation == 'max-file-size') {
+    useNotifyThrottle('10MB 이하의 파일만 업로드 가능합니다.');
+  } else if (e[0].failedPropValidation == 'max-files') {
+    useNotifyThrottle('최대 5개의 파일만 업로드 가능합니다.');
+  }
+};
 </script>
 <template>
   <div class="h-full pt-10">
@@ -126,26 +164,48 @@ const tempcategoryText = computed(() => {
           type="textarea"
           :maxlength="100"
           input-class="h-[163px]"
-          name="content"
+          name="cont"
           placeholder="게시글 내용을 입력해 주세요."
           :outlined="false"
           :rounded="false"
           border-radius="0px"
         />
       </div>
-      <q-uploader style="max-width: 300px" flat ref="fileUploader" multiple>
-        <template #header></template>
+      <q-uploader
+        class="w-full"
+        flat
+        ref="fileUploader"
+        multiple
+        :max-files="5"
+        max-file-size="10485760"
+        @rejected="($event) => onRejected($event)"
+        accept="image/*"
+      >
+        <template #header="scope"></template>
         <template #list="scope">
-          <div v-for="file in scope.files" :key="file.__key" class="flex relative bg-grey-4">
-            <div v-if="file.__img">
-              <img :src="file.__img.src" />
+          <div class="flex q-gutter-sm">
+            <!-- <div v-for="(img, i) in dummyImages" :key="i" class="w-[75px] h-[75px] relative">
+              <c-img src="https://picsum.photos/200" class="w-[75px] h-[75px] rounded-[5px]" />
+              <button class="absolute top-0 right-0" @click="dummyImages.splice(i, 1)">
+                <q-icon name="img:/icons/close_image.svg" size="16px" />
+              </button>
+            </div> -->
+            <div v-for="file in scope.files" :key="file.__key" class="flex relative">
+              <div v-if="file.__img" class="relative">
+                <c-img :src="file.__img.src" class="w-[75px] h-[75px] rounded-[5px]" />
+                <button class="absolute top-0 right-0" @click="scope.removeFile(file)">
+                  <q-icon name="img:/icons/close_image.svg" size="16px" />
+                </button>
+              </div>
             </div>
-            <button @click="scope.removeFile(file)"><q-icon name="img:/icons/close.svg" size="20px" /></button>
-          </div>
-          <div @click="scope.pickFiles" class="w-20 h-20 rounded-md flex justify-center items-center border">
-            <div>
-              <q-icon :name="`img:/icons/icon_plus.svg`" />
-              <q-uploader-add-trigger />
+            <div
+              class="w-[75px] h-[75px] bg-[#f0f0f0] rounded-[5px] border border-[#b5b5b5] flex justify-center items-center z-0 relative"
+            >
+              <q-uploader-add-trigger style="position: unset; height: 80px" />
+              <q-icon :name="`img:/icons/add_image.svg`" class="absolute" />
+              <div class="text-[#b5b5b5] text-sm font-medium leading-tight absolute bottom-1">
+                {{ scope.files.length }} / 5
+              </div>
             </div>
           </div>
         </template>
@@ -156,6 +216,7 @@ const tempcategoryText = computed(() => {
         class="rounded-[10px] font-semibold text-base mt-[30px] w-full py-[14px] bottom-0"
         color="primary"
         :disable="!meta.valid"
+        @click="onSubmit"
         >게시하기
       </c-btn>
     </section>
@@ -223,6 +284,7 @@ const tempcategoryText = computed(() => {
           <c-btn
             class="rounded-[10px] font-semibold text-base w-full py-[14px] bottom-0"
             color="primary"
+            :disabled="!form.post_ty_cd"
             @click="onClickSelect"
             >선택 완료
           </c-btn>

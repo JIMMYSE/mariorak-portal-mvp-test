@@ -20,8 +20,7 @@ const props = withDefaults(defineProps<CDialogFullProps>(), {
 
 defineEmits([...useDialogPluginComponent.emits]);
 
-const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
-  useDialogPluginComponent();
+const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } = useDialogPluginComponent();
 
 const { t } = useI18n();
 
@@ -50,32 +49,18 @@ function getMessage(message: Message) {
 </script>
 
 <template>
-  <q-dialog
-    ref="dialogRef"
-    :persistent="persistent"
-    :maximized="true"
-    @hide="onDialogHide"
-  >
+  <q-dialog ref="dialogRef" :persistent="persistent" :maximized="true" @hide="onDialogHide">
     <q-card
-      :class="`full-width !max-h-[calc(100vh+87px+67px)] flex-nowrap pb-[${
-        buttonsComputed.length ? '87px' : '0px'
-      }]`"
+      :class="`full-width !max-h-[calc(100vh+87px+67px)] flex-nowrap pb-[${buttonsComputed.length ? '87px' : '0px'}]`"
     >
       <!-- HEADER -->
-      <q-card-section
-        class="fixed top-0 inset-x-0 row justify-between items-center bg-white z-10 min-h-[74px]"
-      >
+      <q-card-section class="fixed top-0 inset-x-0 row justify-between items-center bg-white z-10 min-h-[74px]">
         <div></div>
         <!-- TITLE TEXT -->
         <div class="text-[18px] font-medium">
           {{ $filterHtml(getMessage(dialogTitle)) }}
         </div>
-        <q-icon
-          name="img:/icons/btn_delete.svg"
-          class="cursor-pointer"
-          size="30px"
-          v-close-popup
-        />
+        <q-icon name="img:/icons/btn_delete.svg" class="cursor-pointer" size="30px" v-close-popup />
       </q-card-section>
       <div class="h-[67px]"></div>
 

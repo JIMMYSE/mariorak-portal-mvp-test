@@ -86,6 +86,7 @@ const { enterRoom } = useBridge();
             v-if="isLocal || isDev"
             class="py-[20px] px-[24px] border-b-[1px] border-[#f0f0f0] last:border-0"
             @click="enterRoom(77, 1)"
+            clickable
           >
             <q-item-section>
               <q-item-label class="text-[#056bf1] text-base font-medium leading-tight">컨퍼런스 입장</q-item-label>

@@ -3,6 +3,7 @@ import { off } from 'process';
 
 type Props = {
   gameId: string;
+  prjId: number;
 };
 const props = defineProps<Props>();
 const { maker } = useAuthStore();
@@ -54,13 +55,9 @@ const {
   data: reviewList,
   hasNextPage,
   fetchNextPage,
-  isFetched,
   refetch,
 } = useReviewList(props.gameId, {
   searchRequest: queryParam,
-  queryOption: {
-    enabled: true,
-  },
   setField: setFieldValue, // TODO 추후 형태 변경필요
 });
 
@@ -81,12 +78,11 @@ onMounted(() => {
           </p>
         </div>
         <q-btn
-          v-if="maker?.project_histories?.map((prj: any) => prj.prj_id).includes(gameId)"
           size="md"
           round
           flat
           class="flex justify-center items-center"
-          @click="goTo('/game-pack/project/1/board-edit')"
+          @click="goTo(`/game-pack/review/${props.gameId}/review-edit`)"
         >
           <q-icon name="img:/icons/icon_add_plus.svg" size="40px" />
         </q-btn>

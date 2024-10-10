@@ -17,7 +17,7 @@
     "test": "echo \"No test specified\" && exit 0",
     "dto:dev": "rm -rf ./node_modules/meta-airforce-dto && npm install 'github:coarsoft-tmp/meta-airforce-dto#develop' --no-save && rm -rf ./node_modules/ccf-api-dto && npm install 'github:coarsoft-tmp/ccf-api-dto#develop' --no-save",
     "dto:prd": "rm -rf ./node_modules/meta-airforce-dto && npm install 'github:coarsoft-tmp/meta-airforce-dto#develop' --no-save && rm -rf ./node_modules/ccf-api-dto && npm install 'github:coarsoft-tmp/ccf-api-dto#main' --no-save",
-    "dto": "yarn cache clean && yarn add 'github:coarsoft-tmp/meta-airforce-dto' && yarn add 'github:coarsoft-tmp/ccf-api-dto#develop'",
+    "dto": "yarn cache clean && yarn add 'github:coarsoft-tmp/meta-airforce-dto' && rm -rf ./node_modules/ccf-api-dto &&  yarn add 'github:coarsoft-tmp/ccf-api-dto#develop'",
     "set-version": "coar-devtools set-version -f ./public/app.json"
   },
   "dependencies": {
@@ -62,7 +62,7 @@
     "vue": "^3.4.27",
     "vue-i18n": "^9.13.1",
     "vue-router": "^4.3.3",
-    "vue3-carousel": "^0.3.3",
+    "vue3-carousel": "0.3.3",
     "vue3-google-login": "^2.0.33",
     "yup": "^1.4.0"
   },

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import ProjectInfoPanel from './panel/ProjectInfoPanel.vue';
 import ProjectBoardPanel from './panel/ProjectBoardPanel.vue';
+import ProjectNewsPanel from './panel/ProjectNewsPanel.vue';
 import { toInteger } from 'lodash';
 
 const route = useRoute();
@@ -10,12 +11,11 @@ const { data: projectDetail, refetch } = useProjectDetail(projectId);
 
 const like = ref(false);
 const tab = ref('INFO');
-const { mutateAsync: onLike } = useLike('projectOrgame', projectId, 'project-detail');
 const { mutateAsync: onUnlike } = useUnLike('projectOrgame', 'project-detail');
 
 const onLikeProject = async () => {
   like.value = !like.value;
-  like.value ? onLike({}) : onUnlike(projectId);
+  like.value ? useLike('projectOrgame', projectId, 'project-detail') : onUnlike(projectId);
 };
 const { data: similarProjectData } = useSimilarProjectList(projectId);
 watch(projectDetail, () => {
@@ -26,6 +26,12 @@ const { enterRoom } = useBridge();
 onMounted(() => {
   createPageView('PRJD', toInteger(projectId));
 });
+
+const { maker } = useAuthStore();
+const isManager = computed(
+  () => (projectDetail.value.mkr_list.filter((mkr: any) => mkr.mngr_yn)[0]?.mem_id ?? null) == maker.mem_id
+);
+const showDonationPopup = ref(true);
 </script>
 <template>
   <q-page>
@@ -112,6 +118,7 @@ onMounted(() => {
         :tabs="[
           { label: '정보', name: 'INFO' },
           { label: '게시판', name: 'BOARD' },
+          { label: '뉴스', name: 'NEWS' },
         ]"
       />
 
@@ -126,9 +133,13 @@ onMounted(() => {
         <q-tab-panel class="px-6" name="BOARD">
           <project-board-panel :pj-id="projectId" />
         </q-tab-panel>
+        <q-tab-panel class="px-6" name="NEWS">
+          <project-news-panel :prj-id="projectId" :mngr-yn="isManager" />
+        </q-tab-panel>
       </q-tab-panels>
     </section>
   </q-page>
+  <c-dialog-content v-model="showDonationPopup" :dialog-title="'후원하기 알림'" />
 </template>
 <style lang="scss" scoped></style>
 1

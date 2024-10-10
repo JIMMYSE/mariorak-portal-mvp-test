@@ -1,5 +1,4 @@
-import { PostBase, PostSearchRes, PostDetailRes, PostDetail, PostCreate } from 'ccf-api-dto';
-import { PostBase, PostSearchRes, PostDetailRes, PostDetail, PostCommentSearchRes } from 'ccf-api-dto';
+import { PostBase, PostSearchRes, PostDetailRes, PostDetail, PostCommentSearchRes, PostCreate } from 'ccf-api-dto';
 
 export type PostType = InferType<typeof PostBase>;
 export type PostSearchResType = InferType<typeof PostSearchRes>;

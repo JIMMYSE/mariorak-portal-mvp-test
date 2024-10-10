@@ -1,4 +1,4 @@
-import { ReviewSearchListResType } from 'src/types/gamepack/review-model';
+import { ReviewCreateType, ReviewSearchListResType } from 'src/types/gamepack/review-model';
 import { MaybeRef, MaybeRefOrGetter } from 'vue';
 const API_URL = '/v3/pr/game/';
 const QUERY_KEY = {
@@ -24,5 +24,11 @@ export const useReviewList = (
     searchRequest,
     queryKeyName: listQueryKeyName,
     setField,
+  });
+};
+
+export const useReviewCreate = (gameId: string) => {
+  return useQueryCreateItem<ApiResponse, ReviewCreateType>({
+    url: API_URL + gameId + '/review',
   });
 };

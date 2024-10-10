@@ -4,7 +4,7 @@ const type = 'game';
 const { request } = useSearchFilter({
   requestDefault: {
     from: 0,
-    size: 1,
+    size: 10,
   },
 });
 const {

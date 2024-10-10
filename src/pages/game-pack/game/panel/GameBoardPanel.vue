@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 type Props = {
   gameId: string;
+  prjId: number;
 };
 const props = defineProps<Props>();
 const searchSort = ref('latest');
@@ -23,7 +24,7 @@ const { request } = useSearchFilter({
   requestDefault: {
     filters: {
       prj_id: {
-        eq: props.gameId,
+        eq: props.prjId,
       },
     },
     search: {
@@ -31,10 +32,10 @@ const { request } = useSearchFilter({
       keyword: '',
     },
     from: 0,
-    size: 1,
+    size: 10,
     sort: [
       {
-        created_at: 'asc',
+        created_at: 'desc',
       },
     ],
   },
@@ -58,9 +59,6 @@ const {
   refetch,
 } = usePostList({
   searchRequest: queryParam,
-  queryOption: {
-    enabled: true,
-  },
   setField: setFieldValue, // TODO 추후 형태 변경필요
 });
 onMounted(() => {
@@ -90,12 +88,12 @@ watchDebounced(
           </p>
         </div>
         <q-btn
-          v-if="maker?.project_histories?.map((prj: any) => prj.prj_id).includes(gameId)"
+          v-if="maker?.project_histories?.map((prj: any) => prj.prj_id).includes(prjId)"
           size="md"
           round
           flat
           class="flex justify-center items-center"
-          @click="goTo(`/game-pack/project/${gameId}/board-edit`)"
+          @click="goTo(`/game-pack/board/${prjId}/board-edit`)"
         >
           <q-icon name="img:/icons/icon_add_plus.svg" size="40px" />
         </q-btn>
@@ -108,8 +106,17 @@ watchDebounced(
           v-for="post in postList?.pages.flatMap((item : any) => item.data)"
           :post="post"
           :key="post.post_id"
-          @click="goTo(`/game-pack/project/${gameId}/${post.post_id}`)"
+          @click="goTo(`/game-pack/board/${prjId}/${post.post_id}`)"
         />
+      </div>
+      <div class="flex justify-center" v-if="hasNextPage">
+        <c-btn
+          class="enter_btn rounded-[30px] text-primary font-semibold text-sm py-3 pl-10 pr-[30px] mt-[23px]"
+          outline
+          @click="fetchNextPage()"
+          >더보기
+          <c-icon name="down_arrow" size="18px" :color="'#056BF1'" :fill="false" />
+        </c-btn>
       </div>
     </section>
   </div>

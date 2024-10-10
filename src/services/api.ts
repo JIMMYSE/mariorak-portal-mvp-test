@@ -412,6 +412,7 @@ export function useQueryFetchInfiniteList<T extends ApiListResponse, D extends S
   queryKeyName: string;
   setField: any;
 } & Partial<UseInfiniteQueryOptions<any>>) {
+  const isDev = process.env.IS_DEV;
   const queryReturn = useInfiniteQuery({
     initialPageParam: 0,
     // eslint-disable-next-line @tanstack/query/exhaustive-deps
@@ -419,6 +420,7 @@ export function useQueryFetchInfiniteList<T extends ApiListResponse, D extends S
     queryFn: async ({ pageParam = 0 }) => {
       // searchRequest.value.from = pageParam as number;
       setField('from', pageParam);
+
       const { data } = await useFetchList<T, D>({
         url,
         searchRequest: toValue(searchRequest),
@@ -573,7 +575,7 @@ export function uploadFile<T extends ApiResponse>({
   data.append('files', file);
 
   return api.request<T, AxiosResponse<T>, FormData>({
-    url: '/file',
+    url: '/v1/file',
     method: 'post',
     data: data,
     headers: {
@@ -604,7 +606,7 @@ export function uploadFiles<T extends ApiResponse>({
   }
 
   return api.request<T, AxiosResponse<T>, FormData>({
-    url: '/files',
+    url: '/v1/files',
     method: 'post',
     data: data,
     headers: {
