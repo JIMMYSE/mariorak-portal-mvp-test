@@ -76,7 +76,7 @@ const { enterRoom } = useBridge();
             <p class="text-primary text-xs leading-none">
               {{ m.desc }}
             </p>
-            <div v-if="scl"></div>
+            <!-- <div v-if="scl"></div> -->
           </div>
         </div>
       </div>
