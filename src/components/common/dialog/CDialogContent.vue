@@ -5,6 +5,7 @@ const props = withDefaults(defineProps<CDialogContentProps>(), {
   title: '',
   text: '',
   html: '',
+  contentComponent: null,
 });
 
 defineEmits([...useDialogPluginComponent.emits]);
@@ -31,6 +32,8 @@ const { width } = useWindowSize();
         <q-scroll-area class="size-full">
           <div v-if="html" v-html="html" />
           <div v-if="text" class="whitespace-pre-wrap">{{ text }}</div>
+          <!-- CONTENT COMPONENT -->
+          <component v-if="props.contentComponent" :is="props.contentComponent"></component>
         </q-scroll-area>
       </q-card-section>
     </q-card>

@@ -2,6 +2,7 @@
 import ProjectInfoPanel from './panel/ProjectInfoPanel.vue';
 import ProjectBoardPanel from './panel/ProjectBoardPanel.vue';
 import ProjectNewsPanel from './panel/ProjectNewsPanel.vue';
+import ProjectDontaionNotAvaliable from 'src/components/game-pack/project/ProjectDontaionNotAvaliable.vue';
 import { toInteger } from 'lodash';
 
 const route = useRoute();
@@ -31,7 +32,12 @@ const { maker } = useAuthStore();
 const isManager = computed(
   () => (projectDetail.value.mkr_list.filter((mkr: any) => mkr.mngr_yn)[0]?.mem_id ?? null) == maker.mem_id
 );
-const showDonationPopup = ref(true);
+const onClickDonation = () => {
+  useContentDialog({
+    contentComponent: ProjectDontaionNotAvaliable,
+    title: '후원하기 알림',
+  });
+};
 </script>
 <template>
   <q-page>
@@ -98,7 +104,10 @@ const showDonationPopup = ref(true);
           </div>
         </div>
         <div class="mt-4">
-          <c-btn class="w-full rounded-[30px] text-[#056bf1] font-semibold text-sm py-4 pl-10 pr-[30px]" outline
+          <c-btn
+            class="w-full rounded-[30px] text-[#056bf1] font-semibold text-sm py-4 pl-10 pr-[30px]"
+            outline
+            @click="onClickDonation"
             >프로젝트 후원하기
           </c-btn>
           <c-btn
@@ -139,7 +148,6 @@ const showDonationPopup = ref(true);
       </q-tab-panels>
     </section>
   </q-page>
-  <c-dialog-content v-model="showDonationPopup" :dialog-title="'후원하기 알림'" />
 </template>
 <style lang="scss" scoped></style>
 1
