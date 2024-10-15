@@ -19,8 +19,8 @@ phases:
       - eval "$(ssh-agent -s)"
       - ssh-add ~/.ssh/id_rsa
       - ssh-keyscan github.com >> ~/.ssh/known_hosts
-      - git config --global user.email "eunju.jang.dev@gmail.com"
-      - git config --global user.name "eunju-jang"
+      - git config --global user.email "developer@coarsoft.com"
+      - git config --global user.name "coarsoft"
       # - npm install meta-airforce-dto
       # - npm install ccf-api-dto
   build:
