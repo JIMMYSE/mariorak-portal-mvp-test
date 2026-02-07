@@ -1,5 +1,5 @@
 import { useCookies } from '@vueuse/integrations/useCookies';
-import { PortalLoginResponse, PortalRestrictUserRes } from 'meta-airforce-dto';
+import { PortalLoginResponse, PortalRestrictUserRes } from 'src/types/dto';
 import { SocialRegistration } from 'src/types/auth/signin-model';
 import { wait } from 'src/utils/promise-util';
 import RequiredNoticeDialog from 'src/pages/auth/RequiredNoticeDialog.vue';

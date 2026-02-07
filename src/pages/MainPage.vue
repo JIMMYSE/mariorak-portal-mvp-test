@@ -7,7 +7,7 @@ const popupStores = ref<PopupStoreItem[]>([
   {
     id: 1,
     title: '[세가] 용과 같이 팝업 스토어',
-    imageUrl: '/images/dummy/main_dummy1.svg',
+    imageUrl: '/images/dummy/popstore_dummy.png',
     status: 'OPEN',
     reservationStatus: 'AVAILABLE',
     location: '서울시 마리오구',
@@ -18,7 +18,7 @@ const popupStores = ref<PopupStoreItem[]>([
   {
     id: 2,
     title: '[스퀘어 에닉스] 스퀘어 에닉스 특별전',
-    imageUrl: '/images/dummy/main_dummy2.svg',
+    imageUrl: '/images/dummy/popstore_dummy.png',
     status: 'OPEN',
     reservationStatus: 'ONSITE_WAIT',
     location: '서울시 마리오구',
@@ -29,7 +29,7 @@ const popupStores = ref<PopupStoreItem[]>([
   {
     id: 3,
     title: '[세가] 용과 같이 팝업 스토어',
-    imageUrl: '/images/dummy/main_dummy3.svg',
+    imageUrl: '/images/dummy/popstore_dummy.png',
     status: 'OPEN',
     reservationStatus: 'AVAILABLE',
     location: '서울시 마리오구',
@@ -40,7 +40,7 @@ const popupStores = ref<PopupStoreItem[]>([
   {
     id: 4,
     title: '[스퀘어 에닉스] 스퀘어 에닉스 특별전',
-    imageUrl: '/images/dummy/main_dummy4.svg',
+    imageUrl: '/images/dummy/popstore_dummy.png',
     status: 'CLOSED',
     reservationStatus: 'ONSITE_WAIT',
     location: '서울시 마리오구',
@@ -54,7 +54,7 @@ const exhibitions = ref<ExhibitionItem[]>([
   {
     id: 1,
     title: '세가 레거시 전시전',
-    imageUrl: '/images/dummy/main_dummy5.svg',
+    imageUrl: '/images/dummy/main_dummy.png',
     status: 'OPEN',
     reservationStatus: 'AVAILABLE',
     location: '서울시 마리오구',
@@ -97,7 +97,7 @@ const toggleBookmark = (item: PopupStoreItem | ExhibitionItem) => {
   <q-page class="bg-white">
     <!-- POP-UP STORE 섹션 -->
     <div class="px-3 pt-4">
-      <h2 class="text-[22px] font-bold text-grey-5 mb-4">POP-UP STORE</h2>
+      <h2 class="text-[32px] font-light text-[#191919] mb-4 tracking-[-0.8px] leading-[20px]">POP-UP STORE</h2>
 
       <div class="flex flex-col gap-4">
         <div
@@ -139,8 +139,8 @@ const toggleBookmark = (item: PopupStoreItem | ExhibitionItem) => {
     </div>
 
     <!-- Exhibitions 섹션 -->
-    <div class="px-3 pt-8 pb-20 bg-grey mt-6">
-      <h2 class="text-[18px] font-bold text-grey-5 mb-4">Exhibitions</h2>
+    <div class="px-3 pt-8 pb-20 bg-black mt-6">
+      <h2 class="text-[32px] font-light text-white mb-4 tracking-[-0.8px] leading-[20px]">Exhibitions</h2>
 
       <div class="flex flex-col gap-4">
         <div

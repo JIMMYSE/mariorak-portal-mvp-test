@@ -1,4 +1,4 @@
-import { CodeList } from 'meta-airforce-dto';
+import { CodeList } from 'src/types/dto';
 import { MaybeRefOrGetter, ref, toValue } from 'vue';
 
 export type CodeListType = InferType<typeof CodeList>;

@@ -1,4 +1,4 @@
-import { UserDetail } from 'meta-airforce-dto';
+import { UserDetail } from 'src/types/dto';
 import { t } from 'src/utils/message-util';
 import { ref } from 'yup';
 

@@ -1,4 +1,4 @@
-import { SuccessListRes } from 'meta-airforce-dto';
+import { SuccessListRes } from 'src/types/dto';
 
 /** DTO */
 const FaqSearchRes = object({

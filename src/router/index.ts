@@ -59,9 +59,15 @@ export default route(function (/* { store, ssrContext } */) {
     const { isLoggedIn } = useUserInfo();
     const { joinData } = storeToRefs(useJoinStore());
 
+    // 페이지 전환 애니메이션 방향 결정
+    const toDepth = to.path.split('/').filter(Boolean).length;
+    const fromDepth = from.path.split('/').filter(Boolean).length;
+    to.meta.transition = toDepth > fromDepth ? 'slide-left' : toDepth < fromDepth ? 'slide-right' : 'fade';
+
     if (!isLoggedIn.value) {
       // 비로그인 상태에서 로그인이 필요한 페이지로 이동하려고 하면 로그인 페이지로 이동
-      if (to.matched.some((record: any) => record.meta.requiresAuth)) {
+      // 해당 라우트 자체의 meta.requiresAuth만 확인 (부모 라우트 상속 무시)
+      if (to.meta.requiresAuth === true) {
         return { name: 'login', query: { next: to.fullPath } };
       }
     } else if (to.name?.toString().includes('login')) return { name: 'home-main' };
@@ -78,7 +84,7 @@ export default route(function (/* { store, ssrContext } */) {
     }
 
     const meta = cloneDeep(to.matched.length > 1 ? to.matched[1].meta : {});
-    meta.title = meta.title || 'CCF ㅣ 팬과 함께 만들어가는 게임 개발 커뮤니티';
+    meta.title = meta.title || '마리오락 | 내 취향에 맞는 팝업스토어를 만나는 공간';
 
     // 메타태그 설정
     if (meta.title) {

@@ -1,4 +1,4 @@
-import { CodeList, CodeSearchRes } from 'meta-airforce-dto';
+import { CodeList, CodeSearchRes } from 'src/types/dto';
 import { CodeObjectType } from 'src/types/common/code-model';
 import { MaybeRefOrGetter } from 'vue';
 

@@ -1,5 +1,4 @@
-import { NoticeDetail, NoticeSearchListRes, NoticeSearchOneRes } from 'ccf-api-dto';
-import { SuccessObjectRes } from 'meta-airforce-dto';
+import { NoticeDetail, NoticeSearchListRes, NoticeSearchOneRes, SuccessObjectRes } from 'src/types/dto';
 import { MaybeRef, MaybeRefOrGetter } from 'vue';
 
 const API_URL = '/v1/notice';

@@ -1,5 +1,5 @@
 import { UseQueryOptions } from '@tanstack/vue-query';
-import { FileBase, FileInfo } from 'meta-airforce-dto';
+import { FileBase, FileInfo } from 'src/types/dto';
 
 export type Id = string | number | undefined;
 

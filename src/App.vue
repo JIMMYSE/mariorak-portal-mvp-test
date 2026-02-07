@@ -29,7 +29,7 @@ const isInitiated = computed(() => {
 });
 
 const footerVisible = computed(() => {
-  return !['join', 'join-completed', 'join-terms', 'error'].includes(route.name?.toString() ?? '') && isLoggedIn.value;
+  return !['join', 'join-completed', 'join-terms', 'error', 'login'].includes(route.name?.toString() ?? '');
 });
 
 const route = useRoute();
@@ -63,7 +63,11 @@ const noFooter = computed(() => route.meta.noFooter);
       <div v-if="!IsPrd" class="top-version fixed top-0 z-50 font-pretendard text-xs opacity-50 border-grey-5">
       </div>
       <div style="max-width: 512px; margin: 0 auto" class="border-grey-5">
-        <router-view />
+        <router-view v-slot="{ Component, route: currentRoute }">
+          <transition :name="currentRoute.meta.transition as string || 'fade'" mode="out-in">
+            <component :is="Component" :key="currentRoute.path" />
+          </transition>
+        </router-view>
 
         <q-footer v-if="!noFooter && footerVisible" class="bg-white justify-between items-center flex footer-border py-2">
           <q-tabs class="w-full" align="justify">
@@ -77,9 +81,10 @@ const noFooter = computed(() => route.meta.noFooter);
             >
               <c-icon
                 :name="tabInfo.icon"
-                size="20px"
+                size="24px"
                 :active="tab?.includes(tabInfo?.name ?? '')"
-                activeColor="#FF4B6E"
+                activeColor="#FF385C"
+                :fill="false"
                 :label="tabInfo.label"
               />
               <p class="text-grey-5"></p>
@@ -115,5 +120,43 @@ const noFooter = computed(() => route.meta.noFooter);
   .q-footer {
     left: calc(50vw - 256px);
   }
+}
+
+/* 페이지 전환: 오른쪽에서 슬라이드 */
+.slide-left-enter-active,
+.slide-left-leave-active {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.slide-left-enter-from {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.slide-left-leave-to {
+  transform: translateX(-30%);
+  opacity: 0;
+}
+
+/* 뒤로가기: 왼쪽에서 슬라이드 */
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.slide-right-enter-from {
+  transform: translateX(-30%);
+  opacity: 0;
+}
+.slide-right-leave-to {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+/* 기본 페이드 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

@@ -16,7 +16,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: '/home',
         meta: {
-          requiresAuth: true,
+          requiresAuth: false,
           title: '마리오락 | 내 취향에 맞는 팝업스토어를 만나는 공간',
           description: '내 취향에 맞는 팝업스토어를 만나는 공간, 마리오락',
           ogImage: '/images/meta-img.jpg',
@@ -33,9 +33,6 @@ const routes: RouteRecordRaw[] = [
       // ===== 팝업 스토어 =====
       {
         path: 'popup-store',
-        meta: {
-          requiresAuth: true,
-        },
         component: SubLayout,
         children: [
           {
@@ -43,7 +40,11 @@ const routes: RouteRecordRaw[] = [
             name: 'popup-store-detail',
             meta: {
               title: 'POP-UP STORE',
+              hideTitle: true,
+              headerBgColor: '#FF385C',
+              headerTextColor: '#ffffff',
               bgColor: 'white',
+              requiresAuth: false,
             },
             component: () => import('pages/popup-store/PopupStoreDetail.vue'),
           },
@@ -54,6 +55,7 @@ const routes: RouteRecordRaw[] = [
               title: '예약하기',
               bgColor: 'white',
               noFooter: true,
+              requiresAuth: true,
             },
             component: () => import('pages/popup-store/PopupStoreReserve.vue'),
           },
@@ -62,9 +64,6 @@ const routes: RouteRecordRaw[] = [
       // ===== 기획전시 =====
       {
         path: 'exhibition',
-        meta: {
-          requiresAuth: true,
-        },
         component: SubLayout,
         children: [
           {
@@ -72,7 +71,11 @@ const routes: RouteRecordRaw[] = [
             name: 'exhibition-detail',
             meta: {
               title: 'EXHIBITIONS',
+              hideTitle: true,
+              headerBgColor: '#000000',
+              headerTextColor: '#ffffff',
               bgColor: 'white',
+              requiresAuth: false,
             },
             component: () => import('pages/exhibition/ExhibitionDetail.vue'),
           },
@@ -83,6 +86,7 @@ const routes: RouteRecordRaw[] = [
               title: '예약하기',
               bgColor: 'white',
               noFooter: true,
+              requiresAuth: true,
             },
             component: () => import('pages/exhibition/ExhibitionReserve.vue'),
           },
@@ -146,7 +150,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'settings',
         meta: {
-          requiresAuth: true,
+          requiresAuth: false,
         },
         component: SubLayout,
         children: [
@@ -196,7 +200,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'notification',
         meta: {
-          requiresAuth: true,
+          requiresAuth: false,
         },
         component: SubLayout,
         children: [

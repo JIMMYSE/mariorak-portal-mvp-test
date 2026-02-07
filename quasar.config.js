@@ -77,14 +77,14 @@ module.exports = configure(function (ctx) {
         node: 'node20',
       },
 
-      vueRouterMode: 'history', // available values: 'hash', 'history'
+      vueRouterMode: 'hash', // GitHub Pages는 hash 모드 필요
       // vueRouterBase,
       // vueDevtools,
       // vueOptionsAPI: false,
 
       // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
-      // publicPath: '/',
+      publicPath: '/mariorak-portal-mvp-test/',
       // analyze: true,
       // env: {},
       // rawDefine: {}

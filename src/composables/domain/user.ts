@@ -3,7 +3,7 @@
  */
 
 import { HttpStatusCode } from 'axios';
-import { AccountRes, UserDetailRes, UserNicknameRes } from 'meta-airforce-dto';
+import { AccountRes, UserDetailRes, UserNicknameRes } from 'src/types/dto';
 import { Id } from 'src/types/common/api-model';
 import { MaybeRefOrGetter } from 'vue';
 

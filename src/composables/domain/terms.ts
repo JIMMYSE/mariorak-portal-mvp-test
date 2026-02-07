@@ -2,7 +2,7 @@ import {
   RegistrationTermsListRes,
   TermsDetailRes,
   TermsSearchRes,
-} from 'meta-airforce-dto';
+} from 'src/types/dto';
 import { MaybeRef, MaybeRefOrGetter } from 'vue';
 
 /**
