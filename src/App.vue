@@ -2,7 +2,6 @@
 import { VueQueryDevtools } from '@tanstack/vue-query-devtools';
 import MainHeader from './layouts/MainHeader.vue';
 import SubHeader from './layouts/SubHeader.vue';
-// import { useMeta } from 'quasar';
 
 useAppRouter();
 const { fetchBadwords } = useBadwords();
@@ -38,43 +37,20 @@ const tab = computed(() => route.name?.toString() ?? '');
 const tabInfos: { icon: string; label: string; name: string; to: string }[] = [
   {
     icon: 'icon_home',
-    label: '홈',
+    label: '메인 홈',
     name: 'home',
     to: '/home',
   },
   {
-    icon: 'icon_game',
-    label: '게임팩',
-    name: 'game-pack',
-    to: '/game-pack',
-  },
-  // TODO 앱 심사 히든
-  // {
-  //   icon: 'icon_edit_game',
-  //   label: '작업실',
-  //   name: 'create-room',
-  //   to: '/',
-  // },
-  {
-    icon: 'icon_add_user',
-    label: '인력사무소',
-    name: 'recruit',
-    to: '/recruit',
-  },
-  {
-    icon: 'icon_community',
-    label: '커뮤니티',
-    name: 'community',
-    to: '/community',
+    icon: 'icon_heart',
+    label: '나의 활동',
+    name: 'my-page',
+    to: '/my-page',
   },
 ];
-const isMain = computed(() => route.name?.toString().includes('main'));
+const isMain = computed(() => route.name?.toString().includes('main') || route.name === 'home-main');
 const noHeader = computed(() => route.meta.noHeader);
 const noFooter = computed(() => route.meta.noFooter);
-
-// useMeta({
-//   title: 'CCF ㅣ 팬과 함께 만들어가는 게임 개발 커뮤니티',
-// });
 </script>
 
 <template>
@@ -85,12 +61,11 @@ const noFooter = computed(() => route.meta.noFooter);
     </div>
     <q-page-container class="q-pb-none border-grey-5">
       <div v-if="!IsPrd" class="top-version fixed top-0 z-50 font-pretendard text-xs opacity-50 border-grey-5">
-        <!-- FE version: {{ version }} / BE version: {{ BEversion }} -->
       </div>
       <div style="max-width: 512px; margin: 0 auto" class="border-grey-5">
         <router-view />
 
-        <q-footer v-if="!noFooter" class="bg-white justify-between items-center flex footer-border py-2">
+        <q-footer v-if="!noFooter && footerVisible" class="bg-white justify-between items-center flex footer-border py-2">
           <q-tabs class="w-full" align="justify">
             <q-route-tab
               v-for="tabInfo in tabInfos"
@@ -104,6 +79,7 @@ const noFooter = computed(() => route.meta.noFooter);
                 :name="tabInfo.icon"
                 size="20px"
                 :active="tab?.includes(tabInfo?.name ?? '')"
+                activeColor="#FF4B6E"
                 :label="tabInfo.label"
               />
               <p class="text-grey-5"></p>

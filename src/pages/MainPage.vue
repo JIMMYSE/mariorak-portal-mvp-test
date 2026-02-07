@@ -1,309 +1,184 @@
-<!-- 메인페이지 -->
-
 <script setup lang="ts">
-import GPItemList from 'src/components/game-pack/GPItemList.vue';
-import { barStyle, thumbStyle } from 'src/utils/style-variable';
-const { data } = getMyDetail();
+import type { PopupStoreItem } from '@/types/popup-store/popup-store-model';
+import type { ExhibitionItem } from '@/types/exhibition/exhibition-model';
 
-const slide = ref(0);
-const keyword = ref<string>('');
-const businessInfo = ref(false);
-const toggleBusinessInfo = (target: boolean) => {
-  businessInfo.value = !target;
-};
-// img dummy
-const imgList = [
+// TODO: API 연동 후 실제 데이터로 교체
+const popupStores = ref<PopupStoreItem[]>([
   {
-    src: '/images/main/Main_KV/512/kv_01.png',
     id: 1,
-    title: '',
-    desc: '',
+    title: '[세가] 용과 같이 팝업 스토어',
+    imageUrl: '/images/dummy/main_dummy1.svg',
+    status: 'OPEN',
+    reservationStatus: 'AVAILABLE',
+    location: '서울시 마리오구',
+    startDate: '2025/04/05',
+    endDate: '2025/06/05',
+    isBookmarked: true,
   },
   {
-    src: '/images/main/Main_KV/512/kv_02.png',
     id: 2,
-    title: '',
-    desc: '',
-    link: 'https://k-dmts.com/fairDash.do',
+    title: '[스퀘어 에닉스] 스퀘어 에닉스 특별전',
+    imageUrl: '/images/dummy/main_dummy2.svg',
+    status: 'OPEN',
+    reservationStatus: 'ONSITE_WAIT',
+    location: '서울시 마리오구',
+    startDate: '2025/04/05',
+    endDate: '2025/06/05',
+    isBookmarked: false,
   },
   {
-    src: '/images/main/Main_KV/512/kv_03.png',
     id: 3,
-    title: '',
-    desc: '',
-  },
-];
-const cultureList = [
-  {
-    src: '/images/main/main_culture_2.png',
-    title: '팬과 크리에이터의\n공간',
-    desc: '팬과 크리에이터가 동반자의 관계가 되어\n실시간으로 피드백을 남기고\n응원하는 공간이에요.',
-  },
-  {
-    src: '/images/main/main_culture_1.png',
-    title: '재정적 안정을\n지원하는 공간',
-    desc: '제작부터 출시되는 순간까지\n팬들의 펀딩과 도네이션, CCF의\n지원이 함께해요.',
+    title: '[세가] 용과 같이 팝업 스토어',
+    imageUrl: '/images/dummy/main_dummy3.svg',
+    status: 'OPEN',
+    reservationStatus: 'AVAILABLE',
+    location: '서울시 마리오구',
+    startDate: '2025/04/05',
+    endDate: '2025/06/05',
+    isBookmarked: false,
   },
   {
-    src: '/images/main/main_culture_3.png',
-    title: '실질적 도움이\n되어주는 공간',
-    desc: '게임 개발에 어려움이 있다면\n게임 전문 CCF 크루에게 지금\n문의해보세요.',
+    id: 4,
+    title: '[스퀘어 에닉스] 스퀘어 에닉스 특별전',
+    imageUrl: '/images/dummy/main_dummy4.svg',
+    status: 'CLOSED',
+    reservationStatus: 'ONSITE_WAIT',
+    location: '서울시 마리오구',
+    startDate: '2025/04/05',
+    endDate: '2025/06/05',
+    isBookmarked: false,
   },
-  {
-    src: '/images/main/main_culture_4.png',
-    title: '투명하고 건강한\n게임 개발 공간',
-    desc: '개발 과정의 실시간 공개와\n게임의 지분 및 수익을 투명하\n공유해드려요.',
-  },
-];
-const tabList = [
-  {
-    src: '/images/main/joystick.png',
-    title: '게임',
-  },
-  {
-    src: '/images/main/magicwand.png',
-    title: '프로젝트',
-  },
-  {
-    src: '/images/main/megaphone.png',
-    title: '모집중',
-  },
-  {
-    src: '/images/main/blacknib.png',
-    title: '개발자',
-  },
-  {
-    src: '/images/main/developer.png',
-    title: '개발자 게시판',
-  },
-  {
-    src: '/images/main/handshake.png',
-    title: '커뮤니티',
-  },
-];
+]);
 
-//fecth
-
-const { data: recommendedGameData } = useRecommendedGameList();
-const recommendedGameList = computed(() => {
-  return recommendedGameData.value?.rows;
-});
-const { data: recommededProjectData } = useRecommendedProjectList();
-const recommendedProjectList = computed(() => {
-  return recommededProjectData.value?.rows;
-});
-
-const slideInfo = ref<any>({});
-const slideEvent = (info: any) => {
-  console.log(info);
-  slideInfo.value = info;
-};
-
-const isLocal = process.env.IS_LOCAL;
-const isDev = process.env.IS_DEV;
-
-/** 상세 보기 약관 */
-const detailEnabled = ref(false);
-const detail = ref<{ title: string; content: string } | null>(null);
-const { request } = useSearchFilter({
-  requestDefault: {
-    from: 0,
-    size: 10,
-    sort: [
-      {
-        sequence: 'asc',
-      },
-    ],
+const exhibitions = ref<ExhibitionItem[]>([
+  {
+    id: 1,
+    title: '세가 레거시 전시전',
+    imageUrl: '/images/dummy/main_dummy5.svg',
+    status: 'OPEN',
+    reservationStatus: 'AVAILABLE',
+    location: '서울시 마리오구',
+    startDate: '2025/04/05',
+    endDate: '2025/06/05',
+    isBookmarked: false,
   },
-});
+]);
 
-const { data: termsData } = useTermsList({ searchRequest: request });
-
-const openDetailDialog = (type: string) => {
-  console.log(type, termsData.value);
-  const term = termsData.value?.rows.find((r: { type: string }) => r.type === type);
-
-  console.log(term);
-  detail.value = { title: term.title, content: term.content };
-  detailEnabled.value = true;
-};
-
-const moveToList = (type: string) => {
-  switch (type) {
-    case '게임':
-      goToName('game-list');
-      break;
-    case '프로젝트':
-      goToName('project-list');
-      break;
-    case '모집중':
-      goToName('recruit-detail');
-      break;
-    case '개발자':
-      // goToName('recruit-detail', { active: 'maker' });
-      goTo('/recruit/detail#maker');
-      break;
-    case '개발자 게시판':
-      notAvailableAlert();
-      break;
-    case '커뮤니티':
-      notAvailableAlert();
-      break;
+const statusLabel = (status: string) => {
+  switch (status) {
+    case 'OPEN':
+      return '운영중';
+    case 'CLOSED':
+      return '종료';
+    default:
+      return '운영중';
   }
+};
+
+const reservationLabel = (status: string) => {
+  switch (status) {
+    case 'AVAILABLE':
+      return '예약중';
+    case 'ONSITE_WAIT':
+      return '현장대기';
+    case 'CLOSED':
+      return '종료';
+    default:
+      return '';
+  }
+};
+
+const toggleBookmark = (item: PopupStoreItem | ExhibitionItem) => {
+  item.isBookmarked = !item.isBookmarked;
 };
 </script>
 
 <template>
-  <q-page class="column bg-white">
-    <!-- 맵 바로가기 영역 -->
-    <ckv-banner :img-list="imgList" counter />
+  <q-page class="bg-white">
+    <!-- POP-UP STORE 섹션 -->
+    <div class="px-3 pt-4">
+      <h2 class="text-[22px] font-bold text-grey-5 mb-4">POP-UP STORE</h2>
 
-    <!-- 상단 탭 -->
-    <q-scroll-area class="bg-[#f8f8f8] h-[100px] w-full px-3" :bar-style="barStyle" :thumb-style="thumbStyle">
-      <div class="row no-wrap">
-        <div class="w-[70px] h-[100px] text-center mr-4" v-for="n in tabList" :key="n.src" @click="moveToList(n.title)">
-          <div class="h-full flex flex-col items-center justify-center">
-            <q-img :src="n.src" class="h-[44px] w-[44px]" />
-            <p class="text-xs">
-              {{ n.title }}
-            </p>
+      <div class="flex flex-col gap-4">
+        <div
+          v-for="store in popupStores"
+          :key="store.id"
+          class="rounded-lg overflow-hidden border border-grey-1 cursor-pointer"
+          @click="$router.push({ name: 'popup-store-detail', params: { id: store.id } })"
+        >
+          <!-- 이미지 -->
+          <div class="relative h-[147px]">
+            <q-img :src="store.imageUrl" class="w-full h-full" fit="cover" />
+            <q-btn
+              round
+              flat
+              size="sm"
+              class="absolute top-2 right-2 bg-white/50"
+              @click.stop="toggleBookmark(store)"
+            >
+              <q-icon
+                :name="store.isBookmarked ? 'img:/icons/icon_heart_red.svg' : 'img:/icons/icon_heart2_d.svg'"
+                size="20px"
+              />
+            </q-btn>
           </div>
-        </div>
-      </div>
-    </q-scroll-area>
-
-    <!-- 게임팩 대해 궁금하다면 -->
-    <section class="mt-10">
-      <p class="pl-6 text-[22px] font-semibold">유저와 함께하는 게임 제작 문화</p>
-      <p class="pl-6 text-[#767676] text-sm font-normal">CCF가 제공하는 다양한 혜택을 즐겨보세요</p>
-      <div class="border-t-0 grid grid-col-3 gap-1.5 mt-4 h-[280px]">
-        <q-scroll-area class="w-full" :bar-style="barStyle" :thumb-style="thumbStyle">
-          <div class="row no-wrap pl-6">
-            <div class="h-[270px] mr-4 w-[200px]" v-for="n in cultureList" :key="n.src">
-              <q-card class="rounded-[10px] shadow">
-                <q-img :src="n.src" class="w-[200px] h-[123px]" />
-
-                <q-card-section>
-                  <p class="text-[#222222] font-semibold leading-snug whitespace-pre">
-                    {{ n.title }}
-                  </p>
-                  <p class="text-[#767676] text-xs mt-3">{{ n.desc }}</p>
-                </q-card-section>
-              </q-card>
+          <!-- 정보 -->
+          <div class="p-4">
+            <p class="text-[16px] font-semibold text-grey-5 mb-2">{{ store.title }}</p>
+            <div class="flex gap-2">
+              <span class="px-2 py-1 rounded-full text-[12px] font-medium bg-primary text-white">
+                {{ statusLabel(store.status) }}
+              </span>
+              <span class="px-2 py-1 rounded-full text-[12px] font-medium border border-primary text-primary">
+                {{ reservationLabel(store.reservationStatus) }}
+              </span>
             </div>
           </div>
-        </q-scroll-area>
-      </div>
-    </section>
-
-    <hr class="h-2.5 bg-[#f7f7f7] mt-10" />
-
-    <!-- CCF 추천게임 -->
-    <section class="mt-10">
-      <h2 class="pl-6 text-[22px] font-semibold">CCF 추천게임</h2>
-      <div class="grid gap-1.5 mt-4">
-        <g-p-item-list type="game" to-list="game-list" :gp-list="recommendedGameList" />
-      </div>
-    </section>
-
-    <!-- CCF 추천 프로젝트 -->
-    <section class="mt-[55px]">
-      <h2 class="pl-6 text-[22px] font-semibold">CCF가 주목하는 프로젝트</h2>
-      <div class="grid gap-1.5 mt-4">
-        <g-p-item-list type="project" to-list="project-list" :gp-list="recommendedProjectList" />
-      </div>
-    </section>
-
-    <!-- 커뮤니티 최신 게시물 -->
-    <section class="mt-[55px]">
-      <h2 class="pl-6 text-[22px] font-semibold pb-3">커뮤니티 최근 게시물</h2>
-      <div class="grid gap-1.5 mt-[18px] px-6">
-        <community-card-list />
-      </div>
-    </section>
-
-    <!-- 배너영역 -->
-    <q-img class="mt-[55px]" src="/images/dummy/banner_dummy.png" alt="banner" width="100%" height="100%" />
-
-    <!-- CCF 운영진의 안내사항 -->
-    <section class="mt-[55px]">
-      <h2 class="pl-6 text-[22px] font-semibold pb-3">CCF 운영진의 안내사항</h2>
-      <div class="grid gap-1.5 mt-[18px] px-6">
-        <notice-card-list />
-      </div>
-    </section>
-
-    <!-- 사업자 정보 -->
-
-    <section class="bottom-0 bg-[#f7f7f7] px-6 pt-6 mt-[55px]">
-      <div class="flex justify-between">
-        <div><q-img src="/images/main-logo.png" alt="" class="w-14" /></div>
-
-        <div>
-          <h6
-            class="text-[#767676] text-sm font-medium font-['Pretendard'] leading-tight relative pr-5 cursor-pointer"
-            @click="toggleBusinessInfo(businessInfo)"
-          >
-            사업자 정보
-            <q-icon
-              size="23px"
-              name="img:/icons/down_arrow.svg"
-              class="absolute left-16 bottom-0"
-              :class="businessInfo ? 'rotate-180' : ''"
-            />
-          </h6>
         </div>
       </div>
-      <div class="mt-6" v-show="businessInfo">
-        <div class="flex justify-center">
-          <div
-            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none cursor-pointer"
-            @click="openDetailDialog('PERSONAL_DATA_PROCESS')"
-          >
-            개인정보 처리방침
+    </div>
+
+    <!-- Exhibitions 섹션 -->
+    <div class="px-3 pt-8 pb-20 bg-grey mt-6">
+      <h2 class="text-[18px] font-bold text-grey-5 mb-4">Exhibitions</h2>
+
+      <div class="flex flex-col gap-4">
+        <div
+          v-for="exhibition in exhibitions"
+          :key="exhibition.id"
+          class="rounded-lg overflow-hidden border border-grey-1 bg-white cursor-pointer"
+          @click="$router.push({ name: 'exhibition-detail', params: { id: exhibition.id } })"
+        >
+          <!-- 이미지 -->
+          <div class="relative h-[219px]">
+            <q-img :src="exhibition.imageUrl" class="w-full h-full" fit="cover" />
+            <q-btn
+              round
+              flat
+              size="sm"
+              class="absolute top-2 right-2 bg-white/50"
+              @click.stop="toggleBookmark(exhibition)"
+            >
+              <q-icon
+                :name="exhibition.isBookmarked ? 'img:/icons/icon_heart_red.svg' : 'img:/icons/icon_heart2_d.svg'"
+                size="20px"
+              />
+            </q-btn>
           </div>
-          <div class="border-l-2 border-[#f0f0f0] mx-3"></div>
-          <div
-            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none cursor-pointer"
-            @click="openDetailDialog('SERVICE_AGREEMENT')"
-          >
-            서비스 이용약관
+          <!-- 정보 -->
+          <div class="p-4">
+            <p class="text-[16px] font-semibold text-grey-5 mb-2">{{ exhibition.title }}</p>
+            <div class="flex gap-2">
+              <span class="px-2 py-1 rounded-full text-[12px] font-medium bg-primary text-white">
+                {{ statusLabel(exhibition.status) }}
+              </span>
+              <span class="px-2 py-1 rounded-full text-[12px] font-medium border border-primary text-primary">
+                {{ reservationLabel(exhibition.reservationStatus) }}
+              </span>
+            </div>
           </div>
-          <div class="border-l-2 border-[#f0f0f0] mx-3"></div>
-          <!-- <div
-            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none cursor-pointer"
-          >
-            사업자 정보 확인
-          </div> -->
-        </div>
-        <!-- <div class="flex mt-3 justify-center">
-          <div
-            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none cursor-pointer"
-          >
-            프로젝트 심사 기준
-          </div>
-          <div class="border-l-2 border-[#f0f0f0] mx-3"></div>
-          <div
-            class="text-[#767676] text-xs font-normal font-['Pretendard'] underline leading-none cursor-pointer"
-          >
-            CCF 정책
-          </div>
-        </div> -->
-      </div>
-      <div>
-        <div class="w-full h-[0px] border border-[#f0f0f0] mt-5"></div>
-        <div class="text-[#b5b5b5] text-[10px] leading-[14px] mt-7">
-          CCF는 플랫폼 제공자로서 프로젝트의 당사자가 아니며, 직접적인 통신 판매를 진행하지 않습니다. 프로젝트의 완수의
-          책임은 해당 프로젝트의 창작자에게 있으며, 프로젝트와 관련하여 후원자와 발생하는 법적 분쟁에 대한 책임은 해당
-          창작자가 부담합니다.
-        </div>
-        <div class="text-[#767676] text-[10px] mt-16 pb-8 leading-[14px] text-center w-full underline">
-          <a href="mailto:npc-dev@cc-fan.com" v-if="isLocal || isDev"> Copyright©COARSOFT </a>
-          <a href="mailto:npc@cc-fan.com" v-else>Copyright©COARSOFT</a>
         </div>
       </div>
-    </section>
+    </div>
   </q-page>
-  <!-- 팝업 -->
-  <c-dialog-content v-model="detailEnabled" :title="detail?.title" :html="detail?.content" />
 </template>

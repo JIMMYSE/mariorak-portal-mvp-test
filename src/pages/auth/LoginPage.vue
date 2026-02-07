@@ -74,17 +74,19 @@ const socialLoginAPI = async (accessToken: string, provider: SocialType) => {
   <q-page class="column justify-top items-center px-2 py-[10vh]">
     <q-header class="flex flex-center pl-1 pt-[var(--statusbar-h)] bg-white">
       <q-toolbar class="flex justify-between items-center h-[var(--main-header-h)] pr-1">
-        <q-img src="/images/main-logo.png" alt="" class="w-14" />
+        <div class="flex items-center ml-1">
+          <span class="text-[20px] font-normal tracking-tight text-grey-3">MARI</span>
+          <span class="text-[20px] font-bold tracking-tight text-grey-5">ORAK</span>
+        </div>
       </q-toolbar>
     </q-header>
     <q-card class="w-full mt-12 bg-transparent" :flat="true">
       <!-- EMAIL LOGIN -->
       <q-card-section class="title-section">
         <div class="text-[32px] font-semibold">
-          Content Created<br />
-          with Fans
+          MGM 로그인
         </div>
-        <div class="text-[#b4b4b4] mt-1 font-light">팬과 함께 만들어가는 게임 개발 커뮤니티</div>
+        <div class="text-[#b4b4b4] mt-1 font-light">내 취향에 맞는 팝업스토어를 만나는 공간,<br /><span class="text-primary">MGM</span></div>
       </q-card-section>
       <q-card-section class="q-gutter-md">
         <GoogleLogin :callback="googleCallback" v-if="isLocal || isDev" />

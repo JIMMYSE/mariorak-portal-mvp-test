@@ -12,23 +12,13 @@ const routes: RouteRecordRaw[] = [
         path: '',
         redirect: { name: 'home-main' },
       },
-      {
-        path: 'notice/:id',
-        name: 'notice-detail',
-        meta: {
-          title: '공지사항 상세',
-          bgColor: 'white',
-          noFooter: true,
-        },
-        component: () => import('pages/main/NoticeDetail.vue'),
-      },
+      // ===== 홈(메인) =====
       {
         path: '/home',
         meta: {
           requiresAuth: true,
-          title: 'CCF ㅣ 팬과 함께 만들어가는 게임 개발 커뮤니티',
-          description:
-            '성공적인 게임 제작을 위해 팬과 크리에이터가 만나 아이디어를 내며 소통을 하는 글로벌 커뮤니티 공간 CCF_Content Created with Fans',
+          title: '마리오락 | 내 취향에 맞는 팝업스토어를 만나는 공간',
+          description: '내 취향에 맞는 팝업스토어를 만나는 공간, 마리오락',
           ogImage: '/images/meta-img.jpg',
         },
         component: MainLayout,
@@ -40,272 +30,79 @@ const routes: RouteRecordRaw[] = [
           },
         ],
       },
+      // ===== 팝업 스토어 =====
       {
-        path: 'game-pack',
+        path: 'popup-store',
         meta: {
           requiresAuth: true,
-          title: '게임팩 ㅣ CCF가 함께하고 지원하는 게임 모음집',
-          description:
-            '성공적인 게임 제작을 위해 팬과 크리에이터가 만나 아이디어를 내며 소통을 하는 글로벌 커뮤니티 공간 CCF_Content Created with Fans',
-          ogImage: '/images/meta-img.jpg',
         },
-        component: MainLayout,
+        component: SubLayout,
         children: [
           {
-            path: '',
-            name: 'game-pack-main',
+            path: ':id',
+            name: 'popup-store-detail',
             meta: {
-              title: '게임팩',
-              bgColor: 'white',
-              faqCategory: '게임팩',
-            },
-            component: () => import('src/pages/game-pack/GPMainPage.vue'),
-          },
-          // 게임 목록/상세
-          {
-            path: 'game/list',
-            name: 'game-list',
-            meta: {
-              title: '게임 목록',
-              bgColor: 'white',
-              faqCategory: '게임팩', // TODO 오픈떄 수정
-            },
-            component: () => import('pages/game-pack/game/GameList.vue'),
-          },
-          {
-            path: 'game/:id',
-            name: 'game-detail',
-            meta: {
-              title: '게임 상세',
+              title: 'POP-UP STORE',
               bgColor: 'white',
             },
-            component: () => import('pages/game-pack/game/GameDetail.vue'),
+            component: () => import('pages/popup-store/PopupStoreDetail.vue'),
           },
           {
-            path: 'board/:id/board-edit',
-            name: 'board-edit',
+            path: ':id/reserve',
+            name: 'popup-store-reserve',
             meta: {
-              title: '게시판 등록',
+              title: '예약하기',
               bgColor: 'white',
               noFooter: true,
             },
-            component: () => import('pages/game-pack/GPBoardEdit.vue'),
-          },
-          {
-            path: 'board/:id/:boardId',
-            name: 'board-detail',
-            meta: {
-              title: '게시글 상세',
-              bgColor: 'white',
-              noFooter: true,
-            },
-            component: () => import('pages/game-pack/GPBoardDetail.vue'),
-          },
-          // 프로젝트 목록/상세
-          {
-            path: 'project/list',
-            name: 'project-list',
-            meta: {
-              title: '프로젝트 목록',
-              bgColor: 'white',
-              faqCategory: '게임팩', // TODO 오픈떄 수정
-            },
-            component: () => import('pages/game-pack/project/ProjectList.vue'),
-          },
-          {
-            path: 'project/:id',
-            name: 'project-detail',
-            meta: {
-              title: '프로젝트 상세',
-              bgColor: 'white',
-            },
-            component: () => import('pages/game-pack/project/ProjectDetail.vue'),
-          },
-          {
-            path: 'news/:id/news-edit',
-            name: 'news-edit',
-            meta: {
-              title: '뉴스 등록하기',
-              bgColor: 'white',
-              noFooter: true,
-            },
-            component: () => import('pages/game-pack/GPNewsEdit.vue'),
-          },
-          {
-            path: 'review/:id/review-edit',
-            name: 'review-edit',
-            meta: {
-              title: '리뷰 작성',
-              bgColor: 'white',
-              noFooter: true,
-            },
-            component: () => import('pages/game-pack/GPReviewEdit.vue'),
+            component: () => import('pages/popup-store/PopupStoreReserve.vue'),
           },
         ],
       },
+      // ===== 기획전시 =====
       {
-        path: 'recruit',
+        path: 'exhibition',
         meta: {
           requiresAuth: true,
-          title: '인력사무소 ㅣ 보다 나은 게임 개발을 위한 만남의 공간',
-          description:
-            '성공적인 게임 제작을 위해 팬과 크리에이터가 만나 아이디어를 내며 소통을 하는 글로벌 커뮤니티 공간 CCF_Content Created with Fans',
-          ogImage: '/images/meta-img.jpg',
         },
-        component: MainLayout,
+        component: SubLayout,
         children: [
           {
-            path: '',
-            name: 'recruit-main',
+            path: ':id',
+            name: 'exhibition-detail',
             meta: {
-              title: '인력사무소',
-              faqCategory: '인력사무소',
-            },
-            component: () => import('src/pages/recruit/RecruitMainPage.vue'),
-          },
-          {
-            path: 'detail',
-            name: 'recruit-detail',
-            meta: {
-              title: '인력사무소 상세',
-              faqCategory: '인력사무소',
-              disabledHashScroll: true,
-            },
-            component: () => import('src/pages/recruit/RecruitDetail.vue'),
-          },
-          {
-            path: 'profile/:id',
-            name: 'recruit-profile',
-            meta: {
-              title: '개발자 프로필',
-            },
-            component: () => import('pages/recruit/RecruitMakerProfile.vue'),
-          },
-          {
-            path: 'project/:id',
-            name: 'recruit-project-detail',
-            meta: {
-              title: '프로젝트 상세',
+              title: 'EXHIBITIONS',
               bgColor: 'white',
             },
-            // 프로젝트 상세에 SubLayout 사용
-            component: SubLayout,
-            children: [
-              {
-                path: '',
-                component: () => import('pages/recruit/RecruitProjectDetail.vue'),
-              },
-            ],
+            component: () => import('pages/exhibition/ExhibitionDetail.vue'),
+          },
+          {
+            path: ':id/reserve',
+            name: 'exhibition-reserve',
+            meta: {
+              title: '예약하기',
+              bgColor: 'white',
+              noFooter: true,
+            },
+            component: () => import('pages/exhibition/ExhibitionReserve.vue'),
           },
         ],
       },
+      // ===== 나의 활동(마이페이지) =====
       {
-        path: 'community',
+        path: 'my-page',
         meta: {
           requiresAuth: true,
-          title: '인력사무소 ㅣ 서로 소통하며 키워나가는 창작 공간',
-          description:
-            '성공적인 게임 제작을 위해 팬과 크리에이터가 만나 아이디어를 내며 소통을 하는 글로벌 커뮤니티 공간 CCF_Content Created with Fans',
-          ogImage: '/images/meta-img.jpg',
         },
         component: MainLayout,
         children: [
           {
             path: '',
-            name: 'community-main',
+            name: 'my-page-main',
             meta: {
-              title: '커뮤니티',
-              faqCategory: '커뮤니티',
+              title: 'MY PAGE',
             },
-            component: () => import('src/pages/community/CMMainPage.vue'),
-          },
-          {
-            path: 'news/list',
-            name: 'community-news-list',
-            meta: {
-              title: '소식통 목록',
-              disabledHashScroll: true,
-            },
-            component: () => import('src/pages/community/CMNewsList.vue'),
-          },
-          {
-            path: 'news/:id',
-            name: 'community-profile',
-            meta: {
-              title: '소식통 상세',
-              noFooter: true,
-            },
-            component: () => import('pages/community/CMNewsDetail.vue'),
-          },
-          {
-            path: 'conference/:id',
-            name: 'community-conference-detail',
-            meta: {
-              title: '컨퍼런스 상세',
-              bgColor: 'white',
-            },
-            // 프로젝트 상세에 SubLayout 사용
-            component: SubLayout,
-            children: [
-              {
-                path: '',
-                component: () => import('pages/community/CMConferenceDetail.vue'),
-              },
-            ],
-          },
-          // 개발자 게시판
-          {
-            path: 'maker/board/list',
-            name: 'maker-board-list',
-            meta: {
-              title: '개발자 게시판 목록',
-            },
-            component: () => import('pages/recruit/RecruitMakerProfile.vue'),
-          },
-          {
-            path: 'maker/board/edit',
-            name: 'maker-board-edit',
-            meta: {
-              title: '개발자 게시판 작성',
-              noFooter: true,
-            },
-            component: () => import('pages/community/CMBoardEdit.vue'),
-          },
-          {
-            path: 'maker/board/:boardId',
-            name: 'maker-board-detail',
-            meta: {
-              title: '개발자 게시판 조회',
-              noFooter: true,
-            },
-            component: () => import('pages/community/CMBoardDetail.vue'),
-          },
-          // 서포터즈 게시판
-          {
-            path: 'supporters/board/list',
-            name: 'supporters-board-list',
-            meta: {
-              title: '서포터즈 게시판 목록',
-            },
-            component: () => import('pages/recruit/RecruitMakerProfile.vue'),
-          },
-          {
-            path: 'supporters/board/edit',
-            name: 'supporters-board-edit',
-            meta: {
-              title: '서포터즈 게시판 작성',
-              noFooter: true,
-            },
-            component: () => import('pages/community/CMBoardEdit.vue'),
-          },
-          {
-            path: 'supporters/board/:boardId',
-            name: 'supporters-board-detail',
-            meta: {
-              title: '서포터즈 게시판 조회',
-              noFooter: true,
-            },
-            component: () => import('pages/community/CMBoardDetail.vue'),
+            component: () => import('pages/my-page/MPMainPage.vue'),
           },
         ],
       },
@@ -317,126 +114,115 @@ const routes: RouteRecordRaw[] = [
         component: SubLayout,
         children: [
           {
+            path: 'reservations',
+            name: 'my-reservations',
+            meta: {
+              title: '나의 예약',
+              noFooter: true,
+            },
+            component: () => import('pages/my-page/ReservationList.vue'),
+          },
+          {
+            path: 'bookmarks',
+            name: 'my-bookmarks',
+            meta: {
+              title: '나의 북마크',
+              noFooter: true,
+            },
+            component: () => import('pages/my-page/BookmarkList.vue'),
+          },
+          {
+            path: 'badges',
+            name: 'my-badges',
+            meta: {
+              title: '나의 뱃지',
+              noFooter: true,
+            },
+            component: () => import('pages/my-page/BadgeList.vue'),
+          },
+        ],
+      },
+      // ===== 설정 =====
+      {
+        path: 'settings',
+        meta: {
+          requiresAuth: true,
+        },
+        component: SubLayout,
+        children: [
+          {
             path: '',
-            name: 'my-page',
+            name: 'settings-main',
             meta: {
-              title: '마이페이지',
+              title: '설정',
             },
-            component: () => import('pages/my-page/MPMainPage.vue'),
+            component: () => import('pages/settings/SettingsMain.vue'),
           },
           {
-            path: 'activity-manage',
-            name: 'activity-manage',
+            path: 'account',
+            name: 'settings-account',
             meta: {
-              title: '나의 활동 내역',
+              title: '계정관리',
             },
-            component: () => import('pages/my-page/activity/ActivityManage.vue'),
+            component: () => import('pages/settings/AccountManage.vue'),
           },
           {
-            path: 'like-project',
-            name: 'like-project',
+            path: 'notification',
+            name: 'settings-notification',
             meta: {
-              title: '좋아요 표시한 프로젝트',
+              title: '알림관리',
+            },
+            component: () => import('pages/settings/NotificationManage.vue'),
+          },
+          {
+            path: 'language',
+            name: 'settings-language',
+            meta: {
+              title: '언어설정',
+            },
+            component: () => import('pages/settings/LanguageSetting.vue'),
+          },
+          {
+            path: 'terms',
+            name: 'settings-terms',
+            meta: {
+              title: '이용약관',
+            },
+            component: () => import('pages/settings/TermsManage.vue'),
+          },
+        ],
+      },
+      // ===== 알림 =====
+      {
+        path: 'notification',
+        meta: {
+          requiresAuth: true,
+        },
+        component: SubLayout,
+        children: [
+          {
+            path: '',
+            name: 'notification-list',
+            meta: {
+              title: '알림',
               noFooter: true,
             },
-            component: () => import('pages/my-page/activity/LikeProjectList.vue'),
+            component: () => import('pages/notification/NotificationList.vue'),
           },
           {
-            path: 'like-game',
-            name: 'like-game',
+            path: ':id',
+            name: 'notification-detail',
             meta: {
-              title: '좋아요 표시한 게임',
+              title: '알림 상세',
               noFooter: true,
             },
-            component: () => import('pages/my-page/activity/LikeGameList.vue'),
-          },
-          {
-            path: 'account-manage',
-            name: 'account-manage',
-            meta: {
-              title: '계정 정보 관리',
-            },
-            component: () => import('pages/my-page/info/account/AccountManage.vue'),
-          },
-          {
-            path: 'account-withdrawal',
-            name: 'account-withdrawal',
-            meta: {
-              title: '회원탈퇴',
-              noFooter: true,
-            },
-            component: () => import('pages/my-page/info/account/AccountWithdrawal.vue'),
-          },
-
-          {
-            path: 'user-profile-manage',
-            name: 'user-profile-manage',
-            meta: {
-              title: '개인 프로필 관리',
-            },
-            component: () => import('pages/my-page/info/user/UserProfileManage.vue'),
-          },
-          {
-            path: 'change-nickname',
-            name: 'change-nickname',
-            meta: {
-              title: '닉네임 변경',
-              noFooter: true,
-            },
-            component: () => import('pages/my-page/info/user/ChangeNickname.vue'),
-          },
-          {
-            path: 'change-avatar',
-            name: 'change-avatar',
-            meta: {
-              title: '아바타 변경',
-              noFooter: true,
-            },
-            component: () => import('pages/my-page/info/user/ChangeAvatar.vue'),
-          },
-          {
-            path: 'maker-profile-manage',
-            name: 'maker-profile-manage',
-            meta: {
-              title: '개발자 프로필 관리',
-              noFooter: true,
-            },
-            component: () => import('pages/my-page/info/maker/MakerProfileManage.vue'),
-          },
-          {
-            path: 'maker-profile-new',
-            name: 'maker-profile-new',
-            meta: {
-              title: '개발자 프로필 등록',
-              noFooter: true,
-            },
-            component: () => import('pages/my-page/info/maker/MakerProfileEdit.vue'),
-          },
-          //본인 프로필 수정
-          {
-            path: 'maker-profile-edit',
-            name: 'maker-profile-edit',
-            props: true,
-            meta: {
-              title: '개발자 프로필 수정',
-              noFooter: true,
-            },
-            component: () => import('pages/my-page/info/maker/MakerProfileEdit.vue'),
-          },
-          // 개발자 프로필 미등록
-          {
-            path: 'not-register-profile',
-            name: 'not-register-profile',
-            meta: {
-              title: '개발자 프로필 관리',
-              noFooter: true,
-            },
-            component: () => import('pages/my-page/info/maker/NotRegisterProfile.vue'),
+            component: () => import('pages/notification/NotificationDetail.vue'),
           },
         ],
       },
     ],
   },
+  // ===== 인증 =====
   {
     path: '/login',
     component: DefaultLayout,
@@ -525,14 +311,11 @@ const routes: RouteRecordRaw[] = [
         meta: {
           title: '회원가입 완료',
           noHeader: true,
-          // requiresNonAuth: false,
-          // requiresAuth: true,
         },
         component: () => import('pages/auth/JoinCompleted.vue'),
       },
     ],
   },
-
   {
     path: '/policy',
     component: SubLayout,
@@ -590,12 +373,9 @@ const routes: RouteRecordRaw[] = [
       },
     ],
   },
-
-  // Always leave this as last one,
-  // but you can also remove it
+  // Always leave this as last one
   {
     path: '/:catchAll(.*)*',
-    // redirect: { name: 'error-not-found' },
     redirect: { name: 'home-main' },
   },
 ];
