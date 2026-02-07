@@ -1,146 +1,170 @@
-# CCF-portal
+# MARIORAK Portal
 
-CCF 포털 프로젝트입니다.
+마리오락 - 내 취향에 맞는 팝업스토어를 만나는 공간
+
+전시/팝업스토어 예약 서비스 앱입니다.
 
 ## Table of Contents
 
+- [Features](#features)
 - [Folder Structure](#folder-structure)
 - [Installation](#installation)
 - [Build/Setup](#buildsetup)
 - [Development Environment](#development-environment)
-- [Contributing](#contributing)
 - [License](#license)
+
+## Features
+
+- **메인 홈**: POP-UP STORE / Exhibitions 목록 조회, 북마크 기능
+- **팝업 스토어 상세**: 이미지/정보/굿즈 탭, 북마크, 예약 바로가기
+- **기획전시 상세**: 이미지/정보/전시물 탭, 북마크, 예약 바로가기
+- **예약하기**: 캘린더 기반 날짜 선택 + 타임피커
+- **나의 활동**: 프로필, 나의 예약/나의 북마크 바로가기, 뱃지 그리드
+- **나의 예약**: QR코드 티켓 카드 리스트, 소팅 기능
+- **나의 북마크**: POP-UP STORE / Exhibitions 북마크 리스트
+- **설정**: 계정관리, 알림관리, 언어설정, 이용약관
+- **알림**: 알림 목록/상세
+- **인증**: SNS 소셜 로그인 (Google, Naver, Kakao, Apple)
 
 ## Folder Structure
 
 ```
-├── App.vue
-├── assets
-├── boot
-│   ├── axios.ts
-│   └── ....
-├── components
-│   ├── common
-│   │   ├── dialog
-│   │   ├── form
-│   │   ├── layout
-│   │   └── text
-│   ├── main
-│   └── ...
-├── composables
-│   ├── domain
-│   ├── form
-│   ├── init
-│   ├── temp
-│   ├── useBridge.ts
-│   ├── useDialog.ts
-│   └── useSearchFilter.ts
-├── css
-├── i18n
-├── layouts
-├── pages
-│   └── auth
-├── quasar.d.ts
-├── router
-│   ├── index.ts
-│   ├── router-util.ts
-│   └── routes.ts
-├── services
-│   ├── api.ts
-│   └── error-handler.ts
-├── stores
-├── types
-└── utils
+src/
+├── App.vue                          # 최상위 컴포넌트 (하단 2탭 네비게이션 포함)
+├── assets/                          # 이미지, 폰트, CSS 등 정적 파일
+├── boot/                            # Quasar 초기 실행 시 사용되는 파일
+│   ├── axios.ts                     # Axios 설정
+│   ├── boot-common.ts               # 공통 초기화
+│   ├── i18n.ts                      # 다국어 초기화
+│   ├── html-filter.ts               # HTML 필터
+│   └── yup.ts                       # 유효성 검증 설정
+├── components/
+│   ├── common/                      # 공통 UI 컴포넌트
+│   │   ├── dialog/                  # 다이얼로그
+│   │   ├── form/                    # 폼 (버튼, 인풋, 셀렉트 등)
+│   │   ├── layout/                  # 레이아웃 (캐러셀, 페이지네이션 등)
+│   │   ├── text/                    # 텍스트 (타이틀, 아이콘 등)
+│   │   └── card/                    # 카드 컴포넌트
+│   ├── popup-store/                 # 팝업스토어 관련 컴포넌트
+│   ├── exhibition/                  # 기획전시 관련 컴포넌트
+│   ├── reservation/                 # 예약 관련 컴포넌트
+│   ├── bookmark/                    # 북마크 관련 컴포넌트
+│   ├── badge/                       # 뱃지 관련 컴포넌트
+│   └── notification/                # 알림 관련 컴포넌트
+├── composables/
+│   ├── domain/                      # 도메인별 API 통신 Composable
+│   │   ├── popup-store.ts           # 팝업스토어 API
+│   │   ├── exhibition.ts            # 기획전시 API
+│   │   ├── reservation.ts           # 예약 API
+│   │   ├── bookmark.ts              # 북마크 API
+│   │   ├── badge.ts                 # 뱃지 API
+│   │   ├── auth.ts                  # 인증 API
+│   │   ├── user.ts                  # 사용자 API
+│   │   ├── notification.ts          # 알림 API
+│   │   ├── common.ts                # 공통코드 API
+│   │   ├── faq.ts                   # FAQ API
+│   │   ├── notice.ts                # 공지사항 API
+│   │   └── terms.ts                 # 이용약관 API
+│   ├── form/                        # useForm 관련 Composable
+│   ├── init/                        # 초기화 Composable
+│   ├── useBridge.ts                 # 네이티브 브릿지 함수
+│   ├── useDialog.ts                 # 다이얼로그 관련 함수
+│   └── useSearchFilter.ts           # 검색 필터 함수
+├── css/                             # 글로벌 CSS
+├── i18n/                            # 다국어 지원 (ko, en, ja, zh)
+├── layouts/
+│   ├── MainLayout.vue               # 메인 레이아웃
+│   ├── SubLayout.vue                # 서브 레이아웃 (뒤로가기 + 타이틀)
+│   ├── DefaultLayout.vue            # 기본 레이아웃
+│   ├── MainHeader.vue               # 메인 헤더 (MARIORAK 로고 + 알림 + 설정)
+│   └── SubHeader.vue                # 서브 헤더 (뒤로가기 + 타이틀)
+├── pages/
+│   ├── MainPage.vue                 # 메인 홈 (POP-UP STORE + Exhibitions)
+│   ├── popup-store/
+│   │   ├── PopupStoreDetail.vue     # 팝업스토어 상세
+│   │   └── PopupStoreReserve.vue    # 팝업스토어 예약
+│   ├── exhibition/
+│   │   ├── ExhibitionDetail.vue     # 기획전시 상세
+│   │   └── ExhibitionReserve.vue    # 기획전시 예약
+│   ├── my-page/
+│   │   ├── MPMainPage.vue           # 나의 활동 메인
+│   │   ├── ReservationList.vue      # 나의 예약
+│   │   ├── BookmarkList.vue         # 나의 북마크
+│   │   └── BadgeList.vue            # 나의 뱃지
+│   ├── settings/
+│   │   ├── SettingsMain.vue         # 설정 메인
+│   │   ├── AccountManage.vue        # 계정관리
+│   │   ├── NotificationManage.vue   # 알림관리
+│   │   ├── LanguageSetting.vue      # 언어설정
+│   │   └── TermsManage.vue          # 이용약관
+│   ├── notification/
+│   │   ├── NotificationList.vue     # 알림 목록
+│   │   └── NotificationDetail.vue   # 알림 상세
+│   ├── auth/                        # 인증 (로그인, 회원가입 등)
+│   ├── policy/                      # 정책 (약관, 개인정보 등)
+│   └── error/                       # 에러 페이지
+├── router/
+│   ├── index.ts                     # 라우터 설정
+│   ├── router-util.ts               # 라우터 유틸 함수
+│   └── routes.ts                    # 라우트 정의
+├── services/
+│   ├── api.ts                       # API 서비스 (Axios + TanStack Query)
+│   └── error-handler.ts             # 에러 핸들러
+├── stores/                          # Pinia 스토어
+├── types/
+│   ├── popup-store/                 # 팝업스토어 타입
+│   ├── exhibition/                  # 기획전시 타입
+│   ├── reservation/                 # 예약 타입
+│   ├── bookmark/                    # 북마크 타입
+│   ├── badge/                       # 뱃지 타입
+│   ├── auth/                        # 인증 타입
+│   ├── common/                      # 공통 타입
+│   └── util/                        # 유틸 타입
+└── utils/                           # 유틸리티 함수
 ```
-
-| Path                             | Description                                      |
-| -------------------------------- | ------------------------------------------------ |
-| `App.vue`                        | 최상위 컴포넌트                                  |
-| `assets/`                        | 이미지, 폰트, CSS 등 정적 파일                   |
-| `boot/`                          | Quasar 초기 실행 시 사용되는 파일                |
-| `boot/axios.ts`                  | Axios 설정 파일                                  |
-| `components/`                    | 재사용 가능한 UI 컴포넌트                        |
-| `components/common/`             | 공통 컴포넌트                                    |
-| `components/common/dialog/`      | 다이얼로그 컴포넌트                              |
-| `components/common/form/`        | 폼 컴포넌트                                      |
-| `components/common/layout/`      | 레이아웃 관련 컴포넌트                           |
-| `components/common/text/`        | 텍스트 관련 컴포넌트                             |
-| `components/main/`               | 각 페이지별 컴포넌트 (1depth 페이지별 폴더 생성) |
-| `composables/`                   | Composable 함수들                                |
-| `composables/domain/`            | 서버와 통신하는 Composable 함수 (API 도메인별)   |
-| `composables/form/`              | useForm 관련 Composable 함수                     |
-| `composables/init/`              | 초기화 Composable (삭제 예정)                    |
-| `composables/temp/`              | 임시 파일 (삭제 예정)                            |
-| `composables/useBridge.ts`       | 네이티브 연결 브릿지 함수                        |
-| `composables/useDialog.ts`       | 다이얼로그 관련 함수                             |
-| `composables/useSearchFilter.ts` | 검색 필터 관련 함수                              |
-| `css/`                           | CSS 파일 모음                                    |
-| `i18n/`                          | 다국어 지원 관련 파일                            |
-| `layouts/`                       | 레이아웃 컴포넌트                                |
-| `pages/`                         | 각 페이지 컴포넌트                               |
-| `pages/auth/`                    | 인증 관련 페이지 컴포넌트                        |
-| `quasar.d.ts`                    | Quasar 타입 정의 파일                            |
-| `router/`                        | 라우팅 관련 함수 및 설정                         |
-| `router/index.ts`                | 라우터 설정 파일                                 |
-| `router/router-util.ts`          | 라우터 이동 함수                                 |
-| `router/routes.ts`               | 라우트 정의 파일                                 |
-| `services/`                      | 서비스 레이어 (API 통신 등)                      |
-| `services/api.ts`                | Axios 인스턴스 생성 파일                         |
-| `services/error-handler.ts`      | 에러 핸들러 함수                                 |
-| `stores/`                        | Vuex 스토어 관련 파일                            |
-| `types/`                         | 타입 정의 파일                                   |
-| `utils/`                         | 유틸리티 함수 모음                               |
 
 ## Installation
 
 ### Prerequisites
 
-- Node.js (version X.X.X 이상)
-- npm 또는 yarn (npm version X.X.X 이상)
+- Node.js (v18 이상)
+- yarn
 
 ## Build/Setup
 
 ### 개발 환경에서 실행
 
-프로젝트를 개발 환경에서 실행하려면 다음 명령어를 사용합니다:
-
 ```bash
+# 패키지 설치
 yarn install
 
-//실행
-yarn dev // or yarn dev2 dto 업데이트가 없었을시
+# 로컬 개발 서버 실행
+yarn dev
 
-//빌드
-yarn build //빌드된 파일은 /dist 폴더에 저장됩니다.
+# 빌드
+yarn build:dev   # 개발 환경
+yarn build:stg   # 스테이징 환경
+yarn build:prd   # 운영 환경
 ```
 
-### DTO 설치
+빌드된 파일은 `/dist/spa` 폴더에 저장됩니다.
 
-로컬 및 개발 서버에서는 연계된 DTO(meta-airforce-dto, ccf-api-dto) 모두 develop 브랜치를 기준으로 사용합니다.
-만약 `ENOTEMPTY: directory not empty` 관련 오류가 발생하면 대상 모듈의 디렉토리를 제거 후 install을 재시도 합니다.
+## Development Environment
 
-```shell
-rm -rf ./node_modules/meta-airforce-dto
+| 항목 | 기술 |
+| --- | --- |
+| 프레임워크 | Quasar v2 + Vue 3 |
+| 언어 | TypeScript |
+| 빌드 도구 | Vite |
+| 상태 관리 | Pinia + pinia-plugin-persistedstate |
+| 서버 상태 관리 | TanStack Query (vue-query) |
+| 라우터 | Vue Router |
+| HTTP 클라이언트 | Axios |
+| 폼 검증 | Vee-validate + Yup |
+| 스타일링 | Tailwind CSS + SCSS |
+| 다국어 | Vue I18n |
+| UI 컴포넌트 | Quasar Components, Radix Vue |
 
-rm -rf ./node_modules/ccf-api-dto
-```
+## License
 
-ccf-api-dto는 운영 환경 배포 시 main 브랜치를 사용합니다. 따라서 운영 배포 시에는 다음 스크립트를 실행합니다.
-
-```shell
-npm run dto:prd
-```
-
-### Development Environment
-
-프레임워크: Quasar
-언어: TypeScript
-상태 관리: pinia
-라우터: Vue Router
-HTTP 클라이언트: Axios
-검증: Vee-validate
-국제화: Vue I18n
-주요 라이브러리 : vue-query
-기타 개발 환경 관련 설정은 추후 기재 예정
-
-### License
+Private
