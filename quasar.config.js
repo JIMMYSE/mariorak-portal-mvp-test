@@ -93,7 +93,30 @@ module.exports = configure(function (ctx) {
       // polyfillModulePreload: true,
       // distDir
 
-      // extendViteConf (viteConf) {},
+      extendViteConf(viteConf) {
+        // 프로덕션 빌드 시에만 정적 에셋 경로를 publicPath 기준으로 자동 변환
+        if (!ctx.dev) {
+          const publicPath = '/mariorak-portal-mvp-test/';
+          viteConf.plugins = viteConf.plugins || [];
+          viteConf.plugins.push({
+            name: 'rewrite-public-asset-paths',
+            enforce: 'pre',
+            transform(code, id) {
+              if (!id.match(/\.(vue|ts|js)(\?|$)/)) return;
+              let transformed = code;
+              // 직접 경로: '/icons/', '/images/'
+              transformed = transformed.replace(/(['"`])\/icons\//g, `$1${publicPath}icons/`);
+              transformed = transformed.replace(/(['"`])\/images\//g, `$1${publicPath}images/`);
+              // Quasar img: 아이콘 문법: 'img:/icons/', 'img:/images/'
+              transformed = transformed.replace(/img:\/icons\//g, `img:${publicPath}icons/`);
+              transformed = transformed.replace(/img:\/images\//g, `img:${publicPath}images/`);
+              if (transformed !== code) {
+                return { code: transformed, map: null };
+              }
+            },
+          });
+        }
+      },
       // viteVuePluginOptions: {},
 
       vitePlugins: [
